@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load custom_tags %}
+{% load static wagtailembeds_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}template-blogindexpage{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="title txt-sm-center txt-xs-center mt-0">
+        <h4>{{ page.title }}<span class="red-dot"></span></h4>
+        <div class="serif" style="text-align: justify;">{{page.intro|richtext }}</div>
+        <div class="fixed-scroll">
+            
+          <div class="views-element-container widget">
+            <button class="btn btn-color-out" data-toggle="modal" data-target="#subscribeModal">
+              Manage Subscriptions
+            </button>
+          </div>
+          {% include 'components/support.html' %}
+          {% include 'components/follow_me.html' %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-md-offset-1">
+      <ul role="tablist" class="nav nav-tabs outline">
+        <li role="presentation" class="active"><a href="#latest" style="font-weight: 600;" role="tab" data-toggle="tab">Latest</a>
+        </li>
+        {% for category in all_categories %}
+        <li role="presentation"><a href="#{{ category|lower }}" role="tab" style="font-weight: 600;" data-toggle="tab">{{ category }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="tab-content" onload="category_select();">
+        <div id="latest" role="tabpanel" class="tab-pane fade in active">
+          <div class="masonry-post">
+            {% for post in blogs %}
+            {% with post=post.specific %}
+            <div class="blog-post">
+              <div class="post-body">
+                <h3 class="serif"><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <p class="serif">{{ post.body|richtext|truncatewords_html:20 }}</p>
+                <div class="post-info upper"><span
+                    class="pull-right black-text">{{ post.read_time }} read | By {{ post.owner.get_full_name }} | {{ post.date }}</span>
+                </div>
+              </div>
+            </div>
+            {% endwith %}
+            {% endfor %}
+          </div>
+        </div>
+
+        {% for category in all_categories %}
+        <div id="{{ category|lower }}" role="tabpanel" class="tab-pane fade in">
+          <!-- insert boxes -->
+          <div class="masonry-post">
+            {% for post in blogs_by_category|get_item:category %}
+            {% with post=post.specific %}
+            <div class="blog-post">
+              <div class="post-body">
+                <h3 class="serif"><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <p class="serif">{{ post.body|richtext|truncatewords_html:20 }}</p>
+                <div class="post-info upper"><span
+                    class="pull-right black-text">{{ post.read_time }} read | By {{ post.owner.get_full_name }} | {{ post.date }}</span>
+                </div>
+              </div>
+            </div>
+            {% endwith %}
+            {% empty %}
+            <h3>No articles in this category</h3>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+  const form_auth_control = document.querySelector('#form-auth-control');
+  console.log(form_auth_control);
+  if (form_auth_control)
+    form_auth_control.addEventListener('click', function (e) {
+      const form_auth = $('#form-auth');
+      console.log(form_auth);
+      $(form_auth).fadeIn();
+      $(form_auth_control).fadeOut();
+      localStorage.setItem('path', window.location.toString());
+    });
+</script>
+<script>
+  const elementId = window.location.hash.substr(1);
+  const element = document.getElementById(elementId);
+  if( element && element.classList.contains('tab-pane')){
+    element.classList.add('active', 'in');
+    document.getElementById('latest').classList.remove('active', 'in');
+    document.querySelector(`a[href=\"#${elementId}\"]`).parentElement.classList.add('active');
+    document.querySelector('a[href="#latest"').parentElement.classList.remove('active');
+  };
+</script>
+{% endblock scripts %}

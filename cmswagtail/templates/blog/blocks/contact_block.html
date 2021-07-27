@@ -1,0 +1,29 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+   
+
+{% if user.is_authenticated %}
+<p>
+    Your Name: 
+    
+    {% if user.get_full_name %}
+    {{user.get_full_name}}
+    {% else %}
+        ||No name given||
+    {% endif %}
+        
+    Your Email: {{user.email}}
+    This information will be sent along the subject and description
+</p>    
+
+    <form action="" method="POST" id="contact-us-form">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+        <input type="hidden" value="{{ value.subject_prefix }}" name='subject_prefix'>
+        <button class="btn btn-color-out" type="submit" id="contact-form-submit">Submit</button>
+    </form>
+{% else %}
+<p>
+    You need to be logged in to contact.
+</p>
+{% endif %}
+    

@@ -1,0 +1,19 @@
+{% if user.is_authenticated %}
+   <script>
+        if (window.opener && window.opener !== window) {
+        // you are in a popup
+            window.opener.location.reload();
+            window.close()
+        }
+        else {
+            const redirect_uri = localStorage.getItem('path');
+            console.log(redirect_uri);
+            localStorage.removeItem('path');
+            window.location = redirect_uri ? redirect_uri : '/';
+        }
+   </script> 
+{% else %}
+    <script>
+      window.location = '/';
+    </script>
+{% endif %}

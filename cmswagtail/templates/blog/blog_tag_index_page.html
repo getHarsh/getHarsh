@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load custom_tags %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags%}
+{% block body_class %}template-blogindexpage{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="title txt-sm-center txt-xs-center mt-0">
+        <h4>{{ page.get_parent.title }}<span class="red-dot"></span></h4>
+        <div class="serif" style="text-align: justify;">
+        <p>Articles tagged as <strong>{{ tag }}</strong></p>
+        </div>
+        <hr>
+        <div>
+          <div class="views-element-container widget">
+            <button class="btn btn-color-out" data-toggle="modal" data-target="#subscribeModal">
+              Manage Subscriptions
+            </button>
+          </div>
+          <hr>
+          {% include 'components/support.html' %}
+          {% include 'components/follow_me.html' %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-md-offset-1">
+      <div class="tab-content" onload="category_select();">
+        <div id="latest" role="tabpanel" class="tab-pane fade in active">
+          <div class="masonry-post">
+            {% for post in blog_pages %}
+            {% with post=post.specific %}
+            <div class="blog-post">
+              <div class="post-body">
+                <h3 class="serif"><a href="{% pageurl post %}">{{ post.title }}</a></h3>
+                <p class="serif">{{ post.body|richtext|truncatewords_html:20 }}</p>
+                <div class="post-info upper"><span
+                    class="pull-right black-text">{{ post.read_time }} read | By {{ post.owner.get_full_name }} | {{ post.date }}</span>
+                </div>
+              </div>
+            </div>
+            {% endwith %}
+            {% empty %}
+            <h3>No articles in this category</h3>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "wagtailadmin/base.html" %}
+{% load static %}
+{% block branding_logo %}
+   <img alt="getHarsh().in" src="{% static 'images/logowhite.png' %}" width="80">
+{% endblock %}
+{% block branding_title %}getHarsh{% endblock %}
+{% block branding_favicon %}
+	<link rel="shortcut icon" href="{% static 'images/fav.png' %}" > 
+{% endblock %}

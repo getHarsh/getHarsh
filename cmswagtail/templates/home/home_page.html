@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block body_class %}template-homepage{% endblock %}
+{% block content %}
+{{ page.body|richtext }}
+
+
+<div id="homepage">
+
+  {% for project in getharsh_projects %}
+  <div class="container">
+  <div id="project{{forloop.counter}}">
+    <div class="hidden meta">
+      <carousel>
+        <imgUrl>
+          {% image_url project.image 'original' %}
+        </imgUrl>
+        {% for item in project.carousel_images %}
+          
+          {% if item.block_type == 'image' %}
+            <imgUrl>
+            {% image_url item.value 'original' %}
+            </imgUrl>
+          {% endif %}
+          
+          {% if item.block_type == 'video' %}
+            <videoUrl>
+              {{ item }}
+            </videoUrl>
+          {% endif %}
+            
+            
+        {% endfor %}
+          
+      </carousel>
+    </div>
+    <div class="home-card-main" id="project{{forloop.counter}}-main" style="background-image: linear-gradient(90deg, rgb(242, 239, 228) 36%, rgba(255, 255, 255, 0) 68%), url({% image_url project.image 'original' %}); background-size: contain; background-position: right; overflow-y: hidden; opacity: 1;background-repeat: no-repeat;">
+      <div class="home-content card-container " >
+        <div class="home-cont1 home-title">
+         <div>{{ project.title }}</div> 
+        </div>
+        <div class="home-cont1 home-desc">
+          <p>
+            {{ project.description|richtext|truncatewords_html:115 }}
+          </p>
+        </div>
+        <div class="home-cont1">
+          <div class="views-element-container widget">
+            <div class="tags clearfix" style="cursor: pointer;margin-top: 2.4%;">
+              <a class="expand-project" 
+              coll="project{{forloop.counter}}-main" 
+              exp="project{{forloop.counter}}-expanded" 
+              project="project{{forloop.counter}}"
+                class="Learn-More">Learn more</a>
+              <a class="a-button" href="{{ project.website_url }}"><i class="fas fa-link fa-2x" aria-hidden="true"></i></a>
+              <a class="a-button" href="{{ project.discord_url }}"
+                style="font-weight: 900;"><i class="fab fa-discord fa-2x" aria-hidden="true"></i></a>
+              <a class="a-button" href="{{ project.youtube_url }}"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-container image">
+
+      </div>
+    </div>
+
+    <div class="home-card-expanded hidden" style="opacity: 0%;" id="project{{forloop.counter}}-expanded">
+      <div class="picture" style="background-image: {% static 'images/1284850449.svg' %}, url({% image_url project.image 'original' %})">
+        <!-- <iframe src="https://www.youtube-nocookie.com/embed/ft6W28g2KpE?controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe> -->
+      </div>
+      <div class="desc1">
+        <div class="desc2 carousel-button" 
+        coll="project{{forloop.counter}}-main" 
+        project="project{{forloop.counter}}" 
+        exp="project{{forloop.counter}}-expanded">
+        
+          <div class="btn-color-out carousel-previous">
+            <i class="fas fa-angle-left"></i>
+          </div>
+          <div class="btn-color-out carousel-next"
+           >
+           <i class="fas fa-angle-right"></i>
+          </div>
+        </div>
+        <div class="desc2 home-description">
+          <p class="card-text">
+            {{ project.description|richtext }}
+          </p>
+        </div>
+        <div coll="project{{forloop.counter}}-main" 
+        project="project{{forloop.counter}}" 
+        exp="project{{forloop.counter}}-expanded" 
+        class="desc2 link1 collapse-project btn-color-out"
+        style="cursor: pointer;">
+          <a>Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <hr>
+  {% endfor %}
+</div>
+
+<div id="homepage1">
+
+  {% for project in getharsh_projects %}
+  <div class="container">
+  <div id="project{{forloop.counter}}-mobile">
+    <div class="hidden meta">
+      <carousel>
+        <imgUrl>
+          {% image_url project.image 'original' %}
+        </imgUrl>
+        {% for item in project.carousel_images %}
+          
+          {% if item.block_type == 'image' %}
+            <imgUrl>
+            {% image_url item.value 'original' %}
+            </imgUrl>
+          {% endif %}
+          
+          {% if item.block_type == 'video' %}
+            <videoUrl>
+              {{ item }}
+            </videoUrl>
+          {% endif %}
+            
+            
+        {% endfor %}
+          
+      </carousel>
+    </div>
+    <div class="home-card-main" id="project{{forloop.counter}}-main-mobile">
+      <div class="card-container image" style="background-image: url({% image_url project.image 'original' %})">
+      </div>
+      <div class="home-content card-container ">
+        <div class="home-cont1 home-title">
+         <div>{{ project.title }}</div> 
+        </div>
+        <div class="home-cont1 home-desc">
+          <p>
+            {{ project.description|richtext|truncatewords_html:85 }}
+          </p>
+        </div>
+        <div class="home-cont1">
+          <div class="views-element-container widget">
+            <div class="tags clearfix" style="cursor: pointer;margin-top: 5%;">
+              <a class="expand-project" 
+              coll="project{{forloop.counter}}-main-mobile" 
+              exp="project{{forloop.counter}}-expanded-mobile" 
+              project="project{{forloop.counter}}-mobile"
+                class="Learn-More">Learn more</a>
+              <a class="a-button" href="{{ project.website_url }}"><i class="fas fa-link fa-2x" aria-hidden="true"></i></a>
+              <a class="a-button" href="{{ project.discord_url }}"
+                style="font-weight: 900;"><i class="fab fa-discord fa-2x" aria-hidden="true"></i></a>
+              <a class="a-button" href="{{ project.youtube_url }}"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="home-card-expanded hidden" style="opacity: 0%;" id="project{{forloop.counter}}-expanded-mobile">
+      <div class="picture" style="background-image: url({% image_url project.image 'original' %})">
+        <!-- <iframe src="https://www.youtube-nocookie.com/embed/ft6W28g2KpE?controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe> -->
+      </div>
+      <div class="desc1">
+        <div class="desc2 carousel-button" 
+        coll="project{{forloop.counter}}-main-mobile" 
+        project="project{{forloop.counter}}-mobile" 
+        exp="project{{forloop.counter}}-expanded-mobile">
+        
+          <div class="btn-color-out carousel-previous">
+            <i class="fas fa-angle-left"></i>
+          </div>
+          <div class="btn-color-out carousel-next"
+           >
+           <i class="fas fa-angle-right"></i>
+          </div>
+        </div>
+        <div class="desc2 home-description">
+          <p class="card-text">
+            {{ project.description|richtext }}
+          </p>
+        </div>
+        <div coll="project{{forloop.counter}}-main-mobile" 
+        project="project{{forloop.counter}}-mobile" 
+        exp="project{{forloop.counter}}-expanded-mobile" 
+        class="desc2 link1 collapse-project btn-color-out"
+        style="cursor: pointer;">
+          <a >Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <hr>
+  {% endfor %}
+</div>
+
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-wrap">
+      <div class="row">
+        {% for footer_link in footer_links%}
+
+          <div class="col-md-4" style="text-align: center;">
+           <a href="{{footer_link.link}}">{{footer_link.link_name|safe}}</a>
+          </div>
+
+        {% endfor %}
+      </div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'getharshJS/homePageJs.js' %}"></script>
+{% endblock scripts %}

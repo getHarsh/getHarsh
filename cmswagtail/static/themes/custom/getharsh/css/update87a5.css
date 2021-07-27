@@ -1,0 +1,380 @@
+header .search-form form .form-actions{
+	position: relative;
+	float: right;
+}
+header .search-form form .form-actions i.ti-search{
+	position: absolute;
+    z-index: 1;
+    background-color: #42b8d4;;
+    padding-bottom: 14px;
+    color: white;
+    padding-top: 15px;
+    padding-left: 18px;
+    padding-right: 18px;
+	left: -50px;
+    top: -44px;
+    border-bottom: 0 !important;
+}
+header .search-form form .form-actions input[type=submit]{
+	position: absolute;
+	width: 51px;
+	left: -50px;
+    top: -44px;
+    background-color: transparent;
+    z-index: 2;
+}
+header .search-form form .form-item-keys input[type=search]{
+	width: 218px;
+}
+#home > .contextual{
+	top: 61px !important;
+}
+.src-images-getharsh-hidden{
+	display: none;
+}
+#toolbar-administration{
+    z-index: 1031;
+}
+.single-product-add .inline-form input[type=number].form-control{
+    float: left;
+}
+.single-product-add .inline-form{
+    position: relative;
+}
+.single-product-add .inline-form .form-actions{
+    left: 64px;
+}
+.single-product-add .inline-form .form-actions input[type=submit]{
+    padding-right: 52px;
+}
+.single-product-add .inline-form .form-actions i.ti-bag{
+    position: absolute;
+    right: 40px;
+    top: 18px;
+    color: white;
+}
+#comments .comments-list .rating .links.inline > li:not(:last-child){
+    padding-right: 20px !important;
+}
+#comments .comments-list .rating .links.inline > li{
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    list-style: none;
+}
+#comments .comments-list .rating .links.inline{
+    float: right;
+}
+#respond .form-item-name, #respond .field--name-subject, #respond .field--name-comment-body{
+    margin-bottom: 20px;
+}
+#respond input[type=text], #respond textarea{
+    text-transform: none;
+}
+.table.cart-getharsh.responsive-enabled tbody > tr > td:first-child > input[type=submit]{
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    top: 38px;
+    left: 0;
+    z-index: 2;
+}
+.table.cart-getharsh.responsive-enabled tbody > tr > td:first-child{
+    position: relative;
+}
+.table.cart-getharsh.responsive-enabled tbody > tr > td:first-child > i.ti-close{
+    position: absolute;
+    top: 38px;
+    left: 0;
+    z-index: 1;
+}
+.table.cart-getharsh.responsive-enabled tbody td .js-form-type-uc-quantity input[type=number] {
+    width: 60px;
+    padding: 10px 12px;
+    font-size: 15px;
+    height: 45px;
+    border-radius: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: none;
+    border-color: #e7e7e7;
+    border: 1px solid #ccc;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.cart > tbody > tr > td .uc-price{
+    font-size: 14px;
+}
+.table.cart-getharsh.responsive-enabled tfoot tr td.price{
+    background-color: transparent;
+    font-size: 17px;
+    font-weight: bold;
+}
+#uc-cart-view-form th.desc{
+    width: auto;
+}
+#cart-checkout-getharsh{
+    margin: 0 !important;
+    margin-top: 10px !important;
+}
+#page-checkout-getharsh details summary{
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.1;
+    color: inherit;
+}
+#page-checkout-getharsh details{
+    border: 1px solid #e7e7e7;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+#page-checkout-getharsh label{
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%
+}
+#delivery-address-pane > .uc-store-address-field label[for="edit-panes-delivery-street2"]{
+    display: none;
+}
+#delivery-address-pane label{
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+}
+#delivery-address-pane > .uc-store-address-field > div{
+    margin-bottom: 15px;
+}
+#page-checkout-getharsh input[type=text],#page-checkout-getharsh input[type=email]{
+    padding: 18px 24px;
+    height: 55px;
+    border-radius: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    box-shadow: none;
+    border-color: #e7e7e7;
+    border: 1px solid #ccc;
+    width: 50%;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+@media (max-width: 762px){
+    #page-checkout-getharsh input[type=text],#page-checkout-getharsh input[type=email]{
+        width: 100%;
+    }
+}
+#page-checkout-getharsh select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    height: 53px;
+    border-radius: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    box-shadow: none;
+    padding: 18px 24px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    border: 1px solid #e7e7e7;
+}
+#page-checkout-getharsh .form-actions input[type=submit]{
+    margin: 0 !important;
+    display: inline-block;
+    width: auto;
+}
+#page-checkout-getharsh .price{
+    background-color: transparent;
+}
+#page-checkout-getharsh td.subtotal-title{
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: right;
+    padding-top: 45px;
+}
+#page-checkout-getharsh span.uc-price{
+        letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 10px;
+}
+#page-checkout-getharsh td.price{
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 10px;
+}
+#page-checkout-getharsh .uc-payment-totals .line-item-total .title, #page-checkout-getharsh .uc-payment-totals .line-item-subtotal .title{
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+#page-checkout-getharsh .table.cart-getharsh tfoot tr td.price{
+    padding-top: 45px;
+}
+#page-checkout-getharsh label.option{
+    width: auto;
+}
+#block-getharsh-local-tasks ul li{
+    display: inline-block;  
+    list-style: none;  
+}
+#block-getharsh-local-tasks ul{
+    padding: 0;
+}
+#block-getharsh-local-tasks ul > li:not(:first-child){
+    padding-left: 20px;
+}
+#getharsh-message{
+    margin-bottom: 15px;
+}
+#cart-pane table tfoot > tr > td.price{
+    vertical-align: bottom;
+}
+.cart-block-summary-links{
+    padding: 0 16px;
+}
+#navigation.contextual-region > div.contextual{
+    right: 130px;
+}
+.shop-product .product-overlay form.inline-form .form-item-qty{
+    display: none !important;
+}
+#getharsh-sort-product form > .js-form-type-select.form-item-sort-by, #getharsh-sort-product form > .form-actions{
+    display: inline-block;
+}
+#getharsh-sort-product form{
+    text-align: right;
+}
+.getharsh-hidden-element{
+    display: none !important;
+}
+.comment-pic img{
+    border-radius: 50%;
+}
+li .comment .comment-text .links.inline{
+    float: right;
+}
+li .comment .comment-text .links.inline > li{
+    float: left;
+    list-style: none;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+li .comment .comment-text .links.inline > li:not(:last-child){
+    padding-right: 20px;
+}
+#comments .comments-list .indented{
+    margin-left: 35px;
+}
+.comments-list li{
+    margin-bottom: 15px;
+    list-style: none;
+    padding: 0;
+}
+.page-comment li{
+    list-style: none;
+}
+.simplenews-getharsh-coming-soon input[type=email], .simplenews-getharsh-coming-soon input[type=text]{
+    width: auto !important;
+    float: left;
+}
+img{max-width:100%!important}
+.getharsh-element-padding .js-form-type-textfield,.getharsh-element-padding .js-form-type-email, .getharsh-element-padding .js-form-type-textarea{
+    padding-bottom: 20px;
+}
+.getharsh-element-padding .js-form-type-checkbox, .getharsh-element-padding div.form-actions{
+    text-align: center;
+}
+.config-st > div.contextual{
+    top:80px;
+}
+#login-box li.active a{
+    border-color: #ffffff;
+}
+#login-box li a{
+    color: #ffffff;
+}
+#login-box input[type=submit]{
+    width: 100%;
+}
+.margin-bottom-15px{
+    margin-bottom: 15px !important;
+}
+#login-box input[type=text], #login-box input[type=email], #login-box input[type=password]{
+    text-transform: none;
+}
+#simplenews-subscriptions-block-abbddc83-65d3-42da-a33d-67580b258e78 .field--name-mail{
+    width: 60%;
+    float: left;
+    margin-top: 15px;
+}
+#simplenews-subscriptions-block-abbddc83-65d3-42da-a33d-67580b258e78 .form-actions{
+    width: 40%;
+    float: left;
+    margin-top: 15px;
+}
+ol.simpnews-search-results-page > li:not(:last-child){
+    border-bottom: 1px solid #888888;
+}
+.getharsh-search-page form.search-form.search-page-form{
+    position: inherit;
+    opacity: inherit;
+    visibility: visible;
+}
+.getharsh-search-page form.search-form.search-page-form input[type=text], .getharsh-search-page form.search-form.search-page-form input[type=search]{
+    padding: 18px 24px;
+    height: 55px;
+    border-radius: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    box-shadow: none;
+    border-color: #e7e7e7;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.getharsh-search-page form.search-form.search-page-form input[type=submit]{
+    -webkit-appearance: button;
+    cursor: pointer;
+        color: #fff;
+    border-color: #42b8d4;
+    background-color: #42b8d4;
+    padding: 0 28px;
+    height: 55px;
+    line-height: 53px;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    border: 0;
+}
+.getharsh-search-page form.search-form.search-page-form label{
+    width: 220px;
+}

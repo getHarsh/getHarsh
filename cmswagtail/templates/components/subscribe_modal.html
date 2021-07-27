@@ -1,0 +1,87 @@
+{% load socialaccount %}
+
+   <div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="subscribeModalLabel">
+
+                  {% if user.is_authenticated %}
+                  <div class="title center">
+                     Subscribe to getharsh.in
+                  </div>
+                  {% else %}
+                  <div class="title center">
+                     Login or SignUp to Subscribe
+                  </div>
+                  {% endif %}
+
+               </h5>
+
+            </div>
+            <div class="modal-body text-center">
+               <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  {% if user.is_authenticated %}
+                  <p class="text-justify">
+                     Hi there, Subscribe to the latest articles on getharsh.in using your email <strong>{{ user.email }}</strong>.
+                     Here, you can select the categories you want to subscribe to, by means of email.
+                     And unselect the categories you are not interested in.
+                  </p>
+                  <form action="" method="post" id="subscribe-form" class="mb-2">
+                     {% csrf_token %}
+                        <div data-toggle="buttons" class="center" style="width: 100%;">
+                           {% for field in subscribe_form %}
+                           <label style="margin-bottom: 5%;"
+                              class="col-sm-4 btn btn-color-out btn-toggle {% if field.value %}active{% endif %} inline"
+                              data-toggle="button">
+                              {{ field }} {{ field.name }}</label>
+                           {% endfor %}
+                           
+                        </div>
+                  </form>
+                  <div class="row"></div>
+                  <div style="margin-top: 2px;">
+                     <input type="button" class="col-sm-6 btn btn-color-out btn-toggle expanded" onclick="selectAllCategoriesInModal()"
+                     value="Select All" />
+                     <input type="button" class="col-sm-6 btn btn-color-out btn-toggle"
+                     onclick="unSelectAllCategoriesInModal()" value="Unselect All" />
+                  </div>
+                  <div class="row"></div>
+               </div>
+                  <div style="margin-top: 2px;">
+                     <input type="submit" id='submitSubscribeModal' class="btn btn-color-out" value="Save your Subscriptions" form="subscribe-form">   
+                     <input type="hidden" name="close" id="closeSubscribeModal" data-dismiss="modal">
+                  </div>
+                  {% else %}
+               <div class="btn-group btn-group-toggle" data-toggle="buttons"></div>
+                  <div class="tags clearfix">
+
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'google' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-google-plus fa-2x"></i></i></a>
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'github' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-github fa-2x"></i></a>
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'facebook' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-facebook fa-2x"></i></a>
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'twitter' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-twitter fa-2x"></i></a>
+
+                  </div>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>

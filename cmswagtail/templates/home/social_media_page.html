@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block body_class %}template-homepage{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<style>
+    @import url('pick a font');
+    body {
+        /*font: normal 1em 'font';*/
+        background-color: #ecfab6;
+    }
+    main {
+        margin-top: 4.5em;
+    }
+    #section1 {
+        height: 45em;
+    }
+    /* Carousel cards */
+    /* equal card height */
+    .row-equal>div[class*='col-'] {
+        display: flex;
+        flex: 1 0 auto;
+    }
+    .row-equal .card {
+        width: 100%;
+    }
+    /* ensure equal card height inside carousel */
+    .row-equal.carousel-inner>.active,
+    .row-equal.carousel-inner>.next,
+    .row-equal.carousel-inner>.prev {
+        display: flex;
+    }
+    .row-equal.carousel-inner .next {
+        left: 33%;
+    }
+    .row-equal.carousel-inner .prev {
+        left: -33%;
+    }
+    .carousel,
+    .carousel-inner,
+    .carousel-inner>.item {
+        overflow: hidden;
+    }
+    /* control image height */
+    .card-img-top-250 {
+        max-height: 250px;
+        overflow: hidden;
+    }
+    /* using a container causes multiple alerts to stack. */
+    .alerts-container {
+        position: fixed;
+        top: 1em;
+        right: 2em;
+        z-index: 9999;
+    }
+    .alert {
+        position: relative;
+        min-width: 15em;
+        text-align: center;
+        display: none;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        -webkit-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+    }
+</style>
+    <div class="text-center">
+        {{ page.intro|richtext }}
+    </div>
+<!-- <div class="row mb-2">
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQNwNHSok0-OndHQIoshzbN6hr6euF2u90tg&usqp=CAU"
+                    alt="" class="card-img-top">
+                <div class="card-body"></div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi autem enim ea
+                    debitis, illo praesentium reiciendis ex hic corporis.
+                </p>
+            </div>
+        </div>
+    </div> -->
+<!-- <h1 class="bg-info text-white text-center p-2 fixed-top">Bootstrap 4 Carousel Cards</h1> -->
+<h3 class="text-center mt-5">Youtube</h3>
+<main class="content" role="content">
+    <section class="container-fluid" id="section1">
+        <div class="container m-2">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="btn btn-outline-secondary prev" href="" title="go back" data-target="Previous Slide"><i
+                            class="fa fa-lg fa-chevron-left"></i></a>
+                    <a class="btn btn-outline-secondary next" href="" title="more" data-target="Next Slide"><i
+                            class="fa fa-lg fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel slide" data-ride="carousel" id="postsCarousel">
+            <div class="row row-equal carousel-inner">
+                <div class="carousel-item active">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/460/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/461/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/462/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/460/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/461/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> <!-- /content -->
+<h3 class="text-center">Linkedin</h3>
+<main class="content" role="content">
+    <section class="container-fluid" id="section1">
+        <div class="container m-2">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="btn btn-outline-secondary prev" href="" title="go back" data-target="Previous Slide"><i
+                            class="fa fa-lg fa-chevron-left"></i></a>
+                    <a class="btn btn-outline-secondary next" href="" title="more" data-target="Next Slide"><i
+                            class="fa fa-lg fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel slide" data-ride="carousel" id="postsCarousel">
+            <div class="row row-equal carousel-inner">
+                <div class="carousel-item active">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/460/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/461/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/462/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/460/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/461/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> <!-- /content -->
+<h3 class="text-center">Twitter</h3>
+<main class="content" role="content">
+    <section class="container-fluid" id="section1">
+        <div class="container m-2">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="btn btn-outline-secondary prev" href="" title="go back" data-target="Previous Slide"><i
+                            class="fa fa-lg fa-chevron-left"></i></a>
+                    <a class="btn btn-outline-secondary next" href="" title="more" data-target="Next Slide"><i
+                            class="fa fa-lg fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel slide" data-ride="carousel" id="postsCarousel">
+            <div class="row row-equal carousel-inner">
+                <div class="carousel-item active">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/460/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/461/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/462/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/460/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://picsum.photos/461/?random" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> <!-- /content -->
+<!-- alerts are for fun of it -->
+<div class="alerts-container">
+    <div class="row">
+        <div id="timed-alert" class="alert alert-info animated tada" role="alert">
+            <span id="time"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div id="click-alert" class="alert alert-warning" role="alert">
+        </div>
+    </div>
+</div>
+<script>
+    // $(document).ready(function () {
+    //     // Random Alert shown for the fun of it
+    //     function randomAlert() {
+    //         var min = 5,
+    //             max = 20;
+    //         var rand = Math.floor(Math.random() * (max - min + 1) + min); //Generate Random number between 5 - 20
+    //         // post time in a <span> tag in the Alert
+    //         $("#time").html('Next alert in ' + rand + ' seconds');
+    //         $('#timed-alert').fadeIn(500).delay(3000).fadeOut(500);
+    //         setTimeout(randomAlert, rand * 1000);
+    //     };
+    //     randomAlert();
+    // });
+    /* Use 'data-target=' to show link text in Alert popup */
+    // $('.btn').click(function (event) {
+    //     event.preventDefault();
+    //     var target = $(this).data('target');
+    //     // console.log('#'+target);
+    //     $('#click-alert').html('data-target= ' + target).fadeIn(50).delay(3000).fadeOut(1000);
+    // });
+    /* Carousel cards */
+    (function ($) {
+        "use strict";
+        // manual carousel controls
+        $('.next').click(function () { $('.carousel').carousel('next'); return false; });
+        $('.prev').click(function () { $('.carousel').carousel('prev'); return false; });
+        // append each Card to one before it
+        $('.carousel .carousel-item').each(function () {
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+            if (next.next().length > 0) {
+                next.next().children(':first-child').clone().appendTo($(this));
+            }
+            else {
+                $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+            }
+        });
+    })(jQuery);
+</script>
+<div class="text-center">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="getharsh" data-color="#5F7FFF" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#545454fff" data-coffee-color="#FFDD00" ></script>
+</div>
+{% endblock %}
