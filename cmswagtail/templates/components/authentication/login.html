@@ -1,0 +1,39 @@
+{% load socialaccount %}
+   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="subscribeModalLabel">
+                  Login to getHarsh.in
+               </h5>
+            </div>
+            <div class="modal-body text-center">
+                  <div class="tags clearfix">
+
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'google' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-google-plus fa-2x"></i></i></a>
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'github' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-github fa-2x"></i></a>
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'facebook' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-facebook fa-2x"></i></a>
+                     <a href="#"
+                        style="margin: 3px;"
+                        onclick="window.open('{% provider_login_url 'twitter' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                        hreflang="en">
+                        <i class="fa fa-twitter fa-2x"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>

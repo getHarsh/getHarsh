@@ -1,0 +1,11 @@
+{% load social_share %}
+<div class="views-element-container widget">
+        <h6 class="upper">Love it? Share the article. </h6>
+        <div class="tags clearfix">
+          {% post_to_twitter page.title page.full_url '<i class="fa fa-twitter fa-2x" aria-hidden="true"></i>' %}
+          {% post_to_reddit page.title page.full_url '<i class="fa fa-reddit fa-2x" aria-hidden="true"></i>' %}
+          {% post_to_whatsapp page.full_url '<i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>' %}
+          <a href="#" id="copy-link" data-url="{{ page.full_url }}"><i class="fa fa-copy fa-2x"
+              aria-hidden="true"></i></a>
+        </div>
+      </div>

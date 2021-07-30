@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}template-blogpage{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="title txt-sm-center txt-xs-center mt-0">
+        <h4 id="about-title">{{ page.title }}<span class="red-dot"></span></h4>
+        <div id="about_section">
+          <div style="display: flex; justify-content:center">
+          <img id="about-description" src="{% static 'images/harsh.jpeg'%}">
+          </div>
+          <br>
+          <br>
+        </div>
+        <div>
+          <div id="content-hideable">
+            <div class="views-element-container widget">
+              <button class="btn btn-color-out " data-toggle="modal" data-target="#subscribeModal">
+                Manage Subscriptions
+              </button>
+            </div>
+            {% include 'components/support.html' %}
+          </div>
+          {% include 'components/follow_me.html' %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      
+      <ul role="tablist" class="nav nav-tabs outline">
+        <li role="presentation" class="active"><a href="#aboutus" role="tab" data-toggle="tab">About</a>
+        </li>
+        {% for tab in page.tabs %}
+        <li role="presentation">
+          <a href="#{{ tab.value.name|slugify }}" role="tab" data-toggle="tab">
+            {{ tab.value.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div id="aboutus" role="tabpanel" class="tab-pane fade in active text-justify">
+        
+          {{ page.body|richtext }}
+        </div>
+        {% for tab in page.tabs %}
+        <div id="{{ tab.value.name|slugify }}" role="tabpanel" class="tab-pane fade in text-justify">
+            
+            {% if tab.block_type == 'appointment' %}
+              {% include_block tab with form=contact_form %}
+            {% else %}
+              {% include_block tab %}
+            {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+  
+<script>
+  $("#contact-us-form").submit(
+      function(e){
+          e.preventDefault();
+          const $button = $('#contact-form-submit')
+          $button.removeClass('btn-danger');
+          $button.addClass('btn-primary');
+          $button.text('Submitting Contact form');
+          $.ajax({
+              data: $(this).serialize(),
+              type: 'POST',
+              url: "{% url 'blog_extension:submit_contact_form' %}",
+              success: function () {
+                  $button.removeClass('btn-primary');
+                  swal('Success', 'Your Query has been sent', 'success')
+                  $button.text('Submit Your Query.');
+              },
+              error: function () {
+                  $button.addClass('btn-danger');
+                  $button.text('Error','Your Query could not be sent', 'error');
+              }
+          });
+      }
+  )
+</script>
+<script>
+  const elementId = window.location.hash.substr(1);
+  const element = document.getElementById(elementId);
+  if( element && element.classList.contains('tab-pane')){
+    element.classList.add('active', 'in');
+    document.getElementById('aboutus').classList.remove('active', 'in');
+    document.querySelector(`a[href=\"#${elementId}\"]`).parentElement.classList.add('active');
+    document.querySelector('a[href="#aboutus"').parentElement.classList.remove('active');
+  };
+</script>
+<script src="{% static 'getharshJS/aboutPageJs.js' %}"></script>
+{% endblock scripts %}
+  

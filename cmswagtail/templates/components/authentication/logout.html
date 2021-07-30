@@ -1,0 +1,11 @@
+<li>
+    <a href="#" onclick="submitLogoutForm();" style="font-weight: 900;">Logout</a>
+    <form action="{% url 'account_logout' %}" method="post" id="logout-form">
+        {% csrf_token %}
+    </form>
+    <script>
+        function submitLogoutForm() {
+            document.getElementById('logout-form').submit();
+        }
+    </script>
+</li>

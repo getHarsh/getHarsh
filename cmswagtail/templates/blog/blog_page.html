@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags%}
+{% load social_share %}
+{% load socialaccount %}
+{% block body_class %}template-blogpage{% endblock %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="title txt-sm-center txt-xs-center mt-0">
+        <h4 class="default">{{ page.title }}</h4>
+        <p class="serif">{{page.intro|richtext }}</p>
+        <h6 class="upper">
+          <span>
+            {% if page.owner.wagtail_userprofile.avatar %} 
+            <img width="35px" height="35px" src="{{ page.owner.wagtail_userprofile.avatar.url }}" alt=""
+              style="border-radius: 50%;">
+             {% endif %} 
+            <span>{{ page.owner.get_full_name }}</span>
+          </span>
+          <span class="dot"></span><span>{{ page.date }}</span><span class="dot"></span>
+        </h6>
+      </div>
+      <div class="views-element-container widget">
+        <div class="tags clearfix">
+
+          {% if next_blog %}
+          <a href="{% pageurl next_blog %}">Next Blog</a>
+          {% endif %}
+          {% if prev_blog %}
+          <a href="{% pageurl prev_blog %}">Previous Blog</a>
+          {% endif %}
+
+        </div>
+      </div>
+      <div class="fixed-scroll">
+        
+        {% if page.player_embed %}
+        <div class="media-audio">
+          {% embed page.player_embed %}
+        </div>
+        {% endif %}
+          
+        {% include 'components/share.html' %}      
+        <div class="views-element-container widget">
+          <h6 class="upper">Subscribe</h6>
+          <button class="btn btn-color-out" data-toggle="modal" data-target="#subscribeModal">
+            Manage Subscriptions
+          </button>
+        </div>
+  
+        {% if page.tags.all.count %}
+        <div class="views-element-container widget">
+          <h6 class="upper">Associated Tags</h6>
+          <div class="tags clearfix">
+            {% for tag in page.tags.all %}
+            <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+  
+  
+      </div>
+
+    </div>
+    <div class="col-md-7 col-md-offset-1">
+      <ul role="tablist" class="nav nav-tabs outline">
+        <li role="presentation" class="active"><a href="#latest" style="font-weight: 600;" role="tab"
+            data-toggle="tab">Blog</a>
+        </li>
+        {% for category in all_categories %}
+        <li role="presentation"><a class="atab" href="{{ page.get_parent.url }}#{{ category|lower }}"
+            style="font-weight: 600;" role="tab" data-toggle="tab">
+
+            {% if category in categories %}
+            <strong style="color: #42b8d4;">
+              {{ category }}
+            </strong>
+            {% else %}
+            {{ category }}
+            {% endif %}
+
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div id="latest" role="tabpanel" class="tab-pane fade in active">
+          <div class="text-justify">
+              {{ page.body|richtext }}
+
+          </div>
+          </article>
+          <br>
+          <hr>
+
+          {% comment %}
+          <div id="comments">
+            <br>
+            {% if user.is_authenticated %}
+            <h5 id="reply-title">LEAVE A COMMENT <small><a rel="nofollow" id="cancel-comment-reply-link" href="#"
+                  style="display:none;">Cancel reply</a></small></h5>
+            <!-- .commentform -->
+            <form action="{% url 'blog_extension:submit_comment' %}" method="post" id="commentform"
+              class="validate-form" novalidate="novalidate">
+              {% csrf_token %}
+              <p class="comment-notes">Your email address will not be published. Required fields are marked
+                <span class="required" aria-required="true">*</span>
+              </p>
+              {{ comment_form.as_p }}
+              <p class="form-submit">
+                <input type="submit" name="submit" id="submit" class="btn btn-color-out" value="Post Comment">
+              </p>
+            </form>
+            <!-- .commentform -->
+            {% else %}
+            <h3>Login or Signup to Continue</h3>
+            <h3>
+              <div class="views-element-container widget">
+                <div class="tags clearfix">
+                  <a href="#"
+                    onclick="window.open('{% provider_login_url 'google' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                    hreflang="en">
+                    <i class="fa fa-google-plus fa-2x "></i></i></a>
+                  <a href="#"
+                    onclick="window.open('{% provider_login_url 'github' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                    hreflang="en">
+                    <i class="fa fa-github fa-2x "></i></a>
+                  <a href="#"
+                    onclick="window.open('{% provider_login_url 'facebook' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                    hreflang="en">
+                    <i class="fa fa-facebook fa-2x "></i></a>
+                  <a href="#"
+                    onclick="window.open('{% provider_login_url 'twitter' %}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');"
+                    hreflang="en">
+                    <i class="fa fa-twitter fa-2x "></i></a>
+                </div>
+              </div>
+            </h3>
+            {% endif %}
+            <ul class="comments-list">
+              <a id="comment-8"></a>
+              {% for comment in page.comment_set.all %}
+              <li>
+                <div class="comment">
+                  <div class="comment-pic">
+                    {% if comment.comment_by.socialaccount_set.all.0.get_avatar_url %}
+                    <img width="35px" height="35px"
+                      src="{{ comment.comment_by.socialaccount_set.all.0.get_avatar_url }}" alt="">
+
+                    {% else %}
+                    <img src="{% static 'images/user-01.png' %}" width="35px" height="35px" alt="no-avatar" />
+                    {% endif %}
+                  </div>
+                  <div class="comment-text">
+                    <h5 class="upper">
+                      <span style="margin-right: 100%;">
+                        <span>
+                          {{ comment.comment_by.username }}
+                        </span>
+                      </span>
+                      <span style="float: inline-end; font-size: 12px;">{{ comment.created_on }}</span>
+
+                    </h5>
+                    <p>
+                      {{ comment.comment_text }}
+                    </p>
+                    <ul class="links inline">
+                      <li class="comment-forbidden"></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
+{% block scripts %}
+
+<!-- <script>
+  const form_auth_control = document.querySelector('#form-auth-control');
+  console.log(form_auth_control);
+  if(form_auth_control)
+    form_auth_control.addEventListener('click', function (e) {
+      const form_auth = $('#form-auth');
+      console.log(form_auth);
+      $(form_auth).fadeIn();
+      $(form_auth_control).fadeOut();
+      localStorage.setItem('path', window.location.toString());
+    });
+</script> -->
+<script>
+  const copy_link_button = document.getElementById('copy-link');
+  copy_link_button.addEventListener('click', function (e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(window.location.toString())
+      .then(
+        function () {
+          copy_link_button.innerHTML = '<i class="fa fa-check fa-2x" aria-hidden="true"></i>';
+          setTimeout(function () {
+            copy_link_button.innerHTML = '<i class="fa fa-copy fa-2x" aria-hidden="true"></i>';
+          }, 3000
+          );
+        },
+        function (err) {
+          console.error('Could not copy text: ', err);
+        }
+      )
+  })
+</script>
+<script>
+  $("textarea").css('overflow', 'hidden');
+  $("textarea").keyup(function (e) {
+    while ($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height() + 1);
+    };
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $('.atab').click(
+      function (e) {
+        window.location = $(this).attr('href');
+      }
+    )
+  });
+
+</script>
+<script>
+  const embeds = document.querySelectorAll('div>iframe');
+  embeds.forEach(embed => {
+    if (embed.src.includes('soundcloud')) {
+      embed.parentElement.classList.add('media-audio');
+    }
+    else {
+      embed.parentElement.classList.add('media-video');
+    }
+  });
+
+</script>
+{% endblock scripts %}

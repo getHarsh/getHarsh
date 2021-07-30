@@ -1,0 +1,38 @@
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="justify-content-center">
+  <div class="col-md-12 team-card">
+
+    {% for child in value.children %}
+    <div class="team-member-card ">
+      <div class="grid-container">
+        <div class="card">
+          <div class="imgBx">
+            <img src="{% image_url child.image 'original' %}" alt="" />
+          </div>
+          <div class="content">
+            <div class="contentBx">
+              <h3>{{ child.name }}<br /><span>{{ child.project_description }}</span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="meta hidden" >
+        <name>{{ child.name }}</name>
+        <role>{{ child.role }}</role>
+        <project_description>{{ child.project_description }}</project_description>
+        <personal_description>{{ child.personal_description }}</personal_description>
+        <social>
+          <twitter>{{ child.twitter }}</twitter>
+          <linkedin>{{ child.linkedin }}</linkedin>
+          <instagram>{{ child.instagram }}</instagram>
+          <github>{{ child.github }}</github>
+          <youtube>{{ child.twitter }}</youtube>
+        </social>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  
+</div>
