@@ -97,7 +97,7 @@ Static  contains static files(like css, js and media), templates contain the htm
 
 Here is a flow chart of how the project works
 
-![ewretrfhg](C:\Users\91629\Desktop\ewretrfhg.PNG)
+![ewretrfhg](cmswagtail/static/images/flowchart.jpeg)
 
 ### Installation and configuration 
 
