@@ -1,0 +1,41 @@
+# getHarsh Engine Repository .gitignore
+
+# Environment files (generated from root .env.example)
+.env
+.env.*
+
+# Master posts has its own Git repository
+/master_posts
+/master_posts/
+
+# Archive old config (keeping for reference but not tracking)
+/archive/
+
+# System files
+.DS_Store
+.tmp.drivedownload/
+.tmp.driveupload/
+
+# Build artifacts
+.build_history
+*.log
+*.tmp
+.config_cache
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python artifacts (if any scripts use Python)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node artifacts (if any tools use Node)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+EOF < /dev/null
