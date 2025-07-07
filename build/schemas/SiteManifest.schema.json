@@ -1,0 +1,722 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteManifest",
+  "definitions": {
+    "SiteManifest": {
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/website.config.ManifestMeta",
+          "description": "Manifest metadata"
+        },
+        "identity": {
+          "$ref": "#/definitions/website.config.SiteIdentity",
+          "description": "Site identification and basic info"
+        },
+        "configuration": {
+          "$ref": "#/definitions/website.config.SiteConfiguration",
+          "description": "Site configuration snapshot"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.ContentInventory",
+          "description": "Content inventory"
+        },
+        "structure": {
+          "$ref": "#/definitions/website.config.SiteStructure",
+          "description": "Site structure and navigation"
+        },
+        "ai_integration": {
+          "$ref": "#/definitions/website.config.AIIntegration",
+          "description": "Integration points for AI agents"
+        },
+        "ecosystem": {
+          "$ref": "#/definitions/website.config.EcosystemConnections",
+          "description": "Cross-domain relationships"
+        },
+        "build_info": {
+          "$ref": "#/definitions/website.config.BuildInfo",
+          "description": "Build information"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Manifest",
+      "description": "SiteManifest is the standardized static JSON file generated after every successful build. This file is designed for AI agents and automated tools to understand the site structure. Generated at: /manifest.json on every site (static file served by GitHub Pages) This is a STATIC manifest - no dynamic APIs, only references to other static files"
+    },
+    "website.config.AIIntegration": {
+      "properties": {
+        "llms_txt_url": {
+          "type": "string",
+          "description": "LLMs.txt location (static file)"
+        },
+        "robots_txt_url": {
+          "type": "string",
+          "description": "robots.txt location"
+        },
+        "ai_friendly_structured_data": {
+          "type": "boolean",
+          "description": "Whether the site has AI-friendly structured data"
+        },
+        "structured_data_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Static data files available for AI consumption"
+        },
+        "crawl_patterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Recommended crawl patterns"
+        },
+        "static_indexes": {
+          "$ref": "#/definitions/website.config.AIStaticIndexes",
+          "description": "Static indexes for AI processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Integration",
+      "description": "AI integration information (for static GitHub Pages sites)"
+    },
+    "website.config.AIStaticIndexes": {
+      "properties": {
+        "full_content": {
+          "type": "string",
+          "description": "Full content dump (e.g., /ai/content.json)"
+        },
+        "summaries": {
+          "type": "string",
+          "description": "Post summaries with embeddings-friendly text (e.g., /ai/summaries.json)"
+        },
+        "navigation": {
+          "type": "string",
+          "description": "Structured navigation (e.g., /ai/navigation.json)"
+        },
+        "knowledge_graph": {
+          "type": "string",
+          "description": "Knowledge graph relationships (e.g., /ai/graph.json)"
+        },
+        "qa_pairs": {
+          "type": "string",
+          "description": "Q&A pairs if available (e.g., /ai/qa.json)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Static Indexes",
+      "description": "Static index files for AI consumption (all JSON files)"
+    },
+    "website.config.AnalyticsInfo": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether analytics is enabled"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Analytics providers in use"
+        },
+        "cross_domain": {
+          "type": "boolean",
+          "description": "Cross-domain tracking enabled"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Info",
+      "description": "Analytics information (sanitized for public consumption)"
+    },
+    "website.config.BuildInfo": {
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "Build timestamp"
+        },
+        "build_id": {
+          "type": "string",
+          "description": "Build ID/hash"
+        },
+        "git_commit": {
+          "type": "string",
+          "description": "Git commit hash"
+        },
+        "git_branch": {
+          "type": "string",
+          "description": "Git branch"
+        },
+        "builder_version": {
+          "type": "string",
+          "description": "Builder version"
+        },
+        "build_duration": {
+          "type": "integer",
+          "description": "Build duration (seconds)"
+        },
+        "full_rebuild": {
+          "type": "boolean",
+          "description": "Whether this was a full rebuild"
+        },
+        "error_count": {
+          "type": "integer",
+          "description": "Errors/warnings count"
+        },
+        "warning_count": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Info",
+      "description": "Build information"
+    },
+    "website.config.ContentEndpoints": {
+      "properties": {
+        "rss": {
+          "type": "string",
+          "description": "RSS feed URL (e.g., /feed.xml)"
+        },
+        "json_feed": {
+          "type": "string",
+          "description": "JSON feed URL (e.g., /feed.json)"
+        },
+        "search_index": {
+          "type": "string",
+          "description": "Search index file (e.g., /search-index.json for client-side search)"
+        },
+        "categories_index": {
+          "type": "string",
+          "description": "Categories index (e.g., /categories.json)"
+        },
+        "tags_index": {
+          "type": "string",
+          "description": "Tags index (e.g., /tags.json)"
+        },
+        "posts_index": {
+          "type": "string",
+          "description": "Archive/posts index (e.g., /posts.json)"
+        },
+        "sitemap": {
+          "type": "string",
+          "description": "Sitemap URL (e.g., /sitemap.xml)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Endpoints",
+      "description": "Static content file locations (all served by GitHub Pages)"
+    },
+    "website.config.ContentInventory": {
+      "properties": {
+        "stats": {
+          "$ref": "#/definitions/website.config.ContentStats",
+          "description": "Content statistics"
+        },
+        "recent_posts": {
+          "items": {
+            "$ref": "#/definitions/website.config.PostSummary"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Recent posts (last 10)"
+        },
+        "featured": {
+          "items": {
+            "$ref": "#/definitions/website.config.PostSummary"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Featured content"
+        },
+        "categories": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Categories with post counts"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Tags with post counts"
+        },
+        "documentation": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocPage"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "For project sites: documentation pages"
+        },
+        "endpoints": {
+          "$ref": "#/definitions/website.config.ContentEndpoints",
+          "description": "Content endpoints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Inventory",
+      "description": "Content inventory"
+    },
+    "website.config.ContentStats": {
+      "properties": {
+        "total_posts": {
+          "type": "integer",
+          "description": "Total number of posts"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "Total number of pages"
+        },
+        "total_categories": {
+          "type": "integer",
+          "description": "Total number of categories"
+        },
+        "total_tags": {
+          "type": "integer",
+          "description": "Total number of tags"
+        },
+        "avg_post_length": {
+          "type": "integer",
+          "description": "Average post length (words)"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Last updated timestamp"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Stats",
+      "description": "Content statistics"
+    },
+    "website.config.DocPage": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "url": {
+          "type": "string",
+          "description": "Page URL (relative)"
+        },
+        "section": {
+          "type": "string",
+          "description": "Section/category"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order in navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Page",
+      "description": "Documentation page (for project sites)"
+    },
+    "website.config.EcosystemConnections": {
+      "properties": {
+        "parent": {
+          "$ref": "#/definitions/website.config.EcosystemLink",
+          "description": "Parent site (for blogs/projects)"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.EcosystemLink"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child sites (blogs/projects under this domain)"
+        },
+        "siblings": {
+          "items": {
+            "$ref": "#/definitions/website.config.EcosystemLink"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sibling sites (other sites in ecosystem)"
+        },
+        "counterpart": {
+          "$ref": "#/definitions/website.config.EcosystemLink",
+          "description": "Counterpart site (special relationship)"
+        },
+        "ecosystem_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "All ecosystem domains"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Connections",
+      "description": "Ecosystem connections"
+    },
+    "website.config.EcosystemLink": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Site domain"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Site type"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type"
+        },
+        "url": {
+          "type": "string",
+          "description": "Site URL"
+        },
+        "manifest_url": {
+          "type": "string",
+          "description": "Manifest URL for that site"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Link",
+      "description": "Ecosystem link information"
+    },
+    "website.config.HierarchyNode": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Node path"
+        },
+        "title": {
+          "type": "string",
+          "description": "Node title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Node type (\"page\", \"section\", \"external\")"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.HierarchyNode"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child nodes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Hierarchy Node",
+      "description": "Hierarchy node (for complex sites)"
+    },
+    "website.config.ImportantURLs": {
+      "properties": {
+        "home": {
+          "type": "string",
+          "description": "Homepage"
+        },
+        "about": {
+          "type": "string",
+          "description": "About page"
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact page"
+        },
+        "archive": {
+          "type": "string",
+          "description": "Archive/all posts"
+        },
+        "search": {
+          "type": "string",
+          "description": "Search page"
+        },
+        "docs": {
+          "type": "string",
+          "description": "For projects: documentation root"
+        },
+        "api": {
+          "type": "string",
+          "description": "For projects: API reference"
+        },
+        "demos": {
+          "type": "string",
+          "description": "For projects: demos/playground"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Important UR Ls",
+      "description": "Important URLs for AI agents"
+    },
+    "website.config.ManifestMeta": {
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "description": "Manifest schema version"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "When this manifest was generated"
+        },
+        "format": {
+          "type": "string",
+          "description": "Manifest format (\"json\", \"protobuf\")"
+        },
+        "checksum": {
+          "type": "string",
+          "description": "Checksum of the manifest"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Manifest Meta",
+      "description": "Manifest metadata"
+    },
+    "website.config.NavItem": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Display text"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL (relative or absolute)"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "Whether it's external"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon/identifier"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sub-items"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Nav Item",
+      "description": "Navigation item"
+    },
+    "website.config.PostSummary": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Post title"
+        },
+        "url": {
+          "type": "string",
+          "description": "Post URL (relative)"
+        },
+        "date": {
+          "type": "string",
+          "description": "Publication date"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Categories"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tags"
+        },
+        "excerpt": {
+          "type": "string",
+          "description": "Excerpt"
+        },
+        "reading_time": {
+          "type": "integer",
+          "description": "Reading time (minutes)"
+        },
+        "has_math": {
+          "type": "boolean",
+          "description": "Whether it has math/code"
+        },
+        "has_code": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Post Summary",
+      "description": "Post summary for manifest"
+    },
+    "website.config.SEOInfo": {
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Default author"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "Twitter handle"
+        },
+        "ai_optimization": {
+          "type": "boolean",
+          "description": "Whether AI optimization is enabled"
+        },
+        "sitemap_url": {
+          "type": "string",
+          "description": "Sitemap URL"
+        },
+        "robots_url": {
+          "type": "string",
+          "description": "Robots.txt URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "SEO Info",
+      "description": "SEO information"
+    },
+    "website.config.SiteConfiguration": {
+      "properties": {
+        "colors": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Theme colors"
+        },
+        "features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Active features"
+        },
+        "contacts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Contact information"
+        },
+        "social": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Social media links"
+        },
+        "analytics": {
+          "$ref": "#/definitions/website.config.AnalyticsInfo",
+          "description": "Analytics IDs (sanitized for security)"
+        },
+        "seo": {
+          "$ref": "#/definitions/website.config.SEOInfo",
+          "description": "SEO configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Configuration",
+      "description": "Site configuration snapshot"
+    },
+    "website.config.SiteIdentity": {
+      "properties": {
+        "site_type": {
+          "type": "string",
+          "description": "Site type (\"domain\", \"blog\", \"project\")"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Full domain (e.g., \"causality.in\", \"blog.causality.in\", \"causality.in/HENA\")"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site description"
+        },
+        "parent_domain": {
+          "type": "string",
+          "description": "Parent domain (for blogs and projects)"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity"
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language"
+        },
+        "url": {
+          "type": "string",
+          "description": "Site URL (full URL including protocol)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Identity",
+      "description": "Site identity information"
+    },
+    "website.config.SiteStructure": {
+      "properties": {
+        "main_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Main navigation items"
+        },
+        "footer_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Footer navigation"
+        },
+        "hierarchy": {
+          "items": {
+            "$ref": "#/definitions/website.config.HierarchyNode"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Site hierarchy (for projects)"
+        },
+        "urls": {
+          "$ref": "#/definitions/website.config.ImportantURLs",
+          "description": "Important URLs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Structure",
+      "description": "Site structure and navigation"
+    }
+  },
+  "title": "SITEMANIFEST Configuration Schema",
+  "description": "JSON Schema for SiteManifest configuration"
+}

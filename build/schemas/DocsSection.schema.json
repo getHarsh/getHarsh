@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsSection",
+  "definitions": {
+    "DocsSection": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Section identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Section title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Section description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Section icon"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order in navigation"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsPage"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Pages in this section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Section",
+      "description": "Documentation section"
+    },
+    "website.config.DocsPage": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Page identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "path": {
+          "type": "string",
+          "description": "Page path (relative to docs/)"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order within section"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Hide from navigation"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "External link (if not a local page)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Page",
+      "description": "Documentation page reference"
+    }
+  },
+  "title": "DOCSSECTION Configuration Schema",
+  "description": "JSON Schema for DocsSection configuration"
+}

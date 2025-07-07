@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectInfo",
+  "definitions": {
+    "ProjectInfo": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name (e.g., \"HENA\", \"JARVIS\") - REQUIRED"
+        },
+        "type": {
+          "type": "string",
+          "description": "Project type (e.g., \"research\", \"tool\", \"framework\", \"library\") - REQUIRED"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description (one line) - REQUIRED"
+        },
+        "detailed_description": {
+          "type": "string",
+          "description": "Detailed description (markdown supported)"
+        },
+        "status": {
+          "type": "string",
+          "description": "Project status (\"active\", \"beta\", \"stable\", \"deprecated\", \"archived\") - REQUIRED"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (YYYY-MM-DD)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version (if applicable)"
+        },
+        "license": {
+          "type": "string",
+          "description": "License (e.g., \"MIT\", \"Apache-2.0\", \"Proprietary\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Info",
+      "description": "Basic project information"
+    }
+  },
+  "title": "PROJECTINFO Configuration Schema",
+  "description": "JSON Schema for ProjectInfo configuration"
+}

@@ -1,0 +1,48 @@
+# Jekyll Theme Configuration
+# This is a placeholder - actual config comes from getHarsh engine
+
+title: Jekyll Theme Subsystem
+description: Universal Intelligence Component Library
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from build
+exclude:
+  - README.md
+  - CLAUDE.md
+  - node_modules
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - Gemfile
+  - Gemfile.lock
+
+# Include in build
+include:
+  - _pages
+
+# Collections
+collections:
+  components:
+    output: false
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed

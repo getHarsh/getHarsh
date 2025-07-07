@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectMetadata",
+  "definitions": {
+    "ProjectMetadata": {
+      "properties": {
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords for SEO"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Categories this project belongs to"
+        },
+        "blog_tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tags for blog integration (posts with these tags show on project page)"
+        },
+        "related_projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related projects (within the ecosystem)"
+        },
+        "similar_projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "External similar projects"
+        },
+        "publications": {
+          "items": {
+            "$ref": "#/definitions/website.config.Publication"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Research papers or articles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Metadata",
+      "description": "Project metadata for SEO and discovery"
+    },
+    "website.config.Publication": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Publication title"
+        },
+        "authors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Authors"
+        },
+        "venue": {
+          "type": "string",
+          "description": "Publication venue"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Year"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to paper"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI if available"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publication",
+      "description": "Publication/paper reference"
+    }
+  },
+  "title": "PROJECTMETADATA Configuration Schema",
+  "description": "JSON Schema for ProjectMetadata configuration"
+}

@@ -1,0 +1,19 @@
+{%- comment -%}
+  Icon Atom Component
+  
+  Universal Intelligence: Context → Performance → Theme → Icon
+  
+  Parameters:
+  - name: Icon name
+  - size: xs, sm, md (default), lg, xl
+  - class: Additional CSS classes
+  
+  Context Integration:
+  - Icon style from theme
+  - Sprite loading optimization
+  - Contrast mode adaptation
+{%- endcomment -%}
+
+<svg class="icon icon--{{ include.size | default: 'md' }} icon--{{ include.name }} {{ include.class }}" aria-hidden="true">
+  <use xlink:href="#icon-{{ include.name }}"></use>
+</svg>

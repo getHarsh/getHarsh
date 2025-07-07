@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Layout",
+  "definitions": {
+    "Layout": {
+      "properties": {
+        "max_width": {
+          "type": "string",
+          "description": "Maximum content width (e.g., \"1200px\", \"75rem\")"
+        },
+        "header_style": {
+          "type": "string",
+          "description": "Header layout style (\"inline\", \"centered\", \"split\")"
+        },
+        "footer_style": {
+          "type": "string",
+          "description": "Footer layout style (\"minimal\", \"full\", \"columns\")"
+        },
+        "sidebar": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\", \"none\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Layout",
+      "description": "Layout configuration"
+    }
+  },
+  "title": "LAYOUT Configuration Schema",
+  "description": "JSON Schema for Layout configuration"
+}

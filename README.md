@@ -1,52 +1,54 @@
-# Hi, I'm Harsh Joshi 👋
+# Hi, I'm [Harsh Joshi](https://www.getharsh.in) 👋
 
 I currently work at [AION](https://aion.xyz) building the future of decentralized HPC compute. The organization has been wonderfully supportive of this personal exploration - providing the time, flexibility, and Claude Code credits that make this digital garden possible. Their belief in fostering creative side projects is something I deeply appreciate.
 
-This repository contains the central engine which manages my digital ecosystem. Feel free to use it if you have multiple exploration branches and want due legal, conceptual, and publication separation. 
+This repository contains the **central engine** ([github.com/getHarsh](https://github.com/getHarsh/getHarsh)) which orchestrates my entire digital ecosystem. Feel free to use it if you have multiple exploration branches and want proper legal, conceptual, and publication separation. 
 
-I am distributing it free with Apache License in as-is state - but the license applies only to the software system built for a streamlined AI-native workflow - not to the content that I publish with this system or various trademarks or various entities legally involved in this. The restriction stays to RawThoughts Enterprises Private Limited (RTEPL) is a separate entity from DAO Studio Private Limited (DSPL).
+**For the complete technical architecture, implementation details, and organizational structure, see [what_is_getHarsh.md](what_is_getHarsh.md).**
 
-But enough of disclaimer, let's get to the juicy stuff.
+## Quick Links
+
+### Understanding the System
+- [What is getHarsh?](what_is_getHarsh.md) - Complete technical architecture and vision
+- [Legal Boundaries & Entity Structure](what_is_getHarsh.md#legal) - How RTEPL and DSPL are separated
+- [Virtual Organization](what_is_getHarsh.md#virtual-org) - How projects act as virtual team members
+- [Implementation Philosophy](what_is_getHarsh.md#philosophy) - The semantic-trace-first approach
+
+### Technical Documentation
+- [Engine Architecture](GETHARSH.md) - Exact technical architecture of the getHarsh engine
+- [Build System](BUILD.md) - Complete build system documentation
+- [Jekyll Theme Specifications](SPEC/SPEC.md) - Detailed component and theme specifications
+- [Technical Infrastructure](what_is_getHarsh.md#technical) - Overview of the Jekyll engine and enhancement layers
+
+*Licensed under Apache License 2.0 - See [LICENSE](./LICENSE) for details*
 
 ## The Journey 🚀
 
-This is a personal project I have been playing around with over years with whatever time I got from between my hustles and whatever legal liberties I got. The idea is simple - the post-AGI era is a boon for polyglots and dreamers. Your two fundamental constraints (time and learning curve) are taken away, giving you unlimited flexibility to iterate and make meaningful contributions to society. 
+This is a personal project I've been tinkering with in spare time over the years. As someone with ADHD, I've always wondered - what if we could build tools that work *with* neurodivergent thinking patterns instead of against them? Tools where **[the latency between thought and published content approaches zero](what_is_getHarsh.md#journeys)**?
 
-But how do you organize things in the digital cyberverse, in a way you don't spend time just building organization tools, but rather the tool disappears in the background? This is the same exploration I charted and ended up creating my digital verse. With this repository actually being the main brain.
+The dream is simple: maybe one day, when I retire to pursue research full-time, this could become something more. For now, it's my weekend exploration into **[semantic trace extraction](what_is_getHarsh.md#vision)** - capturing thought patterns as high-quality training data for experimental neural architectures like HENA and QAECT.
 
 ## Tools of Trade 🛠️
 
 My tools of trade are Claude Code, Google Drive, GitHub, GoDaddy, and Obsidian. Everything else falls in respective buckets.
 
-## The Digital Ecosystem 🌐
+## The Digital Ecosystem: Exploring Chaos, Causality & Entropy 🌐
 
-The buckets are:
+At the heart of my exploration lies a focused research mission: understanding the **intersection of Chaos, Causality, and Entropy from different angles**. Each domain serves as a specialized lens for examining these fundamental forces.
 
-### [getHarsh.in](https://www.getharsh.in) 
-The root website and its main blog ([blog.getHarsh.in](https://blog.getharsh.in)). Various subprojects fall into it and diverge from here (but with very subtle interconnects richly crafted to give a full graph context to any AI reading this or any human reading this. The causal links.)
-- GitHub: [getHarsh.in](https://github.com/getHarsh/getHarsh.in) | [blog.getHarsh.in](https://github.com/getHarsh/blog.getHarsh.in)
+- **[getHarsh.in](https://www.getharsh.in)** - Personal research hub where chaos becomes order through infrastructure ([GitHub](https://github.com/getHarsh/getHarsh.in))
+- **[causality.in](https://www.causality.in)** - Lifelong exploration of non-linear time and causal relationships. "Don't say I didn't warn you!" ([GitHub](https://github.com/getHarshOnline/causality.in))
+- **[rawThoughts.in](https://www.rawthoughts.in)** - "Living in the future vs. peeping into it" - Post-AGI economics born from startup ashes ([GitHub](https://github.com/getHarshOnline/rawThoughts.in))
+- **[sleepwalker.in](https://www.sleepwalker.in)** - A 9102 A.D. tale: "Just because you can, doesn't mean you should" ([GitHub](https://github.com/getHarshOnline/sleepwalker.in))
+- **[daostudio.in](https://www.daostudio.in)** - "Democratise AI, Commoditise Intelligence" - Cooperative tech experiments ([GitHub](https://github.com/DAOStudio/daostudio.in))
 
-### [RawThoughts](https://www.rawthoughts.in)
-[rawthoughts.in](https://www.rawthoughts.in) and its blog at [blog.rawthoughts.in](https://blog.rawthoughts.in) explores economical and technological challenges and directives in a post-AGI world.
-- GitHub: [rawThoughts.in](https://github.com/getHarshOnline/rawThoughts.in) | [blog.rawThoughts.in](https://github.com/getHarshOnline/blog.rawThoughts.in)
+Each domain hosts both a main site and blog subdomain, with specialized projects living within them. **[Learn more about the domain strategy and project distribution →](what_is_getHarsh.md#domains)**
 
-### [Causality](https://www.causality.in)
-[causality.in](https://www.causality.in) and its blog [blog.causality.in](https://blog.causality.in) explores emergence of causality in various AI, Physics, and Mathematical systems.
-- GitHub: [causality.in](https://github.com/getHarshOnline/causality.in) | [blog.causality.in](https://github.com/getHarshOnline/blog.causality.in)
+## Why Build This? 🧠
 
-### [Sleepwalker](https://www.sleepwalker.in)
-[sleepwalker.in](https://www.sleepwalker.in) and its blog at [blog.sleepwalker.in](https://blog.sleepwalker.in) are experiments with interaction design and storytelling which are simply creative musings of mine as I explore these concepts.
-- GitHub: [sleepwalker.in](https://github.com/getHarshOnline/sleepwalker.in) | [blog.sleepwalker.in](https://github.com/getHarshOnline/blog.sleepwalker.in)
+The **[philosophy is simple](what_is_getHarsh.md#philosophy)**: neurodivergent minds see connections everywhere, but traditional tools force linear thinking. This system embraces the chaos - using **[symlinks to Google Drive](what_is_getHarsh.md#technical)** for instant sync, **[Jekyll for AI-friendly output](SPEC/SPEC.md)**, and **[virtual team members](what_is_getHarsh.md#virtual-org)** that might someday handle the boring parts.
 
-### [DAO Studio](https://www.daostudio.in)
-[daostudio.in](https://www.daostudio.in) and its blog at [blog.daostudio.in](https://blog.daostudio.in) are the remnants of currently non-operational Startup Studio I created a while back - and is a playground of some open projects at this point with archives of technologies we created back in the day.
-- GitHub: [daostudio.in](https://github.com/DAOStudio/daostudio.in) | [blog.daostudio.in](https://github.com/DAOStudio/blog.daostudio.in)
-
-## The Philosophy 🧠
-
-This workflow is local-first but syncs online and leverages the subtle linkings and schemas to integrate the ideas in an interpretable cross-linked fashion without the added complexity of graphs - but is transcribable.
-
-I jokingly call it an attempt to upload my consciousness - and current progress is... **3.14%** 🥧
+I half-jokingly call it uploading my consciousness - current progress: **[3.14%](what_is_getHarsh.md#vision)** 🥧. But beneath the humor lies a serious hypothesis: that **[rich semantic traces](what_is_getHarsh.md#fractal)** from real human thought patterns might enable training AI architectures with emergent reasoning capabilities. The goal isn't literal consciousness upload but rather exploring whether quality trumps quantity in AI training data. Maybe HENA will show signs of hierarchical reasoning, maybe not - but the **[infrastructure for the experiment](what_is_getHarsh.md#philosophy)** is fascinating to build.
 
 ---
 

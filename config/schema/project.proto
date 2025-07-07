@@ -1,0 +1,353 @@
+syntax = "proto3";
+
+package website.config;
+
+import "domain.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// ProjectConfig defines configuration for project websites hosted under domains.
+// Projects are separate repositories but inherit from their parent domain.
+// Stored in [domain].in/PROJECTS/[project]/config.yml in the project's site branch
+// Example: causality.in/PROJECTS/HENA/config.yml (in HENA repo's site branch)
+message ProjectConfig {
+  // Project inherits everything from parent domain by default.
+  // Only fields defined here can be overridden or added.
+  
+  // Basic project information (REQUIRED)
+  ProjectInfo project_info = 1;
+  
+  // Theme overrides (limited set from parent domain)
+  ProjectThemeOverrides theme_overrides = 2;
+  
+  // Project-specific features
+  ProjectFeatures features = 3;
+  
+  // Layout adjustments for project site
+  ProjectLayout layout = 4;
+  
+  // Technology stack and dependencies
+  TechStack tech_stack = 5;
+  
+  // External links and resources
+  ProjectLinks links = 6;
+  
+  // Showcase/gallery configuration
+  ProjectShowcase showcase = 7;
+  
+  // Project metadata for SEO and discovery
+  ProjectMetadata metadata = 8;
+  
+  // Documentation settings
+  DocumentationSettings documentation = 9;
+}
+
+// Basic project information
+message ProjectInfo {
+  // Project name (e.g., "HENA", "JARVIS") - REQUIRED
+  string name = 1;
+  
+  // Project type (e.g., "research", "tool", "framework", "library") - REQUIRED
+  string type = 2;
+  
+  // Short description (one line) - REQUIRED
+  string description = 3;
+  
+  // Detailed description (markdown supported)
+  string detailed_description = 4;
+  
+  // Project status ("active", "beta", "stable", "deprecated", "archived") - REQUIRED
+  string status = 5;
+  
+  // Start date (YYYY-MM-DD)
+  string start_date = 6;
+  
+  // Version (if applicable)
+  string version = 7;
+  
+  // License (e.g., "MIT", "Apache-2.0", "Proprietary")
+  string license = 8;
+}
+
+// Project theme overrides
+message ProjectThemeOverrides {
+  // Color overrides (limited set)
+  ProjectColors colors = 1;
+  
+  // Typography adjustments
+  ProjectTypography typography = 2;
+  
+  // Custom CSS file (relative to project root)
+  string custom_css = 3;
+}
+
+// Project-specific color overrides
+message ProjectColors {
+  // Primary color override (for project branding)
+  string primary = 1;
+  
+  // Accent color override
+  string accent = 2;
+  
+  // Code/terminal background color
+  string code_background = 3;
+  
+  // Documentation section colors
+  string docs_header = 4;
+  string docs_sidebar = 5;
+}
+
+// Project-specific typography
+message ProjectTypography {
+  // Font for code/terminal display
+  string code_font = 1;
+  
+  // Font for documentation
+  string docs_font = 2;
+  
+  // Heading scale multiplier
+  float heading_scale = 3;
+}
+
+// Project-specific features
+message ProjectFeatures {
+  // Enable API documentation
+  bool api_docs = 1;
+  
+  // API documentation generator ("swagger", "redoc", "custom")
+  string api_docs_generator = 2;
+  
+  // Enable interactive demos
+  bool interactive_demos = 3;
+  
+  // Enable code playground
+  bool code_playground = 4;
+  
+  // Playground provider ("codepen", "codesandbox", "custom")
+  string playground_provider = 5;
+  
+  // Enable documentation search
+  bool docs_search = 6;
+  
+  // Search provider ("algolia", "lunr", "custom")
+  string search_provider = 7;
+  
+  // Enable version switcher
+  bool version_switcher = 8;
+  
+  // Enable contribution guide
+  bool contribution_guide = 9;
+  
+  // Enable changelog display
+  bool changelog_display = 10;
+  
+  // Enable dependency graph
+  bool dependency_graph = 11;
+  
+  // Custom project features
+  map<string, bool> custom = 12;
+}
+
+// Project layout configuration
+message ProjectLayout {
+  // Homepage layout ("hero", "documentation", "showcase", "custom")
+  string homepage_style = 1;
+  
+  // Documentation layout ("single-page", "multi-page", "versioned")
+  string docs_layout = 2;
+  
+  // Show project navigation separate from domain nav
+  bool separate_nav = 3;
+  
+  // Sidebar configuration for docs
+  DocsSidebar sidebar = 4;
+}
+
+// Documentation sidebar configuration
+message DocsSidebar {
+  // Sidebar position ("left", "right")
+  string position = 1;
+  
+  // Collapsible sections
+  bool collapsible = 2;
+  
+  // Show on mobile
+  bool mobile_visible = 3;
+  
+  // Auto-generate from headings
+  bool auto_generate = 4;
+}
+
+// Technology stack information
+message TechStack {
+  // Primary language(s)
+  repeated string languages = 1;
+  
+  // Frameworks used
+  repeated string frameworks = 2;
+  
+  // Major dependencies
+  repeated Dependency dependencies = 3;
+  
+  // Development tools
+  repeated string dev_tools = 4;
+  
+  // Deployment/infrastructure
+  repeated string infrastructure = 5;
+}
+
+// Dependency information
+message Dependency {
+  // Dependency name
+  string name = 1;
+  
+  // Version or version range
+  string version = 2;
+  
+  // Purpose/description
+  string purpose = 3;
+  
+  // Link to dependency
+  string url = 4;
+}
+
+// Project links and resources
+message ProjectLinks {
+  // Main repository URL - REQUIRED if open source
+  string repository = 1;
+  
+  // Documentation URL (if separate from project site)
+  string documentation = 2;
+  
+  // Live demo URL
+  string demo = 3;
+  
+  // Download/releases URL
+  string downloads = 4;
+  
+  // Issue tracker URL
+  string issues = 5;
+  
+  // Discussion forum URL
+  string discussions = 6;
+  
+  // Wiki URL
+  string wiki = 7;
+  
+  // Custom links
+  map<string, string> custom = 8;
+}
+
+// Project showcase/gallery configuration
+message ProjectShowcase {
+  // Enable screenshot gallery
+  bool screenshots = 1;
+  
+  // Screenshot images (relative paths)
+  repeated Screenshot images = 2;
+  
+  // Enable video demos
+  bool videos = 3;
+  
+  // Video URLs or embed codes
+  repeated Video video_items = 4;
+  
+  // Enable architecture diagrams
+  bool architecture_diagrams = 5;
+  
+  // Diagram images (relative paths)
+  repeated string diagrams = 6;
+}
+
+// Screenshot information
+message Screenshot {
+  // Image path (relative to project root)
+  string path = 1;
+  
+  // Alt text/description
+  string alt = 2;
+  
+  // Caption
+  string caption = 3;
+  
+  // Category (e.g., "desktop", "mobile", "cli")
+  string category = 4;
+}
+
+// Video information
+message Video {
+  // Video URL (YouTube, Vimeo, etc.)
+  string url = 1;
+  
+  // Video title
+  string title = 2;
+  
+  // Video description
+  string description = 3;
+  
+  // Thumbnail image path
+  string thumbnail = 4;
+}
+
+// Project metadata for SEO and discovery
+message ProjectMetadata {
+  // Keywords for SEO
+  repeated string keywords = 1;
+  
+  // Categories this project belongs to
+  repeated string categories = 2;
+  
+  // Tags for blog integration (posts with these tags show on project page)
+  repeated string blog_tags = 3;
+  
+  // Related projects (within the ecosystem)
+  repeated string related_projects = 4;
+  
+  // External similar projects
+  repeated string similar_projects = 5;
+  
+  // Research papers or articles
+  repeated Publication publications = 6;
+}
+
+// Publication/paper reference
+message Publication {
+  // Publication title
+  string title = 1;
+  
+  // Authors
+  repeated string authors = 2;
+  
+  // Publication venue
+  string venue = 3;
+  
+  // Year
+  int32 year = 4;
+  
+  // URL to paper
+  string url = 5;
+  
+  // DOI if available
+  string doi = 6;
+}
+
+// Documentation settings for project
+message DocumentationSettings {
+  // Enable documentation site at /[project]/docs/
+  bool enabled = 1;
+  
+  // Version/branch to pull docs from (in main branch)
+  string version = 2;  // "main", "v2.0.0", "v1.0.0", etc.
+  
+  // Whether docs folder exists in the repository
+  bool has_docs_folder = 3;
+  
+  // Documentation inherits from project and can have its own config.yml
+  bool has_own_config = 4;
+  
+  // Enable version switcher in docs UI
+  bool enable_version_switcher = 5;
+  
+  // List of available versions (for version switcher)
+  repeated string available_versions = 6;
+}

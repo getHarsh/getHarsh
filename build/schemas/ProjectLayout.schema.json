@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectLayout",
+  "definitions": {
+    "ProjectLayout": {
+      "properties": {
+        "homepage_style": {
+          "type": "string",
+          "description": "Homepage layout (\"hero\", \"documentation\", \"showcase\", \"custom\")"
+        },
+        "docs_layout": {
+          "type": "string",
+          "description": "Documentation layout (\"single-page\", \"multi-page\", \"versioned\")"
+        },
+        "separate_nav": {
+          "type": "boolean",
+          "description": "Show project navigation separate from domain nav"
+        },
+        "sidebar": {
+          "$ref": "#/definitions/website.config.DocsSidebar",
+          "description": "Sidebar configuration for docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Layout",
+      "description": "Project layout configuration"
+    },
+    "website.config.DocsSidebar": {
+      "properties": {
+        "position": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\")"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "auto_generate": {
+          "type": "boolean",
+          "description": "Auto-generate from headings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Sidebar",
+      "description": "Documentation sidebar configuration"
+    }
+  },
+  "title": "PROJECTLAYOUT Configuration Schema",
+  "description": "JSON Schema for ProjectLayout configuration"
+}

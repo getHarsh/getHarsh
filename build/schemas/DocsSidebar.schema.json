@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsSidebar",
+  "definitions": {
+    "DocsSidebar": {
+      "properties": {
+        "position": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\")"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "auto_generate": {
+          "type": "boolean",
+          "description": "Auto-generate from headings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Sidebar",
+      "description": "Documentation sidebar configuration"
+    }
+  },
+  "title": "DOCSSIDEBAR Configuration Schema",
+  "description": "JSON Schema for DocsSidebar configuration"
+}

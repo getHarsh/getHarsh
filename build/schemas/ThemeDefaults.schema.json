@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ThemeDefaults",
+  "definitions": {
+    "ThemeDefaults": {
+      "properties": {
+        "typography": {
+          "$ref": "#/definitions/website.config.TypographyDefaults",
+          "description": "Typography settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Defaults",
+      "description": "Default theme settings inherited by all domains"
+    },
+    "website.config.TypographyDefaults": {
+      "properties": {
+        "font_family_base": {
+          "type": "string",
+          "description": "Base font family stack"
+        },
+        "font_family_heading": {
+          "type": "string",
+          "description": "Heading font family"
+        },
+        "font_family_mono": {
+          "type": "string",
+          "description": "Monospace font family"
+        },
+        "font_size_base": {
+          "type": "string",
+          "description": "Base font size"
+        },
+        "line_height_base": {
+          "type": "string",
+          "description": "Base line height"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Typography Defaults",
+      "description": "Default typography settings"
+    }
+  },
+  "title": "THEMEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ThemeDefaults configuration"
+}

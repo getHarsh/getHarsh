@@ -1,0 +1,428 @@
+syntax = "proto3";
+
+package website.config;
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// SiteManifest is the standardized static JSON file generated after every successful build.
+// This file is designed for AI agents and automated tools to understand the site structure.
+// Generated at: /manifest.json on every site (static file served by GitHub Pages)
+// This is a STATIC manifest - no dynamic APIs, only references to other static files
+message SiteManifest {
+  // Manifest metadata
+  ManifestMeta meta = 1;
+  
+  // Site identification and basic info
+  SiteIdentity identity = 2;
+  
+  // Site configuration snapshot
+  SiteConfiguration configuration = 3;
+  
+  // Content inventory
+  ContentInventory content = 4;
+  
+  // Site structure and navigation
+  SiteStructure structure = 5;
+  
+  // Integration points for AI agents
+  AIIntegration ai_integration = 6;
+  
+  // Cross-domain relationships
+  EcosystemConnections ecosystem = 7;
+  
+  // Build information
+  BuildInfo build_info = 8;
+}
+
+// Manifest metadata
+message ManifestMeta {
+  // Manifest schema version
+  string schema_version = 1;
+  
+  // When this manifest was generated
+  string generated_at = 2;
+  
+  // Manifest format ("json", "protobuf")
+  string format = 3;
+  
+  // Checksum of the manifest
+  string checksum = 4;
+}
+
+// Site identity information
+message SiteIdentity {
+  // Site type ("domain", "blog", "project")
+  string site_type = 1;
+  
+  // Full domain (e.g., "causality.in", "blog.causality.in", "causality.in/HENA")
+  string domain = 2;
+  
+  // Site title
+  string title = 3;
+  
+  // Site description
+  string description = 4;
+  
+  // Parent domain (for blogs and projects)
+  string parent_domain = 5;
+  
+  // Legal entity
+  string entity = 6;
+  
+  // Primary language
+  string language = 7;
+  
+  // Site URL (full URL including protocol)
+  string url = 8;
+}
+
+// Site configuration snapshot
+message SiteConfiguration {
+  // Theme colors
+  map<string, string> colors = 1;
+  
+  // Active features
+  map<string, bool> features = 2;
+  
+  // Contact information
+  map<string, string> contacts = 3;
+  
+  // Social media links
+  map<string, string> social = 4;
+  
+  // Analytics IDs (sanitized for security)
+  AnalyticsInfo analytics = 5;
+  
+  // SEO configuration
+  SEOInfo seo = 6;
+}
+
+// Analytics information (sanitized for public consumption)
+message AnalyticsInfo {
+  // Whether analytics is enabled
+  bool enabled = 1;
+  
+  // Analytics providers in use
+  repeated string providers = 2;
+  
+  // Cross-domain tracking enabled
+  bool cross_domain = 3;
+  
+  // NOTE: Actual tracking IDs are redacted in published manifest
+  // GA_TRACKING_ID shows as "GA-XXXXXXXX"
+  // META_PIXEL_ID shows as "PIXEL-XXXX"
+}
+
+// SEO information
+message SEOInfo {
+  // Default author
+  string author = 1;
+  
+  // Default locale
+  string locale = 2;
+  
+  // Twitter handle
+  string twitter = 3;
+  
+  // Whether AI optimization is enabled
+  bool ai_optimization = 4;
+  
+  // Sitemap URL
+  string sitemap_url = 5;
+  
+  // Robots.txt URL
+  string robots_url = 6;
+}
+
+// Content inventory
+message ContentInventory {
+  // Content statistics
+  ContentStats stats = 1;
+  
+  // Recent posts (last 10)
+  repeated PostSummary recent_posts = 2;
+  
+  // Featured content
+  repeated PostSummary featured = 3;
+  
+  // Categories with post counts
+  map<string, int32> categories = 4;
+  
+  // Tags with post counts
+  map<string, int32> tags = 5;
+  
+  // For project sites: documentation pages
+  repeated DocPage documentation = 6;
+  
+  // Content endpoints
+  ContentEndpoints endpoints = 7;
+}
+
+// Content statistics
+message ContentStats {
+  // Total number of posts
+  int32 total_posts = 1;
+  
+  // Total number of pages
+  int32 total_pages = 2;
+  
+  // Total number of categories
+  int32 total_categories = 3;
+  
+  // Total number of tags
+  int32 total_tags = 4;
+  
+  // Average post length (words)
+  int32 avg_post_length = 5;
+  
+  // Last updated timestamp
+  string last_updated = 6;
+}
+
+// Post summary for manifest
+message PostSummary {
+  // Post title
+  string title = 1;
+  
+  // Post URL (relative)
+  string url = 2;
+  
+  // Publication date
+  string date = 3;
+  
+  // Categories
+  repeated string categories = 4;
+  
+  // Tags
+  repeated string tags = 5;
+  
+  // Excerpt
+  string excerpt = 6;
+  
+  // Reading time (minutes)
+  int32 reading_time = 7;
+  
+  // Whether it has math/code
+  bool has_math = 8;
+  bool has_code = 9;
+}
+
+// Documentation page (for project sites)
+message DocPage {
+  // Page title
+  string title = 1;
+  
+  // Page URL (relative)
+  string url = 2;
+  
+  // Section/category
+  string section = 3;
+  
+  // Order in navigation
+  int32 order = 4;
+}
+
+// Static content file locations (all served by GitHub Pages)
+message ContentEndpoints {
+  // RSS feed URL (e.g., /feed.xml)
+  string rss = 1;
+  
+  // JSON feed URL (e.g., /feed.json)
+  string json_feed = 2;
+  
+  // Search index file (e.g., /search-index.json for client-side search)
+  string search_index = 3;
+  
+  // Categories index (e.g., /categories.json)
+  string categories_index = 4;
+  
+  // Tags index (e.g., /tags.json)
+  string tags_index = 5;
+  
+  // Archive/posts index (e.g., /posts.json)
+  string posts_index = 6;
+  
+  // Sitemap URL (e.g., /sitemap.xml)
+  string sitemap = 7;
+}
+
+// Site structure and navigation
+message SiteStructure {
+  // Main navigation items
+  repeated NavItem main_nav = 1;
+  
+  // Footer navigation
+  repeated NavItem footer_nav = 2;
+  
+  // Site hierarchy (for projects)
+  repeated HierarchyNode hierarchy = 3;
+  
+  // Important URLs
+  ImportantURLs urls = 4;
+}
+
+// Navigation item
+message NavItem {
+  // Display text
+  string label = 1;
+  
+  // URL (relative or absolute)
+  string url = 2;
+  
+  // Whether it's external
+  bool external = 3;
+  
+  // Icon/identifier
+  string icon = 4;
+  
+  // Sub-items
+  repeated NavItem children = 5;
+}
+
+// Hierarchy node (for complex sites)
+message HierarchyNode {
+  // Node path
+  string path = 1;
+  
+  // Node title
+  string title = 2;
+  
+  // Node type ("page", "section", "external")
+  string type = 3;
+  
+  // Child nodes
+  repeated HierarchyNode children = 4;
+}
+
+// Important URLs for AI agents
+message ImportantURLs {
+  // Homepage
+  string home = 1;
+  
+  // About page
+  string about = 2;
+  
+  // Contact page
+  string contact = 3;
+  
+  // Archive/all posts
+  string archive = 4;
+  
+  // Search page
+  string search = 5;
+  
+  // For projects: documentation root
+  string docs = 6;
+  
+  // For projects: API reference
+  string api = 7;
+  
+  // For projects: demos/playground
+  string demos = 8;
+}
+
+// AI integration information (for static GitHub Pages sites)
+message AIIntegration {
+  // LLMs.txt location (static file)
+  string llms_txt_url = 1;
+  
+  // robots.txt location
+  string robots_txt_url = 2;
+  
+  // Whether the site has AI-friendly structured data
+  bool ai_friendly_structured_data = 3;
+  
+  // Static data files available for AI consumption
+  repeated string structured_data_files = 4;
+  
+  // Recommended crawl patterns
+  repeated string crawl_patterns = 5;
+  
+  // Static indexes for AI processing
+  AIStaticIndexes static_indexes = 6;
+}
+
+// Static index files for AI consumption (all JSON files)
+message AIStaticIndexes {
+  // Full content dump (e.g., /ai/content.json)
+  string full_content = 1;
+  
+  // Post summaries with embeddings-friendly text (e.g., /ai/summaries.json)
+  string summaries = 2;
+  
+  // Structured navigation (e.g., /ai/navigation.json)
+  string navigation = 3;
+  
+  // Knowledge graph relationships (e.g., /ai/graph.json)
+  string knowledge_graph = 4;
+  
+  // Q&A pairs if available (e.g., /ai/qa.json)
+  string qa_pairs = 5;
+}
+
+// Ecosystem connections
+message EcosystemConnections {
+  // Parent site (for blogs/projects)
+  EcosystemLink parent = 1;
+  
+  // Child sites (blogs/projects under this domain)
+  repeated EcosystemLink children = 2;
+  
+  // Sibling sites (other sites in ecosystem)
+  repeated EcosystemLink siblings = 3;
+  
+  // Counterpart site (special relationship)
+  EcosystemLink counterpart = 4;
+  
+  // All ecosystem domains
+  repeated string ecosystem_domains = 5;
+}
+
+// Ecosystem link information
+message EcosystemLink {
+  // Site domain
+  string domain = 1;
+  
+  // Site title
+  string title = 2;
+  
+  // Site type
+  string type = 3;
+  
+  // Relationship type
+  string relationship = 4;
+  
+  // Site URL
+  string url = 5;
+  
+  // Manifest URL for that site
+  string manifest_url = 6;
+}
+
+// Build information
+message BuildInfo {
+  // Build timestamp
+  string timestamp = 1;
+  
+  // Build ID/hash
+  string build_id = 2;
+  
+  // Git commit hash
+  string git_commit = 3;
+  
+  // Git branch
+  string git_branch = 4;
+  
+  // Builder version
+  string builder_version = 5;
+  
+  // Build duration (seconds)
+  int32 build_duration = 6;
+  
+  // Whether this was a full rebuild
+  bool full_rebuild = 7;
+  
+  // Errors/warnings count
+  int32 error_count = 8;
+  int32 warning_count = 9;
+}

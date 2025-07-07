@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ParticlePhysics",
+  "definitions": {
+    "ParticlePhysics": {
+      "properties": {
+        "particle_count": {
+          "type": "integer",
+          "description": "Number of particles"
+        },
+        "connection_distance": {
+          "type": "number",
+          "description": "Connection distance threshold"
+        },
+        "particle_speed": {
+          "type": "number",
+          "description": "Particle movement speed"
+        },
+        "bounce": {
+          "type": "boolean",
+          "description": "Bounce off edges"
+        },
+        "gravity": {
+          "type": "number",
+          "description": "Gravity strength (0 = no gravity)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Particle Physics",
+      "description": "Particle physics configuration"
+    }
+  },
+  "title": "PARTICLEPHYSICS Configuration Schema",
+  "description": "JSON Schema for ParticlePhysics configuration"
+}

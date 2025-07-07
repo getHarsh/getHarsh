@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIAuthConfig",
+  "definitions": {
+    "APIAuthConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Authentication type (\"none\", \"api-key\", \"oauth2\", \"basic\")"
+        },
+        "api_key_param": {
+          "type": "string",
+          "description": "Parameter name for API key"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/website.config.OAuth2Config",
+          "description": "OAuth2 configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Auth Config",
+      "description": "API authentication configuration"
+    },
+    "website.config.OAuth2Config": {
+      "properties": {
+        "flow": {
+          "type": "string",
+          "description": "OAuth2 flow (\"implicit\", \"authorization_code\", \"client_credentials\")"
+        },
+        "auth_url": {
+          "type": "string",
+          "description": "Authorization URL"
+        },
+        "token_url": {
+          "type": "string",
+          "description": "Token URL"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Available scopes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Config",
+      "description": "OAuth2 configuration"
+    }
+  },
+  "title": "APIAUTHCONFIG Configuration Schema",
+  "description": "JSON Schema for APIAuthConfig configuration"
+}

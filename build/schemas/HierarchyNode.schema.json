@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HierarchyNode",
+  "definitions": {
+    "HierarchyNode": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Node path"
+        },
+        "title": {
+          "type": "string",
+          "description": "Node title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Node type (\"page\", \"section\", \"external\")"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/HierarchyNode"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child nodes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Hierarchy Node",
+      "description": "Hierarchy node (for complex sites)"
+    }
+  },
+  "title": "HIERARCHYNODE Configuration Schema",
+  "description": "JSON Schema for HierarchyNode configuration"
+}

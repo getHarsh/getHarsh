@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PerformanceSettings",
+  "definitions": {
+    "PerformanceSettings": {
+      "properties": {
+        "max_page_size_kb": {
+          "type": "integer",
+          "description": "Maximum page size in KB before warning  default: 500"
+        },
+        "target_load_time_ms": {
+          "type": "integer",
+          "description": "Target page load time in milliseconds  default: 3000"
+        },
+        "enable_lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading for images and iframes"
+        },
+        "enable_image_optimization": {
+          "type": "boolean",
+          "description": "Enable automatic image optimization"
+        },
+        "preload_resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preload critical resources"
+        },
+        "enable_resource_hints": {
+          "type": "boolean",
+          "description": "Enable resource hints (dns-prefetch, preconnect)"
+        },
+        "critical_css_threshold_kb": {
+          "type": "integer",
+          "description": "Critical CSS inline threshold in KB"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Performance Settings",
+      "description": "Performance monitoring and optimization settings"
+    }
+  },
+  "title": "PERFORMANCESETTINGS Configuration Schema",
+  "description": "JSON Schema for PerformanceSettings configuration"
+}

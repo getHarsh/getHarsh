@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package website.config;
+
+import "domain.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// BlogConfig defines configuration overrides for blog subdomains.
+// It can only override specific fields from the parent domain config.
+// Stored in blog.[domain].in/config.yml
+message BlogConfig {
+  // Blog inherits everything from parent domain by default.
+  // Only fields defined here can be overridden.
+  
+  // Theme overrides (only specific fields can be changed)
+  BlogThemeOverrides theme_overrides = 1;
+  
+  // Blog-specific features
+  BlogFeatures features = 2;
+  
+  // Content presentation settings
+  BlogContent content = 3;
+  
+  // Layout adjustments for blog
+  BlogLayout layout = 4;
+}
+
+// Theme overrides allowed for blogs
+message BlogThemeOverrides {
+  // Color overrides (limited set)
+  BlogColors colors = 1;
+  
+  // Typography adjustments
+  BlogTypography typography = 2;
+}
+
+// Blog-specific color overrides
+message BlogColors {
+  // Background color override
+  string background = 1;
+  
+  // Code block background color
+  string code_background = 2;
+  
+  // Blockquote border color
+  string quote_border = 3;
+  
+  // Tag/category pill colors
+  string tag_background = 4;
+  string tag_text = 5;
+}
+
+// Blog-specific typography overrides
+message BlogTypography {
+  // Font family for article content
+  string article_font = 1;
+  
+  // Font size for article text
+  string article_size = 2;
+  
+  // Line height for articles
+  float article_line_height = 3;
+  
+  // Code font family
+  string code_font = 4;
+}
+
+// Blog-specific features
+message BlogFeatures {
+  // Enable comments system
+  bool comments = 1;
+  
+  // Comments provider ("disqus", "giscus", "utterances")
+  string comments_provider = 2;
+  
+  // Show reading time estimate
+  bool reading_time = 3;
+  
+  // Show table of contents for long posts
+  bool table_of_contents = 4;
+  
+  // TOC threshold (min headings)
+  int32 toc_min_headings = 5;
+  
+  // Enable math rendering (KaTeX/MathJax)
+  bool enable_math = 6;
+  
+  // Math renderer ("katex", "mathjax")
+  string math_renderer = 7;
+  
+  // Enable Graphviz diagram rendering
+  bool graphviz = 8;
+  
+  // Enable code syntax highlighting
+  bool syntax_highlighting = 9;
+  
+  // Syntax theme ("github", "monokai", "dracula", etc.)
+  string syntax_theme = 10;
+  
+  // Show related posts
+  bool related_posts = 11;
+  
+  // Number of related posts to show
+  int32 related_posts_count = 12;
+  
+  // Enable post series navigation
+  bool series_navigation = 13;
+  
+  // Custom blog features
+  map<string, bool> custom = 14;
+}
+
+// Blog content presentation settings
+message BlogContent {
+  // Posts per page override
+  int32 posts_per_page = 1;
+  
+  // Excerpt length override
+  int32 excerpt_length = 2;
+  
+  // Show full content on index page
+  bool show_full_content = 3;
+  
+  // Date format override
+  string date_format = 4;
+  
+  // Show author info
+  bool show_author = 5;
+  
+  // Show post categories
+  bool show_categories = 6;
+  
+  // Show post tags
+  bool show_tags = 7;
+  
+  // Enable RSS feed
+  bool rss_enabled = 8;
+  
+  // RSS feed limit
+  int32 rss_limit = 9;
+}
+
+// Blog layout adjustments
+message BlogLayout {
+  // Maximum content width for articles
+  string article_max_width = 1;
+  
+  // Sidebar on blog pages ("left", "right", "none")
+  string sidebar = 2;
+  
+  // Layout style ("list", "grid", "card")
+  string index_layout = 3;
+  
+  // Columns for grid layout
+  int32 grid_columns = 4;
+  
+  // Show featured image on post
+  bool show_featured_image = 5;
+  
+  // Featured image position ("top", "hero", "inline")
+  string featured_image_position = 6;
+}

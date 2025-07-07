@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PostSummary",
+  "definitions": {
+    "PostSummary": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Post title"
+        },
+        "url": {
+          "type": "string",
+          "description": "Post URL (relative)"
+        },
+        "date": {
+          "type": "string",
+          "description": "Publication date"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Categories"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tags"
+        },
+        "excerpt": {
+          "type": "string",
+          "description": "Excerpt"
+        },
+        "reading_time": {
+          "type": "integer",
+          "description": "Reading time (minutes)"
+        },
+        "has_math": {
+          "type": "boolean",
+          "description": "Whether it has math/code"
+        },
+        "has_code": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Post Summary",
+      "description": "Post summary for manifest"
+    }
+  },
+  "title": "POSTSUMMARY Configuration Schema",
+  "description": "JSON Schema for PostSummary configuration"
+}

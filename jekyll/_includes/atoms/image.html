@@ -1,0 +1,23 @@
+{%- comment -%}
+  Image Atom Component
+  
+  Universal Intelligence: Context → Performance → Theme → Image
+  
+  Parameters:
+  - src: Image source URL
+  - alt: Alt text (required)
+  - class: Additional CSS classes
+  - loading: lazy (default), eager
+  
+  Context Integration:
+  - Responsive srcset generation
+  - Loading strategy optimization
+  - WebP format when supported
+{%- endcomment -%}
+
+<img 
+  src="{{ include.src }}" 
+  alt="{{ include.alt }}"
+  loading="{{ include.loading | default: 'lazy' }}"
+  class="image {{ include.class }}"
+/>

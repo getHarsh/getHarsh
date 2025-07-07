@@ -1,0 +1,404 @@
+syntax = "proto3";
+
+package website.config;
+
+import "ecosystem.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// DomainConfig defines the configuration for a root domain (e.g., getHarsh.in).
+// It inherits from EcosystemConfig and adds domain-specific settings.
+// Stored in [domain].in/config.yml
+message DomainConfig {
+  // Inherits all fields from ecosystem config (implicit in build system)
+  // The build system will merge ecosystem defaults before applying domain config
+  
+  // Basic domain information (REQUIRED)
+  DomainInfo domain_info = 1;
+  
+  // Contact email addresses (REQUIRED)
+  ContactEmails contact = 2;
+  
+  // Theme configuration for the root site (REQUIRED: at least primary color)
+  Theme theme = 3;
+  
+  // Visual effects configuration (canvas, particles)
+  VisualEffects visual = 4;
+  
+  // Social media accounts
+  SocialMedia social = 5;
+  
+  // Domain-specific features
+  DomainFeatures features = 6;
+  
+  // Cross-site navigation overrides
+  CrossSiteNav cross_site = 7;
+  
+  // Blog subdomain configuration
+  BlogSubdomain blog = 8;
+  
+  // Progressive Web App settings (optional)
+  PWASettings pwa_settings = 9;
+}
+
+// Basic domain information
+message DomainInfo {
+  // Domain name (e.g., "getHarsh.in") - REQUIRED
+  string domain = 1;
+  
+  // Site title (e.g., "getHarsh") - REQUIRED
+  string title = 2;
+  
+  // Site description - REQUIRED
+  string description = 3;
+  
+  // Legal entity that owns this domain - REQUIRED
+  string entity = 4;
+  
+  // Primary language code (e.g., "en")
+  string language = 5;
+}
+
+// Contact email configuration
+message ContactEmails {
+  // General information email - REQUIRED
+  string info = 1;
+  
+  // Business proposals email - REQUIRED
+  string proposal = 2;
+  
+  // Accounts/billing email - REQUIRED
+  string accounts = 3;
+  
+  // Technical support email (optional)
+  string support = 4;
+  
+  // Legal/compliance email (optional)
+  string legal = 5;
+}
+
+// Theme configuration for the root site
+message Theme {
+  // Color scheme
+  Colors colors = 1;
+  
+  // Typography settings
+  Typography typography = 2;
+  
+  // Layout configuration
+  Layout layout = 3;
+  
+  // Navigation style
+  Navigation navigation = 4;
+  
+  // Dark mode support (USER PRIORITY: "VERY IMPORTANT")
+  ThemeMode theme_mode = 5;
+  
+  // Accessibility settings for better user experience
+  AccessibilitySettings accessibility = 6;
+}
+
+// Color configuration
+message Colors {
+  // Primary brand color (hex) - REQUIRED
+  string primary = 1;
+  
+  // Secondary color (hex)
+  string secondary = 2;
+  
+  // Background color (hex)
+  string background = 3;
+  
+  // Text color (hex)
+  string text = 4;
+  
+  // Accent color for links, buttons (hex)
+  string accent = 5;
+  
+  // Error/danger color (hex)
+  string error = 6;
+  
+  // Success color (hex)
+  string success = 7;
+}
+
+// Typography configuration
+message Typography {
+  // Primary font family
+  string font_family_primary = 1;
+  
+  // Secondary font family (for headings, etc.)
+  string font_family_secondary = 2;
+  
+  // Base font size (e.g., "16px", "1rem")
+  string base_size = 3;
+  
+  // Line height multiplier
+  float line_height = 4;
+  
+  // Font weight for body text
+  int32 font_weight_normal = 5;
+  
+  // Font weight for bold text
+  int32 font_weight_bold = 6;
+}
+
+// Layout configuration
+message Layout {
+  // Maximum content width (e.g., "1200px", "75rem")
+  string max_width = 1;
+  
+  // Header layout style ("inline", "centered", "split")
+  string header_style = 2;
+  
+  // Footer layout style ("minimal", "full", "columns")
+  string footer_style = 3;
+  
+  // Sidebar position ("left", "right", "none")
+  string sidebar = 4;
+}
+
+// Navigation configuration
+message Navigation {
+  // Navigation style ("inline", "dropdown", "sidebar")
+  string style = 1;
+  
+  // Show on mobile ("hamburger", "bottom-bar", "hidden")
+  string mobile_style = 2;
+  
+  // Sticky navigation on scroll
+  bool sticky = 3;
+}
+
+// Visual effects configuration
+message VisualEffects {
+  // Canvas particle network configuration
+  CanvasEffects canvas = 1;
+  
+  // Animation preferences
+  AnimationSettings animations = 2;
+}
+
+// Canvas particle network effects
+message CanvasEffects {
+  // Enable canvas effects
+  bool enabled = 1;
+  
+  // Particle physics engine settings
+  ParticlePhysics physics = 2;
+  
+  // Visual appearance settings
+  ParticleVisuals visuals = 3;
+}
+
+// Particle physics configuration
+message ParticlePhysics {
+  // Number of particles
+  int32 particle_count = 1;
+  
+  // Connection distance threshold
+  float connection_distance = 2;
+  
+  // Particle movement speed
+  float particle_speed = 3;
+  
+  // Bounce off edges
+  bool bounce = 4;
+  
+  // Gravity strength (0 = no gravity)
+  float gravity = 5;
+}
+
+// Particle visual configuration
+message ParticleVisuals {
+  // Particle color (hex)
+  string particle_color = 1;
+  
+  // Connection line color (hex)
+  string line_color = 2;
+  
+  // Particle size range [min, max]
+  float particle_size_min = 3;
+  float particle_size_max = 4;
+  
+  // Line opacity (0-1)
+  float line_opacity = 5;
+}
+
+// Animation settings
+message AnimationSettings {
+  // Enable page transitions
+  bool page_transitions = 1;
+  
+  // Enable scroll animations
+  bool scroll_animations = 2;
+  
+  // Animation duration in ms
+  int32 duration = 3;
+  
+  // Animation easing function
+  string easing = 4;
+}
+
+// Social media configuration
+message SocialMedia {
+  // Twitter/X handle (without @)
+  string twitter = 1;
+  
+  // GitHub username
+  string github = 2;
+  
+  // LinkedIn profile URL
+  string linkedin = 3;
+  
+  // Instagram handle
+  string instagram = 4;
+  
+  // YouTube channel URL
+  string youtube = 5;
+  
+  // Custom social links
+  map<string, string> custom = 6;
+}
+
+// Domain-specific features
+message DomainFeatures {
+  // Enable portfolio/projects section
+  bool portfolio = 1;
+  
+  // Enable contact form
+  bool contact_form = 2;
+  
+  // Enable newsletter signup
+  bool newsletter = 3;
+  
+  // Custom features specific to this domain
+  map<string, bool> custom = 4;
+}
+
+// Cross-site navigation configuration
+message CrossSiteNav {
+  // Show link to blog subdomain
+  bool show_blog_link = 1;
+  
+  // Show ecosystem navigation
+  bool show_ecosystem_nav = 2;
+  
+  // Counterpart site (e.g., sleepwalker.in for causality.in)
+  string counterpart_site = 3;
+}
+
+// Blog subdomain configuration
+message BlogSubdomain {
+  // Blog exists for this domain
+  bool enabled = 1;
+  
+  // Blog title (if different from domain)
+  string title = 2;
+  
+  // Blog description
+  string description = 3;
+  
+  // Categories enabled on this blog
+  repeated string categories = 4;
+}
+
+// Dark mode configuration
+// USER PRIORITY: "YES THIS IS VERY IMPORTANT AND SHOULD BE AVAILABLE IN THE THEME AREAS OF SCHEMA"
+message ThemeMode {
+  // Enable dark mode feature
+  bool enable_dark_mode = 1;
+  
+  // Default mode when user first visits
+  string default_mode = 2; // "light", "dark", "system"
+  
+  // Show mode toggle button in UI
+  bool show_mode_toggle = 3;
+  
+  // Dark mode color overrides
+  Colors dark_colors = 4;
+  
+  // Store user preference in localStorage
+  bool remember_preference = 5;
+  
+  // CSS class prefix for dark mode
+  string dark_mode_class = 6; // default: "dark-mode"
+  
+  // Toggle button position
+  string toggle_position = 7; // "top-right", "top-left", "bottom-right", "bottom-left"
+}
+
+// Accessibility settings for improved user experience
+message AccessibilitySettings {
+  // Enable high contrast mode option
+  bool high_contrast_mode = 1;
+  
+  // Always show focus indicators
+  bool focus_indicators = 2;
+  
+  // Enable skip navigation links
+  bool skip_navigation = 3;
+  
+  // ARIA label prefix for dynamic content
+  string aria_label_prefix = 4;
+  
+  // Respect prefers-reduced-motion
+  bool reduce_motion = 5;
+  
+  // Enable keyboard navigation hints
+  bool keyboard_hints = 6;
+  
+  // Font size adjustment controls
+  bool font_size_controls = 7;
+  
+  // Alt text for all images (enforcement)
+  bool require_alt_text = 8;
+  
+  // Screen reader optimizations
+  bool screen_reader_optimizations = 9;
+}
+
+// Progressive Web App configuration
+message PWASettings {
+  // Enable PWA features
+  bool enable_pwa = 1;
+  
+  // App name for manifest
+  string app_name = 2;
+  
+  // Short name for home screen
+  string short_name = 3;
+  
+  // Theme color for browser chrome
+  string theme_color = 4;
+  
+  // Background color for splash screen
+  string background_color = 5;
+  
+  // Pages to make available offline
+  repeated string offline_pages = 6;
+  
+  // Start URL when launched from home screen
+  string start_url = 7;
+  
+  // Display mode
+  string display = 8; // "standalone", "fullscreen", "minimal-ui", "browser"
+  
+  // App icons configuration
+  repeated PWAIcon icons = 9;
+}
+
+// PWA icon configuration
+message PWAIcon {
+  // Icon source path
+  string src = 1;
+  
+  // Icon sizes (e.g., "192x192")
+  string sizes = 2;
+  
+  // Icon MIME type
+  string type = 3;
+  
+  // Icon purpose ("any", "maskable", "monochrome")
+  string purpose = 4;
+}

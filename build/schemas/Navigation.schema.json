@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Navigation",
+  "definitions": {
+    "Navigation": {
+      "properties": {
+        "style": {
+          "type": "string",
+          "description": "Navigation style (\"inline\", \"dropdown\", \"sidebar\")"
+        },
+        "mobile_style": {
+          "type": "string",
+          "description": "Show on mobile (\"hamburger\", \"bottom-bar\", \"hidden\")"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky navigation on scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation",
+      "description": "Navigation configuration"
+    }
+  },
+  "title": "NAVIGATION Configuration Schema",
+  "description": "JSON Schema for Navigation configuration"
+}

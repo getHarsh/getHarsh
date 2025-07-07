@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectLinks",
+  "definitions": {
+    "ProjectLinks": {
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "Main repository URL - REQUIRED if open source"
+        },
+        "documentation": {
+          "type": "string",
+          "description": "Documentation URL (if separate from project site)"
+        },
+        "demo": {
+          "type": "string",
+          "description": "Live demo URL"
+        },
+        "downloads": {
+          "type": "string",
+          "description": "Download/releases URL"
+        },
+        "issues": {
+          "type": "string",
+          "description": "Issue tracker URL"
+        },
+        "discussions": {
+          "type": "string",
+          "description": "Discussion forum URL"
+        },
+        "wiki": {
+          "type": "string",
+          "description": "Wiki URL"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Links",
+      "description": "Project links and resources"
+    }
+  },
+  "title": "PROJECTLINKS Configuration Schema",
+  "description": "JSON Schema for ProjectLinks configuration"
+}

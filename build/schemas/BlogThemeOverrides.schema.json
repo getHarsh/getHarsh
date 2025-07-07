@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogThemeOverrides",
+  "definitions": {
+    "BlogThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.BlogColors",
+          "description": "Color overrides (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.BlogTypography",
+          "description": "Typography adjustments"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Theme Overrides",
+      "description": "Theme overrides allowed for blogs"
+    },
+    "website.config.BlogColors": {
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Background color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "quote_border": {
+          "type": "string",
+          "description": "Blockquote border color"
+        },
+        "tag_background": {
+          "type": "string",
+          "description": "Tag/category pill colors"
+        },
+        "tag_text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Colors",
+      "description": "Blog-specific color overrides"
+    },
+    "website.config.BlogTypography": {
+      "properties": {
+        "article_font": {
+          "type": "string",
+          "description": "Font family for article content"
+        },
+        "article_size": {
+          "type": "string",
+          "description": "Font size for article text"
+        },
+        "article_line_height": {
+          "type": "number",
+          "description": "Line height for articles"
+        },
+        "code_font": {
+          "type": "string",
+          "description": "Code font family"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Typography",
+      "description": "Blog-specific typography overrides"
+    }
+  },
+  "title": "BLOGTHEMEOVERRIDES Configuration Schema",
+  "description": "JSON Schema for BlogThemeOverrides configuration"
+}

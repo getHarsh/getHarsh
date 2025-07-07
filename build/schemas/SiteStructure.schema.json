@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteStructure",
+  "definitions": {
+    "SiteStructure": {
+      "properties": {
+        "main_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Main navigation items"
+        },
+        "footer_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Footer navigation"
+        },
+        "hierarchy": {
+          "items": {
+            "$ref": "#/definitions/website.config.HierarchyNode"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Site hierarchy (for projects)"
+        },
+        "urls": {
+          "$ref": "#/definitions/website.config.ImportantURLs",
+          "description": "Important URLs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Structure",
+      "description": "Site structure and navigation"
+    },
+    "website.config.HierarchyNode": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Node path"
+        },
+        "title": {
+          "type": "string",
+          "description": "Node title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Node type (\"page\", \"section\", \"external\")"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.HierarchyNode"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child nodes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Hierarchy Node",
+      "description": "Hierarchy node (for complex sites)"
+    },
+    "website.config.ImportantURLs": {
+      "properties": {
+        "home": {
+          "type": "string",
+          "description": "Homepage"
+        },
+        "about": {
+          "type": "string",
+          "description": "About page"
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact page"
+        },
+        "archive": {
+          "type": "string",
+          "description": "Archive/all posts"
+        },
+        "search": {
+          "type": "string",
+          "description": "Search page"
+        },
+        "docs": {
+          "type": "string",
+          "description": "For projects: documentation root"
+        },
+        "api": {
+          "type": "string",
+          "description": "For projects: API reference"
+        },
+        "demos": {
+          "type": "string",
+          "description": "For projects: demos/playground"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Important UR Ls",
+      "description": "Important URLs for AI agents"
+    },
+    "website.config.NavItem": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Display text"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL (relative or absolute)"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "Whether it's external"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon/identifier"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sub-items"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Nav Item",
+      "description": "Navigation item"
+    }
+  },
+  "title": "SITESTRUCTURE Configuration Schema",
+  "description": "JSON Schema for SiteStructure configuration"
+}

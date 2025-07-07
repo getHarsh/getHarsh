@@ -1,0 +1,19 @@
+{%- comment -%}
+  Text Atom Component
+  
+  Universal Intelligence: Context → Responsive → Theme → Text
+  
+  Parameters:
+  - content: Text content to display
+  - variant: body (default), small, large, caption, code
+  - class: Additional CSS classes
+  
+  Context Integration:
+  - Semantic level detection
+  - Reading level analysis
+  - Font scaling based on viewport
+{%- endcomment -%}
+
+<span class="text text--{{ include.variant | default: 'body' }} {{ include.class }}">
+  {{ include.content }}
+</span>

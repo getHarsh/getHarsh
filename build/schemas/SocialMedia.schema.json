@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SocialMedia",
+  "definitions": {
+    "SocialMedia": {
+      "properties": {
+        "twitter": {
+          "type": "string",
+          "description": "Twitter/X handle (without @)"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "LinkedIn profile URL"
+        },
+        "instagram": {
+          "type": "string",
+          "description": "Instagram handle"
+        },
+        "youtube": {
+          "type": "string",
+          "description": "YouTube channel URL"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom social links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Media",
+      "description": "Social media configuration"
+    }
+  },
+  "title": "SOCIALMEDIA Configuration Schema",
+  "description": "JSON Schema for SocialMedia configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Video",
+  "definitions": {
+    "Video": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Video URL (YouTube, Vimeo, etc.)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Video description"
+        },
+        "thumbnail": {
+          "type": "string",
+          "description": "Thumbnail image path"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video",
+      "description": "Video information"
+    }
+  },
+  "title": "VIDEO Configuration Schema",
+  "description": "JSON Schema for Video configuration"
+}

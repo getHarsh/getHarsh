@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogLayout",
+  "definitions": {
+    "BlogLayout": {
+      "properties": {
+        "article_max_width": {
+          "type": "string",
+          "description": "Maximum content width for articles"
+        },
+        "sidebar": {
+          "type": "string",
+          "description": "Sidebar on blog pages (\"left\", \"right\", \"none\")"
+        },
+        "index_layout": {
+          "type": "string",
+          "description": "Layout style (\"list\", \"grid\", \"card\")"
+        },
+        "grid_columns": {
+          "type": "integer",
+          "description": "Columns for grid layout"
+        },
+        "show_featured_image": {
+          "type": "boolean",
+          "description": "Show featured image on post"
+        },
+        "featured_image_position": {
+          "type": "string",
+          "description": "Featured image position (\"top\", \"hero\", \"inline\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Layout",
+      "description": "Blog layout adjustments"
+    }
+  },
+  "title": "BLOGLAYOUT Configuration Schema",
+  "description": "JSON Schema for BlogLayout configuration"
+}

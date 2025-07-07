@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectTypography",
+  "definitions": {
+    "ProjectTypography": {
+      "properties": {
+        "code_font": {
+          "type": "string",
+          "description": "Font for code/terminal display"
+        },
+        "docs_font": {
+          "type": "string",
+          "description": "Font for documentation"
+        },
+        "heading_scale": {
+          "type": "number",
+          "description": "Heading scale multiplier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Typography",
+      "description": "Project-specific typography"
+    }
+  },
+  "title": "PROJECTTYPOGRAPHY Configuration Schema",
+  "description": "JSON Schema for ProjectTypography configuration"
+}

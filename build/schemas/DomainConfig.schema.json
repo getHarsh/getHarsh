@@ -1,0 +1,631 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DomainConfig",
+  "definitions": {
+    "DomainConfig": {
+      "properties": {
+        "domain_info": {
+          "$ref": "#/definitions/website.config.DomainInfo",
+          "description": "Basic domain information (REQUIRED)"
+        },
+        "contact": {
+          "$ref": "#/definitions/website.config.ContactEmails",
+          "description": "Contact email addresses (REQUIRED)"
+        },
+        "theme": {
+          "$ref": "#/definitions/website.config.Theme",
+          "description": "Theme configuration for the root site (REQUIRED: at least primary color)"
+        },
+        "visual": {
+          "$ref": "#/definitions/website.config.VisualEffects",
+          "description": "Visual effects configuration (canvas, particles)"
+        },
+        "social": {
+          "$ref": "#/definitions/website.config.SocialMedia",
+          "description": "Social media accounts"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.DomainFeatures",
+          "description": "Domain-specific features"
+        },
+        "cross_site": {
+          "$ref": "#/definitions/website.config.CrossSiteNav",
+          "description": "Cross-site navigation overrides"
+        },
+        "blog": {
+          "$ref": "#/definitions/website.config.BlogSubdomain",
+          "description": "Blog subdomain configuration"
+        },
+        "pwa_settings": {
+          "$ref": "#/definitions/website.config.PWASettings",
+          "description": "Progressive Web App settings (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Config",
+      "description": "DomainConfig defines the configuration for a root domain (e.g., getHarsh.in). It inherits from EcosystemConfig and adds domain-specific settings. Stored in [domain].in/config.yml  Inherits all fields from ecosystem config (implicit in build system) The build system will merge ecosystem defaults before applying domain config"
+    },
+    "website.config.AccessibilitySettings": {
+      "properties": {
+        "high_contrast_mode": {
+          "type": "boolean",
+          "description": "Enable high contrast mode option"
+        },
+        "focus_indicators": {
+          "type": "boolean",
+          "description": "Always show focus indicators"
+        },
+        "skip_navigation": {
+          "type": "boolean",
+          "description": "Enable skip navigation links"
+        },
+        "aria_label_prefix": {
+          "type": "string",
+          "description": "ARIA label prefix for dynamic content"
+        },
+        "reduce_motion": {
+          "type": "boolean",
+          "description": "Respect prefers-reduced-motion"
+        },
+        "keyboard_hints": {
+          "type": "boolean",
+          "description": "Enable keyboard navigation hints"
+        },
+        "font_size_controls": {
+          "type": "boolean",
+          "description": "Font size adjustment controls"
+        },
+        "require_alt_text": {
+          "type": "boolean",
+          "description": "Alt text for all images (enforcement)"
+        },
+        "screen_reader_optimizations": {
+          "type": "boolean",
+          "description": "Screen reader optimizations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accessibility Settings",
+      "description": "Accessibility settings for improved user experience"
+    },
+    "website.config.AnimationSettings": {
+      "properties": {
+        "page_transitions": {
+          "type": "boolean",
+          "description": "Enable page transitions"
+        },
+        "scroll_animations": {
+          "type": "boolean",
+          "description": "Enable scroll animations"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Animation duration in ms"
+        },
+        "easing": {
+          "type": "string",
+          "description": "Animation easing function"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Animation Settings",
+      "description": "Animation settings"
+    },
+    "website.config.BlogSubdomain": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Blog exists for this domain"
+        },
+        "title": {
+          "type": "string",
+          "description": "Blog title (if different from domain)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Blog description"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Categories enabled on this blog"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Subdomain",
+      "description": "Blog subdomain configuration"
+    },
+    "website.config.CanvasEffects": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable canvas effects"
+        },
+        "physics": {
+          "$ref": "#/definitions/website.config.ParticlePhysics",
+          "description": "Particle physics engine settings"
+        },
+        "visuals": {
+          "$ref": "#/definitions/website.config.ParticleVisuals",
+          "description": "Visual appearance settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Canvas Effects",
+      "description": "Canvas particle network effects"
+    },
+    "website.config.Colors": {
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary brand color (hex) - REQUIRED"
+        },
+        "secondary": {
+          "type": "string",
+          "description": "Secondary color (hex)"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color (hex)"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text color (hex)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color for links, buttons (hex)"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error/danger color (hex)"
+        },
+        "success": {
+          "type": "string",
+          "description": "Success color (hex)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Colors",
+      "description": "Color configuration"
+    },
+    "website.config.ContactEmails": {
+      "properties": {
+        "info": {
+          "type": "string",
+          "description": "General information email - REQUIRED"
+        },
+        "proposal": {
+          "type": "string",
+          "description": "Business proposals email - REQUIRED"
+        },
+        "accounts": {
+          "type": "string",
+          "description": "Accounts/billing email - REQUIRED"
+        },
+        "support": {
+          "type": "string",
+          "description": "Technical support email (optional)"
+        },
+        "legal": {
+          "type": "string",
+          "description": "Legal/compliance email (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Emails",
+      "description": "Contact email configuration"
+    },
+    "website.config.CrossSiteNav": {
+      "properties": {
+        "show_blog_link": {
+          "type": "boolean",
+          "description": "Show link to blog subdomain"
+        },
+        "show_ecosystem_nav": {
+          "type": "boolean",
+          "description": "Show ecosystem navigation"
+        },
+        "counterpart_site": {
+          "type": "string",
+          "description": "Counterpart site (e.g., sleepwalker.in for causality.in)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Site Nav",
+      "description": "Cross-site navigation configuration"
+    },
+    "website.config.DomainFeatures": {
+      "properties": {
+        "portfolio": {
+          "type": "boolean",
+          "description": "Enable portfolio/projects section"
+        },
+        "contact_form": {
+          "type": "boolean",
+          "description": "Enable contact form"
+        },
+        "newsletter": {
+          "type": "boolean",
+          "description": "Enable newsletter signup"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom features specific to this domain"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Features",
+      "description": "Domain-specific features"
+    },
+    "website.config.DomainInfo": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Domain name (e.g., \"getHarsh.in\") - REQUIRED"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title (e.g., \"getHarsh\") - REQUIRED"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site description - REQUIRED"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity that owns this domain - REQUIRED"
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language code (e.g., \"en\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Info",
+      "description": "Basic domain information"
+    },
+    "website.config.Layout": {
+      "properties": {
+        "max_width": {
+          "type": "string",
+          "description": "Maximum content width (e.g., \"1200px\", \"75rem\")"
+        },
+        "header_style": {
+          "type": "string",
+          "description": "Header layout style (\"inline\", \"centered\", \"split\")"
+        },
+        "footer_style": {
+          "type": "string",
+          "description": "Footer layout style (\"minimal\", \"full\", \"columns\")"
+        },
+        "sidebar": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\", \"none\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Layout",
+      "description": "Layout configuration"
+    },
+    "website.config.Navigation": {
+      "properties": {
+        "style": {
+          "type": "string",
+          "description": "Navigation style (\"inline\", \"dropdown\", \"sidebar\")"
+        },
+        "mobile_style": {
+          "type": "string",
+          "description": "Show on mobile (\"hamburger\", \"bottom-bar\", \"hidden\")"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky navigation on scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation",
+      "description": "Navigation configuration"
+    },
+    "website.config.PWAIcon": {
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "Icon source path"
+        },
+        "sizes": {
+          "type": "string",
+          "description": "Icon sizes (e.g., \"192x192\")"
+        },
+        "type": {
+          "type": "string",
+          "description": "Icon MIME type"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Icon purpose (\"any\", \"maskable\", \"monochrome\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "PWA Icon",
+      "description": "PWA icon configuration"
+    },
+    "website.config.PWASettings": {
+      "properties": {
+        "enable_pwa": {
+          "type": "boolean",
+          "description": "Enable PWA features"
+        },
+        "app_name": {
+          "type": "string",
+          "description": "App name for manifest"
+        },
+        "short_name": {
+          "type": "string",
+          "description": "Short name for home screen"
+        },
+        "theme_color": {
+          "type": "string",
+          "description": "Theme color for browser chrome"
+        },
+        "background_color": {
+          "type": "string",
+          "description": "Background color for splash screen"
+        },
+        "offline_pages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Pages to make available offline"
+        },
+        "start_url": {
+          "type": "string",
+          "description": "Start URL when launched from home screen"
+        },
+        "display": {
+          "type": "string",
+          "description": "Display mode  \"standalone\", \"fullscreen\", \"minimal-ui\", \"browser\""
+        },
+        "icons": {
+          "items": {
+            "$ref": "#/definitions/website.config.PWAIcon"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "App icons configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "PWA Settings",
+      "description": "Progressive Web App configuration"
+    },
+    "website.config.ParticlePhysics": {
+      "properties": {
+        "particle_count": {
+          "type": "integer",
+          "description": "Number of particles"
+        },
+        "connection_distance": {
+          "type": "number",
+          "description": "Connection distance threshold"
+        },
+        "particle_speed": {
+          "type": "number",
+          "description": "Particle movement speed"
+        },
+        "bounce": {
+          "type": "boolean",
+          "description": "Bounce off edges"
+        },
+        "gravity": {
+          "type": "number",
+          "description": "Gravity strength (0 = no gravity)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Particle Physics",
+      "description": "Particle physics configuration"
+    },
+    "website.config.ParticleVisuals": {
+      "properties": {
+        "particle_color": {
+          "type": "string",
+          "description": "Particle color (hex)"
+        },
+        "line_color": {
+          "type": "string",
+          "description": "Connection line color (hex)"
+        },
+        "particle_size_min": {
+          "type": "number",
+          "description": "Particle size range [min, max]"
+        },
+        "particle_size_max": {
+          "type": "number"
+        },
+        "line_opacity": {
+          "type": "number",
+          "description": "Line opacity (0-1)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Particle Visuals",
+      "description": "Particle visual configuration"
+    },
+    "website.config.SocialMedia": {
+      "properties": {
+        "twitter": {
+          "type": "string",
+          "description": "Twitter/X handle (without @)"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "LinkedIn profile URL"
+        },
+        "instagram": {
+          "type": "string",
+          "description": "Instagram handle"
+        },
+        "youtube": {
+          "type": "string",
+          "description": "YouTube channel URL"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom social links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Media",
+      "description": "Social media configuration"
+    },
+    "website.config.Theme": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.Colors",
+          "description": "Color scheme"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.Typography",
+          "description": "Typography settings"
+        },
+        "layout": {
+          "$ref": "#/definitions/website.config.Layout",
+          "description": "Layout configuration"
+        },
+        "navigation": {
+          "$ref": "#/definitions/website.config.Navigation",
+          "description": "Navigation style"
+        },
+        "theme_mode": {
+          "$ref": "#/definitions/website.config.ThemeMode",
+          "description": "Dark mode support (USER PRIORITY: \"VERY IMPORTANT\")"
+        },
+        "accessibility": {
+          "$ref": "#/definitions/website.config.AccessibilitySettings",
+          "description": "Accessibility settings for better user experience"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme",
+      "description": "Theme configuration for the root site"
+    },
+    "website.config.ThemeMode": {
+      "properties": {
+        "enable_dark_mode": {
+          "type": "boolean",
+          "description": "Enable dark mode feature"
+        },
+        "default_mode": {
+          "type": "string",
+          "description": "Default mode when user first visits  \"light\", \"dark\", \"system\""
+        },
+        "show_mode_toggle": {
+          "type": "boolean",
+          "description": "Show mode toggle button in UI"
+        },
+        "dark_colors": {
+          "$ref": "#/definitions/website.config.Colors",
+          "description": "Dark mode color overrides"
+        },
+        "remember_preference": {
+          "type": "boolean",
+          "description": "Store user preference in localStorage"
+        },
+        "dark_mode_class": {
+          "type": "string",
+          "description": "CSS class prefix for dark mode  default: \"dark-mode\""
+        },
+        "toggle_position": {
+          "type": "string",
+          "description": "Toggle button position  \"top-right\", \"top-left\", \"bottom-right\", \"bottom-left\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Mode",
+      "description": "Dark mode configuration USER PRIORITY: \"YES THIS IS VERY IMPORTANT AND SHOULD BE AVAILABLE IN THE THEME AREAS OF SCHEMA\""
+    },
+    "website.config.Typography": {
+      "properties": {
+        "font_family_primary": {
+          "type": "string",
+          "description": "Primary font family"
+        },
+        "font_family_secondary": {
+          "type": "string",
+          "description": "Secondary font family (for headings, etc.)"
+        },
+        "base_size": {
+          "type": "string",
+          "description": "Base font size (e.g., \"16px\", \"1rem\")"
+        },
+        "line_height": {
+          "type": "number",
+          "description": "Line height multiplier"
+        },
+        "font_weight_normal": {
+          "type": "integer",
+          "description": "Font weight for body text"
+        },
+        "font_weight_bold": {
+          "type": "integer",
+          "description": "Font weight for bold text"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Typography",
+      "description": "Typography configuration"
+    },
+    "website.config.VisualEffects": {
+      "properties": {
+        "canvas": {
+          "$ref": "#/definitions/website.config.CanvasEffects",
+          "description": "Canvas particle network configuration"
+        },
+        "animations": {
+          "$ref": "#/definitions/website.config.AnimationSettings",
+          "description": "Animation preferences"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Visual Effects",
+      "description": "Visual effects configuration"
+    }
+  },
+  "title": "DOMAINCONFIG Configuration Schema",
+  "description": "JSON Schema for DomainConfig configuration"
+}

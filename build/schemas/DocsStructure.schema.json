@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsStructure",
+  "definitions": {
+    "DocsStructure": {
+      "properties": {
+        "nav_style": {
+          "type": "string",
+          "description": "Navigation style (\"sidebar\", \"top-nav\", \"both\")"
+        },
+        "sidebar": {
+          "$ref": "#/definitions/website.config.DocsNavigationSidebar",
+          "description": "Sidebar configuration"
+        },
+        "toc": {
+          "$ref": "#/definitions/website.config.DocsTableOfContents",
+          "description": "Table of contents configuration"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsSection"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Documentation sections/categories"
+        },
+        "landing_style": {
+          "type": "string",
+          "description": "Landing page style (\"hero\", \"quick-start\", \"overview\")"
+        },
+        "show_version_selector": {
+          "type": "boolean",
+          "description": "Show version selector"
+        },
+        "available_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available versions (for version selector)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Structure",
+      "description": "Documentation structure and navigation"
+    },
+    "website.config.DocsNavigationSidebar": {
+      "properties": {
+        "position": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\")"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "auto_expand_current": {
+          "type": "boolean",
+          "description": "Auto-expand current section"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky sidebar"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth for auto-generated nav"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Navigation Sidebar",
+      "description": "Documentation sidebar configuration"
+    },
+    "website.config.DocsPage": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Page identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "path": {
+          "type": "string",
+          "description": "Page path (relative to docs/)"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order within section"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Hide from navigation"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "External link (if not a local page)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Page",
+      "description": "Documentation page reference"
+    },
+    "website.config.DocsSection": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Section identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Section title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Section description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Section icon"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order in navigation"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsPage"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Pages in this section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Section",
+      "description": "Documentation section"
+    },
+    "website.config.DocsTableOfContents": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"right\", \"inline\")"
+        },
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth to include"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky TOC on scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Table Of Contents",
+      "description": "Table of contents configuration"
+    }
+  },
+  "title": "DOCSSTRUCTURE Configuration Schema",
+  "description": "JSON Schema for DocsStructure configuration"
+}

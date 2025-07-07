@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  {%- comment -%} Context Engine initialization {%- endcomment -%}
+  {%- include components/context-engine.html -%}
+  
+  {%- comment -%} SEO and meta tags {%- endcomment -%}
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  
+  {%- comment -%} CSS {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body class="{{ page.layout }} palette--{{ site.theme.palette }} theme--{{ site.theme.system }} typography--{{ site.theme.typography }}">
+  {%- include organisms/site-header.html -%}
+  
+  <main role="main">
+    {{ content }}
+  </main>
+  
+  {%- include organisms/site-footer.html -%}
+  
+  {%- comment -%} JavaScript {%- endcomment -%}
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

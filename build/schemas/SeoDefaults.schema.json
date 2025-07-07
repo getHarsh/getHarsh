@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SeoDefaults",
+  "definitions": {
+    "SeoDefaults": {
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Default author name for meta tags"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale (e.g., \"en_US\")"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "Default Twitter handle for cards"
+        },
+        "description_pattern": {
+          "type": "string",
+          "description": "Default meta description pattern (can use variables)"
+        },
+        "og_image_pattern": {
+          "type": "string",
+          "description": "Default OG image URL pattern"
+        },
+        "enable_llms_txt": {
+          "type": "boolean",
+          "description": "Enable/disable AI crawler optimization (LLMs.txt)"
+        },
+        "copyright_pattern": {
+          "type": "string",
+          "description": "Default copyright pattern (e.g., \"© {year} {entity}\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Seo Defaults",
+      "description": "Default SEO settings inherited by all domains"
+    }
+  },
+  "title": "SEODEFAULTS Configuration Schema",
+  "description": "JSON Schema for SeoDefaults configuration"
+}

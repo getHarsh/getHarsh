@@ -1,0 +1,415 @@
+syntax = "proto3";
+
+package website.config;
+
+import "project.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// DocsConfig defines configuration overrides for project documentation.
+// It inherits from the parent project and can only override specific fields.
+// Stored in [project]/docs/config.yml (in the version/branch specified by project config)
+// Example: HENA/docs/config.yml in main branch or v2.0.0 tag
+message DocsConfig {
+  // Docs inherit everything from parent project by default.
+  // Only fields defined here can be overridden.
+  
+  // Theme overrides for documentation (limited set)
+  DocsThemeOverrides theme_overrides = 1;
+  
+  // Documentation-specific features
+  DocsFeatures features = 2;
+  
+  // Documentation structure and navigation
+  DocsStructure structure = 3;
+  
+  // Documentation content settings
+  DocsContent content = 4;
+  
+  // API documentation settings
+  APIDocSettings api = 5;
+  
+  // Documentation metadata
+  DocsMetadata metadata = 6;
+}
+
+// Theme overrides allowed for documentation
+message DocsThemeOverrides {
+  // Color overrides for docs (limited set)
+  DocsColors colors = 1;
+  
+  // Typography adjustments for documentation
+  DocsTypography typography = 2;
+  
+  // Custom CSS specific to docs
+  string custom_docs_css = 3;
+}
+
+// Documentation-specific color overrides
+message DocsColors {
+  // Code block background color
+  string code_background = 1;
+  
+  // Inline code color
+  string inline_code_bg = 2;
+  
+  // Navigation active item color
+  string nav_active = 3;
+  
+  // Search highlight color
+  string search_highlight = 4;
+  
+  // Warning/note block colors
+  string warning_bg = 5;
+  string note_bg = 6;
+  string tip_bg = 7;
+  string important_bg = 8;
+}
+
+// Documentation-specific typography
+message DocsTypography {
+  // Font for documentation content
+  string docs_font = 1;
+  
+  // Font size for documentation
+  string docs_font_size = 2;
+  
+  // Line height for docs
+  float docs_line_height = 3;
+  
+  // Code block font
+  string code_font = 4;
+  
+  // Heading scale for docs
+  float heading_scale = 5;
+}
+
+// Documentation-specific features
+message DocsFeatures {
+  // Enable copy button on code blocks
+  bool copy_code_button = 1;
+  
+  // Enable line numbers in code blocks
+  bool code_line_numbers = 2;
+  
+  // Enable expandable/collapsible sections
+  bool collapsible_sections = 3;
+  
+  // Enable previous/next navigation
+  bool prev_next_nav = 4;
+  
+  // Enable breadcrumb navigation
+  bool breadcrumbs = 5;
+  
+  // Enable print-friendly version
+  bool print_version = 6;
+  
+  // Enable dark mode toggle (if not inherited)
+  bool dark_mode_toggle = 7;
+  
+  // Enable version warning for old docs
+  bool version_warning = 8;
+  
+  // Enable edit on GitHub link
+  bool edit_on_github = 9;
+  
+  // Enable last updated timestamp
+  bool show_last_updated = 10;
+  
+  // Enable estimated reading time
+  bool reading_time = 11;
+  
+  // Enable anchor links on headings
+  bool heading_anchors = 12;
+  
+  // Enable search within docs
+  bool docs_search = 13;
+  
+  // Search provider override
+  string search_provider = 14;
+  
+  // Custom documentation features
+  map<string, bool> custom = 15;
+}
+
+// Documentation structure and navigation
+message DocsStructure {
+  // Navigation style ("sidebar", "top-nav", "both")
+  string nav_style = 1;
+  
+  // Sidebar configuration
+  DocsNavigationSidebar sidebar = 2;
+  
+  // Table of contents configuration
+  DocsTableOfContents toc = 3;
+  
+  // Documentation sections/categories
+  repeated DocsSection sections = 4;
+  
+  // Landing page style ("hero", "quick-start", "overview")
+  string landing_style = 5;
+  
+  // Show version selector
+  bool show_version_selector = 6;
+  
+  // Available versions (for version selector)
+  repeated string available_versions = 7;
+}
+
+// Documentation sidebar configuration
+message DocsNavigationSidebar {
+  // Sidebar position ("left", "right")
+  string position = 1;
+  
+  // Collapsible sections
+  bool collapsible = 2;
+  
+  // Auto-expand current section
+  bool auto_expand_current = 3;
+  
+  // Show on mobile
+  bool mobile_visible = 4;
+  
+  // Sticky sidebar
+  bool sticky = 5;
+  
+  // Max depth for auto-generated nav
+  int32 max_depth = 6;
+}
+
+// Table of contents configuration
+message DocsTableOfContents {
+  // Enable table of contents
+  bool enabled = 1;
+  
+  // Position ("right", "inline")
+  string position = 2;
+  
+  // Minimum headings to show TOC
+  int32 min_headings = 3;
+  
+  // Max depth to include
+  int32 max_depth = 4;
+  
+  // Sticky TOC on scroll
+  bool sticky = 5;
+  
+  // Highlight current section
+  bool highlight_current = 6;
+}
+
+// Documentation section
+message DocsSection {
+  // Section identifier
+  string id = 1;
+  
+  // Section title
+  string title = 2;
+  
+  // Section description
+  string description = 3;
+  
+  // Section icon
+  string icon = 4;
+  
+  // Order in navigation
+  int32 order = 5;
+  
+  // Pages in this section
+  repeated DocsPage pages = 6;
+}
+
+// Documentation page reference
+message DocsPage {
+  // Page identifier
+  string id = 1;
+  
+  // Page title
+  string title = 2;
+  
+  // Page path (relative to docs/)
+  string path = 3;
+  
+  // Order within section
+  int32 order = 4;
+  
+  // Hide from navigation
+  bool hidden = 5;
+  
+  // External link (if not a local page)
+  bool external = 6;
+}
+
+// Documentation content settings
+message DocsContent {
+  // Default code language for syntax highlighting
+  string default_code_language = 1;
+  
+  // Enable automatic API reference generation
+  bool auto_api_reference = 2;
+  
+  // Enable glossary/terminology tooltips
+  bool glossary_tooltips = 3;
+  
+  // External link behavior ("new-tab", "same-tab")
+  string external_link_behavior = 4;
+  
+  // Image optimization settings
+  ImageSettings images = 5;
+  
+  // Video embedding settings
+  VideoSettings videos = 6;
+}
+
+// Image settings for documentation
+message ImageSettings {
+  // Enable lazy loading
+  bool lazy_load = 1;
+  
+  // Enable zoom on click
+  bool click_to_zoom = 2;
+  
+  // Default alignment ("left", "center", "right")
+  string default_align = 3;
+  
+  // Enable captions
+  bool show_captions = 4;
+}
+
+// Video embedding settings
+message VideoSettings {
+  // Enable video embeds
+  bool enabled = 1;
+  
+  // Default video width
+  string default_width = 2;
+  
+  // Supported providers
+  repeated string providers = 3;
+  
+  // Enable lazy loading
+  bool lazy_load = 4;
+}
+
+// API documentation settings
+message APIDocSettings {
+  // Enable API documentation
+  bool enabled = 1;
+  
+  // API specification format ("openapi", "graphql", "grpc")
+  string spec_format = 2;
+  
+  // Path to API spec file (relative to docs/)
+  string spec_path = 3;
+  
+  // API doc generator ("swagger-ui", "redoc", "graphdoc", "custom")
+  string generator = 4;
+  
+  // Enable try-it-out feature
+  bool try_it_out = 5;
+  
+  // Base URL for API calls
+  string api_base_url = 6;
+  
+  // Authentication configuration
+  APIAuthConfig auth = 7;
+  
+  // Code generation settings
+  CodeGenSettings code_gen = 8;
+}
+
+// API authentication configuration
+message APIAuthConfig {
+  // Authentication type ("none", "api-key", "oauth2", "basic")
+  string type = 1;
+  
+  // Parameter name for API key
+  string api_key_param = 2;
+  
+  // OAuth2 configuration
+  OAuth2Config oauth2 = 3;
+}
+
+// OAuth2 configuration
+message OAuth2Config {
+  // OAuth2 flow ("implicit", "authorization_code", "client_credentials")
+  string flow = 1;
+  
+  // Authorization URL
+  string auth_url = 2;
+  
+  // Token URL
+  string token_url = 3;
+  
+  // Available scopes
+  map<string, string> scopes = 4;
+}
+
+// Code generation settings
+message CodeGenSettings {
+  // Enable code examples generation
+  bool enabled = 1;
+  
+  // Languages to generate examples for
+  repeated string languages = 2;
+  
+  // Code generator ("openapi-generator", "custom")
+  string generator = 3;
+}
+
+// Documentation metadata
+message DocsMetadata {
+  // Keywords for SEO (docs-specific)
+  repeated string keywords = 1;
+  
+  // Documentation version
+  string version = 2;
+  
+  // Release date of this version
+  string release_date = 3;
+  
+  // Changelog URL
+  string changelog_url = 4;
+  
+  // Migration guide URL (from previous version)
+  string migration_guide_url = 5;
+  
+  // Support/help URLs
+  SupportLinks support = 6;
+  
+  // Contributors
+  repeated Contributor contributors = 7;
+}
+
+// Support link configuration
+message SupportLinks {
+  // Community forum URL
+  string forum = 1;
+  
+  // Discord/Slack invite URL
+  string chat = 2;
+  
+  // Stack Overflow tag
+  string stack_overflow_tag = 3;
+  
+  // GitHub discussions URL
+  string discussions = 4;
+  
+  // Support email
+  string email = 5;
+}
+
+// Contributor information
+message Contributor {
+  // Contributor name
+  string name = 1;
+  
+  // GitHub username
+  string github = 2;
+  
+  // Role/title
+  string role = 3;
+  
+  // Avatar URL
+  string avatar = 4;
+}

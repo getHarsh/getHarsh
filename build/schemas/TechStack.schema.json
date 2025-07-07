@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TechStack",
+  "definitions": {
+    "TechStack": {
+      "properties": {
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary language(s)"
+        },
+        "frameworks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Frameworks used"
+        },
+        "dependencies": {
+          "items": {
+            "$ref": "#/definitions/website.config.Dependency"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Major dependencies"
+        },
+        "dev_tools": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Development tools"
+        },
+        "infrastructure": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Deployment/infrastructure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tech Stack",
+      "description": "Technology stack information"
+    },
+    "website.config.Dependency": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dependency name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version or version range"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Purpose/description"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link to dependency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency",
+      "description": "Dependency information"
+    }
+  },
+  "title": "TECHSTACK Configuration Schema",
+  "description": "JSON Schema for TechStack configuration"
+}

@@ -1,0 +1,21 @@
+// Retrofuture Glass Theme System
+// Combines retrofuturism aesthetics with glassmorphism effects
+
+.theme--retrofuture-glass {
+  // Glass effects
+  --glass-blur: 10px;
+  --glass-opacity: 0.7;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+  
+  // Retrofuture colors
+  --retro-neon: #00ffff;
+  --retro-purple: #ff00ff;
+  --retro-grid: rgba(0, 255, 255, 0.1);
+  
+  // Component overrides
+  .card {
+    background: rgba(255, 255, 255, var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
+  }
+}

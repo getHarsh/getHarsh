@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIDocSettings",
+  "definitions": {
+    "APIDocSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable API documentation"
+        },
+        "spec_format": {
+          "type": "string",
+          "description": "API specification format (\"openapi\", \"graphql\", \"grpc\")"
+        },
+        "spec_path": {
+          "type": "string",
+          "description": "Path to API spec file (relative to docs/)"
+        },
+        "generator": {
+          "type": "string",
+          "description": "API doc generator (\"swagger-ui\", \"redoc\", \"graphdoc\", \"custom\")"
+        },
+        "try_it_out": {
+          "type": "boolean",
+          "description": "Enable try-it-out feature"
+        },
+        "api_base_url": {
+          "type": "string",
+          "description": "Base URL for API calls"
+        },
+        "auth": {
+          "$ref": "#/definitions/website.config.APIAuthConfig",
+          "description": "Authentication configuration"
+        },
+        "code_gen": {
+          "$ref": "#/definitions/website.config.CodeGenSettings",
+          "description": "Code generation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Doc Settings",
+      "description": "API documentation settings"
+    },
+    "website.config.APIAuthConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Authentication type (\"none\", \"api-key\", \"oauth2\", \"basic\")"
+        },
+        "api_key_param": {
+          "type": "string",
+          "description": "Parameter name for API key"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/website.config.OAuth2Config",
+          "description": "OAuth2 configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Auth Config",
+      "description": "API authentication configuration"
+    },
+    "website.config.CodeGenSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable code examples generation"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Languages to generate examples for"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Code generator (\"openapi-generator\", \"custom\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Gen Settings",
+      "description": "Code generation settings"
+    },
+    "website.config.OAuth2Config": {
+      "properties": {
+        "flow": {
+          "type": "string",
+          "description": "OAuth2 flow (\"implicit\", \"authorization_code\", \"client_credentials\")"
+        },
+        "auth_url": {
+          "type": "string",
+          "description": "Authorization URL"
+        },
+        "token_url": {
+          "type": "string",
+          "description": "Token URL"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Available scopes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Config",
+      "description": "OAuth2 configuration"
+    }
+  },
+  "title": "APIDOCSETTINGS Configuration Schema",
+  "description": "JSON Schema for APIDocSettings configuration"
+}

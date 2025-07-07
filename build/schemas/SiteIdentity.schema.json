@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteIdentity",
+  "definitions": {
+    "SiteIdentity": {
+      "properties": {
+        "site_type": {
+          "type": "string",
+          "description": "Site type (\"domain\", \"blog\", \"project\")"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Full domain (e.g., \"causality.in\", \"blog.causality.in\", \"causality.in/HENA\")"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site description"
+        },
+        "parent_domain": {
+          "type": "string",
+          "description": "Parent domain (for blogs and projects)"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity"
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language"
+        },
+        "url": {
+          "type": "string",
+          "description": "Site URL (full URL including protocol)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Identity",
+      "description": "Site identity information"
+    }
+  },
+  "title": "SITEIDENTITY Configuration Schema",
+  "description": "JSON Schema for SiteIdentity configuration"
+}

@@ -1,0 +1,68 @@
+// Molecule Component Styles
+// Simple combinations of atoms
+
+// Button molecule
+.btn {
+  display: inline-block;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  // Variants
+  &--primary {
+    color: var(--color-background);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    
+    &:hover {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+    }
+  }
+  
+  &--secondary {
+    color: var(--color-primary);
+    background-color: transparent;
+    border-color: var(--color-primary);
+    
+    &:hover {
+      color: var(--color-background);
+      background-color: var(--color-primary);
+    }
+  }
+  
+  &--ghost {
+    color: var(--color-text);
+    background-color: transparent;
+    border-color: transparent;
+    
+    &:hover {
+      background-color: var(--color-surface);
+    }
+  }
+}
+
+// Smart link molecule
+.smart-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: var(--color-primary-dark);
+  }
+  
+  &--external {
+    &::after {
+      content: '↗';
+      margin-left: 0.25em;
+      font-size: 0.875em;
+    }
+  }
+}

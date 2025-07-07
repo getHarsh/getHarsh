@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EcosystemConnections",
+  "definitions": {
+    "EcosystemConnections": {
+      "properties": {
+        "parent": {
+          "$ref": "#/definitions/website.config.EcosystemLink",
+          "description": "Parent site (for blogs/projects)"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.EcosystemLink"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child sites (blogs/projects under this domain)"
+        },
+        "siblings": {
+          "items": {
+            "$ref": "#/definitions/website.config.EcosystemLink"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sibling sites (other sites in ecosystem)"
+        },
+        "counterpart": {
+          "$ref": "#/definitions/website.config.EcosystemLink",
+          "description": "Counterpart site (special relationship)"
+        },
+        "ecosystem_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "All ecosystem domains"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Connections",
+      "description": "Ecosystem connections"
+    },
+    "website.config.EcosystemLink": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Site domain"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Site type"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type"
+        },
+        "url": {
+          "type": "string",
+          "description": "Site URL"
+        },
+        "manifest_url": {
+          "type": "string",
+          "description": "Manifest URL for that site"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Link",
+      "description": "Ecosystem link information"
+    }
+  },
+  "title": "ECOSYSTEMCONNECTIONS Configuration Schema",
+  "description": "JSON Schema for EcosystemConnections configuration"
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsContent",
+  "definitions": {
+    "DocsContent": {
+      "properties": {
+        "default_code_language": {
+          "type": "string",
+          "description": "Default code language for syntax highlighting"
+        },
+        "auto_api_reference": {
+          "type": "boolean",
+          "description": "Enable automatic API reference generation"
+        },
+        "glossary_tooltips": {
+          "type": "boolean",
+          "description": "Enable glossary/terminology tooltips"
+        },
+        "external_link_behavior": {
+          "type": "string",
+          "description": "External link behavior (\"new-tab\", \"same-tab\")"
+        },
+        "images": {
+          "$ref": "#/definitions/website.config.ImageSettings",
+          "description": "Image optimization settings"
+        },
+        "videos": {
+          "$ref": "#/definitions/website.config.VideoSettings",
+          "description": "Video embedding settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Content",
+      "description": "Documentation content settings"
+    },
+    "website.config.ImageSettings": {
+      "properties": {
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        },
+        "click_to_zoom": {
+          "type": "boolean",
+          "description": "Enable zoom on click"
+        },
+        "default_align": {
+          "type": "string",
+          "description": "Default alignment (\"left\", \"center\", \"right\")"
+        },
+        "show_captions": {
+          "type": "boolean",
+          "description": "Enable captions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Settings",
+      "description": "Image settings for documentation"
+    },
+    "website.config.VideoSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable video embeds"
+        },
+        "default_width": {
+          "type": "string",
+          "description": "Default video width"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported providers"
+        },
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Settings",
+      "description": "Video embedding settings"
+    }
+  },
+  "title": "DOCSCONTENT Configuration Schema",
+  "description": "JSON Schema for DocsContent configuration"
+}

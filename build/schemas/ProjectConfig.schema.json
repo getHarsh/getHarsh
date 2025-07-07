@@ -1,0 +1,589 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectConfig",
+  "definitions": {
+    "ProjectConfig": {
+      "properties": {
+        "project_info": {
+          "$ref": "#/definitions/website.config.ProjectInfo",
+          "description": "Basic project information (REQUIRED)"
+        },
+        "theme_overrides": {
+          "$ref": "#/definitions/website.config.ProjectThemeOverrides",
+          "description": "Theme overrides (limited set from parent domain)"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.ProjectFeatures",
+          "description": "Project-specific features"
+        },
+        "layout": {
+          "$ref": "#/definitions/website.config.ProjectLayout",
+          "description": "Layout adjustments for project site"
+        },
+        "tech_stack": {
+          "$ref": "#/definitions/website.config.TechStack",
+          "description": "Technology stack and dependencies"
+        },
+        "links": {
+          "$ref": "#/definitions/website.config.ProjectLinks",
+          "description": "External links and resources"
+        },
+        "showcase": {
+          "$ref": "#/definitions/website.config.ProjectShowcase",
+          "description": "Showcase/gallery configuration"
+        },
+        "metadata": {
+          "$ref": "#/definitions/website.config.ProjectMetadata",
+          "description": "Project metadata for SEO and discovery"
+        },
+        "documentation": {
+          "$ref": "#/definitions/website.config.DocumentationSettings",
+          "description": "Documentation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Config",
+      "description": "ProjectConfig defines configuration for project websites hosted under domains. Projects are separate repositories but inherit from their parent domain. Stored in [domain].in/PROJECTS/[project]/config.yml in the project's site branch Example: causality.in/PROJECTS/HENA/config.yml (in HENA repo's site branch)  Project inherits everything from parent domain by default. Only fields defined here can be overridden or added."
+    },
+    "website.config.Dependency": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dependency name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version or version range"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Purpose/description"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link to dependency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency",
+      "description": "Dependency information"
+    },
+    "website.config.DocsSidebar": {
+      "properties": {
+        "position": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\")"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "auto_generate": {
+          "type": "boolean",
+          "description": "Auto-generate from headings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Sidebar",
+      "description": "Documentation sidebar configuration"
+    },
+    "website.config.DocumentationSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable documentation site at /[project]/docs/"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version/branch to pull docs from (in main branch)  \"main\", \"v2.0.0\", \"v1.0.0\", etc."
+        },
+        "has_docs_folder": {
+          "type": "boolean",
+          "description": "Whether docs folder exists in the repository"
+        },
+        "has_own_config": {
+          "type": "boolean",
+          "description": "Documentation inherits from project and can have its own config.yml"
+        },
+        "enable_version_switcher": {
+          "type": "boolean",
+          "description": "Enable version switcher in docs UI"
+        },
+        "available_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "List of available versions (for version switcher)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation Settings",
+      "description": "Documentation settings for project"
+    },
+    "website.config.ProjectColors": {
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary color override (for project branding)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code/terminal background color"
+        },
+        "docs_header": {
+          "type": "string",
+          "description": "Documentation section colors"
+        },
+        "docs_sidebar": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Colors",
+      "description": "Project-specific color overrides"
+    },
+    "website.config.ProjectFeatures": {
+      "properties": {
+        "api_docs": {
+          "type": "boolean",
+          "description": "Enable API documentation"
+        },
+        "api_docs_generator": {
+          "type": "string",
+          "description": "API documentation generator (\"swagger\", \"redoc\", \"custom\")"
+        },
+        "interactive_demos": {
+          "type": "boolean",
+          "description": "Enable interactive demos"
+        },
+        "code_playground": {
+          "type": "boolean",
+          "description": "Enable code playground"
+        },
+        "playground_provider": {
+          "type": "string",
+          "description": "Playground provider (\"codepen\", \"codesandbox\", \"custom\")"
+        },
+        "docs_search": {
+          "type": "boolean",
+          "description": "Enable documentation search"
+        },
+        "search_provider": {
+          "type": "string",
+          "description": "Search provider (\"algolia\", \"lunr\", \"custom\")"
+        },
+        "version_switcher": {
+          "type": "boolean",
+          "description": "Enable version switcher"
+        },
+        "contribution_guide": {
+          "type": "boolean",
+          "description": "Enable contribution guide"
+        },
+        "changelog_display": {
+          "type": "boolean",
+          "description": "Enable changelog display"
+        },
+        "dependency_graph": {
+          "type": "boolean",
+          "description": "Enable dependency graph"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom project features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Features",
+      "description": "Project-specific features"
+    },
+    "website.config.ProjectInfo": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name (e.g., \"HENA\", \"JARVIS\") - REQUIRED"
+        },
+        "type": {
+          "type": "string",
+          "description": "Project type (e.g., \"research\", \"tool\", \"framework\", \"library\") - REQUIRED"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description (one line) - REQUIRED"
+        },
+        "detailed_description": {
+          "type": "string",
+          "description": "Detailed description (markdown supported)"
+        },
+        "status": {
+          "type": "string",
+          "description": "Project status (\"active\", \"beta\", \"stable\", \"deprecated\", \"archived\") - REQUIRED"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (YYYY-MM-DD)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version (if applicable)"
+        },
+        "license": {
+          "type": "string",
+          "description": "License (e.g., \"MIT\", \"Apache-2.0\", \"Proprietary\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Info",
+      "description": "Basic project information"
+    },
+    "website.config.ProjectLayout": {
+      "properties": {
+        "homepage_style": {
+          "type": "string",
+          "description": "Homepage layout (\"hero\", \"documentation\", \"showcase\", \"custom\")"
+        },
+        "docs_layout": {
+          "type": "string",
+          "description": "Documentation layout (\"single-page\", \"multi-page\", \"versioned\")"
+        },
+        "separate_nav": {
+          "type": "boolean",
+          "description": "Show project navigation separate from domain nav"
+        },
+        "sidebar": {
+          "$ref": "#/definitions/website.config.DocsSidebar",
+          "description": "Sidebar configuration for docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Layout",
+      "description": "Project layout configuration"
+    },
+    "website.config.ProjectLinks": {
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "Main repository URL - REQUIRED if open source"
+        },
+        "documentation": {
+          "type": "string",
+          "description": "Documentation URL (if separate from project site)"
+        },
+        "demo": {
+          "type": "string",
+          "description": "Live demo URL"
+        },
+        "downloads": {
+          "type": "string",
+          "description": "Download/releases URL"
+        },
+        "issues": {
+          "type": "string",
+          "description": "Issue tracker URL"
+        },
+        "discussions": {
+          "type": "string",
+          "description": "Discussion forum URL"
+        },
+        "wiki": {
+          "type": "string",
+          "description": "Wiki URL"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Links",
+      "description": "Project links and resources"
+    },
+    "website.config.ProjectMetadata": {
+      "properties": {
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords for SEO"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Categories this project belongs to"
+        },
+        "blog_tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tags for blog integration (posts with these tags show on project page)"
+        },
+        "related_projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related projects (within the ecosystem)"
+        },
+        "similar_projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "External similar projects"
+        },
+        "publications": {
+          "items": {
+            "$ref": "#/definitions/website.config.Publication"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Research papers or articles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Metadata",
+      "description": "Project metadata for SEO and discovery"
+    },
+    "website.config.ProjectShowcase": {
+      "properties": {
+        "screenshots": {
+          "type": "boolean",
+          "description": "Enable screenshot gallery"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/website.config.Screenshot"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Screenshot images (relative paths)"
+        },
+        "videos": {
+          "type": "boolean",
+          "description": "Enable video demos"
+        },
+        "video_items": {
+          "items": {
+            "$ref": "#/definitions/website.config.Video"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Video URLs or embed codes"
+        },
+        "architecture_diagrams": {
+          "type": "boolean",
+          "description": "Enable architecture diagrams"
+        },
+        "diagrams": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Diagram images (relative paths)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Showcase",
+      "description": "Project showcase/gallery configuration"
+    },
+    "website.config.ProjectThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.ProjectColors",
+          "description": "Color overrides (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.ProjectTypography",
+          "description": "Typography adjustments"
+        },
+        "custom_css": {
+          "type": "string",
+          "description": "Custom CSS file (relative to project root)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Theme Overrides",
+      "description": "Project theme overrides"
+    },
+    "website.config.ProjectTypography": {
+      "properties": {
+        "code_font": {
+          "type": "string",
+          "description": "Font for code/terminal display"
+        },
+        "docs_font": {
+          "type": "string",
+          "description": "Font for documentation"
+        },
+        "heading_scale": {
+          "type": "number",
+          "description": "Heading scale multiplier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Typography",
+      "description": "Project-specific typography"
+    },
+    "website.config.Publication": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Publication title"
+        },
+        "authors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Authors"
+        },
+        "venue": {
+          "type": "string",
+          "description": "Publication venue"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Year"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to paper"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI if available"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publication",
+      "description": "Publication/paper reference"
+    },
+    "website.config.Screenshot": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Image path (relative to project root)"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text/description"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category (e.g., \"desktop\", \"mobile\", \"cli\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screenshot",
+      "description": "Screenshot information"
+    },
+    "website.config.TechStack": {
+      "properties": {
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary language(s)"
+        },
+        "frameworks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Frameworks used"
+        },
+        "dependencies": {
+          "items": {
+            "$ref": "#/definitions/website.config.Dependency"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Major dependencies"
+        },
+        "dev_tools": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Development tools"
+        },
+        "infrastructure": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Deployment/infrastructure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tech Stack",
+      "description": "Technology stack information"
+    },
+    "website.config.Video": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Video URL (YouTube, Vimeo, etc.)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Video description"
+        },
+        "thumbnail": {
+          "type": "string",
+          "description": "Thumbnail image path"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video",
+      "description": "Video information"
+    }
+  },
+  "title": "PROJECTCONFIG Configuration Schema",
+  "description": "JSON Schema for ProjectConfig configuration"
+}

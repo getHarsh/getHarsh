@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectFeatures",
+  "definitions": {
+    "ProjectFeatures": {
+      "properties": {
+        "api_docs": {
+          "type": "boolean",
+          "description": "Enable API documentation"
+        },
+        "api_docs_generator": {
+          "type": "string",
+          "description": "API documentation generator (\"swagger\", \"redoc\", \"custom\")"
+        },
+        "interactive_demos": {
+          "type": "boolean",
+          "description": "Enable interactive demos"
+        },
+        "code_playground": {
+          "type": "boolean",
+          "description": "Enable code playground"
+        },
+        "playground_provider": {
+          "type": "string",
+          "description": "Playground provider (\"codepen\", \"codesandbox\", \"custom\")"
+        },
+        "docs_search": {
+          "type": "boolean",
+          "description": "Enable documentation search"
+        },
+        "search_provider": {
+          "type": "string",
+          "description": "Search provider (\"algolia\", \"lunr\", \"custom\")"
+        },
+        "version_switcher": {
+          "type": "boolean",
+          "description": "Enable version switcher"
+        },
+        "contribution_guide": {
+          "type": "boolean",
+          "description": "Enable contribution guide"
+        },
+        "changelog_display": {
+          "type": "boolean",
+          "description": "Enable changelog display"
+        },
+        "dependency_graph": {
+          "type": "boolean",
+          "description": "Enable dependency graph"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom project features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Features",
+      "description": "Project-specific features"
+    }
+  },
+  "title": "PROJECTFEATURES Configuration Schema",
+  "description": "JSON Schema for ProjectFeatures configuration"
+}

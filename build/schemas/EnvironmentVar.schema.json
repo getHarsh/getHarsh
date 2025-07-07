@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EnvironmentVar",
+  "definitions": {
+    "EnvironmentVar": {
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of what this variable is for"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether this variable is required"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value if not set (optional)"
+        },
+        "example": {
+          "type": "string",
+          "description": "Example value for documentation"
+        },
+        "security_level": {
+          "enum": [
+            "PUBLIC",
+            0,
+            "SENSITIVE",
+            1,
+            "SECRET",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Security Level",
+          "description": "Security classification for environment variables"
+        },
+        "redaction_strategy": {
+          "enum": [
+            "NONE",
+            0,
+            "PARTIAL",
+            1,
+            "REMOVE",
+            2,
+            "PLACEHOLDER",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Redaction Strategy",
+          "description": "How to redact sensitive values before publishing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Environment Var",
+      "description": "Environment variable definition with security classification"
+    }
+  },
+  "title": "ENVIRONMENTVAR Configuration Schema",
+  "description": "JSON Schema for EnvironmentVar configuration"
+}

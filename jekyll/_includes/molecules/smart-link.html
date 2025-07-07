@@ -1,0 +1,26 @@
+{%- comment -%}
+  Smart Link Molecule Component
+  
+  Universal Intelligence: Context → SEO/Analytics → Theme → Smart Link
+  
+  Parameters:
+  - href: Link URL
+  - text: Link text
+  - class: Additional CSS classes
+  
+  Context Integration:
+  - Internal/external detection
+  - Ecosystem link detection
+  - Project link detection
+  - Analytics tracking
+{%- endcomment -%}
+
+{%- include components/context-engine.html -%}
+{%- assign link_type = include.href | detect_link_type -%}
+
+<a href="{{ include.href }}" 
+   class="smart-link smart-link--{{ link_type }} {{ include.class }}"
+   {%- if link_type == 'external' %} target="_blank" rel="noopener"{% endif %}
+   data-link-type="{{ link_type }}">
+  {{ include.text }}
+</a>

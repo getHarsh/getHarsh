@@ -1,0 +1,27 @@
+{%- comment -%}
+  Button Molecule Component
+  
+  Universal Intelligence: Context → Analytics/ARIA → Theme → Button
+  
+  Parameters:
+  - text: Button text
+  - href: Link URL (optional - creates link button)
+  - variant: primary (default), secondary, danger, ghost, link
+  - class: Additional CSS classes
+  
+  Context Integration:
+  - Intent-based styling
+  - Lead scoring attributes
+  - Journey stage tracking
+  - ARIA labels
+{%- endcomment -%}
+
+{%- if include.href -%}
+  <a href="{{ include.href }}" class="btn btn--{{ include.variant | default: 'primary' }} {{ include.class }}">
+    {{ include.text }}
+  </a>
+{%- else -%}
+  <button type="button" class="btn btn--{{ include.variant | default: 'primary' }} {{ include.class }}">
+    {{ include.text }}
+  </button>
+{%- endif -%}

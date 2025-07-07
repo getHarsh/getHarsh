@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BuildSettings",
+  "definitions": {
+    "BuildSettings": {
+      "properties": {
+        "markdown": {
+          "type": "string",
+          "description": "Markdown processor"
+        },
+        "highlighter": {
+          "type": "string",
+          "description": "Syntax highlighter"
+        },
+        "kramdown": {
+          "$ref": "#/definitions/website.config.KramdownSettings",
+          "description": "Kramdown configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Settings",
+      "description": "Build and Jekyll configuration"
+    },
+    "website.config.KramdownSettings": {
+      "properties": {
+        "input": {
+          "type": "string",
+          "description": "Input format (e.g., \"GFM\")"
+        },
+        "syntax_highlighter": {
+          "type": "string",
+          "description": "Syntax highlighter (e.g., \"rouge\")"
+        },
+        "syntax_highlighter_opts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Syntax highlighter options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Kramdown Settings",
+      "description": "Kramdown markdown processor settings"
+    }
+  },
+  "title": "BUILDSETTINGS Configuration Schema",
+  "description": "JSON Schema for BuildSettings configuration"
+}

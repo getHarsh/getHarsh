@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AnimationSettings",
+  "definitions": {
+    "AnimationSettings": {
+      "properties": {
+        "page_transitions": {
+          "type": "boolean",
+          "description": "Enable page transitions"
+        },
+        "scroll_animations": {
+          "type": "boolean",
+          "description": "Enable scroll animations"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Animation duration in ms"
+        },
+        "easing": {
+          "type": "string",
+          "description": "Animation easing function"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Animation Settings",
+      "description": "Animation settings"
+    }
+  },
+  "title": "ANIMATIONSETTINGS Configuration Schema",
+  "description": "JSON Schema for AnimationSettings configuration"
+}

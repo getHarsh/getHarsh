@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PWASettings",
+  "definitions": {
+    "PWASettings": {
+      "properties": {
+        "enable_pwa": {
+          "type": "boolean",
+          "description": "Enable PWA features"
+        },
+        "app_name": {
+          "type": "string",
+          "description": "App name for manifest"
+        },
+        "short_name": {
+          "type": "string",
+          "description": "Short name for home screen"
+        },
+        "theme_color": {
+          "type": "string",
+          "description": "Theme color for browser chrome"
+        },
+        "background_color": {
+          "type": "string",
+          "description": "Background color for splash screen"
+        },
+        "offline_pages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Pages to make available offline"
+        },
+        "start_url": {
+          "type": "string",
+          "description": "Start URL when launched from home screen"
+        },
+        "display": {
+          "type": "string",
+          "description": "Display mode  \"standalone\", \"fullscreen\", \"minimal-ui\", \"browser\""
+        },
+        "icons": {
+          "items": {
+            "$ref": "#/definitions/website.config.PWAIcon"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "App icons configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "PWA Settings",
+      "description": "Progressive Web App configuration"
+    },
+    "website.config.PWAIcon": {
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "Icon source path"
+        },
+        "sizes": {
+          "type": "string",
+          "description": "Icon sizes (e.g., \"192x192\")"
+        },
+        "type": {
+          "type": "string",
+          "description": "Icon MIME type"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Icon purpose (\"any\", \"maskable\", \"monochrome\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "PWA Icon",
+      "description": "PWA icon configuration"
+    }
+  },
+  "title": "PWASETTINGS Configuration Schema",
+  "description": "JSON Schema for PWASettings configuration"
+}

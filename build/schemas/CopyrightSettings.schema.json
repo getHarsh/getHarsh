@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CopyrightSettings",
+  "definitions": {
+    "CopyrightSettings": {
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Copyright notice pattern (supports {year}, {entity} variables)"
+        },
+        "start_year": {
+          "type": "integer",
+          "description": "Starting year for copyright"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Copyright Settings",
+      "description": "Copyright configuration"
+    }
+  },
+  "title": "COPYRIGHTSETTINGS Configuration Schema",
+  "description": "JSON Schema for CopyrightSettings configuration"
+}

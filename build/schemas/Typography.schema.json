@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Typography",
+  "definitions": {
+    "Typography": {
+      "properties": {
+        "font_family_primary": {
+          "type": "string",
+          "description": "Primary font family"
+        },
+        "font_family_secondary": {
+          "type": "string",
+          "description": "Secondary font family (for headings, etc.)"
+        },
+        "base_size": {
+          "type": "string",
+          "description": "Base font size (e.g., \"16px\", \"1rem\")"
+        },
+        "line_height": {
+          "type": "number",
+          "description": "Line height multiplier"
+        },
+        "font_weight_normal": {
+          "type": "integer",
+          "description": "Font weight for body text"
+        },
+        "font_weight_bold": {
+          "type": "integer",
+          "description": "Font weight for bold text"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Typography",
+      "description": "Typography configuration"
+    }
+  },
+  "title": "TYPOGRAPHY Configuration Schema",
+  "description": "JSON Schema for Typography configuration"
+}

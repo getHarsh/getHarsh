@@ -1,0 +1,57 @@
+// Atom Component Styles
+// Fundamental building blocks
+
+// Text atom
+.text {
+  &--body {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+  
+  &--small {
+    font-size: var(--font-size-sm);
+  }
+  
+  &--large {
+    font-size: var(--font-size-lg);
+  }
+  
+  &--caption {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+}
+
+// Heading atom
+.heading {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  
+  &--h1 { font-size: var(--font-size-4xl); }
+  &--h2 { font-size: var(--font-size-3xl); }
+  &--h3 { font-size: var(--font-size-2xl); }
+  &--h4 { font-size: var(--font-size-xl); }
+  &--h5 { font-size: var(--font-size-lg); }
+  &--h6 { font-size: var(--font-size-base); }
+}
+
+// Icon atom
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  
+  &--xs { width: 12px; height: 12px; }
+  &--sm { width: 16px; height: 16px; }
+  &--md { width: 20px; height: 20px; }
+  &--lg { width: 24px; height: 24px; }
+  &--xl { width: 32px; height: 32px; }
+}
+
+// Image atom
+.image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

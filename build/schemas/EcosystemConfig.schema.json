@@ -1,0 +1,628 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EcosystemConfig",
+  "definitions": {
+    "EcosystemConfig": {
+      "properties": {
+        "analytics": {
+          "$ref": "#/definitions/website.config.Analytics",
+          "description": "Analytics configuration shared across all domains"
+        },
+        "seo_defaults": {
+          "$ref": "#/definitions/website.config.SeoDefaults",
+          "description": "Default SEO settings for all domains"
+        },
+        "jekyll_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Jekyll plugins used by all sites"
+        },
+        "content_defaults": {
+          "$ref": "#/definitions/website.config.ContentDefaults",
+          "description": "Default content settings"
+        },
+        "cross_domain_nav": {
+          "$ref": "#/definitions/website.config.CrossDomainNav",
+          "description": "Cross-domain navigation configuration"
+        },
+        "environment_vars": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.EnvironmentVar"
+          },
+          "type": "object",
+          "description": "Environment variable definitions required by the system"
+        },
+        "ecosystem": {
+          "$ref": "#/definitions/website.config.EcosystemMap",
+          "description": "Cross-domain ecosystem mapping and relationships"
+        },
+        "build_settings": {
+          "$ref": "#/definitions/website.config.BuildSettings",
+          "description": "Build and Jekyll configuration"
+        },
+        "theme_defaults": {
+          "$ref": "#/definitions/website.config.ThemeDefaults",
+          "description": "Default theme settings inherited by all domains"
+        },
+        "security": {
+          "$ref": "#/definitions/website.config.SecuritySettings",
+          "description": "Security configuration and environment variable classification"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.FeatureFlags",
+          "description": "Default feature flags for all domains"
+        },
+        "ai_agent": {
+          "$ref": "#/definitions/website.config.AIAgentSettings",
+          "description": "AI agent integration settings"
+        },
+        "copyright": {
+          "$ref": "#/definitions/website.config.CopyrightSettings",
+          "description": "Copyright configuration"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "Default timezone for all sites"
+        },
+        "consent_settings": {
+          "$ref": "#/definitions/website.config.ConsentSettings",
+          "description": "Cookie consent configuration (LEGALLY REQUIRED for GA/FB Pixel)"
+        },
+        "security_headers": {
+          "$ref": "#/definitions/website.config.SecurityHeaders",
+          "description": "Security headers for GitHub Pages (CSP via meta tags)"
+        },
+        "performance": {
+          "$ref": "#/definitions/website.config.PerformanceSettings",
+          "description": "Performance monitoring and optimization settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Config",
+      "description": "EcosystemConfig defines the default configuration inherited by all domains. These values are stored in getHarsh/config/ecosystem-defaults.yml and are automatically inherited by all domain configurations."
+    },
+    "website.config.AIAgentSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable AI agent features"
+        },
+        "manifest_path": {
+          "type": "string",
+          "description": "Path to manifest file"
+        },
+        "sitemap_path": {
+          "type": "string",
+          "description": "Path to sitemap"
+        },
+        "robots_path": {
+          "type": "string",
+          "description": "Path to robots.txt"
+        },
+        "llms_txt_path": {
+          "type": "string",
+          "description": "Path to LLMs.txt"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Agent Settings",
+      "description": "AI agent integration settings"
+    },
+    "website.config.Analytics": {
+      "properties": {
+        "ga_tracking_id": {
+          "type": "string",
+          "description": "Google Analytics tracking ID (supports ${GA_TRACKING_ID})"
+        },
+        "meta_pixel_id": {
+          "type": "string",
+          "description": "Meta/Facebook Pixel ID (supports ${META_PIXEL_ID})"
+        },
+        "cross_domain_tracking": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking between ecosystem sites"
+        },
+        "linked_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to link for cross-domain tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics",
+      "description": "Analytics configuration for tracking and metrics"
+    },
+    "website.config.BuildSettings": {
+      "properties": {
+        "markdown": {
+          "type": "string",
+          "description": "Markdown processor"
+        },
+        "highlighter": {
+          "type": "string",
+          "description": "Syntax highlighter"
+        },
+        "kramdown": {
+          "$ref": "#/definitions/website.config.KramdownSettings",
+          "description": "Kramdown configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Settings",
+      "description": "Build and Jekyll configuration"
+    },
+    "website.config.ConsentSettings": {
+      "properties": {
+        "enable_consent_banner": {
+          "type": "boolean",
+          "description": "Enable cookie consent banner"
+        },
+        "consent_cookie_name": {
+          "type": "string",
+          "description": "Cookie name for storing consent state  default: \"analytics_consent\""
+        },
+        "consent_duration_days": {
+          "type": "integer",
+          "description": "How long consent is valid (in days)  default: 365"
+        },
+        "google_consent_mode_v2": {
+          "type": "boolean",
+          "description": "Enable Google Consent Mode v2 (required by March 2024)"
+        },
+        "banner_text": {
+          "type": "string",
+          "description": "Text for the consent banner"
+        },
+        "accept_button_text": {
+          "type": "string",
+          "description": "Text for the accept button"
+        },
+        "decline_button_text": {
+          "type": "string",
+          "description": "Text for the decline button"
+        },
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Link to privacy policy"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Link to cookie policy"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Settings",
+      "description": "Cookie consent configuration for GDPR/ePrivacy compliance LEGALLY REQUIRED: EU law mandates explicit consent BEFORE loading analytics Reference: €1.34M fine example for non-compliance"
+    },
+    "website.config.ContentDefaults": {
+      "properties": {
+        "excerpt_length": {
+          "type": "integer",
+          "description": "Default excerpt length in words"
+        },
+        "posts_per_page": {
+          "type": "integer",
+          "description": "Default posts per page for pagination"
+        },
+        "date_format": {
+          "type": "string",
+          "description": "Default date format (e.g., \"%B %d, %Y\")"
+        },
+        "show_reading_time": {
+          "type": "boolean",
+          "description": "Enable reading time calculation by default"
+        },
+        "reading_wpm": {
+          "type": "integer",
+          "description": "Words per minute for reading time calculation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Defaults",
+      "description": "Default content settings for posts and pages"
+    },
+    "website.config.CopyrightSettings": {
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Copyright notice pattern (supports {year}, {entity} variables)"
+        },
+        "start_year": {
+          "type": "integer",
+          "description": "Starting year for copyright"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Copyright Settings",
+      "description": "Copyright configuration"
+    },
+    "website.config.CrossDomainNav": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ecosystem navigation bar"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position of the nav bar (\"top\", \"bottom\")"
+        },
+        "domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to show in navigation (order matters)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Domain Nav",
+      "description": "Cross-domain navigation configuration"
+    },
+    "website.config.DomainMetadata": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Primary domain (e.g., \"getHarsh.in\")"
+        },
+        "blog": {
+          "type": "string",
+          "description": "Blog subdomain (e.g., \"blog.getHarsh.in\")"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity that owns this domain (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "color": {
+          "type": "string",
+          "description": "Brand color for this domain (hex)"
+        },
+        "projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects hosted under this domain"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Metadata",
+      "description": "Metadata for each domain in the ecosystem"
+    },
+    "website.config.EcosystemMap": {
+      "properties": {
+        "domains": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.DomainMetadata"
+          },
+          "type": "object",
+          "description": "All domains in the ecosystem with their metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Map",
+      "description": "Cross-domain ecosystem mapping"
+    },
+    "website.config.EnvironmentVar": {
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of what this variable is for"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether this variable is required"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value if not set (optional)"
+        },
+        "example": {
+          "type": "string",
+          "description": "Example value for documentation"
+        },
+        "security_level": {
+          "enum": [
+            "PUBLIC",
+            0,
+            "SENSITIVE",
+            1,
+            "SECRET",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Security Level",
+          "description": "Security classification for environment variables"
+        },
+        "redaction_strategy": {
+          "enum": [
+            "NONE",
+            0,
+            "PARTIAL",
+            1,
+            "REMOVE",
+            2,
+            "PLACEHOLDER",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Redaction Strategy",
+          "description": "How to redact sensitive values before publishing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Environment Var",
+      "description": "Environment variable definition with security classification"
+    },
+    "website.config.FeatureFlags": {
+      "properties": {
+        "comments": {
+          "type": "boolean",
+          "description": "Enable comments by default"
+        },
+        "math": {
+          "type": "boolean",
+          "description": "Enable math rendering by default"
+        },
+        "graphviz": {
+          "type": "boolean",
+          "description": "Enable GraphViz diagrams by default"
+        },
+        "mermaid": {
+          "type": "boolean",
+          "description": "Enable Mermaid diagrams by default"
+        },
+        "search": {
+          "type": "boolean",
+          "description": "Enable search functionality by default"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Enable reading time display by default"
+        },
+        "share_buttons": {
+          "type": "boolean",
+          "description": "Enable share buttons by default"
+        },
+        "table_of_contents": {
+          "type": "boolean",
+          "description": "Enable table of contents by default"
+        },
+        "syntax_highlighting": {
+          "type": "boolean",
+          "description": "Enable syntax highlighting by default"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Feature Flags",
+      "description": "Default feature flags for all domains"
+    },
+    "website.config.KramdownSettings": {
+      "properties": {
+        "input": {
+          "type": "string",
+          "description": "Input format (e.g., \"GFM\")"
+        },
+        "syntax_highlighter": {
+          "type": "string",
+          "description": "Syntax highlighter (e.g., \"rouge\")"
+        },
+        "syntax_highlighter_opts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Syntax highlighter options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Kramdown Settings",
+      "description": "Kramdown markdown processor settings"
+    },
+    "website.config.PerformanceSettings": {
+      "properties": {
+        "max_page_size_kb": {
+          "type": "integer",
+          "description": "Maximum page size in KB before warning  default: 500"
+        },
+        "target_load_time_ms": {
+          "type": "integer",
+          "description": "Target page load time in milliseconds  default: 3000"
+        },
+        "enable_lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading for images and iframes"
+        },
+        "enable_image_optimization": {
+          "type": "boolean",
+          "description": "Enable automatic image optimization"
+        },
+        "preload_resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preload critical resources"
+        },
+        "enable_resource_hints": {
+          "type": "boolean",
+          "description": "Enable resource hints (dns-prefetch, preconnect)"
+        },
+        "critical_css_threshold_kb": {
+          "type": "integer",
+          "description": "Critical CSS inline threshold in KB"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Performance Settings",
+      "description": "Performance monitoring and optimization settings"
+    },
+    "website.config.SecurityHeaders": {
+      "properties": {
+        "csp_policy": {
+          "type": "string",
+          "description": "Content Security Policy for meta tag"
+        },
+        "enable_sri": {
+          "type": "boolean",
+          "description": "Enable Subresource Integrity for CDN resources"
+        },
+        "referrer_policy": {
+          "type": "string",
+          "description": "Referrer policy for meta tag"
+        },
+        "no_sniff": {
+          "type": "boolean",
+          "description": "X-Content-Type-Options equivalent"
+        },
+        "frame_options": {
+          "type": "string",
+          "description": "X-Frame-Options equivalent"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Headers",
+      "description": "Security headers configuration for GitHub Pages Note: GitHub Pages only supports meta tag CSP, not HTTP headers"
+    },
+    "website.config.SecuritySettings": {
+      "properties": {
+        "env_vars": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.SecurityVariableList"
+          },
+          "type": "object",
+          "description": "Environment variables by security level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Settings",
+      "description": "Security configuration and environment variable classification"
+    },
+    "website.config.SecurityVariableList": {
+      "properties": {
+        "variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "List of variable names"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Variable List",
+      "description": "List of environment variables for a security level"
+    },
+    "website.config.SeoDefaults": {
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Default author name for meta tags"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale (e.g., \"en_US\")"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "Default Twitter handle for cards"
+        },
+        "description_pattern": {
+          "type": "string",
+          "description": "Default meta description pattern (can use variables)"
+        },
+        "og_image_pattern": {
+          "type": "string",
+          "description": "Default OG image URL pattern"
+        },
+        "enable_llms_txt": {
+          "type": "boolean",
+          "description": "Enable/disable AI crawler optimization (LLMs.txt)"
+        },
+        "copyright_pattern": {
+          "type": "string",
+          "description": "Default copyright pattern (e.g., \"© {year} {entity}\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Seo Defaults",
+      "description": "Default SEO settings inherited by all domains"
+    },
+    "website.config.ThemeDefaults": {
+      "properties": {
+        "typography": {
+          "$ref": "#/definitions/website.config.TypographyDefaults",
+          "description": "Typography settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Defaults",
+      "description": "Default theme settings inherited by all domains"
+    },
+    "website.config.TypographyDefaults": {
+      "properties": {
+        "font_family_base": {
+          "type": "string",
+          "description": "Base font family stack"
+        },
+        "font_family_heading": {
+          "type": "string",
+          "description": "Heading font family"
+        },
+        "font_family_mono": {
+          "type": "string",
+          "description": "Monospace font family"
+        },
+        "font_size_base": {
+          "type": "string",
+          "description": "Base font size"
+        },
+        "line_height_base": {
+          "type": "string",
+          "description": "Base line height"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Typography Defaults",
+      "description": "Default typography settings"
+    }
+  },
+  "title": "ECOSYSTEMCONFIG Configuration Schema",
+  "description": "JSON Schema for EcosystemConfig configuration"
+}

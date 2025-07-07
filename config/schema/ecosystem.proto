@@ -1,0 +1,394 @@
+syntax = "proto3";
+
+package website.config;
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// EcosystemConfig defines the default configuration inherited by all domains.
+// These values are stored in getHarsh/config/ecosystem-defaults.yml
+// and are automatically inherited by all domain configurations.
+message EcosystemConfig {
+  // Analytics configuration shared across all domains
+  Analytics analytics = 1;
+  
+  // Default SEO settings for all domains
+  SeoDefaults seo_defaults = 2;
+  
+  // Jekyll plugins used by all sites
+  repeated string jekyll_plugins = 3;
+  
+  // Default content settings
+  ContentDefaults content_defaults = 4;
+  
+  // Cross-domain navigation configuration
+  CrossDomainNav cross_domain_nav = 5;
+  
+  // Environment variable definitions required by the system
+  map<string, EnvironmentVar> environment_vars = 6;
+  
+  // Cross-domain ecosystem mapping and relationships
+  EcosystemMap ecosystem = 7;
+  
+  // Build and Jekyll configuration
+  BuildSettings build_settings = 8;
+  
+  // Default theme settings inherited by all domains
+  ThemeDefaults theme_defaults = 9;
+  
+  // Security configuration and environment variable classification
+  SecuritySettings security = 10;
+  
+  // Default feature flags for all domains
+  FeatureFlags features = 11;
+  
+  // AI agent integration settings
+  AIAgentSettings ai_agent = 12;
+  
+  // Copyright configuration
+  CopyrightSettings copyright = 13;
+  
+  // Default timezone for all sites
+  string timezone = 14;
+  
+  // Cookie consent configuration (LEGALLY REQUIRED for GA/FB Pixel)
+  ConsentSettings consent_settings = 15;
+  
+  // Security headers for GitHub Pages (CSP via meta tags)
+  SecurityHeaders security_headers = 16;
+  
+  // Performance monitoring and optimization settings
+  PerformanceSettings performance = 17;
+}
+
+// Analytics configuration for tracking and metrics
+message Analytics {
+  // Google Analytics tracking ID (supports ${GA_TRACKING_ID})
+  string ga_tracking_id = 1;
+  
+  // Meta/Facebook Pixel ID (supports ${META_PIXEL_ID})
+  string meta_pixel_id = 2;
+  
+  // Enable cross-domain tracking between ecosystem sites
+  bool cross_domain_tracking = 3;
+  
+  // Domains to link for cross-domain tracking
+  repeated string linked_domains = 4;
+}
+
+// Default SEO settings inherited by all domains
+message SeoDefaults {
+  // Default author name for meta tags
+  string author = 1;
+  
+  // Default locale (e.g., "en_US")
+  string locale = 2;
+  
+  // Default Twitter handle for cards
+  string twitter = 3;
+  
+  // Default meta description pattern (can use variables)
+  string description_pattern = 4;
+  
+  // Default OG image URL pattern
+  string og_image_pattern = 5;
+  
+  // Enable/disable AI crawler optimization (LLMs.txt)
+  bool enable_llms_txt = 6;
+  
+  // Default copyright pattern (e.g., "© {year} {entity}")
+  string copyright_pattern = 7;
+}
+
+// Default content settings for posts and pages
+message ContentDefaults {
+  // Default excerpt length in words
+  int32 excerpt_length = 1;
+  
+  // Default posts per page for pagination
+  int32 posts_per_page = 2;
+  
+  // Default date format (e.g., "%B %d, %Y")
+  string date_format = 3;
+  
+  // Enable reading time calculation by default
+  bool show_reading_time = 4;
+  
+  // Words per minute for reading time calculation
+  int32 reading_wpm = 5;
+}
+
+// Cross-domain navigation configuration
+message CrossDomainNav {
+  // Enable ecosystem navigation bar
+  bool enabled = 1;
+  
+  // Position of the nav bar ("top", "bottom")
+  string position = 2;
+  
+  // Domains to show in navigation (order matters)
+  repeated string domains = 3;
+}
+
+// Environment variable definition with security classification
+message EnvironmentVar {
+  // Description of what this variable is for
+  string description = 1;
+  
+  // Whether this variable is required
+  bool required = 2;
+  
+  // Default value if not set (optional)
+  string default_value = 3;
+  
+  // Example value for documentation
+  string example = 4;
+  
+  // Security classification for redaction
+  SecurityLevel security_level = 5;
+  
+  // Redaction strategy when publishing
+  RedactionStrategy redaction_strategy = 6;
+}
+
+// Security classification for environment variables
+enum SecurityLevel {
+  // Public information (domains, titles, public emails)
+  PUBLIC = 0;
+  
+  // Sensitive but can be partially shown (analytics IDs)
+  SENSITIVE = 1;
+  
+  // Secret - must never be exposed (API keys, tokens)
+  SECRET = 2;
+}
+
+// How to redact sensitive values before publishing
+enum RedactionStrategy {
+  // No redaction needed (PUBLIC level)
+  NONE = 0;
+  
+  // Partial redaction (e.g., GA-XXXXXXXX)
+  PARTIAL = 1;
+  
+  // Complete removal from published files
+  REMOVE = 2;
+  
+  // Replace with placeholder (e.g., [REDACTED])
+  PLACEHOLDER = 3;
+}
+
+// Cross-domain ecosystem mapping
+message EcosystemMap {
+  // All domains in the ecosystem with their metadata
+  map<string, DomainMetadata> domains = 1;
+}
+
+// Metadata for each domain in the ecosystem
+message DomainMetadata {
+  // Primary domain (e.g., "getHarsh.in")
+  string domain = 1;
+  
+  // Blog subdomain (e.g., "blog.getHarsh.in")
+  string blog = 2;
+  
+  // Legal entity that owns this domain (e.g., "RTEPL", "DSPL")
+  string entity = 3;
+  
+  // Brand color for this domain (hex)
+  string color = 4;
+  
+  // Projects hosted under this domain
+  repeated string projects = 5;
+}
+
+// Build and Jekyll configuration
+message BuildSettings {
+  // Markdown processor
+  string markdown = 1;
+  
+  // Syntax highlighter
+  string highlighter = 2;
+  
+  // Kramdown configuration
+  KramdownSettings kramdown = 3;
+}
+
+// Kramdown markdown processor settings
+message KramdownSettings {
+  // Input format (e.g., "GFM")
+  string input = 1;
+  
+  // Syntax highlighter (e.g., "rouge")
+  string syntax_highlighter = 2;
+  
+  // Syntax highlighter options
+  map<string, string> syntax_highlighter_opts = 3;
+}
+
+// Default theme settings inherited by all domains
+message ThemeDefaults {
+  // Typography settings
+  TypographyDefaults typography = 1;
+}
+
+// Default typography settings
+message TypographyDefaults {
+  // Base font family stack
+  string font_family_base = 1;
+  
+  // Heading font family
+  string font_family_heading = 2;
+  
+  // Monospace font family
+  string font_family_mono = 3;
+  
+  // Base font size
+  string font_size_base = 4;
+  
+  // Base line height
+  string line_height_base = 5;
+}
+
+// Security configuration and environment variable classification
+message SecuritySettings {
+  // Environment variables by security level
+  map<string, SecurityVariableList> env_vars = 1;
+}
+
+// List of environment variables for a security level
+message SecurityVariableList {
+  // List of variable names
+  repeated string variables = 1;
+}
+
+// Default feature flags for all domains
+message FeatureFlags {
+  // Enable comments by default
+  bool comments = 1;
+  
+  // Enable math rendering by default
+  bool math = 2;
+  
+  // Enable GraphViz diagrams by default
+  bool graphviz = 3;
+  
+  // Enable Mermaid diagrams by default
+  bool mermaid = 4;
+  
+  // Enable search functionality by default
+  bool search = 5;
+  
+  // Enable reading time display by default
+  bool reading_time = 6;
+  
+  // Enable share buttons by default
+  bool share_buttons = 7;
+  
+  // Enable table of contents by default
+  bool table_of_contents = 8;
+  
+  // Enable syntax highlighting by default
+  bool syntax_highlighting = 9;
+}
+
+// AI agent integration settings
+message AIAgentSettings {
+  // Enable AI agent features
+  bool enabled = 1;
+  
+  // Path to manifest file
+  string manifest_path = 2;
+  
+  // Path to sitemap
+  string sitemap_path = 3;
+  
+  // Path to robots.txt
+  string robots_path = 4;
+  
+  // Path to LLMs.txt
+  string llms_txt_path = 5;
+}
+
+// Copyright configuration
+message CopyrightSettings {
+  // Copyright notice pattern (supports {year}, {entity} variables)
+  string pattern = 1;
+  
+  // Starting year for copyright
+  int32 start_year = 2;
+}
+
+// Cookie consent configuration for GDPR/ePrivacy compliance
+// LEGALLY REQUIRED: EU law mandates explicit consent BEFORE loading analytics
+// Reference: €1.34M fine example for non-compliance
+message ConsentSettings {
+  // Enable cookie consent banner
+  bool enable_consent_banner = 1;
+  
+  // Cookie name for storing consent state
+  string consent_cookie_name = 2;  // default: "analytics_consent"
+  
+  // How long consent is valid (in days)
+  int32 consent_duration_days = 3; // default: 365
+  
+  // Enable Google Consent Mode v2 (required by March 2024)
+  bool google_consent_mode_v2 = 4;
+  
+  // Text for the consent banner
+  string banner_text = 5;
+  
+  // Text for the accept button
+  string accept_button_text = 6;
+  
+  // Text for the decline button
+  string decline_button_text = 7;
+  
+  // Link to privacy policy
+  string privacy_policy_url = 8;
+  
+  // Link to cookie policy
+  string cookie_policy_url = 9;
+}
+
+// Security headers configuration for GitHub Pages
+// Note: GitHub Pages only supports meta tag CSP, not HTTP headers
+message SecurityHeaders {
+  // Content Security Policy for meta tag
+  string csp_policy = 1;
+  
+  // Enable Subresource Integrity for CDN resources
+  bool enable_sri = 2;
+  
+  // Referrer policy for meta tag
+  string referrer_policy = 3;
+  
+  // X-Content-Type-Options equivalent
+  bool no_sniff = 4;
+  
+  // X-Frame-Options equivalent
+  string frame_options = 5;
+}
+
+// Performance monitoring and optimization settings
+message PerformanceSettings {
+  // Maximum page size in KB before warning
+  int32 max_page_size_kb = 1;    // default: 500
+  
+  // Target page load time in milliseconds
+  int32 target_load_time_ms = 2; // default: 3000
+  
+  // Enable lazy loading for images and iframes
+  bool enable_lazy_loading = 3;
+  
+  // Enable automatic image optimization
+  bool enable_image_optimization = 4;
+  
+  // Preload critical resources
+  repeated string preload_resources = 5;
+  
+  // Enable resource hints (dns-prefetch, preconnect)
+  bool enable_resource_hints = 6;
+  
+  // Critical CSS inline threshold in KB
+  int32 critical_css_threshold_kb = 7;
+}

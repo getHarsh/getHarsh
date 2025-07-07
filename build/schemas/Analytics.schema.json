@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Analytics",
+  "definitions": {
+    "Analytics": {
+      "properties": {
+        "ga_tracking_id": {
+          "type": "string",
+          "description": "Google Analytics tracking ID (supports ${GA_TRACKING_ID})"
+        },
+        "meta_pixel_id": {
+          "type": "string",
+          "description": "Meta/Facebook Pixel ID (supports ${META_PIXEL_ID})"
+        },
+        "cross_domain_tracking": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking between ecosystem sites"
+        },
+        "linked_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to link for cross-domain tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics",
+      "description": "Analytics configuration for tracking and metrics"
+    }
+  },
+  "title": "ANALYTICS Configuration Schema",
+  "description": "JSON Schema for Analytics configuration"
+}

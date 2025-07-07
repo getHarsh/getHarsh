@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Colors",
+  "definitions": {
+    "Colors": {
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary brand color (hex) - REQUIRED"
+        },
+        "secondary": {
+          "type": "string",
+          "description": "Secondary color (hex)"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color (hex)"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text color (hex)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color for links, buttons (hex)"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error/danger color (hex)"
+        },
+        "success": {
+          "type": "string",
+          "description": "Success color (hex)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Colors",
+      "description": "Color configuration"
+    }
+  },
+  "title": "COLORS Configuration Schema",
+  "description": "JSON Schema for Colors configuration"
+}

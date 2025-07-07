@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AIAgentSettings",
+  "definitions": {
+    "AIAgentSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable AI agent features"
+        },
+        "manifest_path": {
+          "type": "string",
+          "description": "Path to manifest file"
+        },
+        "sitemap_path": {
+          "type": "string",
+          "description": "Path to sitemap"
+        },
+        "robots_path": {
+          "type": "string",
+          "description": "Path to robots.txt"
+        },
+        "llms_txt_path": {
+          "type": "string",
+          "description": "Path to LLMs.txt"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Agent Settings",
+      "description": "AI agent integration settings"
+    }
+  },
+  "title": "AIAGENTSETTINGS Configuration Schema",
+  "description": "JSON Schema for AIAgentSettings configuration"
+}

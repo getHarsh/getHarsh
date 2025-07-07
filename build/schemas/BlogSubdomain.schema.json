@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogSubdomain",
+  "definitions": {
+    "BlogSubdomain": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Blog exists for this domain"
+        },
+        "title": {
+          "type": "string",
+          "description": "Blog title (if different from domain)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Blog description"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Categories enabled on this blog"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Subdomain",
+      "description": "Blog subdomain configuration"
+    }
+  },
+  "title": "BLOGSUBDOMAIN Configuration Schema",
+  "description": "JSON Schema for BlogSubdomain configuration"
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ThemeMode",
+  "definitions": {
+    "ThemeMode": {
+      "properties": {
+        "enable_dark_mode": {
+          "type": "boolean",
+          "description": "Enable dark mode feature"
+        },
+        "default_mode": {
+          "type": "string",
+          "description": "Default mode when user first visits  \"light\", \"dark\", \"system\""
+        },
+        "show_mode_toggle": {
+          "type": "boolean",
+          "description": "Show mode toggle button in UI"
+        },
+        "dark_colors": {
+          "$ref": "#/definitions/website.config.Colors",
+          "description": "Dark mode color overrides"
+        },
+        "remember_preference": {
+          "type": "boolean",
+          "description": "Store user preference in localStorage"
+        },
+        "dark_mode_class": {
+          "type": "string",
+          "description": "CSS class prefix for dark mode  default: \"dark-mode\""
+        },
+        "toggle_position": {
+          "type": "string",
+          "description": "Toggle button position  \"top-right\", \"top-left\", \"bottom-right\", \"bottom-left\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Mode",
+      "description": "Dark mode configuration USER PRIORITY: \"YES THIS IS VERY IMPORTANT AND SHOULD BE AVAILABLE IN THE THEME AREAS OF SCHEMA\""
+    },
+    "website.config.Colors": {
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary brand color (hex) - REQUIRED"
+        },
+        "secondary": {
+          "type": "string",
+          "description": "Secondary color (hex)"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color (hex)"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text color (hex)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color for links, buttons (hex)"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error/danger color (hex)"
+        },
+        "success": {
+          "type": "string",
+          "description": "Success color (hex)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Colors",
+      "description": "Color configuration"
+    }
+  },
+  "title": "THEMEMODE Configuration Schema",
+  "description": "JSON Schema for ThemeMode configuration"
+}

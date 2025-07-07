@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DomainInfo",
+  "definitions": {
+    "DomainInfo": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Domain name (e.g., \"getHarsh.in\") - REQUIRED"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title (e.g., \"getHarsh\") - REQUIRED"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site description - REQUIRED"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity that owns this domain - REQUIRED"
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language code (e.g., \"en\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Info",
+      "description": "Basic domain information"
+    }
+  },
+  "title": "DOMAININFO Configuration Schema",
+  "description": "JSON Schema for DomainInfo configuration"
+}

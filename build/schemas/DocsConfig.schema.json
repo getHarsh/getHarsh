@@ -1,0 +1,659 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsConfig",
+  "definitions": {
+    "DocsConfig": {
+      "properties": {
+        "theme_overrides": {
+          "$ref": "#/definitions/website.config.DocsThemeOverrides",
+          "description": "Theme overrides for documentation (limited set)"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.DocsFeatures",
+          "description": "Documentation-specific features"
+        },
+        "structure": {
+          "$ref": "#/definitions/website.config.DocsStructure",
+          "description": "Documentation structure and navigation"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.DocsContent",
+          "description": "Documentation content settings"
+        },
+        "api": {
+          "$ref": "#/definitions/website.config.APIDocSettings",
+          "description": "API documentation settings"
+        },
+        "metadata": {
+          "$ref": "#/definitions/website.config.DocsMetadata",
+          "description": "Documentation metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Config",
+      "description": "DocsConfig defines configuration overrides for project documentation. It inherits from the parent project and can only override specific fields. Stored in [project]/docs/config.yml (in the version/branch specified by project config) Example: HENA/docs/config.yml in main branch or v2.0.0 tag  Docs inherit everything from parent project by default. Only fields defined here can be overridden."
+    },
+    "website.config.APIAuthConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Authentication type (\"none\", \"api-key\", \"oauth2\", \"basic\")"
+        },
+        "api_key_param": {
+          "type": "string",
+          "description": "Parameter name for API key"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/website.config.OAuth2Config",
+          "description": "OAuth2 configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Auth Config",
+      "description": "API authentication configuration"
+    },
+    "website.config.APIDocSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable API documentation"
+        },
+        "spec_format": {
+          "type": "string",
+          "description": "API specification format (\"openapi\", \"graphql\", \"grpc\")"
+        },
+        "spec_path": {
+          "type": "string",
+          "description": "Path to API spec file (relative to docs/)"
+        },
+        "generator": {
+          "type": "string",
+          "description": "API doc generator (\"swagger-ui\", \"redoc\", \"graphdoc\", \"custom\")"
+        },
+        "try_it_out": {
+          "type": "boolean",
+          "description": "Enable try-it-out feature"
+        },
+        "api_base_url": {
+          "type": "string",
+          "description": "Base URL for API calls"
+        },
+        "auth": {
+          "$ref": "#/definitions/website.config.APIAuthConfig",
+          "description": "Authentication configuration"
+        },
+        "code_gen": {
+          "$ref": "#/definitions/website.config.CodeGenSettings",
+          "description": "Code generation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Doc Settings",
+      "description": "API documentation settings"
+    },
+    "website.config.CodeGenSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable code examples generation"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Languages to generate examples for"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Code generator (\"openapi-generator\", \"custom\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Gen Settings",
+      "description": "Code generation settings"
+    },
+    "website.config.Contributor": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Contributor name"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role/title"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Avatar URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contributor",
+      "description": "Contributor information"
+    },
+    "website.config.DocsColors": {
+      "properties": {
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "inline_code_bg": {
+          "type": "string",
+          "description": "Inline code color"
+        },
+        "nav_active": {
+          "type": "string",
+          "description": "Navigation active item color"
+        },
+        "search_highlight": {
+          "type": "string",
+          "description": "Search highlight color"
+        },
+        "warning_bg": {
+          "type": "string",
+          "description": "Warning/note block colors"
+        },
+        "note_bg": {
+          "type": "string"
+        },
+        "tip_bg": {
+          "type": "string"
+        },
+        "important_bg": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Colors",
+      "description": "Documentation-specific color overrides"
+    },
+    "website.config.DocsContent": {
+      "properties": {
+        "default_code_language": {
+          "type": "string",
+          "description": "Default code language for syntax highlighting"
+        },
+        "auto_api_reference": {
+          "type": "boolean",
+          "description": "Enable automatic API reference generation"
+        },
+        "glossary_tooltips": {
+          "type": "boolean",
+          "description": "Enable glossary/terminology tooltips"
+        },
+        "external_link_behavior": {
+          "type": "string",
+          "description": "External link behavior (\"new-tab\", \"same-tab\")"
+        },
+        "images": {
+          "$ref": "#/definitions/website.config.ImageSettings",
+          "description": "Image optimization settings"
+        },
+        "videos": {
+          "$ref": "#/definitions/website.config.VideoSettings",
+          "description": "Video embedding settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Content",
+      "description": "Documentation content settings"
+    },
+    "website.config.DocsFeatures": {
+      "properties": {
+        "copy_code_button": {
+          "type": "boolean",
+          "description": "Enable copy button on code blocks"
+        },
+        "code_line_numbers": {
+          "type": "boolean",
+          "description": "Enable line numbers in code blocks"
+        },
+        "collapsible_sections": {
+          "type": "boolean",
+          "description": "Enable expandable/collapsible sections"
+        },
+        "prev_next_nav": {
+          "type": "boolean",
+          "description": "Enable previous/next navigation"
+        },
+        "breadcrumbs": {
+          "type": "boolean",
+          "description": "Enable breadcrumb navigation"
+        },
+        "print_version": {
+          "type": "boolean",
+          "description": "Enable print-friendly version"
+        },
+        "dark_mode_toggle": {
+          "type": "boolean",
+          "description": "Enable dark mode toggle (if not inherited)"
+        },
+        "version_warning": {
+          "type": "boolean",
+          "description": "Enable version warning for old docs"
+        },
+        "edit_on_github": {
+          "type": "boolean",
+          "description": "Enable edit on GitHub link"
+        },
+        "show_last_updated": {
+          "type": "boolean",
+          "description": "Enable last updated timestamp"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Enable estimated reading time"
+        },
+        "heading_anchors": {
+          "type": "boolean",
+          "description": "Enable anchor links on headings"
+        },
+        "docs_search": {
+          "type": "boolean",
+          "description": "Enable search within docs"
+        },
+        "search_provider": {
+          "type": "string",
+          "description": "Search provider override"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom documentation features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Features",
+      "description": "Documentation-specific features"
+    },
+    "website.config.DocsMetadata": {
+      "properties": {
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords for SEO (docs-specific)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Documentation version"
+        },
+        "release_date": {
+          "type": "string",
+          "description": "Release date of this version"
+        },
+        "changelog_url": {
+          "type": "string",
+          "description": "Changelog URL"
+        },
+        "migration_guide_url": {
+          "type": "string",
+          "description": "Migration guide URL (from previous version)"
+        },
+        "support": {
+          "$ref": "#/definitions/website.config.SupportLinks",
+          "description": "Support/help URLs"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "#/definitions/website.config.Contributor"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Contributors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Metadata",
+      "description": "Documentation metadata"
+    },
+    "website.config.DocsNavigationSidebar": {
+      "properties": {
+        "position": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\")"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "auto_expand_current": {
+          "type": "boolean",
+          "description": "Auto-expand current section"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky sidebar"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth for auto-generated nav"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Navigation Sidebar",
+      "description": "Documentation sidebar configuration"
+    },
+    "website.config.DocsPage": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Page identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "path": {
+          "type": "string",
+          "description": "Page path (relative to docs/)"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order within section"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Hide from navigation"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "External link (if not a local page)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Page",
+      "description": "Documentation page reference"
+    },
+    "website.config.DocsSection": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Section identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Section title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Section description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Section icon"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order in navigation"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsPage"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Pages in this section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Section",
+      "description": "Documentation section"
+    },
+    "website.config.DocsStructure": {
+      "properties": {
+        "nav_style": {
+          "type": "string",
+          "description": "Navigation style (\"sidebar\", \"top-nav\", \"both\")"
+        },
+        "sidebar": {
+          "$ref": "#/definitions/website.config.DocsNavigationSidebar",
+          "description": "Sidebar configuration"
+        },
+        "toc": {
+          "$ref": "#/definitions/website.config.DocsTableOfContents",
+          "description": "Table of contents configuration"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsSection"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Documentation sections/categories"
+        },
+        "landing_style": {
+          "type": "string",
+          "description": "Landing page style (\"hero\", \"quick-start\", \"overview\")"
+        },
+        "show_version_selector": {
+          "type": "boolean",
+          "description": "Show version selector"
+        },
+        "available_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available versions (for version selector)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Structure",
+      "description": "Documentation structure and navigation"
+    },
+    "website.config.DocsTableOfContents": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"right\", \"inline\")"
+        },
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth to include"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky TOC on scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Table Of Contents",
+      "description": "Table of contents configuration"
+    },
+    "website.config.DocsThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.DocsColors",
+          "description": "Color overrides for docs (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.DocsTypography",
+          "description": "Typography adjustments for documentation"
+        },
+        "custom_docs_css": {
+          "type": "string",
+          "description": "Custom CSS specific to docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Theme Overrides",
+      "description": "Theme overrides allowed for documentation"
+    },
+    "website.config.DocsTypography": {
+      "properties": {
+        "docs_font": {
+          "type": "string",
+          "description": "Font for documentation content"
+        },
+        "docs_font_size": {
+          "type": "string",
+          "description": "Font size for documentation"
+        },
+        "docs_line_height": {
+          "type": "number",
+          "description": "Line height for docs"
+        },
+        "code_font": {
+          "type": "string",
+          "description": "Code block font"
+        },
+        "heading_scale": {
+          "type": "number",
+          "description": "Heading scale for docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Typography",
+      "description": "Documentation-specific typography"
+    },
+    "website.config.ImageSettings": {
+      "properties": {
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        },
+        "click_to_zoom": {
+          "type": "boolean",
+          "description": "Enable zoom on click"
+        },
+        "default_align": {
+          "type": "string",
+          "description": "Default alignment (\"left\", \"center\", \"right\")"
+        },
+        "show_captions": {
+          "type": "boolean",
+          "description": "Enable captions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Settings",
+      "description": "Image settings for documentation"
+    },
+    "website.config.OAuth2Config": {
+      "properties": {
+        "flow": {
+          "type": "string",
+          "description": "OAuth2 flow (\"implicit\", \"authorization_code\", \"client_credentials\")"
+        },
+        "auth_url": {
+          "type": "string",
+          "description": "Authorization URL"
+        },
+        "token_url": {
+          "type": "string",
+          "description": "Token URL"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Available scopes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Config",
+      "description": "OAuth2 configuration"
+    },
+    "website.config.SupportLinks": {
+      "properties": {
+        "forum": {
+          "type": "string",
+          "description": "Community forum URL"
+        },
+        "chat": {
+          "type": "string",
+          "description": "Discord/Slack invite URL"
+        },
+        "stack_overflow_tag": {
+          "type": "string",
+          "description": "Stack Overflow tag"
+        },
+        "discussions": {
+          "type": "string",
+          "description": "GitHub discussions URL"
+        },
+        "email": {
+          "type": "string",
+          "description": "Support email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Links",
+      "description": "Support link configuration"
+    },
+    "website.config.VideoSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable video embeds"
+        },
+        "default_width": {
+          "type": "string",
+          "description": "Default video width"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported providers"
+        },
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Settings",
+      "description": "Video embedding settings"
+    }
+  },
+  "title": "DOCSCONFIG Configuration Schema",
+  "description": "JSON Schema for DocsConfig configuration"
+}

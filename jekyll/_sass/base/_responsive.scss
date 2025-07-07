@@ -1,0 +1,27 @@
+// Responsive System
+// Mobile-first breakpoints and utilities
+
+// Breakpoints
+$breakpoints: (
+  'mobile': 0,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'wide': 1440px
+);
+
+// Responsive mixins
+@mixin media($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+// Container utilities
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}

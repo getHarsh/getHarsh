@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogColors",
+  "definitions": {
+    "BlogColors": {
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Background color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "quote_border": {
+          "type": "string",
+          "description": "Blockquote border color"
+        },
+        "tag_background": {
+          "type": "string",
+          "description": "Tag/category pill colors"
+        },
+        "tag_text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Colors",
+      "description": "Blog-specific color overrides"
+    }
+  },
+  "title": "BLOGCOLORS Configuration Schema",
+  "description": "JSON Schema for BlogColors configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ManifestMeta",
+  "definitions": {
+    "ManifestMeta": {
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "description": "Manifest schema version"
+        },
+        "generated_at": {
+          "type": "string",
+          "description": "When this manifest was generated"
+        },
+        "format": {
+          "type": "string",
+          "description": "Manifest format (\"json\", \"protobuf\")"
+        },
+        "checksum": {
+          "type": "string",
+          "description": "Checksum of the manifest"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Manifest Meta",
+      "description": "Manifest metadata"
+    }
+  },
+  "title": "MANIFESTMETA Configuration Schema",
+  "description": "JSON Schema for ManifestMeta configuration"
+}

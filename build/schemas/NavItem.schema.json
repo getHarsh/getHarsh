@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NavItem",
+  "definitions": {
+    "NavItem": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Display text"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL (relative or absolute)"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "Whether it's external"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon/identifier"
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/NavItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sub-items"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Nav Item",
+      "description": "Navigation item"
+    }
+  },
+  "title": "NAVITEM Configuration Schema",
+  "description": "JSON Schema for NavItem configuration"
+}

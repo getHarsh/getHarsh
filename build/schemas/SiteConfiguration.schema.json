@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteConfiguration",
+  "definitions": {
+    "SiteConfiguration": {
+      "properties": {
+        "colors": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Theme colors"
+        },
+        "features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Active features"
+        },
+        "contacts": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Contact information"
+        },
+        "social": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Social media links"
+        },
+        "analytics": {
+          "$ref": "#/definitions/website.config.AnalyticsInfo",
+          "description": "Analytics IDs (sanitized for security)"
+        },
+        "seo": {
+          "$ref": "#/definitions/website.config.SEOInfo",
+          "description": "SEO configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Configuration",
+      "description": "Site configuration snapshot"
+    },
+    "website.config.AnalyticsInfo": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether analytics is enabled"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Analytics providers in use"
+        },
+        "cross_domain": {
+          "type": "boolean",
+          "description": "Cross-domain tracking enabled"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Info",
+      "description": "Analytics information (sanitized for public consumption)"
+    },
+    "website.config.SEOInfo": {
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Default author"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "Twitter handle"
+        },
+        "ai_optimization": {
+          "type": "boolean",
+          "description": "Whether AI optimization is enabled"
+        },
+        "sitemap_url": {
+          "type": "string",
+          "description": "Sitemap URL"
+        },
+        "robots_url": {
+          "type": "string",
+          "description": "Robots.txt URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "SEO Info",
+      "description": "SEO information"
+    }
+  },
+  "title": "SITECONFIGURATION Configuration Schema",
+  "description": "JSON Schema for SiteConfiguration configuration"
+}

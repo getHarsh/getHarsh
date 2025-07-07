@@ -1,0 +1,39 @@
+{
+  "domain_info": {
+    "domain": "test.in",
+    "title": "Test Domain",
+    "entity": "Test Entity Pvt Ltd",
+    "copyright_pattern": "© {year} {entity}. All rights reserved."
+  },
+  "contact": {
+    "info": "info@test.in",
+    "proposal": "proposal@test.in",
+    "call_to_action": "hello@test.in"
+  },
+  "seo": {
+    "title": "Test Domain - Testing",
+    "description": "A test domain for validation",
+    "keywords": [
+      "test",
+      "validation"
+    ],
+    "author": "Test Author"
+  },
+  "theme": {
+    "colors": {
+      "primary": "#007bff",
+      "secondary": "#6c757d",
+      "background": "#ffffff",
+      "text": "#333333"
+    },
+    "typography": {
+      "font_family": "Arial, sans-serif",
+      "heading_font": "Georgia, serif"
+    }
+  },
+  "features": {
+    "enable_blog": true,
+    "enable_analytics": false,
+    "enable_comments": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CrossDomainNav",
+  "definitions": {
+    "CrossDomainNav": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ecosystem navigation bar"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position of the nav bar (\"top\", \"bottom\")"
+        },
+        "domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to show in navigation (order matters)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Domain Nav",
+      "description": "Cross-domain navigation configuration"
+    }
+  },
+  "title": "CROSSDOMAINNAV Configuration Schema",
+  "description": "JSON Schema for CrossDomainNav configuration"
+}

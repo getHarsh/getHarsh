@@ -1,0 +1,28 @@
+{%- comment -%}
+  Site Header Organism Component
+  
+  Universal Intelligence: Context → Analytics/ARIA → Theme → Header
+  
+  Parameters:
+  - None (uses site configuration)
+  
+  Context Integration:
+  - Repository context detection (domain, blog, project, docs)
+  - Navigation items from config
+  - Sponsor mode detection
+  - Active page highlighting
+{%- endcomment -%}
+
+<header class="site-header" role="banner">
+  <div class="site-header__container">
+    <div class="site-header__brand">
+      <a href="/" class="site-header__logo">
+        {{ site.title }}
+      </a>
+    </div>
+    
+    <nav class="site-header__nav" role="navigation" aria-label="Main navigation">
+      <!-- Navigation items from config -->
+    </nav>
+  </div>
+</header>

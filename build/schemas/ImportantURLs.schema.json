@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ImportantURLs",
+  "definitions": {
+    "ImportantURLs": {
+      "properties": {
+        "home": {
+          "type": "string",
+          "description": "Homepage"
+        },
+        "about": {
+          "type": "string",
+          "description": "About page"
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact page"
+        },
+        "archive": {
+          "type": "string",
+          "description": "Archive/all posts"
+        },
+        "search": {
+          "type": "string",
+          "description": "Search page"
+        },
+        "docs": {
+          "type": "string",
+          "description": "For projects: documentation root"
+        },
+        "api": {
+          "type": "string",
+          "description": "For projects: API reference"
+        },
+        "demos": {
+          "type": "string",
+          "description": "For projects: demos/playground"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Important UR Ls",
+      "description": "Important URLs for AI agents"
+    }
+  },
+  "title": "IMPORTANTURLS Configuration Schema",
+  "description": "JSON Schema for ImportantURLs configuration"
+}

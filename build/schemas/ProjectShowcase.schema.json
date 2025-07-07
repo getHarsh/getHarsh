@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectShowcase",
+  "definitions": {
+    "ProjectShowcase": {
+      "properties": {
+        "screenshots": {
+          "type": "boolean",
+          "description": "Enable screenshot gallery"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/website.config.Screenshot"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Screenshot images (relative paths)"
+        },
+        "videos": {
+          "type": "boolean",
+          "description": "Enable video demos"
+        },
+        "video_items": {
+          "items": {
+            "$ref": "#/definitions/website.config.Video"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Video URLs or embed codes"
+        },
+        "architecture_diagrams": {
+          "type": "boolean",
+          "description": "Enable architecture diagrams"
+        },
+        "diagrams": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Diagram images (relative paths)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Showcase",
+      "description": "Project showcase/gallery configuration"
+    },
+    "website.config.Screenshot": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Image path (relative to project root)"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text/description"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category (e.g., \"desktop\", \"mobile\", \"cli\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screenshot",
+      "description": "Screenshot information"
+    },
+    "website.config.Video": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Video URL (YouTube, Vimeo, etc.)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Video description"
+        },
+        "thumbnail": {
+          "type": "string",
+          "description": "Thumbnail image path"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video",
+      "description": "Video information"
+    }
+  },
+  "title": "PROJECTSHOWCASE Configuration Schema",
+  "description": "JSON Schema for ProjectShowcase configuration"
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContactEmails",
+  "definitions": {
+    "ContactEmails": {
+      "properties": {
+        "info": {
+          "type": "string",
+          "description": "General information email - REQUIRED"
+        },
+        "proposal": {
+          "type": "string",
+          "description": "Business proposals email - REQUIRED"
+        },
+        "accounts": {
+          "type": "string",
+          "description": "Accounts/billing email - REQUIRED"
+        },
+        "support": {
+          "type": "string",
+          "description": "Technical support email (optional)"
+        },
+        "legal": {
+          "type": "string",
+          "description": "Legal/compliance email (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Emails",
+      "description": "Contact email configuration"
+    }
+  },
+  "title": "CONTACTEMAILS Configuration Schema",
+  "description": "JSON Schema for ContactEmails configuration"
+}

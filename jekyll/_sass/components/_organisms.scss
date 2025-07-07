@@ -1,0 +1,53 @@
+// Organism Component Styles
+// Complex UI sections
+
+// Site header organism
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-surface);
+  
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-4);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+  
+  &__brand {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+  }
+  
+  &__nav {
+    display: flex;
+    gap: var(--spacing-4);
+  }
+}
+
+// Site footer organism
+.site-footer {
+  margin-top: auto;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  
+  &__container {
+    padding: var(--spacing-8) var(--spacing-4);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+  
+  &__content {
+    margin-bottom: var(--spacing-8);
+  }
+  
+  &__legal {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+}

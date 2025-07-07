@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsNavigationSidebar",
+  "definitions": {
+    "DocsNavigationSidebar": {
+      "properties": {
+        "position": {
+          "type": "string",
+          "description": "Sidebar position (\"left\", \"right\")"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "auto_expand_current": {
+          "type": "boolean",
+          "description": "Auto-expand current section"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky sidebar"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth for auto-generated nav"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Navigation Sidebar",
+      "description": "Documentation sidebar configuration"
+    }
+  },
+  "title": "DOCSNAVIGATIONSIDEBAR Configuration Schema",
+  "description": "JSON Schema for DocsNavigationSidebar configuration"
+}

@@ -1,0 +1,242 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogConfig",
+  "definitions": {
+    "BlogConfig": {
+      "properties": {
+        "theme_overrides": {
+          "$ref": "#/definitions/website.config.BlogThemeOverrides",
+          "description": "Theme overrides (only specific fields can be changed)"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.BlogFeatures",
+          "description": "Blog-specific features"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.BlogContent",
+          "description": "Content presentation settings"
+        },
+        "layout": {
+          "$ref": "#/definitions/website.config.BlogLayout",
+          "description": "Layout adjustments for blog"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Config",
+      "description": "BlogConfig defines configuration overrides for blog subdomains. It can only override specific fields from the parent domain config. Stored in blog.[domain].in/config.yml  Blog inherits everything from parent domain by default. Only fields defined here can be overridden."
+    },
+    "website.config.BlogColors": {
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Background color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "quote_border": {
+          "type": "string",
+          "description": "Blockquote border color"
+        },
+        "tag_background": {
+          "type": "string",
+          "description": "Tag/category pill colors"
+        },
+        "tag_text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Colors",
+      "description": "Blog-specific color overrides"
+    },
+    "website.config.BlogContent": {
+      "properties": {
+        "posts_per_page": {
+          "type": "integer",
+          "description": "Posts per page override"
+        },
+        "excerpt_length": {
+          "type": "integer",
+          "description": "Excerpt length override"
+        },
+        "show_full_content": {
+          "type": "boolean",
+          "description": "Show full content on index page"
+        },
+        "date_format": {
+          "type": "string",
+          "description": "Date format override"
+        },
+        "show_author": {
+          "type": "boolean",
+          "description": "Show author info"
+        },
+        "show_categories": {
+          "type": "boolean",
+          "description": "Show post categories"
+        },
+        "show_tags": {
+          "type": "boolean",
+          "description": "Show post tags"
+        },
+        "rss_enabled": {
+          "type": "boolean",
+          "description": "Enable RSS feed"
+        },
+        "rss_limit": {
+          "type": "integer",
+          "description": "RSS feed limit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Content",
+      "description": "Blog content presentation settings"
+    },
+    "website.config.BlogFeatures": {
+      "properties": {
+        "comments": {
+          "type": "boolean",
+          "description": "Enable comments system"
+        },
+        "comments_provider": {
+          "type": "string",
+          "description": "Comments provider (\"disqus\", \"giscus\", \"utterances\")"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Show reading time estimate"
+        },
+        "table_of_contents": {
+          "type": "boolean",
+          "description": "Show table of contents for long posts"
+        },
+        "toc_min_headings": {
+          "type": "integer",
+          "description": "TOC threshold (min headings)"
+        },
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math rendering (KaTeX/MathJax)"
+        },
+        "math_renderer": {
+          "type": "string",
+          "description": "Math renderer (\"katex\", \"mathjax\")"
+        },
+        "graphviz": {
+          "type": "boolean",
+          "description": "Enable Graphviz diagram rendering"
+        },
+        "syntax_highlighting": {
+          "type": "boolean",
+          "description": "Enable code syntax highlighting"
+        },
+        "syntax_theme": {
+          "type": "string",
+          "description": "Syntax theme (\"github\", \"monokai\", \"dracula\", etc.)"
+        },
+        "related_posts": {
+          "type": "boolean",
+          "description": "Show related posts"
+        },
+        "related_posts_count": {
+          "type": "integer",
+          "description": "Number of related posts to show"
+        },
+        "series_navigation": {
+          "type": "boolean",
+          "description": "Enable post series navigation"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom blog features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Features",
+      "description": "Blog-specific features"
+    },
+    "website.config.BlogLayout": {
+      "properties": {
+        "article_max_width": {
+          "type": "string",
+          "description": "Maximum content width for articles"
+        },
+        "sidebar": {
+          "type": "string",
+          "description": "Sidebar on blog pages (\"left\", \"right\", \"none\")"
+        },
+        "index_layout": {
+          "type": "string",
+          "description": "Layout style (\"list\", \"grid\", \"card\")"
+        },
+        "grid_columns": {
+          "type": "integer",
+          "description": "Columns for grid layout"
+        },
+        "show_featured_image": {
+          "type": "boolean",
+          "description": "Show featured image on post"
+        },
+        "featured_image_position": {
+          "type": "string",
+          "description": "Featured image position (\"top\", \"hero\", \"inline\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Layout",
+      "description": "Blog layout adjustments"
+    },
+    "website.config.BlogThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.BlogColors",
+          "description": "Color overrides (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.BlogTypography",
+          "description": "Typography adjustments"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Theme Overrides",
+      "description": "Theme overrides allowed for blogs"
+    },
+    "website.config.BlogTypography": {
+      "properties": {
+        "article_font": {
+          "type": "string",
+          "description": "Font family for article content"
+        },
+        "article_size": {
+          "type": "string",
+          "description": "Font size for article text"
+        },
+        "article_line_height": {
+          "type": "number",
+          "description": "Line height for articles"
+        },
+        "code_font": {
+          "type": "string",
+          "description": "Code font family"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Typography",
+      "description": "Blog-specific typography overrides"
+    }
+  },
+  "title": "BLOGCONFIG Configuration Schema",
+  "description": "JSON Schema for BlogConfig configuration"
+}

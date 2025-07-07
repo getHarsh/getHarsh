@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentSettings",
+  "definitions": {
+    "ConsentSettings": {
+      "properties": {
+        "enable_consent_banner": {
+          "type": "boolean",
+          "description": "Enable cookie consent banner"
+        },
+        "consent_cookie_name": {
+          "type": "string",
+          "description": "Cookie name for storing consent state  default: \"analytics_consent\""
+        },
+        "consent_duration_days": {
+          "type": "integer",
+          "description": "How long consent is valid (in days)  default: 365"
+        },
+        "google_consent_mode_v2": {
+          "type": "boolean",
+          "description": "Enable Google Consent Mode v2 (required by March 2024)"
+        },
+        "banner_text": {
+          "type": "string",
+          "description": "Text for the consent banner"
+        },
+        "accept_button_text": {
+          "type": "string",
+          "description": "Text for the accept button"
+        },
+        "decline_button_text": {
+          "type": "string",
+          "description": "Text for the decline button"
+        },
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Link to privacy policy"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Link to cookie policy"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Settings",
+      "description": "Cookie consent configuration for GDPR/ePrivacy compliance LEGALLY REQUIRED: EU law mandates explicit consent BEFORE loading analytics Reference: €1.34M fine example for non-compliance"
+    }
+  },
+  "title": "CONSENTSETTINGS Configuration Schema",
+  "description": "JSON Schema for ConsentSettings configuration"
+}

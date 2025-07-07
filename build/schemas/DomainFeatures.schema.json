@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DomainFeatures",
+  "definitions": {
+    "DomainFeatures": {
+      "properties": {
+        "portfolio": {
+          "type": "boolean",
+          "description": "Enable portfolio/projects section"
+        },
+        "contact_form": {
+          "type": "boolean",
+          "description": "Enable contact form"
+        },
+        "newsletter": {
+          "type": "boolean",
+          "description": "Enable newsletter signup"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom features specific to this domain"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Features",
+      "description": "Domain-specific features"
+    }
+  },
+  "title": "DOMAINFEATURES Configuration Schema",
+  "description": "JSON Schema for DomainFeatures configuration"
+}

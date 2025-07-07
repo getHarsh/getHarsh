@@ -1,0 +1,21 @@
+{%- comment -%}
+  Heading Atom Component
+  
+  Universal Intelligence: Context → SEO/ARIA → Theme → Heading
+  
+  Parameters:
+  - text: Heading text
+  - level: 1-6 (default: 2)
+  - class: Additional CSS classes
+  - id: Optional ID for anchoring
+  
+  Context Integration:
+  - Document outline generation
+  - Anchor link creation
+  - SEO metadata extraction
+{%- endcomment -%}
+
+{%- assign heading_level = include.level | default: 2 -%}
+<h{{ heading_level }} class="heading heading--h{{ heading_level }} {{ include.class }}"{% if include.id %} id="{{ include.id }}"{% endif %}>
+  {{ include.text }}
+</h{{ heading_level }}>

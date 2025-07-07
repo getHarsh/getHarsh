@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AnalyticsInfo",
+  "definitions": {
+    "AnalyticsInfo": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether analytics is enabled"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Analytics providers in use"
+        },
+        "cross_domain": {
+          "type": "boolean",
+          "description": "Cross-domain tracking enabled"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Info",
+      "description": "Analytics information (sanitized for public consumption)"
+    }
+  },
+  "title": "ANALYTICSINFO Configuration Schema",
+  "description": "JSON Schema for AnalyticsInfo configuration"
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsTypography",
+  "definitions": {
+    "DocsTypography": {
+      "properties": {
+        "docs_font": {
+          "type": "string",
+          "description": "Font for documentation content"
+        },
+        "docs_font_size": {
+          "type": "string",
+          "description": "Font size for documentation"
+        },
+        "docs_line_height": {
+          "type": "number",
+          "description": "Line height for docs"
+        },
+        "code_font": {
+          "type": "string",
+          "description": "Code block font"
+        },
+        "heading_scale": {
+          "type": "number",
+          "description": "Heading scale for docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Typography",
+      "description": "Documentation-specific typography"
+    }
+  },
+  "title": "DOCSTYPOGRAPHY Configuration Schema",
+  "description": "JSON Schema for DocsTypography configuration"
+}

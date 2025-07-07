@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsColors",
+  "definitions": {
+    "DocsColors": {
+      "properties": {
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "inline_code_bg": {
+          "type": "string",
+          "description": "Inline code color"
+        },
+        "nav_active": {
+          "type": "string",
+          "description": "Navigation active item color"
+        },
+        "search_highlight": {
+          "type": "string",
+          "description": "Search highlight color"
+        },
+        "warning_bg": {
+          "type": "string",
+          "description": "Warning/note block colors"
+        },
+        "note_bg": {
+          "type": "string"
+        },
+        "tip_bg": {
+          "type": "string"
+        },
+        "important_bg": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Colors",
+      "description": "Documentation-specific color overrides"
+    }
+  },
+  "title": "DOCSCOLORS Configuration Schema",
+  "description": "JSON Schema for DocsColors configuration"
+}

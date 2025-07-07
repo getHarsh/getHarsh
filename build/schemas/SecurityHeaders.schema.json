@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SecurityHeaders",
+  "definitions": {
+    "SecurityHeaders": {
+      "properties": {
+        "csp_policy": {
+          "type": "string",
+          "description": "Content Security Policy for meta tag"
+        },
+        "enable_sri": {
+          "type": "boolean",
+          "description": "Enable Subresource Integrity for CDN resources"
+        },
+        "referrer_policy": {
+          "type": "string",
+          "description": "Referrer policy for meta tag"
+        },
+        "no_sniff": {
+          "type": "boolean",
+          "description": "X-Content-Type-Options equivalent"
+        },
+        "frame_options": {
+          "type": "string",
+          "description": "X-Frame-Options equivalent"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Headers",
+      "description": "Security headers configuration for GitHub Pages Note: GitHub Pages only supports meta tag CSP, not HTTP headers"
+    }
+  },
+  "title": "SECURITYHEADERS Configuration Schema",
+  "description": "JSON Schema for SecurityHeaders configuration"
+}

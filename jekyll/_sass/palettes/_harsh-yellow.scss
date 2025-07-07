@@ -1,0 +1,29 @@
+// Harsh Yellow Color Palette
+// Yellow accent colors for getHarsh.in domain
+
+.palette--harsh-yellow {
+  // Primary colors
+  --color-primary: #fbbf24; // Amber 400
+  --color-primary-light: #fcd34d; // Amber 300
+  --color-primary-dark: #f59e0b; // Amber 500
+  
+  // Neutral colors
+  --color-background: #ffffff;
+  --color-surface: #fafafa;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  
+  // Accent colors
+  --color-accent: var(--color-primary);
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  
+  // Dark mode
+  @media (prefers-color-scheme: dark) {
+    --color-background: #111827;
+    --color-surface: #1f2937;
+    --color-text: #f9fafb;
+    --color-text-muted: #9ca3af;
+  }
+}

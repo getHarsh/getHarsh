@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CanvasEffects",
+  "definitions": {
+    "CanvasEffects": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable canvas effects"
+        },
+        "physics": {
+          "$ref": "#/definitions/website.config.ParticlePhysics",
+          "description": "Particle physics engine settings"
+        },
+        "visuals": {
+          "$ref": "#/definitions/website.config.ParticleVisuals",
+          "description": "Visual appearance settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Canvas Effects",
+      "description": "Canvas particle network effects"
+    },
+    "website.config.ParticlePhysics": {
+      "properties": {
+        "particle_count": {
+          "type": "integer",
+          "description": "Number of particles"
+        },
+        "connection_distance": {
+          "type": "number",
+          "description": "Connection distance threshold"
+        },
+        "particle_speed": {
+          "type": "number",
+          "description": "Particle movement speed"
+        },
+        "bounce": {
+          "type": "boolean",
+          "description": "Bounce off edges"
+        },
+        "gravity": {
+          "type": "number",
+          "description": "Gravity strength (0 = no gravity)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Particle Physics",
+      "description": "Particle physics configuration"
+    },
+    "website.config.ParticleVisuals": {
+      "properties": {
+        "particle_color": {
+          "type": "string",
+          "description": "Particle color (hex)"
+        },
+        "line_color": {
+          "type": "string",
+          "description": "Connection line color (hex)"
+        },
+        "particle_size_min": {
+          "type": "number",
+          "description": "Particle size range [min, max]"
+        },
+        "particle_size_max": {
+          "type": "number"
+        },
+        "line_opacity": {
+          "type": "number",
+          "description": "Line opacity (0-1)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Particle Visuals",
+      "description": "Particle visual configuration"
+    }
+  },
+  "title": "CANVASEFFECTS Configuration Schema",
+  "description": "JSON Schema for CanvasEffects configuration"
+}
