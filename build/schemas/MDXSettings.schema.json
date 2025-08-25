@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MDXSettings",
+  "definitions": {
+    "MDXSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable MDX for markdown processing"
+        },
+        "extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Extensions to process as MDX"
+        },
+        "remark_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Remark plugins"
+        },
+        "rehype_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Rehype plugins"
+        },
+        "gatsby_remark_plugins": {
+          "items": {
+            "$ref": "#/definitions/website.config.GatsbyRemarkPlugin"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Gatsby remark plugins"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "MDX Settings",
+      "description": "MDX settings for content processing"
+    },
+    "website.config.GatsbyRemarkPlugin": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin name"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Plugin options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Remark Plugin",
+      "description": "Gatsby remark plugin configuration"
+    }
+  },
+  "title": "MDXSETTINGS Configuration Schema",
+  "description": "JSON Schema for MDXSettings configuration"
+}

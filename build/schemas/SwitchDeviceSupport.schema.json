@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SwitchDeviceSupport",
+  "definitions": {
+    "SwitchDeviceSupport": {
+      "properties": {
+        "switch_scanning": {
+          "type": "boolean",
+          "description": "Switch scanning"
+        },
+        "scan_speed_ms": {
+          "type": "integer",
+          "description": "Scanning speed"
+        },
+        "patterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Scanning patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Switch Device Support",
+      "description": "Switch device support"
+    }
+  },
+  "title": "SWITCHDEVICESUPPORT Configuration Schema",
+  "description": "JSON Schema for SwitchDeviceSupport configuration"
+}

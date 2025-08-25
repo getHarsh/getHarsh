@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RelationshipTypeMapping",
+  "definitions": {
+    "RelationshipTypeMapping": {
+      "properties": {
+        "schema_property": {
+          "type": "string",
+          "description": "Schema.org property name"
+        },
+        "inverse_property": {
+          "type": "string",
+          "description": "Inverse property name"
+        },
+        "domain_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domain types (what types can have this relationship)"
+        },
+        "range_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Range types (what types this relationship points to)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Relationship Type Mapping"
+    }
+  },
+  "title": "RELATIONSHIPTYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for RelationshipTypeMapping configuration"
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AltTextRequirements",
+  "definitions": {
+    "AltTextRequirements": {
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Require alt text"
+        },
+        "min_length": {
+          "type": "integer",
+          "description": "Minimum length"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Maximum length"
+        },
+        "quality_check": {
+          "type": "boolean",
+          "description": "Quality checking"
+        },
+        "empty_for_decorative": {
+          "type": "boolean",
+          "description": "Empty alt for decorative"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Alt Text Requirements",
+      "description": "Alt text requirements"
+    }
+  },
+  "title": "ALTTEXTREQUIREMENTS Configuration Schema",
+  "description": "JSON Schema for AltTextRequirements configuration"
+}

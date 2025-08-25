@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OutboundLinkTracking",
+  "definitions": {
+    "OutboundLinkTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable outbound tracking"
+        },
+        "excluded_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Excluded domains (ecosystem domains)"
+        },
+        "track_context": {
+          "type": "boolean",
+          "description": "Track link context"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Outbound Link Tracking",
+      "description": "Outbound link tracking"
+    }
+  },
+  "title": "OUTBOUNDLINKTRACKING Configuration Schema",
+  "description": "JSON Schema for OutboundLinkTracking configuration"
+}

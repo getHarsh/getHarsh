@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectThemeOverrides",
+  "definitions": {
+    "ProjectThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.ProjectColors",
+          "description": "Color overrides (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.ProjectTypography",
+          "description": "Typography adjustments"
+        },
+        "custom_css": {
+          "type": "string",
+          "description": "Custom CSS file (relative to project root)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Theme Overrides",
+      "description": "Project theme overrides"
+    },
+    "website.config.ProjectColors": {
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary color override (for project branding)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code/terminal background color"
+        },
+        "docs_header": {
+          "type": "string",
+          "description": "Documentation section colors"
+        },
+        "docs_sidebar": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Colors",
+      "description": "Project-specific color overrides"
+    },
+    "website.config.ProjectTypography": {
+      "properties": {
+        "code_font": {
+          "type": "string",
+          "description": "Font for code/terminal display"
+        },
+        "docs_font": {
+          "type": "string",
+          "description": "Font for documentation"
+        },
+        "heading_scale": {
+          "type": "number",
+          "description": "Heading scale multiplier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Typography",
+      "description": "Project-specific typography"
+    }
+  },
+  "title": "PROJECTTHEMEOVERRIDES Configuration Schema",
+  "description": "JSON Schema for ProjectThemeOverrides configuration"
+}

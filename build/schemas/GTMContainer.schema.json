@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GTMContainer",
+  "definitions": {
+    "GTMContainer": {
+      "properties": {
+        "container_id": {
+          "type": "string",
+          "description": "Container ID (e.g., \"GTM-XXXXXX\")"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Container environment (leave empty for production)"
+        },
+        "auth_token": {
+          "type": "string",
+          "description": "Authentication token for preview mode"
+        },
+        "preview_id": {
+          "type": "string",
+          "description": "Preview ID for testing"
+        },
+        "load_in_head": {
+          "type": "boolean",
+          "description": "Load GTM script in head vs body"
+        },
+        "enable_noscript": {
+          "type": "boolean",
+          "description": "Enable noscript fallback"
+        },
+        "custom_domain": {
+          "type": "string",
+          "description": "Custom domain for GTM script (for China, etc.)"
+        },
+        "loading_strategy": {
+          "enum": [
+            "LOADING_STRATEGY_UNSPECIFIED",
+            0,
+            "LOADING_STRATEGY_SYNC",
+            1,
+            "LOADING_STRATEGY_ASYNC",
+            2,
+            "LOADING_STRATEGY_DEFER",
+            3,
+            "LOADING_STRATEGY_LAZY",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Loading Strategy",
+          "description": "Loading strategy for GTM"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "GTM Container",
+      "description": "GTM container configuration"
+    }
+  },
+  "title": "GTMCONTAINER Configuration Schema",
+  "description": "JSON Schema for GTMContainer configuration"
+}

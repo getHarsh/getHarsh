@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TooltipAccessibility",
+  "definitions": {
+    "TooltipAccessibility": {
+      "properties": {
+        "keyboard_access": {
+          "type": "boolean",
+          "description": "Keyboard accessible"
+        },
+        "persistent": {
+          "type": "boolean",
+          "description": "Persistent on hover"
+        },
+        "dismissible": {
+          "type": "boolean",
+          "description": "Dismissible"
+        },
+        "use_describedby": {
+          "type": "boolean",
+          "description": "ARIA describedby"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tooltip Accessibility",
+      "description": "Tooltip accessibility"
+    }
+  },
+  "title": "TOOLTIPACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for TooltipAccessibility configuration"
+}

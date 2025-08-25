@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeGenSettings",
+  "definitions": {
+    "CodeGenSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable code examples generation"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Languages to generate examples for"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Code generator (\"openapi-generator\", \"custom\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Gen Settings",
+      "description": "Code generation settings"
+    }
+  },
+  "title": "CODEGENSETTINGS Configuration Schema",
+  "description": "JSON Schema for CodeGenSettings configuration"
+}

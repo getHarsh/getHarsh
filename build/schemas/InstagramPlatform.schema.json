@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/InstagramPlatform",
+  "definitions": {
+    "InstagramPlatform": {
+      "properties": {
+        "profile_url": {
+          "type": "string",
+          "description": "Profile URL"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_embeds": {
+          "type": "boolean",
+          "description": "Enable post embeds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Instagram Platform",
+      "description": "Instagram platform configuration"
+    }
+  },
+  "title": "INSTAGRAMPLATFORM Configuration Schema",
+  "description": "JSON Schema for InstagramPlatform configuration"
+}

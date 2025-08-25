@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FormErrorHandling",
+  "definitions": {
+    "FormErrorHandling": {
+      "properties": {
+        "inline_errors": {
+          "type": "boolean",
+          "description": "Inline errors"
+        },
+        "error_summary": {
+          "type": "boolean",
+          "description": "Error summary"
+        },
+        "associate_errors": {
+          "type": "boolean",
+          "description": "Field association"
+        },
+        "success_messages": {
+          "type": "boolean",
+          "description": "Success messages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Error Handling",
+      "description": "Form error handling"
+    }
+  },
+  "title": "FORMERRORHANDLING Configuration Schema",
+  "description": "JSON Schema for FormErrorHandling configuration"
+}

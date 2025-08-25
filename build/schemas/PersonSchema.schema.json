@@ -1,0 +1,201 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PersonSchema",
+  "definitions": {
+    "PersonSchema": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Person name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Person URL (profile page) - DEPRECATED: Generated dynamically at build time"
+        },
+        "same_as": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Same as URLs (social profiles)"
+        },
+        "job_title": {
+          "type": "string",
+          "description": "Job title"
+        },
+        "works_for": {
+          "type": "string",
+          "description": "Works for (organization) - DEPRECATED: Use affiliations instead"
+        },
+        "image": {
+          "type": "string",
+          "description": "Image URL (relative path, e.g., \"/assets/harsh-avatar.png\")"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description/bio"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.PersonAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations with organizations using key references References organizations by key from legal_entities or organizations catalogs"
+        },
+        "creator_of_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domain keys this person created (e.g., [\"getHarsh\", \"causality\"]) Populated dynamically from ecosystem.domains mapping"
+        },
+        "author_of_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project keys this person authored (e.g., [\"HENA\", \"JARVIS-kernel\"]) Populated dynamically from PROJECTS/ discovery"
+        },
+        "knows_about": {
+          "type": "string",
+          "description": "Areas of expertise (for knowsAbout property) Example: \"Artificial Intelligence, Distributed Systems, Philosophy of Mind\""
+        },
+        "alumni_of": {
+          "items": {
+            "$ref": "#/definitions/website.config.PersonAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Educational affiliations using key references"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Person Schema",
+      "description": "Person schema for authors"
+    },
+    "website.config.PersonAffiliation": {
+      "properties": {
+        "organization_key": {
+          "type": "string",
+          "description": "Organization key from legal_entities or organizations catalog"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position held"
+        },
+        "type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (ISO 8601 format, e.g., \"2024-01-01\")"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (ISO 8601 format, omit if current)"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        },
+        "is_legal_entity": {
+          "type": "boolean",
+          "description": "If true, look up in legal_entities catalog; if false, in organizations catalog"
+        },
+        "description": {
+          "type": "string",
+          "description": "Additional details or description (optional)"
+        },
+        "is_current": {
+          "type": "boolean",
+          "description": "Whether this affiliation is currently active Automatically true if end_date is empty or in the future"
+        },
+        "person_role": {
+          "enum": [
+            "PERSON_ROLE_UNSPECIFIED",
+            0,
+            "PERSON_ROLE_AUTHOR",
+            1,
+            "PERSON_ROLE_CONTRIBUTOR",
+            2,
+            "PERSON_ROLE_REVIEWER",
+            3,
+            "PERSON_ROLE_EDITOR",
+            4,
+            "PERSON_ROLE_FOUNDER",
+            5,
+            "PERSON_ROLE_DEVELOPER",
+            6,
+            "PERSON_ROLE_DESIGNER",
+            7,
+            "PERSON_ROLE_RESEARCHER",
+            8,
+            "PERSON_ROLE_ADVISOR",
+            9,
+            "PERSON_ROLE_DIRECTOR",
+            10,
+            "PERSON_ROLE_SPEAKER",
+            11,
+            "PERSON_ROLE_MENTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Person Role",
+          "description": "Person roles for standardized role identification Used for author attribution, ARIA announcements, and Schema.org"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Person Affiliation",
+      "description": "Person affiliation with an organization using key references Used in PersonSchema for type-safe, dynamic affiliations"
+    }
+  },
+  "title": "PERSONSCHEMA Configuration Schema",
+  "description": "JSON Schema for PersonSchema configuration"
+}

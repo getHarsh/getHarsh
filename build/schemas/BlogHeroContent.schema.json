@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogHeroContent",
+  "definitions": {
+    "BlogHeroContent": {
+      "properties": {
+        "hero_title": {
+          "type": "string",
+          "description": "Main hero title (e.g., \"Thoughts\", \"Articles\", \"Blog\")"
+        },
+        "hero_tagline": {
+          "type": "string",
+          "description": "Hero tagline (e.g., \"Ideas, explorations, and digital consciousness fragments\")"
+        },
+        "hero_description": {
+          "type": "string",
+          "description": "Extended description for the blog"
+        },
+        "cta_text": {
+          "type": "string",
+          "description": "CTA button text (e.g., \"Read Latest\", \"Browse Articles\")"
+        },
+        "cta_link": {
+          "type": "string",
+          "description": "CTA button link"
+        },
+        "show_visualization": {
+          "type": "boolean",
+          "description": "Show visualization behind hero"
+        },
+        "visualization_variant": {
+          "type": "string",
+          "description": "Visualization variant (\"prominent\", \"subtle\", \"none\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Hero Content",
+      "description": "Blog hero content for landing page"
+    }
+  },
+  "title": "BLOGHEROCONTENT Configuration Schema",
+  "description": "JSON Schema for BlogHeroContent configuration"
+}

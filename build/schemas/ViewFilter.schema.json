@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ViewFilter",
+  "definitions": {
+    "ViewFilter": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Filter label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to filter"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Filter pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Filter",
+      "description": "View filter configuration"
+    }
+  },
+  "title": "VIEWFILTER Configuration Schema",
+  "description": "JSON Schema for ViewFilter configuration"
+}

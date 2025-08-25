@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SyncSecurity",
+  "definitions": {
+    "SyncSecurity": {
+      "properties": {
+        "encrypt": {
+          "type": "boolean",
+          "description": "Enable encryption"
+        },
+        "verify_origin": {
+          "type": "boolean",
+          "description": "Verify origin"
+        },
+        "allowed_origins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Allowed origins"
+        },
+        "hmac_validation": {
+          "type": "boolean",
+          "description": "HMAC validation"
+        },
+        "hmac_secret": {
+          "type": "string",
+          "description": "HMAC secret key"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sync Security",
+      "description": "Sync security settings"
+    }
+  },
+  "title": "SYNCSECURITY Configuration Schema",
+  "description": "JSON Schema for SyncSecurity configuration"
+}

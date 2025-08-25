@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectDependency",
+  "definitions": {
+    "ProjectDependency": {
+      "properties": {
+        "project_key": {
+          "type": "string",
+          "description": "Project key from ecosystem projects"
+        },
+        "dependency_type": {
+          "enum": [
+            "DEPENDENCY_TYPE_UNSPECIFIED",
+            0,
+            "DEPENDENCY_TYPE_USES",
+            1,
+            "DEPENDENCY_TYPE_EXTENDS",
+            2,
+            "DEPENDENCY_TYPE_INTEGRATES",
+            3,
+            "DEPENDENCY_TYPE_REQUIRES",
+            4,
+            "DEPENDENCY_TYPE_OPTIONAL",
+            5,
+            "DEPENDENCY_TYPE_REPLACES",
+            6,
+            "DEPENDENCY_TYPE_BUNDLES",
+            7,
+            "DEPENDENCY_TYPE_INSPIRED_BY",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Dependency Type",
+          "description": "Dependency types for project relationships"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of how the dependency is used"
+        },
+        "version_requirement": {
+          "type": "string",
+          "description": "Version requirement (if applicable)"
+        },
+        "is_critical": {
+          "type": "boolean",
+          "description": "Whether this is a critical dependency"
+        },
+        "scope": {
+          "enum": [
+            "DEPENDENCY_SCOPE_UNSPECIFIED",
+            0,
+            "DEPENDENCY_SCOPE_RUNTIME",
+            1,
+            "DEPENDENCY_SCOPE_DEVELOPMENT",
+            2,
+            "DEPENDENCY_SCOPE_DOCUMENTATION",
+            3,
+            "DEPENDENCY_SCOPE_TESTING",
+            4,
+            "DEPENDENCY_SCOPE_BUILD",
+            5,
+            "DEPENDENCY_SCOPE_OPTIONAL",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Dependency Scope",
+          "description": "Dependency scope for project dependencies"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Dependency",
+      "description": "Project dependency definition"
+    }
+  },
+  "title": "PROJECTDEPENDENCY Configuration Schema",
+  "description": "JSON Schema for ProjectDependency configuration"
+}

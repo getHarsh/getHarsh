@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CryptoNetworkMapping",
+  "definitions": {
+    "CryptoNetworkMapping": {
+      "properties": {
+        "ticker": {
+          "type": "string",
+          "description": "Currency ticker symbol"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full currency name"
+        },
+        "currency_type": {
+          "type": "string",
+          "description": "Currency type"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/website.config.BlockchainInfo",
+          "description": "Blockchain info"
+        },
+        "schema_currency_code": {
+          "type": "string",
+          "description": "Schema.org representation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Network Mapping"
+    },
+    "website.config.BlockchainInfo": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "explorer_url": {
+          "type": "string"
+        },
+        "network_type": {
+          "type": "string",
+          "description": "\"mainnet\", \"layer2\", etc."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blockchain Info"
+    }
+  },
+  "title": "CRYPTONETWORKMAPPING Configuration Schema",
+  "description": "JSON Schema for CryptoNetworkMapping configuration"
+}

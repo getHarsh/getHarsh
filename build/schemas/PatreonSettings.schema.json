@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PatreonSettings",
+  "definitions": {
+    "PatreonSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Patreon username"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign ID"
+        },
+        "show_patron_count": {
+          "type": "boolean",
+          "description": "Show patron count"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Patreon Settings",
+      "description": "Patreon configuration"
+    }
+  },
+  "title": "PATREONSETTINGS Configuration Schema",
+  "description": "JSON Schema for PatreonSettings configuration"
+}

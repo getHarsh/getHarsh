@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DiscussionPlatformDefaults",
+  "definitions": {
+    "DiscussionPlatformDefaults": {
+      "properties": {
+        "github_issue": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_GITHUB_ISSUE  schema_type: \"DiscussionForumPosting\" provider: { type: \"Organization\", name: \"GitHub\", url: \"https://github.com\" } url_pattern: \"https://github.com/{owner}/{repo}/issues/{number}\" interaction_type: \"CommentAction\""
+        },
+        "github_gist": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_GITHUB_GIST  schema_type: \"SoftwareSourceCode\" additional_types: [\"Comment\"] provider: { type: \"Organization\", name: \"GitHub\", url: \"https://github.com\" } url_pattern: \"https://gist.github.com/{user}/{gist_id}\""
+        },
+        "twitter_thread": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_TWITTER_THREAD  schema_type: \"SocialMediaPosting\" provider: { type: \"Organization\", name: \"Twitter\", url: \"https://twitter.com\" } url_pattern: \"https://twitter.com/{user}/status/{tweet_id}\" interaction_type: \"InteractionCounter\""
+        },
+        "linkedin_post": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_LINKEDIN_POST  schema_type: \"SocialMediaPosting\" additional_types: [\"ProfessionalService\"] provider: { type: \"Organization\", name: \"LinkedIn\", url: \"https://linkedin.com\" }"
+        },
+        "reddit_thread": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_REDDIT_THREAD  schema_type: \"DiscussionForumPosting\" provider: { type: \"Organization\", name: \"Reddit\", url: \"https://reddit.com\" } url_pattern: \"https://reddit.com/r/{subreddit}/comments/{thread_id}\""
+        },
+        "chatgpt_chat": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_CHATGPT_CHAT  schema_type: \"Conversation\" provider: { type: \"Organization\", name: \"OpenAI\", url: \"https://openai.com\" } properties: { \"interactionStatistic\": \"UserInteraction\" }"
+        },
+        "claude_chat": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_CLAUDE_CHAT  schema_type: \"Conversation\" provider: { type: \"Organization\", name: \"Anthropic\", url: \"https://anthropic.com\" }"
+        },
+        "claude_artifact": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_CLAUDE_ARTIFACT  schema_type: \"CreativeWork\" additional_types: [\"SoftwareSourceCode\"] provider: { type: \"Organization\", name: \"Anthropic\", url: \"https://anthropic.com\" }"
+        },
+        "perplexity_thread": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMapping",
+          "description": "DISCUSSION_PLATFORM_PERPLEXITY_THREAD  schema_type: \"QAPage\" provider: { type: \"Organization\", name: \"Perplexity\", url: \"https://perplexity.ai\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Discussion Platform Defaults",
+      "description": "Predefined discussion platform mappings"
+    },
+    "website.config.DiscussionPlatformMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types"
+        },
+        "provider": {
+          "$ref": "#/definitions/website.config.Provider",
+          "description": "Platform provider"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "URL pattern for linking"
+        },
+        "interaction_type": {
+          "type": "string",
+          "description": "Interaction type"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform-specific properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Discussion Platform Mapping"
+    },
+    "website.config.Provider": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "\"Organization\""
+        },
+        "name": {
+          "type": "string",
+          "description": "\"GitHub\""
+        },
+        "url": {
+          "type": "string",
+          "description": "\"https://github.com\""
+        },
+        "same_as": {
+          "type": "string",
+          "description": "Wikipedia URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Provider",
+      "description": "Provider information"
+    }
+  },
+  "title": "DISCUSSIONPLATFORMDEFAULTS Configuration Schema",
+  "description": "JSON Schema for DiscussionPlatformDefaults configuration"
+}

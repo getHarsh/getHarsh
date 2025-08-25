@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SupportLinks",
+  "definitions": {
+    "SupportLinks": {
+      "properties": {
+        "forum": {
+          "type": "string",
+          "description": "Community forum URL"
+        },
+        "chat": {
+          "type": "string",
+          "description": "Discord/Slack invite URL"
+        },
+        "stack_overflow_tag": {
+          "type": "string",
+          "description": "Stack Overflow tag"
+        },
+        "discussions": {
+          "type": "string",
+          "description": "GitHub discussions URL"
+        },
+        "email": {
+          "type": "string",
+          "description": "Support email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Links",
+      "description": "Support link configuration"
+    }
+  },
+  "title": "SUPPORTLINKS Configuration Schema",
+  "description": "JSON Schema for SupportLinks configuration"
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ColorBlindSupport",
+  "definitions": {
+    "ColorBlindSupport": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable support"
+        },
+        "use_safe_palette": {
+          "type": "boolean",
+          "description": "Safe color palette"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Pattern alternatives"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ColorFilter"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Color filters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Blind Support",
+      "description": "Color blind support"
+    },
+    "website.config.aria.ColorFilter": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Filter name"
+        },
+        "type": {
+          "enum": [
+            "COLOR_FILTER_TYPE_UNSPECIFIED",
+            0,
+            "COLOR_FILTER_TYPE_PROTANOPIA",
+            1,
+            "COLOR_FILTER_TYPE_DEUTERANOPIA",
+            2,
+            "COLOR_FILTER_TYPE_TRITANOPIA",
+            3,
+            "COLOR_FILTER_TYPE_ACHROMATOPSIA",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Color Filter Type",
+          "description": "Color filter types"
+        },
+        "css_filter": {
+          "type": "string",
+          "description": "CSS filter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Filter",
+      "description": "Color filter"
+    }
+  },
+  "title": "COLORBLINDSUPPORT Configuration Schema",
+  "description": "JSON Schema for ColorBlindSupport configuration"
+}

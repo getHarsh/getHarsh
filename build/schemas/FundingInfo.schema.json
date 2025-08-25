@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FundingInfo",
+  "definitions": {
+    "FundingInfo": {
+      "properties": {
+        "include_funding": {
+          "type": "boolean",
+          "description": "Include funding info"
+        },
+        "funder_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Funder type mapping"
+        },
+        "grant_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Grant type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Funding Info",
+      "description": "Funding information"
+    }
+  },
+  "title": "FUNDINGINFO Configuration Schema",
+  "description": "JSON Schema for FundingInfo configuration"
+}

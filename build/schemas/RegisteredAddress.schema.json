@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RegisteredAddress",
+  "definitions": {
+    "RegisteredAddress": {
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City"
+        },
+        "state": {
+          "type": "string",
+          "description": "State/Province"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Registered Address",
+      "description": "Registered office address"
+    }
+  },
+  "title": "REGISTEREDADDRESS Configuration Schema",
+  "description": "JSON Schema for RegisteredAddress configuration"
+}

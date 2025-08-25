@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EmailTemplate",
+  "definitions": {
+    "EmailTemplate": {
+      "properties": {
+        "subject_template": {
+          "type": "string",
+          "description": "Subject line template"
+        },
+        "body_template": {
+          "type": "string",
+          "description": "Body template with variables"
+        },
+        "available_variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available variables for templates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Email Template",
+      "description": "Email template configuration"
+    }
+  },
+  "title": "EMAILTEMPLATE Configuration Schema",
+  "description": "JSON Schema for EmailTemplate configuration"
+}

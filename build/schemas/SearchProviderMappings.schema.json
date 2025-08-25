@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SearchProviderMappings",
+  "definitions": {
+    "SearchProviderMappings": {
+      "properties": {
+        "provider_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> provider name e.g., \"SEARCH_PROVIDER_ALGOLIA\" -> \"Algolia\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SEARCH PROVIDER MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SEARCH PROVIDER MAPPINGS =============================================================================  Maps SearchProvider enum to search service configurations"
+    }
+  },
+  "title": "SEARCHPROVIDERMAPPINGS Configuration Schema",
+  "description": "JSON Schema for SearchProviderMappings configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SkipLink",
+  "definitions": {
+    "SkipLink": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Link text"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target element ID"
+        },
+        "shortcut": {
+          "type": "string",
+          "description": "Keyboard shortcut"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Link",
+      "description": "Individual skip link"
+    }
+  },
+  "title": "SKIPLINK Configuration Schema",
+  "description": "JSON Schema for SkipLink configuration"
+}

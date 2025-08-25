@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocumentationARIA",
+  "definitions": {
+    "DocumentationARIA": {
+      "properties": {
+        "version_selector_labels": {
+          "type": "boolean",
+          "description": "Version selector ARIA labels"
+        },
+        "search_live_region": {
+          "type": "boolean",
+          "description": "Search results live region"
+        },
+        "navigation_tree_aria": {
+          "type": "boolean",
+          "description": "Navigation tree ARIA"
+        },
+        "breadcrumb_aria": {
+          "type": "boolean",
+          "description": "Breadcrumb ARIA"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation ARIA",
+      "description": "Documentation ARIA settings"
+    }
+  },
+  "title": "DOCUMENTATIONARIA Configuration Schema",
+  "description": "JSON Schema for DocumentationARIA configuration"
+}

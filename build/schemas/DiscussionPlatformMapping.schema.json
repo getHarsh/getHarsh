@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DiscussionPlatformMapping",
+  "definitions": {
+    "DiscussionPlatformMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types"
+        },
+        "provider": {
+          "$ref": "#/definitions/website.config.Provider",
+          "description": "Platform provider"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "URL pattern for linking"
+        },
+        "interaction_type": {
+          "type": "string",
+          "description": "Interaction type"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform-specific properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Discussion Platform Mapping"
+    },
+    "website.config.Provider": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "\"Organization\""
+        },
+        "name": {
+          "type": "string",
+          "description": "\"GitHub\""
+        },
+        "url": {
+          "type": "string",
+          "description": "\"https://github.com\""
+        },
+        "same_as": {
+          "type": "string",
+          "description": "Wikipedia URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Provider",
+      "description": "Provider information"
+    }
+  },
+  "title": "DISCUSSIONPLATFORMMAPPING Configuration Schema",
+  "description": "JSON Schema for DiscussionPlatformMapping configuration"
+}

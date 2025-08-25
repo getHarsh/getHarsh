@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Location",
+  "definitions": {
+    "Location": {
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "address": {
+          "type": "string",
+          "description": "Address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Location",
+      "description": "Location for maps"
+    }
+  },
+  "title": "LOCATION Configuration Schema",
+  "description": "JSON Schema for Location configuration"
+}

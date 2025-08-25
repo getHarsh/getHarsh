@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LicenseTypeMapping",
+  "definitions": {
+    "LicenseTypeMapping": {
+      "properties": {
+        "spdx_id": {
+          "type": "string",
+          "description": "SPDX identifier"
+        },
+        "license_url": {
+          "type": "string",
+          "description": "License URL"
+        },
+        "name": {
+          "type": "string",
+          "description": "License name"
+        },
+        "osi_approved": {
+          "type": "boolean",
+          "description": "OSI approved"
+        },
+        "license_type": {
+          "type": "string",
+          "description": "License type (permissive, copyleft, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "License Type Mapping"
+    }
+  },
+  "title": "LICENSETYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for LicenseTypeMapping configuration"
+}

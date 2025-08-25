@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AccessibilityStatement",
+  "definitions": {
+    "AccessibilityStatement": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable statement page"
+        },
+        "url": {
+          "type": "string",
+          "description": "Statement URL"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Last updated date"
+        },
+        "conformance": {
+          "type": "string",
+          "description": "Conformance level"
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact information"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accessibility Statement",
+      "description": "Accessibility statement"
+    }
+  },
+  "title": "ACCESSIBILITYSTATEMENT Configuration Schema",
+  "description": "JSON Schema for AccessibilityStatement configuration"
+}

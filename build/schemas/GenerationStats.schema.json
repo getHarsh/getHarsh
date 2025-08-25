@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GenerationStats",
+  "definitions": {
+    "GenerationStats": {
+      "properties": {
+        "total_entities": {
+          "type": "integer",
+          "description": "Total entities generated"
+        },
+        "entities_by_type": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Entities by type"
+        },
+        "total_properties": {
+          "type": "integer",
+          "description": "Total properties"
+        },
+        "total_relationships": {
+          "type": "integer",
+          "description": "Total relationships"
+        },
+        "total_size": {
+          "type": "integer",
+          "description": "JSON-LD size (bytes)"
+        },
+        "generation_time": {
+          "type": "integer",
+          "description": "Generation time (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Generation Stats",
+      "description": "Generation statistics"
+    }
+  },
+  "title": "GENERATIONSTATS Configuration Schema",
+  "description": "JSON Schema for GenerationStats configuration"
+}

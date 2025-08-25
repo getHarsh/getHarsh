@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OAuth2FlowMappings",
+  "definitions": {
+    "OAuth2FlowMappings": {
+      "properties": {
+        "flow_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> flow name e.g., \"OAUTH2_FLOW_AUTHORIZATION_CODE\" -> \"Authorization Code\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n OAUTH2 FLOW MAPPINGS\n =============================================================================",
+      "description": "============================================================================= OAUTH2 FLOW MAPPINGS =============================================================================  Maps OAuth2Flow enum to flow configurations"
+    }
+  },
+  "title": "OAUTH2FLOWMAPPINGS Configuration Schema",
+  "description": "JSON Schema for OAuth2FlowMappings configuration"
+}

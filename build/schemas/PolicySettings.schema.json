@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PolicySettings",
+  "definitions": {
+    "PolicySettings": {
+      "properties": {
+        "template_variables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Template variables for substitution  e.g., \"company_name\" -> \"RTEPL\""
+        },
+        "auto_update_year": {
+          "type": "boolean",
+          "description": "Auto-update year in copyright"
+        },
+        "update_notification": {
+          "$ref": "#/definitions/website.config.PolicyUpdateNotification",
+          "description": "Policy update notification settings"
+        },
+        "custom_sections": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom policy sections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Settings",
+      "description": "Policy page template variables"
+    },
+    "website.config.PolicyUpdateNotification": {
+      "properties": {
+        "show_last_updated": {
+          "type": "boolean",
+          "description": "Show last updated date"
+        },
+        "highlight_changes": {
+          "type": "boolean",
+          "description": "Highlight recent changes"
+        },
+        "recent_days_threshold": {
+          "type": "integer",
+          "description": "Days to consider \"recent\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Update Notification",
+      "description": "Policy update notification configuration"
+    }
+  },
+  "title": "POLICYSETTINGS Configuration Schema",
+  "description": "JSON Schema for PolicySettings configuration"
+}

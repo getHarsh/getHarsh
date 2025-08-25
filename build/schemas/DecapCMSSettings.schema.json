@@ -1,0 +1,392 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapCMSSettings",
+  "definitions": {
+    "DecapCMSSettings": {
+      "properties": {
+        "backend": {
+          "$ref": "#/definitions/website.config.DecapBackend",
+          "description": "Backend configuration"
+        },
+        "media_folder": {
+          "type": "string",
+          "description": "Media folder configuration"
+        },
+        "public_folder": {
+          "type": "string",
+          "description": "Public folder for media"
+        },
+        "editorial_workflow": {
+          "$ref": "#/definitions/website.config.EditorialWorkflow",
+          "description": "Editorial workflow settings"
+        },
+        "collections": {
+          "$ref": "#/definitions/website.config.ContentCollections",
+          "description": "Content collections configuration"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom preview styles"
+        },
+        "custom_widgets": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CustomWidget"
+          },
+          "type": "object",
+          "description": "Custom widgets configuration"
+        },
+        "slug": {
+          "$ref": "#/definitions/website.config.SlugConfig",
+          "description": "Slug configuration"
+        },
+        "default_fields": {
+          "items": {
+            "$ref": "#/definitions/website.config.CMSField"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Default fields for all collections"
+        },
+        "gatsby_integration": {
+          "$ref": "#/definitions/website.config.GatsbyDecapIntegration",
+          "description": "Gatsby integration settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap CMS Settings",
+      "description": "Decap CMS configuration for content management"
+    },
+    "website.config.CMSField": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Field name"
+        },
+        "label": {
+          "type": "string",
+          "description": "Field label"
+        },
+        "widget": {
+          "type": "string",
+          "description": "Widget type"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required field"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Field hint"
+        },
+        "pattern": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Pattern validation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CMS Field",
+      "description": "CMS field definition"
+    },
+    "website.config.CollectionConfig": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Collection name"
+        },
+        "label": {
+          "type": "string",
+          "description": "Collection label"
+        },
+        "folder": {
+          "type": "string",
+          "description": "Folder path (relative to repo root)"
+        },
+        "create": {
+          "type": "boolean",
+          "description": "Create new entries"
+        },
+        "slug": {
+          "type": "string",
+          "description": "Slug pattern"
+        },
+        "preview_path": {
+          "type": "string",
+          "description": "Preview path pattern"
+        },
+        "editor": {
+          "$ref": "#/definitions/website.config.EditorConfig",
+          "description": "Editor configuration"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Summary field pattern"
+        },
+        "sort": {
+          "$ref": "#/definitions/website.config.SortConfig",
+          "description": "Sort configuration"
+        },
+        "view_filters": {
+          "items": {
+            "$ref": "#/definitions/website.config.ViewFilter"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "View filters"
+        },
+        "view_groups": {
+          "items": {
+            "$ref": "#/definitions/website.config.ViewGroup"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "View groups"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Collection Config",
+      "description": "Collection configuration"
+    },
+    "website.config.ContentCollections": {
+      "properties": {
+        "posts": {
+          "$ref": "#/definitions/website.config.CollectionConfig",
+          "description": "Posts collection settings"
+        },
+        "pages": {
+          "$ref": "#/definitions/website.config.CollectionConfig",
+          "description": "Pages collection settings"
+        },
+        "custom": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CollectionConfig"
+          },
+          "type": "object",
+          "description": "Custom collections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Collections",
+      "description": "Content collections configuration"
+    },
+    "website.config.CustomWidget": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Widget name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Widget type"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Widget options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Widget",
+      "description": "Custom widget configuration"
+    },
+    "website.config.DecapBackend": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Backend name (\"git-gateway\", \"github\", \"gitlab\", \"test-repo\")"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository (for github/gitlab backends)"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Branch to use"
+        },
+        "api_root": {
+          "type": "string",
+          "description": "API root (for gitlab)"
+        },
+        "auth_endpoint": {
+          "type": "string",
+          "description": "Auth endpoint (for git-gateway)"
+        },
+        "cms_label_prefix": {
+          "type": "string",
+          "description": "CMS label prefix"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Backend",
+      "description": "Decap CMS backend configuration"
+    },
+    "website.config.EditorConfig": {
+      "properties": {
+        "preview": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editor Config",
+      "description": "Editor configuration"
+    },
+    "website.config.EditorialWorkflow": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable editorial workflow"
+        },
+        "publish_mode": {
+          "type": "string",
+          "description": "Publish mode (\"simple\", \"editorial_workflow\")"
+        },
+        "preview_context": {
+          "type": "string",
+          "description": "Preview context (site URL for previews)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editorial Workflow",
+      "description": "Editorial workflow configuration"
+    },
+    "website.config.GatsbyDecapIntegration": {
+      "properties": {
+        "enable_preview": {
+          "type": "boolean",
+          "description": "Enable Gatsby preview with Decap CMS"
+        },
+        "preview_update_delay": {
+          "type": "integer",
+          "description": "Preview update delay (milliseconds)"
+        },
+        "real_time_preview": {
+          "type": "boolean",
+          "description": "Enable real-time preview"
+        },
+        "preview_templates_path": {
+          "type": "string",
+          "description": "Custom preview templates path"
+        },
+        "widget_scripts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Widget scripts to load"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles to inject"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Decap Integration",
+      "description": "Gatsby + Decap CMS integration settings"
+    },
+    "website.config.SlugConfig": {
+      "properties": {
+        "encoding": {
+          "type": "string",
+          "description": "Slug encoding (\"unicode\", \"ascii\")"
+        },
+        "clean_accents": {
+          "type": "boolean",
+          "description": "Clean accents"
+        },
+        "sanitize_replacement": {
+          "type": "string",
+          "description": "Sanitize replacement character"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Slug Config",
+      "description": "Slug configuration"
+    },
+    "website.config.SortConfig": {
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field to sort by"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Sort direction (\"asc\", \"desc\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sort Config",
+      "description": "Sort configuration"
+    },
+    "website.config.ViewFilter": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Filter label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to filter"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Filter pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Filter",
+      "description": "View filter configuration"
+    },
+    "website.config.ViewGroup": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Group label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to group by"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Group",
+      "description": "View group configuration"
+    }
+  },
+  "title": "DECAPCMSSETTINGS Configuration Schema",
+  "description": "JSON Schema for DecapCMSSettings configuration"
+}

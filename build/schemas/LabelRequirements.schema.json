@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LabelRequirements",
+  "definitions": {
+    "LabelRequirements": {
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Require labels"
+        },
+        "visible_labels": {
+          "type": "boolean",
+          "description": "Visible labels"
+        },
+        "placeholder_not_label": {
+          "type": "boolean",
+          "description": "Placeholder as label"
+        },
+        "required_indication": {
+          "type": "string",
+          "description": "Required field indication"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Label Requirements",
+      "description": "Label requirements"
+    }
+  },
+  "title": "LABELREQUIREMENTS Configuration Schema",
+  "description": "JSON Schema for LabelRequirements configuration"
+}

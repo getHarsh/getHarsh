@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/WordCountRange",
+  "definitions": {
+    "WordCountRange": {
+      "properties": {
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Word Count Range"
+    }
+  },
+  "title": "WORDCOUNTRANGE Configuration Schema",
+  "description": "JSON Schema for WordCountRange configuration"
+}

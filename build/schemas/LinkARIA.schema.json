@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkARIA",
+  "definitions": {
+    "LinkARIA": {
+      "properties": {
+        "indicate_external": {
+          "type": "boolean",
+          "description": "External link indication"
+        },
+        "new_window_warning": {
+          "type": "boolean",
+          "description": "New window warning"
+        },
+        "indicate_download": {
+          "type": "boolean",
+          "description": "Download indication"
+        },
+        "indicate_current": {
+          "type": "boolean",
+          "description": "Current page indication"
+        },
+        "require_purpose": {
+          "type": "boolean",
+          "description": "Link purpose requirement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link ARIA",
+      "description": "Link ARIA configuration"
+    }
+  },
+  "title": "LINKARIA Configuration Schema",
+  "description": "JSON Schema for LinkARIA configuration"
+}

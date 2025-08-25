@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LoadingIndicators",
+  "definitions": {
+    "LoadingIndicators": {
+      "properties": {
+        "show_loading": {
+          "type": "boolean",
+          "description": "Show loading state"
+        },
+        "loading_text": {
+          "type": "string",
+          "description": "Loading text"
+        },
+        "text_alternative": {
+          "type": "boolean",
+          "description": "Spinner alternative"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Loading Indicators",
+      "description": "Loading indicators"
+    }
+  },
+  "title": "LOADINGINDICATORS Configuration Schema",
+  "description": "JSON Schema for LoadingIndicators configuration"
+}

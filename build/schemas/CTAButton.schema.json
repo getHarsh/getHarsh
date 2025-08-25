@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CTAButton",
+  "definitions": {
+    "CTAButton": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Button text (e.g., \"Get Started\", \"Learn More\")"
+        },
+        "url": {
+          "type": "string",
+          "description": "Button URL or action"
+        },
+        "variant": {
+          "type": "string",
+          "description": "Button variant (\"primary\", \"secondary\", \"ghost\", \"outline\")"
+        },
+        "size": {
+          "type": "string",
+          "description": "Button size (\"sm\", \"default\", \"lg\")"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon to display with button"
+        },
+        "track_click": {
+          "type": "boolean",
+          "description": "Track with analytics"
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Analytics event name"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CTA Button",
+      "description": "CTA button configuration"
+    }
+  },
+  "title": "CTABUTTON Configuration Schema",
+  "description": "JSON Schema for CTAButton configuration"
+}

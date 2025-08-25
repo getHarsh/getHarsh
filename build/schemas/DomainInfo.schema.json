@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DomainInfo",
+  "definitions": {
+    "DomainInfo": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Domain name (e.g., \"getHarsh.in\") - REQUIRED"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title (e.g., \"getHarsh\") - REQUIRED"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site description - REQUIRED"
+        },
+        "entity_key": {
+          "type": "string",
+          "description": "Legal entity key from ecosystem catalog (e.g., \"RTEPL\", \"DSPL\") - REQUIRED References ecosystem.legal_entities map"
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language code (e.g., \"en\")"
+        },
+        "domain_aliases": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domain aliases (other domains that point to this same content) These become Schema.org sameAs URLs Examples: [\"getHarsh.com\", \"getHarsh.dev\", \"getharsh.online\"]"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Info",
+      "description": "Basic domain information"
+    }
+  },
+  "title": "DOMAININFO Configuration Schema",
+  "description": "JSON Schema for DomainInfo configuration"
+}

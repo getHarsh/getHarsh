@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TableEnhancement",
+  "definitions": {
+    "TableEnhancement": {
+      "properties": {
+        "create_table_objects": {
+          "type": "boolean",
+          "description": "Create Table objects"
+        },
+        "include_captions": {
+          "type": "boolean",
+          "description": "Include table captions"
+        },
+        "create_datasets": {
+          "type": "boolean",
+          "description": "Create Dataset for data tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Enhancement",
+      "description": "Table enhancement"
+    }
+  },
+  "title": "TABLEENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for TableEnhancement configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocumentationIntegration",
+  "definitions": {
+    "DocumentationIntegration": {
+      "properties": {
+        "include_docs": {
+          "type": "boolean",
+          "description": "Include docs in Schema.org"
+        },
+        "docs_type": {
+          "type": "string",
+          "description": "Documentation type"
+        },
+        "include_api": {
+          "type": "boolean",
+          "description": "Include API docs"
+        },
+        "include_tutorials": {
+          "type": "boolean",
+          "description": "Include tutorials"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation Integration",
+      "description": "Documentation integration"
+    }
+  },
+  "title": "DOCUMENTATIONINTEGRATION Configuration Schema",
+  "description": "JSON Schema for DocumentationIntegration configuration"
+}

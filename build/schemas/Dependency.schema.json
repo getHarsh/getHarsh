@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Dependency",
+  "definitions": {
+    "Dependency": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dependency name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version or version range"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Purpose/description"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link to dependency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency",
+      "description": "Dependency information"
+    }
+  },
+  "title": "DEPENDENCY Configuration Schema",
+  "description": "JSON Schema for Dependency configuration"
+}

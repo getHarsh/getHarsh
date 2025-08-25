@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DataSubjectRights",
+  "definitions": {
+    "DataSubjectRights": {
+      "properties": {
+        "enable_portal": {
+          "type": "boolean",
+          "description": "Enable rights portal"
+        },
+        "portal_url": {
+          "type": "string",
+          "description": "Portal URL"
+        },
+        "supported_rights": {
+          "items": {
+            "enum": [
+              "DATA_RIGHT_UNSPECIFIED",
+              0,
+              "DATA_RIGHT_ACCESS",
+              1,
+              "DATA_RIGHT_RECTIFICATION",
+              2,
+              "DATA_RIGHT_ERASURE",
+              3,
+              "DATA_RIGHT_PORTABILITY",
+              4,
+              "DATA_RIGHT_RESTRICTION",
+              5,
+              "DATA_RIGHT_OBJECTION",
+              6,
+              "DATA_RIGHT_AUTOMATED_DECISION",
+              7
+            ]
+          },
+          "type": "array",
+          "title": "Data Right",
+          "description": "Data rights"
+        },
+        "response_time_days": {
+          "type": "integer",
+          "description": "Response time (days)"
+        },
+        "verification_required": {
+          "type": "boolean",
+          "description": "Verification required"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Subject Rights",
+      "description": "Data subject rights"
+    }
+  },
+  "title": "DATASUBJECTRIGHTS Configuration Schema",
+  "description": "JSON Schema for DataSubjectRights configuration"
+}

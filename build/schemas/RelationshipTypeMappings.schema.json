@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RelationshipTypeMappings",
+  "definitions": {
+    "RelationshipTypeMappings": {
+      "properties": {
+        "relationship_to_property": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org property e.g., \"RELATIONSHIP_FOUNDER\" -> \"founder\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n RELATIONSHIP TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= RELATIONSHIP TYPE MAPPINGS =============================================================================  Maps RelationshipType enum values to Schema.org relationships"
+    }
+  },
+  "title": "RELATIONSHIPTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for RelationshipTypeMappings configuration"
+}

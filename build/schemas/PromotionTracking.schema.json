@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PromotionTracking",
+  "definitions": {
+    "PromotionTracking": {
+      "properties": {
+        "track_impressions": {
+          "type": "boolean",
+          "description": "Track promotion impressions"
+        },
+        "track_clicks": {
+          "type": "boolean",
+          "description": "Track promotion clicks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Promotion Tracking",
+      "description": "Promotion tracking configuration"
+    }
+  },
+  "title": "PROMOTIONTRACKING Configuration Schema",
+  "description": "JSON Schema for PromotionTracking configuration"
+}

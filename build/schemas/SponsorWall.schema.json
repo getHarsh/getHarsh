@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SponsorWall",
+  "definitions": {
+    "SponsorWall": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable sponsor wall"
+        },
+        "page_path": {
+          "type": "string",
+          "description": "Wall position (\"/sponsors\" page)"
+        },
+        "group_by_tier": {
+          "type": "boolean",
+          "description": "Group by tier"
+        },
+        "show_amounts": {
+          "type": "boolean",
+          "description": "Show amounts"
+        },
+        "allow_anonymous": {
+          "type": "boolean",
+          "description": "Anonymous option"
+        },
+        "update_frequency": {
+          "type": "string",
+          "description": "Update frequency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Wall",
+      "description": "Sponsor wall configuration"
+    }
+  },
+  "title": "SPONSORWALL Configuration Schema",
+  "description": "JSON Schema for SponsorWall configuration"
+}

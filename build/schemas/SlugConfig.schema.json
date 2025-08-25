@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SlugConfig",
+  "definitions": {
+    "SlugConfig": {
+      "properties": {
+        "encoding": {
+          "type": "string",
+          "description": "Slug encoding (\"unicode\", \"ascii\")"
+        },
+        "clean_accents": {
+          "type": "boolean",
+          "description": "Clean accents"
+        },
+        "sanitize_replacement": {
+          "type": "string",
+          "description": "Sanitize replacement character"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Slug Config",
+      "description": "Slug configuration"
+    }
+  },
+  "title": "SLUGCONFIG Configuration Schema",
+  "description": "JSON Schema for SlugConfig configuration"
+}

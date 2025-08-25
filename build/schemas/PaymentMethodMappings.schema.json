@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentMethodMappings",
+  "definitions": {
+    "PaymentMethodMappings": {
+      "properties": {
+        "payment_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"PAYMENT_METHOD_PAYPAL\" -> \"PaymentService\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PAYMENT METHOD MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PAYMENT METHOD MAPPINGS =============================================================================  Maps PaymentMethod enum values to Schema.org payment types"
+    }
+  },
+  "title": "PAYMENTMETHODMAPPINGS Configuration Schema",
+  "description": "JSON Schema for PaymentMethodMappings configuration"
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapField",
+  "definitions": {
+    "DecapField": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "widget": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "default_value": {
+          "type": "string"
+        },
+        "options": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "For select widgets"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Field",
+      "description": "Decap field configuration"
+    }
+  },
+  "title": "DECAPFIELD Configuration Schema",
+  "description": "JSON Schema for DecapField configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleConsentUpdate",
+  "definitions": {
+    "GoogleConsentUpdate": {
+      "properties": {
+        "update_command": {
+          "type": "string",
+          "description": "Update command"
+        },
+        "update_event": {
+          "type": "string",
+          "description": "Update on event"
+        },
+        "batch_updates": {
+          "type": "boolean",
+          "description": "Batch updates"
+        },
+        "update_delay_ms": {
+          "type": "integer",
+          "description": "Update delay (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent Update",
+      "description": "Google consent update settings"
+    }
+  },
+  "title": "GOOGLECONSENTUPDATE Configuration Schema",
+  "description": "JSON Schema for GoogleConsentUpdate configuration"
+}

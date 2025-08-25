@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DataRetention",
+  "definitions": {
+    "DataRetention": {
+      "properties": {
+        "default_period_days": {
+          "type": "integer",
+          "description": "Default retention period (days)"
+        },
+        "category_retention": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Category-specific retention"
+        },
+        "auto_delete": {
+          "type": "boolean",
+          "description": "Auto-delete enabled"
+        },
+        "policy_url": {
+          "type": "string",
+          "description": "Retention policy URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Retention",
+      "description": "Data retention settings"
+    }
+  },
+  "title": "DATARETENTION Configuration Schema",
+  "description": "JSON Schema for DataRetention configuration"
+}

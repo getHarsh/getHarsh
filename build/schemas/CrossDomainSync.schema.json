@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CrossDomainSync",
+  "definitions": {
+    "CrossDomainSync": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable synchronization"
+        },
+        "method": {
+          "enum": [
+            "SYNC_METHOD_UNSPECIFIED",
+            0,
+            "SYNC_METHOD_LOCAL_STORAGE",
+            1,
+            "SYNC_METHOD_COOKIE",
+            2,
+            "SYNC_METHOD_POST_MESSAGE",
+            3,
+            "SYNC_METHOD_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Sync Method",
+          "description": "Sync method"
+        },
+        "domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Sync domains"
+        },
+        "sync_key": {
+          "type": "string",
+          "description": "Sync key"
+        },
+        "events": {
+          "$ref": "#/definitions/website.config.consent.SyncEvents",
+          "description": "Sync events"
+        },
+        "conflict_resolution": {
+          "enum": [
+            "CONFLICT_RESOLUTION_UNSPECIFIED",
+            0,
+            "CONFLICT_RESOLUTION_MOST_RECENT",
+            1,
+            "CONFLICT_RESOLUTION_MOST_RESTRICTIVE",
+            2,
+            "CONFLICT_RESOLUTION_LEAST_RESTRICTIVE",
+            3,
+            "CONFLICT_RESOLUTION_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Conflict Resolution",
+          "description": "Conflict resolution strategy"
+        },
+        "security": {
+          "$ref": "#/definitions/website.config.consent.SyncSecurity",
+          "description": "Sync security"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Domain Sync",
+      "description": "Cross-domain synchronization"
+    },
+    "website.config.consent.SyncEvents": {
+      "properties": {
+        "on_consent_given": {
+          "type": "boolean",
+          "description": "Sync on consent given"
+        },
+        "on_consent_changed": {
+          "type": "boolean",
+          "description": "Sync on consent changed"
+        },
+        "on_page_load": {
+          "type": "boolean",
+          "description": "Sync on page load"
+        },
+        "sync_interval_ms": {
+          "type": "integer",
+          "description": "Sync interval (ms)"
+        },
+        "custom_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom sync events"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sync Events",
+      "description": "Sync events configuration"
+    },
+    "website.config.consent.SyncSecurity": {
+      "properties": {
+        "encrypt": {
+          "type": "boolean",
+          "description": "Enable encryption"
+        },
+        "verify_origin": {
+          "type": "boolean",
+          "description": "Verify origin"
+        },
+        "allowed_origins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Allowed origins"
+        },
+        "hmac_validation": {
+          "type": "boolean",
+          "description": "HMAC validation"
+        },
+        "hmac_secret": {
+          "type": "string",
+          "description": "HMAC secret key"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sync Security",
+      "description": "Sync security settings"
+    }
+  },
+  "title": "CROSSDOMAINSYNC Configuration Schema",
+  "description": "JSON Schema for CrossDomainSync configuration"
+}

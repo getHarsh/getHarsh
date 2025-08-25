@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsLayoutStyleMappings",
+  "definitions": {
+    "DocsLayoutStyleMappings": {
+      "properties": {
+        "layout_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> layout name e.g., \"DOCS_LAYOUT_STYLE_SINGLE_PAGE\" -> \"Single Page\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DOCS LAYOUT STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DOCS LAYOUT STYLE MAPPINGS =============================================================================  Maps DocsLayoutStyle enum to documentation structures"
+    }
+  },
+  "title": "DOCSLAYOUTSTYLEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for DocsLayoutStyleMappings configuration"
+}

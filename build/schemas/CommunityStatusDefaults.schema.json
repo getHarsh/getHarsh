@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CommunityStatusDefaults",
+  "definitions": {
+    "CommunityStatusDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.CommunityStatusMapping",
+          "description": "COMMUNITY_STATUS_UNSPECIFIED  status_name: \"\" dissolution_state: \"\" activity_level: \"\""
+        },
+        "forming": {
+          "$ref": "#/definitions/website.config.CommunityStatusMapping",
+          "description": "COMMUNITY_STATUS_FORMING  status_name: \"Forming\" dissolution_state: \"Active\" activity_level: \"Growing\""
+        },
+        "active": {
+          "$ref": "#/definitions/website.config.CommunityStatusMapping",
+          "description": "COMMUNITY_STATUS_ACTIVE  status_name: \"Active\" dissolution_state: \"Active\" activity_level: \"High\""
+        },
+        "inactive": {
+          "$ref": "#/definitions/website.config.CommunityStatusMapping",
+          "description": "COMMUNITY_STATUS_INACTIVE  status_name: \"Inactive\" dissolution_state: \"Suspended\" activity_level: \"Low\""
+        },
+        "dissolved": {
+          "$ref": "#/definitions/website.config.CommunityStatusMapping",
+          "description": "COMMUNITY_STATUS_DISSOLVED  status_name: \"Dissolved\" dissolution_state: \"Dissolved\" activity_level: \"None\""
+        },
+        "merged": {
+          "$ref": "#/definitions/website.config.CommunityStatusMapping",
+          "description": "COMMUNITY_STATUS_MERGED  status_name: \"Merged\" dissolution_state: \"Merged\" activity_level: \"Redirected\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Community Status Defaults",
+      "description": "Complete community status mappings"
+    },
+    "website.config.CommunityStatusMapping": {
+      "properties": {
+        "status_name": {
+          "type": "string",
+          "description": "Status name"
+        },
+        "dissolution_state": {
+          "type": "string",
+          "description": "Organization dissolution state"
+        },
+        "activity_level": {
+          "type": "string",
+          "description": "Activity level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Community Status Mapping"
+    }
+  },
+  "title": "COMMUNITYSTATUSDEFAULTS Configuration Schema",
+  "description": "JSON Schema for CommunityStatusDefaults configuration"
+}

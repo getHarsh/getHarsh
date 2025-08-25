@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VideoTracking",
+  "definitions": {
+    "VideoTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable video tracking"
+        },
+        "track_youtube": {
+          "type": "boolean",
+          "description": "Track YouTube videos"
+        },
+        "track_html5": {
+          "type": "boolean",
+          "description": "Track HTML5 videos"
+        },
+        "progress_thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Video interaction thresholds (percentages)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Tracking",
+      "description": "Video tracking configuration"
+    }
+  },
+  "title": "VIDEOTRACKING Configuration Schema",
+  "description": "JSON Schema for VideoTracking configuration"
+}

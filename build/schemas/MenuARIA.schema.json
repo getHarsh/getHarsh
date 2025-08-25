@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MenuARIA",
+  "definitions": {
+    "MenuARIA": {
+      "properties": {
+        "orientation": {
+          "type": "string",
+          "description": "Menu orientation"
+        },
+        "indicate_submenu": {
+          "type": "boolean",
+          "description": "Submenu indication"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "Menu item states"
+        },
+        "enhanced_keyboard": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Menu ARIA",
+      "description": "Menu ARIA configuration"
+    }
+  },
+  "title": "MENUARIA Configuration Schema",
+  "description": "JSON Schema for MenuARIA configuration"
+}

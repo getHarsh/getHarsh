@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/IndustryPage",
+  "definitions": {
+    "IndustryPage": {
+      "properties": {
+        "slug": {
+          "type": "string",
+          "description": "URL slug (e.g., \"customer-support\")"
+        },
+        "meta_title": {
+          "type": "string",
+          "description": "SEO metadata"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "meta_keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hero_title": {
+          "type": "string",
+          "description": "Page content"
+        },
+        "hero_subtitle": {
+          "type": "string"
+        },
+        "main_content": {
+          "type": "string",
+          "description": "Markdown supported"
+        },
+        "benefits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Industry-specific benefits"
+        },
+        "use_cases": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "case_studies": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.CaseStudy"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Case studies for this industry"
+        },
+        "service_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related services"
+        },
+        "industry_schema_type": {
+          "type": "string",
+          "description": "Schema.org industry classification  e.g., \"CustomerService\", \"HealthcareIndustry\""
+        },
+        "primary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "CTAs"
+        },
+        "secondary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA"
+        },
+        "is_cms_managed": {
+          "type": "boolean",
+          "description": "Content managed by Decap CMS"
+        },
+        "cms_collection": {
+          "type": "string",
+          "description": "Decap collection name"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Industry Page",
+      "description": "Industry/use-case specific page"
+    },
+    "ecosystem.services.CaseStudy": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "client": {
+          "type": "string"
+        },
+        "challenge": {
+          "type": "string"
+        },
+        "solution": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        },
+        "metrics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "e.g., \"50% cost reduction\""
+        },
+        "testimonial": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Case Study",
+      "description": "Case study for industry pages"
+    },
+    "ecosystem.services.ServiceCTA": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "description": "\"link\", \"form\", \"modal\", \"calendar\""
+        },
+        "target": {
+          "type": "string",
+          "description": "URL, form ID, or calendar ID"
+        },
+        "style": {
+          "type": "string",
+          "description": "\"primary\", \"secondary\", \"accent\", \"ghost\""
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Tracking  GTM event name"
+        },
+        "event_params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional GTM parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA",
+      "description": "Service CTA configuration"
+    }
+  },
+  "title": "INDUSTRYPAGE Configuration Schema",
+  "description": "JSON Schema for IndustryPage configuration"
+}

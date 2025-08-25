@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AudioRecording",
+  "definitions": {
+    "AudioRecording": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Google Drive URL or direct URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration in ISO 8601 format"
+        },
+        "recorded_date": {
+          "type": "string",
+          "description": "Recording date"
+        },
+        "narrator_key": {
+          "type": "string",
+          "description": "Narrator (usually author key)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title/description"
+        },
+        "transcript_url": {
+          "type": "string",
+          "description": "Transcript URL (if available)"
+        },
+        "google_drive": {
+          "$ref": "#/definitions/website.config.GoogleDriveMedia",
+          "description": "Google Drive specific"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Recording",
+      "description": "Audio recording configuration"
+    },
+    "website.config.GoogleDriveMedia": {
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "Google Drive file ID"
+        },
+        "folder_id": {
+          "type": "string",
+          "description": "Folder ID where media is stored"
+        },
+        "enable_streaming": {
+          "type": "boolean",
+          "description": "Enable direct streaming"
+        },
+        "share_setting": {
+          "type": "string",
+          "description": "Share settings (public, restricted, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Drive Media",
+      "description": "Google Drive media integration"
+    }
+  },
+  "title": "AUDIORECORDING Configuration Schema",
+  "description": "JSON Schema for AudioRecording configuration"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProductTracking",
+  "definitions": {
+    "ProductTracking": {
+      "properties": {
+        "track_impressions": {
+          "type": "boolean",
+          "description": "Track product impressions"
+        },
+        "track_clicks": {
+          "type": "boolean",
+          "description": "Track product clicks"
+        },
+        "track_details": {
+          "type": "boolean",
+          "description": "Track product details"
+        },
+        "list_names": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Product list names"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Product Tracking",
+      "description": "Product tracking configuration"
+    }
+  },
+  "title": "PRODUCTTRACKING Configuration Schema",
+  "description": "JSON Schema for ProductTracking configuration"
+}

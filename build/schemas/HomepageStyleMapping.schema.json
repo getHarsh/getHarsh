@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HomepageStyleMapping",
+  "definitions": {
+    "HomepageStyleMapping": {
+      "properties": {
+        "template_name": {
+          "type": "string",
+          "description": "Template name"
+        },
+        "components": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary components"
+        },
+        "layout_grid": {
+          "type": "string",
+          "description": "Layout grid"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Homepage Style Mapping"
+    }
+  },
+  "title": "HOMEPAGESTYLEMAPPING Configuration Schema",
+  "description": "JSON Schema for HomepageStyleMapping configuration"
+}

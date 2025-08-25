@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocNavigationStyleMapping",
+  "definitions": {
+    "DocNavigationStyleMapping": {
+      "properties": {
+        "style_name": {
+          "type": "string",
+          "description": "Style name"
+        },
+        "css_classes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "CSS class names"
+        },
+        "layout_type": {
+          "type": "string",
+          "description": "Layout type"
+        },
+        "mobile_behavior": {
+          "type": "string",
+          "description": "Mobile behavior"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Navigation Style Mapping"
+    }
+  },
+  "title": "DOCNAVIGATIONSTYLEMAPPING Configuration Schema",
+  "description": "JSON Schema for DocNavigationStyleMapping configuration"
+}

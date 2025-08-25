@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/InteractiveAccessibility",
+  "definitions": {
+    "InteractiveAccessibility": {
+      "properties": {
+        "buttons": {
+          "$ref": "#/definitions/website.config.aria.ButtonAccessibility",
+          "description": "Button accessibility"
+        },
+        "links": {
+          "$ref": "#/definitions/website.config.aria.LinkAccessibility",
+          "description": "Link accessibility"
+        },
+        "modals": {
+          "$ref": "#/definitions/website.config.aria.ModalAccessibility",
+          "description": "Modal accessibility"
+        },
+        "tooltips": {
+          "$ref": "#/definitions/website.config.aria.TooltipAccessibility",
+          "description": "Tooltip accessibility"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Interactive Accessibility",
+      "description": "Interactive elements accessibility"
+    },
+    "website.config.aria.ButtonAccessibility": {
+      "properties": {
+        "require_names": {
+          "type": "boolean",
+          "description": "Accessible names"
+        },
+        "proper_semantics": {
+          "type": "boolean",
+          "description": "Button vs link"
+        },
+        "disabled": {
+          "$ref": "#/definitions/website.config.aria.DisabledHandling",
+          "description": "Disabled handling"
+        },
+        "icons": {
+          "$ref": "#/definitions/website.config.aria.IconButtons",
+          "description": "Icon buttons"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Button Accessibility",
+      "description": "Button accessibility"
+    },
+    "website.config.aria.DisabledHandling": {
+      "properties": {
+        "explain_disabled": {
+          "type": "boolean",
+          "description": "Explain why disabled"
+        },
+        "keep_focusable": {
+          "type": "boolean",
+          "description": "Keyboard focusable"
+        },
+        "provide_alternatives": {
+          "type": "boolean",
+          "description": "Alternative actions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Disabled Handling",
+      "description": "Disabled handling"
+    },
+    "website.config.aria.IconButtons": {
+      "properties": {
+        "require_text": {
+          "type": "boolean",
+          "description": "Require text alternative"
+        },
+        "show_tooltip": {
+          "type": "boolean",
+          "description": "Tooltip on hover"
+        },
+        "sr_text": {
+          "type": "boolean",
+          "description": "Screen reader text"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Icon Buttons",
+      "description": "Icon button configuration"
+    },
+    "website.config.aria.LinkAccessibility": {
+      "properties": {
+        "descriptive_text": {
+          "type": "boolean",
+          "description": "Descriptive text"
+        },
+        "avoid_generic": {
+          "type": "boolean",
+          "description": "Avoid \"click here\""
+        },
+        "purpose": {
+          "$ref": "#/definitions/website.config.aria.LinkPurpose",
+          "description": "Link purpose"
+        },
+        "combine_adjacent": {
+          "type": "boolean",
+          "description": "Adjacent links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Accessibility",
+      "description": "Link accessibility"
+    },
+    "website.config.aria.LinkPurpose": {
+      "properties": {
+        "indicate_file_type": {
+          "type": "boolean",
+          "description": "File type indication"
+        },
+        "indicate_file_size": {
+          "type": "boolean",
+          "description": "File size indication"
+        },
+        "indicate_external": {
+          "type": "boolean",
+          "description": "External indication"
+        },
+        "warn_new_window": {
+          "type": "boolean",
+          "description": "New window warning"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Purpose",
+      "description": "Link purpose indication"
+    },
+    "website.config.aria.ModalAccessibility": {
+      "properties": {
+        "focus_management": {
+          "type": "boolean",
+          "description": "Focus management"
+        },
+        "escape_close": {
+          "type": "boolean",
+          "description": "Escape to close"
+        },
+        "prevent_background": {
+          "type": "boolean",
+          "description": "Background interaction"
+        },
+        "require_title": {
+          "type": "boolean",
+          "description": "Title requirement"
+        },
+        "require_close": {
+          "type": "boolean",
+          "description": "Close button"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Modal Accessibility",
+      "description": "Modal accessibility"
+    },
+    "website.config.aria.TooltipAccessibility": {
+      "properties": {
+        "keyboard_access": {
+          "type": "boolean",
+          "description": "Keyboard accessible"
+        },
+        "persistent": {
+          "type": "boolean",
+          "description": "Persistent on hover"
+        },
+        "dismissible": {
+          "type": "boolean",
+          "description": "Dismissible"
+        },
+        "use_describedby": {
+          "type": "boolean",
+          "description": "ARIA describedby"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tooltip Accessibility",
+      "description": "Tooltip accessibility"
+    }
+  },
+  "title": "INTERACTIVEACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for InteractiveAccessibility configuration"
+}

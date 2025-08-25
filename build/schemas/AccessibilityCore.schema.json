@@ -1,0 +1,408 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AccessibilityCore",
+  "definitions": {
+    "AccessibilityCore": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable accessibility features"
+        },
+        "compliance_level": {
+          "enum": [
+            "WCAG_LEVEL_UNSPECIFIED",
+            0,
+            "WCAG_LEVEL_A",
+            1,
+            "WCAG_LEVEL_AA",
+            2,
+            "WCAG_LEVEL_AAA",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "WCAG Level",
+          "description": "WCAG compliance levels"
+        },
+        "language": {
+          "$ref": "#/definitions/website.config.aria.LanguageSettings",
+          "description": "Language settings"
+        },
+        "skip_links": {
+          "$ref": "#/definitions/website.config.aria.SkipLinks",
+          "description": "Skip links configuration"
+        },
+        "landmarks": {
+          "$ref": "#/definitions/website.config.aria.Landmarks",
+          "description": "Landmarks configuration"
+        },
+        "live_regions": {
+          "$ref": "#/definitions/website.config.aria.LiveRegions",
+          "description": "Live regions configuration"
+        },
+        "error_handling": {
+          "$ref": "#/definitions/website.config.aria.ErrorHandling",
+          "description": "Error handling"
+        },
+        "statement": {
+          "$ref": "#/definitions/website.config.aria.AccessibilityStatement",
+          "description": "Accessibility statement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accessibility Core",
+      "description": "Core accessibility settings"
+    },
+    "website.config.aria.AccessibilityStatement": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable statement page"
+        },
+        "url": {
+          "type": "string",
+          "description": "Statement URL"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Last updated date"
+        },
+        "conformance": {
+          "type": "string",
+          "description": "Conformance level"
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact information"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accessibility Statement",
+      "description": "Accessibility statement"
+    },
+    "website.config.aria.CustomLandmark": {
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "Landmark role"
+        },
+        "label": {
+          "type": "string",
+          "description": "Landmark label"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Landmark",
+      "description": "Custom landmark"
+    },
+    "website.config.aria.CustomLiveRegion": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Region identifier"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "config": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Live Region",
+      "description": "Custom live region"
+    },
+    "website.config.aria.ErrorHandling": {
+      "properties": {
+        "announce_errors": {
+          "type": "boolean",
+          "description": "Announce errors to screen readers"
+        },
+        "error_format": {
+          "type": "string",
+          "description": "Error message format"
+        },
+        "associate_with_fields": {
+          "type": "boolean",
+          "description": "Associate errors with fields"
+        },
+        "show_error_summary": {
+          "type": "boolean",
+          "description": "Error summary"
+        },
+        "focus_on_error": {
+          "type": "boolean",
+          "description": "Focus on first error"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Handling",
+      "description": "Error handling for accessibility"
+    },
+    "website.config.aria.LandmarkConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable this landmark"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        },
+        "aria_labelledby": {
+          "type": "string",
+          "description": "ARIA labelledby"
+        },
+        "multiple_allowed": {
+          "type": "boolean",
+          "description": "Multiple instances handling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Landmark Config",
+      "description": "Landmark configuration"
+    },
+    "website.config.aria.Landmarks": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ARIA landmarks"
+        },
+        "main": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Main landmark"
+        },
+        "navigation": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Navigation landmark"
+        },
+        "banner": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Banner landmark"
+        },
+        "complementary": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Complementary landmark"
+        },
+        "contentinfo": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Content info landmark"
+        },
+        "search": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Search landmark"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.CustomLandmark"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Landmarks",
+      "description": "Landmarks configuration"
+    },
+    "website.config.aria.LanguageSettings": {
+      "properties": {
+        "primary_language": {
+          "type": "string",
+          "description": "Primary language code"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Language direction (ltr/rtl)"
+        },
+        "multi_language": {
+          "type": "boolean",
+          "description": "Multi-language support"
+        },
+        "language_switcher_label": {
+          "type": "string",
+          "description": "Language switcher ARIA"
+        },
+        "hreflang_enabled": {
+          "type": "boolean",
+          "description": "Hreflang implementation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Language Settings",
+      "description": "Language settings for accessibility"
+    },
+    "website.config.aria.LiveRegionConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable this live region"
+        },
+        "politeness": {
+          "enum": [
+            "POLITENESS_LEVEL_UNSPECIFIED",
+            0,
+            "POLITENESS_LEVEL_OFF",
+            1,
+            "POLITENESS_LEVEL_POLITE",
+            2,
+            "POLITENESS_LEVEL_ASSERTIVE",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Politeness Level",
+          "description": "Politeness levels for live regions"
+        },
+        "atomic": {
+          "type": "boolean",
+          "description": "Atomic updates"
+        },
+        "relevant": {
+          "type": "string",
+          "description": "Relevant changes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Live Region Config",
+      "description": "Live region configuration"
+    },
+    "website.config.aria.LiveRegions": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable live regions"
+        },
+        "status": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Status messages"
+        },
+        "alerts": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Alert messages"
+        },
+        "progress": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Progress indicators"
+        },
+        "notifications": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Notifications"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.CustomLiveRegion"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom live regions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Live Regions",
+      "description": "Live regions configuration"
+    },
+    "website.config.aria.SkipLink": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Link text"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target element ID"
+        },
+        "shortcut": {
+          "type": "string",
+          "description": "Keyboard shortcut"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Link",
+      "description": "Individual skip link"
+    },
+    "website.config.aria.SkipLinkStyling": {
+      "properties": {
+        "show_on_focus": {
+          "type": "boolean",
+          "description": "Show on focus only"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position"
+        },
+        "z_index": {
+          "type": "integer",
+          "description": "Z-index"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Custom CSS class"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Link Styling",
+      "description": "Skip link styling"
+    },
+    "website.config.aria.SkipLinks": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable skip links"
+        },
+        "links": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.SkipLink"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Skip link items"
+        },
+        "styling": {
+          "$ref": "#/definitions/website.config.aria.SkipLinkStyling",
+          "description": "Skip link styling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Links",
+      "description": "Skip links configuration"
+    }
+  },
+  "title": "ACCESSIBILITYCORE Configuration Schema",
+  "description": "JSON Schema for AccessibilityCore configuration"
+}

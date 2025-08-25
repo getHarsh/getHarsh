@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AuthTypeMappings",
+  "definitions": {
+    "AuthTypeMappings": {
+      "properties": {
+        "auth_to_scheme": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> scheme type e.g., \"AUTH_TYPE_OAUTH2\" -> \"OAuth2\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n AUTHENTICATION TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= AUTHENTICATION TYPE MAPPINGS =============================================================================  Maps authentication types to security schemes"
+    }
+  },
+  "title": "AUTHTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for AuthTypeMappings configuration"
+}

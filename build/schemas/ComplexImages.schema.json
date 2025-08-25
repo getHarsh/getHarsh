@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ComplexImages",
+  "definitions": {
+    "ComplexImages": {
+      "properties": {
+        "require_description": {
+          "type": "boolean",
+          "description": "Require descriptions"
+        },
+        "description_format": {
+          "type": "string",
+          "description": "Description format"
+        },
+        "link_to_description": {
+          "type": "boolean",
+          "description": "Link to description"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Complex Images",
+      "description": "Complex images handling"
+    }
+  },
+  "title": "COMPLEXIMAGES Configuration Schema",
+  "description": "JSON Schema for ComplexImages configuration"
+}

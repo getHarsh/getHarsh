@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CalendarService",
+  "definitions": {
+    "CalendarService": {
+      "properties": {
+        "appointment_calendar_id": {
+          "type": "string",
+          "description": "Appointment calendar ID"
+        },
+        "booking_url": {
+          "type": "string",
+          "description": "Booking URL"
+        },
+        "embed_enabled": {
+          "type": "boolean",
+          "description": "Enable embedding"
+        },
+        "embed_height": {
+          "type": "integer",
+          "description": "Embed height"
+        },
+        "time_zone": {
+          "type": "string",
+          "description": "Time zone"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Calendar Service",
+      "description": "Google Calendar service configuration"
+    }
+  },
+  "title": "CALENDARSERVICE Configuration Schema",
+  "description": "JSON Schema for CalendarService configuration"
+}

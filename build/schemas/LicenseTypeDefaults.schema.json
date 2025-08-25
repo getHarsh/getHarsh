@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LicenseTypeDefaults",
+  "definitions": {
+    "LicenseTypeDefaults": {
+      "properties": {
+        "mit": {
+          "$ref": "#/definitions/website.config.LicenseTypeMapping",
+          "description": "LICENSE_TYPE_MIT  spdx_id: \"MIT\" license_url: \"https://opensource.org/licenses/MIT\" name: \"MIT License\" osi_approved: true license_type: \"permissive\""
+        },
+        "apache_2_0": {
+          "$ref": "#/definitions/website.config.LicenseTypeMapping",
+          "description": "LICENSE_TYPE_APACHE_2_0  spdx_id: \"Apache-2.0\" license_url: \"https://opensource.org/licenses/Apache-2.0\" name: \"Apache License 2.0\" osi_approved: true license_type: \"permissive\""
+        },
+        "proprietary": {
+          "$ref": "#/definitions/website.config.LicenseTypeMapping",
+          "description": "LICENSE_TYPE_PROPRIETARY  spdx_id: \"Proprietary\" license_url: \"\" name: \"Proprietary License\" osi_approved: false license_type: \"proprietary\""
+        },
+        "cc_by_4_0": {
+          "$ref": "#/definitions/website.config.LicenseTypeMapping",
+          "description": "LICENSE_TYPE_CC_BY_4_0  spdx_id: \"CC-BY-4.0\" license_url: \"https://creativecommons.org/licenses/by/4.0/\" name: \"Creative Commons Attribution 4.0 International\" osi_approved: false license_type: \"content\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "License Type Defaults",
+      "description": "Complete license type mappings Only supporting: MIT, Apache 2.0, Creative Commons with attribution, and Proprietary"
+    },
+    "website.config.LicenseTypeMapping": {
+      "properties": {
+        "spdx_id": {
+          "type": "string",
+          "description": "SPDX identifier"
+        },
+        "license_url": {
+          "type": "string",
+          "description": "License URL"
+        },
+        "name": {
+          "type": "string",
+          "description": "License name"
+        },
+        "osi_approved": {
+          "type": "boolean",
+          "description": "OSI approved"
+        },
+        "license_type": {
+          "type": "string",
+          "description": "License type (permissive, copyleft, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "License Type Mapping"
+    }
+  },
+  "title": "LICENSETYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for LicenseTypeDefaults configuration"
+}

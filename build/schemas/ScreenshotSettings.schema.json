@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ScreenshotSettings",
+  "definitions": {
+    "ScreenshotSettings": {
+      "properties": {
+        "include_screenshots": {
+          "type": "boolean",
+          "description": "Include screenshots"
+        },
+        "type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Screenshot type mapping"
+        },
+        "max_screenshots": {
+          "type": "integer",
+          "description": "Max screenshots"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screenshot Settings",
+      "description": "Screenshot settings"
+    }
+  },
+  "title": "SCREENSHOTSETTINGS Configuration Schema",
+  "description": "JSON Schema for ScreenshotSettings configuration"
+}

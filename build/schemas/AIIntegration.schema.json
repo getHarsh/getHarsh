@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AIIntegration",
+  "definitions": {
+    "AIIntegration": {
+      "properties": {
+        "llms_txt_url": {
+          "type": "string",
+          "description": "LLMs.txt location (static file)"
+        },
+        "robots_txt_url": {
+          "type": "string",
+          "description": "robots.txt location"
+        },
+        "ai_friendly_structured_data": {
+          "type": "boolean",
+          "description": "Whether the site has AI-friendly structured data"
+        },
+        "structured_data_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Static data files available for AI consumption"
+        },
+        "crawl_patterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Recommended crawl patterns"
+        },
+        "static_indexes": {
+          "$ref": "#/definitions/website.config.AIStaticIndexes",
+          "description": "Static indexes for AI processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Integration",
+      "description": "AI integration information (for static GitHub Pages sites)"
+    },
+    "website.config.AIStaticIndexes": {
+      "properties": {
+        "full_content": {
+          "type": "string",
+          "description": "Full content dump (e.g., /ai/content.json)"
+        },
+        "summaries": {
+          "type": "string",
+          "description": "Post summaries with embeddings-friendly text (e.g., /ai/summaries.json)"
+        },
+        "navigation": {
+          "type": "string",
+          "description": "Structured navigation (e.g., /ai/navigation.json)"
+        },
+        "knowledge_graph": {
+          "type": "string",
+          "description": "Knowledge graph relationships (e.g., /ai/graph.json)"
+        },
+        "qa_pairs": {
+          "type": "string",
+          "description": "Q&A pairs if available (e.g., /ai/qa.json)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Static Indexes",
+      "description": "Static index files for AI consumption (all JSON files)"
+    }
+  },
+  "title": "AIINTEGRATION Configuration Schema",
+  "description": "JSON Schema for AIIntegration configuration"
+}

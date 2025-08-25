@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AudioPlayerDefaults",
+  "definitions": {
+    "AudioPlayerDefaults": {
+      "properties": {
+        "auto_play": {
+          "type": "boolean",
+          "description": "Auto play"
+        },
+        "show_download": {
+          "type": "boolean",
+          "description": "Show download button"
+        },
+        "preload": {
+          "type": "string",
+          "description": "Preload strategy (\"none\", \"metadata\", \"auto\")"
+        },
+        "default_volume": {
+          "type": "number",
+          "description": "Default volume (0-1)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Player Defaults",
+      "description": "Audio player defaults"
+    }
+  },
+  "title": "AUDIOPLAYERDEFAULTS Configuration Schema",
+  "description": "JSON Schema for AudioPlayerDefaults configuration"
+}

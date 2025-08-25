@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIEndpoints",
+  "definitions": {
+    "APIEndpoints": {
+      "properties": {
+        "get_consent": {
+          "type": "string",
+          "description": "Get consent endpoint"
+        },
+        "update_consent": {
+          "type": "string",
+          "description": "Update consent endpoint"
+        },
+        "delete_consent": {
+          "type": "string",
+          "description": "Delete consent endpoint"
+        },
+        "export_data": {
+          "type": "string",
+          "description": "Export data endpoint"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Endpoints",
+      "description": "API endpoints"
+    }
+  },
+  "title": "APIENDPOINTS Configuration Schema",
+  "description": "JSON Schema for APIEndpoints configuration"
+}

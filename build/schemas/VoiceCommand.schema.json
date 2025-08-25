@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VoiceCommand",
+  "definitions": {
+    "VoiceCommand": {
+      "properties": {
+        "phrase": {
+          "type": "string",
+          "description": "Command phrase"
+        },
+        "action": {
+          "type": "string",
+          "description": "Action"
+        },
+        "context": {
+          "type": "string",
+          "description": "Context"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Voice Command",
+      "description": "Voice command"
+    }
+  },
+  "title": "VOICECOMMAND Configuration Schema",
+  "description": "JSON Schema for VoiceCommand configuration"
+}

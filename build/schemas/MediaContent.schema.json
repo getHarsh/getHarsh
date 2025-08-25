@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MediaContent",
+  "definitions": {
+    "MediaContent": {
+      "properties": {
+        "type": {
+          "enum": [
+            "MEDIA_TYPE_UNSPECIFIED",
+            0,
+            "MEDIA_TYPE_IMAGE",
+            1,
+            "MEDIA_TYPE_VIDEO",
+            2,
+            "MEDIA_TYPE_AUDIO",
+            3,
+            "MEDIA_TYPE_CODE",
+            4,
+            "MEDIA_TYPE_GIST",
+            5,
+            "MEDIA_TYPE_DIAGRAM",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Media Type",
+          "description": "Media types for content Maps to Schema.org MediaObject, AudioObject, VideoObject, ImageObject"
+        },
+        "content_url": {
+          "type": "string",
+          "description": "Direct URL to media file"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embeddable URL (for YouTube, Vimeo, etc.)"
+        },
+        "thumbnail_url": {
+          "type": "string",
+          "description": "Thumbnail/preview image URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration in ISO 8601 format (e.g., \"PT1M33S\")"
+        },
+        "transcript": {
+          "type": "string",
+          "description": "Transcript or description"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the media"
+        },
+        "encoding_format": {
+          "type": "string",
+          "description": "Media encoding format (MIME type)"
+        },
+        "content_size": {
+          "type": "integer",
+          "description": "File size in bytes"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width in pixels (for images/video)"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in pixels (for images/video)"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional metadata as key-value pairs"
+        },
+        "google_drive": {
+          "$ref": "#/definitions/website.config.GoogleDriveMedia",
+          "description": "Google Drive specific settings"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption/alt text for accessibility"
+        },
+        "creator": {
+          "type": "string",
+          "description": "Creator/author of the media"
+        },
+        "date_published": {
+          "type": "string",
+          "description": "Upload/publication date"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CONTENT AND MEDIA CONFIGURATION\n =============================================================================\n Messages for rich content support including media, discussions, and interactions\n Maps to Schema.org MediaObject, DiscussionForumPosting, Event types\n =============================================================================",
+      "description": "============================================================================= CONTENT AND MEDIA CONFIGURATION ============================================================================= Messages for rich content support including media, discussions, and interactions Maps to Schema.org MediaObject, DiscussionForumPosting, Event types =============================================================================  Media content configuration for audio, video, images Maps to Schema.org AudioObject, VideoObject, ImageObject"
+    },
+    "website.config.GoogleDriveMedia": {
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "Google Drive file ID"
+        },
+        "folder_id": {
+          "type": "string",
+          "description": "Folder ID where media is stored"
+        },
+        "enable_streaming": {
+          "type": "boolean",
+          "description": "Enable direct streaming"
+        },
+        "share_setting": {
+          "type": "string",
+          "description": "Share settings (public, restricted, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Drive Media",
+      "description": "Google Drive media integration"
+    }
+  },
+  "title": "MEDIACONTENT Configuration Schema",
+  "description": "JSON Schema for MediaContent configuration"
+}

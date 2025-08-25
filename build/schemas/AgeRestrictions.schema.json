@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AgeRestrictions",
+  "definitions": {
+    "AgeRestrictions": {
+      "properties": {
+        "minimum_age": {
+          "type": "integer",
+          "description": "Minimum age"
+        },
+        "require_verification": {
+          "type": "boolean",
+          "description": "Require age verification"
+        },
+        "parental_consent_age": {
+          "type": "integer",
+          "description": "Parental consent age"
+        },
+        "verification_method": {
+          "type": "string",
+          "description": "Age verification method"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Age Restrictions",
+      "description": "Age restrictions"
+    }
+  },
+  "title": "AGERESTRICTIONS Configuration Schema",
+  "description": "JSON Schema for AgeRestrictions configuration"
+}

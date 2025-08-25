@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIDocGeneratorMapping",
+  "definitions": {
+    "APIDocGeneratorMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Generator name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Generator URL"
+        },
+        "supported_formats": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported spec formats"
+        },
+        "default_config": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Configuration options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Doc Generator Mapping"
+    }
+  },
+  "title": "APIDOCGENERATORMAPPING Configuration Schema",
+  "description": "JSON Schema for APIDocGeneratorMapping configuration"
+}

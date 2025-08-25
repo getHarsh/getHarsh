@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentTypeDefaults",
+  "definitions": {
+    "ContentTypeDefaults": {
+      "properties": {
+        "article": {
+          "$ref": "#/definitions/website.config.ContentTypeMapping",
+          "description": "CONTENT_TYPE_ARTICLE  schema_type: \"Article\" required_properties: [\"headline\", \"datePublished\", \"author\"]"
+        },
+        "update": {
+          "$ref": "#/definitions/website.config.ContentTypeMapping",
+          "description": "CONTENT_TYPE_UPDATE  schema_type: \"NewsArticle\" required_properties: [\"headline\", \"datePublished\", \"dateline\"] default_section: \"Updates\""
+        },
+        "research": {
+          "$ref": "#/definitions/website.config.ContentTypeMapping",
+          "description": "CONTENT_TYPE_RESEARCH  schema_type: \"ScholarlyArticle\" required_properties: [\"headline\", \"datePublished\", \"author\", \"abstract\"] word_count: { min: 2000, max: 10000 }"
+        },
+        "case_study": {
+          "$ref": "#/definitions/website.config.ContentTypeMapping",
+          "description": "CONTENT_TYPE_CASE_STUDY  schema_type: \"TechArticle\" required_properties: [\"headline\", \"datePublished\", \"author\", \"about\"]"
+        },
+        "announcement": {
+          "$ref": "#/definitions/website.config.ContentTypeMapping",
+          "description": "CONTENT_TYPE_ANNOUNCEMENT  schema_type: \"NewsArticle\" default_section: \"Announcements\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Type Defaults",
+      "description": "Predefined content type mappings"
+    },
+    "website.config.ContentTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org Article subtype"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties for this content type"
+        },
+        "word_count": {
+          "$ref": "#/definitions/website.config.WordCountRange",
+          "description": "Typical word count range"
+        },
+        "default_section": {
+          "type": "string",
+          "description": "Default article section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Type Mapping"
+    },
+    "website.config.WordCountRange": {
+      "properties": {
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Word Count Range"
+    }
+  },
+  "title": "CONTENTTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ContentTypeDefaults configuration"
+}

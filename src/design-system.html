@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getHarsh Ecosystem - Design System</title>
+    <style>
+        /* Initial page load animation */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Typography System - Single Source of Truth */
+        :root {
+            /* Font Families */
+            --font-display: 'Fira Code', 'JetBrains Mono', 'SF Mono', monospace;
+            --font-body: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+            --font-mono: 'Fira Code', 'JetBrains Mono', 'SF Mono', monospace;
+            
+            
+            /* Font Sizes - Fluid Typography (Optimized for Monospace) */
+            --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);       /* 11-13px */
+            --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);     /* 13-14px */
+            --text-base: clamp(0.875rem, 0.825rem + 0.25vw, 0.95rem); /* 14-15px */
+            --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);         /* 16-18px */
+            --text-xl: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);      /* 18-20px */
+            --text-2xl: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);   /* 20-24px */
+            --text-3xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);        /* 24-32px */
+            --text-4xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);    /* 30-40px */
+            --text-5xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem);        /* 36-48px */
+            
+            /* Line Heights - Tighter for Monospace */
+            --leading-tight: 1.2;
+            --leading-snug: 1.3;
+            --leading-normal: 1.4;
+            --leading-relaxed: 1.5;
+            --leading-loose: 1.6;
+            --leading-body: 1.45;     /* Optimized for monospace reading */
+            
+            /* Letter Spacing - Compact Terminal Style */
+            --tracking-tighter: -0.05em;
+            --tracking-tight: -0.03em;
+            --tracking-normal: -0.01em;   /* Slightly negative for compact feel */
+            --tracking-wide: 0.01em;
+            --tracking-wider: 0.03em;
+            --tracking-widest: 0.05em;
+            --tracking-mono: -0.01em;     /* Tighter monospace */
+            
+            /* Font Weights */
+            --font-light: 300;
+            --font-regular: 400;
+            --font-medium: 500;
+            --font-semibold: 600;
+            --font-bold: 700;
+            
+            /* Spacing Scale - Compact for Terminal Aesthetic */
+            --space-1: 0.125rem;  /* 2px */
+            --space-2: 0.25rem;   /* 4px */
+            --space-3: 0.5rem;    /* 8px */
+            --space-4: 0.75rem;   /* 12px */
+            --space-5: 1rem;      /* 16px */
+            --space-6: 1.25rem;   /* 20px */
+            --space-8: 1.75rem;   /* 28px */
+            --space-10: 2.25rem;  /* 36px */
+            --space-12: 2.75rem;  /* 44px */
+            --space-16: 3.5rem;   /* 56px */
+            --space-20: 4.5rem;   /* 72px */
+            
+            /* Content Width */
+            --content-narrow: 650px;   /* Optimal for reading */
+            --content-wide: 900px;     /* For wider content */
+            --content-full: 1400px;    /* Full container */
+            
+            /* Terminal Grid Unit - Creative spacing system */
+            --grid-unit: 0.25rem;     /* 4px base unit */
+            --char-width: 0.6ch;      /* Average monospace character width */
+            --line-unit: 1.4rem;      /* Base line height unit */
+            
+            /* Default Theme Colors (getHarsh) */
+            --bg-primary: #FBF8F3;
+            --bg-glass: rgba(251, 248, 243, 0.6);
+            --accent-primary: #C19A6B;
+            --accent-secondary: #D4AF37;
+            --text-primary: #3A3530;
+            --text-secondary: #6B645C;
+        }
+        
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-primary: #1A1815;
+            --bg-glass: rgba(26, 24, 21, 0.6);
+            --accent-primary: #E5C07B;
+            --accent-secondary: #98834B;
+            --text-primary: #F5F2ED;
+            --text-secondary: #A8A29E;
+        }
+        
+        /* Domain Theme Colors */
+        [data-domain="getharsh"][data-theme="light"] {
+            --bg-primary: #FBF8F3;
+            --bg-glass: rgba(251, 248, 243, 0.6);
+            --accent-primary: #C19A6B;
+            --accent-secondary: #D4AF37;
+            --text-primary: #3A3530;
+            --text-secondary: #6B645C;
+        }
+        
+        [data-domain="getharsh"][data-theme="dark"] {
+            --bg-primary: #1A1815;
+            --bg-glass: rgba(26, 24, 21, 0.6);
+            --accent-primary: #E5C07B;
+            --accent-secondary: #98834B;
+            --text-primary: #F5F2ED;
+            --text-secondary: #A8A29E;
+        }
+        
+        [data-domain="rawthoughts"][data-theme="light"] {
+            --bg-primary: #FDF5F3;
+            --bg-glass: rgba(253, 245, 243, 0.6);
+            --accent-primary: #A85C5C;
+            --accent-secondary: #C97064;
+            --text-primary: #3C2E2A;
+            --text-secondary: #6B5651;
+        }
+        
+        [data-domain="rawthoughts"][data-theme="dark"] {
+            --bg-primary: #1A1514;
+            --bg-glass: rgba(26, 21, 20, 0.6);
+            --accent-primary: #D98E8E;
+            --accent-secondary: #9E6B5C;
+            --text-primary: #F5EDED;
+            --text-secondary: #B8A5A0;
+        }
+        
+        [data-domain="daostudio"][data-theme="light"] {
+            --bg-primary: #F5F9F5;
+            --bg-glass: rgba(245, 249, 245, 0.6);
+            --accent-primary: #7A9E7E;
+            --accent-secondary: #93B5A1;
+            --text-primary: #2D3A2D;
+            --text-secondary: #546B54;
+        }
+        
+        [data-domain="daostudio"][data-theme="dark"] {
+            --bg-primary: #151A15;
+            --bg-glass: rgba(21, 26, 21, 0.6);
+            --accent-primary: #9ECAA6;
+            --accent-secondary: #5C7C60;
+            --text-primary: #EDF5ED;
+            --text-secondary: #A0B8A0;
+        }
+        
+        [data-domain="causality"][data-theme="light"] {
+            --bg-primary: #F3F7FB;
+            --bg-glass: rgba(243, 247, 251, 0.6);
+            --accent-primary: #6B8CAE;
+            --accent-secondary: #8FA7C4;
+            --text-primary: #2A3441;
+            --text-secondary: #516170;
+        }
+        
+        [data-domain="causality"][data-theme="dark"] {
+            --bg-primary: #14171A;
+            --bg-glass: rgba(20, 23, 26, 0.6);
+            --accent-primary: #8EBED9;
+            --accent-secondary: #5C7A9E;
+            --text-primary: #EDF3F8;
+            --text-secondary: #A0B4C8;
+        }
+        
+        [data-domain="sleepwalker"][data-theme="light"] {
+            --bg-primary: #F8F5FB;
+            --bg-glass: rgba(248, 245, 251, 0.6);
+            --accent-primary: #8B7A9E;
+            --accent-secondary: #A694B8;
+            --text-primary: #312E3A;
+            --text-secondary: #5E546B;
+        }
+        
+        [data-domain="sleepwalker"][data-theme="dark"] {
+            --bg-primary: #18151A;
+            --bg-glass: rgba(24, 21, 26, 0.6);
+            --accent-primary: #B8A6CA;
+            --accent-secondary: #6B5C7C;
+            --text-primary: #F3EDF8;
+            --text-secondary: #B0A0C0;
+        }
+        
+        /* Import Web Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
+        
+        /* Base Typography */
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: var(--leading-body);
+            font-weight: var(--font-regular);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -moz-osx-font-smoothing: auto;
+            font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+        
+        /* Static gradient background - no animation for performance */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: 
+            radial-gradient(
+                ellipse 800px 600px at 30% 40%,
+                var(--accent-primary) 0%,
+                transparent 40%
+            ),
+            radial-gradient(
+                ellipse 800px 600px at 70% 60%,
+                var(--accent-secondary) 0%,
+                transparent 40%
+            ),
+            radial-gradient(
+                ellipse 1000px 800px at 50% 50%,
+                var(--accent-primary) 0%,
+                transparent 50%
+            );
+            opacity: 0.15;
+            pointer-events: none;
+            transform: translateZ(0);
+            will-change: opacity;
+        }
+        
+        /* Animated gradient using CSS animation on a smaller element */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 120vmax;
+            height: 120vmax;
+            margin-top: -60vmax;
+            margin-left: -60vmax;
+            z-index: 0;
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                var(--accent-primary),
+                var(--accent-secondary),
+                var(--accent-primary),
+                var(--accent-secondary),
+                var(--accent-primary)
+            );
+            opacity: 0.08;
+            animation: rotate 60s linear infinite;
+            pointer-events: none;
+            transform-origin: center center;
+            will-change: transform;
+            filter: blur(100px);
+        }
+        
+        /* Light mode - use stronger contrast approach */
+        body[data-theme="light"]::after {
+            opacity: 0.15;
+            mix-blend-mode: multiply;
+            filter: blur(40px) contrast(2);
+            /* Use accent colors but with multiply blend mode for visibility */
+            background: 
+            radial-gradient(
+                circle at 30% 20%,
+                var(--accent-primary) 0%,
+                var(--accent-primary) 20%,
+                transparent 40%
+            ),
+            radial-gradient(
+                circle at 70% 80%,
+                var(--accent-secondary) 0%,
+                var(--accent-secondary) 20%,
+                transparent 40%
+            ),
+            radial-gradient(
+                circle at 50% 50%,
+                var(--text-primary) 0%,
+                transparent 30%
+            ),
+            linear-gradient(
+                45deg,
+                var(--accent-primary) 0%,
+                transparent 25%,
+                var(--accent-secondary) 50%,
+                transparent 75%,
+                var(--accent-primary) 100%
+            );
+            background-size: 120% 120%, 120% 120%, 150% 150%, 200% 200%;
+            background-position: -20% -20%, 120% 120%, 50% 50%, 0% 0%;
+        }
+        
+        /* Dark mode - colors that pop (keep as is) */
+        body[data-theme="dark"]::after {
+            opacity: 0.12;
+            mix-blend-mode: normal;
+            filter: blur(50px) saturate(1.5) brightness(1.2);
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Simple hover effect - no mouse tracking */
+        .depth-1, .depth-2, .depth-3, .depth-4,
+        .palette-mode, .domain-section, .typography-section {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Enhanced glow on hover */
+        .depth-1:hover, .depth-2:hover, .depth-3:hover, .depth-4:hover,
+        .palette-mode:hover, .domain-section:hover, .typography-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 30px -10px rgba(0, 0, 0, 0.2),
+                0 0 30px color-mix(in srgb, var(--accent-primary) 25%, transparent),
+                inset 0 0 30px color-mix(in srgb, var(--accent-primary) 10%, transparent);
+            border-color: color-mix(in srgb, var(--accent-primary) 50%, transparent);
+        }
+        
+        /* Premium selection styling */
+        ::selection {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+        
+        ::-moz-selection {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+        
+        /* Create a wrapper for noise texture */
+        .noise-overlay {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.015;
+            z-index: 1;
+            pointer-events: none;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0,0,0,.03) 35px, rgba(0,0,0,.03) 70px);
+            background-size: 100px 100px;
+            mix-blend-mode: overlay;
+        }
+        
+        /* Ensure content is above the texture */
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Container with Reading Width */
+        .container {
+            max-width: var(--content-full);
+            margin: 0 auto;
+            padding: var(--space-8);
+            padding-top: calc(80px + var(--space-8)); /* Account for fixed header */
+        }
+        
+        .reading-width {
+            max-width: var(--content-narrow);
+            margin: 0 auto;
+        }
+        
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: var(--font-regular);
+            line-height: var(--leading-tight);
+            color: var(--text-primary);
+            margin-top: 0;
+            position: relative;
+            font-feature-settings: 'liga' 1, 'calt' 1, 'ss01' 1;
+        }
+        
+        h1 {
+            font-size: var(--text-4xl);
+            font-weight: var(--font-light);
+            letter-spacing: var(--tracking-tight);
+            margin-bottom: var(--space-4);
+        }
+        
+        h2 {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-medium);
+            letter-spacing: var(--tracking-normal);
+            margin-bottom: var(--space-3);
+            margin-top: var(--space-8);
+        }
+        
+        h3 {
+            font-size: var(--text-xl);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--space-3);
+            margin-top: var(--space-6);
+        }
+        
+        h4 {
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            margin-bottom: var(--space-2);
+            margin-top: var(--space-4);
+        }
+        
+        /* Body Text */
+        p {
+            margin-bottom: var(--space-4);
+            hyphens: none; /* Disable hyphenation for cleaner terminal look */
+        }
+        
+        .lead {
+            font-size: var(--text-lg);
+            line-height: var(--leading-relaxed);
+            color: var(--text-secondary);
+            font-weight: var(--font-regular);
+        }
+        
+        .small {
+            font-size: var(--text-sm);
+            line-height: var(--leading-normal);
+        }
+        
+        /* Links */
+        a {
+            color: var(--accent-primary);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+            transition: all 0.2s ease;
+        }
+        
+        a:hover {
+            text-decoration-thickness: 2px;
+            color: var(--accent-secondary);
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-bottom: var(--space-4);
+            padding-left: var(--space-5);
+        }
+        
+        li {
+            margin-bottom: var(--space-1);
+            line-height: var(--leading-normal);
+        }
+        
+        /* Code & Terminal Styling */
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.875em;
+            font-weight: var(--font-medium);
+            background: var(--bg-glass);
+            padding: 0.125em 0.375em;
+            border-radius: 0.25rem;
+            letter-spacing: var(--tracking-mono);
+            font-feature-settings: 'liga' 0, 'calt' 0;
+        }
+        
+        pre {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            overflow-x: auto;
+            margin-bottom: var(--space-6);
+            letter-spacing: var(--tracking-mono);
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            border-left: 2px solid var(--accent-primary);
+            padding-left: var(--space-4);
+            margin: var(--space-6) 0;
+            font-style: normal;  /* Keep monospace style */
+            color: var(--text-secondary);
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-8);
+            font-size: var(--text-sm);
+        }
+        
+        th, td {
+            padding: var(--space-3) var(--space-4);
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            font-weight: var(--font-semibold);
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            font-size: var(--text-xs);
+            letter-spacing: var(--tracking-wider);
+        }
+        
+        /* Fixed Navigation Header */
+        .page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            box-shadow: 
+                var(--depth-2-shadow),
+                0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+        }
+        
+        .header-content {
+            max-width: var(--content-full);
+            margin: 0 auto;
+            padding: var(--space-4) var(--space-8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-4);
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-3);
+        }
+        
+        .header-title h1 {
+            font-size: var(--text-2xl);
+            margin: 0;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-title .subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            font-weight: var(--font-regular);
+        }
+        
+        .page-title {
+            font-size: var(--text-5xl);
+            font-weight: var(--font-light);
+            letter-spacing: var(--tracking-tight);
+            margin-bottom: var(--space-4);
+            background: linear-gradient(135deg, #2A2622 0%, #6B645C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            font-weight: var(--font-regular);
+            letter-spacing: var(--tracking-wide);
+            text-transform: uppercase;
+        }
+        
+        /* Removed duplicate .design-principles - see line 758 for the correct definition */
+        
+        .domain-section {
+            margin-bottom: var(--space-8);
+            padding: var(--space-8);
+            border-radius: 8px;
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent-primary);
+        }
+        
+        .domain-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-5);
+            margin-bottom: var(--space-8);
+            padding: 0 var(--space-2);
+        }
+        
+        .domain-indicator {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-semibold);
+            font-size: var(--text-base);
+            flex-shrink: 0;
+        }
+        
+        .domain-info h3 {
+            font-size: var(--text-xl);
+            font-weight: var(--font-regular);
+            margin-bottom: var(--space-1);
+        }
+        
+        .domain-info p {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+        
+        .palette-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin: 0 var(--space-2);
+        }
+        
+        @media (max-width: 768px) {
+            .palette-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .palette-mode {
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: var(--space-6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Premium gradient overlay */
+        .palette-mode::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                rgba(255, 255, 255, 0.06) 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.03) 75%,
+                rgba(255, 255, 255, 0.08) 100%
+            );
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .palette-mode:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 12px 24px -6px rgba(0, 0, 0, 0.15),
+                0 8px 16px -4px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .palette-mode:hover::before {
+            opacity: 0.8;
+        }
+        
+        .palette-mode.dark {
+            background: var(--bg-glass);
+        }
+        
+        .mode-title {
+            font-size: var(--text-lg);
+            font-weight: var(--font-medium);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        /* Removed duplicate .color-group - see line 745 for definition */
+        
+        .group-title {
+            font-size: var(--text-xs);
+            font-weight: var(--font-semibold);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-2);
+            padding: var(--space-2);
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        
+        .color-item:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        /* Removed duplicate .color-swatch - see line 729 for correct definition */
+        
+        .color-info {
+            flex: 1;
+        }
+        
+        .color-name {
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            margin-bottom: 0;
+        }
+        
+        .color-values {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+        
+        
+        /* Domain-specific accent colors */
+        .getharsh { background: var(--accent-primary); color: var(--bg-primary); }
+        .rawthoughts { background: var(--accent-primary); color: var(--bg-primary); }
+        .daostudio { background: var(--accent-primary); color: var(--bg-primary); }
+        .causality { background: var(--accent-primary); color: var(--bg-primary); }
+        .sleepwalker { background: var(--accent-primary); color: var(--bg-primary); }
+        /* Typography Showcase Styles */
+        .typography-section {
+            background: rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+        
+        /* Removed duplicate .type-specimen - see line 958 for the correct definition */
+        
+        .font-showcase {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+            flex-wrap: wrap;
+        }
+        
+        .font-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            min-width: 100px;
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+        }
+        
+        .terminal-prompt {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: #C19A6B;
+            margin-right: var(--space-2);
+        }
+        
+        .terminal-text {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            letter-spacing: var(--tracking-mono);
+        }
+        
+        /* Retrofuturistic Elements */
+        .retro-border {
+            position: relative;
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .retro-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--accent-primary);
+            border-radius: 4px;
+            opacity: 0.3;
+        }
+        
+        .retro-border::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid var(--accent-primary);
+            border-radius: 4px;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            margin-right: var(--space-2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Theme Switcher Styles (integrated into header) */
+        .theme-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .control-label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+            color: var(--text-secondary);
+            font-weight: var(--font-semibold);
+            white-space: nowrap;
+        }
+        
+        .domain-selector {
+            display: flex;
+            gap: var(--space-1);
+        }
+        
+        /* Domain and Mode buttons extend btn */
+        .domain-btn {
+            /* Inherits all styles from .btn */
+        }
+        
+        .mode-btn {
+            /* Inherits all styles from .btn */
+        }
+        
+        .mode-toggle {
+            display: flex;
+            gap: var(--space-1);
+        }
+        
+        /* Removed .design-principles - should use standard classes like typography-section */
+        
+        /* Color swatch styles */
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 0 8px color-mix(in srgb, var(--accent-primary) 8%, transparent),
+                inset 0 0 8px color-mix(in srgb, var(--accent-primary) 3%, transparent);
+        }
+        
+        .color-swatch::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            transform: translateX(-100%) rotate(45deg);
+            transition: none;
+            opacity: 0;
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.2),
+                0 0 20px color-mix(in srgb, var(--accent-primary) 30%, transparent),
+                inset 0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+            border-color: color-mix(in srgb, var(--accent-secondary) 50%, transparent);
+        }
+        
+        .color-swatch:hover::before {
+            animation: shimmer 0.8s ease;
+            opacity: 1;
+        }
+        
+        .color-swatch.glass::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--bg-glass) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Since we have many color swatches with inline styles, 
+           we'll keep them as is for now to preserve the color values */
+        
+        /* Color group styles */
+        .color-group {
+            padding: var(--space-3);
+            border-radius: 6px;
+            margin-bottom: var(--space-4);
+        }
+        
+        .color-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Terminal code block styles */
+        .terminal-code {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: var(--space-4);
+            border-radius: 4px;
+            margin: 0;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            line-height: var(--leading-body);
+        }
+        
+        /* Demo container styles */
+        .demo-container {
+            padding: var(--space-4);
+            border-radius: 8px;
+        }
+        
+        .terminal-interface .demo-container {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .demo-nested {
+            padding: var(--space-3);
+            border-radius: 6px;
+        }
+        
+        .demo-nested + .demo-nested {
+            margin-top: var(--space-3);
+        }
+        
+        /* Button group */
+        .button-group {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+        
+        /* Status line */
+        .status-line {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        /* Section spacing */
+        .section-spacing {
+            margin-top: var(--space-8);
+        }
+        
+        /* Tailwind config section */
+        .tailwind-config {
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            border-radius: 8px;
+            padding: var(--space-6);
+            margin-top: var(--space-8);
+            box-shadow: 
+                0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent),
+                inset 0 0 20px color-mix(in srgb, var(--accent-primary) 5%, transparent);
+        }
+        
+        /* Terminal text styles */
+        .terminal-interface {
+            background: var(--text-primary) !important;
+            color: var(--bg-primary) !important;
+            border-color: var(--accent-primary) !important;
+        }
+        
+        /* Ensure terminal sections use theme colors */
+        .terminal-interface h3 {
+            color: var(--accent-primary) !important;
+            margin-bottom: var(--space-4);
+        }
+        
+        .terminal-interface .terminal-prompt {
+            color: var(--accent-secondary) !important;
+            margin-right: var(--space-2);
+            font-weight: var(--font-semibold);
+        }
+        
+        .terminal-interface .terminal-text {
+            color: var(--bg-primary) !important;
+        }
+        
+        .terminal-interface .status-indicator {
+            background: var(--accent-secondary);
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: var(--space-2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .terminal-line {
+            margin-top: var(--space-2);
+        }
+        
+        .terminal-line:first-child {
+            margin-top: 0;
+        }
+        
+        /* Typography demo styles */
+        .font-display {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            letter-spacing: var(--tracking-normal);
+        }
+        
+        .font-body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            letter-spacing: var(--tracking-normal);
+        }
+        
+        .text-demo-5xl {
+            font-size: var(--text-5xl);
+            font-family: var(--font-display);
+        }
+        
+        .text-demo-4xl {
+            font-size: var(--text-4xl);
+            font-family: var(--font-display);
+        }
+        
+        .text-demo-3xl {
+            font-size: var(--text-3xl);
+        }
+        
+        .text-demo-2xl {
+            font-size: var(--text-2xl);
+        }
+        
+        .text-demo-xl {
+            font-size: var(--text-xl);
+        }
+        
+        .text-demo-lg {
+            font-size: var(--text-lg);
+        }
+        
+        .text-demo-base {
+            font-size: var(--text-base);
+        }
+        
+        .text-demo-sm {
+            font-size: var(--text-sm);
+        }
+        
+        .text-demo-xs {
+            font-size: var(--text-xs);
+        }
+        
+        .typography-section {
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            border-radius: 8px;
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+            box-shadow: 
+                0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent),
+                inset 0 0 20px color-mix(in srgb, var(--accent-primary) 5%, transparent);
+        }
+        
+        .type-specimen {
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            padding: var(--space-4);
+            border-radius: 6px;
+            margin-bottom: var(--space-4);
+            background: var(--bg-glass);
+            box-shadow: 
+                0 0 15px color-mix(in srgb, var(--accent-primary) 12%, transparent),
+                inset 0 0 15px color-mix(in srgb, var(--accent-primary) 4%, transparent);
+        }
+        
+        .font-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            min-width: 100px;
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+        }
+        
+        .terminal-prompt {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--accent-primary);
+            margin-right: var(--space-2);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            margin-right: var(--space-2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .retro-border::before {
+            border: 2px solid var(--accent-primary);
+        }
+        
+        .retro-border::after {
+            border: 1px solid var(--accent-primary);
+        }
+        
+        .page-title {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+        }
+        
+        /* Domain indicator updates */
+        .getharsh { background: var(--accent-primary); color: var(--bg-primary); }
+        .rawthoughts { background: var(--accent-primary); color: var(--bg-primary); }
+        .daostudio { background: var(--accent-primary); color: var(--bg-primary); }
+        .causality { background: var(--accent-primary); color: var(--bg-primary); }
+        .sleepwalker { background: var(--accent-primary); color: var(--bg-primary); }
+        
+        /* Unified Button System */
+        .btn {
+            display: inline-block;
+            padding: var(--space-2) var(--space-3);
+            background: var(--bg-glass);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        background 0.15s ease,
+                        color 0.15s ease;
+            color: var(--text-primary);
+            letter-spacing: var(--tracking-normal);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            box-shadow: 
+                0 0 10px color-mix(in srgb, var(--accent-primary) 10%, transparent),
+                inset 0 0 10px color-mix(in srgb, var(--accent-primary) 5%, transparent);
+            white-space: nowrap;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-1px);
+            box-shadow: 
+                var(--depth-2-shadow),
+                0 0 25px color-mix(in srgb, var(--accent-primary) 40%, transparent),
+                inset 0 0 15px color-mix(in srgb, var(--accent-primary) 20%, transparent);
+            border-color: var(--accent-primary);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                color-mix(in srgb, var(--text-primary) 85%, var(--accent-primary))
+            );
+            color: var(--bg-primary);
+            box-shadow: 
+                var(--depth-1-shadow),
+                0 0 15px color-mix(in srgb, var(--accent-primary) 25%, transparent),
+                inset 0 0 25px color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            border-color: var(--text-primary);
+            transition: all 0.1s ease;
+        }
+        
+        .btn.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: var(--font-semibold);
+            box-shadow: 
+                var(--depth-1-shadow),
+                0 0 20px color-mix(in srgb, var(--accent-primary) 35%, transparent),
+                inset 0 0 10px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+        }
+        
+        .btn.active:active {
+            background: linear-gradient(
+                135deg,
+                var(--bg-primary),
+                color-mix(in srgb, var(--bg-primary) 90%, var(--accent-secondary))
+            );
+            color: var(--accent-primary);
+            box-shadow: 
+                var(--depth-1-shadow),
+                0 0 20px color-mix(in srgb, var(--accent-secondary) 30%, transparent),
+                inset 0 0 30px color-mix(in srgb, var(--accent-secondary) 25%, transparent);
+            border-color: var(--accent-secondary);
+        }
+        
+        /* Button size variants */
+        .btn-sm {
+            padding: var(--space-1) var(--space-2);
+            font-size: 0.7rem;
+        }
+        
+        .btn-lg {
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--text-sm);
+        }
+        
+        /* Cascading Depth Classes */
+        .depth-0 {
+            position: relative;
+            background: var(--bg-primary);
+            opacity: var(--depth-0-opacity);
+            box-shadow: var(--depth-0-shadow);
+        }
+        
+        .depth-1 {
+            position: relative;
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(var(--depth-1-blur));
+            backdrop-filter: blur(var(--depth-1-blur));
+            box-shadow: 
+                var(--depth-1-shadow),
+                0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent),
+                inset 0 0 20px color-mix(in srgb, var(--accent-primary) 5%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+        }
+        
+        .depth-2 {
+            position: relative;
+            background: linear-gradient(
+                to bottom,
+                var(--bg-glass),
+                color-mix(in srgb, var(--bg-glass) 85%, var(--bg-primary))
+            );
+            -webkit-backdrop-filter: blur(var(--depth-2-blur));
+            backdrop-filter: blur(var(--depth-2-blur));
+            box-shadow: 
+                var(--depth-2-shadow),
+                0 0 25px color-mix(in srgb, var(--accent-primary) 20%, transparent),
+                inset 0 0 25px color-mix(in srgb, var(--accent-primary) 8%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 35%, transparent);
+            opacity: var(--depth-2-opacity);
+        }
+        
+        .depth-3 {
+            position: relative;
+            background: linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--bg-glass) 90%, var(--bg-primary)),
+                color-mix(in srgb, var(--bg-glass) 70%, var(--bg-primary))
+            );
+            -webkit-backdrop-filter: blur(var(--depth-3-blur));
+            backdrop-filter: blur(var(--depth-3-blur));
+            box-shadow: 
+                var(--depth-3-shadow),
+                0 0 30px color-mix(in srgb, var(--accent-primary) 25%, transparent),
+                inset 0 0 30px color-mix(in srgb, var(--accent-primary) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 40%, transparent);
+            opacity: var(--depth-3-opacity);
+        }
+        
+        .depth-4 {
+            position: relative;
+            background: linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--bg-glass) 80%, var(--bg-primary)),
+                color-mix(in srgb, var(--bg-glass) 60%, var(--bg-primary))
+            );
+            -webkit-backdrop-filter: blur(var(--depth-4-blur));
+            backdrop-filter: blur(var(--depth-4-blur));
+            box-shadow: 
+                var(--depth-4-shadow),
+                0 0 35px color-mix(in srgb, var(--accent-primary) 30%, transparent),
+                inset 0 0 35px color-mix(in srgb, var(--accent-primary) 12%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 45%, transparent);
+            opacity: var(--depth-4-opacity);
+        }
+        
+        /* Nested depth effects */
+        .depth-1 .depth-1,
+        .depth-1 .depth-2,
+        .depth-1 .depth-3,
+        .depth-1 .depth-4 {
+            opacity: var(--depth-2-opacity);
+        }
+        
+        .depth-2 .depth-1,
+        .depth-2 .depth-2,
+        .depth-2 .depth-3,
+        .depth-2 .depth-4 {
+            opacity: var(--depth-3-opacity);
+        }
+        
+        .depth-3 .depth-1,
+        .depth-3 .depth-2,
+        .depth-3 .depth-3,
+        .depth-3 .depth-4 {
+            opacity: var(--depth-4-opacity);
+        }
+        
+        /* Depth transitions */
+        .depth-1, .depth-2, .depth-3, .depth-4 {
+            transition: all 0.3s ease;
+        }
+        
+        /* Premium Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Staggered animations for sections */
+        .domain-section {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-fill-mode: both;
+        }
+        
+        .domain-section:nth-child(1) { animation-delay: 0.1s; }
+        .domain-section:nth-child(2) { animation-delay: 0.2s; }
+        .domain-section:nth-child(3) { animation-delay: 0.3s; }
+        .domain-section:nth-child(4) { animation-delay: 0.4s; }
+        .domain-section:nth-child(5) { animation-delay: 0.5s; }
+        
+        .depth-1:hover,
+        .depth-2:hover,
+        .depth-3:hover,
+        .depth-4:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                var(--depth-3-shadow),
+                0 0 30px color-mix(in srgb, var(--accent-primary) 25%, transparent),
+                inset 0 0 30px color-mix(in srgb, var(--accent-primary) 10%, transparent);
+        }
+        
+        /* Apply cascading to existing components */
+        .container {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        /* Header has its own positioning - no animation needed */
+        
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            :root {
+                --text-base: 0.85rem;
+                --leading-body: 1.4;
+            }
+            
+            .container {
+                padding: var(--space-4);
+                padding-top: calc(70px + var(--space-4));
+            }
+            
+            .header-content {
+                padding: var(--space-3) var(--space-4);
+                flex-wrap: wrap;
+            }
+            
+            .header-title h1 {
+                font-size: var(--text-xl);
+            }
+            
+            .control-label {
+                display: none; /* Hide labels on mobile */
+            }
+            
+            .btn {
+                padding: var(--space-1) var(--space-2);
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body data-domain="getharsh" data-theme="light">
+    <!-- Noise overlay for texture -->
+    <div class="noise-overlay"></div>
+    
+    <!-- Fixed Navigation Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <div class="header-title">
+                <h1>getHarsh Design System</h1>
+                <span class="subtitle">Typography & Color Reference</span>
+            </div>
+            <div class="theme-controls">
+                <div class="control-group">
+                    <span class="control-label">Domain:</span>
+                    <div class="domain-selector">
+                        <button class="btn domain-btn active" data-domain="getharsh">getHarsh</button>
+                        <button class="btn domain-btn" data-domain="rawthoughts">rawThoughts</button>
+                        <button class="btn domain-btn" data-domain="daostudio">daoStudio</button>
+                        <button class="btn domain-btn" data-domain="causality">causality</button>
+                        <button class="btn domain-btn" data-domain="sleepwalker">sleepwalker</button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <span class="control-label">Mode:</span>
+                    <div class="mode-toggle">
+                        <button class="btn mode-btn active" data-mode="light">☀️ Light</button>
+                        <button class="btn mode-btn" data-mode="dark">🌙 Dark</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        
+        <!-- Typography Section -->
+        <section class="typography-section reading-width depth-1">
+            <h2>Typography System</h2>
+            <p class="lead">A retrofuturistic type system optimized for extended reading while maintaining a distinctive terminal aesthetic.</p>
+            
+            <!-- Font Families -->
+            <div class="type-specimen depth-2">
+                <h3>Font Stack</h3>
+                <div class="font-showcase">
+                    <span class="font-label">Primary</span>
+                    <span class="font-display">JetBrains Mono</span>
+                </div>
+                <div class="font-showcase">
+                    <span class="font-label">Usage</span>
+                    <span class="font-body">All text, headings, and UI elements</span>
+                </div>
+                <p class="small">
+                    A modern monospace font designed for developers, featuring excellent readability and distinctive character shapes.
+                </p>
+            </div>
+            
+            <!-- Type Scale -->
+            <div class="type-specimen depth-2">
+                <h3>Fluid Type Scale</h3>
+                <p class="small">Responsive sizing that scales with viewport for optimal reading on all devices.</p>
+                
+                <div class="section-spacing">
+                    <div class="font-showcase">
+                        <span class="font-label">5xl</span>
+                        <span class="text-demo-5xl">Headlines</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">4xl</span>
+                        <span class="text-demo-4xl">Page Titles</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">3xl</span>
+                        <span class="text-demo-3xl">Section Headers</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">2xl</span>
+                        <span class="text-demo-2xl">Subsections</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">xl</span>
+                        <span class="text-demo-xl">Large Text</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">lg</span>
+                        <span class="text-demo-lg">Lead Paragraphs</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">base</span>
+                        <span class="text-demo-base">Body Text (16-18px)</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">sm</span>
+                        <span class="text-demo-sm">Small Text</span>
+                    </div>
+                    <div class="font-showcase">
+                        <span class="font-label">xs</span>
+                        <span class="text-demo-xs">Tiny Text</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Terminal Aesthetic -->
+            <div class="type-specimen terminal-interface">
+                <h3>Terminal Interface</h3>
+                <div class="demo-container">
+                    <div>
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-text">initialize --system retrofuturistic</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="status-indicator"></span>
+                        <span class="terminal-text">System initialized successfully</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-text">load --typography optimized</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reading Experience -->
+            <div class="type-specimen depth-2">
+                <h3>Terminal-First Reading Experience</h3>
+                <div class="retro-border">
+                    <p class="reading-width">
+                        The entire website embraces a terminal aesthetic with JetBrains Mono as the primary typeface. This creates a cohesive, retrofuturistic experience that feels like interfacing with an advanced system. The monospace font is carefully tuned with optimal letter-spacing and generous line-height for excellent readability in long-form content.
+                    </p>
+                </div>
+                
+                <h4>Key Principles</h4>
+                <ul>
+                    <li><strong>Monospace Everything:</strong> Consistent terminal aesthetic throughout</li>
+                    <li><strong>Optimal Letter Spacing:</strong> 0.01em for improved readability</li>
+                    <li><strong>Generous Line Height:</strong> 1.7x for comfortable long-form reading</li>
+                    <li><strong>Character Width:</strong> Fixed-width ensures predictable layouts</li>
+                    <li><strong>Terminal Authenticity:</strong> Every interaction feels like a system command</li>
+                </ul>
+            </div>
+            
+            <!-- Usage Examples -->
+            <div class="type-specimen depth-2">
+                <h3>Implementation</h3>
+                <pre class="terminal-code">
+/* Base article typography */
+.article-content {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+}
+
+/* Terminal-style headings */
+.terminal-heading {
+    font-family: var(--font-mono);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+}
+
+/* Code blocks */
+pre, code {
+    font-family: var(--font-mono);
+    font-feature-settings: 'liga' 0;
+    letter-spacing: var(--tracking-mono);
+}</pre>
+            </div>
+            <!-- Cascading Depth Demonstration -->
+            <div class="type-specimen depth-2 section-spacing">
+                <h3>Cascading Depth System</h3>
+                <p class="small">Components nested inside each other create subtle depth layers with increasing blur and decreasing opacity.</p>
+                
+                <div class="depth-3 demo-container">
+                    <h4>Level 3 - Primary Container</h4>
+                    <p>This is at depth level 3, with subtle glass effect.</p>
+                    
+                    <div class="depth-4 demo-nested">
+                        <h5 class="text-demo-sm">Level 4 - Nested Component</h5>
+                        <p class="text-demo-sm">Notice the increased blur and transparency.</p>
+                        
+                        <div class="button-group">
+                            <button class="btn depth-4 text-demo-xs">Action 1</button>
+                            <button class="btn depth-4 text-demo-xs">Action 2</button>
+                        </div>
+                    </div>
+                    
+                    <div class="depth-4 demo-nested">
+                        <div class="status-line">
+                            <span class="status-indicator"></span>
+                            <span class="text-demo-sm">Status: Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="domain-section depth-1">
+            <h1 class="page-title">Color Palettes</h1>
+            <p class="subtitle">Chakra-Inspired Domain Themes</p>
+            
+            <div class="palette-mode depth-2">
+                <h2>Design Principles</h2>
+                <ul>
+                    <li>📐 <strong>Retrofuturistic Aesthetic:</strong> Inspired by TVA's 1950s-60s bureaucratic design with muted, desaturated colors</li>
+                    <li>🎨 <strong>Chakra-Based Identity:</strong> Each domain uses a muted version of its corresponding chakra color</li>
+                    <li>🌓 <strong>Dual Mode Support:</strong> Carefully crafted light and dark mode palettes that maintain readability</li>
+                    <li>💎 <strong>Glass Morphism (20%):</strong> Subtle glass effects through opacity and backdrop filters</li>
+                    <li>📝 <strong>Typography Focus:</strong> Optimized for text-heavy, code, and diagram content</li>
+                    <li>🔗 <strong>Ecosystem Consistency:</strong> Unified design language while preserving domain uniqueness</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- getHarsh.in -->
+        <div class="domain-section depth-1">
+            <div class="domain-header">
+                <div class="domain-indicator getharsh">GH</div>
+                <div class="domain-info">
+                    <h3>getHarsh.in</h3>
+                    <p>Manipura Chakra (Solar Plexus) • Personal Power & Confidence</p>
+                </div>
+            </div>
+            
+            <div class="palette-grid">
+                <div class="palette-mode depth-2">
+                    <h4 class="mode-title">☀️ Light Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #FBF8F3;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#FBF8F3 • bg-amber-50/95</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(251, 248, 243, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(251, 248, 243, 0.8) • bg-amber-50/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #C19A6B;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent (Muted Amber)</div>
+                                <div class="color-values">#C19A6B • bg-amber-600/70</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #D4AF37;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#D4AF37 • bg-yellow-600/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #3A3530;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#3A3530 • text-stone-800</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #6B645C;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#6B645C • text-stone-600</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="palette-mode dark depth-2">
+                    <h4 class="mode-title">🌙 Dark Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #1A1815;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#1A1815 • bg-stone-950</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(26, 24, 21, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(26, 24, 21, 0.8) • bg-stone-950/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #E5C07B;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent</div>
+                                <div class="color-values">#E5C07B • bg-amber-400/80</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #98834B;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#98834B • bg-yellow-700/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F5F2ED;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#F5F2ED • text-stone-100</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #A8A29E;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#A8A29E • text-stone-400</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- rawThoughts.in -->
+        <div class="domain-section depth-1">
+            <div class="domain-header">
+                <div class="domain-indicator rawthoughts">RT</div>
+                <div class="domain-info">
+                    <h3>rawThoughts.in</h3>
+                    <p>Muladhara + Svadhisthana Chakra (Root + Sacral) • Grounding & Creativity</p>
+                </div>
+            </div>
+            
+            <div class="palette-grid">
+                <div class="palette-mode depth-2">
+                    <h4 class="mode-title">☀️ Light Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #FDF5F3;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#FDF5F3 • bg-red-50/90</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(253, 245, 243, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(253, 245, 243, 0.8) • bg-red-50/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #A85C5C;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent (Muted Terracotta)</div>
+                                <div class="color-values">#A85C5C • bg-red-700/60</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #C97064;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#C97064 • bg-orange-600/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #3C2E2A;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#3C2E2A • text-red-950</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #6B5651;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#6B5651 • text-red-800/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="palette-mode dark depth-2">
+                    <h4 class="mode-title">🌙 Dark Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #1A1514;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#1A1514 • bg-red-950/95</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(26, 21, 20, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(26, 21, 20, 0.8) • bg-red-950/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #D98E8E;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent</div>
+                                <div class="color-values">#D98E8E • bg-red-400/70</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #9E6B5C;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#9E6B5C • bg-orange-700/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F5EDED;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#F5EDED • text-red-50</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #B8A5A0;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#B8A5A0 • text-red-300/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- daoStudio.in -->
+        <div class="domain-section depth-1">
+            <div class="domain-header">
+                <div class="domain-indicator daostudio">DS</div>
+                <div class="domain-info">
+                    <h3>daoStudio.in</h3>
+                    <p>Anahata Chakra (Heart) • Love & Compassion</p>
+                </div>
+            </div>
+            
+            <div class="palette-grid">
+                <div class="palette-mode depth-2">
+                    <h4 class="mode-title">☀️ Light Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F5F9F5;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#F5F9F5 • bg-green-50/90</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(245, 249, 245, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(245, 249, 245, 0.8) • bg-green-50/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #7A9E7E;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent (Muted Sage)</div>
+                                <div class="color-values">#7A9E7E • bg-green-600/60</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #93B5A1;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#93B5A1 • bg-green-400/50</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #2D3A2D;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#2D3A2D • text-green-950</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #546B54;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#546B54 • text-green-800/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="palette-mode dark depth-2">
+                    <h4 class="mode-title">🌙 Dark Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #151A15;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#151A15 • bg-green-950/95</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(21, 26, 21, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(21, 26, 21, 0.8) • bg-green-950/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #9ECAA6;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent</div>
+                                <div class="color-values">#9ECAA6 • bg-green-400/70</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #5C7C60;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#5C7C60 • bg-green-700/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #EDF5ED;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#EDF5ED • text-green-50</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #A0B8A0;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#A0B8A0 • text-green-300/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- causality.in -->
+        <div class="domain-section depth-1">
+            <div class="domain-header">
+                <div class="domain-indicator causality">CA</div>
+                <div class="domain-info">
+                    <h3>causality.in</h3>
+                    <p>Vishuddha Chakra (Throat) • Truth & Communication</p>
+                </div>
+            </div>
+            
+            <div class="palette-grid">
+                <div class="palette-mode depth-2">
+                    <h4 class="mode-title">☀️ Light Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F3F7FB;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#F3F7FB • bg-blue-50/90</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(243, 247, 251, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(243, 247, 251, 0.8) • bg-blue-50/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #6B8CAE;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent (Muted Sky)</div>
+                                <div class="color-values">#6B8CAE • bg-blue-600/60</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #8FA7C4;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#8FA7C4 • bg-blue-400/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #2A3441;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#2A3441 • text-blue-950</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #516170;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#516170 • text-blue-800/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="palette-mode dark depth-2">
+                    <h4 class="mode-title">🌙 Dark Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #14171A;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#14171A • bg-blue-950/95</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(20, 23, 26, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(20, 23, 26, 0.8) • bg-blue-950/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #8EBED9;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent</div>
+                                <div class="color-values">#8EBED9 • bg-blue-400/70</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #5C7A9E;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#5C7A9E • bg-blue-700/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #EDF3F8;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#EDF3F8 • text-blue-50</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #A0B4C8;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#A0B4C8 • text-blue-300/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- sleepwalker.in -->
+        <div class="domain-section depth-1">
+            <div class="domain-header">
+                <div class="domain-indicator sleepwalker">SW</div>
+                <div class="domain-info">
+                    <h3>sleepwalker.in</h3>
+                    <p>Sahasrara Chakra (Crown) • Spiritual Connection</p>
+                </div>
+            </div>
+            
+            <div class="palette-grid">
+                <div class="palette-mode depth-2">
+                    <h4 class="mode-title">☀️ Light Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F8F5FB;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#F8F5FB • bg-purple-50/90</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(248, 245, 251, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(248, 245, 251, 0.8) • bg-purple-50/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #8B7A9E;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent (Muted Violet)</div>
+                                <div class="color-values">#8B7A9E • bg-purple-600/60</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #A694B8;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#A694B8 • bg-purple-400/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #312E3A;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#312E3A • text-purple-950</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #5E546B;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#5E546B • text-purple-800/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="palette-mode dark depth-2">
+                    <h4 class="mode-title">🌙 Dark Mode</h4>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Backgrounds</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #18151A;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Background</div>
+                                <div class="color-values">#18151A • bg-purple-950/95</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch glass" style="background: rgba(24, 21, 26, 0.8);"></div>
+                            <div class="color-info">
+                                <div class="color-name">Glass Layer</div>
+                                <div class="color-values">rgba(24, 21, 26, 0.8) • bg-purple-950/80</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Accent Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #B8A6CA;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Accent</div>
+                                <div class="color-values">#B8A6CA • bg-purple-400/70</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #6B5C7C;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Accent</div>
+                                <div class="color-values">#6B5C7C • bg-purple-700/60</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-group depth-3">
+                        <p class="group-title">Text Colors</p>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F3EDF8;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Primary Text</div>
+                                <div class="color-values">#F3EDF8 • text-purple-50</div>
+                            </div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #B0A0C0;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Secondary Text</div>
+                                <div class="color-values">#B0A0C0 • text-purple-300/70</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tailwind Config -->
+        <div class="tailwind-config">
+            <h3>Tailwind CSS Configuration</h3>
+            <pre class="terminal-code">// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        // getHarsh.in
+        'harsh-amber': {
+          primary: { light: '#C19A6B', dark: '#E5C07B' },
+          secondary: { light: '#D4AF37', dark: '#98834B' },
+          text: { light: '#3A3530', dark: '#F3EDE4' },
+          'text-secondary': { light: '#6B645C', dark: '#B0A590' }
+        },
+        // rawThoughts.in
+        'thoughts-terra': {
+          primary: { light: '#A85C5C', dark: '#D98E8E' },
+          secondary: { light: '#C97064', dark: '#9E6B5C' },
+          text: { light: '#352525', dark: '#F8E8E8' },
+          'text-secondary': { light: '#6B4A4A', dark: '#C0A0A0' }
+        },
+        // daoStudio.in
+        'dao-sage': {
+          primary: { light: '#7A9E7E', dark: '#9ECAA6' },
+          secondary: { light: '#93B5A1', dark: '#5C7C60' },
+          text: { light: '#253528', dark: '#E8F3E8' },
+          'text-secondary': { light: '#4A6B4E', dark: '#A0C0A0' }
+        },
+        // causality.in
+        'causality-sky': {
+          primary: { light: '#6B8CAE', dark: '#8EBED9' },
+          secondary: { light: '#8FA7C4', dark: '#5C7A9E' },
+          text: { light: '#253545', dark: '#E8F0F8' },
+          'text-secondary': { light: '#4A6B8E', dark: '#A0B8D0' }
+        },
+        // sleepwalker.in
+        'sleepwalker-violet': {
+          primary: { light: '#8B7A9E', dark: '#B8A6CA' },
+          secondary: { light: '#A694B8', dark: '#6B5C7C' },
+          text: { light: '#352545', dark: '#F3EDF8' },
+          'text-secondary': { light: '#6B4A8E', dark: '#B0A0C0' }
+        },
+      },
+      backgroundColor: ({ theme }) => ({
+        // Glass effects with opacity
+        'glass': {
+          'getharsh-light': 'rgba(251, 248, 243, 0.6)',
+          'getharsh-dark': 'rgba(26, 24, 21, 0.6)',
+          'rawthoughts-light': 'rgba(253, 245, 243, 0.6)',
+          'rawthoughts-dark': 'rgba(26, 21, 20, 0.6)',
+          'daostudio-light': 'rgba(245, 249, 245, 0.6)',
+          'daostudio-dark': 'rgba(21, 26, 21, 0.6)',
+          'causality-light': 'rgba(243, 247, 251, 0.6)',
+          'causality-dark': 'rgba(20, 23, 26, 0.6)',
+          'sleepwalker-light': 'rgba(248, 245, 251, 0.6)',
+          'sleepwalker-dark': 'rgba(24, 21, 26, 0.6)',
+        },
+      }),
+      backdropBlur: {
+        'glass': '10px',
+        'glass-subtle': '8px',
+        'glass-heavy': '12px',
+        'depth-1': '8px',
+        'depth-2': '12px',
+        'depth-3': '16px',
+        'depth-4': '20px',
+      },
+      boxShadow: ({ theme }) => ({
+        // Soft glow effects
+        'glow-sm': '0 0 10px color-mix(in srgb, var(--accent-primary) 10%, transparent)',
+        'glow-md': '0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent)',
+        'glow-lg': '0 0 30px color-mix(in srgb, var(--accent-primary) 25%, transparent)',
+        'glow-xl': '0 0 40px color-mix(in srgb, var(--accent-primary) 35%, transparent)',
+        'inner-glow-sm': 'inset 0 0 10px color-mix(in srgb, var(--accent-primary) 5%, transparent)',
+        'inner-glow-md': 'inset 0 0 20px color-mix(in srgb, var(--accent-primary) 10%, transparent)',
+        'inner-glow-lg': 'inset 0 0 30px color-mix(in srgb, var(--accent-primary) 15%, transparent)',
+      }),
+      borderColor: ({ theme }) => ({
+        'glow': 'color-mix(in srgb, var(--accent-primary) 30%, transparent)',
+        'glow-hover': 'color-mix(in srgb, var(--accent-primary) 50%, transparent)',
+        'glow-active': 'var(--accent-primary)',
+      }),
+    }
+  },
+  plugins: [
+    // Custom plugin for button utilities
+    function({ addComponents }) {
+      addComponents({
+        '.btn': {
+          '@apply inline-block px-3 py-2 text-xs font-mono tracking-normal rounded cursor-pointer transition-all duration-300 relative overflow-hidden': {},
+          'background': 'var(--bg-glass)',
+          'color': 'var(--text-primary)',
+          'border': '1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent)',
+          'box-shadow': '0 0 10px color-mix(in srgb, var(--accent-primary) 10%, transparent), inset 0 0 10px color-mix(in srgb, var(--accent-primary) 5%, transparent)',
+          '&:hover': {
+            'background': 'var(--accent-primary)',
+            'color': 'var(--bg-primary)',
+            'transform': 'translateY(-1px)',
+            'border-color': 'var(--accent-primary)',
+            'box-shadow': 'var(--depth-2-shadow), 0 0 25px color-mix(in srgb, var(--accent-primary) 40%, transparent), inset 0 0 15px color-mix(in srgb, var(--accent-primary) 20%, transparent)',
+          },
+          '&:active': {
+            'transform': 'translateY(0)',
+            'background': 'linear-gradient(135deg, var(--text-primary), color-mix(in srgb, var(--text-primary) 85%, var(--accent-primary)))',
+            'color': 'var(--bg-primary)',
+            'border-color': 'var(--text-primary)',
+          }
+        }
+      })
+    }
+  ]
+}</pre>
+        </div>
+
+        <div class="typography-section depth-1">
+            <h3>Implementation Notes</h3>
+            <ul>
+                <li>💡 Use the glass effect sparingly on interactive elements and overlays</li>
+                <li>📱 Test color contrast ratios for accessibility (WCAG AA minimum)</li>
+                <li>🎨 Apply accent colors to buttons, links, and important UI elements</li>
+                <li>🌓 Implement CSS custom properties for easy theme switching</li>
+                <li>📊 For code blocks and diagrams, use the secondary accent colors</li>
+                <li>✨ The 20% glass effect is achieved through backdrop-filter and opacity</li>
+            </ul>
+        </div>
+        
+        <!-- Complete CSS Variables Reference -->
+        <div class="typography-section depth-1 section-spacing">
+            <h2>Complete CSS Variables Reference</h2>
+            <p class="lead">Copy this single source of truth for your implementation.</p>
+            
+            <div class="tailwind-config terminal-interface">
+                <pre class="terminal-code">/* Global CSS Variables - Single Source of Truth */
+:root {
+  /* Typography System - Modern Terminal */
+  --font-display: 'Fira Code', 'JetBrains Mono', 'SF Mono', monospace;
+  --font-body: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'SF Mono', monospace;
+  
+  /* Fluid Type Scale - Compact Terminal */
+  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);       /* 11-13px */
+  --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);     /* 13-14px */
+  --text-base: clamp(0.875rem, 0.825rem + 0.25vw, 0.95rem); /* 14-15px */
+  --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);         /* 16-18px */
+  --text-xl: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);      /* 18-20px */
+  --text-2xl: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);   /* 20-24px */
+  --text-3xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);        /* 24-32px */
+  --text-4xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);    /* 30-40px */
+  --text-5xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem);        /* 36-48px */
+  
+  /* Line Heights - Terminal Optimized */
+  --leading-tight: 1.2;
+  --leading-snug: 1.3;
+  --leading-normal: 1.4;
+  --leading-relaxed: 1.5;
+  --leading-loose: 1.6;
+  --leading-body: 1.45;
+  
+  /* Letter Spacing - Compact Terminal */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.03em;
+  --tracking-normal: -0.01em;
+  --tracking-wide: 0.01em;
+  --tracking-wider: 0.03em;
+  --tracking-widest: 0.05em;
+  --tracking-mono: -0.01em;
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Spacing Scale - Compact Terminal */
+  --space-1: 0.125rem;  /* 2px */
+  --space-2: 0.25rem;   /* 4px */
+  --space-3: 0.5rem;    /* 8px */
+  --space-4: 0.75rem;   /* 12px */
+  --space-5: 1rem;      /* 16px */
+  --space-6: 1.25rem;   /* 20px */
+  --space-8: 1.75rem;   /* 28px */
+  --space-10: 2.25rem;  /* 36px */
+  --space-12: 2.75rem;  /* 44px */
+  --space-16: 3.5rem;   /* 56px */
+  --space-20: 4.5rem;   /* 72px */
+  
+  /* Content Widths */
+  --content-narrow: 650px;
+  --content-wide: 900px;
+  --content-full: 1400px;
+  
+  /* Glass Effects & Cascading Depth System */
+  --glass-blur: 10px;
+  --glass-opacity: 0.6;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  
+  /* Cascading Depth Layers - Reduced Opacity */
+  --depth-0-opacity: 1;
+  --depth-1-opacity: 0.9;
+  --depth-2-opacity: 0.8;
+  --depth-3-opacity: 0.7;
+  --depth-4-opacity: 0.6;
+  
+  --depth-0-blur: 0px;
+  --depth-1-blur: 8px;
+  --depth-2-blur: 12px;
+  --depth-3-blur: 16px;
+  --depth-4-blur: 20px;
+  
+  --depth-0-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  --depth-1-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --depth-2-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 8px 10px -1px rgba(0, 0, 0, 0.04);
+  --depth-3-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 20px 25px -3px rgba(0, 0, 0, 0.05);
+  --depth-4-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 30px 30px -5px rgba(0, 0, 0, 0.04);
+  
+  --depth-0-border: 1;
+  --depth-1-border: 0.8;
+  --depth-2-border: 0.6;
+  --depth-3-border: 0.4;
+  --depth-4-border: 0.2;
+}
+
+/* Domain-Specific Variables (Dynamic) */
+[data-domain="getharsh"][data-theme="light"] {
+  --bg-primary: #FBF8F3;
+  --bg-glass: rgba(251, 248, 243, 0.6);
+  --accent-primary: #C19A6B;
+  --accent-secondary: #D4AF37;
+  --text-primary: #3A3530;
+  --text-secondary: #6B645C;
+}
+
+[data-domain="getharsh"][data-theme="dark"] {
+  --bg-primary: #1A1815;
+  --bg-glass: rgba(26, 24, 21, 0.6);
+  --accent-primary: #E5C07B;
+  --accent-secondary: #98834B;
+  --text-primary: #F3EDE4;
+  --text-secondary: #B0A590;
+}
+
+/* (Other domains follow same pattern - see implementation) */
+
+/* Core Component Classes */
+
+/* Unified Button System with Soft Glow */
+.btn {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-glass);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background 0.15s ease,
+              color 0.15s ease;
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-normal);
+  box-shadow: 
+    0 0 10px color-mix(in srgb, var(--accent-primary) 10%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--accent-primary) 5%, transparent);
+}
+
+.btn:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  transform: translateY(-1px);
+  box-shadow: 
+    var(--depth-2-shadow),
+    0 0 25px color-mix(in srgb, var(--accent-primary) 40%, transparent),
+    inset 0 0 15px color-mix(in srgb, var(--accent-primary) 20%, transparent);
+  border-color: var(--accent-primary);
+}
+
+.btn:active {
+  transform: translateY(0);
+  background: linear-gradient(
+    135deg,
+    var(--text-primary),
+    color-mix(in srgb, var(--text-primary) 85%, var(--accent-primary))
+  );
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+  /* Color inversion on press */
+}
+
+/* Cascading Depth System with Soft Glow Borders */
+.depth-1 {
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(var(--depth-1-blur));
+  backdrop-filter: blur(var(--depth-1-blur));
+  box-shadow: 
+    var(--depth-1-shadow),
+    0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent),
+    inset 0 0 20px color-mix(in srgb, var(--accent-primary) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+}
+
+/* Fixed Navigation Header */
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  box-shadow: 
+    var(--depth-2-shadow),
+    0 0 20px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+}
+
+/* Animated Background Gradients */
+body::after {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 120vmax;
+  height: 120vmax;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  opacity: 0.08;
+  animation: rotate 60s linear infinite;
+  filter: blur(100px);
+}
+
+/* Light mode adjustments */
+body[data-theme="light"]::after {
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  filter: blur(40px) contrast(2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn {
+    padding: var(--space-1) var(--space-2);
+    font-size: 0.7rem;
+  }
+}</pre>
+            </div>
+            
+            <div class="type-specimen depth-2 section-spacing">
+                <h3>Terminal Typography Best Practices</h3>
+                <div class="retro-border">
+                    <ol class="reading-width">
+                        <li><strong>Consistent Width:</strong> Leverage fixed-width for predictable layouts</li>
+                        <li><strong>Letter Spacing:</strong> Use 0.01em for optimal monospace readability</li>
+                        <li><strong>Size Hierarchy:</strong> Create emphasis through size and weight, not font changes</li>
+                        <li><strong>Terminal Authenticity:</strong> Every element feels like a system interface</li>
+                        <li><strong>Reading Comfort:</strong> Generous line-height (1.7x) prevents eye strain</li>
+                        <li><strong>Performance:</strong> Single font family reduces load time significantly</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Theme Switcher Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const domainBtns = document.querySelectorAll('.domain-btn');
+            const modeBtns = document.querySelectorAll('.mode-btn');
+            
+            // Domain switcher
+            domainBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const domain = this.getAttribute('data-domain');
+                    body.setAttribute('data-domain', domain);
+                    
+                    // Update active state
+                    domainBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update domain indicators
+                    updateDomainIndicators(domain);
+                });
+            });
+            
+            // Mode switcher
+            modeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const mode = this.getAttribute('data-mode');
+                    body.setAttribute('data-theme', mode);
+                    
+                    // Update active state
+                    modeBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Update domain indicators to match current theme
+            function updateDomainIndicators(domain) {
+                // Update domain indicator classes
+                const indicators = document.querySelectorAll('.domain-indicator');
+                indicators.forEach(indicator => {
+                    // Get the domain name from the parent section
+                    const section = indicator.closest('.domain-section');
+                    if (section) {
+                        const sectionDomain = section.querySelector('h3').textContent.toLowerCase().replace('.in', '').replace(' ', '');
+                        indicator.className = 'domain-indicator ' + sectionDomain;
+                    }
+                });
+                
+                // Update page title to show current domain
+                const pageTitle = document.querySelector('.page-title');
+                const domainNames = {
+                    'getharsh': 'getHarsh',
+                    'rawthoughts': 'rawThoughts',
+                    'daostudio': 'daoStudio',
+                    'causality': 'causality',
+                    'sleepwalker': 'sleepwalker'
+                };
+                pageTitle.textContent = domainNames[domain] + ' Design System';
+            }
+            
+            // Initialize
+            updateDomainIndicators('getharsh');
+        });
+    </script>
+    
+    
+</body>
+</html>

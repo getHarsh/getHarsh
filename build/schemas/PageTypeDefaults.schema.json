@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PageTypeDefaults",
+  "definitions": {
+    "PageTypeDefaults": {
+      "properties": {
+        "include_author": {
+          "type": "boolean",
+          "description": "Include author for all pages"
+        },
+        "include_organization": {
+          "type": "boolean",
+          "description": "Include organization for all pages"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs for all pages"
+        },
+        "include_site_search": {
+          "type": "boolean",
+          "description": "Include site search action"
+        },
+        "default_image_url": {
+          "type": "string",
+          "description": "Default image for pages without images"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Type Defaults",
+      "description": "Page type defaults for Schema.org"
+    }
+  },
+  "title": "PAGETYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for PageTypeDefaults configuration"
+}

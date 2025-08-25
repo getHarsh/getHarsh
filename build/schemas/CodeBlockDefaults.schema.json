@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeBlockDefaults",
+  "definitions": {
+    "CodeBlockDefaults": {
+      "properties": {
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers by default"
+        },
+        "show_copy_button": {
+          "type": "boolean",
+          "description": "Show copy button"
+        },
+        "default_theme": {
+          "type": "string",
+          "description": "Default syntax theme"
+        },
+        "enable_line_highlighting": {
+          "type": "boolean",
+          "description": "Enable line highlighting"
+        },
+        "tab_size": {
+          "type": "integer",
+          "description": "Tab size"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Defaults",
+      "description": "Code block default settings"
+    }
+  },
+  "title": "CODEBLOCKDEFAULTS Configuration Schema",
+  "description": "JSON Schema for CodeBlockDefaults configuration"
+}

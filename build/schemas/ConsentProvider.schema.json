@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentProvider",
+  "definitions": {
+    "ConsentProvider": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Provider name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Provider description"
+        },
+        "privacy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "type": {
+          "enum": [
+            "PROVIDER_TYPE_UNSPECIFIED",
+            0,
+            "PROVIDER_TYPE_ANALYTICS",
+            1,
+            "PROVIDER_TYPE_ADVERTISING",
+            2,
+            "PROVIDER_TYPE_SOCIAL_MEDIA",
+            3,
+            "PROVIDER_TYPE_FUNCTIONAL",
+            4,
+            "PROVIDER_TYPE_SECURITY",
+            5
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Provider Type",
+          "description": "Provider type"
+        },
+        "purposes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Purposes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Provider",
+      "description": "Consent provider/vendor"
+    }
+  },
+  "title": "CONSENTPROVIDER Configuration Schema",
+  "description": "JSON Schema for ConsentProvider configuration"
+}

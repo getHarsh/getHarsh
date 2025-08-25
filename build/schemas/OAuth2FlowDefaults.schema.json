@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OAuth2FlowDefaults",
+  "definitions": {
+    "OAuth2FlowDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.OAuth2FlowMapping",
+          "description": "OAUTH2_FLOW_UNSPECIFIED  flow_name: \"\" required_params: [] grant_type: \"\" security_notes: []"
+        },
+        "implicit": {
+          "$ref": "#/definitions/website.config.OAuth2FlowMapping",
+          "description": "OAUTH2_FLOW_IMPLICIT  flow_name: \"Implicit\" required_params: [\"client_id\", \"redirect_uri\", \"scope\", \"state\"] grant_type: \"implicit\" security_notes: [\"Deprecated for SPAs\", \"Token exposed in URL\"]"
+        },
+        "authorization_code": {
+          "$ref": "#/definitions/website.config.OAuth2FlowMapping",
+          "description": "OAUTH2_FLOW_AUTHORIZATION_CODE  flow_name: \"Authorization Code\" required_params: [\"client_id\", \"client_secret\", \"redirect_uri\", \"code\"] grant_type: \"authorization_code\" security_notes: [\"Recommended for web apps\", \"Requires backend\"]"
+        },
+        "client_credentials": {
+          "$ref": "#/definitions/website.config.OAuth2FlowMapping",
+          "description": "OAUTH2_FLOW_CLIENT_CREDENTIALS  flow_name: \"Client Credentials\" required_params: [\"client_id\", \"client_secret\"] grant_type: \"client_credentials\" security_notes: [\"For machine-to-machine\", \"No user context\"]"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Flow Defaults",
+      "description": "Complete OAuth2 flow mappings"
+    },
+    "website.config.OAuth2FlowMapping": {
+      "properties": {
+        "flow_name": {
+          "type": "string",
+          "description": "Flow name"
+        },
+        "required_params": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required parameters"
+        },
+        "grant_type": {
+          "type": "string",
+          "description": "Grant type"
+        },
+        "security_notes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Security considerations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Flow Mapping"
+    }
+  },
+  "title": "OAUTH2FLOWDEFAULTS Configuration Schema",
+  "description": "JSON Schema for OAuth2FlowDefaults configuration"
+}

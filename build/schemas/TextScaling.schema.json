@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TextScaling",
+  "definitions": {
+    "TextScaling": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable text scaling"
+        },
+        "controls": {
+          "$ref": "#/definitions/website.config.aria.ScalingControls",
+          "description": "Scaling controls"
+        },
+        "responsive_sizing": {
+          "type": "boolean",
+          "description": "Responsive sizing"
+        },
+        "scale_line_height": {
+          "type": "boolean",
+          "description": "Line height scaling"
+        },
+        "max_scale": {
+          "type": "number",
+          "description": "Maximum scale"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Text Scaling",
+      "description": "Text scaling configuration"
+    },
+    "website.config.aria.ScalingControls": {
+      "properties": {
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show controls"
+        },
+        "position": {
+          "type": "string",
+          "description": "Control position"
+        },
+        "steps": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array",
+          "description": "Scaling steps"
+        },
+        "remember": {
+          "type": "boolean",
+          "description": "Remember preference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scaling Controls",
+      "description": "Scaling controls"
+    }
+  },
+  "title": "TEXTSCALING Configuration Schema",
+  "description": "JSON Schema for TextScaling configuration"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ListStructure",
+  "definitions": {
+    "ListStructure": {
+      "properties": {
+        "enforce_nesting": {
+          "type": "boolean",
+          "description": "Proper nesting"
+        },
+        "require_items": {
+          "type": "boolean",
+          "description": "List item requirement"
+        },
+        "support_description": {
+          "type": "boolean",
+          "description": "Description lists"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "List Structure",
+      "description": "List structure configuration"
+    }
+  },
+  "title": "LISTSTRUCTURE Configuration Schema",
+  "description": "JSON Schema for ListStructure configuration"
+}

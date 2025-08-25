@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArrowNavigation",
+  "definitions": {
+    "ArrowNavigation": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable arrow navigation"
+        },
+        "contexts": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ArrowContext"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Navigation contexts"
+        },
+        "wrap_around": {
+          "type": "boolean",
+          "description": "Wrap around"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Arrow Navigation",
+      "description": "Arrow navigation configuration"
+    },
+    "website.config.aria.ArrowContext": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Context name (menu, grid, etc.)"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "type": {
+          "enum": [
+            "ARROW_NAVIGATION_TYPE_UNSPECIFIED",
+            0,
+            "ARROW_NAVIGATION_TYPE_HORIZONTAL",
+            1,
+            "ARROW_NAVIGATION_TYPE_VERTICAL",
+            2,
+            "ARROW_NAVIGATION_TYPE_GRID",
+            3,
+            "ARROW_NAVIGATION_TYPE_TREE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Arrow Navigation Type",
+          "description": "Arrow navigation types"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Arrow Context",
+      "description": "Arrow navigation context"
+    }
+  },
+  "title": "ARROWNAVIGATION Configuration Schema",
+  "description": "JSON Schema for ArrowNavigation configuration"
+}

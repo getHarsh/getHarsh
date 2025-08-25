@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentModeV2",
+  "definitions": {
+    "ConsentModeV2": {
+      "properties": {
+        "ad_user_data_default": {
+          "type": "boolean",
+          "description": "Default consent states"
+        },
+        "ad_personalization_default": {
+          "type": "boolean"
+        },
+        "implementation_mode": {
+          "type": "string",
+          "description": "Implementation mode (\"basic\" or \"advanced\")"
+        },
+        "enable_cookieless_pings": {
+          "type": "boolean",
+          "description": "Advanced mode features"
+        },
+        "enable_data_modeling": {
+          "type": "boolean"
+        },
+        "wait_for_update_ms": {
+          "type": "integer",
+          "description": "Wait for consent update (milliseconds)"
+        },
+        "region_defaults": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.RegionConsent"
+          },
+          "type": "object",
+          "description": "Region-specific defaults"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Mode V 2",
+      "description": "Enhanced Google Consent Mode v2 configuration"
+    },
+    "website.config.RegionConsent": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region code (e.g., \"EU\", \"US\", \"CA\")"
+        },
+        "analytics_storage": {
+          "type": "boolean",
+          "description": "Consent defaults for this region"
+        },
+        "ad_storage": {
+          "type": "boolean"
+        },
+        "ad_user_data": {
+          "type": "boolean"
+        },
+        "ad_personalization": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Consent",
+      "description": "Region-specific consent defaults"
+    }
+  },
+  "title": "CONSENTMODEV2 Configuration Schema",
+  "description": "JSON Schema for ConsentModeV2 configuration"
+}

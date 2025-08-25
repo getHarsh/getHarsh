@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GenerationMetadata",
+  "definitions": {
+    "GenerationMetadata": {
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "description": "Generation timestamp"
+        },
+        "schema_version": {
+          "type": "string",
+          "description": "Schema.org version used"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.ValidationResults",
+          "description": "Validation results"
+        },
+        "stats": {
+          "$ref": "#/definitions/website.config.GenerationStats",
+          "description": "Statistics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Generation Metadata",
+      "description": "Generation metadata"
+    },
+    "website.config.GenerationStats": {
+      "properties": {
+        "total_entities": {
+          "type": "integer",
+          "description": "Total entities generated"
+        },
+        "entities_by_type": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Entities by type"
+        },
+        "total_properties": {
+          "type": "integer",
+          "description": "Total properties"
+        },
+        "total_relationships": {
+          "type": "integer",
+          "description": "Total relationships"
+        },
+        "total_size": {
+          "type": "integer",
+          "description": "JSON-LD size (bytes)"
+        },
+        "generation_time": {
+          "type": "integer",
+          "description": "Generation time (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Generation Stats",
+      "description": "Generation statistics"
+    },
+    "website.config.ValidationError": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Error type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type involved"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Error",
+      "description": "Validation error"
+    },
+    "website.config.ValidationResults": {
+      "properties": {
+        "is_valid": {
+          "type": "boolean",
+          "description": "Is valid"
+        },
+        "errors": {
+          "items": {
+            "$ref": "#/definitions/website.config.ValidationError"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Errors"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/definitions/website.config.ValidationWarning"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Warnings"
+        },
+        "type_coverage": {
+          "type": "number",
+          "description": "Schema.org type coverage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Results",
+      "description": "Validation results"
+    },
+    "website.config.ValidationWarning": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Warning type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Warning message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "suggestion": {
+          "type": "string",
+          "description": "Suggestion"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Warning",
+      "description": "Validation warning"
+    }
+  },
+  "title": "GENERATIONMETADATA Configuration Schema",
+  "description": "JSON Schema for GenerationMetadata configuration"
+}

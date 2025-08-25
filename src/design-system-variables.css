@@ -1,0 +1,192 @@
+/* Global CSS Variables - Single Source of Truth */
+/* Accurate representation of design-system-v1.html implementation */
+
+:root {
+  /* Typography System - Terminal First */
+  --font-display: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  --font-body: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  
+  /* Fluid Type Scale - Compact Terminal (Exact from implementation) */
+  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);       /* 11-13px */
+  --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);     /* 13-14px */
+  --text-base: clamp(0.875rem, 0.825rem + 0.25vw, 0.95rem); /* 14-15px */
+  --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);         /* 16-18px */
+  --text-xl: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);      /* 18-20px */
+  --text-2xl: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);   /* 20-24px */
+  --text-3xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);        /* 24-32px */
+  --text-4xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);    /* 30-40px */
+  --text-5xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem);        /* 36-48px */
+  
+  /* Line Heights - Terminal Optimized */
+  --leading-tight: 1.2;
+  --leading-snug: 1.3;
+  --leading-normal: 1.4;
+  --leading-relaxed: 1.5;
+  --leading-loose: 1.6;
+  --leading-body: 1.45;
+  
+  /* Letter Spacing - Compact Terminal */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.03em;
+  --tracking-normal: -0.01em;
+  --tracking-wide: 0.01em;
+  --tracking-wider: 0.03em;
+  --tracking-widest: 0.05em;
+  --tracking-mono: -0.01em;
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Spacing Scale - Compact Terminal */
+  --space-1: 0.125rem;  /* 2px */
+  --space-2: 0.25rem;   /* 4px */
+  --space-3: 0.5rem;    /* 8px */
+  --space-4: 0.75rem;   /* 12px */
+  --space-5: 1rem;      /* 16px */
+  --space-6: 1.25rem;   /* 20px */
+  --space-8: 1.75rem;   /* 28px */
+  --space-10: 2.25rem;  /* 36px */
+  --space-12: 2.75rem;  /* 44px */
+  --space-16: 3.5rem;   /* 56px */
+  --space-20: 4.5rem;   /* 72px */
+  
+  /* Content Widths */
+  --content-narrow: 650px;   /* Optimal for reading */
+  --content-wide: 900px;     /* For wider content */
+  --content-full: 1400px;    /* Full container */
+  
+  /* Terminal Grid Unit - Creative spacing system */
+  --grid-unit: 0.25rem;     /* 4px base unit */
+  --char-width: 0.6ch;      /* Average monospace character width */
+  --line-unit: 1.4rem;      /* Base line height unit */
+  
+  /* Glass Effects & Cascading Depth System */
+  --glass-blur: 10px;
+  --glass-opacity: 0.8;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  
+  /* Cascading Depth Layers */
+  --depth-0-opacity: 1;
+  --depth-1-opacity: 0.95;
+  --depth-2-opacity: 0.85;
+  --depth-3-opacity: 0.75;
+  --depth-4-opacity: 0.65;
+  
+  --depth-0-blur: 0px;
+  --depth-1-blur: 8px;
+  --depth-2-blur: 12px;
+  --depth-3-blur: 16px;
+  --depth-4-blur: 20px;
+  
+  /* Premium Enhanced Shadow System */
+  --depth-0-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  --depth-1-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --depth-2-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 8px 10px -1px rgba(0, 0, 0, 0.04);
+  --depth-3-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 20px 25px -3px rgba(0, 0, 0, 0.05);
+  --depth-4-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 30px 30px -5px rgba(0, 0, 0, 0.04);
+  
+  --depth-0-border: 1;
+  --depth-1-border: 0.8;
+  --depth-2-border: 0.6;
+  --depth-3-border: 0.4;
+  --depth-4-border: 0.2;
+}
+
+/* Premium Enhancements */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.015;
+  z-index: 1;
+  pointer-events: none;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0,0,0,.03) 35px, rgba(0,0,0,.03) 70px);
+  background-size: 100px 100px;
+  mix-blend-mode: overlay;
+}
+
+/* Glass Morphism with Safari Support */
+.glass {
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+/* Premium Animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Premium Text Rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  opacity: 0.8;
+}
+
+/* Premium Transitions */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

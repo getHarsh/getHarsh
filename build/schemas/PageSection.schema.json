@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PageSection",
+  "definitions": {
+    "PageSection": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "description": "Markdown/HTML"
+        },
+        "component_type": {
+          "type": "string",
+          "description": "For custom React components"
+        },
+        "props": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Component props"
+        },
+        "display_order": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Section",
+      "description": "Custom page section"
+    }
+  },
+  "title": "PAGESECTION Configuration Schema",
+  "description": "JSON Schema for PageSection configuration"
+}

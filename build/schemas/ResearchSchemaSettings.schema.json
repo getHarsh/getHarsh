@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ResearchSchemaSettings",
+  "definitions": {
+    "ResearchSchemaSettings": {
+      "properties": {
+        "area_mapping": {
+          "$ref": "#/definitions/website.config.ResearchAreaMapping",
+          "description": "Research area mapping"
+        },
+        "funding": {
+          "$ref": "#/definitions/website.config.FundingInfo",
+          "description": "Funding information"
+        },
+        "publications": {
+          "$ref": "#/definitions/website.config.PublicationSettings",
+          "description": "Publication settings"
+        },
+        "datasets": {
+          "$ref": "#/definitions/website.config.DatasetSettings",
+          "description": "Dataset settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Research Schema Settings",
+      "description": "Research-specific Schema.org settings"
+    },
+    "website.config.DatasetSettings": {
+      "properties": {
+        "include_datasets": {
+          "type": "boolean",
+          "description": "Include datasets"
+        },
+        "dataset_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Dataset type mapping"
+        },
+        "license_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "License mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dataset Settings",
+      "description": "Dataset settings"
+    },
+    "website.config.FundingInfo": {
+      "properties": {
+        "include_funding": {
+          "type": "boolean",
+          "description": "Include funding info"
+        },
+        "funder_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Funder type mapping"
+        },
+        "grant_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Grant type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Funding Info",
+      "description": "Funding information"
+    },
+    "website.config.PublicationSettings": {
+      "properties": {
+        "include_publications": {
+          "type": "boolean",
+          "description": "Include publications"
+        },
+        "pub_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Publication type mapping"
+        },
+        "venue_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Venue type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publication Settings",
+      "description": "Publication settings"
+    },
+    "website.config.ResearchAreaMapping": {
+      "properties": {
+        "default_area": {
+          "type": "string",
+          "description": "Default research area"
+        },
+        "keyword_areas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Keywords to area mapping"
+        },
+        "disciplines": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Discipline mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Research Area Mapping",
+      "description": "Research area mapping"
+    }
+  },
+  "title": "RESEARCHSCHEMASETTINGS Configuration Schema",
+  "description": "JSON Schema for ResearchSchemaSettings configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Screenshot",
+  "definitions": {
+    "Screenshot": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Image path (relative to project root)"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text/description"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category (e.g., \"desktop\", \"mobile\", \"cli\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screenshot",
+      "description": "Screenshot information"
+    }
+  },
+  "title": "SCREENSHOT Configuration Schema",
+  "description": "JSON Schema for Screenshot configuration"
+}

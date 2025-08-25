@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleSeries",
+  "definitions": {
+    "ArticleSeries": {
+      "properties": {
+        "series_key": {
+          "type": "string",
+          "description": "Series key/ID"
+        },
+        "series_title": {
+          "type": "string",
+          "description": "Series title"
+        },
+        "part_number": {
+          "type": "integer",
+          "description": "Part number in series"
+        },
+        "total_parts": {
+          "type": "integer",
+          "description": "Total parts (if known)"
+        },
+        "previous_slug": {
+          "type": "string",
+          "description": "Previous article slug"
+        },
+        "next_slug": {
+          "type": "string",
+          "description": "Next article slug"
+        },
+        "description": {
+          "type": "string",
+          "description": "Series description"
+        },
+        "landing_url": {
+          "type": "string",
+          "description": "Series landing page URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Series",
+      "description": "Article series information"
+    }
+  },
+  "title": "ARTICLESERIES Configuration Schema",
+  "description": "JSON Schema for ArticleSeries configuration"
+}

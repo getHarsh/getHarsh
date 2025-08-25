@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VideoEmbedDefaults",
+  "definitions": {
+    "VideoEmbedDefaults": {
+      "properties": {
+        "aspect_ratio": {
+          "type": "string",
+          "description": "Default aspect ratio"
+        },
+        "privacy_mode": {
+          "type": "boolean",
+          "description": "Enable privacy mode"
+        },
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show controls"
+        },
+        "lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Embed Defaults",
+      "description": "Video embed defaults"
+    }
+  },
+  "title": "VIDEOEMBEDDEFAULTS Configuration Schema",
+  "description": "JSON Schema for VideoEmbedDefaults configuration"
+}

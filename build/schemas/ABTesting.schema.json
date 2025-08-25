@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ABTesting",
+  "definitions": {
+    "ABTesting": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable A/B testing"
+        },
+        "variants": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.TestVariant"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Test variants"
+        },
+        "traffic_allocation": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Traffic allocation"
+        },
+        "success_metrics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Success metrics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AB Testing",
+      "description": "A/B testing configuration"
+    },
+    "website.config.consent.TestVariant": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Variant ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Variant name"
+        },
+        "overrides": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Configuration overrides"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Test Variant",
+      "description": "Test variant"
+    }
+  },
+  "title": "ABTESTING Configuration Schema",
+  "description": "JSON Schema for ABTesting configuration"
+}

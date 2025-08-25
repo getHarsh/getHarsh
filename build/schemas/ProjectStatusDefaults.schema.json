@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectStatusDefaults",
+  "definitions": {
+    "ProjectStatusDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_UNSPECIFIED  status_value: \"\" development_stage: \"\" availability: \"\""
+        },
+        "active": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_ACTIVE  status_value: \"Active\" development_stage: \"Production\" availability: \"Available\""
+        },
+        "beta": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_BETA  status_value: \"Beta\" development_stage: \"Beta\" availability: \"Limited\""
+        },
+        "stable": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_STABLE  status_value: \"Stable\" development_stage: \"Stable\" availability: \"Available\""
+        },
+        "maintenance": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_MAINTENANCE  status_value: \"Maintenance\" development_stage: \"Maintenance\" availability: \"Available\""
+        },
+        "deprecated": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_DEPRECATED  status_value: \"Deprecated\" development_stage: \"Deprecated\" availability: \"Discontinued\""
+        },
+        "archived": {
+          "$ref": "#/definitions/website.config.ProjectStatusMapping",
+          "description": "PROJECT_STATUS_ARCHIVED  status_value: \"Archived\" development_stage: \"Archived\" availability: \"Unavailable\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Status Defaults",
+      "description": "Complete project status mappings"
+    },
+    "website.config.ProjectStatusMapping": {
+      "properties": {
+        "status_value": {
+          "type": "string",
+          "description": "Status value for Schema.org"
+        },
+        "development_stage": {
+          "type": "string",
+          "description": "Development stage"
+        },
+        "availability": {
+          "type": "string",
+          "description": "Availability status"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Status Mapping"
+    }
+  },
+  "title": "PROJECTSTATUSDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ProjectStatusDefaults configuration"
+}

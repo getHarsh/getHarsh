@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteStructureSettings",
+  "definitions": {
+    "SiteStructureSettings": {
+      "properties": {
+        "create_website": {
+          "type": "boolean",
+          "description": "Create WebSite object"
+        },
+        "create_navigation": {
+          "type": "boolean",
+          "description": "Create SiteNavigationElement"
+        },
+        "create_breadcrumbs": {
+          "type": "boolean",
+          "description": "Create BreadcrumbList"
+        },
+        "create_item_lists": {
+          "type": "boolean",
+          "description": "Create ItemList for sections"
+        },
+        "include_search_action": {
+          "type": "boolean",
+          "description": "Include search action"
+        },
+        "max_nav_depth": {
+          "type": "integer",
+          "description": "Navigation depth"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Structure Settings",
+      "description": "Site structure settings for Schema.org"
+    }
+  },
+  "title": "SITESTRUCTURESETTINGS Configuration Schema",
+  "description": "JSON Schema for SiteStructureSettings configuration"
+}

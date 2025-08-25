@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TechnicalLinks",
+  "definitions": {
+    "TechnicalLinks": {
+      "properties": {
+        "rss_path": {
+          "type": "string",
+          "description": "RSS feed path"
+        },
+        "sitemap_path": {
+          "type": "string",
+          "description": "XML sitemap path"
+        },
+        "robots_path": {
+          "type": "string",
+          "description": "robots.txt path"
+        },
+        "llms_txt_path": {
+          "type": "string",
+          "description": "LLMs.txt path for AI agents"
+        },
+        "manifest_path": {
+          "type": "string",
+          "description": "AI manifest path"
+        },
+        "additional_links": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional technical resources"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Links",
+      "description": "Footer technical links configuration"
+    }
+  },
+  "title": "TECHNICALLINKS Configuration Schema",
+  "description": "JSON Schema for TechnicalLinks configuration"
+}

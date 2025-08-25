@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PreviewMode",
+  "definitions": {
+    "PreviewMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "cookie_name": {
+          "type": "string",
+          "description": "Preview cookie name"
+        },
+        "share_preview_url": {
+          "type": "boolean",
+          "description": "Share preview URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Preview Mode",
+      "description": "Preview mode configuration"
+    }
+  },
+  "title": "PREVIEWMODE Configuration Schema",
+  "description": "JSON Schema for PreviewMode configuration"
+}

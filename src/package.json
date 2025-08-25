@@ -1,0 +1,90 @@
+{
+  "name": "getharsh-theme-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-domain Gatsby theme engine with ecosystem integration, retrofuturistic design system, and Chakra-aligned color palettes",
+  "author": "Harsh Joshi",
+  "keywords": [
+    "gatsby",
+    "theme-engine",
+    "multi-domain",
+    "chakra",
+    "retrofuturistic"
+  ],
+  "scripts": {
+    "develop": "echo '⚠️  ERROR: Use ../serve.sh --type=development --domain=<domain> instead!' && exit 1",
+    "start": "echo '⚠️  ERROR: Use ../serve.sh --type=development --domain=<domain> instead!' && exit 1",
+    "build": "echo '⚠️  ERROR: Use ../builder.sh --mode=PRODUCTION --domain=<domain> instead!' && exit 1",
+    "serve": "echo '⚠️  ERROR: Use ../serve.sh --type=static --domain=<domain> instead!' && exit 1",
+    "clean": "echo '⚠️  ERROR: Use ../clean.sh instead!' && exit 1",
+    "typecheck": "tsc --noEmit",
+    "_internal_develop": "gatsby develop",
+    "_internal_build": "gatsby build",
+    "_internal_serve": "gatsby serve",
+    "_internal_clean": "gatsby clean"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0 <20.0.0"
+  },
+  "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@types/katex": "^0.16.7",
+    "@types/react-helmet": "^6.1.11",
+    "@types/styled-components": "^5.1.34",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "decap-cms-app": "3.1.11",
+    "flexsearch": "^0.7.31",
+    "gatsby": "^5.13.7",
+    "gatsby-plugin-decap-cms": "^4.0.3",
+    "gatsby-plugin-google-tagmanager": "^5.14.0",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-postcss": "^6.13.1",
+    "gatsby-plugin-react-helmet": "^6.14.0",
+    "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-source-filesystem": "^5.13.1",
+    "gatsby-transformer-remark": "^6.13.1",
+    "gatsby-transformer-sharp": "^5.13.1",
+    "graphql": "^16.6.0",
+    "katex": "^0.16.22",
+    "lucide-react": "^0.540.0",
+    "mermaid": "^11.10.1",
+    "radix-ui": "^1.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^6.1.19",
+    "tailwind-merge": "^2.2.0",
+    "use-debounce": "^10.0.0"
+  },
+  "overrides": {
+    "graphql": "^16.6.0",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
+    "babel-loader": {
+      "schema-utils": "^2.7.1"
+    },
+    "@pmmmwh/react-refresh-webpack-plugin": {
+      "schema-utils": "^3.3.0"
+    },
+    "webpack-dev-middleware": {
+      "schema-utils": "^3.3.0"
+    },
+    "webpack": {
+      "schema-utils": "^3.3.0"
+    }
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "^18.19.3",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.3.3"
+  }
+}

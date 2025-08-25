@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerContent",
+  "definitions": {
+    "BannerContent": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Main banner text"
+        },
+        "privacy_link_text": {
+          "type": "string",
+          "description": "Privacy policy link text"
+        },
+        "privacy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "cookie_link_text": {
+          "type": "string",
+          "description": "Cookie policy link text"
+        },
+        "cookie_url": {
+          "type": "string",
+          "description": "Cookie policy URL"
+        },
+        "legitimate_interest_text": {
+          "type": "string",
+          "description": "Legitimate interest text"
+        },
+        "vendor_list_url": {
+          "type": "string",
+          "description": "Vendor list link"
+        },
+        "enable_html": {
+          "type": "boolean",
+          "description": "Custom HTML support"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Content",
+      "description": "Banner content configuration"
+    }
+  },
+  "title": "BANNERCONTENT Configuration Schema",
+  "description": "JSON Schema for BannerContent configuration"
+}

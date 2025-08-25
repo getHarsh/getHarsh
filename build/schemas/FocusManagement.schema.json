@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusManagement",
+  "definitions": {
+    "FocusManagement": {
+      "properties": {
+        "focus_traps": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.FocusTrap"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Focus trap zones"
+        },
+        "restoration": {
+          "$ref": "#/definitions/website.config.aria.FocusRestoration",
+          "description": "Focus restoration"
+        },
+        "order": {
+          "$ref": "#/definitions/website.config.aria.FocusOrder",
+          "description": "Focus order"
+        },
+        "announcements": {
+          "$ref": "#/definitions/website.config.aria.FocusAnnouncements",
+          "description": "Focus announcements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Management",
+      "description": "Focus management configuration"
+    },
+    "website.config.aria.FocusAnnouncements": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Announce focus changes"
+        },
+        "announce_context": {
+          "type": "boolean",
+          "description": "Context announcements"
+        },
+        "announce_landmarks": {
+          "type": "boolean",
+          "description": "Landmark announcements"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom announcements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Announcements",
+      "description": "Focus announcements"
+    },
+    "website.config.aria.FocusOrder": {
+      "properties": {
+        "match_reading_order": {
+          "type": "boolean",
+          "description": "Reading order matches focus"
+        },
+        "group_related": {
+          "type": "boolean",
+          "description": "Group related elements"
+        },
+        "regions": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.FocusRegion"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Focus regions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Order",
+      "description": "Focus order configuration"
+    },
+    "website.config.aria.FocusRegion": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Region name"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "tab_behavior": {
+          "type": "string",
+          "description": "Tab behavior"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Region",
+      "description": "Focus region"
+    },
+    "website.config.aria.FocusRestoration": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable restoration"
+        },
+        "save_on_navigation": {
+          "type": "boolean",
+          "description": "Save focus on navigation"
+        },
+        "restore_on_back": {
+          "type": "boolean",
+          "description": "Restore on back"
+        },
+        "memory_duration_ms": {
+          "type": "integer",
+          "description": "Focus memory duration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Restoration",
+      "description": "Focus restoration configuration"
+    },
+    "website.config.aria.FocusTrap": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Trap identifier"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "initial_focus": {
+          "type": "string",
+          "description": "Initial focus"
+        },
+        "return_focus": {
+          "type": "boolean",
+          "description": "Return focus on close"
+        },
+        "allow_escape": {
+          "type": "boolean",
+          "description": "Allow escape"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Trap",
+      "description": "Focus trap configuration"
+    }
+  },
+  "title": "FOCUSMANAGEMENT Configuration Schema",
+  "description": "JSON Schema for FocusManagement configuration"
+}

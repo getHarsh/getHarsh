@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NodeTypeDefaults",
+  "definitions": {
+    "NodeTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.NodeTypeMapping",
+          "description": "NODE_TYPE_UNSPECIFIED  type_name: \"\" schema_type: \"\" nav_role: \"\" aria_properties: {}"
+        },
+        "page": {
+          "$ref": "#/definitions/website.config.NodeTypeMapping",
+          "description": "NODE_TYPE_PAGE  type_name: \"Page\" schema_type: \"WebPage\" nav_role: \"navigation\" aria_properties: { \"aria-label\": \"Page link\", \"role\": \"link\" }"
+        },
+        "section": {
+          "$ref": "#/definitions/website.config.NodeTypeMapping",
+          "description": "NODE_TYPE_SECTION  type_name: \"Section\" schema_type: \"WebPageElement\" nav_role: \"group\" aria_properties: { \"aria-label\": \"Section\", \"role\": \"group\" }"
+        },
+        "external": {
+          "$ref": "#/definitions/website.config.NodeTypeMapping",
+          "description": "NODE_TYPE_EXTERNAL  type_name: \"External\" schema_type: \"WebPage\" nav_role: \"link\" aria_properties: { \"aria-label\": \"External link\", \"role\": \"link\", \"rel\": \"external\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Node Type Defaults",
+      "description": "Complete node type mappings"
+    },
+    "website.config.NodeTypeMapping": {
+      "properties": {
+        "type_name": {
+          "type": "string",
+          "description": "Node type name"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "nav_role": {
+          "type": "string",
+          "description": "Navigation role"
+        },
+        "aria_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "ARIA properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Node Type Mapping"
+    }
+  },
+  "title": "NODETYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for NodeTypeDefaults configuration"
+}

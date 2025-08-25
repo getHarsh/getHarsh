@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DefaultArticleSchema",
+  "definitions": {
+    "DefaultArticleSchema": {
+      "properties": {
+        "publisher_type": {
+          "type": "string",
+          "description": "Default publisher type (\"Organization\" or \"Person\")"
+        },
+        "default_image_width": {
+          "type": "integer",
+          "description": "Default image dimensions"
+        },
+        "default_image_height": {
+          "type": "integer"
+        },
+        "include_author": {
+          "type": "boolean",
+          "description": "Include author by default"
+        },
+        "include_date_modified": {
+          "type": "boolean",
+          "description": "Include modified date"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Default Article Schema",
+      "description": "Default article schema settings"
+    }
+  },
+  "title": "DEFAULTARTICLESCHEMA Configuration Schema",
+  "description": "JSON Schema for DefaultArticleSchema configuration"
+}

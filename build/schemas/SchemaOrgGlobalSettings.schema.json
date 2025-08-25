@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgGlobalSettings",
+  "definitions": {
+    "SchemaOrgGlobalSettings": {
+      "properties": {
+        "default_context": {
+          "type": "string",
+          "description": "Default @context  \"https://schema.org\""
+        },
+        "include_ids": {
+          "type": "boolean",
+          "description": "Include @id for all entities"
+        },
+        "base_url": {
+          "type": "string",
+          "description": "Base URL for @id generation"
+        },
+        "default_language": {
+          "type": "string",
+          "description": "Default language"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs"
+        },
+        "rich_snippets": {
+          "$ref": "#/definitions/website.config.RichSnippetsConfig",
+          "description": "Rich snippets configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Global Settings",
+      "description": "Global Schema.org settings"
+    },
+    "website.config.RichSnippetsConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable rich snippets"
+        },
+        "snippet_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Types to generate snippets for"
+        },
+        "include_images": {
+          "type": "boolean",
+          "description": "Include preview images"
+        },
+        "include_ratings": {
+          "type": "boolean",
+          "description": "Include ratings/reviews"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Rich Snippets Config",
+      "description": "Rich snippets configuration"
+    }
+  },
+  "title": "SCHEMAORGGLOBALSETTINGS Configuration Schema",
+  "description": "JSON Schema for SchemaOrgGlobalSettings configuration"
+}

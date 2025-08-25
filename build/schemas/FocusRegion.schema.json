@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusRegion",
+  "definitions": {
+    "FocusRegion": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Region name"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "tab_behavior": {
+          "type": "string",
+          "description": "Tab behavior"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Region",
+      "description": "Focus region"
+    }
+  },
+  "title": "FOCUSREGION Configuration Schema",
+  "description": "JSON Schema for FocusRegion configuration"
+}

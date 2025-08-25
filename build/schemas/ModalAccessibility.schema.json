@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ModalAccessibility",
+  "definitions": {
+    "ModalAccessibility": {
+      "properties": {
+        "focus_management": {
+          "type": "boolean",
+          "description": "Focus management"
+        },
+        "escape_close": {
+          "type": "boolean",
+          "description": "Escape to close"
+        },
+        "prevent_background": {
+          "type": "boolean",
+          "description": "Background interaction"
+        },
+        "require_title": {
+          "type": "boolean",
+          "description": "Title requirement"
+        },
+        "require_close": {
+          "type": "boolean",
+          "description": "Close button"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Modal Accessibility",
+      "description": "Modal accessibility"
+    }
+  },
+  "title": "MODALACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for ModalAccessibility configuration"
+}

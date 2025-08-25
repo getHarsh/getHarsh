@@ -1,0 +1,276 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DataLayerConfig",
+  "definitions": {
+    "DataLayerConfig": {
+      "properties": {
+        "variable_name": {
+          "type": "string",
+          "description": "Data layer variable name (default: \"dataLayer\")"
+        },
+        "initial_values": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Initial data layer values"
+        },
+        "page_metadata": {
+          "$ref": "#/definitions/website.config.gtm.PageMetadata",
+          "description": "Page metadata to include"
+        },
+        "user_properties": {
+          "$ref": "#/definitions/website.config.gtm.UserProperties",
+          "description": "User properties to track"
+        },
+        "entity_properties": {
+          "$ref": "#/definitions/website.config.gtm.EntityProperties",
+          "description": "Entity properties to track"
+        },
+        "content_properties": {
+          "$ref": "#/definitions/website.config.gtm.ContentProperties",
+          "description": "Content properties to track"
+        },
+        "enhanced_link_attribution": {
+          "type": "boolean",
+          "description": "Enable enhanced link attribution"
+        },
+        "custom_pushes": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.DataLayerPush"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom data layer pushes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Layer Config",
+      "description": "Data layer configuration"
+    },
+    "website.config.gtm.ContentProperties": {
+      "properties": {
+        "track_content_length": {
+          "type": "boolean",
+          "description": "Track content length"
+        },
+        "track_read_time": {
+          "type": "boolean",
+          "description": "Track read time"
+        },
+        "track_scroll_depth": {
+          "type": "boolean",
+          "description": "Track scroll depth"
+        },
+        "track_content_format": {
+          "type": "boolean",
+          "description": "Track content format (article, video, etc.)"
+        },
+        "track_engagement": {
+          "type": "boolean",
+          "description": "Track content engagement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Properties",
+      "description": "Content properties for tracking"
+    },
+    "website.config.gtm.DataLayerPush": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "Event name to push"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Event parameters"
+        },
+        "triggers": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.TriggerCondition"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Trigger conditions"
+        },
+        "delay_ms": {
+          "type": "integer",
+          "description": "Delay in milliseconds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Layer Push",
+      "description": "Custom data layer push configuration"
+    },
+    "website.config.gtm.EntityProperties": {
+      "properties": {
+        "track_legal_entity": {
+          "type": "boolean",
+          "description": "Track legal entity (RTEPL, DSPL)"
+        },
+        "track_brand": {
+          "type": "boolean",
+          "description": "Track brand/domain"
+        },
+        "track_project": {
+          "type": "boolean",
+          "description": "Track project (if applicable)"
+        },
+        "track_content_source": {
+          "type": "boolean",
+          "description": "Track content source (domain, blog, project)"
+        },
+        "track_cross_entity": {
+          "type": "boolean",
+          "description": "Track cross-entity navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Properties",
+      "description": "Entity properties for multi-entity tracking"
+    },
+    "website.config.gtm.PageMetadata": {
+      "properties": {
+        "include_title": {
+          "type": "boolean",
+          "description": "Include page title"
+        },
+        "include_path": {
+          "type": "boolean",
+          "description": "Include page path"
+        },
+        "include_type": {
+          "type": "boolean",
+          "description": "Include page type (from Schema.org)"
+        },
+        "include_category": {
+          "type": "boolean",
+          "description": "Include page category"
+        },
+        "include_author": {
+          "type": "boolean",
+          "description": "Include page author"
+        },
+        "include_publish_date": {
+          "type": "boolean",
+          "description": "Include publish date"
+        },
+        "include_modified_date": {
+          "type": "boolean",
+          "description": "Include modified date"
+        },
+        "include_tags": {
+          "type": "boolean",
+          "description": "Include tags"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include language"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Metadata",
+      "description": "Page metadata for data layer"
+    },
+    "website.config.gtm.TriggerCondition": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            0,
+            "TRIGGER_TYPE_PAGE_VIEW",
+            1,
+            "TRIGGER_TYPE_DOM_READY",
+            2,
+            "TRIGGER_TYPE_WINDOW_LOADED",
+            3,
+            "TRIGGER_TYPE_CLICK",
+            4,
+            "TRIGGER_TYPE_FORM_SUBMIT",
+            5,
+            "TRIGGER_TYPE_SCROLL",
+            6,
+            "TRIGGER_TYPE_TIMER",
+            7,
+            "TRIGGER_TYPE_CUSTOM",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Trigger Type",
+          "description": "Trigger types"
+        },
+        "value": {
+          "type": "string",
+          "description": "Trigger value (selector, URL pattern, etc.)"
+        },
+        "conditions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional conditions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Condition",
+      "description": "Trigger condition for events"
+    },
+    "website.config.gtm.UserProperties": {
+      "properties": {
+        "track_user_id": {
+          "type": "boolean",
+          "description": "Track user ID (hashed)"
+        },
+        "track_user_type": {
+          "type": "boolean",
+          "description": "Track user type (visitor, member, etc.)"
+        },
+        "track_user_segment": {
+          "type": "boolean",
+          "description": "Track user segment"
+        },
+        "track_login_status": {
+          "type": "boolean",
+          "description": "Track login status"
+        },
+        "track_subscription_status": {
+          "type": "boolean",
+          "description": "Track subscription status"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom user properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "User Properties",
+      "description": "User properties for tracking"
+    }
+  },
+  "title": "DATALAYERCONFIG Configuration Schema",
+  "description": "JSON Schema for DataLayerConfig configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIExplorerTracking",
+  "definitions": {
+    "APIExplorerTracking": {
+      "properties": {
+        "track_try_it": {
+          "type": "boolean",
+          "description": "Track try-it-out usage"
+        },
+        "track_param_changes": {
+          "type": "boolean",
+          "description": "Track parameter changes"
+        },
+        "track_response_views": {
+          "type": "boolean",
+          "description": "Track response views"
+        },
+        "track_auth_setup": {
+          "type": "boolean",
+          "description": "Track auth setup"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Explorer Tracking",
+      "description": "API explorer tracking"
+    }
+  },
+  "title": "APIEXPLORERTRACKING Configuration Schema",
+  "description": "JSON Schema for APIExplorerTracking configuration"
+}

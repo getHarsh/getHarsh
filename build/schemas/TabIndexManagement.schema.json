@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TabIndexManagement",
+  "definitions": {
+    "TabIndexManagement": {
+      "properties": {
+        "remove_positive": {
+          "type": "boolean",
+          "description": "Remove positive tabindex"
+        },
+        "interactive_only": {
+          "type": "boolean",
+          "description": "Interactive elements only"
+        },
+        "custom_stops": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom tab stops"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab Index Management",
+      "description": "Tab index management"
+    }
+  },
+  "title": "TABINDEXMANAGEMENT Configuration Schema",
+  "description": "JSON Schema for TabIndexManagement configuration"
+}

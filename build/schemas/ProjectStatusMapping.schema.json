@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectStatusMapping",
+  "definitions": {
+    "ProjectStatusMapping": {
+      "properties": {
+        "status_value": {
+          "type": "string",
+          "description": "Status value for Schema.org"
+        },
+        "development_stage": {
+          "type": "string",
+          "description": "Development stage"
+        },
+        "availability": {
+          "type": "string",
+          "description": "Availability status"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Status Mapping"
+    }
+  },
+  "title": "PROJECTSTATUSMAPPING Configuration Schema",
+  "description": "JSON Schema for ProjectStatusMapping configuration"
+}

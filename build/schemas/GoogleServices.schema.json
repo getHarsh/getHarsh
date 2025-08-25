@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleServices",
+  "definitions": {
+    "GoogleServices": {
+      "properties": {
+        "calendar": {
+          "$ref": "#/definitions/website.config.CalendarService",
+          "description": "Calendar service settings"
+        },
+        "drive": {
+          "$ref": "#/definitions/website.config.DriveService",
+          "description": "Drive service settings"
+        },
+        "maps": {
+          "$ref": "#/definitions/website.config.MapsService",
+          "description": "Maps service settings (if needed)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Services",
+      "description": "Google services configuration"
+    },
+    "website.config.CalendarService": {
+      "properties": {
+        "appointment_calendar_id": {
+          "type": "string",
+          "description": "Appointment calendar ID"
+        },
+        "booking_url": {
+          "type": "string",
+          "description": "Booking URL"
+        },
+        "embed_enabled": {
+          "type": "boolean",
+          "description": "Enable embedding"
+        },
+        "embed_height": {
+          "type": "integer",
+          "description": "Embed height"
+        },
+        "time_zone": {
+          "type": "string",
+          "description": "Time zone"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Calendar Service",
+      "description": "Google Calendar service configuration"
+    },
+    "website.config.DriveService": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Drive integration"
+        },
+        "shared_folders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Shared folder IDs"
+        },
+        "enable_direct_downloads": {
+          "type": "boolean",
+          "description": "Enable direct downloads"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Drive Service",
+      "description": "Google Drive service configuration"
+    },
+    "website.config.Location": {
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "address": {
+          "type": "string",
+          "description": "Address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Location",
+      "description": "Location for maps"
+    },
+    "website.config.MapsService": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Maps integration"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key"
+        },
+        "default_location": {
+          "$ref": "#/definitions/website.config.Location",
+          "description": "Default location"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Maps Service",
+      "description": "Google Maps service configuration"
+    }
+  },
+  "title": "GOOGLESERVICES Configuration Schema",
+  "description": "JSON Schema for GoogleServices configuration"
+}

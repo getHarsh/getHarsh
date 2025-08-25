@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/YouTubeMembership",
+  "definitions": {
+    "YouTubeMembership": {
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "Channel ID"
+        },
+        "membership_url": {
+          "type": "string",
+          "description": "Membership URL"
+        },
+        "show_join_button": {
+          "type": "boolean",
+          "description": "Show join button"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Membership",
+      "description": "YouTube Membership configuration"
+    }
+  },
+  "title": "YOUTUBEMEMBERSHIP Configuration Schema",
+  "description": "JSON Schema for YouTubeMembership configuration"
+}

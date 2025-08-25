@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CommunityStatusMapping",
+  "definitions": {
+    "CommunityStatusMapping": {
+      "properties": {
+        "status_name": {
+          "type": "string",
+          "description": "Status name"
+        },
+        "dissolution_state": {
+          "type": "string",
+          "description": "Organization dissolution state"
+        },
+        "activity_level": {
+          "type": "string",
+          "description": "Activity level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Community Status Mapping"
+    }
+  },
+  "title": "COMMUNITYSTATUSMAPPING Configuration Schema",
+  "description": "JSON Schema for CommunityStatusMapping configuration"
+}

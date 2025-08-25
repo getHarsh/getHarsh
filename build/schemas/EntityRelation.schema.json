@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityRelation",
+  "definitions": {
+    "EntityRelation": {
+      "properties": {
+        "from_id": {
+          "type": "string",
+          "description": "Source entity @id"
+        },
+        "to_id": {
+          "type": "string",
+          "description": "Target entity @id"
+        },
+        "relation_type": {
+          "type": "string",
+          "description": "Relationship type"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Relationship properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Relation",
+      "description": "Entity relation in graph"
+    }
+  },
+  "title": "ENTITYRELATION Configuration Schema",
+  "description": "JSON Schema for EntityRelation configuration"
+}

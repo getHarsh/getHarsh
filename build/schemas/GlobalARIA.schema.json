@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GlobalARIA",
+  "definitions": {
+    "GlobalARIA": {
+      "properties": {
+        "auto_labels": {
+          "type": "boolean",
+          "description": "Auto-generate ARIA labels"
+        },
+        "use_describedby": {
+          "type": "boolean",
+          "description": "Use ARIA describedby"
+        },
+        "hidden_handling": {
+          "$ref": "#/definitions/website.config.aria.ARIAHiddenHandling",
+          "description": "ARIA hidden handling"
+        },
+        "label_format": {
+          "type": "string",
+          "description": "ARIA label format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Global ARIA",
+      "description": "Global ARIA attributes"
+    },
+    "website.config.aria.ARIAHiddenHandling": {
+      "properties": {
+        "hide_decorative": {
+          "type": "boolean",
+          "description": "Hide decorative images"
+        },
+        "hide_icons": {
+          "type": "boolean",
+          "description": "Hide icon fonts"
+        },
+        "respect_explicit": {
+          "type": "boolean",
+          "description": "Respect explicit hidden"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "ARIA Hidden Handling",
+      "description": "ARIA hidden handling"
+    }
+  },
+  "title": "GLOBALARIA Configuration Schema",
+  "description": "JSON Schema for GlobalARIA configuration"
+}

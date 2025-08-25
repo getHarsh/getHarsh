@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BuildSettings",
+  "definitions": {
+    "BuildSettings": {
+      "properties": {
+        "build_mode": {
+          "type": "string",
+          "description": "Gatsby build mode (\"development\", \"production\")"
+        },
+        "path_prefix": {
+          "type": "string",
+          "description": "Path prefix for deployment (e.g., \"/blog\" for subpath deployment)"
+        },
+        "asset_prefix": {
+          "type": "string",
+          "description": "Asset prefix for CDN"
+        },
+        "flags": {
+          "$ref": "#/definitions/website.config.BuildFlags",
+          "description": "Build flags"
+        },
+        "mdx": {
+          "$ref": "#/definitions/website.config.MDXSettings",
+          "description": "MDX configuration for content"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Settings",
+      "description": "Build and Gatsby configuration"
+    },
+    "website.config.BuildFlags": {
+      "properties": {
+        "fast_refresh": {
+          "type": "boolean",
+          "description": "Enable fast refresh in development"
+        },
+        "cache": {
+          "type": "boolean",
+          "description": "Enable build caching"
+        },
+        "parallel": {
+          "type": "boolean",
+          "description": "Enable parallel processing"
+        },
+        "verbose": {
+          "type": "boolean",
+          "description": "Enable verbose logging"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Flags",
+      "description": "Build flags for Gatsby"
+    },
+    "website.config.GatsbyRemarkPlugin": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin name"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Plugin options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Remark Plugin",
+      "description": "Gatsby remark plugin configuration"
+    },
+    "website.config.MDXSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable MDX for markdown processing"
+        },
+        "extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Extensions to process as MDX"
+        },
+        "remark_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Remark plugins"
+        },
+        "rehype_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Rehype plugins"
+        },
+        "gatsby_remark_plugins": {
+          "items": {
+            "$ref": "#/definitions/website.config.GatsbyRemarkPlugin"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Gatsby remark plugins"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "MDX Settings",
+      "description": "MDX settings for content processing"
+    }
+  },
+  "title": "BUILDSETTINGS Configuration Schema",
+  "description": "JSON Schema for BuildSettings configuration"
+}

@@ -1,0 +1,379 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityConsent",
+  "definitions": {
+    "EntityConsent": {
+      "properties": {
+        "entity_name": {
+          "type": "string",
+          "description": "Entity name (RTEPL, DSPL)"
+        },
+        "legal_info": {
+          "$ref": "#/definitions/website.config.consent.LegalEntity",
+          "description": "Legal entity information"
+        },
+        "contacts": {
+          "$ref": "#/definitions/website.config.consent.PrivacyContacts",
+          "description": "Privacy contacts"
+        },
+        "text_overrides": {
+          "$ref": "#/definitions/website.config.consent.TextOverrides",
+          "description": "Entity-specific text overrides"
+        },
+        "entity_categories": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.ConsentCategory"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity-specific categories"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Jurisdiction"
+        },
+        "compliance_requirements": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Special compliance requirements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Consent",
+      "description": "Entity-specific consent configuration"
+    },
+    "website.config.consent.ConsentCategory": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Category ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Category description"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required category"
+        },
+        "pre_selected": {
+          "type": "boolean",
+          "description": "Pre-selected by default"
+        },
+        "linked_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Linked categories (auto-enable)"
+        },
+        "providers": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.ConsentProvider"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Providers/vendors"
+        },
+        "purposes": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.ConsentPurpose"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Purposes"
+        },
+        "cookies": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.CookieInfo"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Cookies used"
+        },
+        "storage_types": {
+          "items": {
+            "enum": [
+              "STORAGE_TYPE_UNSPECIFIED",
+              0,
+              "STORAGE_TYPE_COOKIE",
+              1,
+              "STORAGE_TYPE_LOCAL_STORAGE",
+              2,
+              "STORAGE_TYPE_SESSION_STORAGE",
+              3,
+              "STORAGE_TYPE_INDEXED_DB",
+              4,
+              "STORAGE_TYPE_CACHE",
+              5
+            ]
+          },
+          "type": "array",
+          "title": "Storage Type",
+          "description": "Storage type"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Category icon"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Category",
+      "description": "Consent category configuration"
+    },
+    "website.config.consent.ConsentProvider": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Provider name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Provider description"
+        },
+        "privacy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "type": {
+          "enum": [
+            "PROVIDER_TYPE_UNSPECIFIED",
+            0,
+            "PROVIDER_TYPE_ANALYTICS",
+            1,
+            "PROVIDER_TYPE_ADVERTISING",
+            2,
+            "PROVIDER_TYPE_SOCIAL_MEDIA",
+            3,
+            "PROVIDER_TYPE_FUNCTIONAL",
+            4,
+            "PROVIDER_TYPE_SECURITY",
+            5
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Provider Type",
+          "description": "Provider type"
+        },
+        "purposes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Purposes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Provider",
+      "description": "Consent provider/vendor"
+    },
+    "website.config.consent.ConsentPurpose": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Purpose ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Purpose name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Purpose description"
+        },
+        "legal_basis": {
+          "enum": [
+            "LEGAL_BASIS_UNSPECIFIED",
+            0,
+            "LEGAL_BASIS_CONSENT",
+            1,
+            "LEGAL_BASIS_LEGITIMATE_INTEREST",
+            2,
+            "LEGAL_BASIS_CONTRACT",
+            3,
+            "LEGAL_BASIS_LEGAL_OBLIGATION",
+            4,
+            "LEGAL_BASIS_VITAL_INTERESTS",
+            5,
+            "LEGAL_BASIS_PUBLIC_TASK",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Legal Basis",
+          "description": "Legal basis for processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Purpose",
+      "description": "Consent purpose"
+    },
+    "website.config.consent.CookieInfo": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Cookie name"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Cookie domain"
+        },
+        "path": {
+          "type": "string",
+          "description": "Cookie path"
+        },
+        "expiry": {
+          "type": "string",
+          "description": "Expiry time"
+        },
+        "type": {
+          "enum": [
+            "COOKIE_TYPE_UNSPECIFIED",
+            0,
+            "COOKIE_TYPE_FIRST_PARTY",
+            1,
+            "COOKIE_TYPE_THIRD_PARTY",
+            2,
+            "COOKIE_TYPE_SESSION",
+            3,
+            "COOKIE_TYPE_PERSISTENT",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Cookie Type",
+          "description": "Cookie type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Cookie description"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cookie Info",
+      "description": "Cookie information"
+    },
+    "website.config.consent.LegalEntity": {
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "description": "Full legal name"
+        },
+        "registration_number": {
+          "type": "string",
+          "description": "Registration number"
+        },
+        "registered_address": {
+          "type": "string",
+          "description": "Registered address"
+        },
+        "is_data_controller": {
+          "type": "boolean",
+          "description": "Data controller"
+        },
+        "is_data_processor": {
+          "type": "boolean",
+          "description": "Data processor"
+        },
+        "joint_controller": {
+          "type": "string",
+          "description": "Joint controller"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Legal Entity",
+      "description": "Legal entity information"
+    },
+    "website.config.consent.PrivacyContacts": {
+      "properties": {
+        "privacy_email": {
+          "type": "string",
+          "description": "Privacy email"
+        },
+        "dpo_email": {
+          "type": "string",
+          "description": "DPO email"
+        },
+        "privacy_phone": {
+          "type": "string",
+          "description": "Privacy phone"
+        },
+        "privacy_address": {
+          "type": "string",
+          "description": "Privacy address"
+        },
+        "support_url": {
+          "type": "string",
+          "description": "Support URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Privacy Contacts",
+      "description": "Privacy contacts"
+    },
+    "website.config.consent.TextOverrides": {
+      "properties": {
+        "banner_text": {
+          "type": "string",
+          "description": "Banner text override"
+        },
+        "privacy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "cookie_url": {
+          "type": "string",
+          "description": "Cookie policy URL"
+        },
+        "terms_url": {
+          "type": "string",
+          "description": "Terms URL"
+        },
+        "replacements": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom text replacements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Text Overrides",
+      "description": "Text overrides for entity"
+    }
+  },
+  "title": "ENTITYCONSENT Configuration Schema",
+  "description": "JSON Schema for EntityConsent configuration"
+}

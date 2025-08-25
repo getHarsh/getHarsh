@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaginationAccessibility",
+  "definitions": {
+    "PaginationAccessibility": {
+      "properties": {
+        "navigation_role": {
+          "type": "boolean",
+          "description": "Navigation role"
+        },
+        "announce_current": {
+          "type": "boolean",
+          "description": "Current page announcement"
+        },
+        "descriptive_labels": {
+          "type": "boolean",
+          "description": "Previous/next labels"
+        },
+        "number_format": {
+          "type": "string",
+          "description": "Page number format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Pagination Accessibility",
+      "description": "Pagination accessibility"
+    }
+  },
+  "title": "PAGINATIONACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for PaginationAccessibility configuration"
+}

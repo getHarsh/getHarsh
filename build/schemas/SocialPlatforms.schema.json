@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SocialPlatforms",
+  "definitions": {
+    "SocialPlatforms": {
+      "properties": {
+        "github": {
+          "$ref": "#/definitions/website.config.GitHubPlatform",
+          "description": "GitHub platform settings"
+        },
+        "twitter": {
+          "$ref": "#/definitions/website.config.TwitterPlatform",
+          "description": "Twitter/X platform settings"
+        },
+        "linkedin": {
+          "$ref": "#/definitions/website.config.LinkedInPlatform",
+          "description": "LinkedIn platform settings"
+        },
+        "youtube": {
+          "$ref": "#/definitions/website.config.YouTubePlatform",
+          "description": "YouTube platform settings"
+        },
+        "instagram": {
+          "$ref": "#/definitions/website.config.InstagramPlatform",
+          "description": "Instagram platform settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Platforms",
+      "description": "Social platforms configuration"
+    },
+    "website.config.GitHubPlatform": {
+      "properties": {
+        "organizations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Organizations list"
+        },
+        "default_branch": {
+          "type": "string",
+          "description": "Default branch name"
+        },
+        "show_stars": {
+          "type": "boolean",
+          "description": "Show star count on links"
+        },
+        "show_forks": {
+          "type": "boolean",
+          "description": "Show fork count on links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Platform",
+      "description": "GitHub platform configuration"
+    },
+    "website.config.InstagramPlatform": {
+      "properties": {
+        "profile_url": {
+          "type": "string",
+          "description": "Profile URL"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_embeds": {
+          "type": "boolean",
+          "description": "Enable post embeds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Instagram Platform",
+      "description": "Instagram platform configuration"
+    },
+    "website.config.LinkedInPlatform": {
+      "properties": {
+        "company_page": {
+          "type": "string",
+          "description": "Company page URL"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_insights_tag": {
+          "type": "boolean",
+          "description": "Enable LinkedIn insights tag"
+        },
+        "partner_id": {
+          "type": "string",
+          "description": "Partner ID for insights"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Platform",
+      "description": "LinkedIn platform configuration"
+    },
+    "website.config.TwitterPlatform": {
+      "properties": {
+        "default_handle": {
+          "type": "string",
+          "description": "Default handle (without @)"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_cards": {
+          "type": "boolean",
+          "description": "Enable Twitter cards"
+        },
+        "card_type": {
+          "type": "string",
+          "description": "Card type (\"summary\" or \"summary_large_image\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Twitter Platform",
+      "description": "Twitter/X platform configuration"
+    },
+    "website.config.YouTubePlatform": {
+      "properties": {
+        "channel_url": {
+          "type": "string",
+          "description": "Channel URL"
+        },
+        "show_subscribe_button": {
+          "type": "boolean",
+          "description": "Show subscribe button"
+        },
+        "enable_embeds": {
+          "type": "boolean",
+          "description": "Enable video embeds"
+        },
+        "privacy_enhanced_mode": {
+          "type": "boolean",
+          "description": "Default embed privacy mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Platform",
+      "description": "YouTube platform configuration"
+    }
+  },
+  "title": "SOCIALPLATFORMS Configuration Schema",
+  "description": "JSON Schema for SocialPlatforms configuration"
+}

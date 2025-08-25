@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkBehaviorDefaults",
+  "definitions": {
+    "LinkBehaviorDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.LinkBehaviorMapping",
+          "description": "LINK_BEHAVIOR_UNSPECIFIED  target: \"\" rel: \"\" security_attrs: {}"
+        },
+        "new_tab": {
+          "$ref": "#/definitions/website.config.LinkBehaviorMapping",
+          "description": "LINK_BEHAVIOR_NEW_TAB  target: \"_blank\" rel: \"noopener noreferrer\" security_attrs: { \"data-external\": \"true\" }"
+        },
+        "same_tab": {
+          "$ref": "#/definitions/website.config.LinkBehaviorMapping",
+          "description": "LINK_BEHAVIOR_SAME_TAB  target: \"_self\" rel: \"\" security_attrs: {}"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Behavior Defaults",
+      "description": "Complete link behavior mappings"
+    },
+    "website.config.LinkBehaviorMapping": {
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "Target attribute"
+        },
+        "rel": {
+          "type": "string",
+          "description": "Rel attribute"
+        },
+        "security_attrs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Security attributes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Behavior Mapping"
+    }
+  },
+  "title": "LINKBEHAVIORDEFAULTS Configuration Schema",
+  "description": "JSON Schema for LinkBehaviorDefaults configuration"
+}

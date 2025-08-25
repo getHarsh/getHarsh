@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleFeatureOverrides",
+  "definitions": {
+    "ArticleFeatureOverrides": {
+      "properties": {
+        "disable_comments": {
+          "type": "boolean",
+          "description": "Disable features for this article"
+        },
+        "disable_share": {
+          "type": "boolean"
+        },
+        "disable_toc": {
+          "type": "boolean"
+        },
+        "disable_related": {
+          "type": "boolean"
+        },
+        "disable_author_bio": {
+          "type": "boolean"
+        },
+        "disable_series_nav": {
+          "type": "boolean"
+        },
+        "disable_math": {
+          "type": "boolean"
+        },
+        "disable_syntax_highlighting": {
+          "type": "boolean"
+        },
+        "disable_footnotes": {
+          "type": "boolean"
+        },
+        "disable_discussion": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Feature Overrides",
+      "description": "Feature overrides for specific article"
+    }
+  },
+  "title": "ARTICLEFEATUREOVERRIDES Configuration Schema",
+  "description": "JSON Schema for ArticleFeatureOverrides configuration"
+}

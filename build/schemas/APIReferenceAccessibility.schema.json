@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIReferenceAccessibility",
+  "definitions": {
+    "APIReferenceAccessibility": {
+      "properties": {
+        "parameter_tables": {
+          "type": "boolean",
+          "description": "Parameter table ARIA"
+        },
+        "response_descriptions": {
+          "type": "boolean",
+          "description": "Response code descriptions"
+        },
+        "interactive_aria": {
+          "type": "boolean",
+          "description": "Interactive example ARIA"
+        },
+        "schema_navigation": {
+          "type": "boolean",
+          "description": "Schema navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Reference Accessibility",
+      "description": "API reference accessibility"
+    }
+  },
+  "title": "APIREFERENCEACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for APIReferenceAccessibility configuration"
+}

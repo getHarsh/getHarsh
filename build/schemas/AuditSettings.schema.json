@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AuditSettings",
+  "definitions": {
+    "AuditSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable audit logging"
+        },
+        "log_consent_events": {
+          "type": "boolean",
+          "description": "Log consent events"
+        },
+        "log_preference_changes": {
+          "type": "boolean",
+          "description": "Log preference changes"
+        },
+        "log_page_views": {
+          "type": "boolean",
+          "description": "Log page views"
+        },
+        "retention_days": {
+          "type": "integer",
+          "description": "Retention period (days)"
+        },
+        "export": {
+          "$ref": "#/definitions/website.config.consent.AuditExport",
+          "description": "Export settings"
+        },
+        "anonymize_ip": {
+          "type": "boolean",
+          "description": "Anonymization"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audit Settings",
+      "description": "Audit settings"
+    },
+    "website.config.consent.AuditExport": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable export"
+        },
+        "format": {
+          "enum": [
+            "EXPORT_FORMAT_UNSPECIFIED",
+            0,
+            "EXPORT_FORMAT_JSON",
+            1,
+            "EXPORT_FORMAT_CSV",
+            2,
+            "EXPORT_FORMAT_PARQUET",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Export Format",
+          "description": "Export format"
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "Export endpoint"
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Export frequency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audit Export",
+      "description": "Audit export settings"
+    }
+  },
+  "title": "AUDITSETTINGS Configuration Schema",
+  "description": "JSON Schema for AuditSettings configuration"
+}

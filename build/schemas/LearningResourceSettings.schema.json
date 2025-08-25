@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LearningResourceSettings",
+  "definitions": {
+    "LearningResourceSettings": {
+      "properties": {
+        "is_learning_resource": {
+          "type": "boolean",
+          "description": "Mark as learning resource"
+        },
+        "educational_level": {
+          "type": "string",
+          "description": "Educational level"
+        },
+        "time_required": {
+          "type": "string",
+          "description": "Time required"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Prerequisites"
+        },
+        "objectives": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Learning objectives"
+        },
+        "competencies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Competencies gained"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Learning Resource Settings",
+      "description": "Learning resource settings"
+    }
+  },
+  "title": "LEARNINGRESOURCESETTINGS Configuration Schema",
+  "description": "JSON Schema for LearningResourceSettings configuration"
+}

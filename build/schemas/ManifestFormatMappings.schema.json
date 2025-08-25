@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ManifestFormatMappings",
+  "definitions": {
+    "ManifestFormatMappings": {
+      "properties": {
+        "format_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> format name e.g., \"MANIFEST_FORMAT_JSON\" -> \"JSON\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n MANIFEST FORMAT MAPPINGS\n =============================================================================",
+      "description": "============================================================================= MANIFEST FORMAT MAPPINGS =============================================================================  Maps ManifestFormat enum to format specifications"
+    }
+  },
+  "title": "MANIFESTFORMATMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ManifestFormatMappings configuration"
+}

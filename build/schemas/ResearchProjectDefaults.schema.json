@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ResearchProjectDefaults",
+  "definitions": {
+    "ResearchProjectDefaults": {
+      "properties": {
+        "default_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Default properties"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        },
+        "abstract_settings": {
+          "$ref": "#/definitions/website.config.AbstractSettings",
+          "description": "Abstract settings"
+        },
+        "keyword_settings": {
+          "$ref": "#/definitions/website.config.KeywordSettings",
+          "description": "Keyword settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Research Project Defaults",
+      "description": "Research project defaults"
+    },
+    "website.config.AbstractSettings": {
+      "properties": {
+        "require_abstract": {
+          "type": "boolean",
+          "description": "Require abstract"
+        },
+        "min_length": {
+          "type": "integer",
+          "description": "Min length (words)"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Max length (words)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Abstract Settings",
+      "description": "Abstract settings"
+    },
+    "website.config.KeywordSettings": {
+      "properties": {
+        "auto_extract": {
+          "type": "boolean",
+          "description": "Auto-extract keywords"
+        },
+        "min_keywords": {
+          "type": "integer",
+          "description": "Min keywords"
+        },
+        "max_keywords": {
+          "type": "integer",
+          "description": "Max keywords"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keyword categories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Keyword Settings",
+      "description": "Keyword settings"
+    }
+  },
+  "title": "RESEARCHPROJECTDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ResearchProjectDefaults configuration"
+}

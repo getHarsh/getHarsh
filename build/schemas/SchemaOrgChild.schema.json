@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgChild",
+  "definitions": {
+    "SchemaOrgChild": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Child entity ID/URL"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type  e.g., \"owns\", \"subOrganization\", \"hasPart\""
+        },
+        "type": {
+          "type": "string",
+          "description": "Child type  e.g., \"ResearchProject\", \"SoftwareApplication\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Child",
+      "description": "Child entity reference for Schema.org"
+    }
+  },
+  "title": "SCHEMAORGCHILD Configuration Schema",
+  "description": "JSON Schema for SchemaOrgChild configuration"
+}

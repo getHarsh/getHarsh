@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ErrorIndicators",
+  "definitions": {
+    "ErrorIndicators": {
+      "properties": {
+        "icons_with_text": {
+          "type": "boolean",
+          "description": "Use icons with text"
+        },
+        "avoid_color_only": {
+          "type": "boolean",
+          "description": "Color coding only"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Error patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Indicators",
+      "description": "Error indicators"
+    }
+  },
+  "title": "ERRORINDICATORS Configuration Schema",
+  "description": "JSON Schema for ErrorIndicators configuration"
+}

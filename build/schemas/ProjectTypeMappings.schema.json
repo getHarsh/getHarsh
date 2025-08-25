@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectTypeMappings",
+  "definitions": {
+    "ProjectTypeMappings": {
+      "properties": {
+        "project_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"PROJECT_TYPE_RESEARCH\" -> \"ResearchProject\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT TYPE MAPPINGS =============================================================================  Maps ProjectType enum to Schema.org types"
+    }
+  },
+  "title": "PROJECTTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ProjectTypeMappings configuration"
+}

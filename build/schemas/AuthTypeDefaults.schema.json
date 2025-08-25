@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AuthTypeDefaults",
+  "definitions": {
+    "AuthTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.AuthTypeMapping",
+          "description": "AUTH_TYPE_UNSPECIFIED  scheme_type: \"\" oauth2_flows: [] required_headers: [] access_specification: \"\""
+        },
+        "none": {
+          "$ref": "#/definitions/website.config.AuthTypeMapping",
+          "description": "AUTH_TYPE_NONE  scheme_type: \"None\" oauth2_flows: [] required_headers: [] access_specification: \"PublicAccess\""
+        },
+        "api_key": {
+          "$ref": "#/definitions/website.config.AuthTypeMapping",
+          "description": "AUTH_TYPE_API_KEY  scheme_type: \"ApiKey\" oauth2_flows: [] required_headers: [\"X-API-Key\", \"Authorization\"] access_specification: \"RestrictedAccess\""
+        },
+        "oauth2": {
+          "$ref": "#/definitions/website.config.AuthTypeMapping",
+          "description": "AUTH_TYPE_OAUTH2  scheme_type: \"OAuth2\" oauth2_flows: [\"authorization_code\", \"implicit\", \"client_credentials\"] required_headers: [\"Authorization\"] access_specification: \"RestrictedAccess\""
+        },
+        "basic": {
+          "$ref": "#/definitions/website.config.AuthTypeMapping",
+          "description": "AUTH_TYPE_BASIC  scheme_type: \"Basic\" oauth2_flows: [] required_headers: [\"Authorization\"] access_specification: \"RestrictedAccess\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Auth Type Defaults",
+      "description": "Complete auth type mappings"
+    },
+    "website.config.AuthTypeMapping": {
+      "properties": {
+        "scheme_type": {
+          "type": "string",
+          "description": "Security scheme type"
+        },
+        "oauth2_flows": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "OAuth2 flows (if applicable)"
+        },
+        "required_headers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required headers"
+        },
+        "access_specification": {
+          "type": "string",
+          "description": "Schema.org ActionAccessSpecification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Auth Type Mapping"
+    }
+  },
+  "title": "AUTHTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for AuthTypeDefaults configuration"
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Webhooks",
+  "definitions": {
+    "Webhooks": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable webhooks"
+        },
+        "endpoints": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.WebhookEndpoint"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Webhook endpoints"
+        },
+        "retry": {
+          "$ref": "#/definitions/website.config.consent.RetrySettings",
+          "description": "Retry settings"
+        },
+        "security": {
+          "$ref": "#/definitions/website.config.consent.WebhookSecurity",
+          "description": "Security settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhooks",
+      "description": "Webhook configuration"
+    },
+    "website.config.consent.RetrySettings": {
+      "properties": {
+        "max_retries": {
+          "type": "integer",
+          "description": "Max retries"
+        },
+        "retry_delay_ms": {
+          "type": "integer",
+          "description": "Retry delay (ms)"
+        },
+        "backoff_multiplier": {
+          "type": "number",
+          "description": "Backoff multiplier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Retry Settings",
+      "description": "Retry settings"
+    },
+    "website.config.consent.WebhookEndpoint": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Endpoint URL"
+        },
+        "events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Events to send"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Headers"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Active"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhook Endpoint",
+      "description": "Webhook endpoint"
+    },
+    "website.config.consent.WebhookSecurity": {
+      "properties": {
+        "sign_payloads": {
+          "type": "boolean",
+          "description": "Sign payloads"
+        },
+        "signing_secret": {
+          "type": "string",
+          "description": "Signing secret"
+        },
+        "verify_ssl": {
+          "type": "boolean",
+          "description": "Verify SSL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhook Security",
+      "description": "Webhook security"
+    }
+  },
+  "title": "WEBHOOKS Configuration Schema",
+  "description": "JSON Schema for Webhooks configuration"
+}

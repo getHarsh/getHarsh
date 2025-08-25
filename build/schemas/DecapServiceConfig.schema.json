@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapServiceConfig",
+  "definitions": {
+    "DecapServiceConfig": {
+      "properties": {
+        "enable_cms_pages": {
+          "type": "boolean",
+          "description": "Enable CMS management for industry pages"
+        },
+        "collection_name": {
+          "type": "string",
+          "description": "Collection configuration"
+        },
+        "collection_label": {
+          "type": "string"
+        },
+        "folder": {
+          "type": "string",
+          "description": "e.g., \"content/services\""
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.DecapField"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Fields for service pages"
+        },
+        "enable_preview": {
+          "type": "boolean",
+          "description": "Preview configuration"
+        },
+        "preview_template": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Service Config",
+      "description": "Decap CMS configuration for service pages"
+    },
+    "ecosystem.services.DecapField": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "widget": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "default_value": {
+          "type": "string"
+        },
+        "options": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "For select widgets"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Field",
+      "description": "Decap field configuration"
+    }
+  },
+  "title": "DECAPSERVICECONFIG Configuration Schema",
+  "description": "JSON Schema for DecapServiceConfig configuration"
+}

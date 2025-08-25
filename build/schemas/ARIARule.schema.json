@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ARIARule",
+  "definitions": {
+    "ARIARule": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Rule name"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "required_attributes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required attributes"
+        },
+        "forbidden_attributes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Forbidden attributes"
+        },
+        "validation": {
+          "type": "string",
+          "description": "Validation function"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "ARIA Rule",
+      "description": "Custom ARIA rule"
+    }
+  },
+  "title": "ARIARULE Configuration Schema",
+  "description": "JSON Schema for ARIARule configuration"
+}

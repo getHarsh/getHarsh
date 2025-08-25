@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapValidation",
+  "definitions": {
+    "DecapValidation": {
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/website.config.TitleValidation",
+          "description": "Title constraints"
+        },
+        "slug": {
+          "$ref": "#/definitions/website.config.SlugValidation",
+          "description": "Slug constraints"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.ContentValidation",
+          "description": "Content constraints"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/definitions/website.config.CustomValidator"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom validators"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Validation",
+      "description": "Decap validation rules"
+    },
+    "website.config.ContentValidation": {
+      "properties": {
+        "min_words": {
+          "type": "integer",
+          "description": "Min word count"
+        },
+        "max_words": {
+          "type": "integer",
+          "description": "Max word count"
+        },
+        "required_sections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required sections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Validation",
+      "description": "Content validation rules"
+    },
+    "website.config.CustomValidator": {
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field name"
+        },
+        "validator": {
+          "type": "string",
+          "description": "Validator name"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Validator options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Validator",
+      "description": "Custom validator"
+    },
+    "website.config.SlugValidation": {
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Pattern"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Max length"
+        },
+        "reserved": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Reserved slugs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Slug Validation",
+      "description": "Slug validation rules"
+    },
+    "website.config.TitleValidation": {
+      "properties": {
+        "min_length": {
+          "type": "integer",
+          "description": "Min length"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Max length"
+        },
+        "required_words": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required words"
+        },
+        "forbidden_words": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Forbidden words"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Title Validation",
+      "description": "Title validation rules"
+    }
+  },
+  "title": "DECAPVALIDATION Configuration Schema",
+  "description": "JSON Schema for DecapValidation configuration"
+}

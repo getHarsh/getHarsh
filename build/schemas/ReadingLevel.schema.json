@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ReadingLevel",
+  "definitions": {
+    "ReadingLevel": {
+      "properties": {
+        "target_level": {
+          "type": "string",
+          "description": "Target reading level"
+        },
+        "provide_summaries": {
+          "type": "boolean",
+          "description": "Provide summaries"
+        },
+        "glossary": {
+          "type": "boolean",
+          "description": "Glossary support"
+        },
+        "simplified_version": {
+          "type": "boolean",
+          "description": "Simplified version"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Reading Level",
+      "description": "Reading level configuration"
+    }
+  },
+  "title": "READINGLEVEL Configuration Schema",
+  "description": "JSON Schema for ReadingLevel configuration"
+}

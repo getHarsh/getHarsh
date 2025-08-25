@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContrastRatios",
+  "definitions": {
+    "ContrastRatios": {
+      "properties": {
+        "normal_text": {
+          "type": "number",
+          "description": "Normal text (AA: 4.5:1)"
+        },
+        "large_text": {
+          "type": "number",
+          "description": "Large text (AA: 3:1)"
+        },
+        "ui_components": {
+          "type": "number",
+          "description": "UI components (3:1)"
+        },
+        "use_enhanced": {
+          "type": "boolean",
+          "description": "Enhanced ratios (AAA)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Ratios",
+      "description": "Contrast ratio requirements"
+    }
+  },
+  "title": "CONTRASTRATIOS Configuration Schema",
+  "description": "JSON Schema for ContrastRatios configuration"
+}

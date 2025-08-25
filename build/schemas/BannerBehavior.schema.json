@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerBehavior",
+  "definitions": {
+    "BannerBehavior": {
+      "properties": {
+        "auto_hide": {
+          "type": "boolean",
+          "description": "Auto-hide after accept"
+        },
+        "remember_dismiss": {
+          "type": "boolean",
+          "description": "Remember dismiss action"
+        },
+        "dismiss_duration_days": {
+          "type": "integer",
+          "description": "Dismiss duration (days)"
+        },
+        "reshow_on_update": {
+          "type": "boolean",
+          "description": "Re-show on policy update"
+        },
+        "close_on_backdrop": {
+          "type": "boolean",
+          "description": "Close on backdrop click"
+        },
+        "close_on_escape": {
+          "type": "boolean",
+          "description": "Close on ESC key"
+        },
+        "focus_trap": {
+          "type": "boolean",
+          "description": "Focus trap in banner"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Behavior",
+      "description": "Banner behavior configuration"
+    }
+  },
+  "title": "BANNERBEHAVIOR Configuration Schema",
+  "description": "JSON Schema for BannerBehavior configuration"
+}

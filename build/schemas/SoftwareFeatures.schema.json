@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SoftwareFeatures",
+  "definitions": {
+    "SoftwareFeatures": {
+      "properties": {
+        "auto_extract_features": {
+          "type": "boolean",
+          "description": "Feature extraction"
+        },
+        "feature_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Feature categories"
+        },
+        "feature_benefits": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Feature to benefit mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Features",
+      "description": "Software features configuration"
+    }
+  },
+  "title": "SOFTWAREFEATURES Configuration Schema",
+  "description": "JSON Schema for SoftwareFeatures configuration"
+}

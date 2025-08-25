@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RequirementsSpec",
+  "definitions": {
+    "RequirementsSpec": {
+      "properties": {
+        "include_system_reqs": {
+          "type": "boolean",
+          "description": "Include system requirements"
+        },
+        "include_dependencies": {
+          "type": "boolean",
+          "description": "Include dependencies"
+        },
+        "memory_format": {
+          "type": "string",
+          "description": "Memory requirements format"
+        },
+        "storage_format": {
+          "type": "string",
+          "description": "Storage requirements format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Requirements Spec",
+      "description": "Requirements specification"
+    }
+  },
+  "title": "REQUIREMENTSSPEC Configuration Schema",
+  "description": "JSON Schema for RequirementsSpec configuration"
+}

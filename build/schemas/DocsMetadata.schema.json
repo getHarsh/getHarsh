@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsMetadata",
+  "definitions": {
+    "DocsMetadata": {
+      "properties": {
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords for SEO (docs-specific)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Documentation version"
+        },
+        "release_date": {
+          "type": "string",
+          "description": "Release date of this version"
+        },
+        "changelog_url": {
+          "type": "string",
+          "description": "Changelog URL"
+        },
+        "migration_guide_url": {
+          "type": "string",
+          "description": "Migration guide URL (from previous version)"
+        },
+        "support": {
+          "$ref": "#/definitions/website.config.SupportLinks",
+          "description": "Support/help URLs"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "#/definitions/website.config.Contributor"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Contributors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Metadata",
+      "description": "Documentation metadata"
+    },
+    "website.config.Contributor": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Contributor name"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role/title"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Avatar URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contributor",
+      "description": "Contributor information"
+    },
+    "website.config.SupportLinks": {
+      "properties": {
+        "forum": {
+          "type": "string",
+          "description": "Community forum URL"
+        },
+        "chat": {
+          "type": "string",
+          "description": "Discord/Slack invite URL"
+        },
+        "stack_overflow_tag": {
+          "type": "string",
+          "description": "Stack Overflow tag"
+        },
+        "discussions": {
+          "type": "string",
+          "description": "GitHub discussions URL"
+        },
+        "email": {
+          "type": "string",
+          "description": "Support email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Links",
+      "description": "Support link configuration"
+    }
+  },
+  "title": "DOCSMETADATA Configuration Schema",
+  "description": "JSON Schema for DocsMetadata configuration"
+}

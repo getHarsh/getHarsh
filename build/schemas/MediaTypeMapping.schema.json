@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MediaTypeMapping",
+  "definitions": {
+    "MediaTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Primary Schema.org type"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        },
+        "recommended_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Recommended properties"
+        },
+        "mime_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "MIME types"
+        },
+        "file_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Media Type Mapping"
+    }
+  },
+  "title": "MEDIATYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for MediaTypeMapping configuration"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ScreenReaderAnnouncements",
+  "definitions": {
+    "ScreenReaderAnnouncements": {
+      "properties": {
+        "announce_dynamic": {
+          "type": "boolean",
+          "description": "Dynamic content"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "State changes"
+        },
+        "announce_pages": {
+          "type": "boolean",
+          "description": "Page changes"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom announcements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screen Reader Announcements",
+      "description": "Screen reader announcements"
+    }
+  },
+  "title": "SCREENREADERANNOUNCEMENTS Configuration Schema",
+  "description": "JSON Schema for ScreenReaderAnnouncements configuration"
+}

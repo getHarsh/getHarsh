@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VisualIndicators",
+  "definitions": {
+    "VisualIndicators": {
+      "properties": {
+        "loading": {
+          "$ref": "#/definitions/website.config.aria.LoadingIndicators",
+          "description": "Loading indicators"
+        },
+        "errors": {
+          "$ref": "#/definitions/website.config.aria.ErrorIndicators",
+          "description": "Error indicators"
+        },
+        "success": {
+          "$ref": "#/definitions/website.config.aria.SuccessIndicators",
+          "description": "Success indicators"
+        },
+        "progress": {
+          "$ref": "#/definitions/website.config.aria.ProgressIndicators",
+          "description": "Progress indicators"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Visual Indicators",
+      "description": "Visual indicators"
+    },
+    "website.config.aria.ErrorIndicators": {
+      "properties": {
+        "icons_with_text": {
+          "type": "boolean",
+          "description": "Use icons with text"
+        },
+        "avoid_color_only": {
+          "type": "boolean",
+          "description": "Color coding only"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Error patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Indicators",
+      "description": "Error indicators"
+    },
+    "website.config.aria.LoadingIndicators": {
+      "properties": {
+        "show_loading": {
+          "type": "boolean",
+          "description": "Show loading state"
+        },
+        "loading_text": {
+          "type": "string",
+          "description": "Loading text"
+        },
+        "text_alternative": {
+          "type": "boolean",
+          "description": "Spinner alternative"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Loading Indicators",
+      "description": "Loading indicators"
+    },
+    "website.config.aria.ProgressIndicators": {
+      "properties": {
+        "announce_progress": {
+          "type": "boolean",
+          "description": "Progress announcements"
+        },
+        "text_alternatives": {
+          "type": "boolean",
+          "description": "Text alternatives"
+        },
+        "show_percentage": {
+          "type": "boolean",
+          "description": "Determinate progress"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Progress Indicators",
+      "description": "Progress indicators"
+    },
+    "website.config.aria.SuccessIndicators": {
+      "properties": {
+        "announce_success": {
+          "type": "boolean",
+          "description": "Success announcements"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Success patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Success Indicators",
+      "description": "Success indicators"
+    }
+  },
+  "title": "VISUALINDICATORS Configuration Schema",
+  "description": "JSON Schema for VisualIndicators configuration"
+}

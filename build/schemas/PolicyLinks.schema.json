@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PolicyLinks",
+  "definitions": {
+    "PolicyLinks": {
+      "properties": {
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "terms_of_service_url": {
+          "type": "string",
+          "description": "Terms of service URL"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Cookie policy URL"
+        },
+        "terms_of_use_url": {
+          "type": "string",
+          "description": "Terms of use URL"
+        },
+        "acceptable_use_policy_url": {
+          "type": "string",
+          "description": "Acceptable use policy URL"
+        },
+        "data_processing_agreement_url": {
+          "type": "string",
+          "description": "Data processing agreement URL"
+        },
+        "refund_policy_url": {
+          "type": "string",
+          "description": "Refund policy URL"
+        },
+        "disclaimer_url": {
+          "type": "string",
+          "description": "Disclaimer URL"
+        },
+        "additional_policies": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional policy links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Links",
+      "description": "Policy page links configuration Defines URLs for all legal/policy pages in the ecosystem See ../SCHEMA-ORG-EXAMPLES.md#inheritance--overrides for override patterns"
+    }
+  },
+  "title": "POLICYLINKS Configuration Schema",
+  "description": "JSON Schema for PolicyLinks configuration"
+}

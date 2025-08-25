@@ -1,0 +1,3127 @@
+syntax = "proto3";
+
+package website.config;
+
+import "schema.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// =============================================================================
+// ECOSYSTEM CONFIGURATION PROTO
+// =============================================================================
+// This file defines the base configuration schema for the getHarsh ecosystem.
+// All domains, blogs, and projects inherit from these defaults.
+//
+// Key Concepts:
+// - Ecosystem-wide defaults that apply to all entities
+// - Environment variable management with security classification
+// - Schema.org entity configuration for rich semantic markup
+// - Policy pages with hierarchical override capability
+//
+// Related Documentation:
+// - Implementation: ../ecosystem-defaults.yml
+// - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md
+// - Configuration Guide: ../CONFIG.md
+// =============================================================================
+
+// Affiliation type enum for type-safe person-organization relationships
+enum AffiliationType {
+  AFFILIATION_TYPE_UNSPECIFIED = 0;
+  AFFILIATION_EMPLOYEE = 1;
+  AFFILIATION_FOUNDER = 2;
+  AFFILIATION_ADVISOR = 3;
+  AFFILIATION_MEMBER = 4;
+  AFFILIATION_ALUMNI = 5;
+  AFFILIATION_BOARD_MEMBER = 6;
+  AFFILIATION_INVESTOR = 7;
+  AFFILIATION_CONSULTANT = 8;
+  AFFILIATION_VOLUNTEER = 9;
+  AFFILIATION_MENTOR = 10;
+  AFFILIATION_PARTNER = 11;
+  AFFILIATION_CONTRACTOR = 12;
+}
+
+// Entity relationship types for flexible entity-to-entity relationships
+// Used in EntityRelationship for type-safe relationship definitions
+enum RelationshipType {
+  RELATIONSHIP_TYPE_UNSPECIFIED = 0;
+  
+  // Ownership relationships
+  RELATIONSHIP_OWNS = 1;
+  RELATIONSHIP_OWNED_BY = 2;
+  
+  // Organizational hierarchy
+  RELATIONSHIP_PARENT_ORGANIZATION = 3;
+  RELATIONSHIP_SUB_ORGANIZATION = 4;
+  
+  // Founding relationships
+  RELATIONSHIP_FOUNDER = 5;
+  RELATIONSHIP_FOUNDED_BY = 6;
+  
+  // Employment relationships
+  RELATIONSHIP_EMPLOYEE = 7;
+  RELATIONSHIP_EMPLOYER = 8;
+  
+  // Membership relationships
+  RELATIONSHIP_MEMBER = 9;
+  RELATIONSHIP_MEMBER_OF = 10;
+  
+  // Advisory relationships
+  RELATIONSHIP_ADVISOR = 11;
+  RELATIONSHIP_ADVISES = 12;
+  
+  // Partnership relationships
+  RELATIONSHIP_PARTNER = 13;
+  RELATIONSHIP_PARTNER_OF = 14;
+  
+  // Funding relationships
+  RELATIONSHIP_FUNDER = 15;
+  RELATIONSHIP_FUNDED_BY = 16;
+  RELATIONSHIP_SPONSOR = 17;
+  RELATIONSHIP_SPONSORED_BY = 18;
+  
+  // Support relationships
+  RELATIONSHIP_SUPPORTS = 19;
+  RELATIONSHIP_SUPPORTED_BY = 20;
+  
+  // Usage relationships
+  RELATIONSHIP_USES = 21;
+  RELATIONSHIP_USED_BY = 22;
+  RELATIONSHIP_DEPENDS_ON = 23;
+  RELATIONSHIP_DEPENDENCY_OF = 24;
+  
+  // Structural relationships
+  RELATIONSHIP_HAS_PART = 25;
+  RELATIONSHIP_PART_OF = 26;
+  
+  // Brand relationships
+  RELATIONSHIP_BRAND = 27;
+  RELATIONSHIP_BRAND_OF = 28;
+  
+  // Hosting relationships
+  RELATIONSHIP_HOSTS = 29;
+  RELATIONSHIP_HOSTED_BY = 30;
+  
+  // Leverage relationships
+  RELATIONSHIP_LEVERAGES = 31;
+  RELATIONSHIP_LEVERAGED_BY = 32;
+  
+  // Evolution relationships
+  RELATIONSHIP_EVOLVED_FROM = 33;
+  RELATIONSHIP_EVOLVES_TO = 34;
+  RELATIONSHIP_REPLACES = 35;
+  RELATIONSHIP_REPLACED_BY = 36;
+  
+  // Integration relationships
+  RELATIONSHIP_INTEGRATES_WITH = 37;
+  RELATIONSHIP_EXTENDS = 38;
+  RELATIONSHIP_EXTENDED_BY = 39;
+}
+
+// Schema.org entity types for commonly used types in the ecosystem
+// Provides type safety for the most frequent Schema.org types we use
+enum SchemaOrgEntityType {
+  SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED = 0;
+  
+  // Person types
+  SCHEMA_ORG_PERSON = 1;
+  
+  // Organization types
+  SCHEMA_ORG_ORGANIZATION = 2;
+  SCHEMA_ORG_CORPORATION = 3;
+  SCHEMA_ORG_LOCAL_BUSINESS = 4;
+  SCHEMA_ORG_EDUCATIONAL_ORGANIZATION = 5;
+  SCHEMA_ORG_RESEARCH_ORGANIZATION = 6;
+  SCHEMA_ORG_CONSORTIUM = 7;
+  
+  // Creative work types
+  SCHEMA_ORG_CREATIVE_WORK = 10;
+  SCHEMA_ORG_RESEARCH_PROJECT = 11;
+  SCHEMA_ORG_WEB_SITE = 12;
+  SCHEMA_ORG_WEB_PAGE = 13;
+  SCHEMA_ORG_BLOG = 14;
+  SCHEMA_ORG_BLOG_POSTING = 15;
+  SCHEMA_ORG_ARTICLE = 16;
+  SCHEMA_ORG_VISUAL_ARTWORK = 17;
+  SCHEMA_ORG_DATASET = 18;
+  SCHEMA_ORG_COURSE = 19;
+  
+  // Software types
+  SCHEMA_ORG_SOFTWARE_APPLICATION = 20;
+  SCHEMA_ORG_WEB_APPLICATION = 21;
+  SCHEMA_ORG_MOBILE_APPLICATION = 22;
+  SCHEMA_ORG_VIDEO_GAME = 23;
+  
+  // Service types
+  SCHEMA_ORG_SERVICE = 30;
+  SCHEMA_ORG_PROFESSIONAL_SERVICE = 31;
+  SCHEMA_ORG_CONSULTING_SERVICE = 32;
+  
+  // Product types
+  SCHEMA_ORG_PRODUCT = 40;
+  SCHEMA_ORG_BRAND = 41;
+  
+  // Page types
+  SCHEMA_ORG_ABOUT_PAGE = 50;
+  SCHEMA_ORG_CONTACT_PAGE = 51;
+  SCHEMA_ORG_COLLECTION_PAGE = 52;
+  SCHEMA_ORG_ITEM_LIST = 53;
+  SCHEMA_ORG_FAQ_PAGE = 54;
+  SCHEMA_ORG_PROFILE_PAGE = 55;
+  
+  // Event types
+  SCHEMA_ORG_EVENT = 60;
+  SCHEMA_ORG_PUBLICATION_EVENT = 61;
+}
+
+// Project types for type-safe project categorization
+enum ProjectType {
+  PROJECT_TYPE_UNSPECIFIED = 0;
+  PROJECT_TYPE_RESEARCH = 1;
+  PROJECT_TYPE_TOOL = 2;
+  PROJECT_TYPE_FRAMEWORK = 3;
+  PROJECT_TYPE_LIBRARY = 4;
+  PROJECT_TYPE_SERVICE = 5;
+  PROJECT_TYPE_APPLICATION = 6;
+  PROJECT_TYPE_PROTOCOL = 7;
+  PROJECT_TYPE_PLATFORM = 8;
+  PROJECT_TYPE_INFRASTRUCTURE = 9;
+  PROJECT_TYPE_EDUCATIONAL = 10;
+  PROJECT_TYPE_EXPERIMENTAL = 11;
+}
+
+// Project lifecycle stages based on ecosystem philosophy
+// From what_is_getHarsh.md: emerge, scale, stagnate, pivot, accelerate
+enum ProjectLifecycle {
+  PROJECT_LIFECYCLE_UNSPECIFIED = 0;
+  PROJECT_LIFECYCLE_EMERGE = 1;      // New project emerging
+  PROJECT_LIFECYCLE_SCALE = 2;       // Growing and scaling
+  PROJECT_LIFECYCLE_STAGNATE = 3;    // Development slowed/paused
+  PROJECT_LIFECYCLE_PIVOT = 4;       // Changing direction
+  PROJECT_LIFECYCLE_ACCELERATE = 5;  // Rapid growth phase
+  PROJECT_LIFECYCLE_MAINTAIN = 6;    // Stable maintenance mode
+  PROJECT_LIFECYCLE_SUNSET = 7;      // Winding down
+  PROJECT_LIFECYCLE_ARCHIVED = 8;    // No longer active
+}
+
+// Project development status (different from lifecycle)
+// Maps to CreativeWork status properties in Schema.org
+enum ProjectDevelopmentStatus {
+  PROJECT_STATUS_UNSPECIFIED = 0;
+  PROJECT_STATUS_CONCEPT = 1;      // Conceptual stage
+  PROJECT_STATUS_ALPHA = 2;        // Alpha development
+  PROJECT_STATUS_BETA = 3;         // Beta testing
+  PROJECT_STATUS_STABLE = 4;       // Production ready
+  PROJECT_STATUS_DEPRECATED = 5;   // Deprecated but available
+  PROJECT_STATUS_ARCHIVED = 6;     // Archived/read-only
+}
+
+// Service types for consulting and professional services
+// Maps to Schema.org Service and ProfessionalService types
+enum ServiceType {
+  SERVICE_TYPE_UNSPECIFIED = 0;
+  SERVICE_TYPE_CONSULTING = 1;     // General consulting
+  SERVICE_TYPE_DEVELOPMENT = 2;    // Software development
+  SERVICE_TYPE_TRAINING = 3;       // Training and workshops
+  SERVICE_TYPE_RESEARCH = 4;       // Research services
+  SERVICE_TYPE_ADVISORY = 5;       // Strategic advisory
+}
+
+// Comic/Book structure types for Sleepwalker project
+// Maps to Schema.org ComicSeries, ComicIssue, Book, Chapter
+enum ComicType {
+  COMIC_TYPE_UNSPECIFIED = 0;
+  COMIC_TYPE_SERIES = 1;           // Comic series
+  COMIC_TYPE_ISSUE = 2;            // Individual issue
+  COMIC_TYPE_STORY = 3;            // Story arc
+  COMIC_TYPE_COVER = 4;            // Cover art
+}
+
+enum BookStructure {
+  BOOK_STRUCTURE_UNSPECIFIED = 0;
+  BOOK_STRUCTURE_BOOK = 1;         // Complete book
+  BOOK_STRUCTURE_CHAPTER = 2;      // Individual chapter
+  BOOK_STRUCTURE_SECTION = 3;      // Section within chapter
+  BOOK_STRUCTURE_APPENDIX = 4;     // Appendix content
+}
+
+// Support types for external entity support
+enum SupportType {
+  SUPPORT_TYPE_UNSPECIFIED = 0;
+  SUPPORT_TYPE_FUNDING = 1;
+  SUPPORT_TYPE_INFRASTRUCTURE = 2;
+  SUPPORT_TYPE_ADVISORY = 3;
+  SUPPORT_TYPE_TECHNICAL = 4;
+  SUPPORT_TYPE_COMMUNITY = 5;
+  SUPPORT_TYPE_MARKETING = 6;
+  SUPPORT_TYPE_LEGAL = 7;
+  SUPPORT_TYPE_MENTORSHIP = 8;
+  SUPPORT_TYPE_RESOURCES = 9;
+  SUPPORT_TYPE_PARTNERSHIP = 10;
+}
+
+// Dependency types for project relationships
+enum DependencyType {
+  DEPENDENCY_TYPE_UNSPECIFIED = 0;
+  DEPENDENCY_TYPE_USES = 1;         // Uses the dependency
+  DEPENDENCY_TYPE_EXTENDS = 2;      // Extends functionality
+  DEPENDENCY_TYPE_INTEGRATES = 3;   // Integrates with
+  DEPENDENCY_TYPE_REQUIRES = 4;     // Hard requirement
+  DEPENDENCY_TYPE_OPTIONAL = 5;     // Optional dependency
+  DEPENDENCY_TYPE_REPLACES = 6;     // Replaces another project
+  DEPENDENCY_TYPE_BUNDLES = 7;      // Bundles/includes
+  DEPENDENCY_TYPE_INSPIRED_BY = 8;  // Inspired by/based on
+}
+
+// Dependency scope for project dependencies
+enum DependencyScope {
+  DEPENDENCY_SCOPE_UNSPECIFIED = 0;
+  DEPENDENCY_SCOPE_RUNTIME = 1;      // Required at runtime
+  DEPENDENCY_SCOPE_DEVELOPMENT = 2;  // Development only
+  DEPENDENCY_SCOPE_DOCUMENTATION = 3; // Documentation generation
+  DEPENDENCY_SCOPE_TESTING = 4;      // Testing only
+  DEPENDENCY_SCOPE_BUILD = 5;        // Build time only
+  DEPENDENCY_SCOPE_OPTIONAL = 6;     // Optional features
+}
+
+// Community status for external communities
+enum CommunityStatus {
+  COMMUNITY_STATUS_UNSPECIFIED = 0;
+  COMMUNITY_STATUS_FORMING = 1;     // In formation
+  COMMUNITY_STATUS_ACTIVE = 2;      // Actively engaged
+  COMMUNITY_STATUS_INACTIVE = 3;    // Temporarily inactive
+  COMMUNITY_STATUS_DISSOLVED = 4;   // No longer exists
+  COMMUNITY_STATUS_MERGED = 5;      // Merged with another
+}
+
+// License types for projects and content
+// Only supporting: MIT, Apache 2.0, GPL 3.0, Creative Commons with attribution, and Proprietary
+enum LicenseType {
+  LICENSE_TYPE_UNSPECIFIED = 0;
+  LICENSE_TYPE_MIT = 1;
+  LICENSE_TYPE_APACHE_2_0 = 2;
+  LICENSE_TYPE_GPL_3 = 3;  // GNU General Public License v3.0
+  LICENSE_TYPE_PROPRIETARY = 4;
+  LICENSE_TYPE_CC_BY_4_0 = 5;  // Creative Commons Attribution 4.0
+}
+
+// Entity types for entity relationships
+enum EntityType {
+  ENTITY_TYPE_UNSPECIFIED = 0;
+  ENTITY_TYPE_PERSON = 1;
+  ENTITY_TYPE_LEGAL_ENTITY = 2;
+  ENTITY_TYPE_ORGANIZATION = 3;
+  ENTITY_TYPE_BRAND = 4;
+  ENTITY_TYPE_PROJECT = 5;
+  ENTITY_TYPE_COMMUNITY = 6;
+  ENTITY_TYPE_DOMAIN = 7;
+  ENTITY_TYPE_BLOG = 8;
+}
+
+// Person roles for standardized role identification
+// Used for author attribution, ARIA announcements, and Schema.org
+enum PersonRole {
+  PERSON_ROLE_UNSPECIFIED = 0;
+  PERSON_ROLE_AUTHOR = 1;        // Content author
+  PERSON_ROLE_CONTRIBUTOR = 2;   // Content contributor
+  PERSON_ROLE_REVIEWER = 3;      // Content reviewer
+  PERSON_ROLE_EDITOR = 4;        // Content editor
+  PERSON_ROLE_FOUNDER = 5;       // Company/project founder
+  PERSON_ROLE_DEVELOPER = 6;     // Software developer
+  PERSON_ROLE_DESIGNER = 7;      // Designer
+  PERSON_ROLE_RESEARCHER = 8;    // Researcher
+  PERSON_ROLE_ADVISOR = 9;       // Advisor/consultant
+  PERSON_ROLE_DIRECTOR = 10;     // Director/executive
+  PERSON_ROLE_SPEAKER = 11;      // Speaker/presenter
+  PERSON_ROLE_MENTOR = 12;       // Mentor
+}
+
+// Discussion platforms for social discussion and comments
+// Maps to Schema.org DiscussionForumPosting, SocialMediaPosting, Comment
+enum DiscussionPlatform {
+  DISCUSSION_PLATFORM_UNSPECIFIED = 0;
+  
+  // Traditional social platforms
+  DISCUSSION_PLATFORM_GITHUB_ISSUE = 1;
+  DISCUSSION_PLATFORM_GITHUB_GIST = 2;
+  DISCUSSION_PLATFORM_TWITTER_THREAD = 3;
+  DISCUSSION_PLATFORM_LINKEDIN_POST = 4;
+  DISCUSSION_PLATFORM_REDDIT_THREAD = 5;
+  
+  // AI conversation platforms (new paradigm)
+  DISCUSSION_PLATFORM_CHATGPT_CHAT = 6;
+  DISCUSSION_PLATFORM_CLAUDE_CHAT = 7;
+  DISCUSSION_PLATFORM_CLAUDE_ARTIFACT = 8;
+  DISCUSSION_PLATFORM_PERPLEXITY_THREAD = 9;
+}
+
+// Media types for content
+// Maps to Schema.org MediaObject, AudioObject, VideoObject, ImageObject
+enum MediaType {
+  MEDIA_TYPE_UNSPECIFIED = 0;
+  MEDIA_TYPE_IMAGE = 1;
+  MEDIA_TYPE_VIDEO = 2;
+  MEDIA_TYPE_AUDIO = 3;
+  MEDIA_TYPE_CODE = 4;
+  MEDIA_TYPE_GIST = 5;
+  MEDIA_TYPE_DIAGRAM = 6;
+}
+
+// Content types for articles and blog posts
+// Maps to Schema.org Article subtypes and custom categorization
+enum ContentType {
+  CONTENT_TYPE_UNSPECIFIED = 0;
+  CONTENT_TYPE_ANNOUNCEMENT = 1;
+  CONTENT_TYPE_TUTORIAL = 2;
+  CONTENT_TYPE_DEEP_DIVE = 3;
+  CONTENT_TYPE_UPDATE = 4;
+  CONTENT_TYPE_OPINION = 5;
+  CONTENT_TYPE_CASE_STUDY = 6;
+  CONTENT_TYPE_REVIEW = 7;
+  CONTENT_TYPE_GUIDE = 8;
+  CONTENT_TYPE_INTERVIEW = 9;
+  CONTENT_TYPE_RESEARCH = 10;
+  CONTENT_TYPE_ANALYSIS = 11;
+  CONTENT_TYPE_REFLECTION = 12;
+  CONTENT_TYPE_EXPERIMENT = 13;
+  CONTENT_TYPE_ROUNDUP = 14;
+  CONTENT_TYPE_COMPARISON = 15;
+  CONTENT_TYPE_CHECKLIST = 16;
+  CONTENT_TYPE_FAQ = 17;
+  CONTENT_TYPE_THOUGHT_PIECE = 18;
+  CONTENT_TYPE_AUDIO_RECORDING = 19;  // For Google Drive audio content
+}
+
+// Programming languages for code blocks and snippets
+// Maps to Schema.org SoftwareSourceCode with programmingLanguage property
+enum CodeLanguage {
+  CODE_LANGUAGE_UNSPECIFIED = 0;
+  CODE_LANGUAGE_JAVASCRIPT = 1;
+  CODE_LANGUAGE_TYPESCRIPT = 2;
+  CODE_LANGUAGE_PYTHON = 3;
+  CODE_LANGUAGE_C = 4;
+  CODE_LANGUAGE_CPP = 5;
+  CODE_LANGUAGE_SHELL = 6;
+  CODE_LANGUAGE_YAML = 7;
+  CODE_LANGUAGE_JSON = 8;
+  CODE_LANGUAGE_MARKDOWN = 9;
+  CODE_LANGUAGE_PROTOBUF = 10;
+  CODE_LANGUAGE_OTHER = 99;
+}
+
+// Payment methods for sponsorship and donations
+// Maps to Schema.org PaymentMethod, PaymentCard, PaymentService
+enum PaymentMethod {
+  PAYMENT_METHOD_UNSPECIFIED = 0;
+  PAYMENT_METHOD_PAYPAL = 1;
+  PAYMENT_METHOD_GITHUB_SPONSORS = 2;
+  PAYMENT_METHOD_YOUTUBE_MEMBERSHIP = 3;
+  PAYMENT_METHOD_CRYPTO = 4;
+}
+
+// Cryptocurrency networks for crypto payments
+// Maps to Schema.org currenciesAccepted with crypto ticker symbols
+enum CryptoNetwork {
+  CRYPTO_NETWORK_UNSPECIFIED = 0;
+  CRYPTO_NETWORK_BITCOIN = 1;      // BTC
+  CRYPTO_NETWORK_ETHEREUM = 2;     // ETH
+  CRYPTO_NETWORK_USDT = 3;         // USDT (Tether)
+}
+
+// EcosystemConfig defines the default configuration inherited by all domains.
+// These values are stored in getHarsh/config/ecosystem-defaults.yml
+// and are automatically inherited by all domain configurations.
+message EcosystemConfig {
+  // Analytics configuration shared across all domains
+  Analytics analytics = 1;
+  
+  // Default SEO settings for all domains
+  SeoDefaults seo_defaults = 2;
+  
+  // Gatsby plugins used by all sites
+  repeated string gatsby_plugins = 3;
+  
+  // Default content settings
+  ContentDefaults content_defaults = 4;
+  
+  // Cross-domain navigation configuration
+  CrossDomainNav cross_domain_nav = 5;
+  
+  // Environment variable definitions required by the system
+  map<string, EnvironmentVar> environment_vars = 6;
+  
+  // Cross-domain ecosystem mapping and relationships
+  EcosystemMap ecosystem = 7;
+  
+  // Build and Gatsby configuration
+  BuildSettings build_settings = 8;
+  
+  // Default theme settings inherited by all domains
+  ThemeDefaults theme_defaults = 9;
+  
+  // Security configuration and environment variable classification
+  SecuritySettings security = 10;
+  
+  // Default feature flags for all domains
+  FeatureFlags features = 11;
+  
+  // AI agent integration settings
+  AIAgentSettings ai_agent = 12;
+  
+  // Copyright configuration
+  CopyrightSettings copyright = 13;
+  
+  // Default timezone for all sites
+  string timezone = 14;
+  
+  // Cookie consent configuration (LEGALLY REQUIRED for GA/FB Pixel)
+  ConsentSettings consent_settings = 15;
+  
+  // Security headers for GitHub Pages (CSP via meta tags)
+  SecurityHeaders security_headers = 16;
+  
+  // Performance monitoring and optimization settings
+  PerformanceSettings performance = 17;
+  
+  // Enhanced analytics services configuration
+  AnalyticsServices analytics_services = 18;
+  
+  // Social platforms configuration
+  SocialPlatforms social_platforms = 19;
+  
+  // Google services configuration
+  GoogleServices google_services = 20;
+  
+  // Search engine tools configuration
+  SearchEngineTools search_tools = 21;
+  
+  // Structured data (JSON-LD) configuration
+  StructuredDataSettings structured_data = 22;
+  
+  // Component default settings
+  ComponentDefaults component_defaults = 23;
+  
+  // Ecosystem learn more URL (e.g., GitHub README)
+  string ecosystem_learn_more_url = 24;
+  
+  // Decap CMS configuration
+  DecapCMSSettings decap_cms = 25;
+  
+  // RSS feed configuration
+  RSSFeedSettings rss_feed = 26;
+  
+  // Audio player settings for Google Drive integration
+  AudioSettings audio_settings = 27;
+  
+  // Footer technical links configuration
+  TechnicalLinks technical_links = 28;
+  
+  // Policy page links configuration
+  // See: ../SCHEMA-ORG-EXAMPLES.md#inheritance-and-override-rules
+  PolicyLinks policy_links = 29;
+  
+  // Default Schema.org entity type for domains
+  // Default: SCHEMA_ORG_ORGANIZATION - can be overridden per domain
+  // See: ../SCHEMA-ORG-EXAMPLES.md for entity type examples
+  SchemaOrgEntityType default_schema_org_type = 30;
+  
+  // Legal entities catalog - all entities in the ecosystem
+  // Domains reference these by key (e.g., "RTEPL", "DSPL")
+  map<string, LegalEntity> legal_entities = 31;
+  
+  // Authors catalog - person keys who can author content
+  // Only persons who write articles/posts (appear in Decap CMS)
+  // References keys from the persons catalog
+  repeated string authors = 32;
+  
+  // External organizations catalog - organizations not owned by ecosystem entities
+  // Referenced by key in person affiliations (e.g., "AION", "SMART_JOULES")
+  map<string, ExternalOrganization> organizations = 33;
+  
+  // Persons catalog - all persons in the ecosystem
+  // Includes founders, directors, employees, advisors, etc.
+  // Referenced by key (e.g., "harsh", "john_doe")
+  map<string, PersonSchema> persons = 34;
+  
+  // Brands catalog - all brands in the ecosystem
+  // Brands are verticals of legal entities that group projects
+  // Referenced by key (e.g., "getHarsh", "causality", "rawThoughts")
+  map<string, Brand> brands = 35;
+  
+  // Communities catalog - external communities that leverage ecosystem
+  // Referenced by key (e.g., "UPAI")
+  map<string, Community> communities = 36;
+  
+  // Entity relationships - all entity-to-entity relationships
+  // Supports flexible relationships between any entities
+  repeated EntityRelationship entity_relationships = 37;
+  
+  // Schema.org mapping configuration
+  // Controls how enums are mapped to Schema.org types at build time
+  SchemaOrgConfig schema_org_config = 38;
+  
+  // Schema.org global settings
+  // Default values for all Schema.org JSON-LD generation
+  SchemaOrgGlobalSettings schema_org_settings = 39;
+}
+
+// Analytics configuration for tracking and metrics
+message Analytics {
+  // Google Analytics tracking ID (supports ${GA_TRACKING_ID})
+  string ga_tracking_id = 1;
+  
+  // Meta/Facebook Pixel ID (supports ${META_PIXEL_ID})
+  string meta_pixel_id = 2;
+  
+  // Enable cross-domain tracking between ecosystem sites
+  bool cross_domain_tracking = 3;
+  
+  // Domains to link for cross-domain tracking
+  repeated string linked_domains = 4;
+  
+  // Twitter Pixel configuration
+  TwitterPixel twitter_pixel = 5;
+  
+  // LinkedIn Insight Tag configuration
+  LinkedInInsight linkedin_insight = 6;
+}
+
+// Default SEO settings inherited by all domains
+message SeoDefaults {
+  // Default author name for meta tags
+  string author = 1;
+  
+  // Default locale (e.g., "en_US")
+  string locale = 2;
+  
+  // Default Twitter handle for cards
+  string twitter = 3;
+  
+  // Default meta description pattern (can use variables)
+  string description_pattern = 4;
+  
+  // Default OG image URL pattern
+  string og_image_pattern = 5;
+  
+  // Enable/disable AI crawler optimization (LLMs.txt)
+  bool enable_llms_txt = 6;
+  
+  // Default copyright pattern (e.g., "© {year} {entity}")
+  string copyright_pattern = 7;
+}
+
+// Default content settings for posts and pages
+message ContentDefaults {
+  // Default excerpt length in words
+  int32 excerpt_length = 1;
+  
+  // Default posts per page for pagination
+  int32 posts_per_page = 2;
+  
+  // Default date format (e.g., "%B %d, %Y")
+  string date_format = 3;
+  
+  // Enable reading time calculation by default
+  bool show_reading_time = 4;
+  
+  // Words per minute for reading time calculation
+  int32 reading_wpm = 5;
+}
+
+// Cross-domain navigation configuration
+message CrossDomainNav {
+  // Enable ecosystem navigation bar
+  bool enabled = 1;
+  
+  // Position of the nav bar ("top", "bottom")
+  string position = 2;
+  
+  // Domains to show in navigation (order matters)
+  repeated string domains = 3;
+}
+
+// Environment variable definition with security classification
+message EnvironmentVar {
+  // Description of what this variable is for
+  string description = 1;
+  
+  // Whether this variable is required
+  bool required = 2;
+  
+  // Default value if not set (optional)
+  string default_value = 3;
+  
+  // Example value for documentation
+  string example = 4;
+  
+  // Security classification for redaction
+  SecurityLevel security_level = 5;
+  
+  // Redaction strategy when publishing
+  RedactionStrategy redaction_strategy = 6;
+}
+
+// Security classification for environment variables
+enum SecurityLevel {
+  // Public information (domains, titles, public emails)
+  PUBLIC = 0;
+  
+  // Sensitive but can be partially shown (analytics IDs)
+  SENSITIVE = 1;
+  
+  // Secret - must never be exposed (API keys, tokens)
+  SECRET = 2;
+}
+
+// How to redact sensitive values before publishing
+enum RedactionStrategy {
+  // No redaction needed (PUBLIC level)
+  NONE = 0;
+  
+  // Partial redaction (e.g., GA-XXXXXXXX)
+  PARTIAL = 1;
+  
+  // Complete removal from published files
+  REMOVE = 2;
+  
+  // Replace with placeholder (e.g., [REDACTED])
+  PLACEHOLDER = 3;
+}
+
+// Cross-domain ecosystem mapping
+message EcosystemMap {
+  // All domains in the ecosystem with their metadata
+  map<string, DomainMetadata> domains = 1;
+}
+
+// Metadata for each domain in the ecosystem
+message DomainMetadata {
+  // Primary domain (e.g., "getHarsh.in")
+  string domain = 1;
+  
+  // Blog subdomain (e.g., "blog.getHarsh.in")
+  string blog = 2;
+  
+  // Legal entity that owns this domain (e.g., "RTEPL", "DSPL")
+  string entity = 3;
+  
+  // Brand color for this domain (hex)
+  string color = 4;
+  
+  // Projects hosted under this domain
+  repeated string projects = 5;
+}
+
+// Build and Gatsby configuration
+message BuildSettings {
+  // Gatsby build mode ("development", "production")
+  string build_mode = 1;
+  
+  // Path prefix for deployment (e.g., "/blog" for subpath deployment)
+  string path_prefix = 2;
+  
+  // Asset prefix for CDN
+  string asset_prefix = 3;
+  
+  // Build flags
+  BuildFlags flags = 4;
+  
+  // MDX configuration for content
+  MDXSettings mdx = 5;
+}
+
+// Build flags for Gatsby
+message BuildFlags {
+  // Enable fast refresh in development
+  bool fast_refresh = 1;
+  
+  // Enable build caching
+  bool cache = 2;
+  
+  // Enable parallel processing
+  bool parallel = 3;
+  
+  // Enable verbose logging
+  bool verbose = 4;
+}
+
+// MDX settings for content processing
+message MDXSettings {
+  // Enable MDX for markdown processing
+  bool enabled = 1;
+  
+  // Extensions to process as MDX
+  repeated string extensions = 2;
+  
+  // Remark plugins
+  repeated string remark_plugins = 3;
+  
+  // Rehype plugins  
+  repeated string rehype_plugins = 4;
+  
+  // Gatsby remark plugins
+  repeated GatsbyRemarkPlugin gatsby_remark_plugins = 5;
+}
+
+// Gatsby remark plugin configuration
+message GatsbyRemarkPlugin {
+  // Plugin name
+  string name = 1;
+  
+  // Plugin options
+  map<string, string> options = 2;
+}
+
+// Default theme settings inherited by all domains
+message ThemeDefaults {
+  // Maps domain names to theme IDs if different from default
+  map<string, string> theme_mapping = 1;
+  
+  // Available theme IDs in the system
+  repeated string available_themes = 2;
+}
+
+
+// Security configuration and environment variable classification
+message SecuritySettings {
+  // Environment variables by security level
+  map<string, SecurityVariableList> env_vars = 1;
+}
+
+// List of environment variables for a security level
+message SecurityVariableList {
+  // List of variable names
+  repeated string variables = 1;
+}
+
+// Default feature flags for all domains
+message FeatureFlags {
+  // Enable comments by default
+  bool comments = 1;
+  
+  // Enable math rendering by default
+  bool math = 2;
+  
+  // Enable GraphViz diagrams by default
+  bool graphviz = 3;
+  
+  // Enable Mermaid diagrams by default
+  bool mermaid = 4;
+  
+  // Enable search functionality by default
+  bool search = 5;
+  
+  // Enable reading time display by default
+  bool reading_time = 6;
+  
+  // Enable share buttons by default
+  bool share_buttons = 7;
+  
+  // Enable table of contents by default
+  bool table_of_contents = 8;
+  
+  // Enable syntax highlighting by default
+  bool syntax_highlighting = 9;
+}
+
+// AI agent integration settings
+message AIAgentSettings {
+  // Enable AI agent features
+  bool enabled = 1;
+  
+  // Path to manifest file
+  string manifest_path = 2;
+  
+  // Path to sitemap
+  string sitemap_path = 3;
+  
+  // Path to robots.txt
+  string robots_path = 4;
+  
+  // Path to LLMs.txt
+  string llms_txt_path = 5;
+}
+
+// Copyright configuration
+message CopyrightSettings {
+  // Copyright notice pattern (supports {year}, {entity} variables)
+  string pattern = 1;
+  
+  // Starting year for copyright
+  int32 start_year = 2;
+}
+
+// Cookie consent configuration for GDPR/ePrivacy compliance
+// LEGALLY REQUIRED: EU law mandates explicit consent BEFORE loading analytics
+// Reference: €1.34M fine example for non-compliance
+message ConsentSettings {
+  // Enable cookie consent banner
+  bool enable_consent_banner = 1;
+  
+  // Cookie name for storing consent state
+  string consent_cookie_name = 2;  // default: "analytics_consent"
+  
+  // How long consent is valid (in days)
+  int32 consent_duration_days = 3; // default: 365
+  
+  // Enable Google Consent Mode v2 (required by March 2024)
+  bool google_consent_mode_v2 = 4;
+  
+  // Text for the consent banner
+  string banner_text = 5;
+  
+  // Text for the accept button
+  string accept_button_text = 6;
+  
+  // Text for the decline button
+  string decline_button_text = 7;
+  
+  // Link to privacy policy
+  string privacy_policy_url = 8;
+  
+  // Link to cookie policy
+  string cookie_policy_url = 9;
+  
+  // Google Consent Mode v2 specific configuration
+  ConsentModeV2 consent_mode_v2 = 10;
+  
+  // Enable cross-domain consent sharing
+  bool enable_cross_domain_consent = 11;
+  
+  // Domains to share consent across
+  repeated string consent_domains = 12;
+  
+  // Consent UI position ("bottom", "top", "center")
+  string banner_position = 13;
+  
+  // Banner theme ("light", "dark", "auto")
+  string banner_theme = 14;
+  
+  // Consent categories configuration
+  ConsentCategories consent_categories = 15;
+  
+  // Entity-specific consent settings
+  map<string, EntityConsentSettings> entity_specific = 16;
+  
+  // Settings button text
+  string settings_button_text = 17;
+  
+  // Save preferences button text
+  string save_preferences_text = 18;
+  
+  // Consent version (for updates)
+  string consent_version = 19;
+  
+  // Show consent status icon
+  bool show_consent_icon = 20;
+  
+  // Regional consent defaults
+  // See: CONSENT-ARCHITECTURE.md#regional-detection
+  // Format: ["EU:denied", "US-CA:denied", "IN:granted", "DEFAULT:granted"]
+  repeated string region_defaults = 21;
+  
+  // Enable granular category control
+  // See: CONSENT-ARCHITECTURE.md#granular-consent-ui
+  bool enable_granular_control = 22;
+  
+  // Category configuration for granular consent
+  // See: CONSENT-ARCHITECTURE.md#granular-consent-ui
+  ConsentCategories categories_config = 23;
+}
+
+// Security headers configuration for GitHub Pages
+// Note: GitHub Pages only supports meta tag CSP, not HTTP headers
+message SecurityHeaders {
+  // Content Security Policy for meta tag
+  string csp_policy = 1;
+  
+  // Enable Subresource Integrity for CDN resources
+  bool enable_sri = 2;
+  
+  // Referrer policy for meta tag
+  string referrer_policy = 3;
+  
+  // X-Content-Type-Options equivalent
+  bool no_sniff = 4;
+  
+  // X-Frame-Options equivalent
+  string frame_options = 5;
+}
+
+// Performance monitoring and optimization settings
+message PerformanceSettings {
+  // Maximum page size in KB before warning
+  int32 max_page_size_kb = 1;    // default: 500
+  
+  // Target page load time in milliseconds
+  int32 target_load_time_ms = 2; // default: 3000
+  
+  // Enable lazy loading for images and iframes
+  bool enable_lazy_loading = 3;
+  
+  // Enable automatic image optimization
+  bool enable_image_optimization = 4;
+  
+  // Preload critical resources
+  repeated string preload_resources = 5;
+  
+  // Enable resource hints (dns-prefetch, preconnect)
+  bool enable_resource_hints = 6;
+  
+  // Critical CSS inline threshold in KB
+  int32 critical_css_threshold_kb = 7;
+}
+
+// Enhanced analytics services configuration
+message AnalyticsServices {
+  // Google Analytics configuration
+  GoogleAnalytics google_analytics = 1;
+  
+  // Meta/Facebook Pixel configuration  
+  MetaPixel meta_pixel = 2;
+  
+  // Microsoft Clarity configuration
+  MicrosoftClarity microsoft_clarity = 3;
+  
+  // Twitter/X Pixel configuration
+  TwitterPixel twitter_pixel = 4;
+  
+  // LinkedIn Insight Tag configuration
+  LinkedInInsight linkedin_insight = 5;
+}
+
+// Google Analytics specific settings
+message GoogleAnalytics {
+  // Tracking ID (supports environment variable)
+  string tracking_id = 1;
+  
+  // Enable enhanced ecommerce
+  bool enable_enhanced_ecommerce = 2;
+  
+  // Enable demographics reports
+  bool enable_demographics = 3;
+  
+  // Enable remarketing features
+  bool enable_remarketing = 4;
+  
+  // Google Tag Manager container ID (supports environment variable)
+  string gtm_container_id = 5;
+  
+  // Enable Google Analytics 4 features
+  bool enable_ga4_features = 6;
+  
+  // Enable server-side tagging
+  bool enable_server_side_tagging = 7;
+}
+
+// Meta/Facebook Pixel settings
+message MetaPixel {
+  // Pixel ID (supports environment variable)
+  string pixel_id = 1;
+  
+  // Enable automatic matching
+  bool enable_automatic_matching = 2;
+  
+  // Enable advanced matching
+  bool enable_advanced_matching = 3;
+}
+
+// Microsoft Clarity settings
+message MicrosoftClarity {
+  // Enable Clarity
+  bool enabled = 1;
+  
+  // Clarity project ID
+  string project_id = 2;
+  
+  // Auto-integrate with Bing Webmaster Tools
+  bool integrate_with_bing = 3;
+}
+
+// Twitter/X Pixel configuration
+message TwitterPixel {
+  // Twitter Pixel ID (supports environment variable)
+  string pixel_id = 1;
+  
+  // Enable conversion tracking
+  bool enable_conversion_tracking = 2;
+  
+  // Enable website tag (universal)
+  bool enable_website_tag = 3;
+  
+  // Twitter site tag ID (for website tag)
+  string twitter_site_tag_id = 4;
+  
+  // Event types to track
+  repeated string track_events = 5;  // e.g., ["PageView", "Purchase", "AddToCart"]
+  
+  // Enable enhanced matching
+  bool enable_enhanced_matching = 6;
+  
+  // Enable restricted data processing
+  bool restricted_data_processing = 7;
+}
+
+// LinkedIn Insight Tag configuration
+message LinkedInInsight {
+  // LinkedIn Partner ID (supports environment variable)
+  string partner_id = 1;
+  
+  // Enable conversion tracking
+  bool enable_conversion_tracking = 2;
+  
+  // Enable matched audiences (retargeting)
+  bool enable_matched_audiences = 3;
+  
+  // Enable website demographics
+  bool enable_website_demographics = 4;
+  
+  // Conversion IDs to track
+  repeated string conversion_ids = 5;
+  
+  // Enable enhanced conversion tracking (1st party cookies)
+  bool enable_enhanced_conversion = 6;
+  
+  // Enable cross-domain tracking
+  bool enable_cross_domain = 7;
+}
+
+// Enhanced Google Consent Mode v2 configuration
+message ConsentModeV2 {
+  // Default consent states
+  bool ad_user_data_default = 1;
+  bool ad_personalization_default = 2;
+  
+  // Implementation mode ("basic" or "advanced")
+  string implementation_mode = 3;
+  
+  // Advanced mode features
+  bool enable_cookieless_pings = 4;
+  bool enable_data_modeling = 5;
+  
+  // Wait for consent update (milliseconds)
+  int32 wait_for_update_ms = 6;
+  
+  // Region-specific defaults
+  map<string, RegionConsent> region_defaults = 7;
+}
+
+// Region-specific consent defaults
+message RegionConsent {
+  // Region code (e.g., "EU", "US", "CA")
+  string region = 1;
+  
+  // Consent defaults for this region
+  bool analytics_storage = 2;
+  bool ad_storage = 3;
+  bool ad_user_data = 4;
+  bool ad_personalization = 5;
+}
+
+// Consent categories configuration
+message ConsentCategories {
+  // Analytics category settings
+  ConsentCategory analytics = 1;
+  
+  // Marketing category settings
+  ConsentCategory marketing = 2;
+  
+  // Functional category settings
+  ConsentCategory functional = 3;
+  
+  // Necessary category settings (always enabled)
+  ConsentCategory necessary = 4;
+}
+
+// Individual consent category configuration
+message ConsentCategory {
+  // Category title
+  string title = 1;
+  
+  // Category description
+  string description = 2;
+  
+  // Providers/services in this category
+  repeated string providers = 3;
+  
+  // Required by default
+  bool required = 4;
+  
+  // Pre-selected in UI
+  bool pre_selected = 5;
+}
+
+// Entity-specific consent settings
+message EntityConsentSettings {
+  // Privacy policy URL for this entity
+  string privacy_policy_url = 1;
+  
+  // Cookie policy URL for this entity
+  string cookie_policy_url = 2;
+  
+  // Data controller name
+  string data_controller = 3;
+  
+  // Data controller contact
+  string data_controller_email = 4;
+  
+  // Entity-specific banner text
+  string banner_text_override = 5;
+  
+  // GTM container ID for this entity
+  string gtm_container_id = 6;
+}
+
+// Search engine tools configuration
+message SearchEngineTools {
+  // Google Search Console settings
+  GoogleSearchConsole google_search_console = 1;
+  
+  // Bing Webmaster Tools settings
+  BingWebmasterTools bing_webmaster_tools = 2;
+  
+  // AI search optimization settings
+  AISearchOptimization ai_search_optimization = 3;
+}
+
+// Google Search Console configuration
+message GoogleSearchConsole {
+  // Site verification HTML tag content
+  string site_verification = 1;
+  
+  // Auto-submit sitemap on build
+  bool auto_submit_sitemap = 2;
+  
+  // Enable Index API for instant indexing
+  bool enable_indexing_api = 3;
+  
+  // Service account JSON key path (for API)
+  string service_account_key = 4;
+}
+
+// Bing Webmaster Tools configuration
+message BingWebmasterTools {
+  // Site verification HTML tag content
+  string site_verification = 1;
+  
+  // Auto-submit sitemap on build
+  bool auto_submit_sitemap = 2;
+  
+  // Enable Clarity integration
+  bool enable_clarity_integration = 3;
+  
+  // API key for programmatic access
+  string api_key = 4;
+}
+
+// AI search optimization configuration
+message AISearchOptimization {
+  // Enable specific AI crawlers
+  bool enable_chatgpt_bot = 1;
+  bool enable_perplexity_bot = 2;
+  bool enable_claude_bot = 3;
+  bool enable_bard_bot = 4;
+  
+  // Custom AI user agents to allow
+  repeated string custom_ai_agents = 5;
+  
+  // Generate AI-friendly content summaries
+  bool generate_ai_summaries = 6;
+  
+  // Include structured QA pairs for AI
+  bool include_qa_pairs = 7;
+}
+
+// Structured data (JSON-LD) configuration
+message StructuredDataSettings {
+  // Enable JSON-LD generation
+  bool enable_json_ld = 1;
+  
+  // Organization schema
+  OrganizationSchema organization = 2;
+  
+  // Default article schema settings
+  DefaultArticleSchema article_defaults = 3;
+  
+  // Website schema
+  WebSiteSchema website = 4;
+  
+  // Author profiles
+  repeated PersonSchema authors = 5;
+  
+  // Enable breadcrumb schema
+  bool enable_breadcrumbs = 6;
+  
+  // Enable FAQ schema from content
+  bool enable_faq_schema = 7;
+  
+  // Enable video object schema
+  bool enable_video_schema = 8;
+}
+
+// Organization schema for JSON-LD
+message OrganizationSchema {
+  // Organization name
+  string name = 1;
+  
+  // Organization URL
+  string url = 2;
+  
+  // Logo URL (must be specific dimensions)
+  string logo_url = 3;
+  
+  // Same as URLs (social profiles)
+  repeated string same_as = 4;
+  
+  // Contact point
+  ContactPoint contact_point = 5;
+  
+  // Founding date
+  string founding_date = 6;
+  
+  // Founders
+  repeated string founders = 7;
+}
+
+// Contact point for organization
+message ContactPoint {
+  // Contact type (e.g., "customer service")
+  string contact_type = 1;
+  
+  // Telephone number
+  string telephone = 2;
+  
+  // Email address
+  string email = 3;
+  
+  // Available languages
+  repeated string available_language = 4;
+  
+  // Area served
+  repeated string area_served = 5;
+}
+
+// Default article schema settings
+message DefaultArticleSchema {
+  // Default publisher type ("Organization" or "Person")
+  string publisher_type = 1;
+  
+  // Default image dimensions
+  int32 default_image_width = 2;
+  int32 default_image_height = 3;
+  
+  // Include author by default
+  bool include_author = 4;
+  
+  // Include modified date
+  bool include_date_modified = 5;
+}
+
+// Website schema for JSON-LD
+message WebSiteSchema {
+  // Enable sitelinks searchbox
+  bool enable_sitelinks_searchbox = 1;
+  
+  // Search action URL template
+  string search_action_template = 2;
+  
+  // Alternate names for the website
+  repeated string alternate_names = 3;
+  
+  // In languages supported
+  repeated string in_language = 4;
+}
+
+// Person schema for authors
+message PersonSchema {
+  // Person name
+  string name = 1;
+  
+  // Person URL (profile page) - DEPRECATED: Generated dynamically at build time
+  string url = 2;
+  
+  // Same as URLs (social profiles)
+  repeated string same_as = 3;
+  
+  // Job title
+  string job_title = 4;
+  
+  // Works for (organization) - DEPRECATED: Use affiliations instead
+  string works_for = 5;
+  
+  // Image URL (relative path, e.g., "/assets/harsh-avatar.png")
+  string image = 6;
+  
+  // Description/bio
+  string description = 7;
+  
+  // Affiliations with organizations using key references
+  // References organizations by key from legal_entities or organizations catalogs
+  repeated PersonAffiliation affiliations = 8;
+  
+  // Domain keys this person created (e.g., ["getHarsh", "causality"])
+  // Populated dynamically from ecosystem.domains mapping
+  repeated string creator_of_keys = 9;
+  
+  // Project keys this person authored (e.g., ["HENA", "JARVIS-kernel"])
+  // Populated dynamically from PROJECTS/ discovery
+  repeated string author_of_keys = 10;
+  
+  // Areas of expertise (for knowsAbout property)
+  // Example: "Artificial Intelligence, Distributed Systems, Philosophy of Mind"
+  string knows_about = 11;
+  
+  // Educational affiliations using key references
+  repeated PersonAffiliation alumni_of = 12;
+}
+
+// Flexible entity-to-entity relationship definition
+// Supports relationships between any entities in the ecosystem
+message EntityRelationship {
+  // Source entity key (e.g., "harsh", "RTEPL", "HENA")
+  string from_key = 1;
+  
+  // Source entity type (type-safe enum)
+  EntityType from_type = 2;
+  
+  // Target entity key (e.g., "AION", "getHarsh", "JARVIS-kernel")
+  string to_key = 3;
+  
+  // Target entity type (type-safe enum)
+  EntityType to_type = 4;
+  
+  // Relationship type (type-safe enum)
+  RelationshipType type = 5;
+  
+  // Optional description of the relationship
+  string description = 6;
+  
+  // Start date (ISO 8601 format, e.g., "2024-01-01")
+  string start_date = 7;
+  
+  // End date (ISO 8601 format, omit if current)
+  string end_date = 8;
+  
+  // Whether this relationship is currently active
+  bool is_current = 9;
+  
+  // Additional metadata as key-value pairs
+  // Examples: support_type="infrastructure", evolution_stage="pivot"
+  map<string, string> metadata = 10;
+  
+  // Optional role description (e.g., "Founding Product Manager")
+  string role = 11;
+  
+  // Schema.org predicate for this relationship
+  // Populated from RelationshipTypeMappings at build time
+  // Examples: "founder", "owns", "memberOf", "worksFor"
+  string schema_predicate = 12;
+}
+
+// Brand definition - brands are verticals of legal entities
+// Groups related projects under a common identity and philosophy
+message Brand {
+  // Brand key (e.g., "getHarsh", "causality", "rawThoughts")
+  string key = 1;
+  
+  // Brand name
+  string name = 2;
+  
+  // Brand description
+  string description = 3;
+  
+  // Legal entity that owns this brand (key reference)
+  string legal_entity_key = 4;
+  
+  // Associated domain keys (e.g., ["getHarsh.in"])
+  repeated string domain_keys = 5;
+  
+  // Project keys hosted under this brand
+  // Populated dynamically from PROJECTS/ discovery
+  repeated string project_keys = 6;
+  
+  // Special flag for personal brands (like getHarsh)
+  bool is_personal_brand = 7;
+  
+  // Special flag for entity website brands (like rawThoughts, daostudio)
+  bool is_entity_website = 8;
+  
+  // Schema.org entity definition for the brand
+  SchemaOrgEntity schema_org = 9;
+  
+  // Brand color (hex) for visual identity
+  string color = 10;
+  
+  // Brand focus area (e.g., "research", "consulting", "creative")
+  string focus_area = 11;
+}
+
+// Community definition - external communities that leverage ecosystem
+message Community {
+  // Community key (e.g., "UPAI")
+  string key = 1;
+  
+  // Community name
+  string name = 2;
+  
+  // Community description
+  string description = 3;
+  
+  // Community status (type-safe enum)
+  CommunityStatus status = 4;
+  
+  // External website (if any)
+  string website = 5;
+  
+  // Member person keys from persons catalog
+  repeated string member_person_keys = 6;
+  
+  // Project keys this community leverages
+  repeated string leverages_project_keys = 7;
+  
+  // Schema.org entity definition for the community
+  SchemaOrgEntity schema_org = 8;
+  
+  // Community type (e.g., "research", "opensource", "professional")
+  string community_type = 9;
+  
+  // Founding date (ISO 8601)
+  string founding_date = 10;
+}
+
+// Social platforms configuration
+message SocialPlatforms {
+  // GitHub platform settings
+  GitHubPlatform github = 1;
+  
+  // Twitter/X platform settings
+  TwitterPlatform twitter = 2;
+  
+  // LinkedIn platform settings
+  LinkedInPlatform linkedin = 3;
+  
+  // YouTube platform settings
+  YouTubePlatform youtube = 4;
+  
+  // Instagram platform settings
+  InstagramPlatform instagram = 5;
+}
+
+// GitHub platform configuration
+message GitHubPlatform {
+  // Organizations list
+  repeated string organizations = 1;
+  
+  // Default branch name
+  string default_branch = 2;
+  
+  // Show star count on links
+  bool show_stars = 3;
+  
+  // Show fork count on links
+  bool show_forks = 4;
+}
+
+// Twitter/X platform configuration
+message TwitterPlatform {
+  // Default handle (without @)
+  string default_handle = 1;
+  
+  // Show follow button
+  bool show_follow_button = 2;
+  
+  // Enable Twitter cards
+  bool enable_cards = 3;
+  
+  // Card type ("summary" or "summary_large_image")
+  string card_type = 4;
+}
+
+// LinkedIn platform configuration
+message LinkedInPlatform {
+  // Company page URL
+  string company_page = 1;
+  
+  // Show follow button
+  bool show_follow_button = 2;
+  
+  // Enable LinkedIn insights tag
+  bool enable_insights_tag = 3;
+  
+  // Partner ID for insights
+  string partner_id = 4;
+}
+
+// YouTube platform configuration
+message YouTubePlatform {
+  // Channel URL
+  string channel_url = 1;
+  
+  // Show subscribe button
+  bool show_subscribe_button = 2;
+  
+  // Enable video embeds
+  bool enable_embeds = 3;
+  
+  // Default embed privacy mode
+  bool privacy_enhanced_mode = 4;
+}
+
+// Instagram platform configuration
+message InstagramPlatform {
+  // Profile URL
+  string profile_url = 1;
+  
+  // Show follow button
+  bool show_follow_button = 2;
+  
+  // Enable post embeds
+  bool enable_embeds = 3;
+}
+
+// Google services configuration
+message GoogleServices {
+  // Calendar service settings
+  CalendarService calendar = 1;
+  
+  // Drive service settings
+  DriveService drive = 2;
+  
+  // Maps service settings (if needed)
+  MapsService maps = 3;
+}
+
+// Google Calendar service configuration
+message CalendarService {
+  // Appointment calendar ID
+  string appointment_calendar_id = 1;
+  
+  // Booking URL
+  string booking_url = 2;
+  
+  // Enable embedding
+  bool embed_enabled = 3;
+  
+  // Embed height
+  int32 embed_height = 4;
+  
+  // Time zone
+  string time_zone = 5;
+}
+
+// Google Drive service configuration
+message DriveService {
+  // Enable Drive integration
+  bool enabled = 1;
+  
+  // Shared folder IDs
+  repeated string shared_folders = 2;
+  
+  // Enable direct downloads
+  bool enable_direct_downloads = 3;
+}
+
+// Google Maps service configuration
+message MapsService {
+  // Enable Maps integration
+  bool enabled = 1;
+  
+  // API key
+  string api_key = 2;
+  
+  // Default location
+  Location default_location = 3;
+}
+
+// Location for maps
+message Location {
+  // Latitude
+  double latitude = 1;
+  
+  // Longitude
+  double longitude = 2;
+  
+  // Address
+  string address = 3;
+}
+
+// Component default settings
+message ComponentDefaults {
+  // Code block defaults
+  CodeBlockDefaults code_block = 1;
+  
+  // Table of contents defaults
+  TableOfContentsDefaults table_of_contents = 2;
+  
+  // Social share defaults
+  SocialShareDefaults social_share = 3;
+  
+  // Audio player defaults
+  AudioPlayerDefaults audio_player = 4;
+  
+  // Image component defaults
+  ImageDefaults image = 5;
+  
+  // Video embed defaults
+  VideoEmbedDefaults video_embed = 6;
+  
+  // Enhanced code block settings
+  CodeBlockSettings enhanced_code_block = 7;
+  
+  // Technical content settings
+  TechnicalContentSettings technical_content = 8;
+  
+  // Responsive display rules
+  ResponsiveDisplayRules responsive_rules = 9;
+  
+  // Error page content
+  ErrorPageContent error_pages = 10;
+  
+  // Social discussion settings
+  SocialDiscussion social_discussion = 11;
+  
+  // Smart link settings
+  SmartLinkSettings smart_links = 12;
+}
+
+// Code block default settings
+message CodeBlockDefaults {
+  // Show line numbers by default
+  bool show_line_numbers = 1;
+  
+  // Show copy button
+  bool show_copy_button = 2;
+  
+  // Default syntax theme
+  string default_theme = 3;
+  
+  // Enable line highlighting
+  bool enable_line_highlighting = 4;
+  
+  // Tab size
+  int32 tab_size = 5;
+}
+
+// Table of contents defaults
+message TableOfContentsDefaults {
+  // Minimum headings to show TOC
+  int32 min_headings = 1;
+  
+  // Maximum depth
+  int32 max_depth = 2;
+  
+  // Position ("left", "right", "top")
+  string position = 3;
+  
+  // Sticky on scroll
+  bool sticky = 4;
+  
+  // Smooth scroll
+  bool smooth_scroll = 5;
+  
+  // Highlight current section
+  bool highlight_current = 6;
+}
+
+// Social share defaults
+message SocialShareDefaults {
+  // Enabled platforms
+  repeated string platforms = 1;
+  
+  // Position on desktop ("left", "right", "bottom")
+  string desktop_position = 2;
+  
+  // Show counts
+  bool show_counts = 3;
+  
+  // Sticky on scroll
+  bool sticky = 4;
+  
+  // Include via parameter
+  bool include_via = 5;
+}
+
+// Audio player defaults
+message AudioPlayerDefaults {
+  // Auto play
+  bool auto_play = 1;
+  
+  // Show download button
+  bool show_download = 2;
+  
+  // Preload strategy ("none", "metadata", "auto")
+  string preload = 3;
+  
+  // Default volume (0-1)
+  float default_volume = 4;
+}
+
+// Image component defaults
+message ImageDefaults {
+  // Enable lazy loading
+  bool lazy_loading = 1;
+  
+  // Loading animation ("blur", "skeleton", "none")
+  string loading_animation = 2;
+  
+  // Default quality (1-100)
+  int32 default_quality = 3;
+  
+  // Enable zoom on click
+  bool enable_zoom = 4;
+}
+
+// Video embed defaults
+message VideoEmbedDefaults {
+  // Default aspect ratio
+  string aspect_ratio = 1;
+  
+  // Enable privacy mode
+  bool privacy_mode = 2;
+  
+  // Show controls
+  bool show_controls = 3;
+  
+  // Enable lazy loading
+  bool lazy_loading = 4;
+}
+
+// RSS feed configuration
+message RSSFeedSettings {
+  // Enable RSS feed generation
+  bool enabled = 1;
+  
+  // Feed path (e.g., "/feed.xml")
+  string path = 2;
+  
+  // Feed title
+  string title = 3;
+  
+  // Feed description
+  string description = 4;
+  
+  // Number of posts in feed
+  int32 post_limit = 5;
+  
+  // Include full content or summary only
+  bool full_content = 6;
+}
+
+// Audio player settings for Google Drive integration
+message AudioSettings {
+  // Enable audio player features
+  bool enabled = 1;
+  
+  // Google Drive base URL for audio files
+  string google_drive_base_url = 2;
+  
+  // Default folder ID for audio recordings
+  string default_folder_id = 3;
+  
+  // Supported audio formats
+  repeated string supported_formats = 4;
+  
+  // Default player position ("header", "sidebar", "bottom")
+  string default_position = 5;
+}
+
+// Footer technical links configuration
+message TechnicalLinks {
+  // RSS feed path
+  string rss_path = 1;
+  
+  // XML sitemap path
+  string sitemap_path = 2;
+  
+  // robots.txt path
+  string robots_path = 3;
+  
+  // LLMs.txt path for AI agents
+  string llms_txt_path = 4;
+  
+  // AI manifest path
+  string manifest_path = 5;
+  
+  // Additional technical resources
+  map<string, string> additional_links = 6;
+}
+
+// Policy page links configuration
+// Defines URLs for all legal/policy pages in the ecosystem
+// See ../SCHEMA-ORG-EXAMPLES.md#inheritance--overrides for override patterns
+message PolicyLinks {
+  // Privacy policy URL
+  string privacy_policy_url = 1;
+  
+  // Terms of service URL
+  string terms_of_service_url = 2;
+  
+  // Cookie policy URL
+  string cookie_policy_url = 3;
+  
+  // Terms of use URL
+  string terms_of_use_url = 4;
+  
+  // Acceptable use policy URL
+  string acceptable_use_policy_url = 5;
+  
+  // Data processing agreement URL
+  string data_processing_agreement_url = 6;
+  
+  // Refund policy URL
+  string refund_policy_url = 7;
+  
+  // Disclaimer URL
+  string disclaimer_url = 8;
+  
+  // Additional policy links
+  map<string, string> additional_policies = 9;
+}
+
+// =============================================================================
+// SCHEMA.ORG CONFIGURATION
+// =============================================================================
+// Enables rich semantic markup for search engines and AI systems.
+// See ../SCHEMA-ORG-EXAMPLES.md for complete implementation guide.
+//
+// Key Concepts:
+// - Entity types: Person, Organization, ResearchProject, etc.
+// - Relationships: owns, ownedBy, founder, hasPart, isPartOf
+// - Page schemas: ContactPage, CollectionPage, BlogPosting, etc.
+// - Inheritance: ecosystem → domain → blog/project
+// =============================================================================
+
+// Schema.org entity types for proper structured data
+// Note: We use strings for flexibility (816+ types in Schema.org)
+// This enum is for reference only - actual configs use string values
+enum SchemaOrgType {
+  // Default/unspecified
+  SCHEMA_ORG_TYPE_UNSPECIFIED = 0;
+  
+  // Person types
+  SCHEMA_ORG_TYPE_PERSON = 1;
+  
+  // Organization types
+  SCHEMA_ORG_TYPE_ORGANIZATION = 2;
+  SCHEMA_ORG_TYPE_CORPORATION = 3;
+  SCHEMA_ORG_TYPE_LOCAL_BUSINESS = 4;
+  SCHEMA_ORG_TYPE_EDUCATIONAL_ORGANIZATION = 5;
+  
+  // Creative work types
+  SCHEMA_ORG_TYPE_CREATIVE_WORK = 10;
+  SCHEMA_ORG_TYPE_RESEARCH_PROJECT = 11;
+  SCHEMA_ORG_TYPE_WEB_SITE = 12;
+  SCHEMA_ORG_TYPE_WEB_PAGE = 13;
+  SCHEMA_ORG_TYPE_BLOG = 14;
+  SCHEMA_ORG_TYPE_ARTICLE = 15;
+  SCHEMA_ORG_TYPE_VISUAL_ARTWORK = 16;
+  
+  // Software types
+  SCHEMA_ORG_TYPE_SOFTWARE_APPLICATION = 20;
+  SCHEMA_ORG_TYPE_WEB_APPLICATION = 21;
+  SCHEMA_ORG_TYPE_MOBILE_APPLICATION = 22;
+  SCHEMA_ORG_TYPE_VIDEO_GAME = 23;
+  
+  // Service types
+  SCHEMA_ORG_TYPE_SERVICE = 30;
+  SCHEMA_ORG_TYPE_PROFESSIONAL_SERVICE = 31;
+  
+  // Product types
+  SCHEMA_ORG_TYPE_PRODUCT = 40;
+  SCHEMA_ORG_TYPE_BRAND = 41;
+  
+  // Event types
+  SCHEMA_ORG_TYPE_EVENT = 50;
+  SCHEMA_ORG_TYPE_COURSE = 51;
+}
+
+// Schema.org entity configuration
+// Used to define the semantic type of any entity (domain, blog, project, page)
+// See ../SCHEMA-ORG-EXAMPLES.md#configuration-examples for usage
+message SchemaOrgEntity {
+  // Primary Schema.org type using enum for common types
+  // Use this for standard types (Person, Organization, etc.)
+  SchemaOrgEntityType type_enum = 1;
+  
+  // Custom type string for types not in our enum
+  // Use this for rare/specialized types (e.g., "MedicalOrganization")
+  string custom_type = 2;
+  
+  // Additional types for multi-type entities
+  // Example: ["WebSite", "Brand"] for getHarsh.in
+  // See ../SCHEMA-ORG-EXAMPLES.md#quick-start for patterns
+  repeated string additional_types = 3;
+  
+  // Simple string properties (name, description, url, etc.)
+  map<string, string> custom_properties = 4;
+  
+  // Affiliations (for Person type)
+  repeated SchemaOrgAffiliation affiliations = 5;
+  
+  // Parent entity reference (for hierarchy)
+  string parent_entity_id = 6;  // e.g., "@id" reference
+  
+  // Relationship type to parent
+  string parent_relationship = 7;  // e.g., "parentOrganization", "creator", "owns"
+  
+  // Child entities (for org -> projects)
+  repeated SchemaOrgChild children = 8;
+}
+
+// Child entity reference for Schema.org
+message SchemaOrgChild {
+  // Child entity ID/URL
+  string id = 1;
+  
+  // Relationship type
+  string relationship = 2;  // e.g., "owns", "subOrganization", "hasPart"
+  
+  // Child type
+  string type = 3;  // e.g., "ResearchProject", "SoftwareApplication"
+}
+
+// Affiliation for Person type in Schema.org JSON-LD output
+// DEPRECATED: Use PersonAffiliation for configuration, this is for output only
+message SchemaOrgAffiliation {
+  // Organization name
+  string name = 1;
+  
+  // Role or position
+  string role = 2;
+  
+  // Organization URL (optional)
+  string url = 3;
+  
+  // Start date (optional, ISO 8601 format)
+  string start_date = 4;
+  
+  // End date (optional, ISO 8601 format, omit if current)
+  string end_date = 5;
+  
+  // Organization type (optional, e.g., "Corporation", "EducationalOrganization")
+  string organization_type = 6;
+  
+  // Affiliation type using enum for type safety
+  AffiliationType affiliation_type = 7;
+  
+  // Organization @id reference (for linking to existing entities)
+  // Example: "https://rawthoughts.in/#organization"
+  string organization_id = 8;
+  
+  // Whether this is the primary/current affiliation
+  bool is_primary = 9;
+}
+
+// Legal entity definition for the ecosystem catalog
+message LegalEntity {
+  // Short identifier (e.g., "RTEPL", "DSPL")
+  string key = 1;
+  
+  // Full legal name
+  string full_name = 2;
+  
+  // Entity type (e.g., "Private Limited Company", "LLC")
+  string entity_type = 3;
+  
+  // Registration number
+  string registration_number = 4;
+  
+  // Incorporation date
+  string incorporation_date = 5;
+  
+  // Jurisdiction/Country
+  string jurisdiction = 6;
+  
+  // Registered office address
+  RegisteredAddress registered_address = 7;
+  
+  // Official contact information
+  EntityContacts contacts = 8;
+  
+  // Founders and their roles
+  repeated EntityPerson founders = 9;
+  
+  // Current directors/officers
+  repeated EntityPerson directors = 10;
+  
+  // Schema.org entity definition
+  SchemaOrgEntity schema_org = 11;
+}
+
+// Registered office address
+message RegisteredAddress {
+  // Street address
+  string street = 1;
+  
+  // City
+  string city = 2;
+  
+  // State/Province
+  string state = 3;
+  
+  // Postal code
+  string postal_code = 4;
+  
+  // Country
+  string country = 5;
+}
+
+// Official entity contact information
+message EntityContacts {
+  // Registered email
+  string registered_email = 1;
+  
+  // Official phone number
+  string phone = 2;
+  
+  // GST/Tax number
+  string tax_number = 3;
+  
+  // PAN number (India specific)
+  string pan_number = 4;
+  
+  // Legal/compliance email
+  string legal_email = 5;
+  
+  // Accounts/finance email
+  string accounts_email = 6;
+}
+
+// Person associated with an entity
+message EntityPerson {
+  // Person's name
+  string name = 1;
+  
+  // Role in the entity
+  string role = 2;
+  
+  // Start date in role
+  string start_date = 3;
+  
+  // End date (if applicable)
+  string end_date = 4;
+  
+  // Person's Schema.org URL (if they have a domain)
+  string person_url = 5;
+}
+
+// Decap CMS configuration for content management
+message DecapCMSSettings {
+  // Backend configuration
+  DecapBackend backend = 1;
+  
+  // Media folder configuration
+  string media_folder = 2;
+  
+  // Public folder for media
+  string public_folder = 3;
+  
+  // Editorial workflow settings
+  EditorialWorkflow editorial_workflow = 4;
+  
+  // Content collections configuration
+  ContentCollections collections = 5;
+  
+  // Custom preview styles
+  repeated string preview_styles = 6;
+  
+  // Custom widgets configuration
+  map<string, CustomWidget> custom_widgets = 7;
+  
+  // Slug configuration
+  SlugConfig slug = 8;
+  
+  // Default fields for all collections
+  repeated CMSField default_fields = 9;
+  
+  // Gatsby integration settings
+  GatsbyDecapIntegration gatsby_integration = 10;
+}
+
+// Decap CMS backend configuration
+message DecapBackend {
+  // Backend name ("git-gateway", "github", "gitlab", "test-repo")
+  string name = 1;
+  
+  // Repository (for github/gitlab backends)
+  string repo = 2;
+  
+  // Branch to use
+  string branch = 3;
+  
+  // API root (for gitlab)
+  string api_root = 4;
+  
+  // Auth endpoint (for git-gateway)
+  string auth_endpoint = 5;
+  
+  // CMS label prefix
+  string cms_label_prefix = 6;
+}
+
+// Editorial workflow configuration
+message EditorialWorkflow {
+  // Enable editorial workflow
+  bool enabled = 1;
+  
+  // Publish mode ("simple", "editorial_workflow")
+  string publish_mode = 2;
+  
+  // Preview context (site URL for previews)
+  string preview_context = 3;
+}
+
+// Content collections configuration
+message ContentCollections {
+  // Posts collection settings
+  CollectionConfig posts = 1;
+  
+  // Pages collection settings
+  CollectionConfig pages = 2;
+  
+  // Custom collections
+  map<string, CollectionConfig> custom = 3;
+}
+
+// Collection configuration
+message CollectionConfig {
+  // Collection name
+  string name = 1;
+  
+  // Collection label
+  string label = 2;
+  
+  // Folder path (relative to repo root)
+  string folder = 3;
+  
+  // Create new entries
+  bool create = 4;
+  
+  // Slug pattern
+  string slug = 5;
+  
+  // Preview path pattern
+  string preview_path = 6;
+  
+  // Editor configuration
+  EditorConfig editor = 7;
+  
+  // Summary field pattern
+  string summary = 8;
+  
+  // Sort configuration
+  SortConfig sort = 9;
+  
+  // View filters
+  repeated ViewFilter view_filters = 10;
+  
+  // View groups
+  repeated ViewGroup view_groups = 11;
+}
+
+// Editor configuration
+message EditorConfig {
+  // Enable preview
+  bool preview = 1;
+  
+  // Preview styles
+  repeated string preview_styles = 2;
+}
+
+// Sort configuration
+message SortConfig {
+  // Field to sort by
+  string field = 1;
+  
+  // Sort direction ("asc", "desc")
+  string direction = 2;
+}
+
+// View filter configuration
+message ViewFilter {
+  // Filter label
+  string label = 1;
+  
+  // Field to filter
+  string field = 2;
+  
+  // Filter pattern
+  string pattern = 3;
+}
+
+// View group configuration
+message ViewGroup {
+  // Group label
+  string label = 1;
+  
+  // Field to group by
+  string field = 2;
+}
+
+// Custom widget configuration
+message CustomWidget {
+  // Widget name
+  string name = 1;
+  
+  // Widget type
+  string type = 2;
+  
+  // Widget options
+  map<string, string> options = 3;
+}
+
+// Slug configuration
+message SlugConfig {
+  // Slug encoding ("unicode", "ascii")
+  string encoding = 1;
+  
+  // Clean accents
+  bool clean_accents = 2;
+  
+  // Sanitize replacement character
+  string sanitize_replacement = 3;
+}
+
+// CMS field definition
+message CMSField {
+  // Field name
+  string name = 1;
+  
+  // Field label
+  string label = 2;
+  
+  // Widget type
+  string widget = 3;
+  
+  // Default value
+  string default_value = 4;
+  
+  // Required field
+  bool required = 5;
+  
+  // Field hint
+  string hint = 6;
+  
+  // Pattern validation
+  repeated string pattern = 7;
+}
+
+// Gatsby + Decap CMS integration settings
+message GatsbyDecapIntegration {
+  // Enable Gatsby preview with Decap CMS
+  bool enable_preview = 1;
+  
+  // Preview update delay (milliseconds)
+  int32 preview_update_delay = 2;
+  
+  // Enable real-time preview
+  bool real_time_preview = 3;
+  
+  // Custom preview templates path
+  string preview_templates_path = 4;
+  
+  // Widget scripts to load
+  repeated string widget_scripts = 5;
+  
+  // Preview styles to inject
+  repeated string preview_styles = 6;
+}
+
+// External organization definition for the ecosystem catalog
+// These are organizations not owned by ecosystem entities (e.g., employers, partners)
+message ExternalOrganization {
+  // Short identifier (e.g., "AION", "SMART_JOULES")
+  string key = 1;
+  
+  // Full organization name
+  string name = 2;
+  
+  // Organization website URL
+  string url = 3;
+  
+  // Organization type (e.g., "Corporation", "Startup", "NonProfit")
+  string type = 4;
+  
+  // Brief description
+  string description = 5;
+  
+  // Location (optional)
+  string location = 6;
+  
+  // Industry/sector (optional)
+  string industry = 7;
+  
+  // Schema.org entity definition (optional)
+  SchemaOrgEntity schema_org = 8;
+}
+
+// Person affiliation with an organization using key references
+// Used in PersonSchema for type-safe, dynamic affiliations
+message PersonAffiliation {
+  // Organization key from legal_entities or organizations catalog
+  string organization_key = 1;
+  
+  // Role or position held
+  string role = 2;
+  
+  // Type of affiliation (type-safe enum)
+  AffiliationType type = 3;
+  
+  // Start date (ISO 8601 format, e.g., "2024-01-01")
+  string start_date = 4;
+  
+  // End date (ISO 8601 format, omit if current)
+  string end_date = 5;
+  
+  // Whether this is the primary/current affiliation
+  bool is_primary = 6;
+  
+  // If true, look up in legal_entities catalog; if false, in organizations catalog
+  bool is_legal_entity = 7;
+  
+  // Additional details or description (optional)
+  string description = 8;
+  
+  // Whether this affiliation is currently active
+  // Automatically true if end_date is empty or in the future
+  bool is_current = 9;
+  
+  // Person's role in content creation (if applicable)
+  PersonRole person_role = 10;
+}
+
+// =============================================================================
+// CONTENT AND MEDIA CONFIGURATION
+// =============================================================================
+// Messages for rich content support including media, discussions, and interactions
+// Maps to Schema.org MediaObject, DiscussionForumPosting, Event types
+// =============================================================================
+
+// Media content configuration for audio, video, images
+// Maps to Schema.org AudioObject, VideoObject, ImageObject
+message MediaContent {
+  // Media type using enum
+  MediaType type = 1;
+  
+  // Direct URL to media file
+  string content_url = 2;
+  
+  // Embeddable URL (for YouTube, Vimeo, etc.)
+  string embed_url = 3;
+  
+  // Thumbnail/preview image URL
+  string thumbnail_url = 4;
+  
+  // Duration in ISO 8601 format (e.g., "PT1M33S")
+  string duration = 5;
+  
+  // Transcript or description
+  string transcript = 6;
+  
+  // Title of the media
+  string title = 7;
+  
+  // Media encoding format (MIME type)
+  string encoding_format = 8;
+  
+  // File size in bytes
+  int64 content_size = 9;
+  
+  // Width in pixels (for images/video)
+  int32 width = 10;
+  
+  // Height in pixels (for images/video)
+  int32 height = 11;
+  
+  // Additional metadata as key-value pairs
+  map<string, string> metadata = 12;
+  
+  // Google Drive specific settings
+  GoogleDriveMedia google_drive = 13;
+  
+  // Caption/alt text for accessibility
+  string caption = 14;
+  
+  // Creator/author of the media
+  string creator = 15;
+  
+  // Upload/publication date
+  string date_published = 16;
+}
+
+// Google Drive media integration
+message GoogleDriveMedia {
+  // Google Drive file ID
+  string file_id = 1;
+  
+  // Folder ID where media is stored
+  string folder_id = 2;
+  
+  // Enable direct streaming
+  bool enable_streaming = 3;
+  
+  // Share settings (public, restricted, etc.)
+  string share_setting = 4;
+}
+
+// Social discussion configuration for external platforms
+// Maps to Schema.org DiscussionForumPosting, Comment
+message SocialDiscussion {
+  // Enable discussion features
+  bool enabled = 1;
+  
+  // Platform-specific discussion URLs (key is platform name as string)
+  map<string, string> discussion_urls = 2;
+  
+  // Enabled platforms for this entity
+  repeated DiscussionPlatform enabled_platforms = 3;
+  
+  // Default text for discussion prompt
+  string discussion_prompt = 4;
+  
+  // Show discussion section on mobile
+  bool show_on_mobile = 5;
+  
+  // Position in article ("bottom", "sidebar")
+  string position = 6;
+  
+  // Group discussions by category
+  bool group_by_platform_type = 7;
+}
+
+// Appointment booking settings
+// Maps to Schema.org ScheduleAction, Event, EventReservation
+message AppointmentSettings {
+  // Enable appointment booking
+  bool enabled = 1;
+  
+  // Google Calendar ID for appointments
+  string google_calendar_id = 2;
+  
+  // Public booking URL
+  string booking_url = 3;
+  
+  // Time zone for appointments
+  string time_zone = 4;
+  
+  // Available days of week (e.g., ["Monday", "Wednesday", "Friday"])
+  repeated string available_days = 5;
+  
+  // Default appointment duration (ISO 8601, e.g., "PT30M")
+  string default_duration = 6;
+  
+  // Minimum advance booking time (hours)
+  int32 min_advance_hours = 7;
+  
+  // Maximum advance booking time (days)
+  int32 max_advance_days = 8;
+  
+  // Buffer time between appointments (minutes)
+  int32 buffer_minutes = 9;
+  
+  // Business hours
+  BusinessHours business_hours = 10;
+  
+  // Appointment types available
+  repeated AppointmentType appointment_types = 11;
+  
+  // Calendar embed settings
+  CalendarEmbed embed_settings = 12;
+}
+
+// Business hours configuration
+message BusinessHours {
+  // Start time (24h format, e.g., "09:00")
+  string start_time = 1;
+  
+  // End time (24h format, e.g., "17:00")
+  string end_time = 2;
+  
+  // Lunch break start
+  string lunch_start = 3;
+  
+  // Lunch break end
+  string lunch_end = 4;
+  
+  // Custom hours per day
+  map<string, DayHours> custom_hours = 5;
+}
+
+// Custom hours for specific days
+message DayHours {
+  // Is this day available
+  bool available = 1;
+  
+  // Start time for this day
+  string start_time = 2;
+  
+  // End time for this day
+  string end_time = 3;
+}
+
+// Appointment type configuration
+message AppointmentType {
+  // Type name (e.g., "Consultation", "Technical Review")
+  string name = 1;
+  
+  // Duration for this type (ISO 8601)
+  string duration = 2;
+  
+  // Description
+  string description = 3;
+  
+  // Price (if applicable)
+  string price = 4;
+  
+  // Color for calendar display
+  string color = 5;
+}
+
+// Calendar embed configuration
+message CalendarEmbed {
+  // Enable calendar embedding
+  bool enabled = 1;
+  
+  // Embed height in pixels
+  int32 height = 2;
+  
+  // Embed width (percentage or pixels)
+  string width = 3;
+  
+  // Show only free/busy
+  bool free_busy_only = 4;
+  
+  // Default view ("week", "month", "agenda")
+  string default_view = 5;
+}
+
+// Enhanced code block settings
+// Maps to Schema.org SoftwareSourceCode
+message CodeBlockSettings {
+  // Show line numbers
+  bool show_line_numbers = 1;
+  
+  // Show copy button
+  bool show_copy_button = 2;
+  
+  // Syntax highlighting theme
+  string theme = 3;
+  
+  // Enable highlighting specific lines
+  bool enable_line_highlighting = 4;
+  
+  // Tab size
+  int32 tab_size = 5;
+  
+  // Wrap long lines
+  bool wrap_lines = 6;
+  
+  // Show language label
+  bool show_language_label = 7;
+  
+  // Enable diff view
+  bool enable_diff_view = 8;
+  
+  // Max height before scroll (pixels)
+  int32 max_height = 9;
+  
+  // Custom language mappings
+  map<string, string> language_aliases = 10;
+  
+  // Enable inline code syntax highlighting
+  bool inline_highlighting = 11;
+}
+
+// Technical content settings for academic/research content
+// Maps to Schema.org ScholarlyArticle features
+message TechnicalContentSettings {
+  // Enable math formula rendering (LaTeX/KaTeX)
+  bool enable_math = 1;
+  
+  // Math rendering engine ("katex", "mathjax")
+  string math_engine = 2;
+  
+  // Enable Mermaid diagrams
+  bool enable_mermaid = 3;
+  
+  // Mermaid theme ("default", "dark", "forest", "neutral")
+  string mermaid_theme = 4;
+  
+  // Enable footnotes
+  bool enable_footnotes = 5;
+  
+  // Footnote style ("numeric", "symbolic")
+  string footnote_style = 6;
+  
+  // Enable table of contents
+  bool enable_table_of_contents = 7;
+  
+  // TOC max depth (e.g., 3 for H1-H3)
+  int32 toc_max_depth = 8;
+  
+  // TOC position ("left", "right", "top")
+  string toc_position = 9;
+  
+  // Enable citations/bibliography
+  bool enable_citations = 10;
+  
+  // Citation style ("apa", "mla", "chicago", "ieee")
+  string citation_style = 11;
+  
+  // Enable glossary/definitions
+  bool enable_definitions = 12;
+  
+  // Enable interactive examples
+  bool enable_interactive = 13;
+}
+
+// Responsive display rules for components
+// Controls visibility based on viewport size
+message ResponsiveDisplayRules {
+  // Components hidden on mobile
+  repeated string mobile_hidden = 1;
+  
+  // Components visible only on tablet
+  repeated string tablet_only = 2;
+  
+  // Components visible only on desktop
+  repeated string desktop_only = 3;
+  
+  // Custom breakpoints
+  BreakpointSettings breakpoints = 4;
+  
+  // Component-specific rules
+  map<string, ComponentVisibility> component_rules = 5;
+  
+  // Enable responsive images
+  bool responsive_images = 6;
+  
+  // Enable responsive tables
+  bool responsive_tables = 7;
+  
+  // Mobile-first approach
+  bool mobile_first = 8;
+}
+
+// Breakpoint configuration
+message BreakpointSettings {
+  // Mobile max width (pixels)
+  int32 mobile_max = 1;
+  
+  // Tablet min width (pixels)
+  int32 tablet_min = 2;
+  
+  // Tablet max width (pixels)
+  int32 tablet_max = 3;
+  
+  // Desktop min width (pixels)
+  int32 desktop_min = 4;
+  
+  // Custom breakpoints
+  map<string, int32> custom = 5;
+}
+
+// Component visibility rules
+message ComponentVisibility {
+  // Show on mobile
+  bool mobile = 1;
+  
+  // Show on tablet
+  bool tablet = 2;
+  
+  // Show on desktop
+  bool desktop = 3;
+  
+  // Alternative component for different sizes
+  map<string, string> alternatives = 4;
+}
+
+// Error page content configuration
+// For quirky 404, 500, etc. messages
+message ErrorPageContent {
+  // Error code to message mapping
+  map<int32, ErrorMessage> error_messages = 1;
+  
+  // Default error message template
+  string default_template = 2;
+  
+  // Learn more URL suffix
+  string learn_more_suffix = 3;
+  
+  // Enable quirky messages
+  bool enable_quirky_messages = 4;
+  
+  // Rotation strategy for multiple messages
+  string rotation_strategy = 5; // "random", "sequential", "time-based"
+  
+  // Custom CTA buttons for error pages
+  repeated ErrorPageCTA cta_buttons = 6;
+}
+
+// Individual error message configuration
+message ErrorMessage {
+  // Error code (404, 500, etc.)
+  int32 code = 1;
+  
+  // Primary message
+  string message = 2;
+  
+  // Secondary/explanation text
+  string explanation = 3;
+  
+  // Quirky variations
+  repeated string variations = 4;
+  
+  // Custom image/illustration URL
+  string image_url = 5;
+  
+  // Tone ("playful", "apologetic", "technical")
+  string tone = 6;
+}
+
+// Error page CTA configuration
+message ErrorPageCTA {
+  // Button text
+  string text = 1;
+  
+  // Button URL
+  string url = 2;
+  
+  // Button style ("primary", "secondary", "ghost")
+  string style = 3;
+  
+  // Icon (optional)
+  string icon = 4;
+}
+
+// Sponsor settings with crypto support
+// Maps to Schema.org MonetaryGrant, DonateAction, sponsor property
+message SponsorSettings {
+  // Enable sponsorship features
+  bool enabled = 1;
+  
+  // Cryptocurrency addresses (key is network name as string)
+  map<string, CryptoAddress> crypto_addresses = 2;
+  
+  // Enabled payment methods
+  repeated PaymentMethod enabled_methods = 3;
+  
+  // Sponsor disclosure text template
+  string disclosure_template = 4;
+  
+  // Minimum sponsorship amount
+  string min_amount = 5;
+  
+  // Sponsorship tiers
+  repeated SponsorshipTier tiers = 6;
+  
+  // Platform-specific settings
+  PlatformSponsorSettings platform_settings = 7;
+  
+  // Thank you page URL
+  string thank_you_url = 8;
+  
+  // Show sponsor recognition
+  bool show_recognition = 9;
+  
+  // Sponsor wall configuration
+  SponsorWall sponsor_wall = 10;
+}
+
+// Cryptocurrency address configuration
+message CryptoAddress {
+  // Wallet address
+  string address = 1;
+  
+  // QR code URL
+  string qr_code_url = 2;
+  
+  // Network name (for display)
+  string network_name = 3;
+  
+  // Explorer URL
+  string explorer_url = 4;
+  
+  // ENS/Domain name (if applicable)
+  string domain_name = 5;
+}
+
+// Sponsorship tier configuration
+message SponsorshipTier {
+  // Tier name
+  string name = 1;
+  
+  // Amount (per month/year)
+  string amount = 2;
+  
+  // Benefits/perks
+  repeated string benefits = 3;
+  
+  // Badge/icon URL
+  string badge_url = 4;
+  
+  // Color theme
+  string color = 5;
+  
+  // Limited slots available
+  int32 max_sponsors = 6;
+}
+
+// Platform-specific sponsor settings
+message PlatformSponsorSettings {
+  // GitHub Sponsors
+  GitHubSponsors github = 1;
+  
+  // YouTube Membership
+  YouTubeMembership youtube = 2;
+  
+  // Patreon
+  PatreonSettings patreon = 3;
+  
+  // Buy Me a Coffee
+  BuyMeACoffeeSettings buymeacoffee = 4;
+  
+  // PayPal
+  PayPalSettings paypal = 5;
+}
+
+// GitHub Sponsors configuration
+message GitHubSponsors {
+  // GitHub username
+  string username = 1;
+  
+  // Show sponsor button
+  bool show_button = 2;
+  
+  // Custom tiers mapping
+  map<string, string> tier_mapping = 3;
+}
+
+// YouTube Membership configuration
+message YouTubeMembership {
+  // Channel ID
+  string channel_id = 1;
+  
+  // Membership URL
+  string membership_url = 2;
+  
+  // Show join button
+  bool show_join_button = 3;
+}
+
+// Patreon configuration
+message PatreonSettings {
+  // Patreon username
+  string username = 1;
+  
+  // Campaign ID
+  string campaign_id = 2;
+  
+  // Show patron count
+  bool show_patron_count = 3;
+}
+
+// Buy Me a Coffee configuration
+message BuyMeACoffeeSettings {
+  // Username
+  string username = 1;
+  
+  // Widget URL
+  string widget_url = 2;
+  
+  // Button color
+  string button_color = 3;
+}
+
+// PayPal configuration
+message PayPalSettings {
+  // PayPal.me username
+  string paypal_me = 1;
+  
+  // Business email
+  string business_email = 2;
+  
+  // Currency code
+  string currency = 3;
+  
+  // Button style
+  string button_style = 4;
+}
+
+// Sponsor wall configuration
+message SponsorWall {
+  // Enable sponsor wall
+  bool enabled = 1;
+  
+  // Wall position ("/sponsors" page)
+  string page_path = 2;
+  
+  // Group by tier
+  bool group_by_tier = 3;
+  
+  // Show amounts
+  bool show_amounts = 4;
+  
+  // Anonymous option
+  bool allow_anonymous = 5;
+  
+  // Update frequency
+  string update_frequency = 6;
+}
+
+// Schema.org configuration for build-time mapping
+message SchemaOrgConfig {
+  // Enable Schema.org JSON-LD generation
+  bool enabled = 1;
+  
+  // Mapping mode ("automatic", "manual", "hybrid")
+  string mapping_mode = 2;
+  
+  // Include all enum mappings in build
+  bool include_all_mappings = 3;
+  
+  // Specific mappings to include (if not including all)
+  repeated string included_mappings = 4;
+  
+  // Custom mapping overrides
+  map<string, string> custom_mappings = 5;
+  
+  // Validation settings
+  SchemaOrgValidation validation = 6;
+}
+
+// Schema.org validation settings
+message SchemaOrgValidation {
+  // Validate against Schema.org vocabulary
+  bool validate_types = 1;
+  
+  // Validate required properties
+  bool validate_required = 2;
+  
+  // Allow custom properties
+  bool allow_custom_properties = 3;
+  
+  // Strict mode (fail on warnings)
+  bool strict_mode = 4;
+}
+
+// Global Schema.org settings
+message SchemaOrgGlobalSettings {
+  // Default @context
+  string default_context = 1; // "https://schema.org"
+  
+  // Include @id for all entities
+  bool include_ids = 2;
+  
+  // Base URL for @id generation
+  string base_url = 3;
+  
+  // Default language
+  string default_language = 4;
+  
+  // Include breadcrumbs
+  bool include_breadcrumbs = 5;
+  
+  // Rich snippets configuration
+  RichSnippetsConfig rich_snippets = 6;
+}
+
+// Rich snippets configuration
+message RichSnippetsConfig {
+  // Enable rich snippets
+  bool enabled = 1;
+  
+  // Types to generate snippets for
+  repeated string snippet_types = 2;
+  
+  // Include preview images
+  bool include_images = 3;
+  
+  // Include ratings/reviews
+  bool include_ratings = 4;
+}
+
+// Smart link settings for rich semantic links
+// Maps to various Schema.org types based on link destination
+message SmartLinkSettings {
+  // Enable smart link detection
+  bool enabled = 1;
+  
+  // Auto-detect link types
+  bool auto_detect = 2;
+  
+  // Show icons for link types
+  bool show_icons = 3;
+  
+  // Add ARIA labels
+  bool add_aria_labels = 4;
+  
+  // Link type detection patterns
+  LinkTypePatterns patterns = 5;
+  
+  // Custom link type mappings
+  map<string, LinkTypeConfig> custom_types = 6;
+  
+  // Ecosystem domains (auto-populated from config)
+  repeated string ecosystem_domains = 7;
+  
+  // Open external links in new tab
+  bool external_new_tab = 8;
+  
+  // Add rel="nofollow" to external links
+  bool external_nofollow = 9;
+}
+
+// Link type detection patterns
+message LinkTypePatterns {
+  // Google Workspace patterns
+  repeated string google_docs = 1;
+  repeated string google_sheets = 2;
+  repeated string google_slides = 3;
+  repeated string google_drive = 4;
+  
+  // GitHub patterns
+  repeated string github_repo = 5;
+  repeated string github_file = 6;
+  repeated string github_issue = 7;
+  repeated string github_pr = 8;
+  
+  // File extension patterns
+  map<string, string> file_extensions = 9;
+}
+
+// Link type configuration
+message LinkTypeConfig {
+  // Type name
+  string type = 1;
+  
+  // Icon class or URL
+  string icon = 2;
+  
+  // ARIA label template
+  string aria_label = 3;
+  
+  // CSS class to apply
+  string css_class = 4;
+  
+  // Schema.org type
+  string schema_type = 5;
+}
+
+// LinkedIn conversion configuration
+message LinkedInConversion {
+  // Conversion ID from LinkedIn Campaign Manager
+  string conversion_id = 1;
+  
+  // Conversion name for tracking
+  string conversion_name = 2;
+  
+  // Conversion value (optional)
+  double value = 3;
+  
+  // Currency code (e.g., "USD", "EUR")
+  string currency = 4;
+  
+  // Trigger conditions
+  repeated string triggers = 5;
+}

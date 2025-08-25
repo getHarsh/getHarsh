@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SoftwareSchemaSettings",
+  "definitions": {
+    "SoftwareSchemaSettings": {
+      "properties": {
+        "category_mapping": {
+          "$ref": "#/definitions/website.config.ApplicationCategoryMapping",
+          "description": "Application category mapping"
+        },
+        "requirements": {
+          "$ref": "#/definitions/website.config.RequirementsSpec",
+          "description": "Requirements specification"
+        },
+        "platforms": {
+          "$ref": "#/definitions/website.config.PlatformSupport",
+          "description": "Platform support"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.SoftwareFeatures",
+          "description": "Software features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Schema Settings",
+      "description": "Software-specific Schema.org settings"
+    },
+    "website.config.ApplicationCategoryMapping": {
+      "properties": {
+        "default_category": {
+          "type": "string",
+          "description": "Default category"
+        },
+        "type_categories": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Type-based categories"
+        },
+        "custom_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom categories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Application Category Mapping",
+      "description": "Application category mapping"
+    },
+    "website.config.PlatformSupport": {
+      "properties": {
+        "os_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Operating systems mapping"
+        },
+        "arch_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Architecture mapping"
+        },
+        "runtime_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Runtime mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Platform Support",
+      "description": "Platform support configuration"
+    },
+    "website.config.RequirementsSpec": {
+      "properties": {
+        "include_system_reqs": {
+          "type": "boolean",
+          "description": "Include system requirements"
+        },
+        "include_dependencies": {
+          "type": "boolean",
+          "description": "Include dependencies"
+        },
+        "memory_format": {
+          "type": "string",
+          "description": "Memory requirements format"
+        },
+        "storage_format": {
+          "type": "string",
+          "description": "Storage requirements format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Requirements Spec",
+      "description": "Requirements specification"
+    },
+    "website.config.SoftwareFeatures": {
+      "properties": {
+        "auto_extract_features": {
+          "type": "boolean",
+          "description": "Feature extraction"
+        },
+        "feature_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Feature categories"
+        },
+        "feature_benefits": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Feature to benefit mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Features",
+      "description": "Software features configuration"
+    }
+  },
+  "title": "SOFTWARESCHEMASETTINGS Configuration Schema",
+  "description": "JSON Schema for SoftwareSchemaSettings configuration"
+}

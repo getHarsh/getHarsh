@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentCategories",
+  "definitions": {
+    "ConsentCategories": {
+      "properties": {
+        "analytics": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Analytics category settings"
+        },
+        "marketing": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Marketing category settings"
+        },
+        "functional": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Functional category settings"
+        },
+        "necessary": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Necessary category settings (always enabled)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Categories",
+      "description": "Consent categories configuration"
+    },
+    "website.config.ConsentCategory": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Category title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Category description"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Providers/services in this category"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required by default"
+        },
+        "pre_selected": {
+          "type": "boolean",
+          "description": "Pre-selected in UI"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Category",
+      "description": "Individual consent category configuration"
+    }
+  },
+  "title": "CONSENTCATEGORIES Configuration Schema",
+  "description": "JSON Schema for ConsentCategories configuration"
+}

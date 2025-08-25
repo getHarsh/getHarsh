@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIDocumentationARIA",
+  "definitions": {
+    "APIDocumentationARIA": {
+      "properties": {
+        "endpoint_navigation": {
+          "type": "boolean",
+          "description": "Endpoint navigation"
+        },
+        "parameter_descriptions": {
+          "type": "boolean",
+          "description": "Parameter descriptions"
+        },
+        "response_labels": {
+          "type": "boolean",
+          "description": "Response example labels"
+        },
+        "auth_section_aria": {
+          "type": "boolean",
+          "description": "Authentication section ARIA"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Documentation ARIA",
+      "description": "API documentation ARIA settings"
+    }
+  },
+  "title": "APIDOCUMENTATIONARIA Configuration Schema",
+  "description": "JSON Schema for APIDocumentationARIA configuration"
+}

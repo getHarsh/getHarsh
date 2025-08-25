@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServiceCTASettings",
+  "definitions": {
+    "ServiceCTASettings": {
+      "properties": {
+        "primary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Primary CTA (e.g., consultation booking)"
+        },
+        "secondary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Secondary CTA (e.g., quote form)"
+        },
+        "industry_primary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Industry page default CTAs"
+        },
+        "industry_secondary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA Settings",
+      "description": "Global CTA settings"
+    },
+    "ecosystem.services.ServiceCTA": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "description": "\"link\", \"form\", \"modal\", \"calendar\""
+        },
+        "target": {
+          "type": "string",
+          "description": "URL, form ID, or calendar ID"
+        },
+        "style": {
+          "type": "string",
+          "description": "\"primary\", \"secondary\", \"accent\", \"ghost\""
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Tracking  GTM event name"
+        },
+        "event_params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional GTM parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA",
+      "description": "Service CTA configuration"
+    }
+  },
+  "title": "SERVICECTASETTINGS Configuration Schema",
+  "description": "JSON Schema for ServiceCTASettings configuration"
+}

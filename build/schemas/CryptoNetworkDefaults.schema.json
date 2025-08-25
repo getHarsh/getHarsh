@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CryptoNetworkDefaults",
+  "definitions": {
+    "CryptoNetworkDefaults": {
+      "properties": {
+        "bitcoin": {
+          "$ref": "#/definitions/website.config.CryptoNetworkMapping",
+          "description": "CRYPTO_NETWORK_BITCOIN  ticker: \"BTC\" name: \"Bitcoin\" currency_type: \"Cryptocurrency\" blockchain: { name: \"Bitcoin\", explorer_url: \"https://blockchain.info\" } schema_currency_code: \"BTC\""
+        },
+        "ethereum": {
+          "$ref": "#/definitions/website.config.CryptoNetworkMapping",
+          "description": "CRYPTO_NETWORK_ETHEREUM  ticker: \"ETH\" name: \"Ethereum\" currency_type: \"Cryptocurrency\" blockchain: { name: \"Ethereum\", explorer_url: \"https://etherscan.io\" } schema_currency_code: \"ETH\""
+        },
+        "usdt": {
+          "$ref": "#/definitions/website.config.CryptoNetworkMapping",
+          "description": "CRYPTO_NETWORK_USDT  ticker: \"USDT\" name: \"Tether\" currency_type: \"Stablecoin\" blockchain: { name: \"Multiple\", network_type: \"multi-chain\" } schema_currency_code: \"USDT\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Network Defaults",
+      "description": "Predefined crypto network mappings"
+    },
+    "website.config.BlockchainInfo": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "explorer_url": {
+          "type": "string"
+        },
+        "network_type": {
+          "type": "string",
+          "description": "\"mainnet\", \"layer2\", etc."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blockchain Info"
+    },
+    "website.config.CryptoNetworkMapping": {
+      "properties": {
+        "ticker": {
+          "type": "string",
+          "description": "Currency ticker symbol"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full currency name"
+        },
+        "currency_type": {
+          "type": "string",
+          "description": "Currency type"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/website.config.BlockchainInfo",
+          "description": "Blockchain info"
+        },
+        "schema_currency_code": {
+          "type": "string",
+          "description": "Schema.org representation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Network Mapping"
+    }
+  },
+  "title": "CRYPTONETWORKDEFAULTS Configuration Schema",
+  "description": "JSON Schema for CryptoNetworkDefaults configuration"
+}

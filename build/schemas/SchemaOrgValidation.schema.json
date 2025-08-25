@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgValidation",
+  "definitions": {
+    "SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    }
+  },
+  "title": "SCHEMAORGVALIDATION Configuration Schema",
+  "description": "JSON Schema for SchemaOrgValidation configuration"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FieldGrouping",
+  "definitions": {
+    "FieldGrouping": {
+      "properties": {
+        "use_fieldsets": {
+          "type": "boolean",
+          "description": "Use fieldsets"
+        },
+        "group_related": {
+          "type": "boolean",
+          "description": "Group related fields"
+        },
+        "require_legend": {
+          "type": "boolean",
+          "description": "Legend requirement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Field Grouping",
+      "description": "Field grouping"
+    }
+  },
+  "title": "FIELDGROUPING Configuration Schema",
+  "description": "JSON Schema for FieldGrouping configuration"
+}

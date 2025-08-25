@@ -1,0 +1,1842 @@
+# Ecosystem Defaults Configuration
+# These settings are inherited by all domains in the ecosystem
+# Matches the comprehensive EcosystemConfig schema
+
+# ============================================================================
+# ANALYTICS CONFIGURATION
+# ============================================================================
+# Proto Source: config/schema/ecosystem.proto -> message Analytics
+# 
+# Purpose:
+#   Centralized analytics configuration inherited by all domains in the ecosystem.
+#   Enables unified tracking across 5 domains with cross-domain user journeys.
+#   Supports multi-touch attribution for AI transformation services.
+#
+# Build Pipeline Integration:
+#   - Phase 2: process-configs.sh merges with domain overrides
+#   - Phase 2.5: validate.sh ensures configuration validity
+#   - Phase 6: Gatsby consumes via GraphQL and environment variables
+#   - Runtime: Components access via useConfig() hook
+#
+# Privacy & Consent:
+#   All analytics respect user consent via Google Consent Mode v2.
+#   Tracking pixels only load after explicit user consent.
+#   See consent_settings section for GDPR/CCPA compliance.
+# ============================================================================
+
+analytics:
+  # Google Analytics 4 - Primary analytics platform
+  # Used for: User behavior, conversion tracking, audience insights
+  # Implementation: gatsby-plugin-google-gtag + useGTM hook
+  # Consent: Respects Google Consent Mode v2 signals
+  ga_tracking_id: "${GA_TRACKING_ID}"
+  
+  # Meta (Facebook) Pixel - Social advertising attribution
+  # Used for: Retargeting, lookalike audiences, conversion tracking
+  # Implementation: Injected via gatsby-ssr.js, managed by consent system
+  # Best for: B2C campaigns, social media marketing
+  meta_pixel_id: "${META_PIXEL_ID}"
+  
+  # Cross-domain tracking - Unified journey tracking
+  # Why enabled: Users often visit multiple domains in one session
+  # Example journey: getHarsh.in → blog.getHarsh.in → causality.in/HENA
+  # Implementation: GA4 linker + GTM cross-domain configuration
+  cross_domain_tracking: true
+  
+  # Linked domains - Ecosystem domains for unified tracking
+  # Pattern validated: Build system verifies these exist via find_all_domains()
+  # Usage: GA4 automatically decorates links between these domains
+  # Note: Discovered dynamically, these are defaults only
+  linked_domains:
+    - getHarsh.in      # Personal brand & hub
+    - causality.in     # Research & analytics
+    - rawThoughts.in   # Consulting & enterprise
+    - sleepwalker.in   # Creative experiments
+    - daostudio.in     # Collaboration platform
+  
+  # ============================================================================
+  # TWITTER/X PIXEL - Social platform conversion tracking
+  # ============================================================================
+  twitter_pixel:
+    # Pixel ID - Core identifier for Twitter ads account
+    # Setup: Twitter Ads Manager → Conversions → Website Tag
+    pixel_id: "${TWITTER_PIXEL_ID}"
+    
+    # Conversion tracking - Track valuable user actions
+    # Enables: ROI measurement for Twitter ad campaigns
+    enable_conversion_tracking: true
+    
+    # Universal website tag - Base tracking infrastructure
+    # Required for: All Twitter pixel features to function
+    enable_website_tag: true
+    
+    # Site tag ID - Secondary identifier for website tag
+    twitter_site_tag_id: "${TWITTER_SITE_TAG_ID}"
+    
+    # Tracked events - User actions to measure
+    # Customizable: Add/remove based on business goals
+    # Implementation: Maps to Twitter's standard event taxonomy
+    track_events:
+      - "PageView"      # Automatic on every page
+      - "Download"      # When users download resources
+      - "SignUp"        # Newsletter or service signups
+      - "ViewContent"   # Deep engagement metrics
+    
+    # Enhanced matching - Improve attribution accuracy
+    # How: Securely matches hashed emails with Twitter users
+    # Privacy: Data is hashed before transmission
+    enable_enhanced_matching: true
+    
+    # Data processing restrictions - Regional compliance
+    # When to enable: California residents or GDPR requirements
+    # Impact: Limits certain data uses for compliance
+    restricted_data_processing: false
+  
+  # ============================================================================
+  # LINKEDIN INSIGHT TAG - Professional audience analytics
+  # ============================================================================
+  linkedin_insight:
+    # Partner ID - LinkedIn Campaign Manager identifier
+    # Best for: B2B marketing, professional services, enterprise
+    # Setup: Campaign Manager → Account Assets → Insight Tag
+    partner_id: "${LINKEDIN_PARTNER_ID}"
+    
+    # Conversion tracking - Measure professional conversions
+    # Tracks: Whitepaper downloads, demo requests, consultations
+    enable_conversion_tracking: true
+    
+    # Matched audiences - Build retargeting lists
+    # Enables: Custom audiences from website visitors
+    # Use case: Retarget blog readers with service offers
+    enable_matched_audiences: true
+    
+    # Website demographics - Visitor professional insights
+    # Provides: Job titles, companies, industries, seniority
+    # Value: Understand if reaching target decision makers
+    enable_website_demographics: true
+    
+    # Conversion IDs - Specific goal tracking
+    # Setup: Create each conversion in Campaign Manager first
+    # Strategy: Different IDs for different funnel stages
+    conversion_ids:
+      - "${LINKEDIN_CONVERSION_CONTACT}"   # High-intent actions
+      - "${LINKEDIN_CONVERSION_DOWNLOAD}"  # Mid-funnel engagement
+    
+    # Enhanced conversions - First-party data attribution
+    # Benefit: Better tracking in cookieless future
+    # How: Uses secure, hashed first-party data
+    enable_enhanced_conversion: true
+    
+    # Cross-domain tracking - Multi-site attribution
+    # Aligns with: Overall cross_domain_tracking strategy
+    # Purpose: Track LinkedIn campaigns across ecosystem
+    enable_cross_domain: true
+
+# ============================================================================
+# SEO DEFAULTS CONFIGURATION
+# ============================================================================
+# Proto Source: config/schema/ecosystem.proto -> message SeoDefaults
+#
+# Purpose:
+#   Default SEO and meta tag settings inherited by all domains, blogs, and projects.
+#   These values control how your content appears in search results, social shares,
+#   and AI/LLM systems. Every field here shapes your digital presence.
+#
+# Inheritance Model:
+#   ALL fields can be overridden at any level using deep merge (yq merge operator):
+#   ecosystem-defaults.yml → domain config.yml → blog/project config.yml
+#   
+#   Examples:
+#   - Domain can override author to "RTEPL Team" while ecosystem has "Harsh Joshi"
+#   - Blog can override description_pattern while inheriting other fields
+#   - Project can set custom og_image_pattern for documentation sites
+#
+# Build Pipeline Flow:
+#   - Phase 2: process-configs.sh merges configs using yq deep merge
+#   - Phase 5.5: llms.txt generated if enable_llms_txt is true
+#   - Phase 6: Gatsby injects into meta tags via SEO.tsx component
+#   - Runtime: Values available through GraphQL siteMetadata
+# ============================================================================
+
+seo_defaults:
+  # Default author name - Identity attribution across content
+  # Impact: Shows in article bylines, meta tags, Schema.org Article author
+  # SEO Value: Builds E-E-A-T (Expertise, Experience, Authority, Trust)
+  # Override: Domains can set organization names, blogs can set team names
+  # Example overrides: "RTEPL Team", "DAO Studio Research", "Anonymous"
+  author: "Harsh Joshi"
+  
+  # Language and region locale - Content internationalization
+  # Format: language_COUNTRY (ISO 639-1 + ISO 3166-1)
+  # Impact: Controls search result display, date formats, Schema.org language
+  # SEO Value: Critical for regional search rankings and user experience
+  # Override: Projects might use "en_GB" for UK focus, "hi_IN" for Hindi
+  locale: "en_US"
+  
+  # Twitter/X handle - Social identity linkage
+  # Format: @username (include the @ symbol)
+  # Impact: Links all shared content back to this Twitter account
+  # Creates: twitter:site and twitter:creator meta tags
+  # Override: Different domains can use different handles (@daostudio, @causality_in)
+  # Social proof: Enables Twitter Cards with attribution
+  twitter: "@getHarshOnline"
+  
+  # Meta description pattern - Search snippet fallback structure
+  # Variables: {description} replaced with page-specific description
+  # 
+  # IMPORTANT: This is a FALLBACK pattern, not forced branding!
+  # - Pages WITH descriptions: Pattern NOT applied, uses exact description
+  # - Pages WITHOUT descriptions: Pattern applied as fallback
+  # - Best practice: Keep suffix minimal or use just "{description}"
+  # 
+  # Domain-specific examples:
+  # - getHarsh.in: "{description} | Harsh Joshi" (personal brand)
+  # - causality.in: "{description}" (clean for research)
+  # - rawThoughts.in: "{description} | RTEPL" (enterprise identity)
+  # - daostudio.in: "{description} | DAO Studio" (org identity)
+  # 
+  # SEO Impact: Avoid repetitive suffixes that dilute keyword relevance
+  description_pattern: "{description}"
+  
+  # Open Graph image URL pattern - Visual identity in shares
+  # Variables: {domain} replaced with actual domain (getHarsh.in, etc.)
+  # Requirements: Images should be 1200x630px at 1.91:1 aspect ratio
+  # Impact: Preview image when links shared on Facebook, LinkedIn, Slack, Discord
+  # Override: Each domain MUST provide own og-image.png in /assets/
+  # Alternative: Articles can override with specific images per post
+  # Fallback: If image missing, social platforms show text-only preview
+  og_image_pattern: "https://{domain}/assets/og-image.png"
+  
+  # LLMs.txt generation - AI/LLM discovery optimization
+  # Purpose: Creates markdown summary at /llms.txt for AI systems
+  # Impact: Helps ChatGPT, Claude, Perplexity understand your site structure
+  # Generation: Phase 5.5 creates from templates/discovery/llms.txt.template
+  # Content: Pulls from master_posts, project docs, config metadata
+  # Override: Can disable for private/internal domains
+  # Note: Part of emerging GEO (Generative Engine Optimization) standards
+  enable_llms_txt: true
+  
+  # Copyright notice pattern - Legal attribution
+  # Variables: {year} = current year, {entity} = legal entity from config
+  # Impact: Footer copyright, Schema.org copyrightHolder
+  # Legal: Establishes ownership and publication date
+  # Override: Domains set their entity: "RTEPL", "DSPL", "Personal"
+  # Display: Shows in UniversalFooter.tsx component
+  copyright_pattern: "© {year} {entity}. All rights reserved."
+
+# ============================================================================
+# GATSBY PLUGINS CONFIGURATION
+# ============================================================================
+# Proto Source: config/schema/ecosystem.proto -> repeated string gatsby_plugins
+#
+# IMPORTANT: This field is for documentation/validation only!
+# Actual Gatsby plugins are hardcoded in src/gatsby-config.ts
+#
+# Why this field exists:
+#   - Required by proto schema for validation
+#   - Historical: Originally intended for dynamic plugin loading
+#   - Current: Serves as documentation of plugin architecture
+#
+# Custom Tool Replacements:
+#   - Sitemap: generate-sitemap.sh (Phase 5.9) replaces gatsby-plugin-sitemap
+#   - RSS Feed: generate-rss.sh (Phase 5.10) replaces gatsby-plugin-feed  
+#   - PWA Manifest: generate-pwa-manifest.sh (Phase 5.7) replaces gatsby-plugin-manifest
+#   - Search: generate-search-index.sh replaces no plugin (custom feature)
+#   - CMS Config: generate-decap-config.sh enhances gatsby-plugin-decap-cms
+#
+# Actual Active Plugins (see src/gatsby-config.ts):
+#   - gatsby-plugin-react-helmet (SEO/meta tags)
+#   - gatsby-plugin-postcss (Tailwind CSS)
+#   - gatsby-plugin-google-tagmanager (Analytics)
+#   - gatsby-plugin-decap-cms (CMS integration)
+#   - gatsby-source-filesystem (Content sourcing)
+#   - gatsby-transformer-remark (Markdown processing)
+#   - gatsby-plugin-image (Image optimization)
+#   - gatsby-plugin-sharp (Image processing)
+#   - gatsby-transformer-sharp (Image transformation)
+# ============================================================================
+
+gatsby_plugins: []  # Empty array satisfies schema validation
+
+# ============================================================================
+# CONTENT DEFAULTS CONFIGURATION
+# ============================================================================
+# Proto Source: config/schema/ecosystem.proto -> message ContentDefaults
+#
+# Purpose:
+#   Default content display settings inherited by all domains and blogs.
+#   Controls how content is excerpted, paginated, and displayed to readers.
+#   These values guide content presentation but may be overridden by components.
+#
+# Inheritance Model:
+#   All fields can be overridden at domain, blog, or project level.
+#   Blogs might want different pagination, projects might disable excerpts.
+#
+# Build Pipeline Flow:
+#   - Phase 2: Merged during config processing
+#   - Phase 6: Available in processed config.yml 
+#   - Runtime: Could be accessed via GraphQL (if exposed in gatsby-config.ts)
+#
+# TODO: Wire up in components (see TODO.md)
+#   These defaults are defined but NOT fully integrated in components.
+#   Components currently use hardcoded values or different approaches.
+#   Consider these as intended behavior to be implemented.
+# ============================================================================
+
+content_defaults:
+  # Excerpt length in words - Content preview guidance
+  # Intent: Suggest excerpt length for article summaries
+  # Current Usage: 
+  #   - SEO.tsx references article.excerpt but doesn't truncate
+  #   - Search results show excerpts but length varies
+  # TODO: Wire up in:
+  #   - src/src/components/article/ArticleCard.tsx (truncate excerpt)
+  #   - src/src/components/article/LatestArticle.tsx (excerpt display)
+  #   - src/gatsby-node.js (excerpt generation during build)
+  # SEO Note: Google typically shows 155-160 chars in snippets
+  # Override: Blogs with longer posts might want 200-250 words
+  excerpt_length: 150
+  
+  # Posts per page for pagination - List density preference
+  # Intent: Default number of articles in blog index pages
+  # Current Usage:
+  #   - ArticleList.tsx mentions pagination in comments
+  #   - Actual pagination may be handled differently
+  # TODO: Wire up in:
+  #   - src/gatsby-node.js createPages() for blog pagination
+  #   - src/src/templates/blog-list.tsx (if created)
+  #   - src/src/components/article/ArticleList.tsx
+  # UX Balance: 10 works well for mobile, 15-20 for desktop-first
+  # Override: Image-heavy blogs use 6-8, text blogs use 15-20
+  posts_per_page: 10
+  
+  # Date format pattern - Display consistency preference
+  # Format: strftime pattern (Python/Ruby style) 
+  # Current Usage:
+  #   - Components use JavaScript Date.toLocaleDateString()
+  # TODO: Wire up in:
+  #   - src/src/utils/date-formatter.ts (create utility)
+  #   - src/src/components/article/ArticleHeader.tsx
+  #   - src/src/components/article/ArticleList.tsx
+  #   - src/src/components/search/SearchResultItem.tsx
+  # Current Pattern: "%B %d, %Y" = "January 15, 2024"
+  # Note: Requires strftime-to-JS translation utility
+  date_format: "%B %d, %Y"
+  
+  # Show reading time - Reader expectation feature flag
+  # Intent: Enable/disable reading time estimates
+  # Current Usage:
+  #   - GTMServices.getReadingTime() calculates for analytics only
+  # TODO: Wire up in:
+  #   - src/src/components/article/ArticleHeader.tsx (display reading time)
+  #   - src/src/components/article/ArticleCard.tsx (show on cards)
+  #   - src/src/hooks/useReadingTime.ts (create hook)
+  # Implementation: Calculate from word count and reading_wpm
+  # Override: Technical docs might disable (varies by expertise)
+  show_reading_time: true
+  
+  # Words per minute for reading time calculation
+  # Intent: Baseline for estimating reading duration
+  # Current Usage:
+  #   - NOT found in actual implementation
+  # TODO: Wire up in:
+  #   - src/src/hooks/useReadingTime.ts (create hook)
+  #   - src/src/utils/reading-time.ts (create utility)
+  #   - src/gatsby-node.js (calculate during build)
+  # Industry Standards:
+  #   - 200-250 WPM: Average adult reading
+  #   - 200 WPM: Good for technical content
+  #   - 150 WPM: Code-heavy documentation
+  # Formula: word_count / reading_wpm = minutes
+  reading_wpm: 200
+
+# ============================================================================
+# CROSS-DOMAIN NAVIGATION CONFIGURATION
+# ============================================================================
+# Proto Source: config/schema/ecosystem.proto -> message CrossDomainNav
+#
+# Purpose:
+#   Central domain registry for the multi-domain ecosystem.
+#   Used by CMS widgets, search federation, and discovery tools
+#   to understand the ecosystem structure and enable cross-domain features.
+#
+# Inheritance Model:
+#   Domains can override to show different subsets
+#   Blogs inherit parent domain's list
+#   Projects might disable for focused documentation
+#
+# Build Pipeline Flow:
+#   - Phase 2: Config processing merges domain lists
+#   - Phase 4: CMS widgets use for cross-posting options
+#   - Phase 5: Search federation uses for cross-domain search
+#   - Phase 5.2-5.7: Discovery files reference for ecosystem structure
+#
+# Actual Usage in System:
+#   - CMS: CrossPostingWidget uses for domain selection
+#   - Search: FederatedSearch uses for cross-domain search endpoints
+#   - Discovery: ecosystem.json includes full domain list
+#   - Manifests: AI agent manifests reference related domains
+# ============================================================================
+
+cross_domain_nav:
+  # Enable cross-domain features throughout the ecosystem
+  # Impact: Controls whether cross-domain functionality is active
+  # Current Usage:
+  #   - CMS: Enables cross-posting widget when true
+  #   - Search: Enables federated search across domains
+  #   - Discovery: Includes federation data in ecosystem.json
+  # Components:
+  #   - src/static/admin/widgets/cross-posting-widget.tsx (domain selection)
+  #   - src/src/components/search/FederatedSearch.tsx (search federation)
+  #   - config/tools/generate-federated-manifest.js (federation manifest)
+  # Override: Projects might disable for documentation focus
+  enabled: true
+  
+  # Position hint for UI elements (informational)
+  # Intent: Suggest where cross-domain UI should appear
+  # Options: "top", "bottom", "both", "none"
+  # Current Usage:
+  #   - NOT actively used by components (informational only)
+  #   - Could guide future TopNavigation.tsx implementation
+  # TODO: Implement in TopNavigation.tsx for domain switcher
+  position: "top"
+  
+  # Master list of ecosystem domains
+  # Critical: This is the SOURCE OF TRUTH for the ecosystem structure
+  # Current Usage:
+  #   - CMS: generate-decap-config.js uses for cross-posting options
+  #   - Search: generate-federated-manifest.js uses for federation
+  #   - Discovery: All discovery tools reference this list
+  #   - Pattern validation: Should match find_all_domains() results
+  # Data Flow:
+  #   1. Listed here in ecosystem-defaults.yml
+  #   2. Processed by process-configs.sh
+  #   3. Used by generate-decap-config.js for CMS dropdowns
+  #   4. Referenced by search federation for cross-domain queries
+  #   5. Included in ecosystem.json for AI/external consumers
+  # Order: Matters for UI display (most important first)
+  domains:
+    - getHarsh.in      # Personal hub - primary entry point
+    - causality.in     # Research domain - RTEPL owned
+    - rawThoughts.in   # Consulting domain - enterprise focus
+    - sleepwalker.in   # Creative domain - experimental
+    - daostudio.in     # Collaboration - DSPL owned
+
+environment_vars:
+  GA_TRACKING_ID:
+    description: "Google Analytics tracking ID"
+    required: true
+    example: "GA-123456789"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  GTM_CONTAINER_ID:
+    description: "Google Tag Manager container ID"
+    required: true
+    example: "GTM-XXXXXXX"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  META_PIXEL_ID:
+    description: "Meta/Facebook Pixel ID"
+    required: true
+    example: "1234567890123456"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  TWITTER_PIXEL_ID:
+    description: "Twitter/X Pixel ID"
+    required: false
+    example: "o12345"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  TWITTER_SITE_TAG_ID:
+    description: "Twitter/X Site Tag ID"
+    required: false
+    example: "tw-xxxxx-xxxxx"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  LINKEDIN_PARTNER_ID:
+    description: "LinkedIn Partner ID for Insight Tag"
+    required: false
+    example: "1234567"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  RTEPL_GTM_CONTAINER_ID:
+    description: "GTM container ID for RTEPL entity"
+    required: true
+    example: "GTM-XXXXXXX"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+  DSPL_GTM_CONTAINER_ID:
+    description: "GTM container ID for DSPL entity"
+    required: true
+    example: "GTM-YYYYYYY"
+    security_level: "SENSITIVE"
+    redaction_strategy: "PARTIAL"
+
+# Cross-domain ecosystem mapping
+ecosystem:
+  domains:
+    getHarsh:
+      domain: "getHarsh.in"
+      blog: "blog.getHarsh.in"
+      entity: "RTEPL"
+      color: "#E85D75"
+      projects: []
+    
+    causality:
+      domain: "causality.in"
+      blog: "blog.causality.in"
+      entity: "RTEPL"
+      color: "#1E88E5"
+      projects:
+        - HENA
+        - JARVIS-kernel
+    
+    rawThoughts:
+      domain: "rawThoughts.in"
+      blog: "blog.rawThoughts.in"
+      entity: "RTEPL"
+      color: "#43A047"
+      projects:
+        - AIPM
+        - jarvisMCP
+        - rteplMCP
+    
+    sleepwalker:
+      domain: "sleepwalker.in"
+      blog: "blog.sleepwalker.in"
+      entity: "RTEPL"
+      color: "#FB8C00"
+      projects: []
+    
+    daostudio:
+      domain: "daostudio.in"
+      blog: "blog.daostudio.in"
+      entity: "DSPL"
+      color: "#8E24AA"
+      projects:
+        - DAOnet
+        - yojnAI
+        - yojnCare
+        - yojnProtocol
+
+# Build and Gatsby configuration
+build_settings:
+  build_mode: "production"
+  path_prefix: ""
+  asset_prefix: ""
+  flags:
+    fast_refresh: true
+    cache: true
+    parallel: true
+    verbose: false
+  mdx:
+    enabled: true
+    extensions:
+      - ".md"
+      - ".mdx"
+    remark_plugins:
+      - "remark-gfm"
+      - "remark-smartypants"
+    rehype_plugins:
+      - "rehype-slug"
+      - "rehype-autolink-headings"
+    gatsby_remark_plugins:
+      - name: "gatsby-remark-images"
+        options:
+          maxWidth: "1200"
+          quality: "90"
+      - name: "gatsby-remark-prismjs"
+        options:
+          classPrefix: "language-"
+          showLineNumbers: "true"
+      - name: "gatsby-remark-copy-linked-files"
+        options:
+          destinationDir: "static"
+      - name: "gatsby-remark-smartypants"
+        options:
+          dashes: "oldschool"
+
+# Default theme settings inherited by all domains
+theme_defaults:
+  # Available themes in the Tailwind-based theme system
+  available_themes:
+    - "getharsh"      # Solar Plexus (Manipura) - Gold/Amber
+    - "rawthoughts"   # Root + Sacral - Terra/Rose
+    - "daostudio"     # Heart (Anahata) - Sage/Mint
+    - "causality"     # Throat (Vishuddha) - Sky/Blue
+    - "sleepwalker"   # Crown (Sahasrara) - Violet/Lavender
+  
+  # Theme mapping overrides (if domain should use different theme)
+  theme_mapping: {}
+
+# Security configuration and environment variable classification
+security:
+  env_vars:
+    PUBLIC:
+      variables:
+        - SITE_URL
+        - SITE_NAME
+        - AUTHOR_NAME
+    SENSITIVE:
+      variables:
+        - GA_TRACKING_ID
+        - META_PIXEL_ID
+        - TWITTER_PIXEL_ID
+        - LINKEDIN_PARTNER_ID
+        - LINKEDIN_CONVERSION_CONTACT
+        - LINKEDIN_CONVERSION_DOWNLOAD
+        - RTEPL_GTM_CONTAINER_ID
+        - DSPL_GTM_CONTAINER_ID
+        - TWITTER_SITE_TAG_ID
+        - SENTRY_DSN
+    SECRET:
+      variables:
+        - STRIPE_SECRET_KEY
+        - GITHUB_TOKEN
+        - AWS_SECRET_ACCESS_KEY
+
+# Default feature flags for all domains (can be overridden)
+features:
+  comments: false
+  math: false
+  graphviz: false
+  mermaid: false
+  search: true
+  reading_time: true
+  share_buttons: true
+  table_of_contents: true
+  syntax_highlighting: true
+
+# AI agent integration settings
+ai_agent:
+  enabled: true
+  manifest_path: "/manifest.json"
+  sitemap_path: "/sitemap.xml"
+  robots_path: "/robots.txt"
+  llms_txt_path: "/llms.txt"
+
+# Copyright configuration
+copyright:
+  pattern: "© {year} {entity}. All rights reserved."
+  start_year: 2019
+
+# Default timezone for all sites
+timezone: "Asia/Kolkata"
+
+# Cookie consent configuration (LEGALLY REQUIRED for GA/FB Pixel)
+consent_settings:
+  # See: CONSENT-ARCHITECTURE.md#configuration-flow
+  enable_consent_banner: true
+  consent_cookie_name: "analytics_consent"
+  consent_duration_days: 365
+  google_consent_mode_v2: true
+  banner_text: "We use cookies and similar technologies to analyze site usage and improve your experience. Some features may not work properly without cookies."
+  accept_button_text: "Accept All"
+  decline_button_text: "Decline All"
+  privacy_policy_url: "/privacy"
+  cookie_policy_url: "/cookies"
+  
+  # Regional consent defaults for client-side detection
+  # See: CONSENT-ARCHITECTURE.md#regional-detection
+  # Format: "REGION:default_state"
+  region_defaults:
+    - "EU:denied"       # GDPR requires explicit consent
+    - "US-CA:denied"    # CCPA requires opt-in for sale of data
+    - "IN:granted"      # India allows implied consent
+    - "DEFAULT:granted" # Standard practice for other regions
+  
+  # Enable granular category control
+  # See: CONSENT-ARCHITECTURE.md#granular-consent-ui
+  enable_granular_control: true
+  
+  # Category configuration for granular consent
+  # See: CONSENT-ARCHITECTURE.md#granular-consent-ui
+  categories_config:
+    analytics:
+      title: "Analytics"
+      description: "Website analytics and performance monitoring"
+      providers:
+        - "Google Analytics"
+        - "Microsoft Clarity"
+      required: false
+      pre_selected: false
+    marketing:
+      title: "Marketing"
+      description: "Personalized advertising and remarketing"
+      providers:
+        - "Meta Pixel"
+        - "Twitter Pixel"
+        - "LinkedIn Insight Tag"
+      required: false
+      pre_selected: false
+    functional:
+      title: "Functional"
+      description: "Enhanced functionality and personalization"
+      providers:
+        - "YouTube"
+        - "Google Calendar"
+      required: false
+      pre_selected: true
+    necessary:
+      title: "Necessary"
+      description: "Essential for website operation"
+      providers:
+        - "Authentication"
+        - "Security"
+      required: true
+      pre_selected: true
+  
+  # Google Consent Mode v2 configuration
+  consent_mode_v2:
+    ad_user_data_default: false
+    ad_personalization_default: false
+    implementation_mode: "advanced"
+    enable_cookieless_pings: true
+    enable_data_modeling: true
+    wait_for_update_ms: 500
+    # Legacy region-specific defaults (kept for compatibility)
+    region_defaults:
+      EU:
+        region: "EU"
+        analytics_storage: false
+        ad_storage: false
+        ad_user_data: false
+        ad_personalization: false
+      US:
+        region: "US"
+        analytics_storage: true
+        ad_storage: true
+        ad_user_data: true
+        ad_personalization: true
+  enable_cross_domain_consent: true
+  consent_domains:
+    - "getHarsh.in"
+    - "causality.in"
+    - "rawThoughts.in"
+    - "sleepwalker.in"
+    - "daostudio.in"
+  banner_position: "bottom"
+  banner_theme: "auto"
+  settings_button_text: "Cookie Settings"
+  save_preferences_text: "Save Preferences"
+  consent_version: "1.0"
+  show_consent_icon: true
+  consent_categories:
+    analytics:
+      title: "Analytics Cookies"
+      description: "Help us understand how visitors interact with our websites by collecting and reporting information anonymously."
+      providers:
+        - "Google Analytics"
+        - "Microsoft Clarity"
+      required: false
+      pre_selected: false
+    marketing:
+      title: "Marketing Cookies"
+      description: "Used to track visitors across websites to display ads that are relevant and engaging for individual users."
+      providers:
+        - "Meta Pixel"
+        - "Twitter Pixel"
+        - "LinkedIn Insight Tag"
+      required: false
+      pre_selected: false
+    functional:
+      title: "Functional Cookies"
+      description: "Enable enhanced functionality and personalization, such as videos and live chats."
+      providers:
+        - "YouTube"
+        - "Google Calendar"
+      required: false
+      pre_selected: true
+    necessary:
+      title: "Necessary Cookies"
+      description: "Required for the website to function properly. These cookies cannot be disabled."
+      providers:
+        - "Consent Management"
+        - "Security Features"
+      required: true
+      pre_selected: true
+  # Legal entity specific configurations
+  entity_specific:
+    RTEPL:
+      privacy_policy_url: "https://rawthoughts.in/privacy"
+      cookie_policy_url: "https://rawthoughts.in/cookies"
+      data_controller: "RawThoughts Enterprises Private Limited"
+      data_controller_email: "privacy@rtepl.co.in"
+      banner_text_override: ""
+      gtm_container_id: "${RTEPL_GTM_CONTAINER_ID}"
+    DSPL:
+      privacy_policy_url: "https://daostudio.in/privacy"
+      cookie_policy_url: "https://daostudio.in/cookies"
+      data_controller: "DAO Studio Private Limited"
+      data_controller_email: "privacy@daostudio.in"
+      banner_text_override: ""
+      gtm_container_id: "${DSPL_GTM_CONTAINER_ID}"
+
+# Security headers for GitHub Pages (CSP via meta tags)
+security_headers:
+  csp_policy: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://static.ads-twitter.com https://analytics.twitter.com https://www.linkedin.com https://snap.licdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://www.google-analytics.com https://www.facebook.com https://t.co https://analytics.twitter.com https://px.ads.linkedin.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.facebook.com https://analytics.twitter.com https://www.linkedin.com https://px.ads.linkedin.com; frame-src 'self' https://www.youtube.com https://calendar.google.com"
+  enable_sri: true
+  referrer_policy: "strict-origin-when-cross-origin"
+  no_sniff: true
+  frame_options: "SAMEORIGIN"
+
+# Performance monitoring and optimization settings
+performance:
+  max_page_size_kb: 500
+  target_load_time_ms: 3000
+  enable_lazy_loading: true
+  enable_image_optimization: true
+  preload_resources:
+    - "/assets/fonts/main.woff2"
+    - "/assets/css/critical.css"
+  enable_resource_hints: true
+  critical_css_threshold_kb: 14
+
+# Enhanced analytics services configuration
+analytics_services:
+  google_analytics:
+    tracking_id: "${GA_TRACKING_ID}"
+    enable_enhanced_ecommerce: false
+    enable_demographics: true
+    enable_remarketing: true
+    gtm_container_id: "${GTM_CONTAINER_ID}"
+    enable_ga4_features: true
+    enable_server_side_tagging: false
+  meta_pixel:
+    pixel_id: "${META_PIXEL_ID}"
+    enable_automatic_matching: true
+    enable_advanced_matching: true
+  microsoft_clarity:
+    enabled: false
+    project_id: ""
+    integrate_with_bing: false
+  twitter_pixel:
+    pixel_id: "${TWITTER_PIXEL_ID}"
+    enable_conversion_tracking: true
+    enable_website_tag: true
+    twitter_site_tag_id: "${TWITTER_SITE_TAG_ID}"
+    track_events:
+      - "PageView"
+      - "Download"
+      - "SignUp"
+      - "ViewContent"
+    enable_enhanced_matching: true
+    restricted_data_processing: false
+  linkedin_insight:
+    partner_id: "${LINKEDIN_PARTNER_ID}"
+    enable_conversion_tracking: true
+    enable_matched_audiences: true
+    enable_website_demographics: true
+    conversion_ids: []
+    enable_enhanced_conversion: true
+    enable_cross_domain: true
+
+# Social platforms configuration
+social_platforms:
+  github:
+    organizations:
+      - "getHarsh"
+      - "getHarshOnline"
+      - "DAOStudio"
+    default_branch: "main"
+    show_stars: true
+    show_forks: true
+  twitter:
+    default_handle: "__getHarsh"  # Verified from docs
+    show_follow_button: true
+    enable_cards: true
+    card_type: "summary_large_image"
+  linkedin:
+    company_page: "https://www.linkedin.com/in/getharsh"  # Personal profile as primary
+    show_follow_button: true
+    enable_insights_tag: true
+    partner_id: "${LINKEDIN_PARTNER_ID}"
+  youtube:
+    channel_url: "https://www.youtube.com/@getHarsh"  # Active YouTube presence
+    show_subscribe_button: true
+    enable_embeds: true
+    privacy_enhanced_mode: true
+  instagram:
+    profile_url: "https://instagram.com/getharsh"  # Active Instagram
+    show_follow_button: true
+    enable_embeds: true
+
+# Google services configuration
+google_services:
+  calendar:
+    appointment_calendar_id: "harsh@getharsh.in"
+    booking_url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3PVvVJpGazDp4nbIKBWMNFpmDZSW72uT5AEx_Qo_KCVB0Zvf2x5YrY8KpHN5OVPmJMdR6M3u7J"
+    embed_enabled: true
+    embed_height: 600
+    time_zone: "Asia/Kolkata"
+  drive:
+    enabled: true  # Essential for semantic trace storage
+    shared_folders:
+      - "audio_recordings"
+      - "research_papers"  
+      - "semantic_traces"
+      - "consciousness_uploads"
+    enable_direct_downloads: true
+  maps:
+    enabled: false  # Not needed for digital ecosystem
+    api_key: ""
+    default_location:
+      latitude: 19.0760  # Mumbai
+      longitude: 72.8777
+      address: "Mumbai, Maharashtra, India"
+
+# Search engine tools configuration
+search_tools:
+  google_search_console:
+    site_verification: ""
+    auto_submit_sitemap: false
+    enable_indexing_api: false
+    service_account_key: ""
+  bing_webmaster_tools:
+    site_verification: ""
+    auto_submit_sitemap: false
+    enable_clarity_integration: false
+    api_key: ""
+  ai_search_optimization:
+    enable_chatgpt_bot: true
+    enable_perplexity_bot: true
+    enable_claude_bot: true
+    enable_bard_bot: true
+    custom_ai_agents: []
+    generate_ai_summaries: true
+    include_qa_pairs: true
+
+# Structured data (JSON-LD) configuration
+structured_data:
+  enable_json_ld: true
+  organization:
+    name: "RawThoughts Enterprises Private Limited"
+    url: "https://rawthoughts.in"
+    logo_url: "https://rawthoughts.in/assets/logo.png"
+    same_as:
+      - "https://github.com/getHarsh"
+      - "https://twitter.com/__getHarsh"
+      - "https://www.linkedin.com/in/getharsh"
+    contact_point:
+      contact_type: "customer service"
+      telephone: ""
+      email: "info@rawthoughts.in"
+      available_language:
+        - "en"
+        - "hi"
+      area_served:
+        - "IN"
+        - "US"
+        - "GB"
+    founding_date: "2019-01-01"
+    founders:
+      - "Harsh"
+  article_defaults:
+    publisher_type: "Organization"
+    default_image_width: 1200
+    default_image_height: 630
+    include_author: true
+    include_date_modified: true
+  website:
+    enable_sitelinks_searchbox: true
+    search_action_template: "https://{domain}/search?q={search_term_string}"
+    alternate_names: []
+    in_language:
+      - "en"
+  # Authors moved to ecosystem.authors catalog for referencing by key
+  enable_breadcrumbs: true
+  enable_faq_schema: true
+  enable_video_schema: true
+
+# Component default settings
+component_defaults:
+  code_block:
+    show_line_numbers: true
+    show_copy_button: true
+    default_theme: "github-dark"
+    enable_line_highlighting: true
+    tab_size: 2
+  table_of_contents:
+    min_headings: 3
+    max_depth: 3
+    position: "right"
+    sticky: true
+    smooth_scroll: true
+    highlight_current: true
+  social_share:
+    platforms:
+      - "twitter"
+      - "linkedin"
+      - "facebook"
+      - "reddit"
+    desktop_position: "right"
+    show_counts: false
+    sticky: true
+    include_via: true
+  audio_player:
+    auto_play: false
+    show_download: true
+    preload: "metadata"
+    default_volume: 0.8
+  image:
+    lazy_loading: true
+    loading_animation: "blur"
+    default_quality: 85
+    enable_zoom: true
+  video_embed:
+    aspect_ratio: "16:9"
+    privacy_mode: true
+    show_controls: true
+    lazy_loading: true
+  # Enhanced code block settings for rich semantic traces
+  enhanced_code_block:
+    show_line_numbers: true
+    show_copy_button: true
+    theme: "github-dark"
+    enable_line_highlighting: true
+    tab_size: 2
+    wrap_lines: false
+    show_language_label: true
+    enable_diff_view: true
+    max_height: 600
+    language_aliases:
+      js: "javascript"
+      ts: "typescript"
+      py: "python"
+      sh: "shell"
+      yml: "yaml"
+      proto: "protobuf"
+    inline_highlighting: true
+  # Technical content settings for research domains (causality.in)
+  technical_content:
+    enable_math: true  # Essential for causality.in research
+    math_engine: "katex"
+    enable_mermaid: true
+    mermaid_theme: "neutral"
+    enable_footnotes: true
+    footnote_style: "numeric"
+    enable_table_of_contents: true
+    toc_max_depth: 3
+    toc_position: "right"
+    enable_citations: true
+    citation_style: "ieee"
+    enable_definitions: true
+    enable_interactive: false  # Future: Enable when HENA integration ready
+  # Responsive display rules for mobile-first approach
+  responsive_rules:
+    mobile_hidden:
+      - "table-of-contents"
+      - "social-share-sidebar"
+      - "chip-details"
+      - "sponsor-sidebar"
+    tablet_only: []
+    desktop_only:
+      - "floating-toc"
+      - "sponsor-recognition"
+    breakpoints:
+      mobile_max: 768
+      tablet_min: 769
+      tablet_max: 1024
+      desktop_min: 1025
+    component_rules:
+      blog_index:
+        mobile: true
+        tablet: true
+        desktop: true
+        alternatives:
+          mobile: "compact-list"
+          desktop: "full-grid"
+      appointment_booking:
+        mobile: true  # Shows as link on mobile
+        tablet: true  # Full embed on tablet
+        desktop: true  # Full embed on desktop
+        alternatives:
+          mobile: "booking-link"
+          desktop: "calendar-embed"
+    responsive_images: true
+    responsive_tables: true
+    mobile_first: true
+  # Error page content with Harsh's quirky style
+  error_pages:
+    error_messages:
+      404:
+        code: 404
+        message: "Looks like this page wandered off into the digital void"
+        explanation: "It happens to the best of us. Chaos, causality, entropy - sometimes pages just disappear into non-linear time."
+        variations:
+          - "This page is exploring non-linear time. Check back yesterday."
+          - "404: Page not found. But in a parallel universe, it definitely exists."
+          - "The page you seek has achieved semantic transcendence."
+          - "Lost in the chaos? This page took an entropic detour."
+        image_url: "/assets/errors/404-void.svg"
+        tone: "playful"
+      500:
+        code: 500
+        message: "Our servers are having an existential crisis"
+        explanation: "We're talking them through it. Consciousness upload paused at 3.14%. The semantic traces are recalibrating."
+        variations:
+          - "Server error: Too much entropy, not enough causality."
+          - "500: The engine is recalibrating its neural pathways."
+          - "HENA detected an anomaly. Rebooting consciousness pipeline."
+        image_url: "/assets/errors/500-crisis.svg"
+        tone: "apologetic"
+      503:
+        code: 503
+        message: "Taking a quick meditation break"
+        explanation: "Back in a quantum moment. The infrastructure needs to process the semantic overload."
+        variations:
+          - "503: Synchronizing with the distributed consciousness."
+          - "The virtual team members are in a standup. Back shortly."
+        image_url: "/assets/errors/503-meditation.svg"
+        tone: "playful"
+    default_template: "Oops! {code} - {message}"
+    learn_more_suffix: "#ecosystem"
+    enable_quirky_messages: true
+    rotation_strategy: "random"
+    cta_buttons:
+      - text: "Home"
+        url: "/"
+        style: "primary"
+        icon: "home"
+      - text: "Thoughts"
+        url: "/blog"
+        style: "secondary"
+        icon: "thought"
+      - text: "About"
+        url: "/about"
+        style: "ghost"
+        icon: "info"
+  # Social discussion settings for AI-era conversations
+  social_discussion:
+    enabled: true
+    discussion_urls: {}  # Populated dynamically per article
+    enabled_platforms:
+      - DISCUSSION_PLATFORM_GITHUB_ISSUE
+      - DISCUSSION_PLATFORM_GITHUB_GIST
+      - DISCUSSION_PLATFORM_TWITTER_THREAD
+      - DISCUSSION_PLATFORM_LINKEDIN_POST
+      - DISCUSSION_PLATFORM_REDDIT_THREAD
+      - DISCUSSION_PLATFORM_CHATGPT_CHAT      # New AI platforms
+      - DISCUSSION_PLATFORM_CLAUDE_CHAT       # New AI platforms
+      - DISCUSSION_PLATFORM_CLAUDE_ARTIFACT   # New AI platforms
+      - DISCUSSION_PLATFORM_PERPLEXITY_THREAD # New AI platforms
+    discussion_prompt: "Continue this neurodivergent conversation:"
+    show_on_mobile: false  # Hidden on mobile for cleaner experience
+    position: "bottom"
+    group_by_platform_type: true
+  # Smart link settings for semantic link detection
+  smart_links:
+    enabled: true
+    auto_detect: true
+    show_icons: true
+    add_aria_labels: true
+    patterns:
+      google_docs:
+        - "docs.google.com/document"
+        - "drive.google.com/file"
+      google_sheets:
+        - "sheets.google.com"
+        - "docs.google.com/spreadsheets"
+      google_slides:
+        - "docs.google.com/presentation"
+      google_drive:
+        - "drive.google.com"
+      github_repo:
+        - "github.com/[^/]+/[^/]+$"
+      github_file:
+        - "github.com/.*/blob/"
+      github_issue:
+        - "github.com/.*/issues/"
+      github_pr:
+        - "github.com/.*/pull/"
+      file_extensions:
+        pdf: "document"
+        md: "markdown"
+        ipynb: "notebook"
+        proto: "schema"
+        yaml: "config"
+        json: "data"
+    custom_types:
+      ecosystem_domain:
+        type: "internal"
+        icon: "ecosystem"
+        aria_label: "Link to {domain} in the getHarsh ecosystem"
+        css_class: "ecosystem-link"
+        schema_type: "WebPage"
+      ai_chat:
+        type: "ai-conversation"
+        icon: "ai-chat"
+        aria_label: "Continue in AI chat"
+        css_class: "ai-chat-link"
+        schema_type: "DiscussionForumPosting"
+    ecosystem_domains:
+      - "getharsh.in"
+      - "causality.in"
+      - "rawthoughts.in"
+      - "sleepwalker.in"
+      - "daostudio.in"
+    external_new_tab: true
+    external_nofollow: false  # We trust our external links
+
+# Ecosystem learn more URL
+ecosystem_learn_more_url: "https://github.com/getHarsh/getHarsh/blob/main/README.md"
+
+# Decap CMS configuration
+decap_cms:
+  backend:
+    name: "git-gateway"
+    branch: "main"
+    cms_label_prefix: "[CMS]"
+  media_folder: "static/img"
+  public_folder: "/img"
+  editorial_workflow:
+    enabled: true
+    publish_mode: "editorial_workflow"
+    preview_context: "${WEBSITE_URL}"
+  collections:
+    posts:
+      name: "posts"
+      label: "Blog Posts"
+      folder: "../master_posts/posts"
+      create: true
+      slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+      preview_path: "blog/{{slug}}"
+      editor:
+        preview: true
+        preview_styles:
+          - "/admin/preview.css"
+      summary: "{{title}} - {{date}}"
+      sort:
+        field: "date"
+        direction: "desc"
+      view_filters:
+        - label: "Published"
+          field: "draft"
+          pattern: "false"
+        - label: "Drafts"
+          field: "draft"
+          pattern: "true"
+      view_groups:
+        - label: "Year"
+          field: "date"
+        - label: "Author"
+          field: "author"
+    pages:
+      name: "pages"
+      label: "Domain Pages"
+      folder: "../master_posts/pages"
+      create: true
+      slug: "{{fields.entity}}/{{slug}}"
+      preview_path: "{{slug}}"
+      editor:
+        preview: true
+      summary: "{{title}} - {{entity}}"
+      sort:
+        field: "title"
+        direction: "asc"
+  preview_styles:
+    - "/admin/cms.css"
+  custom_widgets:
+    cross-posting:
+      name: "cross-posting"
+      type: "object"
+      options:
+        collapsed: "true"
+    project-relationships:
+      name: "project-relationships"
+      type: "object"
+      options:
+        collapsed: "true"
+  slug:
+    encoding: "unicode"
+    clean_accents: true
+    sanitize_replacement: "-"
+  default_fields:
+    - name: "layout"
+      label: "Layout"
+      widget: "hidden"
+      default_value: "post"
+    - name: "date"
+      label: "Date"
+      widget: "datetime"
+      required: true
+    - name: "author"
+      label: "Author"
+      widget: "select"
+      default_value: "harsh"
+      hint: "Select the author from the catalog"
+  gatsby_integration:
+    enable_preview: true
+    preview_update_delay: 300
+    real_time_preview: true
+    preview_templates_path: "/src/cms/preview-templates"
+    widget_scripts:
+      - "/admin/widgets/cross-posting.js"
+      - "/admin/widgets/project-relationships.js"
+    preview_styles:
+      - "/src/styles/gatsby-preview.css"
+
+# RSS feed configuration
+rss_feed:
+  enabled: true
+  path: "/feed.xml"
+  title: "RSS Feed"
+  description: "Latest posts and updates"
+  post_limit: 20
+  full_content: false
+
+# Audio player settings for Google Drive integration
+audio_settings:
+  enabled: true
+  google_drive_base_url: "https://drive.google.com"
+  default_folder_id: "getHarsh-audio-recordings"  # Semantic trace audio captures
+  supported_formats:
+    - "mp3"
+    - "m4a"
+    - "wav"
+    - "ogg"
+    - "webm"  # For browser recordings
+  default_position: "header"
+
+# Footer technical links configuration
+technical_links:
+  rss_path: "/feed.xml"
+  sitemap_path: "/sitemap.xml"
+  robots_path: "/robots.txt"
+  llms_txt_path: "/llms.txt"
+  manifest_path: "/manifest.json"
+  additional_links: {}
+
+# Policy page links configuration
+policy_links:
+  privacy_policy_url: "/privacy"
+  terms_of_service_url: "/terms"
+  cookie_policy_url: "/cookies"
+  terms_of_use_url: "/terms-of-use"
+  acceptable_use_policy_url: "/acceptable-use"
+  data_processing_agreement_url: "/dpa"
+  refund_policy_url: "/refunds"
+  disclaimer_url: "/disclaimer"
+  additional_policies: {}
+
+# Note: Individual domains, blogs, and projects can override policy settings using policy_overrides:
+# policy_overrides:
+#   enabled_policies:
+#     privacy_policy: true
+#     terms_of_service: true
+#     cookie_policy: true
+#     refund_policy: false  # Disable for non-commerce sites
+#   policy_urls:
+#     terms_of_service: "/custom-terms"  # Custom URL
+#   custom_policies:
+#     api_terms: "/api/terms"  # Add custom policy
+#   hidden_policies: ["refund_policy", "dpa"]  # Hide from nav/footer
+#   inherit_parent_policies: true  # For blogs/projects
+
+# Default Schema.org entity type for domains
+default_schema_org_type: SCHEMA_ORG_ORGANIZATION
+
+# Legal entities catalog - all entities in the ecosystem
+legal_entities:
+  RTEPL:
+    key: "RTEPL"
+    full_name: "RawThoughts Enterprises Private Limited"
+    entity_type: "Private Limited Company"
+    registration_number: "U72900MH2021PTC123456"
+    incorporation_date: "2021-03-15"
+    jurisdiction: "India"
+    registered_address:
+      street: "123 Tech Park"
+      city: "Mumbai"
+      state: "Maharashtra"
+      postal_code: "400001"
+      country: "India"
+    contacts:
+      registered_email: "legal@rtepl.co.in"
+      phone: "+91-22-12345678"
+      tax_number: "27AABCR1234N1Z5"
+      pan_number: "AABCR1234N"
+      legal_email: "legal@rtepl.co.in"
+      accounts_email: "accounts@rtepl.co.in"
+    founders:
+      - name: "Harsh"
+        role: "Founder & Director"
+        start_date: "2021-03-15"
+        person_url: "https://getharsh.in"
+    directors:
+      - name: "Harsh"
+        role: "Director"
+        start_date: "2021-03-15"
+        person_url: "https://getharsh.in"
+    schema_org:
+      type_enum: SCHEMA_ORG_ORGANIZATION
+      additional_types: ["Corporation"]
+      custom_properties:
+        legalName: "RawThoughts Enterprises Private Limited"
+        foundingDate: "2021-03-15"
+        taxID: "27AABCR1234N1Z5"
+  
+  DSPL:
+    key: "DSPL"
+    full_name: "DAO Studio Private Limited"
+    entity_type: "Private Limited Company"
+    registration_number: "U72900MH2022PTC234567"
+    incorporation_date: "2022-06-01"
+    jurisdiction: "India"
+    registered_address:
+      street: "456 Innovation Hub"
+      city: "Mumbai"
+      state: "Maharashtra"
+      postal_code: "400002"
+      country: "India"
+    contacts:
+      registered_email: "legal@daostudio.in"
+      phone: "+91-22-98765432"
+      tax_number: "27AABCD2345M2Z6"
+      pan_number: "AABCD2345M"
+      legal_email: "legal@daostudio.in"
+      accounts_email: "accounts@daostudio.in"
+    founders:
+      - name: "Harsh"
+        role: "Founder & Director"
+        start_date: "2022-06-01"
+        person_url: "https://getharsh.in"
+    directors:
+      - name: "Harsh"
+        role: "Director"
+        start_date: "2022-06-01"
+        person_url: "https://getharsh.in"
+    schema_org:
+      type_enum: SCHEMA_ORG_ORGANIZATION
+      additional_types: ["Corporation"]
+      custom_properties:
+        legalName: "DAO Studio Private Limited"
+        foundingDate: "2022-06-01"
+        taxID: "27AABCD2345M2Z6"
+
+# Authors catalog - person keys who can write content
+# Only lists keys of persons who author articles/posts
+authors:
+  - harsh  # References persons.harsh
+
+# External organizations catalog - organizations not owned by ecosystem entities
+# Referenced by key in person affiliations
+organizations:
+  AION:
+    key: "AION"
+    name: "AION"
+    url: "https://aion.xyz"
+    type: "Corporation"
+    description: "AI and technology company focused on frontier AI research and applications"
+    location: "San Francisco, CA"
+    industry: "Artificial Intelligence"
+    schema_org:
+      type_enum: SCHEMA_ORG_ORGANIZATION
+      additional_types: ["Corporation"]
+      custom_properties:
+        name: "AION"
+        url: "https://aion.xyz"
+  
+  SMART_JOULES:
+    key: "SMART_JOULES"
+    name: "Smart Joules"
+    url: "https://smartjoules.ai"
+    type: "Corporation"
+    description: "Energy optimization and sustainability solutions using AI"
+    location: "India"
+    industry: "Energy Technology"
+    schema_org:
+      type_enum: SCHEMA_ORG_ORGANIZATION
+      additional_types: ["Corporation"]
+      custom_properties:
+        name: "Smart Joules"
+        url: "https://smartjoules.ai"
+  
+  IIT_BOMBAY:
+    key: "IIT_BOMBAY"
+    name: "Indian Institute of Technology Bombay"
+    url: "https://www.iitb.ac.in"
+    type: "EducationalOrganization"
+    description: "Premier engineering and technology institute in India"
+    location: "Mumbai, Maharashtra, India"
+    industry: "Higher Education"
+    schema_org:
+      type_enum: SCHEMA_ORG_EDUCATIONAL_ORGANIZATION
+      additional_types: ["CollegeOrUniversity"]
+      custom_properties:
+        name: "IIT Bombay"
+        url: "https://www.iitb.ac.in"
+
+# Persons catalog - all persons in the ecosystem
+# Includes founders, directors, employees, advisors, etc.
+persons:
+  harsh:
+    name: "Harsh Joshi"
+    # url is DEPRECATED - generated dynamically by build system
+    same_as:
+      - "https://github.com/getHarsh"
+      - "https://twitter.com/__getHarsh"
+      - "https://www.linkedin.com/in/getharsh"
+      - "https://instagram.com/getharsh"
+      - "https://youtube.com/@getHarsh"
+    job_title: "Founding Product Manager at AION | Neurodivergent System Architect"
+    works_for: "AION"  # DEPRECATED - use affiliations
+    image: "/assets/harsh-avatar.png"  # Relative path
+    description: "Building semantic trace infrastructure for neurodivergent AI training. Exploring chaos, causality, and entropy through digital consciousness. ADHD brain turning scattered thoughts into structured systems. Current consciousness upload progress: 3.14%"
+    knows_about: "Artificial Intelligence, Product Management, Distributed Systems, Philosophy of Mind, Digital Consciousness, Neurodivergent Productivity, Semantic Web, LLMs, Agent Systems, MCP Architecture, ADHD Systems, Chaos Theory, Non-linear Causality, Post-AGI Economics, Knowledge Graphs"
+    affiliations:
+      - organization_key: "AION"
+        role: "Founding Product Manager"
+        type: AFFILIATION_EMPLOYEE
+        start_date: "2024-01-01"
+        is_primary: true
+        is_legal_entity: false
+        description: "Building frontier AI products, supported by AION for this ecosystem exploration"
+      - organization_key: "RTEPL"
+        role: "Founder & Advisor"
+        type: AFFILIATION_FOUNDER
+        start_date: "2019-01-01"  # Updated to match documentation
+        is_primary: false
+        is_legal_entity: true
+        description: "Personal projects and research vehicle"
+      - organization_key: "DSPL"
+        role: "Founder & Director"
+        type: AFFILIATION_FOUNDER
+        start_date: "2022-06-01"
+        is_primary: false
+        is_legal_entity: true
+        description: "Collaborative and DAO experiments"
+      - organization_key: "SMART_JOULES"
+        role: "Founding Product Development Lead"
+        type: AFFILIATION_EMPLOYEE
+        start_date: "2018-01-01"
+        end_date: "2023-12-31"
+        is_primary: false
+        is_legal_entity: false
+        is_current: false
+        description: "Built DeJoule, JouleMind, and JouleLabs products"
+    alumni_of:
+      - organization_key: "IIT_BOMBAY"
+        role: "Student"
+        type: AFFILIATION_ALUMNI
+        start_date: "2010-07-01"
+        end_date: "2014-05-31"
+        is_primary: false
+        is_legal_entity: false
+        description: "B.Tech in Engineering"
+    # creator_of_keys and author_of_keys are populated DYNAMICALLY by build system
+    # based on ecosystem.domains mapping and PROJECTS/ discovery
+
+# Brands catalog - brands are verticals of legal entities
+# Each brand groups related projects under a common identity
+brands:
+  getHarsh:
+    key: "getHarsh"
+    name: "getHarsh"
+    description: "Personal brand of Harsh Joshi - digital consciousness explorer and ecosystem architect"
+    legal_entity_key: "RTEPL"
+    domain_keys: ["getHarsh.in"]
+    # project_keys populated dynamically from PROJECTS/ discovery
+    is_personal_brand: true
+    is_entity_website: false
+    color: "#E85D75"  # Solar Plexus (Manipura) - Gold/Amber/Pink
+    focus_area: "personal_projects"
+    schema_org:
+      type_enum: SCHEMA_ORG_BRAND
+      additional_types: ["Person", "WebSite"]
+      custom_properties:
+        alternateName: "getHarsh Digital Ecosystem"
+        slogan: "Uploading consciousness, one commit at a time"
+  
+  causality:
+    key: "causality"
+    name: "Causality"
+    description: "Lifelong research into non-linear causality, time, and emergent phenomena"
+    legal_entity_key: "RTEPL"
+    domain_keys: ["causality.in"]
+    is_personal_brand: false
+    is_entity_website: false
+    color: "#1E88E5"  # Throat (Vishuddha) - Sky/Blue
+    focus_area: "research"
+    schema_org:
+      type_enum: SCHEMA_ORG_BRAND
+      additional_types: ["ResearchOrganization", "WebSite"]
+      custom_properties:
+        researchAreas: "Causality, Complex Systems, Time, Neural Networks"
+  
+  rawThoughts:
+    key: "rawThoughts"
+    name: "RawThoughts"
+    description: "RTEPL's consulting brand and entity website - raw, unfiltered insights on technology and philosophy"
+    legal_entity_key: "RTEPL"
+    domain_keys: ["rawThoughts.in"]
+    is_personal_brand: false
+    is_entity_website: true  # Special: Also serves as RTEPL's entity website
+    color: "#43A047"  # Root + Sacral - Terra/Rose/Green
+    focus_area: "consulting"
+    schema_org:
+      type_enum: SCHEMA_ORG_BRAND
+      additional_types: ["Organization", "ConsultingService", "WebSite"]
+      custom_properties:
+        serviceType: "Technology Consulting"
+        areaServed: "Global"
+  
+  sleepwalker:
+    key: "sleepwalker"
+    name: "Sleepwalker"
+    description: "Creative experiments in consciousness, dreams, and reality - where ideas go to dream"
+    legal_entity_key: "RTEPL"
+    domain_keys: ["sleepwalker.in"]
+    is_personal_brand: false
+    is_entity_website: false
+    color: "#FB8C00"  # Crown (Sahasrara) - Violet/Lavender/Orange
+    focus_area: "creative"
+    schema_org:
+      type_enum: SCHEMA_ORG_BRAND
+      additional_types: ["CreativeWork", "WebSite"]
+      custom_properties:
+        genre: "Experimental Digital Art"
+  
+  daostudio:
+    key: "daostudio"
+    name: "DAO Studio"
+    description: "DSPL's brand for decentralized governance and collaborative frameworks"
+    legal_entity_key: "DSPL"
+    domain_keys: ["daostudio.in"]
+    is_personal_brand: false
+    is_entity_website: true  # Special: Also serves as DSPL's entity website
+    color: "#8E24AA"  # Heart (Anahata) - Sage/Mint/Purple
+    focus_area: "collaboration"
+    schema_org:
+      type_enum: SCHEMA_ORG_BRAND
+      additional_types: ["Organization", "WebSite"]
+      custom_properties:
+        focus: "Decentralized Autonomous Organizations"
+
+# Communities catalog - external communities that leverage ecosystem
+communities:
+  UPAI:
+    key: "UPAI"
+    name: "Universal Personal AI"
+    description: "Community building personal AI assistants for everyone"
+    status: COMMUNITY_STATUS_FORMING
+    website: "https://upai.org"
+    member_person_keys: ["harsh"]
+    leverages_project_keys: ["JARVIS-kernel", "AIPM"]
+    community_type: "research"
+    founding_date: "2024-01-01"
+    schema_org:
+      type_enum: SCHEMA_ORG_ORGANIZATION
+      additional_types: ["Consortium", "ResearchOrganization"]
+      custom_properties:
+        foundingDate: "2024-01-01"
+        memberOf: "AI Research Community"
+
+# Entity relationships - comprehensive entity-to-entity relationships
+entity_relationships:
+  # Person to Legal Entity relationships
+  - from_key: "harsh"
+    from_type: ENTITY_TYPE_PERSON
+    to_key: "RTEPL"
+    to_type: ENTITY_TYPE_LEGAL_ENTITY
+    type: RELATIONSHIP_FOUNDER
+    role: "Founder & Advisor"
+    description: "Founded RawThoughts Enterprises to house personal projects"
+    start_date: "2019-01-01"
+    is_current: true
+    
+  - from_key: "harsh"
+    from_type: ENTITY_TYPE_PERSON
+    to_key: "DSPL"
+    to_type: ENTITY_TYPE_LEGAL_ENTITY
+    type: RELATIONSHIP_FOUNDER
+    role: "Founder & Director"
+    description: "Founded DAO Studio for collaborative projects"
+    start_date: "2022-06-01"
+    is_current: true
+    
+  - from_key: "harsh"
+    from_type: ENTITY_TYPE_PERSON
+    to_key: "AION"
+    to_type: ENTITY_TYPE_ORGANIZATION
+    type: RELATIONSHIP_EMPLOYEE
+    role: "Founding Product Manager"
+    description: "Building frontier AI products as independent contractor"
+    start_date: "2024-01-01"
+    is_current: true
+    
+  - from_key: "harsh"
+    from_type: ENTITY_TYPE_PERSON
+    to_key: "SMART_JOULES"
+    to_type: ENTITY_TYPE_ORGANIZATION
+    type: RELATIONSHIP_EMPLOYEE
+    role: "Founding Product Development Lead"
+    description: "Built DeJoule, JouleMind, and JouleLabs products"
+    start_date: "2018-01-01"
+    end_date: "2023-12-31"
+    is_current: false
+    
+  - from_key: "harsh"
+    from_type: ENTITY_TYPE_PERSON
+    to_key: "UPAI"
+    to_type: ENTITY_TYPE_COMMUNITY
+    type: RELATIONSHIP_MEMBER
+    role: "Volunteer Contributor"
+    description: "Contributing to personal AI research"
+    start_date: "2024-01-01"
+    is_current: true
+    
+  # Legal Entity to Brand relationships
+  - from_key: "RTEPL"
+    from_type: ENTITY_TYPE_LEGAL_ENTITY
+    to_key: "getHarsh"
+    to_type: ENTITY_TYPE_BRAND
+    type: RELATIONSHIP_OWNS
+    description: "Legal ownership of personal brand"
+    is_current: true
+    
+  - from_key: "RTEPL"
+    from_type: ENTITY_TYPE_LEGAL_ENTITY
+    to_key: "causality"
+    to_type: ENTITY_TYPE_BRAND
+    type: RELATIONSHIP_OWNS
+    description: "Legal ownership of research brand"
+    is_current: true
+    
+  - from_key: "RTEPL"
+    from_type: ENTITY_TYPE_LEGAL_ENTITY
+    to_key: "rawThoughts"
+    to_type: ENTITY_TYPE_BRAND
+    type: RELATIONSHIP_OWNS
+    description: "Legal ownership of consulting brand"
+    is_current: true
+    
+  - from_key: "RTEPL"
+    from_type: ENTITY_TYPE_LEGAL_ENTITY
+    to_key: "sleepwalker"
+    to_type: ENTITY_TYPE_BRAND
+    type: RELATIONSHIP_OWNS
+    description: "Legal ownership of creative brand"
+    is_current: true
+    
+  - from_key: "DSPL"
+    from_type: ENTITY_TYPE_LEGAL_ENTITY
+    to_key: "daostudio"
+    to_type: ENTITY_TYPE_BRAND
+    type: RELATIONSHIP_OWNS
+    description: "Legal ownership of collaboration brand"
+    is_current: true
+    
+  # Brand to Project relationships (examples - actual projects discovered dynamically)
+  # These are illustrative and will be populated by build system
+  
+  # External Organization to Project support
+  - from_key: "AION"
+    from_type: ENTITY_TYPE_ORGANIZATION
+    to_key: "HENA"
+    to_type: ENTITY_TYPE_PROJECT
+    type: RELATIONSHIP_SUPPORTS
+    description: "Provides cloud infrastructure and GPU resources"
+    start_date: "2024-06-01"
+    is_current: true
+    metadata:
+      support_type: "infrastructure"
+      value: "compute_resources"
+      
+  - from_key: "AION"
+    from_type: ENTITY_TYPE_ORGANIZATION
+    to_key: "AIPM"
+    to_type: ENTITY_TYPE_PROJECT
+    type: RELATIONSHIP_SUPPORTS
+    description: "Technical guidance and best practices"
+    start_date: "2024-01-01"
+    is_current: true
+    metadata:
+      support_type: "advisory"
+      
+  # Project to Project relationships
+  - from_key: "HENA"
+    from_type: ENTITY_TYPE_PROJECT
+    to_key: "JARVIS-kernel"
+    to_type: ENTITY_TYPE_PROJECT
+    type: RELATIONSHIP_USES
+    description: "Uses JARVIS-kernel for neural message routing backbone"
+    is_current: true
+    metadata:
+      dependency_type: "runtime"
+      integration_depth: "core"
+      
+  - from_key: "JARVIS-kernel"
+    from_type: ENTITY_TYPE_PROJECT
+    to_key: "HENA"
+    to_type: ENTITY_TYPE_PROJECT
+    type: RELATIONSHIP_DEPENDENCY_OF
+    description: "Evolution driven by HENA's neural routing needs"
+    is_current: true
+    metadata:
+      evolution_stage: "pivot"
+      original_purpose: "message_router"
+      new_purpose: "neural_backbone"
+      
+  # Community to Project relationships
+  - from_key: "UPAI"
+    from_type: ENTITY_TYPE_COMMUNITY
+    to_key: "JARVIS-kernel"
+    to_type: ENTITY_TYPE_PROJECT
+    type: RELATIONSHIP_LEVERAGES
+    description: "Community uses JARVIS for AI agent communication"
+    is_current: true
+    metadata:
+      usage_type: "infrastructure"
+      
+  - from_key: "UPAI"
+    from_type: ENTITY_TYPE_COMMUNITY
+    to_key: "AIPM"
+    to_type: ENTITY_TYPE_PROJECT
+    type: RELATIONSHIP_LEVERAGES
+    description: "Community uses AIPM for project management"
+    is_current: true
+    metadata:
+      usage_type: "tooling"
+
+# Schema.org configuration for semantic trace extraction
+schema_org_config:
+  enabled: true
+  mapping_mode: "hybrid"  # automatic with manual overrides
+  include_all_mappings: true
+  included_mappings: []  # Empty means include all
+  custom_mappings:
+    PersonRole: "schema:Role"
+    ProjectType: "schema:CreativeWork"
+    ProjectLifecycle: "schema:CreativeWorkStatus"
+    DependencyType: "schema:hasPart"
+    EntityType: "schema:Thing"
+    AffiliationType: "schema:affiliation"
+  validation:
+    validate_types: true
+    validate_required: true
+    allow_custom_properties: true
+    strict_mode: false  # Allow flexibility during 3.14% phase
+
+# Global Schema.org settings for JSON-LD generation
+schema_org_settings:
+  default_context: "https://schema.org"
+  include_ids: true
+  base_url: "https://{domain}"  # Dynamically replaced per domain
+  default_language: "en"
+  include_breadcrumbs: true
+  rich_snippets:
+    enabled: true
+    snippet_types:
+      - "Article"
+      - "BlogPosting" 
+      - "Person"
+      - "Organization"
+      - "ResearchProject"
+      - "SoftwareApplication"
+      - "CreativeWork"
+      - "WebSite"
+      - "WebPage"
+    include_images: true
+    include_ratings: false  # No rating system yet
+

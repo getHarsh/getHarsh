@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TransformationRule",
+  "definitions": {
+    "TransformationRule": {
+      "properties": {
+        "enum_type": {
+          "type": "string",
+          "description": "Source enum type"
+        },
+        "target_context": {
+          "type": "string",
+          "description": "Target Schema.org context"
+        },
+        "transform_function": {
+          "type": "string",
+          "description": "Custom transformation function (if needed)"
+        },
+        "apply_to_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Apply to specific fields only"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Transformation Rule",
+      "description": "Transformation rule for build system"
+    }
+  },
+  "title": "TRANSFORMATIONRULE Configuration Schema",
+  "description": "JSON Schema for TransformationRule configuration"
+}

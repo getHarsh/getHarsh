@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/UserEngagementTracking",
+  "definitions": {
+    "UserEngagementTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable engagement tracking"
+        },
+        "engagement_threshold": {
+          "type": "integer",
+          "description": "Engagement time threshold (seconds)"
+        },
+        "track_rage_clicks": {
+          "type": "boolean",
+          "description": "Track rage clicks"
+        },
+        "track_dead_clicks": {
+          "type": "boolean",
+          "description": "Track dead clicks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "User Engagement Tracking",
+      "description": "User engagement tracking"
+    }
+  },
+  "title": "USERENGAGEMENTTRACKING Configuration Schema",
+  "description": "JSON Schema for UserEngagementTracking configuration"
+}

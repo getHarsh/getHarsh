@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerStyling",
+  "definitions": {
+    "BannerStyling": {
+      "properties": {
+        "theme": {
+          "enum": [
+            "THEME_MODE_UNSPECIFIED",
+            0,
+            "THEME_MODE_LIGHT",
+            1,
+            "THEME_MODE_DARK",
+            2,
+            "THEME_MODE_AUTO",
+            3,
+            "THEME_MODE_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Theme Mode",
+          "description": "Theme mode"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Custom CSS class"
+        },
+        "max_width": {
+          "type": "integer",
+          "description": "Max width (px)"
+        },
+        "border_radius": {
+          "type": "integer",
+          "description": "Border radius (px)"
+        },
+        "padding": {
+          "type": "integer",
+          "description": "Padding (px)"
+        },
+        "font_family": {
+          "type": "string",
+          "description": "Font family override"
+        },
+        "colors": {
+          "$ref": "#/definitions/website.config.consent.BannerColors",
+          "description": "Custom colors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Styling",
+      "description": "Banner styling configuration"
+    },
+    "website.config.consent.BannerColors": {
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Background color"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text color"
+        },
+        "link": {
+          "type": "string",
+          "description": "Link color"
+        },
+        "button_primary": {
+          "type": "string",
+          "description": "Button primary color"
+        },
+        "button_secondary": {
+          "type": "string",
+          "description": "Button secondary color"
+        },
+        "border": {
+          "type": "string",
+          "description": "Border color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Colors",
+      "description": "Banner color configuration"
+    }
+  },
+  "title": "BANNERSTYLING Configuration Schema",
+  "description": "JSON Schema for BannerStyling configuration"
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DebugSettings",
+  "definitions": {
+    "DebugSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable debug mode"
+        },
+        "log_level": {
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            0,
+            "LOG_LEVEL_ERROR",
+            1,
+            "LOG_LEVEL_WARNING",
+            2,
+            "LOG_LEVEL_INFO",
+            3,
+            "LOG_LEVEL_DEBUG",
+            4,
+            "LOG_LEVEL_VERBOSE",
+            5
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Log Level",
+          "description": "Log levels"
+        },
+        "console_logging": {
+          "type": "boolean",
+          "description": "Console logging"
+        },
+        "debug_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Debug events"
+        },
+        "validation_mode": {
+          "type": "boolean",
+          "description": "Validation mode"
+        },
+        "preview": {
+          "$ref": "#/definitions/website.config.gtm.PreviewMode",
+          "description": "Preview mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Debug Settings",
+      "description": "Debug settings"
+    },
+    "website.config.gtm.PreviewMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "cookie_name": {
+          "type": "string",
+          "description": "Preview cookie name"
+        },
+        "share_preview_url": {
+          "type": "boolean",
+          "description": "Share preview URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Preview Mode",
+      "description": "Preview mode configuration"
+    }
+  },
+  "title": "DEBUGSETTINGS Configuration Schema",
+  "description": "JSON Schema for DebugSettings configuration"
+}

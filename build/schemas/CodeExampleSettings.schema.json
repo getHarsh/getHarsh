@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeExampleSettings",
+  "definitions": {
+    "CodeExampleSettings": {
+      "properties": {
+        "require_examples": {
+          "type": "boolean",
+          "description": "Require examples"
+        },
+        "min_examples": {
+          "type": "integer",
+          "description": "Min examples per article"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include language info"
+        },
+        "include_line_numbers": {
+          "type": "boolean",
+          "description": "Include line numbers"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Example Settings",
+      "description": "Code example settings"
+    }
+  },
+  "title": "CODEEXAMPLESETTINGS Configuration Schema",
+  "description": "JSON Schema for CodeExampleSettings configuration"
+}

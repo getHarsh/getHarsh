@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkedInPlatform",
+  "definitions": {
+    "LinkedInPlatform": {
+      "properties": {
+        "company_page": {
+          "type": "string",
+          "description": "Company page URL"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_insights_tag": {
+          "type": "boolean",
+          "description": "Enable LinkedIn insights tag"
+        },
+        "partner_id": {
+          "type": "string",
+          "description": "Partner ID for insights"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Platform",
+      "description": "LinkedIn platform configuration"
+    }
+  },
+  "title": "LINKEDINPLATFORM Configuration Schema",
+  "description": "JSON Schema for LinkedInPlatform configuration"
+}

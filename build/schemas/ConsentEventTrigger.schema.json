@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentEventTrigger",
+  "definitions": {
+    "ConsentEventTrigger": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "GTM event name"
+        },
+        "consent_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Consent types to update"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Event Trigger",
+      "description": "Consent event trigger"
+    }
+  },
+  "title": "CONSENTEVENTTRIGGER Configuration Schema",
+  "description": "JSON Schema for ConsentEventTrigger configuration"
+}

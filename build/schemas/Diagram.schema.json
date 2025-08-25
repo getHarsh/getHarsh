@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Diagram",
+  "definitions": {
+    "Diagram": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Diagram type (\"mermaid\", \"graphviz\", \"plantuml\")"
+        },
+        "code": {
+          "type": "string",
+          "description": "Diagram code"
+        },
+        "title": {
+          "type": "string",
+          "description": "Diagram title"
+        },
+        "alt_text": {
+          "type": "string",
+          "description": "Alt text for accessibility"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Theme override"
+        },
+        "render_as_image": {
+          "type": "boolean",
+          "description": "Render as image (vs interactive)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Diagram",
+      "description": "Diagram configuration"
+    }
+  },
+  "title": "DIAGRAM Configuration Schema",
+  "description": "JSON Schema for Diagram configuration"
+}

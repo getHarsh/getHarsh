@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CustomScripts",
+  "definitions": {
+    "CustomScripts": {
+      "properties": {
+        "before_show": {
+          "type": "string",
+          "description": "Before consent show"
+        },
+        "after_consent": {
+          "type": "string",
+          "description": "After consent given"
+        },
+        "after_denial": {
+          "type": "string",
+          "description": "After consent denied"
+        },
+        "validation": {
+          "type": "string",
+          "description": "Custom validation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Scripts",
+      "description": "Custom scripts"
+    }
+  },
+  "title": "CUSTOMSCRIPTS Configuration Schema",
+  "description": "JSON Schema for CustomScripts configuration"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TabOrder",
+  "definitions": {
+    "TabOrder": {
+      "properties": {
+        "enforce_logical": {
+          "type": "boolean",
+          "description": "Logical tab order"
+        },
+        "skip_hidden": {
+          "type": "boolean",
+          "description": "Skip hidden elements"
+        },
+        "tab_index": {
+          "$ref": "#/definitions/website.config.aria.TabIndexManagement",
+          "description": "Tab index management"
+        },
+        "show_visualization": {
+          "type": "boolean",
+          "description": "Tab order visualization"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab Order",
+      "description": "Tab order configuration"
+    },
+    "website.config.aria.TabIndexManagement": {
+      "properties": {
+        "remove_positive": {
+          "type": "boolean",
+          "description": "Remove positive tabindex"
+        },
+        "interactive_only": {
+          "type": "boolean",
+          "description": "Interactive elements only"
+        },
+        "custom_stops": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom tab stops"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab Index Management",
+      "description": "Tab index management"
+    }
+  },
+  "title": "TABORDER Configuration Schema",
+  "description": "JSON Schema for TabOrder configuration"
+}

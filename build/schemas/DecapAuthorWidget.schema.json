@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapAuthorWidget",
+  "definitions": {
+    "DecapAuthorWidget": {
+      "properties": {
+        "allow_multiple": {
+          "type": "boolean",
+          "description": "Allow multiple authors"
+        },
+        "show_avatar": {
+          "type": "boolean",
+          "description": "Show author avatar"
+        },
+        "data_source": {
+          "type": "string",
+          "description": "Data source  \"persons_catalog\""
+        },
+        "display_format": {
+          "type": "string",
+          "description": "Display format"
+        },
+        "filter_authors_only": {
+          "type": "boolean",
+          "description": "Filter by author flag"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Author Widget",
+      "description": "Decap author selection widget"
+    }
+  },
+  "title": "DECAPAUTHORWIDGET Configuration Schema",
+  "description": "JSON Schema for DecapAuthorWidget configuration"
+}

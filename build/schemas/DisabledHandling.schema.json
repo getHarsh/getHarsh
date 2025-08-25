@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DisabledHandling",
+  "definitions": {
+    "DisabledHandling": {
+      "properties": {
+        "explain_disabled": {
+          "type": "boolean",
+          "description": "Explain why disabled"
+        },
+        "keep_focusable": {
+          "type": "boolean",
+          "description": "Keyboard focusable"
+        },
+        "provide_alternatives": {
+          "type": "boolean",
+          "description": "Alternative actions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Disabled Handling",
+      "description": "Disabled handling"
+    }
+  },
+  "title": "DISABLEDHANDLING Configuration Schema",
+  "description": "JSON Schema for DisabledHandling configuration"
+}

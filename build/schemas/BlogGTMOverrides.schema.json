@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogGTMOverrides",
+  "definitions": {
+    "BlogGTMOverrides": {
+      "properties": {
+        "article_scroll_tracking": {
+          "$ref": "#/definitions/website.config.gtm.ScrollTracking",
+          "description": "Additional scroll tracking for long articles"
+        },
+        "track_reading_time": {
+          "type": "boolean",
+          "description": "Reading time tracking"
+        },
+        "article_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Article engagement events"
+        },
+        "track_comment_interactions": {
+          "type": "boolean",
+          "description": "Comment interaction tracking"
+        },
+        "track_social_shares": {
+          "type": "boolean",
+          "description": "Social share tracking"
+        },
+        "article_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom dimensions for articles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog GTM Overrides",
+      "description": "Blog-specific GTM overrides"
+    },
+    "website.config.gtm.ScrollTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable scroll tracking"
+        },
+        "thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Scroll depth thresholds (percentages)"
+        },
+        "track_time_to_scroll": {
+          "type": "boolean",
+          "description": "Track time to scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scroll Tracking",
+      "description": "Scroll tracking configuration"
+    }
+  },
+  "title": "BLOGGTMOVERRIDES Configuration Schema",
+  "description": "JSON Schema for BlogGTMOverrides configuration"
+}

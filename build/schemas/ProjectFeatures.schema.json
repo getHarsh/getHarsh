@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectFeatures",
+  "definitions": {
+    "ProjectFeatures": {
+      "properties": {
+        "api_docs": {
+          "type": "boolean",
+          "description": "Enable API documentation"
+        },
+        "api_docs_generator": {
+          "enum": [
+            "API_DOC_GENERATOR_UNSPECIFIED",
+            0,
+            "API_DOC_GENERATOR_SWAGGER_UI",
+            1,
+            "API_DOC_GENERATOR_REDOC",
+            2,
+            "API_DOC_GENERATOR_GRAPHDOC",
+            3,
+            "API_DOC_GENERATOR_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "API Doc Generator",
+          "description": "API documentation generators (moved from docs.proto)"
+        },
+        "interactive_demos": {
+          "type": "boolean",
+          "description": "Enable interactive demos"
+        },
+        "code_playground": {
+          "type": "boolean",
+          "description": "Enable code playground"
+        },
+        "playground_provider": {
+          "enum": [
+            "PLAYGROUND_PROVIDER_UNSPECIFIED",
+            0,
+            "PLAYGROUND_PROVIDER_CODEPEN",
+            1,
+            "PLAYGROUND_PROVIDER_CODESANDBOX",
+            2,
+            "PLAYGROUND_PROVIDER_STACKBLITZ",
+            3,
+            "PLAYGROUND_PROVIDER_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Playground Provider",
+          "description": "Code playground providers"
+        },
+        "docs_search": {
+          "type": "boolean",
+          "description": "Enable documentation search"
+        },
+        "search_provider": {
+          "enum": [
+            "SEARCH_PROVIDER_UNSPECIFIED",
+            0,
+            "SEARCH_PROVIDER_ALGOLIA",
+            1,
+            "SEARCH_PROVIDER_LUNR",
+            2,
+            "SEARCH_PROVIDER_FUSE",
+            3,
+            "SEARCH_PROVIDER_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Search Provider",
+          "description": "Search providers"
+        },
+        "version_switcher": {
+          "type": "boolean",
+          "description": "Enable version switcher"
+        },
+        "contribution_guide": {
+          "type": "boolean",
+          "description": "Enable contribution guide"
+        },
+        "changelog_display": {
+          "type": "boolean",
+          "description": "Enable changelog display"
+        },
+        "dependency_graph": {
+          "type": "boolean",
+          "description": "Enable dependency graph"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom project features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Features",
+      "description": "Project-specific features"
+    }
+  },
+  "title": "PROJECTFEATURES Configuration Schema",
+  "description": "JSON Schema for ProjectFeatures configuration"
+}

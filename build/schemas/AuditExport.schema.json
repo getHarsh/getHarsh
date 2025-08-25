@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AuditExport",
+  "definitions": {
+    "AuditExport": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable export"
+        },
+        "format": {
+          "enum": [
+            "EXPORT_FORMAT_UNSPECIFIED",
+            0,
+            "EXPORT_FORMAT_JSON",
+            1,
+            "EXPORT_FORMAT_CSV",
+            2,
+            "EXPORT_FORMAT_PARQUET",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Export Format",
+          "description": "Export format"
+        },
+        "endpoint": {
+          "type": "string",
+          "description": "Export endpoint"
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Export frequency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audit Export",
+      "description": "Audit export settings"
+    }
+  },
+  "title": "AUDITEXPORT Configuration Schema",
+  "description": "JSON Schema for AuditExport configuration"
+}

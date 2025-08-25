@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ErrorHandling",
+  "definitions": {
+    "ErrorHandling": {
+      "properties": {
+        "announce_errors": {
+          "type": "boolean",
+          "description": "Announce errors to screen readers"
+        },
+        "error_format": {
+          "type": "string",
+          "description": "Error message format"
+        },
+        "associate_with_fields": {
+          "type": "boolean",
+          "description": "Associate errors with fields"
+        },
+        "show_error_summary": {
+          "type": "boolean",
+          "description": "Error summary"
+        },
+        "focus_on_error": {
+          "type": "boolean",
+          "description": "Focus on first error"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Handling",
+      "description": "Error handling for accessibility"
+    }
+  },
+  "title": "ERRORHANDLING Configuration Schema",
+  "description": "JSON Schema for ErrorHandling configuration"
+}

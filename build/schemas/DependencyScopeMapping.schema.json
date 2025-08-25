@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DependencyScopeMapping",
+  "definitions": {
+    "DependencyScopeMapping": {
+      "properties": {
+        "scope_name": {
+          "type": "string",
+          "description": "Scope name"
+        },
+        "when_needed": {
+          "type": "string",
+          "description": "When dependency is needed"
+        },
+        "package_manager_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Package manager scope equivalent"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency Scope Mapping"
+    }
+  },
+  "title": "DEPENDENCYSCOPEMAPPING Configuration Schema",
+  "description": "JSON Schema for DependencyScopeMapping configuration"
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SecuritySettings",
+  "definitions": {
+    "SecuritySettings": {
+      "properties": {
+        "env_vars": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.SecurityVariableList"
+          },
+          "type": "object",
+          "description": "Environment variables by security level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Settings",
+      "description": "Security configuration and environment variable classification"
+    },
+    "website.config.SecurityVariableList": {
+      "properties": {
+        "variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "List of variable names"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Variable List",
+      "description": "List of environment variables for a security level"
+    }
+  },
+  "title": "SECURITYSETTINGS Configuration Schema",
+  "description": "JSON Schema for SecuritySettings configuration"
+}

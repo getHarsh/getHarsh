@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocLandingStyleMappings",
+  "definitions": {
+    "DocLandingStyleMappings": {
+      "properties": {
+        "style_to_template": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> template name e.g., \"DOC_LANDING_STYLE_HERO\" -> \"Hero Landing\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DOCUMENTATION LANDING STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DOCUMENTATION LANDING STYLE MAPPINGS =============================================================================  Maps DocLandingStyle enum to page templates"
+    }
+  },
+  "title": "DOCLANDINGSTYLEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for DocLandingStyleMappings configuration"
+}

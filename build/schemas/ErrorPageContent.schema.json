@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ErrorPageContent",
+  "definitions": {
+    "ErrorPageContent": {
+      "properties": {
+        "error_messages": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ErrorMessage"
+          },
+          "type": "object",
+          "description": "Error code to message mapping"
+        },
+        "default_template": {
+          "type": "string",
+          "description": "Default error message template"
+        },
+        "learn_more_suffix": {
+          "type": "string",
+          "description": "Learn more URL suffix"
+        },
+        "enable_quirky_messages": {
+          "type": "boolean",
+          "description": "Enable quirky messages"
+        },
+        "rotation_strategy": {
+          "type": "string",
+          "description": "Rotation strategy for multiple messages  \"random\", \"sequential\", \"time-based\""
+        },
+        "cta_buttons": {
+          "items": {
+            "$ref": "#/definitions/website.config.ErrorPageCTA"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom CTA buttons for error pages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page Content",
+      "description": "Error page content configuration For quirky 404, 500, etc. messages"
+    },
+    "website.config.ErrorMessage": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code (404, 500, etc.)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Primary message"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Secondary/explanation text"
+        },
+        "variations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Quirky variations"
+        },
+        "image_url": {
+          "type": "string",
+          "description": "Custom image/illustration URL"
+        },
+        "tone": {
+          "type": "string",
+          "description": "Tone (\"playful\", \"apologetic\", \"technical\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Message",
+      "description": "Individual error message configuration"
+    },
+    "website.config.ErrorPageCTA": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Button text"
+        },
+        "url": {
+          "type": "string",
+          "description": "Button URL"
+        },
+        "style": {
+          "type": "string",
+          "description": "Button style (\"primary\", \"secondary\", \"ghost\")"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page CTA",
+      "description": "Error page CTA configuration"
+    }
+  },
+  "title": "ERRORPAGECONTENT Configuration Schema",
+  "description": "JSON Schema for ErrorPageContent configuration"
+}

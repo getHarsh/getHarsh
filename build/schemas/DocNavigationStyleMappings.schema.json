@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocNavigationStyleMappings",
+  "definitions": {
+    "DocNavigationStyleMappings": {
+      "properties": {
+        "style_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> style name e.g., \"DOC_NAVIGATION_STYLE_SIDEBAR\" -> \"Sidebar\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DOCUMENTATION NAVIGATION STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DOCUMENTATION NAVIGATION STYLE MAPPINGS =============================================================================  Maps DocNavigationStyle enum to UI patterns"
+    }
+  },
+  "title": "DOCNAVIGATIONSTYLEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for DocNavigationStyleMappings configuration"
+}

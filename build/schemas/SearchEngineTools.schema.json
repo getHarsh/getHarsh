@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SearchEngineTools",
+  "definitions": {
+    "SearchEngineTools": {
+      "properties": {
+        "google_search_console": {
+          "$ref": "#/definitions/website.config.GoogleSearchConsole",
+          "description": "Google Search Console settings"
+        },
+        "bing_webmaster_tools": {
+          "$ref": "#/definitions/website.config.BingWebmasterTools",
+          "description": "Bing Webmaster Tools settings"
+        },
+        "ai_search_optimization": {
+          "$ref": "#/definitions/website.config.AISearchOptimization",
+          "description": "AI search optimization settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Engine Tools",
+      "description": "Search engine tools configuration"
+    },
+    "website.config.AISearchOptimization": {
+      "properties": {
+        "enable_chatgpt_bot": {
+          "type": "boolean",
+          "description": "Enable specific AI crawlers"
+        },
+        "enable_perplexity_bot": {
+          "type": "boolean"
+        },
+        "enable_claude_bot": {
+          "type": "boolean"
+        },
+        "enable_bard_bot": {
+          "type": "boolean"
+        },
+        "custom_ai_agents": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom AI user agents to allow"
+        },
+        "generate_ai_summaries": {
+          "type": "boolean",
+          "description": "Generate AI-friendly content summaries"
+        },
+        "include_qa_pairs": {
+          "type": "boolean",
+          "description": "Include structured QA pairs for AI"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Search Optimization",
+      "description": "AI search optimization configuration"
+    },
+    "website.config.BingWebmasterTools": {
+      "properties": {
+        "site_verification": {
+          "type": "string",
+          "description": "Site verification HTML tag content"
+        },
+        "auto_submit_sitemap": {
+          "type": "boolean",
+          "description": "Auto-submit sitemap on build"
+        },
+        "enable_clarity_integration": {
+          "type": "boolean",
+          "description": "Enable Clarity integration"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key for programmatic access"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Bing Webmaster Tools",
+      "description": "Bing Webmaster Tools configuration"
+    },
+    "website.config.GoogleSearchConsole": {
+      "properties": {
+        "site_verification": {
+          "type": "string",
+          "description": "Site verification HTML tag content"
+        },
+        "auto_submit_sitemap": {
+          "type": "boolean",
+          "description": "Auto-submit sitemap on build"
+        },
+        "enable_indexing_api": {
+          "type": "boolean",
+          "description": "Enable Index API for instant indexing"
+        },
+        "service_account_key": {
+          "type": "string",
+          "description": "Service account JSON key path (for API)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Search Console",
+      "description": "Google Search Console configuration"
+    }
+  },
+  "title": "SEARCHENGINETOOLS Configuration Schema",
+  "description": "JSON Schema for SearchEngineTools configuration"
+}

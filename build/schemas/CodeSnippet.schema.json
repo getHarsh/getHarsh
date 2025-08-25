@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeSnippet",
+  "definitions": {
+    "CodeSnippet": {
+      "properties": {
+        "gist_url": {
+          "type": "string",
+          "description": "GitHub Gist URL or ID"
+        },
+        "language": {
+          "enum": [
+            "CODE_LANGUAGE_UNSPECIFIED",
+            0,
+            "CODE_LANGUAGE_JAVASCRIPT",
+            1,
+            "CODE_LANGUAGE_TYPESCRIPT",
+            2,
+            "CODE_LANGUAGE_PYTHON",
+            3,
+            "CODE_LANGUAGE_C",
+            4,
+            "CODE_LANGUAGE_CPP",
+            5,
+            "CODE_LANGUAGE_SHELL",
+            6,
+            "CODE_LANGUAGE_YAML",
+            7,
+            "CODE_LANGUAGE_JSON",
+            8,
+            "CODE_LANGUAGE_MARKDOWN",
+            9,
+            "CODE_LANGUAGE_PROTOBUF",
+            10,
+            "CODE_LANGUAGE_OTHER",
+            99
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Code Language",
+          "description": "Programming languages for code blocks and snippets Maps to Schema.org SoftwareSourceCode with programmingLanguage property"
+        },
+        "title": {
+          "type": "string",
+          "description": "Snippet title"
+        },
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers"
+        },
+        "highlight_lines": {
+          "type": "string",
+          "description": "Highlighted lines (e.g., \"3-5,8,10-12\")"
+        },
+        "inline_code": {
+          "type": "string",
+          "description": "Inline code (if not using Gist)"
+        },
+        "filename": {
+          "type": "string",
+          "description": "File name (if applicable)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Snippet",
+      "description": "Code snippet configuration"
+    }
+  },
+  "title": "CODESNIPPET Configuration Schema",
+  "description": "JSON Schema for CodeSnippet configuration"
+}

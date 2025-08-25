@@ -1,0 +1,170 @@
+# {{ENTITY_NAME}} - LLM Content Summary
+# Generated: {{GENERATION_TIMESTAMP}}
+# Type: {{ENTITY_TYPE}}
+
+## Overview
+
+{{ENTITY_DESCRIPTION}}
+
+## Entity Information
+
+- **Name**: {{ENTITY_NAME}}
+- **Type**: {{ENTITY_TYPE}}
+- **URL**: {{BASE_URL}}
+{{IF_DOMAIN_ALIASES}}- **Aliases**: {{DOMAIN_ALIASES_LIST}}{{END_IF_DOMAIN_ALIASES}}
+- **Legal Entity**: {{LEGAL_ENTITY_FULL}}
+- **Established**: {{ENTITY_ESTABLISHED}}
+- **Primary Focus**: {{PRIMARY_FOCUS}}
+
+## Content Summary
+
+### Content Statistics
+- **Total Pages**: {{TOTAL_PAGES}}
+- **Total Posts**: {{TOTAL_POSTS}}
+- **Last Updated**: {{LAST_CONTENT_UPDATE}}
+- **Content Types**: {{CONTENT_TYPES_LIST}}
+
+### Key Topics and Expertise
+{{KEY_TOPICS_SECTION}}
+
+### Recent Content (Last 10)
+{{RECENT_CONTENT_SECTION}}
+
+### Popular Content
+{{POPULAR_CONTENT_SECTION}}
+
+### Featured Projects
+{{IF_HAS_PROJECTS}}
+{{FEATURED_PROJECTS_SECTION}}
+{{END_IF_HAS_PROJECTS}}
+
+## Services Offered
+
+{{IF_SERVICES_ENABLED}}
+### {{SERVICES_PAGE_TITLE}}
+
+{{SERVICES_PAGE_DESCRIPTION}}
+
+{{SERVICES_LIST}}
+
+Learn more at: {{BASE_URL}}/services
+
+{{IF_HAS_INDUSTRIES}}
+### Industry Expertise
+
+We specialize in {{SERVICES_POSITIONING}} for:
+{{INDUSTRY_LIST}}
+{{END_IF_HAS_INDUSTRIES}}
+
+{{END_IF_SERVICES_ENABLED}}
+
+## Expertise Areas
+
+{{EXPERTISE_AREAS_SECTION}}
+
+## Technical Capabilities
+
+### Content Formats
+- Markdown articles with code highlighting
+- Technical documentation
+- API references
+- Interactive demos
+- Audio recordings (where applicable)
+
+### Discovery Endpoints
+- **Search API**: {{BASE_URL}}/search/
+- **RSS Feed**: {{BASE_URL}}/rss.xml
+- **Sitemap**: {{BASE_URL}}/sitemap.xml
+- **Federation**: {{BASE_URL}}/ecosystem.json
+- **AI Manifest**: {{BASE_URL}}/manifest.json
+
+### Structured Data
+- Schema.org JSON-LD on all pages
+- OpenGraph meta tags
+- Twitter Card meta tags
+- Semantic HTML5 markup
+
+## AI Usage Guidelines
+
+### Allowed Uses
+- ✅ Reading content to answer user questions
+- ✅ Summarizing articles with attribution
+- ✅ Helping users navigate our content
+- ✅ Citing our work in responses
+
+### Required Attribution
+When referencing our content, please include:
+- Article title and author
+- Direct link to source
+- Publication date
+- Entity name ({{ENTITY_NAME}})
+
+### Prohibited Uses
+- ❌ Training AI models on our content
+- ❌ Republishing without permission
+- ❌ Creating derivatives without license
+- ❌ Permanent content storage
+
+### Example Attribution
+"According to [Article Title] by [Author] on {{ENTITY_NAME}} ([date]): [summary]
+Source: {{BASE_URL}}/path/to/article"
+
+## Contact & Licensing
+
+- **General Inquiries**: {{CONTACT_EMAIL}}
+- **AI Licensing**: {{AI_POLICY_EMAIL}}
+- **Business Proposals**: {{PROPOSAL_EMAIL}}
+- **Legal Entity**: {{LEGAL_ENTITY_FULL}} ({{LEGAL_ENTITY_REGISTRATION}})
+
+## API Access
+
+For programmatic access to our content:
+- Read our API documentation
+- Contact {{PROPOSAL_EMAIL}} for API keys
+- Rate limits apply
+
+## Related Entities
+
+{{IF_PARENT_ENTITY}}- **Parent**: {{PARENT_ENTITY_NAME}} ({{PARENT_ENTITY_URL}}){{END_IF_PARENT_ENTITY}}
+{{IF_HAS_BLOG}}- **Blog**: {{BLOG_NAME}} ({{BLOG_URL}}){{END_IF_HAS_BLOG}}
+{{IF_HAS_PROJECTS}}- **Projects**: {{PROJECTS_LIST}}{{END_IF_HAS_PROJECTS}}
+{{IF_SIBLING_ENTITIES}}- **Sister Sites**: {{SIBLING_ENTITIES_LIST}}{{END_IF_SIBLING_ENTITIES}}
+
+## Content Philosophy
+
+{{CONTENT_PHILOSOPHY_SECTION}}
+
+## Legal & Compliance
+
+- **Copyright**: © {{CURRENT_YEAR}} {{LEGAL_ENTITY_FULL}}
+- **License**: All rights reserved unless specified
+- **TDM Rights**: Reserved under EU Directive 2019/790
+- **Jurisdiction**: {{LEGAL_JURISDICTION}}
+- **Privacy Policy**: {{PRIVACY_URL}}
+- **Terms of Service**: {{TERMS_URL}}
+
+## Technical Implementation
+
+- **Static Site Generator**: Gatsby v5
+- **CMS**: Decap CMS
+- **Search**: FlexSearch
+- **Hosting**: GitHub Pages
+- **CDN**: Cloudflare
+- **Analytics**: Google Analytics 4 (with consent)
+
+## Update Frequency
+
+- **Content**: {{CONTENT_UPDATE_FREQUENCY}}
+- **This File**: Regenerated daily
+- **Last Generated**: {{GENERATION_DATE}}
+- **Next Update**: {{NEXT_UPDATE_DATE}}
+
+---
+
+For more detailed information about our ecosystem:
+- **AI Policy**: {{BASE_URL}}/ai.txt
+- **Robots Policy**: {{BASE_URL}}/robots.txt
+- **TDM Rights**: {{BASE_URL}}/.well-known/tdmrep.json
+- **Ecosystem Map**: {{BASE_URL}}/ecosystem.json
+
+End of LLM content summary for {{ENTITY_NAME}}

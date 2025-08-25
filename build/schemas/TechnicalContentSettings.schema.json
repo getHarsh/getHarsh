@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TechnicalContentSettings",
+  "definitions": {
+    "TechnicalContentSettings": {
+      "properties": {
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math formula rendering (LaTeX/KaTeX)"
+        },
+        "math_engine": {
+          "type": "string",
+          "description": "Math rendering engine (\"katex\", \"mathjax\")"
+        },
+        "enable_mermaid": {
+          "type": "boolean",
+          "description": "Enable Mermaid diagrams"
+        },
+        "mermaid_theme": {
+          "type": "string",
+          "description": "Mermaid theme (\"default\", \"dark\", \"forest\", \"neutral\")"
+        },
+        "enable_footnotes": {
+          "type": "boolean",
+          "description": "Enable footnotes"
+        },
+        "footnote_style": {
+          "type": "string",
+          "description": "Footnote style (\"numeric\", \"symbolic\")"
+        },
+        "enable_table_of_contents": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "toc_max_depth": {
+          "type": "integer",
+          "description": "TOC max depth (e.g., 3 for H1-H3)"
+        },
+        "toc_position": {
+          "type": "string",
+          "description": "TOC position (\"left\", \"right\", \"top\")"
+        },
+        "enable_citations": {
+          "type": "boolean",
+          "description": "Enable citations/bibliography"
+        },
+        "citation_style": {
+          "type": "string",
+          "description": "Citation style (\"apa\", \"mla\", \"chicago\", \"ieee\")"
+        },
+        "enable_definitions": {
+          "type": "boolean",
+          "description": "Enable glossary/definitions"
+        },
+        "enable_interactive": {
+          "type": "boolean",
+          "description": "Enable interactive examples"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Content Settings",
+      "description": "Technical content settings for academic/research content Maps to Schema.org ScholarlyArticle features"
+    }
+  },
+  "title": "TECHNICALCONTENTSETTINGS Configuration Schema",
+  "description": "JSON Schema for TechnicalContentSettings configuration"
+}

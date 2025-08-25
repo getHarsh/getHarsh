@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AudioSettings",
+  "definitions": {
+    "AudioSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable audio player features"
+        },
+        "google_drive_base_url": {
+          "type": "string",
+          "description": "Google Drive base URL for audio files"
+        },
+        "default_folder_id": {
+          "type": "string",
+          "description": "Default folder ID for audio recordings"
+        },
+        "supported_formats": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported audio formats"
+        },
+        "default_position": {
+          "type": "string",
+          "description": "Default player position (\"header\", \"sidebar\", \"bottom\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Settings",
+      "description": "Audio player settings for Google Drive integration"
+    }
+  },
+  "title": "AUDIOSETTINGS Configuration Schema",
+  "description": "JSON Schema for AudioSettings configuration"
+}

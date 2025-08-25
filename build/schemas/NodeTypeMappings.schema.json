@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NodeTypeMappings",
+  "definitions": {
+    "NodeTypeMappings": {
+      "properties": {
+        "node_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"NODE_TYPE_PAGE\" -> \"WebPage\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n NODE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= NODE TYPE MAPPINGS =============================================================================  Maps NodeType enum to navigation node types"
+    }
+  },
+  "title": "NODETYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for NodeTypeMappings configuration"
+}

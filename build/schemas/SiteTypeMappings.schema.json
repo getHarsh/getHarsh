@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteTypeMappings",
+  "definitions": {
+    "SiteTypeMappings": {
+      "properties": {
+        "site_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SITE_TYPE_BLOG\" -> \"Blog\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SITE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SITE TYPE MAPPINGS =============================================================================  Maps SiteType enum to Schema.org WebSite subtypes"
+    }
+  },
+  "title": "SITETYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for SiteTypeMappings configuration"
+}

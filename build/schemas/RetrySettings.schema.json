@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RetrySettings",
+  "definitions": {
+    "RetrySettings": {
+      "properties": {
+        "max_retries": {
+          "type": "integer",
+          "description": "Max retries"
+        },
+        "retry_delay_ms": {
+          "type": "integer",
+          "description": "Retry delay (ms)"
+        },
+        "backoff_multiplier": {
+          "type": "number",
+          "description": "Backoff multiplier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Retry Settings",
+      "description": "Retry settings"
+    }
+  },
+  "title": "RETRYSETTINGS Configuration Schema",
+  "description": "JSON Schema for RetrySettings configuration"
+}

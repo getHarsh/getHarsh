@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AccessibilitySettings",
+  "definitions": {
+    "AccessibilitySettings": {
+      "properties": {
+        "high_contrast_mode": {
+          "type": "boolean",
+          "description": "Enable high contrast mode option"
+        },
+        "focus_indicators": {
+          "type": "boolean",
+          "description": "Always show focus indicators"
+        },
+        "skip_navigation": {
+          "type": "boolean",
+          "description": "Enable skip navigation links"
+        },
+        "aria_label_prefix": {
+          "type": "string",
+          "description": "ARIA label prefix for dynamic content"
+        },
+        "reduce_motion": {
+          "type": "boolean",
+          "description": "Respect prefers-reduced-motion"
+        },
+        "keyboard_hints": {
+          "type": "boolean",
+          "description": "Enable keyboard navigation hints"
+        },
+        "font_size_controls": {
+          "type": "boolean",
+          "description": "Font size adjustment controls"
+        },
+        "require_alt_text": {
+          "type": "boolean",
+          "description": "Alt text for all images (enforcement)"
+        },
+        "screen_reader_optimizations": {
+          "type": "boolean",
+          "description": "Screen reader optimizations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accessibility Settings",
+      "description": "Accessibility settings for improved user experience"
+    }
+  },
+  "title": "ACCESSIBILITYSETTINGS Configuration Schema",
+  "description": "JSON Schema for AccessibilitySettings configuration"
+}

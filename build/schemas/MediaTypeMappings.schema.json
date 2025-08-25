@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MediaTypeMappings",
+  "definitions": {
+    "MediaTypeMappings": {
+      "properties": {
+        "media_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"MEDIA_TYPE_YOUTUBE\" -> \"VideoObject\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n MEDIA TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= MEDIA TYPE MAPPINGS =============================================================================  Maps MediaType enum values to Schema.org MediaObject types"
+    }
+  },
+  "title": "MEDIATYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for MediaTypeMappings configuration"
+}

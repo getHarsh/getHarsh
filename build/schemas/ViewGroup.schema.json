@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ViewGroup",
+  "definitions": {
+    "ViewGroup": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Group label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to group by"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Group",
+      "description": "View group configuration"
+    }
+  },
+  "title": "VIEWGROUP Configuration Schema",
+  "description": "JSON Schema for ViewGroup configuration"
+}

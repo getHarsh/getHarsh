@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CrossDomainConfig",
+  "definitions": {
+    "CrossDomainConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking"
+        },
+        "auto_link_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Auto link domains"
+        },
+        "linker": {
+          "$ref": "#/definitions/website.config.gtm.LinkerConfig",
+          "description": "Linker parameters"
+        },
+        "exclude_patterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Exclude URL patterns"
+        },
+        "cookie_domain": {
+          "type": "string",
+          "description": "Cookie domain"
+        },
+        "cookie_flags": {
+          "$ref": "#/definitions/website.config.gtm.CookieFlags",
+          "description": "Cookie flags"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Domain Config",
+      "description": "Cross-domain tracking configuration"
+    },
+    "website.config.gtm.CookieFlags": {
+      "properties": {
+        "cookie_prefix": {
+          "type": "string",
+          "description": "Cookie prefix"
+        },
+        "cookie_update": {
+          "type": "boolean",
+          "description": "Cookie update"
+        },
+        "cookie_expires": {
+          "type": "integer",
+          "description": "Cookie expires (days)"
+        },
+        "cookie_path": {
+          "type": "string",
+          "description": "Cookie path"
+        },
+        "cookie_samesite": {
+          "type": "string",
+          "description": "Cookie samesite  \"Strict\", \"Lax\", \"None\""
+        },
+        "cookie_secure": {
+          "type": "boolean",
+          "description": "Cookie secure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cookie Flags",
+      "description": "Cookie configuration flags"
+    },
+    "website.config.gtm.LinkerConfig": {
+      "properties": {
+        "accept_incoming": {
+          "type": "boolean",
+          "description": "Accept incoming linker"
+        },
+        "decorate_forms": {
+          "type": "boolean",
+          "description": "Decorate forms"
+        },
+        "url_position": {
+          "type": "string",
+          "description": "URL position for linker  \"query\" or \"fragment\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linker Config",
+      "description": "Linker configuration"
+    }
+  },
+  "title": "CROSSDOMAINCONFIG Configuration Schema",
+  "description": "JSON Schema for CrossDomainConfig configuration"
+}

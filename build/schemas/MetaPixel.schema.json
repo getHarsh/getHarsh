@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MetaPixel",
+  "definitions": {
+    "MetaPixel": {
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "Pixel ID (supports environment variable)"
+        },
+        "enable_automatic_matching": {
+          "type": "boolean",
+          "description": "Enable automatic matching"
+        },
+        "enable_advanced_matching": {
+          "type": "boolean",
+          "description": "Enable advanced matching"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Meta Pixel",
+      "description": "Meta/Facebook Pixel settings"
+    }
+  },
+  "title": "METAPIXEL Configuration Schema",
+  "description": "JSON Schema for MetaPixel configuration"
+}

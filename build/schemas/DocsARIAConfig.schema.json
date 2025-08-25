@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsARIAConfig",
+  "definitions": {
+    "DocsARIAConfig": {
+      "properties": {
+        "nav_accessibility": {
+          "$ref": "#/definitions/website.config.NavigationAccessibility",
+          "description": "Navigation accessibility"
+        },
+        "code_accessibility": {
+          "$ref": "#/definitions/website.config.CodeBlockAccessibility",
+          "description": "Code block accessibility"
+        },
+        "api_accessibility": {
+          "$ref": "#/definitions/website.config.APIReferenceAccessibility",
+          "description": "API reference accessibility"
+        },
+        "search_accessibility": {
+          "$ref": "#/definitions/website.config.SearchAccessibility",
+          "description": "Search accessibility"
+        },
+        "doc_landmarks": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Documentation landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs ARIA Config",
+      "description": "Documentation-specific ARIA configuration"
+    },
+    "website.config.APIReferenceAccessibility": {
+      "properties": {
+        "parameter_tables": {
+          "type": "boolean",
+          "description": "Parameter table ARIA"
+        },
+        "response_descriptions": {
+          "type": "boolean",
+          "description": "Response code descriptions"
+        },
+        "interactive_aria": {
+          "type": "boolean",
+          "description": "Interactive example ARIA"
+        },
+        "schema_navigation": {
+          "type": "boolean",
+          "description": "Schema navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Reference Accessibility",
+      "description": "API reference accessibility"
+    },
+    "website.config.CodeBlockAccessibility": {
+      "properties": {
+        "syntax_roles": {
+          "type": "boolean",
+          "description": "Syntax role descriptions"
+        },
+        "line_announcements": {
+          "type": "boolean",
+          "description": "Line number announcements"
+        },
+        "copy_announcements": {
+          "type": "boolean",
+          "description": "Copy status announcements"
+        },
+        "language_identification": {
+          "type": "boolean",
+          "description": "Language identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Accessibility",
+      "description": "Code block accessibility"
+    },
+    "website.config.NavigationAccessibility": {
+      "properties": {
+        "sidebar_tree_aria": {
+          "type": "boolean",
+          "description": "Sidebar tree ARIA"
+        },
+        "expandable_sections": {
+          "type": "boolean",
+          "description": "Expandable sections ARIA"
+        },
+        "current_page_indication": {
+          "type": "boolean",
+          "description": "Current page indication"
+        },
+        "navigation_hints": {
+          "type": "boolean",
+          "description": "Navigation hints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Accessibility",
+      "description": "Navigation accessibility settings"
+    },
+    "website.config.SearchAccessibility": {
+      "properties": {
+        "search_input_aria": {
+          "type": "boolean",
+          "description": "Search input ARIA"
+        },
+        "results_announcement": {
+          "type": "boolean",
+          "description": "Results announcement"
+        },
+        "filter_aria": {
+          "type": "boolean",
+          "description": "Filter controls ARIA"
+        },
+        "keyboard_navigation": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Accessibility",
+      "description": "Search accessibility settings"
+    }
+  },
+  "title": "DOCSARIACONFIG Configuration Schema",
+  "description": "JSON Schema for DocsARIAConfig configuration"
+}

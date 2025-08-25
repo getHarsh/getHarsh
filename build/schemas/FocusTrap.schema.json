@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusTrap",
+  "definitions": {
+    "FocusTrap": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Trap identifier"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "initial_focus": {
+          "type": "string",
+          "description": "Initial focus"
+        },
+        "return_focus": {
+          "type": "boolean",
+          "description": "Return focus on close"
+        },
+        "allow_escape": {
+          "type": "boolean",
+          "description": "Allow escape"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Trap",
+      "description": "Focus trap configuration"
+    }
+  },
+  "title": "FOCUSTRAP Configuration Schema",
+  "description": "JSON Schema for FocusTrap configuration"
+}

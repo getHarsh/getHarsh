@@ -1,0 +1,371 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgDocsConfig",
+  "definitions": {
+    "SchemaOrgDocsConfig": {
+      "properties": {
+        "config_override": {
+          "$ref": "#/definitions/website.config.SchemaOrgConfig",
+          "description": "Override project Schema.org config"
+        },
+        "type_mappings": {
+          "$ref": "#/definitions/website.config.DocsTypeMappings",
+          "description": "Documentation type mappings"
+        },
+        "nav_settings": {
+          "$ref": "#/definitions/website.config.NavigationSchemaSettings",
+          "description": "Navigation Schema.org settings"
+        },
+        "content_enhancement": {
+          "$ref": "#/definitions/website.config.DocsContentEnhancement",
+          "description": "Content enhancement"
+        },
+        "learning_settings": {
+          "$ref": "#/definitions/website.config.LearningResourceSettings",
+          "description": "Learning resource settings"
+        },
+        "howto_settings": {
+          "$ref": "#/definitions/website.config.HowToSettings",
+          "description": "How-to guide settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Docs Config",
+      "description": "Schema.org configuration for documentation"
+    },
+    "website.config.CodeSampleEnhancement": {
+      "properties": {
+        "create_code_objects": {
+          "type": "boolean",
+          "description": "Create SoftwareSourceCode objects"
+        },
+        "include_context": {
+          "type": "boolean",
+          "description": "Include code context"
+        },
+        "link_live_examples": {
+          "type": "boolean",
+          "description": "Link to live examples"
+        },
+        "include_results": {
+          "type": "boolean",
+          "description": "Include execution results"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Sample Enhancement",
+      "description": "Code sample enhancement"
+    },
+    "website.config.DocsContentEnhancement": {
+      "properties": {
+        "code_samples": {
+          "$ref": "#/definitions/website.config.CodeSampleEnhancement",
+          "description": "Code sample enhancement"
+        },
+        "steps": {
+          "$ref": "#/definitions/website.config.StepEnhancement",
+          "description": "Step-by-step enhancement"
+        },
+        "faq": {
+          "$ref": "#/definitions/website.config.FAQEnhancement",
+          "description": "FAQ enhancement"
+        },
+        "tables": {
+          "$ref": "#/definitions/website.config.TableEnhancement",
+          "description": "Table enhancement"
+        },
+        "glossary": {
+          "$ref": "#/definitions/website.config.GlossaryEnhancement",
+          "description": "Glossary enhancement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Content Enhancement",
+      "description": "Documentation content enhancement"
+    },
+    "website.config.DocsTypeMappings": {
+      "properties": {
+        "default_type": {
+          "type": "string",
+          "description": "Default doc page type  \"TechArticle\""
+        },
+        "section_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Section-based type mapping"
+        },
+        "path_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Path pattern to type mapping"
+        },
+        "nav_style_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Navigation style to type mapping"
+        },
+        "api_format_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "API spec format to type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Type Mappings",
+      "description": "Documentation type mappings"
+    },
+    "website.config.FAQEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect Q&A pairs"
+        },
+        "create_faq_page": {
+          "type": "boolean",
+          "description": "Create FAQPage markup"
+        },
+        "group_questions": {
+          "type": "boolean",
+          "description": "Group related questions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "FAQ Enhancement",
+      "description": "FAQ enhancement"
+    },
+    "website.config.GlossaryEnhancement": {
+      "properties": {
+        "create_defined_terms": {
+          "type": "boolean",
+          "description": "Create DefinedTerm objects"
+        },
+        "link_occurrences": {
+          "type": "boolean",
+          "description": "Link term occurrences"
+        },
+        "include_relationships": {
+          "type": "boolean",
+          "description": "Include term relationships"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Glossary Enhancement",
+      "description": "Glossary enhancement"
+    },
+    "website.config.HowToSettings": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect how-to content"
+        },
+        "default_category": {
+          "type": "string",
+          "description": "Default category"
+        },
+        "include_tools": {
+          "type": "boolean",
+          "description": "Include tools/supplies"
+        },
+        "include_cost": {
+          "type": "boolean",
+          "description": "Include cost estimates"
+        },
+        "step_style": {
+          "type": "string",
+          "description": "Step numbering style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "How To Settings",
+      "description": "How-to guide settings"
+    },
+    "website.config.LearningResourceSettings": {
+      "properties": {
+        "is_learning_resource": {
+          "type": "boolean",
+          "description": "Mark as learning resource"
+        },
+        "educational_level": {
+          "type": "string",
+          "description": "Educational level"
+        },
+        "time_required": {
+          "type": "string",
+          "description": "Time required"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Prerequisites"
+        },
+        "objectives": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Learning objectives"
+        },
+        "competencies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Competencies gained"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Learning Resource Settings",
+      "description": "Learning resource settings"
+    },
+    "website.config.NavigationSchemaSettings": {
+      "properties": {
+        "create_nav_elements": {
+          "type": "boolean",
+          "description": "Create SiteNavigationElement"
+        },
+        "create_breadcrumbs": {
+          "type": "boolean",
+          "description": "Create BreadcrumbList"
+        },
+        "create_item_lists": {
+          "type": "boolean",
+          "description": "Create ItemList for sections"
+        },
+        "max_hierarchy_depth": {
+          "type": "integer",
+          "description": "Navigation hierarchy depth"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Schema Settings",
+      "description": "Navigation Schema.org settings"
+    },
+    "website.config.SchemaOrgConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Schema.org JSON-LD generation"
+        },
+        "mapping_mode": {
+          "type": "string",
+          "description": "Mapping mode (\"automatic\", \"manual\", \"hybrid\")"
+        },
+        "include_all_mappings": {
+          "type": "boolean",
+          "description": "Include all enum mappings in build"
+        },
+        "included_mappings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Specific mappings to include (if not including all)"
+        },
+        "custom_mappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom mapping overrides"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.SchemaOrgValidation",
+          "description": "Validation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Config",
+      "description": "Schema.org configuration for build-time mapping"
+    },
+    "website.config.SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    },
+    "website.config.StepEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect step lists"
+        },
+        "create_howto": {
+          "type": "boolean",
+          "description": "Create HowTo objects"
+        },
+        "include_time": {
+          "type": "boolean",
+          "description": "Include time estimates"
+        },
+        "include_difficulty": {
+          "type": "boolean",
+          "description": "Include difficulty level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Step Enhancement",
+      "description": "Step-by-step enhancement"
+    },
+    "website.config.TableEnhancement": {
+      "properties": {
+        "create_table_objects": {
+          "type": "boolean",
+          "description": "Create Table objects"
+        },
+        "include_captions": {
+          "type": "boolean",
+          "description": "Include table captions"
+        },
+        "create_datasets": {
+          "type": "boolean",
+          "description": "Create Dataset for data tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Enhancement",
+      "description": "Table enhancement"
+    }
+  },
+  "title": "SCHEMAORGDOCSCONFIG Configuration Schema",
+  "description": "JSON Schema for SchemaOrgDocsConfig configuration"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AbstractSettings",
+  "definitions": {
+    "AbstractSettings": {
+      "properties": {
+        "require_abstract": {
+          "type": "boolean",
+          "description": "Require abstract"
+        },
+        "min_length": {
+          "type": "integer",
+          "description": "Min length (words)"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Max length (words)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Abstract Settings",
+      "description": "Abstract settings"
+    }
+  },
+  "title": "ABSTRACTSETTINGS Configuration Schema",
+  "description": "JSON Schema for AbstractSettings configuration"
+}

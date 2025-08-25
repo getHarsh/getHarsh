@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ScalingControls",
+  "definitions": {
+    "ScalingControls": {
+      "properties": {
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show controls"
+        },
+        "position": {
+          "type": "string",
+          "description": "Control position"
+        },
+        "steps": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array",
+          "description": "Scaling steps"
+        },
+        "remember": {
+          "type": "boolean",
+          "description": "Remember preference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scaling Controls",
+      "description": "Scaling controls"
+    }
+  },
+  "title": "SCALINGCONTROLS Configuration Schema",
+  "description": "JSON Schema for ScalingControls configuration"
+}

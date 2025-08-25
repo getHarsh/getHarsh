@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentEnhancement",
+  "definitions": {
+    "ContentEnhancement": {
+      "properties": {
+        "auto_keywords": {
+          "type": "boolean",
+          "description": "Extract keywords from content"
+        },
+        "auto_sections": {
+          "type": "boolean",
+          "description": "Generate article sections"
+        },
+        "include_word_count": {
+          "type": "boolean",
+          "description": "Include word count"
+        },
+        "include_citations": {
+          "type": "boolean",
+          "description": "Include citations as references"
+        },
+        "media_enhancement": {
+          "$ref": "#/definitions/website.config.MediaEnhancement",
+          "description": "Media object enhancement"
+        },
+        "code_enhancement": {
+          "$ref": "#/definitions/website.config.CodeEnhancement",
+          "description": "Code block enhancement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Enhancement",
+      "description": "Content enhancement for Schema.org"
+    },
+    "website.config.CodeEnhancement": {
+      "properties": {
+        "create_code_objects": {
+          "type": "boolean",
+          "description": "Create SoftwareSourceCode objects"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include programming language"
+        },
+        "include_runtime": {
+          "type": "boolean",
+          "description": "Include runtime/platform info"
+        },
+        "link_repositories": {
+          "type": "boolean",
+          "description": "Link to repositories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Enhancement",
+      "description": "Code enhancement settings"
+    },
+    "website.config.MediaEnhancement": {
+      "properties": {
+        "enhance_images": {
+          "type": "boolean",
+          "description": "Create MediaObject for images"
+        },
+        "enhance_videos": {
+          "type": "boolean",
+          "description": "Create VideoObject for videos"
+        },
+        "enhance_audio": {
+          "type": "boolean",
+          "description": "Create AudioObject for audio"
+        },
+        "use_captions": {
+          "type": "boolean",
+          "description": "Include captions as description"
+        },
+        "include_thumbnails": {
+          "type": "boolean",
+          "description": "Generate thumbnails info"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Media Enhancement",
+      "description": "Media enhancement settings"
+    }
+  },
+  "title": "CONTENTENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for ContentEnhancement configuration"
+}

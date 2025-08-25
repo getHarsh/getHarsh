@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentCollections",
+  "definitions": {
+    "ContentCollections": {
+      "properties": {
+        "posts": {
+          "$ref": "#/definitions/website.config.CollectionConfig",
+          "description": "Posts collection settings"
+        },
+        "pages": {
+          "$ref": "#/definitions/website.config.CollectionConfig",
+          "description": "Pages collection settings"
+        },
+        "custom": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CollectionConfig"
+          },
+          "type": "object",
+          "description": "Custom collections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Collections",
+      "description": "Content collections configuration"
+    },
+    "website.config.CollectionConfig": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Collection name"
+        },
+        "label": {
+          "type": "string",
+          "description": "Collection label"
+        },
+        "folder": {
+          "type": "string",
+          "description": "Folder path (relative to repo root)"
+        },
+        "create": {
+          "type": "boolean",
+          "description": "Create new entries"
+        },
+        "slug": {
+          "type": "string",
+          "description": "Slug pattern"
+        },
+        "preview_path": {
+          "type": "string",
+          "description": "Preview path pattern"
+        },
+        "editor": {
+          "$ref": "#/definitions/website.config.EditorConfig",
+          "description": "Editor configuration"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Summary field pattern"
+        },
+        "sort": {
+          "$ref": "#/definitions/website.config.SortConfig",
+          "description": "Sort configuration"
+        },
+        "view_filters": {
+          "items": {
+            "$ref": "#/definitions/website.config.ViewFilter"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "View filters"
+        },
+        "view_groups": {
+          "items": {
+            "$ref": "#/definitions/website.config.ViewGroup"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "View groups"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Collection Config",
+      "description": "Collection configuration"
+    },
+    "website.config.EditorConfig": {
+      "properties": {
+        "preview": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editor Config",
+      "description": "Editor configuration"
+    },
+    "website.config.SortConfig": {
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field to sort by"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Sort direction (\"asc\", \"desc\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sort Config",
+      "description": "Sort configuration"
+    },
+    "website.config.ViewFilter": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Filter label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to filter"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Filter pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Filter",
+      "description": "View filter configuration"
+    },
+    "website.config.ViewGroup": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Group label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to group by"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Group",
+      "description": "View group configuration"
+    }
+  },
+  "title": "CONTENTCOLLECTIONS Configuration Schema",
+  "description": "JSON Schema for ContentCollections configuration"
+}

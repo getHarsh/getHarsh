@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AffiliationTypeMappings",
+  "definitions": {
+    "AffiliationTypeMappings": {
+      "properties": {
+        "affiliation_to_role": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org role type e.g., \"AFFILIATION_EMPLOYEE\" -> \"EmployeeRole\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n AFFILIATION TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= AFFILIATION TYPE MAPPINGS =============================================================================  Maps AffiliationType enum values to Schema.org Role types"
+    }
+  },
+  "title": "AFFILIATIONTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for AffiliationTypeMappings configuration"
+}

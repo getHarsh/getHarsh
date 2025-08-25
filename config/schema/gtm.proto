@@ -1,0 +1,1032 @@
+syntax = "proto3";
+
+package website.config.gtm;
+
+option go_package = "github.com/getHarsh/getHarsh/config/gtm";
+
+// =============================================================================
+// GOOGLE TAG MANAGER CONFIGURATION PROTO
+// =============================================================================
+// Defines comprehensive GTM integration for the ecosystem with entity-aware
+// tracking, multi-touch attribution, and consent mode v2 support.
+//
+// This schema enables:
+// - Entity-specific GTM containers (RTEPL vs DSPL)
+// - Cross-domain tracking across the ecosystem
+// - GA4 enhanced ecommerce and conversions
+// - Custom event tracking with data layer
+// - Consent mode v2 integration
+// - Server-side tagging support
+//
+// Related Documentation:
+// - Implementation Guide: ../GTM-EXAMPLES.md
+// - Mappings: gtm-mappings.yml
+// - Parent Schema: ecosystem.proto
+// =============================================================================
+
+// GTMConfig defines the complete Google Tag Manager configuration
+message GTMConfig {
+  // GTM container configuration
+  GTMContainer container = 1;
+  
+  // Data layer configuration
+  DataLayerConfig data_layer = 2;
+  
+  // Event tracking configuration
+  EventTracking events = 3;
+  
+  // Enhanced ecommerce configuration
+  EnhancedEcommerce ecommerce = 4;
+  
+  // Custom dimensions and metrics
+  CustomDimensions custom_dimensions = 5;
+  
+  // Consent mode v2 integration
+  ConsentModeIntegration consent_mode = 6;
+  
+  // Cross-domain tracking configuration
+  CrossDomainConfig cross_domain = 7;
+  
+  // Server-side tagging configuration
+  ServerSideTagging server_side = 8;
+  
+  // Debug and preview settings
+  DebugSettings debug = 9;
+  
+  // Entity-specific overrides
+  map<string, EntityGTMConfig> entity_configs = 10;
+}
+
+// GTM container configuration
+message GTMContainer {
+  // Container ID (e.g., "GTM-XXXXXX")
+  string container_id = 1;
+  
+  // Container environment (leave empty for production)
+  string environment = 2;
+  
+  // Authentication token for preview mode
+  string auth_token = 3;
+  
+  // Preview ID for testing
+  string preview_id = 4;
+  
+  // Load GTM script in head vs body
+  bool load_in_head = 5;
+  
+  // Enable noscript fallback
+  bool enable_noscript = 6;
+  
+  // Custom domain for GTM script (for China, etc.)
+  string custom_domain = 7;
+  
+  // Container loading strategy
+  LoadingStrategy loading_strategy = 8;
+}
+
+// Loading strategy for GTM
+enum LoadingStrategy {
+  LOADING_STRATEGY_UNSPECIFIED = 0;
+  LOADING_STRATEGY_SYNC = 1;      // Synchronous loading
+  LOADING_STRATEGY_ASYNC = 2;     // Asynchronous loading (default)
+  LOADING_STRATEGY_DEFER = 3;     // Deferred loading
+  LOADING_STRATEGY_LAZY = 4;      // Lazy load on interaction
+}
+
+// Data layer configuration
+message DataLayerConfig {
+  // Data layer variable name (default: "dataLayer")
+  string variable_name = 1;
+  
+  // Initial data layer values
+  map<string, string> initial_values = 2;
+  
+  // Page metadata to include
+  PageMetadata page_metadata = 3;
+  
+  // User properties to track
+  UserProperties user_properties = 4;
+  
+  // Entity properties to track
+  EntityProperties entity_properties = 5;
+  
+  // Content properties to track
+  ContentProperties content_properties = 6;
+  
+  // Enable enhanced link attribution
+  bool enhanced_link_attribution = 7;
+  
+  // Custom data layer pushes
+  repeated DataLayerPush custom_pushes = 8;
+}
+
+// Page metadata for data layer
+message PageMetadata {
+  // Include page title
+  bool include_title = 1;
+  
+  // Include page path
+  bool include_path = 2;
+  
+  // Include page type (from Schema.org)
+  bool include_type = 3;
+  
+  // Include page category
+  bool include_category = 4;
+  
+  // Include page author
+  bool include_author = 5;
+  
+  // Include publish date
+  bool include_publish_date = 6;
+  
+  // Include modified date
+  bool include_modified_date = 7;
+  
+  // Include tags
+  bool include_tags = 8;
+  
+  // Include language
+  bool include_language = 9;
+  
+  // Include breadcrumbs
+  bool include_breadcrumbs = 10;
+}
+
+// User properties for tracking
+message UserProperties {
+  // Track user ID (hashed)
+  bool track_user_id = 1;
+  
+  // Track user type (visitor, member, etc.)
+  bool track_user_type = 2;
+  
+  // Track user segment
+  bool track_user_segment = 3;
+  
+  // Track login status
+  bool track_login_status = 4;
+  
+  // Track subscription status
+  bool track_subscription_status = 5;
+  
+  // Custom user properties
+  map<string, string> custom_properties = 6;
+}
+
+// Entity properties for multi-entity tracking
+message EntityProperties {
+  // Track legal entity (RTEPL, DSPL)
+  bool track_legal_entity = 1;
+  
+  // Track brand/domain
+  bool track_brand = 2;
+  
+  // Track project (if applicable)
+  bool track_project = 3;
+  
+  // Track content source (domain, blog, project)
+  bool track_content_source = 4;
+  
+  // Track cross-entity navigation
+  bool track_cross_entity = 5;
+}
+
+// Content properties for tracking
+message ContentProperties {
+  // Track content length
+  bool track_content_length = 1;
+  
+  // Track read time
+  bool track_read_time = 2;
+  
+  // Track scroll depth
+  bool track_scroll_depth = 3;
+  
+  // Track content format (article, video, etc.)
+  bool track_content_format = 4;
+  
+  // Track content engagement
+  bool track_engagement = 5;
+}
+
+// Custom data layer push configuration
+message DataLayerPush {
+  // Event name to push
+  string event_name = 1;
+  
+  // Event parameters
+  map<string, string> parameters = 2;
+  
+  // Trigger conditions
+  repeated TriggerCondition triggers = 3;
+  
+  // Delay in milliseconds
+  int32 delay_ms = 4;
+}
+
+// Trigger condition for events
+message TriggerCondition {
+  // Trigger type
+  TriggerType type = 1;
+  
+  // Trigger value (selector, URL pattern, etc.)
+  string value = 2;
+  
+  // Additional conditions
+  map<string, string> conditions = 3;
+}
+
+// Trigger types
+enum TriggerType {
+  TRIGGER_TYPE_UNSPECIFIED = 0;
+  TRIGGER_TYPE_PAGE_VIEW = 1;
+  TRIGGER_TYPE_DOM_READY = 2;
+  TRIGGER_TYPE_WINDOW_LOADED = 3;
+  TRIGGER_TYPE_CLICK = 4;
+  TRIGGER_TYPE_FORM_SUBMIT = 5;
+  TRIGGER_TYPE_SCROLL = 6;
+  TRIGGER_TYPE_TIMER = 7;
+  TRIGGER_TYPE_CUSTOM = 8;
+}
+
+// Event tracking configuration
+message EventTracking {
+  // Standard events configuration
+  StandardEvents standard_events = 1;
+  
+  // Custom events configuration
+  repeated CustomEvent custom_events = 2;
+  
+  // Conversion events
+  repeated ConversionEvent conversions = 3;
+  
+  // Enhanced measurement
+  EnhancedMeasurement enhanced_measurement = 4;
+}
+
+// Standard GA4 events configuration
+message StandardEvents {
+  // Page view tracking
+  PageViewTracking page_view = 1;
+  
+  // User engagement tracking
+  UserEngagementTracking engagement = 2;
+  
+  // Search tracking
+  SearchTracking search = 3;
+  
+  // Video tracking
+  VideoTracking video = 4;
+  
+  // File download tracking
+  FileDownloadTracking downloads = 5;
+  
+  // Outbound link tracking
+  OutboundLinkTracking outbound = 6;
+}
+
+// Page view tracking configuration
+message PageViewTracking {
+  // Enable page view tracking
+  bool enabled = 1;
+  
+  // Track single page app navigation
+  bool track_spa_navigation = 2;
+  
+  // Include custom parameters
+  map<string, string> custom_parameters = 3;
+}
+
+// User engagement tracking
+message UserEngagementTracking {
+  // Enable engagement tracking
+  bool enabled = 1;
+  
+  // Engagement time threshold (seconds)
+  int32 engagement_threshold = 2;
+  
+  // Track rage clicks
+  bool track_rage_clicks = 3;
+  
+  // Track dead clicks
+  bool track_dead_clicks = 4;
+}
+
+// Search tracking configuration
+message SearchTracking {
+  // Enable search tracking
+  bool enabled = 1;
+  
+  // Search query parameter
+  string query_parameter = 2;
+  
+  // Track search filters
+  bool track_filters = 3;
+  
+  // Track search results
+  bool track_results = 4;
+}
+
+// Video tracking configuration
+message VideoTracking {
+  // Enable video tracking
+  bool enabled = 1;
+  
+  // Track YouTube videos
+  bool track_youtube = 2;
+  
+  // Track HTML5 videos
+  bool track_html5 = 3;
+  
+  // Video interaction thresholds (percentages)
+  repeated int32 progress_thresholds = 4;
+}
+
+// File download tracking
+message FileDownloadTracking {
+  // Enable download tracking
+  bool enabled = 1;
+  
+  // File extensions to track
+  repeated string tracked_extensions = 2;
+  
+  // Track download source
+  bool track_source = 3;
+}
+
+// Outbound link tracking
+message OutboundLinkTracking {
+  // Enable outbound tracking
+  bool enabled = 1;
+  
+  // Excluded domains (ecosystem domains)
+  repeated string excluded_domains = 2;
+  
+  // Track link context
+  bool track_context = 3;
+}
+
+// Enhanced measurement configuration
+message EnhancedMeasurement {
+  // Enable all enhanced measurements
+  bool enable_all = 1;
+  
+  // Scroll tracking
+  ScrollTracking scroll = 2;
+  
+  // Form interaction tracking
+  FormTracking forms = 3;
+  
+  // Site search tracking
+  bool site_search = 4;
+  
+  // Video engagement
+  bool video_engagement = 5;
+  
+  // File downloads
+  bool file_downloads = 6;
+}
+
+// Scroll tracking configuration
+message ScrollTracking {
+  // Enable scroll tracking
+  bool enabled = 1;
+  
+  // Scroll depth thresholds (percentages)
+  repeated int32 thresholds = 2;
+  
+  // Track time to scroll
+  bool track_time_to_scroll = 3;
+}
+
+// Form tracking configuration
+message FormTracking {
+  // Enable form tracking
+  bool enabled = 1;
+  
+  // Track form starts
+  bool track_starts = 2;
+  
+  // Track form abandonment
+  bool track_abandonment = 3;
+  
+  // Track field interactions
+  bool track_field_interactions = 4;
+  
+  // Excluded form selectors
+  repeated string excluded_forms = 5;
+}
+
+// Custom event configuration
+message CustomEvent {
+  // Event name
+  string event_name = 1;
+  
+  // Event category
+  string category = 2;
+  
+  // Event parameters
+  map<string, EventParameter> parameters = 3;
+  
+  // Trigger configuration
+  repeated EventTrigger triggers = 4;
+  
+  // Event conditions
+  repeated EventCondition conditions = 5;
+  
+  // Send to GA4
+  bool send_to_ga4 = 6;
+  
+  // Custom destinations
+  repeated string custom_destinations = 7;
+}
+
+// Event parameter configuration
+message EventParameter {
+  // Parameter type
+  ParameterType type = 1;
+  
+  // Parameter value or source
+  string value = 2;
+  
+  // Required parameter
+  bool required = 3;
+  
+  // Default value if missing
+  string default_value = 4;
+}
+
+// Parameter types
+enum ParameterType {
+  PARAMETER_TYPE_UNSPECIFIED = 0;
+  PARAMETER_TYPE_STATIC = 1;      // Static value
+  PARAMETER_TYPE_DYNAMIC = 2;     // From data layer
+  PARAMETER_TYPE_DOM = 3;         // From DOM element
+  PARAMETER_TYPE_URL = 4;         // From URL
+  PARAMETER_TYPE_COOKIE = 5;      // From cookie
+  PARAMETER_TYPE_JS_VARIABLE = 6; // From JavaScript variable
+}
+
+// Event trigger configuration
+message EventTrigger {
+  // Trigger type
+  TriggerType type = 1;
+  
+  // Trigger details
+  TriggerDetails details = 2;
+  
+  // Debounce delay (ms)
+  int32 debounce_ms = 3;
+}
+
+// Trigger details
+message TriggerDetails {
+  // CSS selector for clicks
+  string selector = 1;
+  
+  // URL pattern for page views
+  string url_pattern = 2;
+  
+  // Scroll percentage
+  int32 scroll_percentage = 3;
+  
+  // Timer interval (ms)
+  int32 timer_interval = 4;
+  
+  // Custom JavaScript condition
+  string js_condition = 5;
+}
+
+// Event condition
+message EventCondition {
+  // Condition variable
+  string variable = 1;
+  
+  // Condition operator
+  ConditionOperator operator = 2;
+  
+  // Condition value
+  string value = 3;
+}
+
+// Condition operators
+enum ConditionOperator {
+  CONDITION_OPERATOR_UNSPECIFIED = 0;
+  CONDITION_OPERATOR_EQUALS = 1;
+  CONDITION_OPERATOR_NOT_EQUALS = 2;
+  CONDITION_OPERATOR_CONTAINS = 3;
+  CONDITION_OPERATOR_NOT_CONTAINS = 4;
+  CONDITION_OPERATOR_STARTS_WITH = 5;
+  CONDITION_OPERATOR_ENDS_WITH = 6;
+  CONDITION_OPERATOR_MATCHES_REGEX = 7;
+  CONDITION_OPERATOR_GREATER_THAN = 8;
+  CONDITION_OPERATOR_LESS_THAN = 9;
+}
+
+// Conversion event configuration
+message ConversionEvent {
+  // Conversion name
+  string conversion_name = 1;
+  
+  // Conversion value
+  ConversionValue value = 2;
+  
+  // Conversion currency
+  string currency = 3;
+  
+  // Send to Google Ads
+  bool send_to_google_ads = 4;
+  
+  // Google Ads conversion ID
+  string google_ads_conversion_id = 5;
+  
+  // Google Ads conversion label
+  string google_ads_conversion_label = 6;
+  
+  // Custom parameters
+  map<string, string> custom_parameters = 7;
+}
+
+// Conversion value configuration
+message ConversionValue {
+  // Value type
+  ValueType type = 1;
+  
+  // Static value
+  double static_value = 2;
+  
+  // Dynamic value source
+  string dynamic_source = 3;
+  
+  // Default value
+  double default_value = 4;
+}
+
+// Value types
+enum ValueType {
+  VALUE_TYPE_UNSPECIFIED = 0;
+  VALUE_TYPE_STATIC = 1;
+  VALUE_TYPE_DYNAMIC = 2;
+  VALUE_TYPE_CALCULATED = 3;
+}
+
+// Enhanced ecommerce configuration
+message EnhancedEcommerce {
+  // Enable enhanced ecommerce
+  bool enabled = 1;
+  
+  // Data layer version (GA4 or UA)
+  string data_layer_version = 2;
+  
+  // Currency code
+  string currency_code = 3;
+  
+  // Product tracking
+  ProductTracking products = 4;
+  
+  // Cart tracking
+  CartTracking cart = 5;
+  
+  // Checkout tracking
+  CheckoutTracking checkout = 6;
+  
+  // Purchase tracking
+  PurchaseTracking purchase = 7;
+  
+  // Refund tracking
+  RefundTracking refunds = 8;
+  
+  // Promotion tracking
+  PromotionTracking promotions = 9;
+}
+
+// Product tracking configuration
+message ProductTracking {
+  // Track product impressions
+  bool track_impressions = 1;
+  
+  // Track product clicks
+  bool track_clicks = 2;
+  
+  // Track product details
+  bool track_details = 3;
+  
+  // Product list names
+  map<string, string> list_names = 4;
+}
+
+// Cart tracking configuration
+message CartTracking {
+  // Track add to cart
+  bool track_add_to_cart = 1;
+  
+  // Track remove from cart
+  bool track_remove_from_cart = 2;
+  
+  // Track cart views
+  bool track_cart_views = 3;
+}
+
+// Checkout tracking configuration
+message CheckoutTracking {
+  // Track checkout steps
+  bool track_steps = 1;
+  
+  // Checkout step names
+  repeated string step_names = 2;
+  
+  // Track checkout options
+  bool track_options = 3;
+}
+
+// Purchase tracking configuration
+message PurchaseTracking {
+  // Track purchases
+  bool enabled = 1;
+  
+  // Include transaction details
+  bool include_transaction_details = 2;
+  
+  // Include product details
+  bool include_product_details = 3;
+}
+
+// Refund tracking configuration
+message RefundTracking {
+  // Track full refunds
+  bool track_full_refunds = 1;
+  
+  // Track partial refunds
+  bool track_partial_refunds = 2;
+}
+
+// Promotion tracking configuration
+message PromotionTracking {
+  // Track promotion impressions
+  bool track_impressions = 1;
+  
+  // Track promotion clicks
+  bool track_clicks = 2;
+}
+
+// Custom dimensions configuration
+message CustomDimensions {
+  // User-scoped dimensions
+  repeated CustomDimension user_dimensions = 1;
+  
+  // Event-scoped dimensions
+  repeated CustomDimension event_dimensions = 2;
+  
+  // Custom metrics
+  repeated CustomMetric metrics = 3;
+  
+  // Entity tracking dimension
+  EntityDimension entity_dimension = 4;
+}
+
+// Custom dimension configuration
+message CustomDimension {
+  // Dimension name
+  string name = 1;
+  
+  // Dimension index (GA4)
+  int32 index = 2;
+  
+  // Dimension scope
+  DimensionScope scope = 3;
+  
+  // Value source
+  string value_source = 4;
+  
+  // Default value
+  string default_value = 5;
+}
+
+// Dimension scope
+enum DimensionScope {
+  DIMENSION_SCOPE_UNSPECIFIED = 0;
+  DIMENSION_SCOPE_USER = 1;
+  DIMENSION_SCOPE_SESSION = 2;
+  DIMENSION_SCOPE_EVENT = 3;
+  DIMENSION_SCOPE_ITEM = 4;
+}
+
+// Custom metric configuration
+message CustomMetric {
+  // Metric name
+  string name = 1;
+  
+  // Metric index
+  int32 index = 2;
+  
+  // Metric type
+  MetricType type = 3;
+  
+  // Unit of measurement
+  string unit = 4;
+}
+
+// Metric types
+enum MetricType {
+  METRIC_TYPE_UNSPECIFIED = 0;
+  METRIC_TYPE_NUMBER = 1;
+  METRIC_TYPE_CURRENCY = 2;
+  METRIC_TYPE_TIME = 3;
+  METRIC_TYPE_PERCENTAGE = 4;
+}
+
+// Entity dimension configuration
+message EntityDimension {
+  // Legal entity dimension
+  string legal_entity_dimension = 1;
+  
+  // Brand dimension
+  string brand_dimension = 2;
+  
+  // Project dimension
+  string project_dimension = 3;
+  
+  // Content source dimension
+  string source_dimension = 4;
+}
+
+// Consent mode v2 integration
+message ConsentModeIntegration {
+  // Enable consent mode
+  bool enabled = 1;
+  
+  // Default consent state
+  DefaultConsentState default_state = 2;
+  
+  // Consent update triggers
+  ConsentUpdateTriggers update_triggers = 3;
+  
+  // Regional consent settings
+  repeated RegionalConsent regional_settings = 4;
+  
+  // Wait for consent update (ms)
+  int32 wait_for_update_ms = 5;
+  
+  // URL passthrough
+  bool url_passthrough = 6;
+  
+  // Ads data redaction
+  bool ads_data_redaction = 7;
+}
+
+// Default consent state
+message DefaultConsentState {
+  // Analytics storage
+  ConsentState analytics_storage = 1;
+  
+  // Ad storage
+  ConsentState ad_storage = 2;
+  
+  // Ad user data
+  ConsentState ad_user_data = 3;
+  
+  // Ad personalization
+  ConsentState ad_personalization = 4;
+  
+  // Functionality storage
+  ConsentState functionality_storage = 5;
+  
+  // Personalization storage
+  ConsentState personalization_storage = 6;
+  
+  // Security storage
+  ConsentState security_storage = 7;
+}
+
+// Consent state
+enum ConsentState {
+  CONSENT_STATE_UNSPECIFIED = 0;
+  CONSENT_STATE_GRANTED = 1;
+  CONSENT_STATE_DENIED = 2;
+}
+
+// Consent update triggers
+message ConsentUpdateTriggers {
+  // Update on consent given
+  ConsentEventTrigger on_consent_given = 1;
+  
+  // Update on consent withdrawn
+  ConsentEventTrigger on_consent_withdrawn = 2;
+  
+  // Update on consent changed
+  ConsentEventTrigger on_consent_changed = 3;
+}
+
+// Consent event trigger
+message ConsentEventTrigger {
+  // GTM event name
+  string event_name = 1;
+  
+  // Consent types to update
+  repeated string consent_types = 2;
+}
+
+// Regional consent configuration
+message RegionalConsent {
+  // Region code (e.g., "EU", "US-CA")
+  string region = 1;
+  
+  // Regional consent state
+  DefaultConsentState consent_state = 2;
+  
+  // Region detection method
+  RegionDetection detection = 3;
+}
+
+// Region detection method
+message RegionDetection {
+  // Detection type
+  DetectionType type = 1;
+  
+  // Custom detection function
+  string custom_function = 2;
+}
+
+// Detection types
+enum DetectionType {
+  DETECTION_TYPE_UNSPECIFIED = 0;
+  DETECTION_TYPE_IP_BASED = 1;
+  DETECTION_TYPE_TIMEZONE = 2;
+  DETECTION_TYPE_BROWSER_LOCALE = 3;
+  DETECTION_TYPE_CUSTOM = 4;
+}
+
+// Cross-domain tracking configuration
+message CrossDomainConfig {
+  // Enable cross-domain tracking
+  bool enabled = 1;
+  
+  // Auto link domains
+  repeated string auto_link_domains = 2;
+  
+  // Linker parameters
+  LinkerConfig linker = 3;
+  
+  // Exclude URL patterns
+  repeated string exclude_patterns = 4;
+  
+  // Cookie domain
+  string cookie_domain = 5;
+  
+  // Cookie flags
+  CookieFlags cookie_flags = 6;
+}
+
+// Linker configuration
+message LinkerConfig {
+  // Accept incoming linker
+  bool accept_incoming = 1;
+  
+  // Decorate forms
+  bool decorate_forms = 2;
+  
+  // URL position for linker
+  string url_position = 3;  // "query" or "fragment"
+}
+
+// Cookie configuration flags
+message CookieFlags {
+  // Cookie prefix
+  string cookie_prefix = 1;
+  
+  // Cookie update
+  bool cookie_update = 2;
+  
+  // Cookie expires (days)
+  int32 cookie_expires = 3;
+  
+  // Cookie path
+  string cookie_path = 4;
+  
+  // Cookie samesite
+  string cookie_samesite = 5;  // "Strict", "Lax", "None"
+  
+  // Cookie secure
+  bool cookie_secure = 6;
+}
+
+// Server-side tagging configuration
+message ServerSideTagging {
+  // Enable server-side tagging
+  bool enabled = 1;
+  
+  // Server container URL
+  string server_container_url = 2;
+  
+  // Transport method
+  TransportMethod transport = 3;
+  
+  // First-party collection
+  FirstPartyConfig first_party = 4;
+  
+  // Client identification
+  ClientIdentification client_id = 5;
+}
+
+// Transport method for server-side
+enum TransportMethod {
+  TRANSPORT_METHOD_UNSPECIFIED = 0;
+  TRANSPORT_METHOD_GTAG = 1;       // Via gtag
+  TRANSPORT_METHOD_GTM = 2;        // Via GTM
+  TRANSPORT_METHOD_CUSTOM = 3;     // Custom implementation
+}
+
+// First-party collection configuration
+message FirstPartyConfig {
+  // Collection endpoint
+  string endpoint = 1;
+  
+  // Custom headers
+  map<string, string> headers = 2;
+  
+  // Batch requests
+  bool batch_requests = 3;
+  
+  // Batch size
+  int32 batch_size = 4;
+}
+
+// Client identification for server-side
+message ClientIdentification {
+  // Client ID cookie name
+  string cookie_name = 1;
+  
+  // Generate if missing
+  bool generate_if_missing = 2;
+  
+  // Hash client ID
+  bool hash_client_id = 3;
+}
+
+// Debug settings
+message DebugSettings {
+  // Enable debug mode
+  bool enabled = 1;
+  
+  // Log level
+  LogLevel log_level = 2;
+  
+  // Console logging
+  bool console_logging = 3;
+  
+  // Debug events
+  repeated string debug_events = 4;
+  
+  // Validation mode
+  bool validation_mode = 5;
+  
+  // Preview mode
+  PreviewMode preview = 6;
+}
+
+// Log levels
+enum LogLevel {
+  LOG_LEVEL_UNSPECIFIED = 0;
+  LOG_LEVEL_ERROR = 1;
+  LOG_LEVEL_WARNING = 2;
+  LOG_LEVEL_INFO = 3;
+  LOG_LEVEL_DEBUG = 4;
+  LOG_LEVEL_VERBOSE = 5;
+}
+
+// Preview mode configuration
+message PreviewMode {
+  // Enable preview
+  bool enabled = 1;
+  
+  // Preview cookie name
+  string cookie_name = 2;
+  
+  // Share preview URL
+  bool share_preview_url = 3;
+}
+
+// Entity-specific GTM configuration
+message EntityGTMConfig {
+  // Entity name (e.g., "RTEPL", "DSPL")
+  string entity_name = 1;
+  
+  // Override container ID
+  string container_id_override = 2;
+  
+  // Entity-specific events
+  repeated CustomEvent entity_events = 3;
+  
+  // Entity-specific dimensions
+  map<string, string> entity_dimensions = 4;
+  
+  // Entity-specific conversions
+  repeated ConversionEvent entity_conversions = 5;
+  
+  // Google Ads account ID
+  string google_ads_account = 6;
+  
+  // GA4 measurement ID override
+  string ga4_measurement_id = 7;
+}

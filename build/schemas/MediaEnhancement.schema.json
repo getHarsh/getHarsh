@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MediaEnhancement",
+  "definitions": {
+    "MediaEnhancement": {
+      "properties": {
+        "enhance_images": {
+          "type": "boolean",
+          "description": "Create MediaObject for images"
+        },
+        "enhance_videos": {
+          "type": "boolean",
+          "description": "Create VideoObject for videos"
+        },
+        "enhance_audio": {
+          "type": "boolean",
+          "description": "Create AudioObject for audio"
+        },
+        "use_captions": {
+          "type": "boolean",
+          "description": "Include captions as description"
+        },
+        "include_thumbnails": {
+          "type": "boolean",
+          "description": "Generate thumbnails info"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Media Enhancement",
+      "description": "Media enhancement settings"
+    }
+  },
+  "title": "MEDIAENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for MediaEnhancement configuration"
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GatsbyDecapIntegration",
+  "definitions": {
+    "GatsbyDecapIntegration": {
+      "properties": {
+        "enable_preview": {
+          "type": "boolean",
+          "description": "Enable Gatsby preview with Decap CMS"
+        },
+        "preview_update_delay": {
+          "type": "integer",
+          "description": "Preview update delay (milliseconds)"
+        },
+        "real_time_preview": {
+          "type": "boolean",
+          "description": "Enable real-time preview"
+        },
+        "preview_templates_path": {
+          "type": "string",
+          "description": "Custom preview templates path"
+        },
+        "widget_scripts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Widget scripts to load"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles to inject"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Decap Integration",
+      "description": "Gatsby + Decap CMS integration settings"
+    }
+  },
+  "title": "GATSBYDECAPINTEGRATION Configuration Schema",
+  "description": "JSON Schema for GatsbyDecapIntegration configuration"
+}

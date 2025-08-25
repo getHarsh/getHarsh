@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleConsentState",
+  "definitions": {
+    "GoogleConsentState": {
+      "properties": {
+        "analytics_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "ad_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "ad_user_data": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "ad_personalization": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "functionality_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "personalization_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "security_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent State",
+      "description": "Google consent state"
+    }
+  },
+  "title": "GOOGLECONSENTSTATE Configuration Schema",
+  "description": "JSON Schema for GoogleConsentState configuration"
+}

@@ -1,0 +1,1750 @@
+syntax = "proto3";
+
+package website.config.aria;
+
+option go_package = "github.com/getHarsh/getHarsh/config/aria";
+
+// =============================================================================
+// ARIA & ACCESSIBILITY CONFIGURATION PROTO
+// =============================================================================
+// Defines comprehensive accessibility configuration following WCAG 2.1 AA
+// standards with ARIA (Accessible Rich Internet Applications) support.
+//
+// This schema enables:
+// - WCAG 2.1 AA compliance
+// - Screen reader optimization
+// - Keyboard navigation enhancement
+// - Focus management
+// - Color contrast enforcement
+// - Alternative text management
+// - Semantic HTML structure
+// - Assistive technology support
+//
+// Related Documentation:
+// - Implementation Guide: ../ARIA-EXAMPLES.md
+// - Mappings: aria-mappings.yml
+// - Parent Schema: ecosystem.proto
+// =============================================================================
+
+// ARIAConfig defines the complete accessibility configuration
+message ARIAConfig {
+  // Core accessibility settings
+  AccessibilityCore core = 1;
+  
+  // ARIA attributes configuration
+  ARIAAttributes aria = 2;
+  
+  // Keyboard navigation settings
+  KeyboardNavigation keyboard = 3;
+  
+  // Focus management configuration
+  FocusManagement focus = 4;
+  
+  // Visual accessibility settings
+  VisualAccessibility visual = 5;
+  
+  // Audio accessibility settings
+  AudioAccessibility audio = 6;
+  
+  // Content accessibility settings
+  ContentAccessibility content = 7;
+  
+  // Navigation accessibility
+  NavigationAccessibility navigation = 8;
+  
+  // Form accessibility
+  FormAccessibility forms = 9;
+  
+  // Interactive elements accessibility
+  InteractiveAccessibility interactive = 10;
+  
+  // Testing and validation
+  AccessibilityTesting testing = 11;
+  
+  // Assistive technology support
+  AssistiveTechnology assistive = 12;
+}
+
+// Core accessibility settings
+message AccessibilityCore {
+  // Enable accessibility features
+  bool enabled = 1;
+  
+  // WCAG compliance level
+  WCAGLevel compliance_level = 2;
+  
+  // Language settings
+  LanguageSettings language = 3;
+  
+  // Skip links configuration
+  SkipLinks skip_links = 4;
+  
+  // Landmarks configuration
+  Landmarks landmarks = 5;
+  
+  // Live regions configuration
+  LiveRegions live_regions = 6;
+  
+  // Error handling
+  ErrorHandling error_handling = 7;
+  
+  // Accessibility statement
+  AccessibilityStatement statement = 8;
+}
+
+// WCAG compliance levels
+enum WCAGLevel {
+  WCAG_LEVEL_UNSPECIFIED = 0;
+  WCAG_LEVEL_A = 1;
+  WCAG_LEVEL_AA = 2;
+  WCAG_LEVEL_AAA = 3;
+}
+
+// Language settings for accessibility
+message LanguageSettings {
+  // Primary language code
+  string primary_language = 1;
+  
+  // Language direction (ltr/rtl)
+  string direction = 2;
+  
+  // Multi-language support
+  bool multi_language = 3;
+  
+  // Language switcher ARIA
+  string language_switcher_label = 4;
+  
+  // Hreflang implementation
+  bool hreflang_enabled = 5;
+}
+
+// Skip links configuration
+message SkipLinks {
+  // Enable skip links
+  bool enabled = 1;
+  
+  // Skip link items
+  repeated SkipLink links = 2;
+  
+  // Skip link styling
+  SkipLinkStyling styling = 3;
+}
+
+// Individual skip link
+message SkipLink {
+  // Link text
+  string text = 1;
+  
+  // Target element ID
+  string target = 2;
+  
+  // Keyboard shortcut
+  string shortcut = 3;
+  
+  // ARIA label
+  string aria_label = 4;
+}
+
+// Skip link styling
+message SkipLinkStyling {
+  // Show on focus only
+  bool show_on_focus = 1;
+  
+  // Position
+  string position = 2;
+  
+  // Z-index
+  int32 z_index = 3;
+  
+  // Custom CSS class
+  string css_class = 4;
+}
+
+// Landmarks configuration
+message Landmarks {
+  // Enable ARIA landmarks
+  bool enabled = 1;
+  
+  // Main landmark
+  LandmarkConfig main = 2;
+  
+  // Navigation landmark
+  LandmarkConfig navigation = 3;
+  
+  // Banner landmark
+  LandmarkConfig banner = 4;
+  
+  // Complementary landmark
+  LandmarkConfig complementary = 5;
+  
+  // Content info landmark
+  LandmarkConfig contentinfo = 6;
+  
+  // Search landmark
+  LandmarkConfig search = 7;
+  
+  // Custom landmarks
+  repeated CustomLandmark custom = 8;
+}
+
+// Landmark configuration
+message LandmarkConfig {
+  // Enable this landmark
+  bool enabled = 1;
+  
+  // ARIA label
+  string aria_label = 2;
+  
+  // ARIA labelledby
+  string aria_labelledby = 3;
+  
+  // Multiple instances handling
+  bool multiple_allowed = 4;
+}
+
+// Custom landmark
+message CustomLandmark {
+  // Landmark role
+  string role = 1;
+  
+  // Landmark label
+  string label = 2;
+  
+  // CSS selector
+  string selector = 3;
+}
+
+// Live regions configuration
+message LiveRegions {
+  // Enable live regions
+  bool enabled = 1;
+  
+  // Status messages
+  LiveRegionConfig status = 2;
+  
+  // Alert messages
+  LiveRegionConfig alerts = 3;
+  
+  // Progress indicators
+  LiveRegionConfig progress = 4;
+  
+  // Notifications
+  LiveRegionConfig notifications = 5;
+  
+  // Custom live regions
+  repeated CustomLiveRegion custom = 6;
+}
+
+// Live region configuration
+message LiveRegionConfig {
+  // Enable this live region
+  bool enabled = 1;
+  
+  // Politeness level
+  PolitenessLevel politeness = 2;
+  
+  // Atomic updates
+  bool atomic = 3;
+  
+  // Relevant changes
+  string relevant = 4;
+}
+
+// Politeness levels for live regions
+enum PolitenessLevel {
+  POLITENESS_LEVEL_UNSPECIFIED = 0;
+  POLITENESS_LEVEL_OFF = 1;
+  POLITENESS_LEVEL_POLITE = 2;
+  POLITENESS_LEVEL_ASSERTIVE = 3;
+}
+
+// Custom live region
+message CustomLiveRegion {
+  // Region identifier
+  string id = 1;
+  
+  // CSS selector
+  string selector = 2;
+  
+  // Configuration
+  LiveRegionConfig config = 3;
+}
+
+// Error handling for accessibility
+message ErrorHandling {
+  // Announce errors to screen readers
+  bool announce_errors = 1;
+  
+  // Error message format
+  string error_format = 2;
+  
+  // Associate errors with fields
+  bool associate_with_fields = 3;
+  
+  // Error summary
+  bool show_error_summary = 4;
+  
+  // Focus on first error
+  bool focus_on_error = 5;
+}
+
+// Accessibility statement
+message AccessibilityStatement {
+  // Enable statement page
+  bool enabled = 1;
+  
+  // Statement URL
+  string url = 2;
+  
+  // Last updated date
+  string last_updated = 3;
+  
+  // Conformance level
+  string conformance = 4;
+  
+  // Contact information
+  string contact = 5;
+}
+
+// ARIA attributes configuration
+message ARIAAttributes {
+  // Global ARIA attributes
+  GlobalARIA global = 1;
+  
+  // Widget ARIA patterns
+  WidgetARIA widgets = 2;
+  
+  // Document structure ARIA
+  DocumentARIA document = 3;
+  
+  // Application ARIA
+  ApplicationARIA application = 4;
+  
+  // Custom ARIA rules
+  repeated ARIARule custom_rules = 5;
+}
+
+// Global ARIA attributes
+message GlobalARIA {
+  // Auto-generate ARIA labels
+  bool auto_labels = 1;
+  
+  // Use ARIA describedby
+  bool use_describedby = 2;
+  
+  // ARIA hidden handling
+  ARIAHiddenHandling hidden_handling = 3;
+  
+  // ARIA label format
+  string label_format = 4;
+}
+
+// ARIA hidden handling
+message ARIAHiddenHandling {
+  // Hide decorative images
+  bool hide_decorative = 1;
+  
+  // Hide icon fonts
+  bool hide_icons = 2;
+  
+  // Respect explicit hidden
+  bool respect_explicit = 3;
+}
+
+// Widget ARIA patterns
+message WidgetARIA {
+  // Button patterns
+  ButtonARIA buttons = 1;
+  
+  // Link patterns
+  LinkARIA links = 2;
+  
+  // Menu patterns
+  MenuARIA menus = 3;
+  
+  // Dialog patterns
+  DialogARIA dialogs = 4;
+  
+  // Tab patterns
+  TabARIA tabs = 5;
+  
+  // Accordion patterns
+  AccordionARIA accordions = 6;
+  
+  // Carousel patterns
+  CarouselARIA carousels = 7;
+}
+
+// Button ARIA configuration
+message ButtonARIA {
+  // Require accessible names
+  bool require_names = 1;
+  
+  // Button state announcements
+  bool announce_states = 2;
+  
+  // Loading state pattern
+  string loading_pattern = 3;
+  
+  // Disabled state handling
+  string disabled_handling = 4;
+}
+
+// Link ARIA configuration
+message LinkARIA {
+  // External link indication
+  bool indicate_external = 1;
+  
+  // New window warning
+  bool new_window_warning = 2;
+  
+  // Download indication
+  bool indicate_download = 3;
+  
+  // Current page indication
+  bool indicate_current = 4;
+  
+  // Link purpose requirement
+  bool require_purpose = 5;
+}
+
+// Menu ARIA configuration
+message MenuARIA {
+  // Menu orientation
+  string orientation = 1;
+  
+  // Submenu indication
+  bool indicate_submenu = 2;
+  
+  // Menu item states
+  bool announce_states = 3;
+  
+  // Keyboard navigation
+  bool enhanced_keyboard = 4;
+}
+
+// Dialog ARIA configuration
+message DialogARIA {
+  // Modal handling
+  bool modal_handling = 1;
+  
+  // Focus trap
+  bool focus_trap = 2;
+  
+  // Close button requirement
+  bool require_close = 3;
+  
+  // Title requirement
+  bool require_title = 4;
+  
+  // Announce on open
+  bool announce_on_open = 5;
+}
+
+// Tab ARIA configuration
+message TabARIA {
+  // Tab orientation
+  string orientation = 1;
+  
+  // Auto activation
+  bool auto_activation = 2;
+  
+  // Tab panel association
+  bool panel_association = 3;
+  
+  // Keyboard navigation
+  bool arrow_navigation = 4;
+}
+
+// Accordion ARIA configuration
+message AccordionARIA {
+  // Multi-expand allowed
+  bool multi_expand = 1;
+  
+  // Announce state changes
+  bool announce_changes = 2;
+  
+  // Header level
+  int32 header_level = 3;
+  
+  // Keyboard navigation
+  bool enhanced_keyboard = 4;
+}
+
+// Carousel ARIA configuration
+message CarouselARIA {
+  // Auto-play handling
+  bool autoplay_control = 1;
+  
+  // Slide announcements
+  bool announce_slides = 2;
+  
+  // Navigation labels
+  bool navigation_labels = 3;
+  
+  // Live region for updates
+  bool live_updates = 4;
+}
+
+// Document structure ARIA
+message DocumentARIA {
+  // Heading structure
+  HeadingStructure headings = 1;
+  
+  // List structure
+  ListStructure lists = 2;
+  
+  // Table structure
+  TableStructure tables = 3;
+  
+  // Article structure
+  ArticleStructure articles = 4;
+}
+
+// Heading structure configuration
+message HeadingStructure {
+  // Enforce hierarchy
+  bool enforce_hierarchy = 1;
+  
+  // Single H1 rule
+  bool single_h1 = 2;
+  
+  // Empty heading check
+  bool check_empty = 3;
+  
+  // Heading landmarks
+  bool use_landmarks = 4;
+}
+
+// List structure configuration
+message ListStructure {
+  // Proper nesting
+  bool enforce_nesting = 1;
+  
+  // List item requirement
+  bool require_items = 2;
+  
+  // Description lists
+  bool support_description = 3;
+}
+
+// Table structure configuration
+message TableStructure {
+  // Require captions
+  bool require_captions = 1;
+  
+  // Header associations
+  bool header_associations = 2;
+  
+  // Scope attributes
+  bool use_scope = 3;
+  
+  // Summary for complex tables
+  bool complex_summary = 4;
+}
+
+// Article structure configuration
+message ArticleStructure {
+  // Article landmarks
+  bool use_article_role = 1;
+  
+  // Time elements
+  bool semantic_time = 2;
+  
+  // Author information
+  bool author_info = 3;
+}
+
+// Application ARIA configuration
+message ApplicationARIA {
+  // Application role usage
+  bool use_application_role = 1;
+  
+  // Widget context
+  bool provide_context = 2;
+  
+  // Instructions
+  bool provide_instructions = 3;
+  
+  // Mode switching
+  bool mode_announcements = 4;
+}
+
+// Custom ARIA rule
+message ARIARule {
+  // Rule name
+  string name = 1;
+  
+  // CSS selector
+  string selector = 2;
+  
+  // Required attributes
+  repeated string required_attributes = 3;
+  
+  // Forbidden attributes
+  repeated string forbidden_attributes = 4;
+  
+  // Validation function
+  string validation = 5;
+}
+
+// Keyboard navigation configuration
+message KeyboardNavigation {
+  // Enable enhanced keyboard navigation
+  bool enabled = 1;
+  
+  // Tab order management
+  TabOrder tab_order = 2;
+  
+  // Keyboard shortcuts
+  KeyboardShortcuts shortcuts = 3;
+  
+  // Navigation patterns
+  NavigationPatterns patterns = 4;
+  
+  // Keyboard indicators
+  KeyboardIndicators indicators = 5;
+}
+
+// Tab order configuration
+message TabOrder {
+  // Logical tab order
+  bool enforce_logical = 1;
+  
+  // Skip hidden elements
+  bool skip_hidden = 2;
+  
+  // Tab index management
+  TabIndexManagement tab_index = 3;
+  
+  // Tab order visualization
+  bool show_visualization = 4;
+}
+
+// Tab index management
+message TabIndexManagement {
+  // Remove positive tabindex
+  bool remove_positive = 1;
+  
+  // Interactive elements only
+  bool interactive_only = 2;
+  
+  // Custom tab stops
+  repeated string custom_stops = 3;
+}
+
+// Keyboard shortcuts configuration
+message KeyboardShortcuts {
+  // Enable shortcuts
+  bool enabled = 1;
+  
+  // Shortcut list
+  repeated Shortcut shortcuts = 2;
+  
+  // Conflict detection
+  bool detect_conflicts = 3;
+  
+  // Help dialog
+  bool show_help = 4;
+  
+  // Help key
+  string help_key = 5;
+}
+
+// Individual shortcut
+message Shortcut {
+  // Shortcut key combination
+  string key = 1;
+  
+  // Action description
+  string action = 2;
+  
+  // Context (global, form, etc.)
+  string context = 3;
+  
+  // Customizable
+  bool customizable = 4;
+}
+
+// Navigation patterns
+message NavigationPatterns {
+  // Arrow key navigation
+  ArrowNavigation arrows = 1;
+  
+  // Home/End key support
+  bool home_end_support = 2;
+  
+  // Page Up/Down support
+  bool page_support = 3;
+  
+  // Escape key handling
+  bool escape_handling = 4;
+  
+  // Enter key behavior
+  string enter_behavior = 5;
+}
+
+// Arrow navigation configuration
+message ArrowNavigation {
+  // Enable arrow navigation
+  bool enabled = 1;
+  
+  // Navigation contexts
+  repeated ArrowContext contexts = 2;
+  
+  // Wrap around
+  bool wrap_around = 3;
+}
+
+// Arrow navigation context
+message ArrowContext {
+  // Context name (menu, grid, etc.)
+  string name = 1;
+  
+  // CSS selector
+  string selector = 2;
+  
+  // Navigation type
+  ArrowNavigationType type = 3;
+}
+
+// Arrow navigation types
+enum ArrowNavigationType {
+  ARROW_NAVIGATION_TYPE_UNSPECIFIED = 0;
+  ARROW_NAVIGATION_TYPE_HORIZONTAL = 1;
+  ARROW_NAVIGATION_TYPE_VERTICAL = 2;
+  ARROW_NAVIGATION_TYPE_GRID = 3;
+  ARROW_NAVIGATION_TYPE_TREE = 4;
+}
+
+// Keyboard indicators
+message KeyboardIndicators {
+  // Show focus indicators
+  bool show_focus = 1;
+  
+  // Focus style
+  FocusStyle focus_style = 2;
+  
+  // Skip link indicators
+  bool skip_indicators = 3;
+  
+  // Active element indication
+  bool active_indication = 4;
+}
+
+// Focus style configuration
+message FocusStyle {
+  // Outline width
+  int32 outline_width = 1;
+  
+  // Outline color
+  string outline_color = 2;
+  
+  // Outline offset
+  int32 outline_offset = 3;
+  
+  // Custom CSS
+  string custom_css = 4;
+}
+
+// Focus management configuration
+message FocusManagement {
+  // Focus trap zones
+  repeated FocusTrap focus_traps = 1;
+  
+  // Focus restoration
+  FocusRestoration restoration = 2;
+  
+  // Focus order
+  FocusOrder order = 3;
+  
+  // Focus announcements
+  FocusAnnouncements announcements = 4;
+}
+
+// Focus trap configuration
+message FocusTrap {
+  // Trap identifier
+  string id = 1;
+  
+  // CSS selector
+  string selector = 2;
+  
+  // Initial focus
+  string initial_focus = 3;
+  
+  // Return focus on close
+  bool return_focus = 4;
+  
+  // Allow escape
+  bool allow_escape = 5;
+}
+
+// Focus restoration configuration
+message FocusRestoration {
+  // Enable restoration
+  bool enabled = 1;
+  
+  // Save focus on navigation
+  bool save_on_navigation = 2;
+  
+  // Restore on back
+  bool restore_on_back = 3;
+  
+  // Focus memory duration
+  int32 memory_duration_ms = 4;
+}
+
+// Focus order configuration
+message FocusOrder {
+  // Reading order matches focus
+  bool match_reading_order = 1;
+  
+  // Group related elements
+  bool group_related = 2;
+  
+  // Focus regions
+  repeated FocusRegion regions = 3;
+}
+
+// Focus region
+message FocusRegion {
+  // Region name
+  string name = 1;
+  
+  // CSS selector
+  string selector = 2;
+  
+  // Tab behavior
+  string tab_behavior = 3;
+}
+
+// Focus announcements
+message FocusAnnouncements {
+  // Announce focus changes
+  bool enabled = 1;
+  
+  // Context announcements
+  bool announce_context = 2;
+  
+  // Landmark announcements
+  bool announce_landmarks = 3;
+  
+  // Custom announcements
+  map<string, string> custom = 4;
+}
+
+// Visual accessibility settings
+message VisualAccessibility {
+  // Color contrast
+  ColorContrast contrast = 1;
+  
+  // Text scaling
+  TextScaling scaling = 2;
+  
+  // Motion and animation
+  MotionSettings motion = 3;
+  
+  // Images and media
+  ImagesMedia images = 4;
+  
+  // Visual indicators
+  VisualIndicators indicators = 5;
+}
+
+// Color contrast configuration
+message ColorContrast {
+  // Minimum contrast ratios
+  ContrastRatios ratios = 1;
+  
+  // High contrast mode
+  HighContrastMode high_contrast = 2;
+  
+  // Color blind friendly
+  ColorBlindSupport color_blind = 3;
+  
+  // Contrast checking
+  bool enable_checking = 4;
+}
+
+// Contrast ratio requirements
+message ContrastRatios {
+  // Normal text (AA: 4.5:1)
+  float normal_text = 1;
+  
+  // Large text (AA: 3:1)
+  float large_text = 2;
+  
+  // UI components (3:1)
+  float ui_components = 3;
+  
+  // Enhanced ratios (AAA)
+  bool use_enhanced = 4;
+}
+
+// High contrast mode
+message HighContrastMode {
+  // Enable high contrast
+  bool enabled = 1;
+  
+  // Auto-detect system setting
+  bool auto_detect = 2;
+  
+  // Toggle button
+  bool show_toggle = 3;
+  
+  // Custom schemes
+  repeated ContrastScheme schemes = 4;
+}
+
+// Contrast scheme
+message ContrastScheme {
+  // Scheme name
+  string name = 1;
+  
+  // Background color
+  string background = 2;
+  
+  // Foreground color
+  string foreground = 3;
+  
+  // Accent color
+  string accent = 4;
+}
+
+// Color blind support
+message ColorBlindSupport {
+  // Enable support
+  bool enabled = 1;
+  
+  // Safe color palette
+  bool use_safe_palette = 2;
+  
+  // Pattern alternatives
+  bool use_patterns = 3;
+  
+  // Color filters
+  repeated ColorFilter filters = 4;
+}
+
+// Color filter
+message ColorFilter {
+  // Filter name
+  string name = 1;
+  
+  // Filter type
+  ColorFilterType type = 2;
+  
+  // CSS filter
+  string css_filter = 3;
+}
+
+// Color filter types
+enum ColorFilterType {
+  COLOR_FILTER_TYPE_UNSPECIFIED = 0;
+  COLOR_FILTER_TYPE_PROTANOPIA = 1;
+  COLOR_FILTER_TYPE_DEUTERANOPIA = 2;
+  COLOR_FILTER_TYPE_TRITANOPIA = 3;
+  COLOR_FILTER_TYPE_ACHROMATOPSIA = 4;
+}
+
+// Text scaling configuration
+message TextScaling {
+  // Enable text scaling
+  bool enabled = 1;
+  
+  // Scaling controls
+  ScalingControls controls = 2;
+  
+  // Responsive sizing
+  bool responsive_sizing = 3;
+  
+  // Line height scaling
+  bool scale_line_height = 4;
+  
+  // Maximum scale
+  float max_scale = 5;
+}
+
+// Scaling controls
+message ScalingControls {
+  // Show controls
+  bool show_controls = 1;
+  
+  // Control position
+  string position = 2;
+  
+  // Scaling steps
+  repeated float steps = 3;
+  
+  // Remember preference
+  bool remember = 4;
+}
+
+// Motion settings
+message MotionSettings {
+  // Respect prefers-reduced-motion
+  bool respect_preference = 1;
+  
+  // Animation controls
+  AnimationControls controls = 2;
+  
+  // Auto-play prevention
+  bool prevent_autoplay = 3;
+  
+  // Parallax effects
+  bool disable_parallax = 4;
+  
+  // Smooth scrolling
+  bool optional_smooth_scroll = 5;
+}
+
+// Animation controls
+message AnimationControls {
+  // Pause animations
+  bool allow_pause = 1;
+  
+  // Animation speed
+  bool speed_control = 2;
+  
+  // Disable all animations
+  bool disable_option = 3;
+}
+
+// Images and media configuration
+message ImagesMedia {
+  // Alt text requirements
+  AltTextRequirements alt_text = 1;
+  
+  // Image descriptions
+  bool long_descriptions = 2;
+  
+  // Decorative images
+  DecorativeImages decorative = 3;
+  
+  // Complex images
+  ComplexImages complex = 4;
+}
+
+// Alt text requirements
+message AltTextRequirements {
+  // Require alt text
+  bool required = 1;
+  
+  // Minimum length
+  int32 min_length = 2;
+  
+  // Maximum length
+  int32 max_length = 3;
+  
+  // Quality checking
+  bool quality_check = 4;
+  
+  // Empty alt for decorative
+  bool empty_for_decorative = 5;
+}
+
+// Decorative images handling
+message DecorativeImages {
+  // Mark as decorative
+  bool allow_marking = 1;
+  
+  // Auto-detect decorative
+  bool auto_detect = 2;
+  
+  // Hide from screen readers
+  bool hide_from_sr = 3;
+}
+
+// Complex images handling
+message ComplexImages {
+  // Require descriptions
+  bool require_description = 1;
+  
+  // Description format
+  string description_format = 2;
+  
+  // Link to description
+  bool link_to_description = 3;
+}
+
+// Visual indicators
+message VisualIndicators {
+  // Loading indicators
+  LoadingIndicators loading = 1;
+  
+  // Error indicators
+  ErrorIndicators errors = 2;
+  
+  // Success indicators
+  SuccessIndicators success = 3;
+  
+  // Progress indicators
+  ProgressIndicators progress = 4;
+}
+
+// Loading indicators
+message LoadingIndicators {
+  // Show loading state
+  bool show_loading = 1;
+  
+  // Loading text
+  string loading_text = 2;
+  
+  // Spinner alternative
+  bool text_alternative = 3;
+}
+
+// Error indicators
+message ErrorIndicators {
+  // Use icons with text
+  bool icons_with_text = 1;
+  
+  // Color coding only
+  bool avoid_color_only = 2;
+  
+  // Error patterns
+  bool use_patterns = 3;
+}
+
+// Success indicators
+message SuccessIndicators {
+  // Success announcements
+  bool announce_success = 1;
+  
+  // Success patterns
+  bool use_patterns = 2;
+}
+
+// Progress indicators
+message ProgressIndicators {
+  // Progress announcements
+  bool announce_progress = 1;
+  
+  // Text alternatives
+  bool text_alternatives = 2;
+  
+  // Determinate progress
+  bool show_percentage = 3;
+}
+
+// Audio accessibility settings
+message AudioAccessibility {
+  // Captions and subtitles
+  CaptionsSubtitles captions = 1;
+  
+  // Audio descriptions
+  AudioDescriptions descriptions = 2;
+  
+  // Volume controls
+  VolumeControls volume = 3;
+  
+  // Transcripts
+  Transcripts transcripts = 4;
+}
+
+// Captions and subtitles
+message CaptionsSubtitles {
+  // Provide captions
+  bool provide_captions = 1;
+  
+  // Auto-generate captions
+  bool auto_generate = 2;
+  
+  // Caption controls
+  bool show_controls = 3;
+  
+  // Multiple languages
+  bool multi_language = 4;
+}
+
+// Audio descriptions
+message AudioDescriptions {
+  // Provide descriptions
+  bool provide_descriptions = 1;
+  
+  // Description track
+  bool separate_track = 2;
+  
+  // Inline descriptions
+  bool inline_descriptions = 3;
+}
+
+// Volume controls
+message VolumeControls {
+  // Show volume controls
+  bool show_controls = 1;
+  
+  // Keyboard control
+  bool keyboard_control = 2;
+  
+  // Remember volume
+  bool remember_preference = 3;
+}
+
+// Transcripts
+message Transcripts {
+  // Provide transcripts
+  bool provide_transcripts = 1;
+  
+  // Interactive transcripts
+  bool interactive = 2;
+  
+  // Download option
+  bool allow_download = 3;
+}
+
+// Content accessibility settings
+message ContentAccessibility {
+  // Reading level
+  ReadingLevel reading = 1;
+  
+  // Content structure
+  ContentStructure structure = 2;
+  
+  // Language support
+  LanguageSupport language = 3;
+  
+  // Abbreviations and acronyms
+  AbbreviationsAcronyms abbreviations = 4;
+}
+
+// Reading level configuration
+message ReadingLevel {
+  // Target reading level
+  string target_level = 1;
+  
+  // Provide summaries
+  bool provide_summaries = 2;
+  
+  // Glossary support
+  bool glossary = 3;
+  
+  // Simplified version
+  bool simplified_version = 4;
+}
+
+// Content structure
+message ContentStructure {
+  // Use semantic HTML
+  bool semantic_html = 1;
+  
+  // Logical flow
+  bool logical_flow = 2;
+  
+  // Consistent layout
+  bool consistent_layout = 3;
+  
+  // Clear hierarchy
+  bool clear_hierarchy = 4;
+}
+
+// Language support
+message LanguageSupport {
+  // Language switching
+  bool language_switching = 1;
+  
+  // Translation availability
+  bool translations = 2;
+  
+  // RTL support
+  bool rtl_support = 3;
+  
+  // Language identification
+  bool identify_language = 4;
+}
+
+// Abbreviations and acronyms
+message AbbreviationsAcronyms {
+  // Expand on first use
+  bool expand_first_use = 1;
+  
+  // Provide definitions
+  bool provide_definitions = 2;
+  
+  // Use abbr element
+  bool use_abbr_element = 3;
+}
+
+// Navigation accessibility
+message NavigationAccessibility {
+  // Menu accessibility
+  MenuAccessibility menus = 1;
+  
+  // Breadcrumb accessibility
+  BreadcrumbAccessibility breadcrumbs = 2;
+  
+  // Pagination accessibility
+  PaginationAccessibility pagination = 3;
+  
+  // Search accessibility
+  SearchAccessibility search = 4;
+}
+
+// Menu accessibility
+message MenuAccessibility {
+  // Keyboard navigation
+  bool keyboard_navigation = 1;
+  
+  // Menu structure
+  MenuStructure structure = 2;
+  
+  // Mobile menu
+  MobileMenu mobile = 3;
+  
+  // Menu announcements
+  bool announce_changes = 4;
+}
+
+// Menu structure
+message MenuStructure {
+  // Use proper roles
+  bool proper_roles = 1;
+  
+  // Nested menus
+  bool nested_indication = 2;
+  
+  // Current page
+  bool current_indication = 3;
+}
+
+// Mobile menu configuration
+message MobileMenu {
+  // Accessible toggle
+  bool accessible_toggle = 1;
+  
+  // Focus management
+  bool focus_management = 2;
+  
+  // Escape to close
+  bool escape_close = 3;
+}
+
+// Breadcrumb accessibility
+message BreadcrumbAccessibility {
+  // Use nav element
+  bool use_nav = 1;
+  
+  // ARIA label
+  string aria_label = 2;
+  
+  // Structured data
+  bool structured_data = 3;
+  
+  // Current page indication
+  bool current_indication = 4;
+}
+
+// Pagination accessibility
+message PaginationAccessibility {
+  // Navigation role
+  bool navigation_role = 1;
+  
+  // Current page announcement
+  bool announce_current = 2;
+  
+  // Previous/next labels
+  bool descriptive_labels = 3;
+  
+  // Page number format
+  string number_format = 4;
+}
+
+// Search accessibility
+message SearchAccessibility {
+  // Search landmark
+  bool use_landmark = 1;
+  
+  // Clear labels
+  bool clear_labels = 2;
+  
+  // Search button
+  bool include_button = 3;
+  
+  // Results announcement
+  bool announce_results = 4;
+  
+  // No results handling
+  bool no_results_message = 5;
+}
+
+// Form accessibility
+message FormAccessibility {
+  // Label requirements
+  LabelRequirements labels = 1;
+  
+  // Error handling
+  FormErrorHandling errors = 2;
+  
+  // Field grouping
+  FieldGrouping grouping = 3;
+  
+  // Instructions
+  FormInstructions instructions = 4;
+  
+  // Validation
+  FormValidation validation = 5;
+}
+
+// Label requirements
+message LabelRequirements {
+  // Require labels
+  bool required = 1;
+  
+  // Visible labels
+  bool visible_labels = 2;
+  
+  // Placeholder as label
+  bool placeholder_not_label = 3;
+  
+  // Required field indication
+  string required_indication = 4;
+}
+
+// Form error handling
+message FormErrorHandling {
+  // Inline errors
+  bool inline_errors = 1;
+  
+  // Error summary
+  bool error_summary = 2;
+  
+  // Field association
+  bool associate_errors = 3;
+  
+  // Success messages
+  bool success_messages = 4;
+}
+
+// Field grouping
+message FieldGrouping {
+  // Use fieldsets
+  bool use_fieldsets = 1;
+  
+  // Group related fields
+  bool group_related = 2;
+  
+  // Legend requirement
+  bool require_legend = 3;
+}
+
+// Form instructions
+message FormInstructions {
+  // Provide instructions
+  bool provide_instructions = 1;
+  
+  // Associate with fields
+  bool associate_with_fields = 2;
+  
+  // Format requirements
+  bool format_hints = 3;
+}
+
+// Form validation
+message FormValidation {
+  // Client-side validation
+  bool client_validation = 1;
+  
+  // Real-time validation
+  bool realtime = 2;
+  
+  // Success indication
+  bool indicate_success = 3;
+  
+  // Validation messages
+  ValidationMessages messages = 4;
+}
+
+// Validation messages
+message ValidationMessages {
+  // Custom messages
+  map<string, string> custom = 1;
+  
+  // Helpful messages
+  bool helpful_messages = 2;
+  
+  // Avoid technical jargon
+  bool avoid_jargon = 3;
+}
+
+// Interactive elements accessibility
+message InteractiveAccessibility {
+  // Button accessibility
+  ButtonAccessibility buttons = 1;
+  
+  // Link accessibility
+  LinkAccessibility links = 2;
+  
+  // Modal accessibility
+  ModalAccessibility modals = 3;
+  
+  // Tooltip accessibility
+  TooltipAccessibility tooltips = 4;
+}
+
+// Button accessibility
+message ButtonAccessibility {
+  // Accessible names
+  bool require_names = 1;
+  
+  // Button vs link
+  bool proper_semantics = 2;
+  
+  // Disabled handling
+  DisabledHandling disabled = 3;
+  
+  // Icon buttons
+  IconButtons icons = 4;
+}
+
+// Disabled handling
+message DisabledHandling {
+  // Explain why disabled
+  bool explain_disabled = 1;
+  
+  // Keyboard focusable
+  bool keep_focusable = 2;
+  
+  // Alternative actions
+  bool provide_alternatives = 3;
+}
+
+// Icon button configuration
+message IconButtons {
+  // Require text alternative
+  bool require_text = 1;
+  
+  // Tooltip on hover
+  bool show_tooltip = 2;
+  
+  // Screen reader text
+  bool sr_text = 3;
+}
+
+// Link accessibility
+message LinkAccessibility {
+  // Descriptive text
+  bool descriptive_text = 1;
+  
+  // Avoid "click here"
+  bool avoid_generic = 2;
+  
+  // Link purpose
+  LinkPurpose purpose = 3;
+  
+  // Adjacent links
+  bool combine_adjacent = 4;
+}
+
+// Link purpose indication
+message LinkPurpose {
+  // File type indication
+  bool indicate_file_type = 1;
+  
+  // File size indication
+  bool indicate_file_size = 2;
+  
+  // External indication
+  bool indicate_external = 3;
+  
+  // New window warning
+  bool warn_new_window = 4;
+}
+
+// Modal accessibility
+message ModalAccessibility {
+  // Focus management
+  bool focus_management = 1;
+  
+  // Escape to close
+  bool escape_close = 2;
+  
+  // Background interaction
+  bool prevent_background = 3;
+  
+  // Title requirement
+  bool require_title = 4;
+  
+  // Close button
+  bool require_close = 5;
+}
+
+// Tooltip accessibility
+message TooltipAccessibility {
+  // Keyboard accessible
+  bool keyboard_access = 1;
+  
+  // Persistent on hover
+  bool persistent = 2;
+  
+  // Dismissible
+  bool dismissible = 3;
+  
+  // ARIA describedby
+  bool use_describedby = 4;
+}
+
+// Accessibility testing configuration
+message AccessibilityTesting {
+  // Automated testing
+  AutomatedTesting automated = 1;
+  
+  // Manual testing
+  ManualTesting manual = 2;
+  
+  // User testing
+  UserTesting user = 3;
+  
+  // Reporting
+  AccessibilityReporting reporting = 4;
+}
+
+// Automated testing
+message AutomatedTesting {
+  // Enable automated tests
+  bool enabled = 1;
+  
+  // Testing tools
+  repeated string tools = 2;
+  
+  // Test on build
+  bool test_on_build = 3;
+  
+  // Fail on errors
+  bool fail_on_errors = 4;
+  
+  // Error threshold
+  int32 error_threshold = 5;
+}
+
+// Manual testing
+message ManualTesting {
+  // Checklist URL
+  string checklist_url = 1;
+  
+  // Testing schedule
+  string schedule = 2;
+  
+  // Key workflows
+  repeated string key_workflows = 3;
+}
+
+// User testing
+message UserTesting {
+  // Include users with disabilities
+  bool include_pwd = 1;
+  
+  // Testing frequency
+  string frequency = 2;
+  
+  // Feedback collection
+  bool collect_feedback = 3;
+}
+
+// Accessibility reporting
+message AccessibilityReporting {
+  // Generate reports
+  bool generate_reports = 1;
+  
+  // Report format
+  string format = 2;
+  
+  // Public reporting
+  bool public_reports = 3;
+  
+  // Report URL
+  string report_url = 4;
+}
+
+// Assistive technology support
+message AssistiveTechnology {
+  // Screen reader optimization
+  ScreenReaderSupport screen_readers = 1;
+  
+  // Voice control support
+  VoiceControlSupport voice_control = 2;
+  
+  // Switch device support
+  SwitchDeviceSupport switch_devices = 3;
+  
+  // Magnification support
+  MagnificationSupport magnification = 4;
+}
+
+// Screen reader support
+message ScreenReaderSupport {
+  // Optimize for screen readers
+  bool optimize = 1;
+  
+  // Tested screen readers
+  repeated string tested_with = 2;
+  
+  // Announcements
+  ScreenReaderAnnouncements announcements = 3;
+  
+  // Virtual cursor support
+  bool virtual_cursor = 4;
+}
+
+// Screen reader announcements
+message ScreenReaderAnnouncements {
+  // Dynamic content
+  bool announce_dynamic = 1;
+  
+  // State changes
+  bool announce_states = 2;
+  
+  // Page changes
+  bool announce_pages = 3;
+  
+  // Custom announcements
+  map<string, string> custom = 4;
+}
+
+// Voice control support
+message VoiceControlSupport {
+  // Voice navigation
+  bool voice_navigation = 1;
+  
+  // Voice commands
+  repeated VoiceCommand commands = 2;
+  
+  // Number overlays
+  bool number_overlays = 3;
+}
+
+// Voice command
+message VoiceCommand {
+  // Command phrase
+  string phrase = 1;
+  
+  // Action
+  string action = 2;
+  
+  // Context
+  string context = 3;
+}
+
+// Switch device support
+message SwitchDeviceSupport {
+  // Switch scanning
+  bool switch_scanning = 1;
+  
+  // Scanning speed
+  int32 scan_speed_ms = 2;
+  
+  // Scanning patterns
+  repeated string patterns = 3;
+}
+
+// Magnification support
+message MagnificationSupport {
+  // Reflow content
+  bool reflow_content = 1;
+  
+  // High resolution images
+  bool high_res_images = 2;
+  
+  // Avoid horizontal scroll
+  bool avoid_horizontal = 3;
+}

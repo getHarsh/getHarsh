@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CrossPostingInfo",
+  "definitions": {
+    "CrossPostingInfo": {
+      "properties": {
+        "canonical_domain": {
+          "type": "string",
+          "description": "Canonical domain where originally published"
+        },
+        "published_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains where this article is syndicated"
+        },
+        "show_cross_post_chips": {
+          "type": "boolean",
+          "description": "Show cross-post chips on article"
+        },
+        "domain_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Domain to URL mapping for cross-posts"
+        },
+        "cross_post_date": {
+          "type": "string",
+          "description": "Cross-posting date (if different from publish date)"
+        },
+        "import_source": {
+          "type": "string",
+          "description": "Import source (if imported from elsewhere)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Posting Info",
+      "description": "Cross-posting information for an article"
+    }
+  },
+  "title": "CROSSPOSTINGINFO Configuration Schema",
+  "description": "JSON Schema for CrossPostingInfo configuration"
+}

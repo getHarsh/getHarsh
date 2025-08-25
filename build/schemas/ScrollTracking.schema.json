@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ScrollTracking",
+  "definitions": {
+    "ScrollTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable scroll tracking"
+        },
+        "thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Scroll depth thresholds (percentages)"
+        },
+        "track_time_to_scroll": {
+          "type": "boolean",
+          "description": "Track time to scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scroll Tracking",
+      "description": "Scroll tracking configuration"
+    }
+  },
+  "title": "SCROLLTRACKING Configuration Schema",
+  "description": "JSON Schema for ScrollTracking configuration"
+}

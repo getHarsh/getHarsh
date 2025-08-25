@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DomainSponsorSettings",
+  "definitions": {
+    "DomainSponsorSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable sponsor functionality"
+        },
+        "payment_links": {
+          "$ref": "#/definitions/website.config.PaymentLinks",
+          "description": "Payment links configuration"
+        },
+        "sponsor_email_template": {
+          "$ref": "#/definitions/website.config.EmailTemplate",
+          "description": "Sponsor email template settings"
+        },
+        "disclosure": {
+          "$ref": "#/definitions/website.config.SponsorDisclosure",
+          "description": "Sponsor disclosure settings"
+        },
+        "guidelines_url": {
+          "type": "string",
+          "description": "Sponsored content guidelines URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Sponsor Settings",
+      "description": "Sponsor settings configuration for domains"
+    },
+    "website.config.CryptoWallets": {
+      "properties": {
+        "bitcoin": {
+          "type": "string",
+          "description": "Bitcoin wallet address"
+        },
+        "ethereum": {
+          "type": "string",
+          "description": "Ethereum wallet address (supports ENS)"
+        },
+        "solana": {
+          "type": "string",
+          "description": "Solana wallet address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Wallets",
+      "description": "Cryptocurrency wallet addresses"
+    },
+    "website.config.EmailTemplate": {
+      "properties": {
+        "subject_template": {
+          "type": "string",
+          "description": "Subject line template"
+        },
+        "body_template": {
+          "type": "string",
+          "description": "Body template with variables"
+        },
+        "available_variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available variables for templates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Email Template",
+      "description": "Email template configuration"
+    },
+    "website.config.PaymentLinks": {
+      "properties": {
+        "paypal": {
+          "type": "string",
+          "description": "PayPal donation link"
+        },
+        "github_sponsors": {
+          "type": "string",
+          "description": "GitHub Sponsors profile (auto-generated from social.github if not provided)"
+        },
+        "patreon": {
+          "type": "string",
+          "description": "Patreon page"
+        },
+        "buymeacoffee": {
+          "type": "string",
+          "description": "Buy Me a Coffee link"
+        },
+        "youtube_membership": {
+          "type": "string",
+          "description": "YouTube membership (auto-generated from social.youtube if not provided)"
+        },
+        "crypto": {
+          "$ref": "#/definitions/website.config.CryptoWallets",
+          "description": "Cryptocurrency wallets"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom payment links (e.g., UPI, region-specific)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Links",
+      "description": "Payment links for sponsorship"
+    },
+    "website.config.SponsorDisclosure": {
+      "properties": {
+        "default_text": {
+          "type": "string",
+          "description": "Default disclosure text"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position in article (\"top\", \"bottom\", \"both\")"
+        },
+        "style": {
+          "type": "string",
+          "description": "Visual styling (\"banner\", \"inline\", \"subtle\")"
+        },
+        "include_logo": {
+          "type": "boolean",
+          "description": "Include sponsor logo"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Disclosure",
+      "description": "Sponsor disclosure configuration"
+    }
+  },
+  "title": "DOMAINSPONSORSETTINGS Configuration Schema",
+  "description": "JSON Schema for DomainSponsorSettings configuration"
+}

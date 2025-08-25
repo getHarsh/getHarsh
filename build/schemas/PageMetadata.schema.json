@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PageMetadata",
+  "definitions": {
+    "PageMetadata": {
+      "properties": {
+        "include_title": {
+          "type": "boolean",
+          "description": "Include page title"
+        },
+        "include_path": {
+          "type": "boolean",
+          "description": "Include page path"
+        },
+        "include_type": {
+          "type": "boolean",
+          "description": "Include page type (from Schema.org)"
+        },
+        "include_category": {
+          "type": "boolean",
+          "description": "Include page category"
+        },
+        "include_author": {
+          "type": "boolean",
+          "description": "Include page author"
+        },
+        "include_publish_date": {
+          "type": "boolean",
+          "description": "Include publish date"
+        },
+        "include_modified_date": {
+          "type": "boolean",
+          "description": "Include modified date"
+        },
+        "include_tags": {
+          "type": "boolean",
+          "description": "Include tags"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include language"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Metadata",
+      "description": "Page metadata for data layer"
+    }
+  },
+  "title": "PAGEMETADATA Configuration Schema",
+  "description": "JSON Schema for PageMetadata configuration"
+}

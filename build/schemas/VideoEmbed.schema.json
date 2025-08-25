@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VideoEmbed",
+  "definitions": {
+    "VideoEmbed": {
+      "properties": {
+        "platform": {
+          "enum": [
+            "MEDIA_TYPE_UNSPECIFIED",
+            0,
+            "MEDIA_TYPE_IMAGE",
+            1,
+            "MEDIA_TYPE_VIDEO",
+            2,
+            "MEDIA_TYPE_AUDIO",
+            3,
+            "MEDIA_TYPE_CODE",
+            4,
+            "MEDIA_TYPE_GIST",
+            5,
+            "MEDIA_TYPE_DIAGRAM",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Media Type",
+          "description": "Media types for content Maps to Schema.org MediaObject, AudioObject, VideoObject, ImageObject"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embed URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "thumbnail_url": {
+          "type": "string",
+          "description": "Thumbnail URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption/description"
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "description": "Aspect ratio (e.g., \"16:9\")"
+        },
+        "autoplay": {
+          "type": "boolean",
+          "description": "Autoplay settings"
+        },
+        "privacy_mode": {
+          "type": "boolean",
+          "description": "Privacy-enhanced mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Embed",
+      "description": "Video embed configuration"
+    }
+  },
+  "title": "VIDEOEMBED Configuration Schema",
+  "description": "JSON Schema for VideoEmbed configuration"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityContacts",
+  "definitions": {
+    "EntityContacts": {
+      "properties": {
+        "registered_email": {
+          "type": "string",
+          "description": "Registered email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Official phone number"
+        },
+        "tax_number": {
+          "type": "string",
+          "description": "GST/Tax number"
+        },
+        "pan_number": {
+          "type": "string",
+          "description": "PAN number (India specific)"
+        },
+        "legal_email": {
+          "type": "string",
+          "description": "Legal/compliance email"
+        },
+        "accounts_email": {
+          "type": "string",
+          "description": "Accounts/finance email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Contacts",
+      "description": "Official entity contact information"
+    }
+  },
+  "title": "ENTITYCONTACTS Configuration Schema",
+  "description": "JSON Schema for EntityContacts configuration"
+}

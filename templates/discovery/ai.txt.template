@@ -1,0 +1,168 @@
+# AI Usage Policy for {{ENTITY_NAME}}
+# Last Updated: {{GENERATION_DATE}}
+# Entity Type: {{ENTITY_TYPE}}
+
+## Overview
+
+This document outlines the AI usage policy for {{BASE_URL}} and all associated content.
+Legal Entity: {{LEGAL_ENTITY_FULL}}
+Jurisdiction: {{LEGAL_JURISDICTION}}
+
+## Quick Summary
+
+- **AI Training**: ❌ PROHIBITED without explicit license
+- **AI Assistance**: ✅ ALLOWED with attribution
+- **Web Crawling**: ✅ ALLOWED for search/discovery
+- **Data Mining**: ❌ PROHIBITED (TDM rights reserved)
+
+## Detailed Policy
+
+### 1. AI Model Training
+
+**Status**: PROHIBITED
+
+Using any content from this domain to train, fine-tune, or improve AI/ML models is strictly prohibited without explicit written permission from {{LEGAL_ENTITY_FULL}}.
+
+This includes but is not limited to:
+- Large Language Models (LLMs)
+- Image generation models
+- Code generation models
+- Any machine learning systems
+
+**Legal Basis**: 
+- Copyright law in {{LEGAL_JURISDICTION}}
+- EU Directive 2019/790 (Text and Data Mining)
+- Sui generis database rights where applicable
+
+### 2. AI-Assisted Search and Q&A
+
+**Status**: ALLOWED with conditions
+
+AI systems may read and reference our content for the purpose of answering user queries, provided:
+
+1. **Attribution Required**: Always cite the source with a link to the original content
+2. **No Caching**: Do not permanently store or cache our content
+3. **Respect robots.txt**: Follow all directives in {{BASE_URL}}/robots.txt
+4. **No Derivatives**: Do not create derivative works without permission
+
+**Allowed Examples**:
+- ChatGPT/Claude reading content to answer user questions
+- Search engines using AI to improve search results
+- AI assistants helping users understand our content
+
+### 3. Research and Academic Use
+
+**Status**: CONDITIONAL
+
+Academic researchers may request permission for non-commercial research by contacting {{AI_POLICY_EMAIL}}.
+
+Requirements:
+- Must be non-commercial academic research
+- Results must be publicly available
+- Full attribution required
+- Prior written permission required
+
+### 4. Commercial Use
+
+**Status**: LICENSING REQUIRED
+
+Any commercial use of our content with AI systems requires a commercial license.
+
+Contact {{PROPOSAL_EMAIL}} for:
+- Enterprise AI training licenses
+- API access for AI systems
+- Custom licensing arrangements
+- Partnership opportunities
+
+{{IF_SERVICES_ENABLED}}
+### 5. AI Services & Consulting
+
+**Status**: AVAILABLE
+
+{{SERVICES_PAGE_DESCRIPTION}}
+
+Our services include:
+{{SERVICES_LIST}}
+
+Learn more: {{BASE_URL}}/services
+Contact: {{PROPOSAL_EMAIL}}
+{{END_IF_SERVICES_ENABLED}}
+
+## Technical Implementation
+
+### Crawling Guidelines
+
+```
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 2
+```
+
+See full crawler directives: {{BASE_URL}}/robots.txt
+
+### TDM Rights Declaration
+
+We implement the W3C TDMRep protocol for formal rights declaration:
+{{BASE_URL}}/.well-known/tdmrep.json
+
+### Content Discovery
+
+For LLM-friendly content summaries:
+{{BASE_URL}}/llms.txt
+
+For complete ecosystem mapping:
+{{BASE_URL}}/ecosystem.json
+
+## Enforcement
+
+Violations of this policy may result in:
+
+1. **Technical Measures**:
+   - IP blocking at CDN level
+   - Rate limiting
+   - Access revocation
+
+2. **Legal Action**:
+   - DMCA takedown requests
+   - Copyright infringement claims
+   - Legal proceedings in {{LEGAL_JURISDICTION}}
+
+## Contact Information
+
+**AI Policy Inquiries**: {{AI_POLICY_EMAIL}}
+**Licensing Requests**: {{PROPOSAL_EMAIL}}
+**General Contact**: {{CONTACT_EMAIL}}
+
+## Related Policies
+
+- Terms of Service: {{TERMS_URL}}
+- Privacy Policy: {{PRIVACY_URL}}
+- Cookie Policy: {{COOKIE_URL}}
+
+## Entity Information
+
+{{IF_DOMAIN_ALIASES}}
+This policy applies to all our domains:
+- Primary: {{BASE_URL}}
+- Aliases: {{DOMAIN_ALIASES_LIST}}
+{{END_IF_DOMAIN_ALIASES}}
+
+**Legal Entity**: {{LEGAL_ENTITY_FULL}}
+**Registration**: {{LEGAL_ENTITY_REGISTRATION}}
+**Established**: {{LEGAL_ENTITY_INCORPORATION}}
+
+## Updates
+
+This policy may be updated periodically. The latest version is always available at:
+{{BASE_URL}}/ai.txt
+
+Machine-readable version:
+{{BASE_URL}}/.well-known/tdmrep.json
+
+---
+
+© {{CURRENT_YEAR}} {{LEGAL_ENTITY_FULL}}. All rights reserved.
+Generated on {{GENERATION_DATE}} in {{MODE}} mode.

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DemoARIA",
+  "definitions": {
+    "DemoARIA": {
+      "properties": {
+        "widget_labels": {
+          "type": "boolean",
+          "description": "Interactive widget labels"
+        },
+        "live_regions": {
+          "type": "boolean",
+          "description": "Live demo regions"
+        },
+        "keyboard_hints": {
+          "type": "boolean",
+          "description": "Keyboard navigation hints"
+        },
+        "focus_management": {
+          "type": "boolean",
+          "description": "Focus management"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Demo ARIA",
+      "description": "Demo ARIA settings"
+    }
+  },
+  "title": "DEMOARIA Configuration Schema",
+  "description": "JSON Schema for DemoARIA configuration"
+}

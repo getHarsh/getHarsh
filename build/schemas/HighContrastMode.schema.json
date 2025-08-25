@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HighContrastMode",
+  "definitions": {
+    "HighContrastMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable high contrast"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect system setting"
+        },
+        "show_toggle": {
+          "type": "boolean",
+          "description": "Toggle button"
+        },
+        "schemes": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ContrastScheme"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom schemes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "High Contrast Mode",
+      "description": "High contrast mode"
+    },
+    "website.config.aria.ContrastScheme": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Scheme name"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color"
+        },
+        "foreground": {
+          "type": "string",
+          "description": "Foreground color"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Scheme",
+      "description": "Contrast scheme"
+    }
+  },
+  "title": "HIGHCONTRASTMODE Configuration Schema",
+  "description": "JSON Schema for HighContrastMode configuration"
+}

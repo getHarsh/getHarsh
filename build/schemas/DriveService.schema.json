@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DriveService",
+  "definitions": {
+    "DriveService": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Drive integration"
+        },
+        "shared_folders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Shared folder IDs"
+        },
+        "enable_direct_downloads": {
+          "type": "boolean",
+          "description": "Enable direct downloads"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Drive Service",
+      "description": "Google Drive service configuration"
+    }
+  },
+  "title": "DRIVESERVICE Configuration Schema",
+  "description": "JSON Schema for DriveService configuration"
+}

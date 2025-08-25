@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ColorFilter",
+  "definitions": {
+    "ColorFilter": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Filter name"
+        },
+        "type": {
+          "enum": [
+            "COLOR_FILTER_TYPE_UNSPECIFIED",
+            0,
+            "COLOR_FILTER_TYPE_PROTANOPIA",
+            1,
+            "COLOR_FILTER_TYPE_DEUTERANOPIA",
+            2,
+            "COLOR_FILTER_TYPE_TRITANOPIA",
+            3,
+            "COLOR_FILTER_TYPE_ACHROMATOPSIA",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Color Filter Type",
+          "description": "Color filter types"
+        },
+        "css_filter": {
+          "type": "string",
+          "description": "CSS filter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Filter",
+      "description": "Color filter"
+    }
+  },
+  "title": "COLORFILTER Configuration Schema",
+  "description": "JSON Schema for ColorFilter configuration"
+}

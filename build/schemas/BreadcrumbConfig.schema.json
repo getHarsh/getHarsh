@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BreadcrumbConfig",
+  "definitions": {
+    "BreadcrumbConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable breadcrumbs"
+        },
+        "home_label": {
+          "type": "string",
+          "description": "Home page label"
+        },
+        "separator": {
+          "type": "string",
+          "description": "Separator character"
+        },
+        "include_current": {
+          "type": "boolean",
+          "description": "Include current page"
+        },
+        "schema_markup": {
+          "type": "boolean",
+          "description": "Schema.org markup"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Breadcrumb Config",
+      "description": "Breadcrumb configuration"
+    }
+  },
+  "title": "BREADCRUMBCONFIG Configuration Schema",
+  "description": "JSON Schema for BreadcrumbConfig configuration"
+}

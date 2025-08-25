@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PayPalSettings",
+  "definitions": {
+    "PayPalSettings": {
+      "properties": {
+        "paypal_me": {
+          "type": "string",
+          "description": "PayPal.me username"
+        },
+        "business_email": {
+          "type": "string",
+          "description": "Business email"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code"
+        },
+        "button_style": {
+          "type": "string",
+          "description": "Button style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Pay Pal Settings",
+      "description": "PayPal configuration"
+    }
+  },
+  "title": "PAYPALSETTINGS Configuration Schema",
+  "description": "JSON Schema for PayPalSettings configuration"
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AudioAccessibility",
+  "definitions": {
+    "AudioAccessibility": {
+      "properties": {
+        "captions": {
+          "$ref": "#/definitions/website.config.aria.CaptionsSubtitles",
+          "description": "Captions and subtitles"
+        },
+        "descriptions": {
+          "$ref": "#/definitions/website.config.aria.AudioDescriptions",
+          "description": "Audio descriptions"
+        },
+        "volume": {
+          "$ref": "#/definitions/website.config.aria.VolumeControls",
+          "description": "Volume controls"
+        },
+        "transcripts": {
+          "$ref": "#/definitions/website.config.aria.Transcripts",
+          "description": "Transcripts"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Accessibility",
+      "description": "Audio accessibility settings"
+    },
+    "website.config.aria.AudioDescriptions": {
+      "properties": {
+        "provide_descriptions": {
+          "type": "boolean",
+          "description": "Provide descriptions"
+        },
+        "separate_track": {
+          "type": "boolean",
+          "description": "Description track"
+        },
+        "inline_descriptions": {
+          "type": "boolean",
+          "description": "Inline descriptions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Descriptions",
+      "description": "Audio descriptions"
+    },
+    "website.config.aria.CaptionsSubtitles": {
+      "properties": {
+        "provide_captions": {
+          "type": "boolean",
+          "description": "Provide captions"
+        },
+        "auto_generate": {
+          "type": "boolean",
+          "description": "Auto-generate captions"
+        },
+        "show_controls": {
+          "type": "boolean",
+          "description": "Caption controls"
+        },
+        "multi_language": {
+          "type": "boolean",
+          "description": "Multiple languages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Captions Subtitles",
+      "description": "Captions and subtitles"
+    },
+    "website.config.aria.Transcripts": {
+      "properties": {
+        "provide_transcripts": {
+          "type": "boolean",
+          "description": "Provide transcripts"
+        },
+        "interactive": {
+          "type": "boolean",
+          "description": "Interactive transcripts"
+        },
+        "allow_download": {
+          "type": "boolean",
+          "description": "Download option"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Transcripts",
+      "description": "Transcripts"
+    },
+    "website.config.aria.VolumeControls": {
+      "properties": {
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show volume controls"
+        },
+        "keyboard_control": {
+          "type": "boolean",
+          "description": "Keyboard control"
+        },
+        "remember_preference": {
+          "type": "boolean",
+          "description": "Remember volume"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Volume Controls",
+      "description": "Volume controls"
+    }
+  },
+  "title": "AUDIOACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for AudioAccessibility configuration"
+}

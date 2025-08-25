@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleDisplaySettings",
+  "definitions": {
+    "ArticleDisplaySettings": {
+      "properties": {
+        "show_toc": {
+          "type": "boolean",
+          "description": "Show table of contents"
+        },
+        "show_author_bio": {
+          "type": "boolean",
+          "description": "Show author bio"
+        },
+        "show_social_share": {
+          "type": "boolean",
+          "description": "Show social share buttons"
+        },
+        "show_comments": {
+          "type": "boolean",
+          "description": "Show comments section"
+        },
+        "show_related": {
+          "type": "boolean",
+          "description": "Show related articles"
+        },
+        "show_series_nav": {
+          "type": "boolean",
+          "description": "Show series navigation"
+        },
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math rendering"
+        },
+        "enable_footnotes": {
+          "type": "boolean",
+          "description": "Enable footnotes"
+        },
+        "custom_class": {
+          "type": "string",
+          "description": "Custom CSS class"
+        },
+        "layout": {
+          "type": "string",
+          "description": "Layout override (\"default\", \"wide\", \"narrow\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Display Settings",
+      "description": "Article display settings"
+    }
+  },
+  "title": "ARTICLEDISPLAYSETTINGS Configuration Schema",
+  "description": "JSON Schema for ArticleDisplaySettings configuration"
+}

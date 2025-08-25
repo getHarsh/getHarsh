@@ -1,0 +1,2671 @@
+syntax = "proto3";
+
+package website.config;
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// =============================================================================
+// SCHEMA.ORG MAPPING DEFINITIONS
+// =============================================================================
+// This file defines the STRUCTURE for Schema.org mappings in the ecosystem.
+// The actual mapping values are stored in schema-mappings.yml.
+//
+// How it works:
+// 1. Proto files define message structures (this file)
+// 2. schema-mappings.yml contains the actual enum-to-Schema.org mappings
+// 3. Config files use enums (e.g., CONTENT_TYPE_TUTORIAL)
+// 4. Build system reads schema-mappings.yml and applies mappings automatically
+// 5. Generates proper Schema.org JSON-LD structured data
+//
+// Benefits:
+// - Type-safe enum usage in configs
+// - Automatic Schema.org mapping (no manual configuration needed)
+// - Single source of truth (schema-mappings.yml)
+// - Safe by default - configs can only use valid enums
+//
+// See: schema-mappings.yml for the complete mapping dictionary
+// =============================================================================
+
+// Complete Schema.org mapping configuration for the ecosystem
+message SchemaOrgMappings {
+  // All enum mappings organized by type
+  DiscussionPlatformMappings discussion_platforms = 1;
+  MediaTypeMappings media_types = 2;
+  ContentTypeMappings content_types = 3;
+  PaymentMethodMappings payment_methods = 4;
+  CodeLanguageMappings code_languages = 5;
+  CryptoNetworkMappings crypto_networks = 6;
+  
+  // Entity and relationship mappings
+  AffiliationTypeMappings affiliation_types = 7;
+  RelationshipTypeMappings relationship_types = 8;
+  SchemaOrgEntityTypeMappings schema_org_entity_types = 9;
+  EntityTypeMappings entity_types = 10;
+  
+  // Project-related mappings
+  ProjectTypeMappings project_types = 11;
+  ProjectStatusMappings project_statuses = 12;
+  ProjectLifecycleMappings project_lifecycles = 13;
+  LicenseTypeMappings license_types = 14;
+  
+  // Support and dependency mappings
+  SupportTypeMappings support_types = 15;
+  DependencyTypeMappings dependency_types = 16;
+  DependencyScopeMappings dependency_scopes = 17;
+  
+  // Community and API mappings
+  CommunityStatusMappings community_statuses = 18;
+  APISpecFormatMappings api_spec_formats = 19;
+  AuthTypeMappings auth_types = 20;
+  
+  // Documentation and UI mappings
+  DocNavigationStyleMappings doc_navigation_styles = 21;
+  DocLandingStyleMappings doc_landing_styles = 22;
+  SidebarPositionMappings sidebar_positions = 23;
+  LinkBehaviorMappings link_behaviors = 24;
+  APIDocGeneratorMappings api_doc_generators = 25;
+  OAuth2FlowMappings oauth2_flows = 26;
+  
+  // Project UI mappings
+  HomepageStyleMappings homepage_styles = 27;
+  DocsLayoutStyleMappings docs_layout_styles = 28;
+  PlaygroundProviderMappings playground_providers = 29;
+  SearchProviderMappings search_providers = 30;
+  
+  // Manifest mappings
+  ManifestFormatMappings manifest_formats = 31;
+  SiteTypeMappings site_types = 32;
+  NodeTypeMappings node_types = 33;
+  
+  // New content and service mappings
+  ServiceTypeMappings service_types = 34;
+  ProjectDevelopmentStatusMappings project_development_statuses = 35;
+  ComicTypeMappings comic_types = 36;
+  BookStructureMappings book_structures = 37;
+  
+  // Person role mappings
+  PersonRoleMappings person_roles = 38;
+  
+  // Global mapping configuration
+  MappingConfig config = 39;
+}
+
+// Global configuration for Schema.org mapping behavior
+message MappingConfig {
+  // Default context URL
+  string default_context = 1; // "https://schema.org"
+  
+  // Enable rich snippets
+  bool enable_rich_snippets = 2;
+  
+  // Include @id references
+  bool include_id_references = 3;
+  
+  // Validation level ("strict", "lenient")
+  string validation_level = 4;
+}
+
+// =============================================================================
+// DISCUSSION PLATFORM MAPPINGS
+// =============================================================================
+
+// Maps DiscussionPlatform enum values to Schema.org types
+message DiscussionPlatformMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "DISCUSSION_PLATFORM_TWITTER" -> "SocialMediaPosting"
+  map<string, string> platform_to_schema = 1;
+}
+
+message DiscussionPlatformMapping {
+  // Schema.org type
+  string schema_type = 1;
+  
+  // Additional types
+  repeated string additional_types = 2;
+  
+  // Platform provider
+  Provider provider = 3;
+  
+  // URL pattern for linking
+  string url_pattern = 4;
+  
+  // Interaction type
+  string interaction_type = 5;
+  
+  // Platform-specific properties
+  map<string, string> properties = 6;
+}
+
+// Provider information
+message Provider {
+  string type = 1;          // "Organization"
+  string name = 2;          // "GitHub"
+  string url = 3;           // "https://github.com"
+  string same_as = 4;       // Wikipedia URL
+}
+
+// Predefined discussion platform mappings
+message DiscussionPlatformDefaults {
+  // DISCUSSION_PLATFORM_GITHUB_ISSUE
+  DiscussionPlatformMapping github_issue = 1;
+  // schema_type: "DiscussionForumPosting"
+  // provider: { type: "Organization", name: "GitHub", url: "https://github.com" }
+  // url_pattern: "https://github.com/{owner}/{repo}/issues/{number}"
+  // interaction_type: "CommentAction"
+  
+  // DISCUSSION_PLATFORM_GITHUB_GIST
+  DiscussionPlatformMapping github_gist = 2;
+  // schema_type: "SoftwareSourceCode"
+  // additional_types: ["Comment"]
+  // provider: { type: "Organization", name: "GitHub", url: "https://github.com" }
+  // url_pattern: "https://gist.github.com/{user}/{gist_id}"
+  
+  // DISCUSSION_PLATFORM_TWITTER_THREAD
+  DiscussionPlatformMapping twitter_thread = 3;
+  // schema_type: "SocialMediaPosting"
+  // provider: { type: "Organization", name: "Twitter", url: "https://twitter.com" }
+  // url_pattern: "https://twitter.com/{user}/status/{tweet_id}"
+  // interaction_type: "InteractionCounter"
+  
+  // DISCUSSION_PLATFORM_LINKEDIN_POST
+  DiscussionPlatformMapping linkedin_post = 4;
+  // schema_type: "SocialMediaPosting"
+  // additional_types: ["ProfessionalService"]
+  // provider: { type: "Organization", name: "LinkedIn", url: "https://linkedin.com" }
+  
+  // DISCUSSION_PLATFORM_REDDIT_THREAD
+  DiscussionPlatformMapping reddit_thread = 5;
+  // schema_type: "DiscussionForumPosting"
+  // provider: { type: "Organization", name: "Reddit", url: "https://reddit.com" }
+  // url_pattern: "https://reddit.com/r/{subreddit}/comments/{thread_id}"
+  
+  // DISCUSSION_PLATFORM_CHATGPT_CHAT
+  DiscussionPlatformMapping chatgpt_chat = 6;
+  // schema_type: "Conversation"
+  // provider: { type: "Organization", name: "OpenAI", url: "https://openai.com" }
+  // properties: { "interactionStatistic": "UserInteraction" }
+  
+  // DISCUSSION_PLATFORM_CLAUDE_CHAT
+  DiscussionPlatformMapping claude_chat = 7;
+  // schema_type: "Conversation"
+  // provider: { type: "Organization", name: "Anthropic", url: "https://anthropic.com" }
+  
+  // DISCUSSION_PLATFORM_CLAUDE_ARTIFACT
+  DiscussionPlatformMapping claude_artifact = 8;
+  // schema_type: "CreativeWork"
+  // additional_types: ["SoftwareSourceCode"]
+  // provider: { type: "Organization", name: "Anthropic", url: "https://anthropic.com" }
+  
+  // DISCUSSION_PLATFORM_PERPLEXITY_THREAD
+  DiscussionPlatformMapping perplexity_thread = 9;
+  // schema_type: "QAPage"
+  // provider: { type: "Organization", name: "Perplexity", url: "https://perplexity.ai" }
+}
+
+// =============================================================================
+// MEDIA TYPE MAPPINGS
+// =============================================================================
+
+// Maps MediaType enum values to Schema.org MediaObject types
+message MediaTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "MEDIA_TYPE_YOUTUBE" -> "VideoObject"
+  map<string, string> media_to_schema = 1;
+}
+
+message MediaTypeMapping {
+  // Primary Schema.org type
+  string schema_type = 1;
+  
+  // Required properties
+  repeated string required_properties = 2;
+  
+  // Recommended properties
+  repeated string recommended_properties = 3;
+  
+  // MIME types
+  repeated string mime_types = 4;
+  
+  // File extensions
+  repeated string file_extensions = 5;
+}
+
+// Predefined media type mappings
+message MediaTypeDefaults {
+  // MEDIA_TYPE_IMAGE
+  MediaTypeMapping image = 1;
+  // schema_type: "ImageObject"
+  // required_properties: ["contentUrl", "name"]
+  // recommended_properties: ["caption", "width", "height", "thumbnail"]
+  // mime_types: ["image/jpeg", "image/png", "image/webp", "image/svg+xml"]
+  
+  // MEDIA_TYPE_VIDEO
+  MediaTypeMapping video = 2;
+  // schema_type: "VideoObject"
+  // required_properties: ["contentUrl", "name", "uploadDate"]
+  // recommended_properties: ["duration", "thumbnail", "embedUrl", "description"]
+  // mime_types: ["video/mp4", "video/webm"]
+  
+  // MEDIA_TYPE_AUDIO
+  MediaTypeMapping audio = 3;
+  // schema_type: "AudioObject"
+  // required_properties: ["contentUrl", "name"]
+  // recommended_properties: ["duration", "transcript", "encodingFormat"]
+  // mime_types: ["audio/mpeg", "audio/ogg", "audio/wav"]
+  
+  // MEDIA_TYPE_CODE
+  MediaTypeMapping code = 4;
+  // schema_type: "SoftwareSourceCode"
+  // required_properties: ["text", "programmingLanguage"]
+  // recommended_properties: ["codeRepository", "runtimePlatform"]
+  
+  // MEDIA_TYPE_GIST
+  MediaTypeMapping gist = 5;
+  // schema_type: "SoftwareSourceCode"
+  // additional_properties: ["codeRepository"]
+  // required_properties: ["text", "programmingLanguage", "url"]
+  
+  // MEDIA_TYPE_DIAGRAM
+  MediaTypeMapping diagram = 6;
+  // schema_type: "ImageObject"
+  // additional_types: ["CreativeWork"]
+  // required_properties: ["contentUrl", "name", "encodingFormat"]
+}
+
+// =============================================================================
+// CONTENT TYPE MAPPINGS
+// =============================================================================
+
+// Maps ContentType enum values to Schema.org Article subtypes
+message ContentTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "CONTENT_TYPE_TUTORIAL" -> "HowToArticle"
+  map<string, string> content_to_schema = 1;
+}
+
+message ContentTypeMapping {
+  // Schema.org Article subtype
+  string schema_type = 1;
+  
+  // Required properties for this content type
+  repeated string required_properties = 2;
+  
+  // Typical word count range
+  WordCountRange word_count = 3;
+  
+  // Default article section
+  string default_section = 4;
+}
+
+message WordCountRange {
+  int32 min = 1;
+  int32 max = 2;
+}
+
+// Predefined content type mappings
+message ContentTypeDefaults {
+  // CONTENT_TYPE_ARTICLE
+  ContentTypeMapping article = 1;
+  // schema_type: "Article"
+  // required_properties: ["headline", "datePublished", "author"]
+  
+  // CONTENT_TYPE_UPDATE
+  ContentTypeMapping update = 2;
+  // schema_type: "NewsArticle"
+  // required_properties: ["headline", "datePublished", "dateline"]
+  // default_section: "Updates"
+  
+  // CONTENT_TYPE_RESEARCH
+  ContentTypeMapping research = 3;
+  // schema_type: "ScholarlyArticle"
+  // required_properties: ["headline", "datePublished", "author", "abstract"]
+  // word_count: { min: 2000, max: 10000 }
+  
+  // CONTENT_TYPE_CASE_STUDY
+  ContentTypeMapping case_study = 4;
+  // schema_type: "TechArticle"
+  // required_properties: ["headline", "datePublished", "author", "about"]
+  
+  // CONTENT_TYPE_ANNOUNCEMENT
+  ContentTypeMapping announcement = 5;
+  // schema_type: "NewsArticle"
+  // default_section: "Announcements"
+}
+
+// =============================================================================
+// PAYMENT METHOD MAPPINGS
+// =============================================================================
+
+// Maps PaymentMethod enum values to Schema.org payment types
+message PaymentMethodMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "PAYMENT_METHOD_PAYPAL" -> "PaymentService"
+  map<string, string> payment_to_schema = 1;
+}
+
+message PaymentMethodMapping {
+  // Schema.org type
+  string schema_type = 1;
+  
+  // Payment service properties
+  PaymentServiceInfo service_info = 2;
+  
+  // Accepted actions
+  repeated string accepted_actions = 3;
+}
+
+message PaymentServiceInfo {
+  string name = 1;
+  string url = 2;
+  string provider_type = 3;
+  map<string, string> additional_properties = 4;
+}
+
+// Predefined payment method mappings
+message PaymentMethodDefaults {
+  // PAYMENT_METHOD_PAYPAL
+  PaymentMethodMapping paypal = 1;
+  // schema_type: "PaymentService"
+  // service_info: { name: "PayPal", url: "https://paypal.com", provider_type: "FinancialService" }
+  // accepted_actions: ["DonateAction", "PayAction"]
+  
+  // PAYMENT_METHOD_GITHUB_SPONSORS
+  PaymentMethodMapping github_sponsors = 2;
+  // schema_type: "DonateAction"
+  // service_info: { name: "GitHub Sponsors", url: "https://github.com/sponsors" }
+  // additional_properties: { "fundingScheme": "FundingScheme" }
+  
+  // PAYMENT_METHOD_YOUTUBE_MEMBERSHIP
+  PaymentMethodMapping youtube_membership = 3;
+  // schema_type: "PaymentService"
+  // service_info: { name: "YouTube Channel Membership", provider_type: "Subscription" }
+  
+  // PAYMENT_METHOD_CRYPTO
+  PaymentMethodMapping crypto = 4;
+  // schema_type: "PaymentMethod"
+  // additional_properties: { "paymentMethodType": "DigitalWallet" }
+}
+
+// =============================================================================
+// CODE LANGUAGE MAPPINGS
+// =============================================================================
+
+// Maps CodeLanguage enum values to Schema.org ComputerLanguage
+message CodeLanguageMappings {
+  // Simple string mapping: enum name -> language name for Schema.org
+  // e.g., "CODE_LANGUAGE_JAVASCRIPT" -> "JavaScript"
+  map<string, string> language_to_name = 1;
+}
+
+message CodeLanguageMapping {
+  // Language name for Schema.org
+  string name = 1;
+  
+  // Alternative names
+  repeated string alternate_names = 2;
+  
+  // Language specification URL
+  string url = 3;
+  
+  // File extensions
+  repeated string file_extensions = 4;
+  
+  // MIME type
+  string mime_type = 5;
+  
+  // Syntax highlighting identifier
+  string highlight_js_id = 6;
+}
+
+// Predefined code language mappings
+message CodeLanguageDefaults {
+  // CODE_LANGUAGE_JAVASCRIPT
+  CodeLanguageMapping javascript = 1;
+  // name: "JavaScript"
+  // alternate_names: ["JS", "ECMAScript"]
+  // url: "https://www.ecma-international.org/publications-and-standards/standards/ecma-262/"
+  // file_extensions: [".js", ".mjs", ".cjs"]
+  // mime_type: "application/javascript"
+  
+  // CODE_LANGUAGE_TYPESCRIPT
+  CodeLanguageMapping typescript = 2;
+  // name: "TypeScript"
+  // alternate_names: ["TS"]
+  // url: "https://www.typescriptlang.org/"
+  // file_extensions: [".ts", ".tsx"]
+  // mime_type: "application/typescript"
+  
+  // CODE_LANGUAGE_PYTHON
+  CodeLanguageMapping python = 3;
+  // name: "Python"
+  // url: "https://www.python.org/"
+  // file_extensions: [".py", ".pyi"]
+  // mime_type: "text/x-python"
+  
+  // CODE_LANGUAGE_C
+  CodeLanguageMapping c = 4;
+  // name: "C"
+  // url: "https://www.iso.org/standard/74528.html"
+  // file_extensions: [".c", ".h"]
+  // mime_type: "text/x-c"
+  
+  // CODE_LANGUAGE_CPP
+  CodeLanguageMapping cpp = 5;
+  // name: "C++"
+  // alternate_names: ["CPP", "CXX"]
+  // url: "https://isocpp.org/"
+  // file_extensions: [".cpp", ".cc", ".cxx", ".hpp", ".h"]
+  // mime_type: "text/x-c++"
+  
+  // Additional languages...
+}
+
+// =============================================================================
+// CRYPTO NETWORK MAPPINGS
+// =============================================================================
+
+// Maps CryptoNetwork enum values to Schema.org currency representations
+message CryptoNetworkMappings {
+  // Simple string mapping: enum name -> currency code
+  // e.g., "CRYPTO_NETWORK_BITCOIN" -> "BTC"
+  map<string, string> crypto_to_code = 1;
+}
+
+message CryptoNetworkMapping {
+  // Currency ticker symbol
+  string ticker = 1;
+  
+  // Full currency name
+  string name = 2;
+  
+  // Currency type
+  string currency_type = 3;
+  
+  // Blockchain info
+  BlockchainInfo blockchain = 4;
+  
+  // Schema.org representation
+  string schema_currency_code = 5;
+}
+
+message BlockchainInfo {
+  string name = 1;
+  string explorer_url = 2;
+  string network_type = 3; // "mainnet", "layer2", etc.
+}
+
+// Predefined crypto network mappings
+message CryptoNetworkDefaults {
+  // CRYPTO_NETWORK_BITCOIN
+  CryptoNetworkMapping bitcoin = 1;
+  // ticker: "BTC"
+  // name: "Bitcoin"
+  // currency_type: "Cryptocurrency"
+  // blockchain: { name: "Bitcoin", explorer_url: "https://blockchain.info" }
+  // schema_currency_code: "BTC"
+  
+  // CRYPTO_NETWORK_ETHEREUM
+  CryptoNetworkMapping ethereum = 2;
+  // ticker: "ETH"
+  // name: "Ethereum"
+  // currency_type: "Cryptocurrency"
+  // blockchain: { name: "Ethereum", explorer_url: "https://etherscan.io" }
+  // schema_currency_code: "ETH"
+  
+  // CRYPTO_NETWORK_USDT
+  CryptoNetworkMapping usdt = 3;
+  // ticker: "USDT"
+  // name: "Tether"
+  // currency_type: "Stablecoin"
+  // blockchain: { name: "Multiple", network_type: "multi-chain" }
+  // schema_currency_code: "USDT"
+}
+
+// =============================================================================
+// PREDEFINED DEFAULTS - THE COMPLETE SCHEMA.ORG BIBLE
+// =============================================================================
+
+// Complete affiliation type mappings
+message AffiliationTypeDefaults {
+  // AFFILIATION_TYPE_UNSPECIFIED
+  AffiliationTypeMapping unspecified = 1;
+  // schema_role_type: "Role"
+  // additional_types: []
+  // role_properties: {}
+  
+  // AFFILIATION_EMPLOYEE
+  AffiliationTypeMapping employee = 2;
+  // schema_role_type: "EmployeeRole"
+  // additional_types: ["OrganizationRole"]
+  // role_properties: { "roleName": "Employee", "@type": "EmployeeRole" }
+  
+  // AFFILIATION_FOUNDER
+  AffiliationTypeMapping founder = 3;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Founder", "@type": "OrganizationRole" }
+  // Note: Use with founder property on Organization
+  
+  // AFFILIATION_ADVISOR
+  AffiliationTypeMapping advisor = 4;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Advisor", "@type": "OrganizationRole" }
+  
+  // AFFILIATION_MEMBER
+  AffiliationTypeMapping member = 5;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Member", "@type": "OrganizationRole" }
+  // Note: Use with member/memberOf properties
+  
+  // AFFILIATION_ALUMNI
+  AffiliationTypeMapping alumni = 6;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Alumni", "@type": "OrganizationRole" }
+  // Note: Use with alumniOf property
+  
+  // AFFILIATION_BOARD_MEMBER
+  AffiliationTypeMapping board_member = 7;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Board Member", "@type": "OrganizationRole" }
+  
+  // AFFILIATION_INVESTOR
+  AffiliationTypeMapping investor = 8;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Investor", "@type": "OrganizationRole" }
+  // Note: Use with funder property when applicable
+  
+  // AFFILIATION_CONSULTANT
+  AffiliationTypeMapping consultant = 9;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role", "Service"]
+  // role_properties: { "roleName": "Consultant", "@type": "OrganizationRole" }
+  
+  // AFFILIATION_VOLUNTEER
+  AffiliationTypeMapping volunteer = 10;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Volunteer", "@type": "OrganizationRole" }
+  
+  // AFFILIATION_MENTOR
+  AffiliationTypeMapping mentor = 11;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role", "EducationalRole"]
+  // role_properties: { "roleName": "Mentor", "@type": "OrganizationRole" }
+  
+  // AFFILIATION_PARTNER
+  AffiliationTypeMapping partner = 12;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role"]
+  // role_properties: { "roleName": "Partner", "@type": "OrganizationRole" }
+  
+  // AFFILIATION_CONTRACTOR
+  AffiliationTypeMapping contractor = 13;
+  // schema_role_type: "OrganizationRole"
+  // additional_types: ["Role", "Service"]
+  // role_properties: { "roleName": "Contractor", "@type": "OrganizationRole" }
+}
+
+// Complete relationship type mappings
+message RelationshipTypeDefaults {
+  // RELATIONSHIP_TYPE_UNSPECIFIED
+  RelationshipTypeMapping unspecified = 1;
+  // schema_property: ""
+  // inverse_property: ""
+  // domain_types: []
+  // range_types: []
+  
+  // RELATIONSHIP_OWNS
+  RelationshipTypeMapping owns = 2;
+  // schema_property: "owns"
+  // inverse_property: "ownedBy"
+  // domain_types: ["Person", "Organization"]
+  // range_types: ["Organization", "Product", "CreativeWork"]
+  
+  // RELATIONSHIP_OWNED_BY
+  RelationshipTypeMapping owned_by = 3;
+  // schema_property: "ownedBy"
+  // inverse_property: "owns"
+  // domain_types: ["Organization", "Product", "CreativeWork"]
+  // range_types: ["Person", "Organization"]
+  
+  // RELATIONSHIP_PARENT_ORGANIZATION
+  RelationshipTypeMapping parent_organization = 4;
+  // schema_property: "parentOrganization"
+  // inverse_property: "subOrganization"
+  // domain_types: ["Organization"]
+  // range_types: ["Organization"]
+  
+  // RELATIONSHIP_SUB_ORGANIZATION
+  RelationshipTypeMapping sub_organization = 5;
+  // schema_property: "subOrganization"
+  // inverse_property: "parentOrganization"
+  // domain_types: ["Organization"]
+  // range_types: ["Organization"]
+  
+  // RELATIONSHIP_FOUNDER
+  RelationshipTypeMapping founder = 6;
+  // schema_property: "founder"
+  // inverse_property: "foundedOrganization"
+  // domain_types: ["Organization"]
+  // range_types: ["Person", "Organization"]
+  
+  // RELATIONSHIP_FOUNDED_BY
+  RelationshipTypeMapping founded_by = 7;
+  // schema_property: "foundedBy"
+  // inverse_property: "founder"
+  // domain_types: ["Organization"]
+  // range_types: ["Person", "Organization"]
+  
+  // RELATIONSHIP_EMPLOYEE
+  RelationshipTypeMapping employee = 8;
+  // schema_property: "employee"
+  // inverse_property: "worksFor"
+  // domain_types: ["Organization"]
+  // range_types: ["Person"]
+  
+  // RELATIONSHIP_WORKS_FOR
+  RelationshipTypeMapping works_for = 9;
+  // schema_property: "worksFor"
+  // inverse_property: "employee"
+  // domain_types: ["Person"]
+  // range_types: ["Organization"]
+  
+  // RELATIONSHIP_MEMBER
+  RelationshipTypeMapping member = 10;
+  // schema_property: "member"
+  // inverse_property: "memberOf"
+  // domain_types: ["Organization", "ProgramMembership"]
+  // range_types: ["Person", "Organization"]
+  
+  // RELATIONSHIP_MEMBER_OF
+  RelationshipTypeMapping member_of = 11;
+  // schema_property: "memberOf"
+  // inverse_property: "member"
+  // domain_types: ["Person", "Organization"]
+  // range_types: ["Organization", "ProgramMembership"]
+  
+  // RELATIONSHIP_AFFILIATED_WITH
+  RelationshipTypeMapping affiliated_with = 12;
+  // schema_property: "affiliation"
+  // inverse_property: "affiliatedPerson"
+  // domain_types: ["Person", "Organization"]
+  // range_types: ["Organization"]
+  
+  // RELATIONSHIP_SPONSOR
+  RelationshipTypeMapping sponsor = 13;
+  // schema_property: "sponsor"
+  // inverse_property: "sponsoredBy"
+  // domain_types: ["Organization", "Person"]
+  // range_types: ["Event", "CreativeWork", "Organization"]
+  
+  // RELATIONSHIP_SPONSORED_BY
+  RelationshipTypeMapping sponsored_by = 14;
+  // schema_property: "sponsoredBy"
+  // inverse_property: "sponsor"
+  // domain_types: ["Event", "CreativeWork", "Organization"]
+  // range_types: ["Organization", "Person"]
+  
+  // RELATIONSHIP_FUNDER
+  RelationshipTypeMapping funder = 15;
+  // schema_property: "funder"
+  // inverse_property: "fundedBy"
+  // domain_types: ["Organization", "Person"]
+  // range_types: ["CreativeWork", "Event", "Organization", "Grant"]
+  
+  // RELATIONSHIP_FUNDED_BY
+  RelationshipTypeMapping funded_by = 16;
+  // schema_property: "fundedBy"
+  // inverse_property: "funder"
+  // domain_types: ["CreativeWork", "Event", "Organization", "Grant"]
+  // range_types: ["Organization", "Person"]
+  
+  // RELATIONSHIP_PARTNER
+  RelationshipTypeMapping partner = 17;
+  // schema_property: "partner"
+  // inverse_property: "partner"
+  // domain_types: ["Organization", "Person"]
+  // range_types: ["Organization", "Person"]
+  
+  // RELATIONSHIP_ALUMNI_OF
+  RelationshipTypeMapping alumni_of = 18;
+  // schema_property: "alumniOf"
+  // inverse_property: "alumni"
+  // domain_types: ["Person"]
+  // range_types: ["EducationalOrganization", "Organization"]
+  
+  // RELATIONSHIP_KNOWS
+  RelationshipTypeMapping knows = 19;
+  // schema_property: "knows"
+  // inverse_property: "knows"
+  // domain_types: ["Person"]
+  // range_types: ["Person"]
+  
+  // RELATIONSHIP_COLLEAGUE_OF
+  RelationshipTypeMapping colleague_of = 20;
+  // schema_property: "colleague"
+  // inverse_property: "colleague"
+  // domain_types: ["Person"]
+  // range_types: ["Person"]
+}
+
+// Complete Schema.org entity type mappings
+message SchemaOrgEntityTypeDefaults {
+  // SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED
+  SchemaOrgEntityTypeMapping unspecified = 1;
+  // type_url: "https://schema.org/Thing"
+  // parent_type: ""
+  // required_properties: ["@type"]
+  // recommended_properties: ["name", "description"]
+  
+  // SCHEMA_ORG_PERSON
+  SchemaOrgEntityTypeMapping person = 2;
+  // type_url: "https://schema.org/Person"
+  // parent_type: "Thing"
+  // required_properties: ["@type", "name"]
+  // recommended_properties: ["givenName", "familyName", "email", "jobTitle", "image"]
+  
+  // SCHEMA_ORG_ORGANIZATION
+  SchemaOrgEntityTypeMapping organization = 3;
+  // type_url: "https://schema.org/Organization"
+  // parent_type: "Thing"
+  // required_properties: ["@type", "name"]
+  // recommended_properties: ["url", "logo", "description", "sameAs", "contactPoint"]
+  
+  // SCHEMA_ORG_CORPORATION
+  SchemaOrgEntityTypeMapping corporation = 4;
+  // type_url: "https://schema.org/Corporation"
+  // parent_type: "Organization"
+  // required_properties: ["@type", "name", "legalName"]
+  // recommended_properties: ["tickerSymbol", "taxID", "vatID"]
+  
+  // SCHEMA_ORG_LOCAL_BUSINESS
+  SchemaOrgEntityTypeMapping local_business = 5;
+  // type_url: "https://schema.org/LocalBusiness"
+  // parent_type: "Organization"
+  // required_properties: ["@type", "name", "address"]
+  // recommended_properties: ["telephone", "openingHours", "priceRange", "geo"]
+  
+  // SCHEMA_ORG_EDUCATIONAL_ORGANIZATION
+  SchemaOrgEntityTypeMapping educational_organization = 6;
+  // type_url: "https://schema.org/EducationalOrganization"
+  // parent_type: "Organization"
+  // required_properties: ["@type", "name"]
+  // recommended_properties: ["alumni", "accreditation", "areaServed"]
+  
+  // SCHEMA_ORG_RESEARCH_ORGANIZATION
+  SchemaOrgEntityTypeMapping research_organization = 7;
+  // type_url: "https://schema.org/ResearchOrganization"
+  // parent_type: "Organization"
+  // required_properties: ["@type", "name"]
+  // recommended_properties: ["researchField", "fundingSource", "publication"]
+  
+  // SCHEMA_ORG_CONSORTIUM
+  SchemaOrgEntityTypeMapping consortium = 8;
+  // type_url: "https://schema.org/Consortium"
+  // parent_type: "Organization"
+  // required_properties: ["@type", "name", "member"]
+  // recommended_properties: ["foundingDate", "dissolutionDate"]
+  
+  // SCHEMA_ORG_CREATIVE_WORK
+  SchemaOrgEntityTypeMapping creative_work = 9;
+  // type_url: "https://schema.org/CreativeWork"
+  // parent_type: "Thing"
+  // required_properties: ["@type", "name", "author"]
+  // recommended_properties: ["datePublished", "publisher", "license"]
+  
+  // SCHEMA_ORG_ARTICLE
+  SchemaOrgEntityTypeMapping article = 10;
+  // type_url: "https://schema.org/Article"
+  // parent_type: "CreativeWork"
+  // required_properties: ["@type", "headline", "author", "datePublished"]
+  // recommended_properties: ["articleBody", "articleSection", "wordCount"]
+  
+  // SCHEMA_ORG_BLOG_POSTING
+  SchemaOrgEntityTypeMapping blog_posting = 11;
+  // type_url: "https://schema.org/BlogPosting"
+  // parent_type: "Article"
+  // required_properties: ["@type", "headline", "author", "datePublished"]
+  // recommended_properties: ["blogPost", "articleBody", "keywords"]
+  
+  // SCHEMA_ORG_NEWS_ARTICLE
+  SchemaOrgEntityTypeMapping news_article = 12;
+  // type_url: "https://schema.org/NewsArticle"
+  // parent_type: "Article"
+  // required_properties: ["@type", "headline", "author", "datePublished", "dateline"]
+  // recommended_properties: ["articleSection", "printPage", "printEdition"]
+  
+  // SCHEMA_ORG_SCHOLARLY_ARTICLE
+  SchemaOrgEntityTypeMapping scholarly_article = 13;
+  // type_url: "https://schema.org/ScholarlyArticle"
+  // parent_type: "Article"
+  // required_properties: ["@type", "headline", "author", "datePublished"]
+  // recommended_properties: ["abstract", "citation", "academicField"]
+  
+  // SCHEMA_ORG_TECH_ARTICLE
+  SchemaOrgEntityTypeMapping tech_article = 14;
+  // type_url: "https://schema.org/TechArticle"
+  // parent_type: "Article"
+  // required_properties: ["@type", "headline", "author", "datePublished"]
+  // recommended_properties: ["proficiencyLevel", "dependencies", "techStack"]
+  
+  // SCHEMA_ORG_SOFTWARE_APPLICATION
+  SchemaOrgEntityTypeMapping software_application = 15;
+  // type_url: "https://schema.org/SoftwareApplication"
+  // parent_type: "CreativeWork"
+  // required_properties: ["@type", "name", "applicationCategory"]
+  // recommended_properties: ["operatingSystem", "softwareVersion", "downloadUrl"]
+  
+  // SCHEMA_ORG_WEB_APPLICATION
+  SchemaOrgEntityTypeMapping web_application = 16;
+  // type_url: "https://schema.org/WebApplication"
+  // parent_type: "SoftwareApplication"
+  // required_properties: ["@type", "name", "applicationCategory", "url"]
+  // recommended_properties: ["browserRequirements", "permissions"]
+  
+  // SCHEMA_ORG_MOBILE_APPLICATION
+  SchemaOrgEntityTypeMapping mobile_application = 17;
+  // type_url: "https://schema.org/MobileApplication"
+  // parent_type: "SoftwareApplication"
+  // required_properties: ["@type", "name", "applicationCategory", "operatingSystem"]
+  // recommended_properties: ["carrierRequirements", "permissions"]
+  
+  // SCHEMA_ORG_WEB_SITE
+  SchemaOrgEntityTypeMapping web_site = 18;
+  // type_url: "https://schema.org/WebSite"
+  // parent_type: "CreativeWork"
+  // required_properties: ["@type", "name", "url"]
+  // recommended_properties: ["potentialAction", "siteNavigationElement"]
+  
+  // SCHEMA_ORG_BLOG
+  SchemaOrgEntityTypeMapping blog = 19;
+  // type_url: "https://schema.org/Blog"
+  // parent_type: "CreativeWork"
+  // required_properties: ["@type", "name", "url", "blogPost"]
+  // recommended_properties: ["author", "issn", "about"]
+  
+  // SCHEMA_ORG_RESEARCH_PROJECT
+  SchemaOrgEntityTypeMapping research_project = 20;
+  // type_url: "https://schema.org/ResearchProject"
+  // parent_type: "Project"
+  // required_properties: ["@type", "name", "researcher"]
+  // recommended_properties: ["fundingScheme", "researchOutput", "studySubject"]
+  
+  // SCHEMA_ORG_SERVICE
+  SchemaOrgEntityTypeMapping service = 21;
+  // type_url: "https://schema.org/Service"
+  // parent_type: "Intangible"
+  // required_properties: ["@type", "name", "provider"]
+  // recommended_properties: ["serviceType", "areaServed", "availableChannel"]
+  
+  // SCHEMA_ORG_COLLECTION_PAGE
+  SchemaOrgEntityTypeMapping collection_page = 22;
+  // type_url: "https://schema.org/CollectionPage"
+  // parent_type: "WebPage"
+  // required_properties: ["@type", "name", "url", "mainEntity"]
+  // recommended_properties: ["hasPart", "numberOfItems"]
+  
+  // SCHEMA_ORG_ABOUT_PAGE
+  SchemaOrgEntityTypeMapping about_page = 23;
+  // type_url: "https://schema.org/AboutPage"
+  // parent_type: "WebPage"
+  // required_properties: ["@type", "name", "url", "about"]
+  // recommended_properties: ["mainEntity"]
+  
+  // SCHEMA_ORG_CONTACT_PAGE
+  SchemaOrgEntityTypeMapping contact_page = 24;
+  // type_url: "https://schema.org/ContactPage"
+  // parent_type: "WebPage"
+  // required_properties: ["@type", "name", "url"]
+  // recommended_properties: ["contactPoint", "mainEntity"]
+  
+  // SCHEMA_ORG_WEB_PAGE
+  SchemaOrgEntityTypeMapping web_page = 25;
+  // type_url: "https://schema.org/WebPage"
+  // parent_type: "CreativeWork"
+  // required_properties: ["@type", "name", "url"]
+  // recommended_properties: ["datePublished", "dateModified", "author"]
+}
+
+// Complete entity type mappings
+message EntityTypeDefaults {
+  // ENTITY_TYPE_UNSPECIFIED
+  EntityTypeMapping unspecified = 1;
+  // schema_type: "Thing"
+  // alternate_types: []
+  // properties: {}
+  
+  // ENTITY_TYPE_PERSON
+  EntityTypeMapping person = 2;
+  // schema_type: "Person"
+  // alternate_types: ["Individual"]
+  // properties: { "entityType": "person" }
+  
+  // ENTITY_TYPE_LEGAL_ENTITY
+  EntityTypeMapping legal_entity = 3;
+  // schema_type: "Corporation"
+  // alternate_types: ["Organization", "LegalEntity"]
+  // properties: { "entityType": "legal", "legalForm": "corporation" }
+  
+  // ENTITY_TYPE_ORGANIZATION
+  EntityTypeMapping organization = 4;
+  // schema_type: "Organization"
+  // alternate_types: ["Institution"]
+  // properties: { "entityType": "organization" }
+  
+  // ENTITY_TYPE_BRAND
+  EntityTypeMapping brand = 5;
+  // schema_type: "Brand"
+  // alternate_types: ["Organization"]
+  // properties: { "entityType": "brand" }
+  
+  // ENTITY_TYPE_PROJECT
+  EntityTypeMapping project = 6;
+  // schema_type: "Project"
+  // alternate_types: ["CreativeWork", "ResearchProject"]
+  // properties: { "entityType": "project" }
+  
+  // ENTITY_TYPE_COMMUNITY
+  EntityTypeMapping community = 7;
+  // schema_type: "Organization"
+  // alternate_types: ["Community", "Consortium"]
+  // properties: { "entityType": "community", "organizationType": "community" }
+  
+  // ENTITY_TYPE_DOMAIN
+  EntityTypeMapping domain = 8;
+  // schema_type: "WebSite"
+  // alternate_types: ["WebPage"]
+  // properties: { "entityType": "domain" }
+  
+  // ENTITY_TYPE_BLOG
+  EntityTypeMapping blog = 9;
+  // schema_type: "Blog"
+  // alternate_types: ["WebSite", "Periodical"]
+  // properties: { "entityType": "blog", "periodicalType": "Blog" }
+}
+
+// Complete project type mappings
+message ProjectTypeDefaults {
+  // PROJECT_TYPE_UNSPECIFIED
+  ProjectTypeMapping unspecified = 1;
+  // schema_type: "Project"
+  // application_category: ""
+  // additional_types: []
+  // properties: {}
+  
+  // PROJECT_TYPE_RESEARCH
+  ProjectTypeMapping research = 2;
+  // schema_type: "ResearchProject"
+  // application_category: "Research"
+  // additional_types: ["CreativeWork", "ScholarlyArticle"]
+  // properties: { "@type": "ResearchProject", "studySubject": "Computer Science" }
+  
+  // PROJECT_TYPE_TOOL
+  ProjectTypeMapping tool = 3;
+  // schema_type: "SoftwareApplication"
+  // application_category: "DeveloperTools"
+  // additional_types: ["SoftwareSourceCode"]
+  // properties: { "@type": "SoftwareApplication", "applicationSubCategory": "Tool" }
+  
+  // PROJECT_TYPE_FRAMEWORK
+  ProjectTypeMapping framework = 4;
+  // schema_type: "SoftwareApplication"
+  // application_category: "Framework"
+  // additional_types: ["SoftwareSourceCode", "APIReference"]
+  // properties: { "@type": "SoftwareApplication", "applicationSubCategory": "Framework" }
+  
+  // PROJECT_TYPE_LIBRARY
+  ProjectTypeMapping library = 5;
+  // schema_type: "SoftwareSourceCode"
+  // application_category: "Library"
+  // additional_types: ["CreativeWork"]
+  // properties: { "@type": "SoftwareSourceCode", "codeRepository": "{repo_url}" }
+  
+  // PROJECT_TYPE_SERVICE
+  ProjectTypeMapping service = 6;
+  // schema_type: "WebApplication"
+  // application_category: "WebService"
+  // additional_types: ["Service", "SoftwareApplication"]
+  // properties: { "@type": "WebApplication", "serviceType": "SaaS" }
+  
+  // PROJECT_TYPE_APPLICATION
+  ProjectTypeMapping application = 7;
+  // schema_type: "SoftwareApplication"
+  // application_category: "Application"
+  // additional_types: ["CreativeWork"]
+  // properties: { "@type": "SoftwareApplication" }
+  
+  // PROJECT_TYPE_PROTOCOL
+  ProjectTypeMapping protocol = 8;
+  // schema_type: "TechArticle"
+  // application_category: "Protocol"
+  // additional_types: ["Specification", "CreativeWork"]
+  // properties: { "@type": "TechArticle", "about": "Protocol Specification" }
+  
+  // PROJECT_TYPE_PLATFORM
+  ProjectTypeMapping platform = 9;
+  // schema_type: "WebApplication"
+  // application_category: "Platform"
+  // additional_types: ["Service", "Organization"]
+  // properties: { "@type": "WebApplication", "applicationCategory": "Platform" }
+  
+  // PROJECT_TYPE_INFRASTRUCTURE
+  ProjectTypeMapping infrastructure = 10;
+  // schema_type: "SoftwareApplication"
+  // application_category: "Infrastructure"
+  // additional_types: ["Service"]
+  // properties: { "@type": "SoftwareApplication", "applicationSubCategory": "Infrastructure" }
+  
+  // PROJECT_TYPE_EDUCATIONAL
+  ProjectTypeMapping educational = 11;
+  // schema_type: "Course"
+  // application_category: "Educational"
+  // additional_types: ["CreativeWork", "LearningResource"]
+  // properties: { "@type": "Course", "educationalUse": "Teaching" }
+  
+  // PROJECT_TYPE_EXPERIMENTAL
+  ProjectTypeMapping experimental = 12;
+  // schema_type: "ResearchProject"
+  // application_category: "Experimental"
+  // additional_types: ["CreativeWork"]
+  // properties: { "@type": "ResearchProject", "status": "Experimental" }
+}
+
+// Complete license type mappings
+// Only supporting: MIT, Apache 2.0, Creative Commons with attribution, and Proprietary
+message LicenseTypeDefaults {
+  // LICENSE_TYPE_MIT
+  LicenseTypeMapping mit = 1;
+  // spdx_id: "MIT"
+  // license_url: "https://opensource.org/licenses/MIT"
+  // name: "MIT License"
+  // osi_approved: true
+  // license_type: "permissive"
+  
+  // LICENSE_TYPE_APACHE_2_0
+  LicenseTypeMapping apache_2_0 = 2;
+  // spdx_id: "Apache-2.0"
+  // license_url: "https://opensource.org/licenses/Apache-2.0"
+  // name: "Apache License 2.0"
+  // osi_approved: true
+  // license_type: "permissive"
+  
+  // LICENSE_TYPE_PROPRIETARY
+  LicenseTypeMapping proprietary = 3;
+  // spdx_id: "Proprietary"
+  // license_url: ""
+  // name: "Proprietary License"
+  // osi_approved: false
+  // license_type: "proprietary"
+  
+  // LICENSE_TYPE_CC_BY_4_0
+  LicenseTypeMapping cc_by_4_0 = 4;
+  // spdx_id: "CC-BY-4.0"
+  // license_url: "https://creativecommons.org/licenses/by/4.0/"
+  // name: "Creative Commons Attribution 4.0 International"
+  // osi_approved: false
+  // license_type: "content"
+}
+
+// Complete project status mappings
+message ProjectStatusDefaults {
+  // PROJECT_STATUS_UNSPECIFIED
+  ProjectStatusMapping unspecified = 1;
+  // status_value: ""
+  // development_stage: ""
+  // availability: ""
+  
+  // PROJECT_STATUS_ACTIVE
+  ProjectStatusMapping active = 2;
+  // status_value: "Active"
+  // development_stage: "Production"
+  // availability: "Available"
+  
+  // PROJECT_STATUS_BETA
+  ProjectStatusMapping beta = 3;
+  // status_value: "Beta"
+  // development_stage: "Beta"
+  // availability: "Limited"
+  
+  // PROJECT_STATUS_STABLE
+  ProjectStatusMapping stable = 4;
+  // status_value: "Stable"
+  // development_stage: "Stable"
+  // availability: "Available"
+  
+  // PROJECT_STATUS_MAINTENANCE
+  ProjectStatusMapping maintenance = 5;
+  // status_value: "Maintenance"
+  // development_stage: "Maintenance"
+  // availability: "Available"
+  
+  // PROJECT_STATUS_DEPRECATED
+  ProjectStatusMapping deprecated = 6;
+  // status_value: "Deprecated"
+  // development_stage: "Deprecated"
+  // availability: "Discontinued"
+  
+  // PROJECT_STATUS_ARCHIVED
+  ProjectStatusMapping archived = 7;
+  // status_value: "Archived"
+  // development_stage: "Archived"
+  // availability: "Unavailable"
+}
+
+// Complete project lifecycle mappings
+message ProjectLifecycleDefaults {
+  // PROJECT_LIFECYCLE_UNSPECIFIED
+  ProjectLifecycleMapping unspecified = 1;
+  // stage_name: ""
+  // description: ""
+  // typical_duration: ""
+  // next_stages: []
+  
+  // PROJECT_LIFECYCLE_EMERGE
+  ProjectLifecycleMapping emerge = 2;
+  // stage_name: "Emerge"
+  // description: "New project emerging with initial ideas and exploration"
+  // typical_duration: "1-3 months"
+  // next_stages: ["scale", "pivot", "stagnate"]
+  
+  // PROJECT_LIFECYCLE_SCALE
+  ProjectLifecycleMapping scale = 3;
+  // stage_name: "Scale"
+  // description: "Growing and expanding project reach and features"
+  // typical_duration: "6-12 months"
+  // next_stages: ["accelerate", "maintain", "stagnate"]
+  
+  // PROJECT_LIFECYCLE_STAGNATE
+  ProjectLifecycleMapping stagnate = 4;
+  // stage_name: "Stagnate"
+  // description: "Development has slowed or paused"
+  // typical_duration: "Variable"
+  // next_stages: ["pivot", "accelerate", "sunset"]
+  
+  // PROJECT_LIFECYCLE_PIVOT
+  ProjectLifecycleMapping pivot = 5;
+  // stage_name: "Pivot"
+  // description: "Changing direction or focus"
+  // typical_duration: "2-6 months"
+  // next_stages: ["emerge", "scale", "stagnate"]
+  
+  // PROJECT_LIFECYCLE_ACCELERATE
+  ProjectLifecycleMapping accelerate = 6;
+  // stage_name: "Accelerate"
+  // description: "Rapid growth and development phase"
+  // typical_duration: "3-6 months"
+  // next_stages: ["scale", "maintain", "stagnate"]
+  
+  // PROJECT_LIFECYCLE_MAINTAIN
+  ProjectLifecycleMapping maintain = 7;
+  // stage_name: "Maintain"
+  // description: "Stable maintenance mode with occasional updates"
+  // typical_duration: "Ongoing"
+  // next_stages: ["accelerate", "sunset", "archived"]
+  
+  // PROJECT_LIFECYCLE_SUNSET
+  ProjectLifecycleMapping sunset = 8;
+  // stage_name: "Sunset"
+  // description: "Winding down and preparing for archival"
+  // typical_duration: "1-3 months"
+  // next_stages: ["archived"]
+  
+  // PROJECT_LIFECYCLE_ARCHIVED
+  ProjectLifecycleMapping archived = 9;
+  // stage_name: "Archived"
+  // description: "No longer actively maintained"
+  // typical_duration: "Permanent"
+  // next_stages: []
+}
+
+// Complete support type mappings
+message SupportTypeDefaults {
+  // SUPPORT_TYPE_UNSPECIFIED
+  SupportTypeMapping unspecified = 1;
+  // schema_type: "Thing"
+  // funding_type: ""
+  // category: ""
+  
+  // SUPPORT_TYPE_FUNDING
+  SupportTypeMapping funding = 2;
+  // schema_type: "MonetaryGrant"
+  // funding_type: "Financial"
+  // category: "Monetary"
+  
+  // SUPPORT_TYPE_INFRASTRUCTURE
+  SupportTypeMapping infrastructure = 3;
+  // schema_type: "Service"
+  // funding_type: "In-Kind"
+  // category: "Technical"
+  
+  // SUPPORT_TYPE_ADVISORY
+  SupportTypeMapping advisory = 4;
+  // schema_type: "ProfessionalService"
+  // funding_type: "In-Kind"
+  // category: "Expertise"
+  
+  // SUPPORT_TYPE_TECHNICAL
+  SupportTypeMapping technical = 5;
+  // schema_type: "TechArticle"
+  // funding_type: "In-Kind"
+  // category: "Technical"
+  
+  // SUPPORT_TYPE_COMMUNITY
+  SupportTypeMapping community = 6;
+  // schema_type: "Organization"
+  // funding_type: "In-Kind"
+  // category: "Social"
+  
+  // SUPPORT_TYPE_MARKETING
+  SupportTypeMapping marketing = 7;
+  // schema_type: "MarketingCampaign"
+  // funding_type: "In-Kind"
+  // category: "Promotional"
+  
+  // SUPPORT_TYPE_LEGAL
+  SupportTypeMapping legal = 8;
+  // schema_type: "LegalService"
+  // funding_type: "In-Kind"
+  // category: "Professional"
+  
+  // SUPPORT_TYPE_MENTORSHIP
+  SupportTypeMapping mentorship = 9;
+  // schema_type: "EducationalOccupationalProgram"
+  // funding_type: "In-Kind"
+  // category: "Educational"
+  
+  // SUPPORT_TYPE_RESOURCES
+  SupportTypeMapping resources = 10;
+  // schema_type: "Grant"
+  // funding_type: "In-Kind"
+  // category: "Material"
+  
+  // SUPPORT_TYPE_PARTNERSHIP
+  SupportTypeMapping partnership = 11;
+  // schema_type: "Organization"
+  // funding_type: "Strategic"
+  // category: "Collaborative"
+}
+
+// Complete dependency type mappings
+message DependencyTypeDefaults {
+  // DEPENDENCY_TYPE_UNSPECIFIED
+  DependencyTypeMapping unspecified = 1;
+  // relationship: ""
+  // strength: ""
+  // schema_property: ""
+  
+  // DEPENDENCY_TYPE_USES
+  DependencyTypeMapping uses = 2;
+  // relationship: "uses"
+  // strength: "optional"
+  // schema_property: "dependencies"
+  
+  // DEPENDENCY_TYPE_EXTENDS
+  DependencyTypeMapping extends = 3;
+  // relationship: "extends"
+  // strength: "required"
+  // schema_property: "isBasedOn"
+  
+  // DEPENDENCY_TYPE_INTEGRATES
+  DependencyTypeMapping integrates = 4;
+  // relationship: "integrates"
+  // strength: "optional"
+  // schema_property: "interactionStatistic"
+  
+  // DEPENDENCY_TYPE_REQUIRES
+  DependencyTypeMapping requires = 5;
+  // relationship: "requires"
+  // strength: "required"
+  // schema_property: "requirements"
+  
+  // DEPENDENCY_TYPE_OPTIONAL
+  DependencyTypeMapping optional = 6;
+  // relationship: "optional"
+  // strength: "optional"
+  // schema_property: "softwareRequirements"
+  
+  // DEPENDENCY_TYPE_REPLACES
+  DependencyTypeMapping replaces = 7;
+  // relationship: "replaces"
+  // strength: "migration"
+  // schema_property: "replacer"
+  
+  // DEPENDENCY_TYPE_BUNDLES
+  DependencyTypeMapping bundles = 8;
+  // relationship: "bundles"
+  // strength: "included"
+  // schema_property: "hasPart"
+  
+  // DEPENDENCY_TYPE_INSPIRED_BY
+  DependencyTypeMapping inspired_by = 9;
+  // relationship: "inspired_by"
+  // strength: "reference"
+  // schema_property: "citation"
+}
+
+// Complete dependency scope mappings
+message DependencyScopeDefaults {
+  // DEPENDENCY_SCOPE_UNSPECIFIED
+  DependencyScopeMapping unspecified = 1;
+  // scope_name: ""
+  // when_needed: ""
+  // package_manager_scopes: {}
+  
+  // DEPENDENCY_SCOPE_RUNTIME
+  DependencyScopeMapping runtime = 2;
+  // scope_name: "Runtime"
+  // when_needed: "Required when application runs"
+  // package_manager_scopes: { "npm": "dependencies", "maven": "compile", "pip": "install_requires" }
+  
+  // DEPENDENCY_SCOPE_DEVELOPMENT
+  DependencyScopeMapping development = 3;
+  // scope_name: "Development"
+  // when_needed: "Only during development"
+  // package_manager_scopes: { "npm": "devDependencies", "maven": "test", "pip": "dev" }
+  
+  // DEPENDENCY_SCOPE_DOCUMENTATION
+  DependencyScopeMapping documentation = 4;
+  // scope_name: "Documentation"
+  // when_needed: "For generating documentation"
+  // package_manager_scopes: { "npm": "devDependencies", "maven": "site", "pip": "docs" }
+  
+  // DEPENDENCY_SCOPE_TESTING
+  DependencyScopeMapping testing = 5;
+  // scope_name: "Testing"
+  // when_needed: "Only for running tests"
+  // package_manager_scopes: { "npm": "devDependencies", "maven": "test", "pip": "tests_require" }
+  
+  // DEPENDENCY_SCOPE_BUILD
+  DependencyScopeMapping build = 6;
+  // scope_name: "Build"
+  // when_needed: "During build process only"
+  // package_manager_scopes: { "npm": "devDependencies", "maven": "provided", "pip": "setup_requires" }
+  
+  // DEPENDENCY_SCOPE_OPTIONAL
+  DependencyScopeMapping optional = 7;
+  // scope_name: "Optional"
+  // when_needed: "For optional features"
+  // package_manager_scopes: { "npm": "optionalDependencies", "maven": "optional", "pip": "extras_require" }
+}
+
+// Complete community status mappings
+message CommunityStatusDefaults {
+  // COMMUNITY_STATUS_UNSPECIFIED
+  CommunityStatusMapping unspecified = 1;
+  // status_name: ""
+  // dissolution_state: ""
+  // activity_level: ""
+  
+  // COMMUNITY_STATUS_FORMING
+  CommunityStatusMapping forming = 2;
+  // status_name: "Forming"
+  // dissolution_state: "Active"
+  // activity_level: "Growing"
+  
+  // COMMUNITY_STATUS_ACTIVE
+  CommunityStatusMapping active = 3;
+  // status_name: "Active"
+  // dissolution_state: "Active"
+  // activity_level: "High"
+  
+  // COMMUNITY_STATUS_INACTIVE
+  CommunityStatusMapping inactive = 4;
+  // status_name: "Inactive"
+  // dissolution_state: "Suspended"
+  // activity_level: "Low"
+  
+  // COMMUNITY_STATUS_DISSOLVED
+  CommunityStatusMapping dissolved = 5;
+  // status_name: "Dissolved"
+  // dissolution_state: "Dissolved"
+  // activity_level: "None"
+  
+  // COMMUNITY_STATUS_MERGED
+  CommunityStatusMapping merged = 6;
+  // status_name: "Merged"
+  // dissolution_state: "Merged"
+  // activity_level: "Redirected"
+}
+
+// Complete API doc generator mappings
+message APIDocGeneratorDefaults {
+  // API_DOC_GENERATOR_UNSPECIFIED
+  APIDocGeneratorMapping unspecified = 1;
+  // name: ""
+  // url: ""
+  // supported_formats: []
+  // default_config: {}
+  
+  // API_DOC_GENERATOR_SWAGGER_UI
+  APIDocGeneratorMapping swagger_ui = 2;
+  // name: "Swagger UI"
+  // url: "https://swagger.io/tools/swagger-ui/"
+  // supported_formats: ["openapi", "swagger"]
+  // default_config: { "theme": "flattop", "syntaxHighlight": "true", "docExpansion": "list" }
+  
+  // API_DOC_GENERATOR_REDOC
+  APIDocGeneratorMapping redoc = 3;
+  // name: "ReDoc"
+  // url: "https://github.com/Redocly/redoc"
+  // supported_formats: ["openapi"]
+  // default_config: { "nativeScrollbars": "true", "theme": "default", "scrollYOffset": "0" }
+  
+  // API_DOC_GENERATOR_GRAPHDOC
+  APIDocGeneratorMapping graphdoc = 4;
+  // name: "GraphDoc"
+  // url: "https://github.com/2fd/graphdoc"
+  // supported_formats: ["graphql"]
+  // default_config: { "theme": "default", "plugins": "default" }
+  
+  // API_DOC_GENERATOR_CUSTOM
+  APIDocGeneratorMapping custom = 5;
+  // name: "Custom Generator"
+  // url: ""
+  // supported_formats: ["openapi", "graphql", "grpc", "custom"]
+  // default_config: {}
+}
+
+// Complete search provider mappings
+message SearchProviderDefaults {
+  // SEARCH_PROVIDER_UNSPECIFIED
+  SearchProviderMapping unspecified = 1;
+  // name: ""
+  // service_url: ""
+  // client_library: ""
+  // index_config: {}
+  // features: {}
+  
+  // SEARCH_PROVIDER_ALGOLIA
+  SearchProviderMapping algolia = 2;
+  // name: "Algolia"
+  // service_url: "https://www.algolia.com/"
+  // client_library: "algoliasearch"
+  // index_config: { "attributesToIndex": "title,content,tags", "attributesToHighlight": "title,content" }
+  // features: { "instant_search": "true", "facets": "true", "analytics": "true", "ai_powered": "true" }
+  
+  // SEARCH_PROVIDER_LUNR
+  SearchProviderMapping lunr = 3;
+  // name: "Lunr.js"
+  // service_url: "https://lunrjs.com/"
+  // client_library: "lunr"
+  // index_config: { "fields": "title,content,tags", "boost": "title^10" }
+  // features: { "offline": "true", "stemming": "true", "stop_words": "true", "client_side": "true" }
+  
+  // SEARCH_PROVIDER_FUSE
+  SearchProviderMapping fuse = 4;
+  // name: "Fuse.js"
+  // service_url: "https://fusejs.io/"
+  // client_library: "fuse.js"
+  // index_config: { "keys": "title,content,tags", "threshold": "0.3" }
+  // features: { "fuzzy_search": "true", "offline": "true", "lightweight": "true" }
+  
+  // SEARCH_PROVIDER_CUSTOM
+  SearchProviderMapping custom = 5;
+  // name: "Custom Search"
+  // service_url: ""
+  // client_library: ""
+  // index_config: {}
+  // features: {}
+}
+
+// Complete API spec format mappings
+message APISpecFormatDefaults {
+  // API_SPEC_FORMAT_UNSPECIFIED
+  APISpecFormatMapping unspecified = 1;
+  // spec_name: ""
+  // spec_url: ""
+  // mime_type: ""
+  // file_extensions: []
+  
+  // API_SPEC_FORMAT_OPENAPI
+  APISpecFormatMapping openapi = 2;
+  // spec_name: "OpenAPI"
+  // spec_url: "https://spec.openapis.org/oas/latest.html"
+  // mime_type: "application/vnd.oai.openapi+json"
+  // file_extensions: ["openapi.json", "openapi.yaml", "openapi.yml"]
+  
+  // API_SPEC_FORMAT_GRAPHQL
+  APISpecFormatMapping graphql = 3;
+  // spec_name: "GraphQL"
+  // spec_url: "https://spec.graphql.org/"
+  // mime_type: "application/graphql"
+  // file_extensions: ["graphql", "gql", "graphqls"]
+  
+  // API_SPEC_FORMAT_GRPC
+  APISpecFormatMapping grpc = 4;
+  // spec_name: "gRPC"
+  // spec_url: "https://grpc.io/docs/what-is-grpc/core-concepts/"
+  // mime_type: "application/x-protobuf"
+  // file_extensions: ["proto", "protobuf"]
+}
+
+// Complete auth type mappings
+message AuthTypeDefaults {
+  // AUTH_TYPE_UNSPECIFIED
+  AuthTypeMapping unspecified = 1;
+  // scheme_type: ""
+  // oauth2_flows: []
+  // required_headers: []
+  // access_specification: ""
+  
+  // AUTH_TYPE_NONE
+  AuthTypeMapping none = 2;
+  // scheme_type: "None"
+  // oauth2_flows: []
+  // required_headers: []
+  // access_specification: "PublicAccess"
+  
+  // AUTH_TYPE_API_KEY
+  AuthTypeMapping api_key = 3;
+  // scheme_type: "ApiKey"
+  // oauth2_flows: []
+  // required_headers: ["X-API-Key", "Authorization"]
+  // access_specification: "RestrictedAccess"
+  
+  // AUTH_TYPE_OAUTH2
+  AuthTypeMapping oauth2 = 4;
+  // scheme_type: "OAuth2"
+  // oauth2_flows: ["authorization_code", "implicit", "client_credentials"]
+  // required_headers: ["Authorization"]
+  // access_specification: "RestrictedAccess"
+  
+  // AUTH_TYPE_BASIC
+  AuthTypeMapping basic = 5;
+  // scheme_type: "Basic"
+  // oauth2_flows: []
+  // required_headers: ["Authorization"]
+  // access_specification: "RestrictedAccess"
+}
+
+// Complete OAuth2 flow mappings
+message OAuth2FlowDefaults {
+  // OAUTH2_FLOW_UNSPECIFIED
+  OAuth2FlowMapping unspecified = 1;
+  // flow_name: ""
+  // required_params: []
+  // grant_type: ""
+  // security_notes: []
+  
+  // OAUTH2_FLOW_IMPLICIT
+  OAuth2FlowMapping implicit = 2;
+  // flow_name: "Implicit"
+  // required_params: ["client_id", "redirect_uri", "scope", "state"]
+  // grant_type: "implicit"
+  // security_notes: ["Deprecated for SPAs", "Token exposed in URL"]
+  
+  // OAUTH2_FLOW_AUTHORIZATION_CODE
+  OAuth2FlowMapping authorization_code = 3;
+  // flow_name: "Authorization Code"
+  // required_params: ["client_id", "client_secret", "redirect_uri", "code"]
+  // grant_type: "authorization_code"
+  // security_notes: ["Recommended for web apps", "Requires backend"]
+  
+  // OAUTH2_FLOW_CLIENT_CREDENTIALS
+  OAuth2FlowMapping client_credentials = 4;
+  // flow_name: "Client Credentials"
+  // required_params: ["client_id", "client_secret"]
+  // grant_type: "client_credentials"
+  // security_notes: ["For machine-to-machine", "No user context"]
+}
+
+// Complete doc navigation style mappings
+message DocNavigationStyleDefaults {
+  // DOC_NAVIGATION_STYLE_UNSPECIFIED
+  DocNavigationStyleMapping unspecified = 1;
+  // style_name: ""
+  // css_classes: []
+  // layout_type: ""
+  // mobile_behavior: ""
+  
+  // DOC_NAVIGATION_STYLE_SIDEBAR
+  DocNavigationStyleMapping sidebar = 2;
+  // style_name: "Sidebar"
+  // css_classes: ["docs-sidebar", "sticky-nav"]
+  // layout_type: "fixed-sidebar"
+  // mobile_behavior: "hamburger-menu"
+  
+  // DOC_NAVIGATION_STYLE_TOP_NAV
+  DocNavigationStyleMapping top_nav = 3;
+  // style_name: "Top Navigation"
+  // css_classes: ["docs-topnav", "horizontal-nav"]
+  // layout_type: "horizontal-bar"
+  // mobile_behavior: "dropdown-menu"
+  
+  // DOC_NAVIGATION_STYLE_BOTH
+  DocNavigationStyleMapping both = 4;
+  // style_name: "Both"
+  // css_classes: ["docs-sidebar", "docs-topnav", "dual-nav"]
+  // layout_type: "hybrid"
+  // mobile_behavior: "hamburger-menu"
+}
+
+// Complete doc landing style mappings
+message DocLandingStyleDefaults {
+  // DOC_LANDING_STYLE_UNSPECIFIED
+  DocLandingStyleMapping unspecified = 1;
+  // template_name: ""
+  // sections: []
+  // hero_type: ""
+  
+  // DOC_LANDING_STYLE_HERO
+  DocLandingStyleMapping hero = 2;
+  // template_name: "Hero Landing"
+  // sections: ["hero", "features", "quick-links", "footer"]
+  // hero_type: "full-width"
+  
+  // DOC_LANDING_STYLE_QUICK_START
+  DocLandingStyleMapping quick_start = 3;
+  // template_name: "Quick Start"
+  // sections: ["title", "installation", "examples", "next-steps"]
+  // hero_type: "compact"
+  
+  // DOC_LANDING_STYLE_OVERVIEW
+  DocLandingStyleMapping overview = 4;
+  // template_name: "Overview"
+  // sections: ["title", "description", "navigation-grid", "resources"]
+  // hero_type: "minimal"
+}
+
+// Complete sidebar position mappings
+message SidebarPositionDefaults {
+  // SIDEBAR_POSITION_UNSPECIFIED
+  SidebarPositionMapping unspecified = 1;
+  // position_name: ""
+  // grid_area: ""
+  // float_direction: ""
+  
+  // SIDEBAR_POSITION_LEFT
+  SidebarPositionMapping left = 2;
+  // position_name: "Left"
+  // grid_area: "sidebar-left"
+  // float_direction: "left"
+  
+  // SIDEBAR_POSITION_RIGHT
+  SidebarPositionMapping right = 3;
+  // position_name: "Right"
+  // grid_area: "sidebar-right"
+  // float_direction: "right"
+}
+
+// Complete link behavior mappings
+message LinkBehaviorDefaults {
+  // LINK_BEHAVIOR_UNSPECIFIED
+  LinkBehaviorMapping unspecified = 1;
+  // target: ""
+  // rel: ""
+  // security_attrs: {}
+  
+  // LINK_BEHAVIOR_NEW_TAB
+  LinkBehaviorMapping new_tab = 2;
+  // target: "_blank"
+  // rel: "noopener noreferrer"
+  // security_attrs: { "data-external": "true" }
+  
+  // LINK_BEHAVIOR_SAME_TAB
+  LinkBehaviorMapping same_tab = 3;
+  // target: "_self"
+  // rel: ""
+  // security_attrs: {}
+}
+
+// Complete homepage style mappings
+message HomepageStyleDefaults {
+  // HOMEPAGE_STYLE_UNSPECIFIED
+  HomepageStyleMapping unspecified = 1;
+  // template_name: ""
+  // components: []
+  // layout_grid: ""
+  
+  // HOMEPAGE_STYLE_HERO
+  HomepageStyleMapping hero = 2;
+  // template_name: "Hero Homepage"
+  // components: ["hero-banner", "cta-section", "features", "footer"]
+  // layout_grid: "full-width"
+  
+  // HOMEPAGE_STYLE_DOCUMENTATION
+  HomepageStyleMapping documentation = 3;
+  // template_name: "Documentation Homepage"
+  // components: ["header", "nav-grid", "quick-start", "resources"]
+  // layout_grid: "container"
+  
+  // HOMEPAGE_STYLE_SHOWCASE
+  HomepageStyleMapping showcase = 4;
+  // template_name: "Showcase Homepage"
+  // components: ["hero", "demo", "screenshots", "features", "cta"]
+  // layout_grid: "full-width"
+  
+  // HOMEPAGE_STYLE_CUSTOM
+  HomepageStyleMapping custom = 5;
+  // template_name: "Custom Homepage"
+  // components: []
+  // layout_grid: "custom"
+}
+
+// Complete docs layout style mappings
+message DocsLayoutStyleDefaults {
+  // DOCS_LAYOUT_STYLE_UNSPECIFIED
+  DocsLayoutStyleMapping unspecified = 1;
+  // layout_name: ""
+  // navigation_type: ""
+  // page_structure: ""
+  // supports_versions: false
+  
+  // DOCS_LAYOUT_STYLE_SINGLE_PAGE
+  DocsLayoutStyleMapping single_page = 2;
+  // layout_name: "Single Page"
+  // navigation_type: "anchor-links"
+  // page_structure: "linear"
+  // supports_versions: false
+  
+  // DOCS_LAYOUT_STYLE_MULTI_PAGE
+  DocsLayoutStyleMapping multi_page = 3;
+  // layout_name: "Multi Page"
+  // navigation_type: "hierarchical"
+  // page_structure: "tree"
+  // supports_versions: true
+  
+  // DOCS_LAYOUT_STYLE_VERSIONED
+  DocsLayoutStyleMapping versioned = 4;
+  // layout_name: "Versioned"
+  // navigation_type: "version-aware"
+  // page_structure: "tree"
+  // supports_versions: true
+}
+
+// Complete playground provider mappings
+message PlaygroundProviderDefaults {
+  // PLAYGROUND_PROVIDER_UNSPECIFIED
+  PlaygroundProviderMapping unspecified = 1;
+  // name: ""
+  // embed_url_pattern: ""
+  // supported_languages: []
+  // features: {}
+  
+  // PLAYGROUND_PROVIDER_CODEPEN
+  PlaygroundProviderMapping codepen = 2;
+  // name: "CodePen"
+  // embed_url_pattern: "https://codepen.io/{user}/embed/{pen}"
+  // supported_languages: ["html", "css", "javascript"]
+  // features: { "live_preview": "true", "console": "true", "assets": "true" }
+  
+  // PLAYGROUND_PROVIDER_CODESANDBOX
+  PlaygroundProviderMapping codesandbox = 3;
+  // name: "CodeSandbox"
+  // embed_url_pattern: "https://codesandbox.io/embed/{sandbox_id}"
+  // supported_languages: ["javascript", "typescript", "react", "vue", "angular"]
+  // features: { "live_preview": "true", "console": "true", "npm": "true", "github_import": "true" }
+  
+  // PLAYGROUND_PROVIDER_STACKBLITZ
+  PlaygroundProviderMapping stackblitz = 4;
+  // name: "StackBlitz"
+  // embed_url_pattern: "https://stackblitz.com/edit/{project_id}"
+  // supported_languages: ["javascript", "typescript", "angular", "react", "vue"]
+  // features: { "live_preview": "true", "terminal": "true", "npm": "true", "vscode": "true" }
+  
+  // PLAYGROUND_PROVIDER_CUSTOM
+  PlaygroundProviderMapping custom = 5;
+  // name: "Custom Playground"
+  // embed_url_pattern: ""
+  // supported_languages: []
+  // features: {}
+}
+
+// Complete manifest format mappings
+message ManifestFormatDefaults {
+  // MANIFEST_FORMAT_UNSPECIFIED
+  ManifestFormatMapping unspecified = 1;
+  // format_name: ""
+  // mime_type: ""
+  // file_extension: ""
+  // schema_url: ""
+  
+  // MANIFEST_FORMAT_JSON
+  ManifestFormatMapping json = 2;
+  // format_name: "JSON"
+  // mime_type: "application/json"
+  // file_extension: ".json"
+  // schema_url: "https://json-schema.org/draft/2020-12/schema"
+  
+  // MANIFEST_FORMAT_PROTOBUF
+  ManifestFormatMapping protobuf = 3;
+  // format_name: "Protocol Buffers"
+  // mime_type: "application/x-protobuf"
+  // file_extension: ".pb"
+  // schema_url: "https://protobuf.dev/"
+}
+
+// Complete site type mappings
+message SiteTypeDefaults {
+  // SITE_TYPE_UNSPECIFIED
+  SiteTypeMapping unspecified = 1;
+  // schema_type: "WebSite"
+  // additional_types: []
+  // required_properties: []
+  // description: ""
+  
+  // SITE_TYPE_DOMAIN
+  SiteTypeMapping domain = 2;
+  // schema_type: "WebSite"
+  // additional_types: ["Organization"]
+  // required_properties: ["name", "url", "publisher"]
+  // description: "Main domain website"
+  
+  // SITE_TYPE_BLOG
+  SiteTypeMapping blog = 3;
+  // schema_type: "Blog"
+  // additional_types: ["WebSite", "Periodical"]
+  // required_properties: ["name", "url", "blogPost", "author"]
+  // description: "Blog subdomain"
+  
+  // SITE_TYPE_PROJECT
+  SiteTypeMapping project = 4;
+  // schema_type: "SoftwareSourceCode"
+  // additional_types: ["WebSite", "CreativeWork"]
+  // required_properties: ["name", "url", "codeRepository"]
+  // description: "Project documentation site"
+}
+
+// Complete node type mappings
+message NodeTypeDefaults {
+  // NODE_TYPE_UNSPECIFIED
+  NodeTypeMapping unspecified = 1;
+  // type_name: ""
+  // schema_type: ""
+  // nav_role: ""
+  // aria_properties: {}
+  
+  // NODE_TYPE_PAGE
+  NodeTypeMapping page = 2;
+  // type_name: "Page"
+  // schema_type: "WebPage"
+  // nav_role: "navigation"
+  // aria_properties: { "aria-label": "Page link", "role": "link" }
+  
+  // NODE_TYPE_SECTION
+  NodeTypeMapping section = 3;
+  // type_name: "Section"
+  // schema_type: "WebPageElement"
+  // nav_role: "group"
+  // aria_properties: { "aria-label": "Section", "role": "group" }
+  
+  // NODE_TYPE_EXTERNAL
+  NodeTypeMapping external = 4;
+  // type_name: "External"
+  // schema_type: "WebPage"
+  // nav_role: "link"
+  // aria_properties: { "aria-label": "External link", "role": "link", "rel": "external" }
+}
+
+// =============================================================================
+// AFFILIATION TYPE MAPPINGS
+// =============================================================================
+
+// Maps AffiliationType enum values to Schema.org Role types
+message AffiliationTypeMappings {
+  // Simple string mapping: enum name -> Schema.org role type
+  // e.g., "AFFILIATION_EMPLOYEE" -> "EmployeeRole"
+  map<string, string> affiliation_to_role = 1;
+}
+
+message AffiliationTypeMapping {
+  // Schema.org role type
+  string schema_role_type = 1;
+  
+  // Additional type refinements
+  repeated string additional_types = 2;
+  
+  // Role properties
+  map<string, string> role_properties = 3;
+}
+
+// =============================================================================
+// RELATIONSHIP TYPE MAPPINGS
+// =============================================================================
+
+// Maps RelationshipType enum values to Schema.org relationships
+message RelationshipTypeMappings {
+  // Simple string mapping: enum name -> Schema.org property
+  // e.g., "RELATIONSHIP_FOUNDER" -> "founder"
+  map<string, string> relationship_to_property = 1;
+}
+
+message RelationshipTypeMapping {
+  // Schema.org property name
+  string schema_property = 1;
+  
+  // Inverse property name
+  string inverse_property = 2;
+  
+  // Domain types (what types can have this relationship)
+  repeated string domain_types = 3;
+  
+  // Range types (what types this relationship points to)
+  repeated string range_types = 4;
+}
+
+// =============================================================================
+// SCHEMA.ORG ENTITY TYPE MAPPINGS
+// =============================================================================
+
+// Maps SchemaOrgEntityType enum to actual Schema.org types
+message SchemaOrgEntityTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "SCHEMA_ORG_PERSON" -> "Person"
+  map<string, string> entity_to_type = 1;
+}
+
+message SchemaOrgEntityTypeMapping {
+  // Full Schema.org type URL
+  string type_url = 1;
+  
+  // Parent type
+  string parent_type = 2;
+  
+  // Required properties for this type
+  repeated string required_properties = 3;
+  
+  // Recommended properties
+  repeated string recommended_properties = 4;
+}
+
+// =============================================================================
+// ENTITY TYPE MAPPINGS
+// =============================================================================
+
+// Maps EntityType enum to Schema.org types
+message EntityTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "ENTITY_TYPE_PERSON" -> "Person"
+  map<string, string> entity_to_schema = 1;
+}
+
+message EntityTypeMapping {
+  // Primary Schema.org type
+  string schema_type = 1;
+  
+  // Alternative types
+  repeated string alternate_types = 2;
+  
+  // Entity-specific properties
+  map<string, string> properties = 3;
+}
+
+// =============================================================================
+// PROJECT TYPE MAPPINGS
+// =============================================================================
+
+// Maps ProjectType enum to Schema.org types
+message ProjectTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "PROJECT_TYPE_RESEARCH" -> "ResearchProject"
+  map<string, string> project_to_schema = 1;
+}
+
+message ProjectTypeMapping {
+  // Schema.org type (SoftwareApplication, Service, etc.)
+  string schema_type = 1;
+  
+  // Application category
+  string application_category = 2;
+  
+  // Additional types
+  repeated string additional_types = 3;
+  
+  // Type-specific properties
+  map<string, string> properties = 4;
+}
+
+// =============================================================================
+// PROJECT STATUS MAPPINGS
+// =============================================================================
+
+// Maps ProjectStatus enum to Schema.org status values
+message ProjectStatusMappings {
+  // Simple string mapping: enum name -> status value
+  // e.g., "PROJECT_STATUS_ACTIVE" -> "Active"
+  map<string, string> status_to_value = 1;
+}
+
+message ProjectStatusMapping {
+  // Status value for Schema.org
+  string status_value = 1;
+  
+  // Development stage
+  string development_stage = 2;
+  
+  // Availability status
+  string availability = 3;
+}
+
+// =============================================================================
+// PROJECT LIFECYCLE MAPPINGS
+// =============================================================================
+
+// Maps ProjectLifecycle enum to semantic lifecycle stages
+message ProjectLifecycleMappings {
+  // Simple string mapping: enum name -> lifecycle stage
+  // e.g., "PROJECT_LIFECYCLE_EMERGE" -> "Emerge"
+  map<string, string> lifecycle_to_stage = 1;
+}
+
+message ProjectLifecycleMapping {
+  // Lifecycle stage name
+  string stage_name = 1;
+  
+  // Stage description
+  string description = 2;
+  
+  // Typical duration
+  string typical_duration = 3;
+  
+  // Next possible stages
+  repeated string next_stages = 4;
+}
+
+// =============================================================================
+// LICENSE TYPE MAPPINGS
+// =============================================================================
+
+// Maps LicenseType enum to Schema.org license URLs
+message LicenseTypeMappings {
+  // Simple string mapping: enum name -> license URL
+  // e.g., "LICENSE_TYPE_MIT" -> "https://opensource.org/licenses/MIT"
+  map<string, string> license_to_url = 1;
+}
+
+message LicenseTypeMapping {
+  // SPDX identifier
+  string spdx_id = 1;
+  
+  // License URL
+  string license_url = 2;
+  
+  // License name
+  string name = 3;
+  
+  // OSI approved
+  bool osi_approved = 4;
+  
+  // License type (permissive, copyleft, etc.)
+  string license_type = 5;
+}
+
+// =============================================================================
+// SUPPORT TYPE MAPPINGS
+// =============================================================================
+
+// Maps SupportType enum to Schema.org FundingScheme types
+message SupportTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "SUPPORT_TYPE_FUNDING" -> "MonetaryGrant"
+  map<string, string> support_to_schema = 1;
+}
+
+message SupportTypeMapping {
+  // Schema.org type
+  string schema_type = 1;
+  
+  // Funding type
+  string funding_type = 2;
+  
+  // Support category
+  string category = 3;
+}
+
+// =============================================================================
+// DEPENDENCY TYPE MAPPINGS
+// =============================================================================
+
+// Maps DependencyType enum to dependency relationships
+message DependencyTypeMappings {
+  // Simple string mapping: enum name -> relationship
+  // e.g., "DEPENDENCY_TYPE_USES" -> "uses"
+  map<string, string> dependency_to_relation = 1;
+}
+
+message DependencyTypeMapping {
+  // Relationship name
+  string relationship = 1;
+  
+  // Relationship strength (required, optional, etc.)
+  string strength = 2;
+  
+  // Schema.org property
+  string schema_property = 3;
+}
+
+// =============================================================================
+// DEPENDENCY SCOPE MAPPINGS
+// =============================================================================
+
+// Maps DependencyScope enum to scope definitions
+message DependencyScopeMappings {
+  // Simple string mapping: enum name -> scope name
+  // e.g., "DEPENDENCY_SCOPE_RUNTIME" -> "Runtime"
+  map<string, string> scope_to_name = 1;
+}
+
+message DependencyScopeMapping {
+  // Scope name
+  string scope_name = 1;
+  
+  // When dependency is needed
+  string when_needed = 2;
+  
+  // Package manager scope equivalent
+  map<string, string> package_manager_scopes = 3;
+}
+
+// =============================================================================
+// COMMUNITY STATUS MAPPINGS
+// =============================================================================
+
+// Maps CommunityStatus enum to organization lifecycle states
+message CommunityStatusMappings {
+  // Simple string mapping: enum name -> status name
+  // e.g., "COMMUNITY_STATUS_ACTIVE" -> "Active"
+  map<string, string> status_to_name = 1;
+}
+
+message CommunityStatusMapping {
+  // Status name
+  string status_name = 1;
+  
+  // Organization dissolution state
+  string dissolution_state = 2;
+  
+  // Activity level
+  string activity_level = 3;
+}
+
+// =============================================================================
+// API SPECIFICATION FORMAT MAPPINGS
+// =============================================================================
+
+// Maps API specification formats to Schema.org types
+message APISpecFormatMappings {
+  // Simple string mapping: enum name -> spec name
+  // e.g., "API_SPEC_FORMAT_OPENAPI" -> "OpenAPI"
+  map<string, string> format_to_name = 1;
+}
+
+message APISpecFormatMapping {
+  // Specification name
+  string spec_name = 1;
+  
+  // Specification URL
+  string spec_url = 2;
+  
+  // MIME type
+  string mime_type = 3;
+  
+  // File extensions
+  repeated string file_extensions = 4;
+}
+
+// =============================================================================
+// AUTHENTICATION TYPE MAPPINGS
+// =============================================================================
+
+// Maps authentication types to security schemes
+message AuthTypeMappings {
+  // Simple string mapping: enum name -> scheme type
+  // e.g., "AUTH_TYPE_OAUTH2" -> "OAuth2"
+  map<string, string> auth_to_scheme = 1;
+}
+
+message AuthTypeMapping {
+  // Security scheme type
+  string scheme_type = 1;
+  
+  // OAuth2 flows (if applicable)
+  repeated string oauth2_flows = 2;
+  
+  // Required headers
+  repeated string required_headers = 3;
+  
+  // Schema.org ActionAccessSpecification
+  string access_specification = 4;
+}
+
+// =============================================================================
+// DOCUMENTATION NAVIGATION STYLE MAPPINGS
+// =============================================================================
+
+// Maps DocNavigationStyle enum to UI patterns
+message DocNavigationStyleMappings {
+  // Simple string mapping: enum name -> style name
+  // e.g., "DOC_NAVIGATION_STYLE_SIDEBAR" -> "Sidebar"
+  map<string, string> style_to_name = 1;
+}
+
+message DocNavigationStyleMapping {
+  // Style name
+  string style_name = 1;
+  
+  // CSS class names
+  repeated string css_classes = 2;
+  
+  // Layout type
+  string layout_type = 3;
+  
+  // Mobile behavior
+  string mobile_behavior = 4;
+}
+
+// =============================================================================
+// DOCUMENTATION LANDING STYLE MAPPINGS
+// =============================================================================
+
+// Maps DocLandingStyle enum to page templates
+message DocLandingStyleMappings {
+  // Simple string mapping: enum name -> template name
+  // e.g., "DOC_LANDING_STYLE_HERO" -> "Hero Landing"
+  map<string, string> style_to_template = 1;
+}
+
+message DocLandingStyleMapping {
+  // Template name
+  string template_name = 1;
+  
+  // Primary sections
+  repeated string sections = 2;
+  
+  // Hero type
+  string hero_type = 3;
+}
+
+// =============================================================================
+// SIDEBAR POSITION MAPPINGS
+// =============================================================================
+
+// Maps SidebarPosition enum to layout configurations
+message SidebarPositionMappings {
+  // Simple string mapping: enum name -> position name
+  // e.g., "SIDEBAR_POSITION_LEFT" -> "Left"
+  map<string, string> position_to_name = 1;
+}
+
+message SidebarPositionMapping {
+  // Position name
+  string position_name = 1;
+  
+  // CSS grid area
+  string grid_area = 2;
+  
+  // Float direction
+  string float_direction = 3;
+}
+
+// =============================================================================
+// LINK BEHAVIOR MAPPINGS
+// =============================================================================
+
+// Maps LinkBehavior enum to HTML attributes
+message LinkBehaviorMappings {
+  // Simple string mapping: enum name -> target attribute
+  // e.g., "LINK_BEHAVIOR_NEW_TAB" -> "_blank"
+  map<string, string> behavior_to_target = 1;
+}
+
+message LinkBehaviorMapping {
+  // Target attribute
+  string target = 1;
+  
+  // Rel attribute
+  string rel = 2;
+  
+  // Security attributes
+  map<string, string> security_attrs = 3;
+}
+
+// =============================================================================
+// API DOC GENERATOR MAPPINGS
+// =============================================================================
+
+// Maps APIDocGenerator enum to generator configurations
+message APIDocGeneratorMappings {
+  // Simple string mapping: enum name -> generator name
+  // e.g., "API_DOC_GENERATOR_SWAGGER_UI" -> "Swagger UI"
+  map<string, string> generator_to_name = 1;
+}
+
+message APIDocGeneratorMapping {
+  // Generator name
+  string name = 1;
+  
+  // Generator URL
+  string url = 2;
+  
+  // Supported spec formats
+  repeated string supported_formats = 3;
+  
+  // Configuration options
+  map<string, string> default_config = 4;
+}
+
+// =============================================================================
+// OAUTH2 FLOW MAPPINGS
+// =============================================================================
+
+// Maps OAuth2Flow enum to flow configurations
+message OAuth2FlowMappings {
+  // Simple string mapping: enum name -> flow name
+  // e.g., "OAUTH2_FLOW_AUTHORIZATION_CODE" -> "Authorization Code"
+  map<string, string> flow_to_name = 1;
+}
+
+message OAuth2FlowMapping {
+  // Flow name
+  string flow_name = 1;
+  
+  // Required parameters
+  repeated string required_params = 2;
+  
+  // Grant type
+  string grant_type = 3;
+  
+  // Security considerations
+  repeated string security_notes = 4;
+}
+
+// =============================================================================
+// HOMEPAGE STYLE MAPPINGS
+// =============================================================================
+
+// Maps HomepageStyle enum to page templates
+message HomepageStyleMappings {
+  // Simple string mapping: enum name -> template name
+  // e.g., "HOMEPAGE_STYLE_HERO" -> "Hero Homepage"
+  map<string, string> style_to_template = 1;
+}
+
+message HomepageStyleMapping {
+  // Template name
+  string template_name = 1;
+  
+  // Primary components
+  repeated string components = 2;
+  
+  // Layout grid
+  string layout_grid = 3;
+}
+
+// =============================================================================
+// DOCS LAYOUT STYLE MAPPINGS
+// =============================================================================
+
+// Maps DocsLayoutStyle enum to documentation structures
+message DocsLayoutStyleMappings {
+  // Simple string mapping: enum name -> layout name
+  // e.g., "DOCS_LAYOUT_STYLE_SINGLE_PAGE" -> "Single Page"
+  map<string, string> layout_to_name = 1;
+}
+
+message DocsLayoutStyleMapping {
+  // Layout name
+  string layout_name = 1;
+  
+  // Navigation type
+  string navigation_type = 2;
+  
+  // Page structure
+  string page_structure = 3;
+  
+  // Version support
+  bool supports_versions = 4;
+}
+
+// =============================================================================
+// PLAYGROUND PROVIDER MAPPINGS
+// =============================================================================
+
+// Maps PlaygroundProvider enum to embedded playground services
+message PlaygroundProviderMappings {
+  // Simple string mapping: enum name -> provider name
+  // e.g., "PLAYGROUND_PROVIDER_CODEPEN" -> "CodePen"
+  map<string, string> provider_to_name = 1;
+}
+
+message PlaygroundProviderMapping {
+  // Provider name
+  string name = 1;
+  
+  // Embed URL pattern
+  string embed_url_pattern = 2;
+  
+  // Supported languages
+  repeated string supported_languages = 3;
+  
+  // Features
+  map<string, bool> features = 4;
+}
+
+// =============================================================================
+// SEARCH PROVIDER MAPPINGS
+// =============================================================================
+
+// Maps SearchProvider enum to search service configurations
+message SearchProviderMappings {
+  // Simple string mapping: enum name -> provider name
+  // e.g., "SEARCH_PROVIDER_ALGOLIA" -> "Algolia"
+  map<string, string> provider_to_name = 1;
+}
+
+message SearchProviderMapping {
+  // Provider name
+  string name = 1;
+  
+  // Service URL
+  string service_url = 2;
+  
+  // Client library
+  string client_library = 3;
+  
+  // Index configuration
+  map<string, string> index_config = 4;
+  
+  // Features
+  map<string, bool> features = 5;
+}
+
+// =============================================================================
+// MANIFEST FORMAT MAPPINGS
+// =============================================================================
+
+// Maps ManifestFormat enum to format specifications
+message ManifestFormatMappings {
+  // Simple string mapping: enum name -> format name
+  // e.g., "MANIFEST_FORMAT_JSON" -> "JSON"
+  map<string, string> format_to_name = 1;
+}
+
+message ManifestFormatMapping {
+  // Format name
+  string format_name = 1;
+  
+  // MIME type
+  string mime_type = 2;
+  
+  // File extension
+  string file_extension = 3;
+  
+  // Schema URL
+  string schema_url = 4;
+}
+
+// =============================================================================
+// SITE TYPE MAPPINGS
+// =============================================================================
+
+// Maps SiteType enum to Schema.org WebSite subtypes
+message SiteTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "SITE_TYPE_BLOG" -> "Blog"
+  map<string, string> site_to_schema = 1;
+}
+
+message SiteTypeMapping {
+  // Schema.org type
+  string schema_type = 1;
+  
+  // Additional types
+  repeated string additional_types = 2;
+  
+  // Required properties for this site type
+  repeated string required_properties = 3;
+  
+  // Site type description
+  string description = 4;
+}
+
+// =============================================================================
+// NODE TYPE MAPPINGS
+// =============================================================================
+
+// Maps NodeType enum to navigation node types
+message NodeTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "NODE_TYPE_PAGE" -> "WebPage"
+  map<string, string> node_to_schema = 1;
+}
+
+message NodeTypeMapping {
+  // Node type name
+  string type_name = 1;
+  
+  // Schema.org type
+  string schema_type = 2;
+  
+  // Navigation role
+  string nav_role = 3;
+  
+  // ARIA properties
+  map<string, string> aria_properties = 4;
+}
+
+// =============================================================================
+// BUILD SYSTEM INTEGRATION
+// =============================================================================
+
+// Configuration for build-time processing
+message BuildSystemConfig {
+  // Enable automatic JSON-LD generation
+  bool auto_generate_jsonld = 1;
+  
+  // Output directory for generated Schema.org files
+  string output_directory = 2;
+  
+  // Validation settings
+  ValidationConfig validation = 3;
+  
+  // Transformation rules
+  repeated TransformationRule transformation_rules = 4;
+}
+
+// Validation configuration
+message ValidationConfig {
+  // Validate against Schema.org vocabulary
+  bool validate_schema_org = 1;
+  
+  // Validate required properties
+  bool validate_required_properties = 2;
+  
+  // Fail build on validation errors
+  bool fail_on_error = 3;
+  
+  // Schema.org validator URL
+  string validator_url = 4;
+}
+
+// Transformation rule for build system
+message TransformationRule {
+  // Source enum type
+  string enum_type = 1;
+  
+  // Target Schema.org context
+  string target_context = 2;
+  
+  // Custom transformation function (if needed)
+  string transform_function = 3;
+  
+  // Apply to specific fields only
+  repeated string apply_to_fields = 4;
+}
+
+// =============================================================================
+// SERVICE TYPE MAPPINGS
+// =============================================================================
+
+// Maps ServiceType enum values to Schema.org Service types
+message ServiceTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "SERVICE_TYPE_CONSULTING" -> "ProfessionalService"
+  map<string, string> service_to_schema = 1;
+}
+
+// =============================================================================
+// PROJECT DEVELOPMENT STATUS MAPPINGS
+// =============================================================================
+
+// Maps ProjectDevelopmentStatus enum values to Schema.org CreativeWork status
+message ProjectDevelopmentStatusMappings {
+  // Simple string mapping: enum name -> Schema.org status
+  // e.g., "PROJECT_STATUS_BETA" -> "Beta"
+  map<string, string> status_to_schema = 1;
+}
+
+// =============================================================================
+// COMIC TYPE MAPPINGS
+// =============================================================================
+
+// Maps ComicType enum values to Schema.org comic types
+message ComicTypeMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "COMIC_TYPE_SERIES" -> "ComicSeries"
+  map<string, string> comic_to_schema = 1;
+}
+
+// =============================================================================
+// BOOK STRUCTURE MAPPINGS
+// =============================================================================
+
+// Maps BookStructure enum values to Schema.org book types
+message BookStructureMappings {
+  // Simple string mapping: enum name -> Schema.org type
+  // e.g., "BOOK_STRUCTURE_CHAPTER" -> "Chapter"
+  map<string, string> book_to_schema = 1;
+}
+
+// =============================================================================
+// PERSON ROLE MAPPINGS
+// =============================================================================
+
+// Maps PersonRole enum values to semantic meanings
+message PersonRoleMappings {
+  // Simple string mapping: enum name -> role description
+  // e.g., "PERSON_ROLE_AUTHOR" -> "Author"
+  map<string, string> role_to_label = 1;
+}
+
+// =============================================================================
+// USAGE EXAMPLE FOR BUILD SYSTEM
+// =============================================================================
+// Your build system would:
+// 1. Read this schema.proto file
+// 2. For each enum value in your data:
+//    - Look up the mapping in the appropriate message
+//    - Generate Schema.org JSON-LD with the mapped type
+//    - Include all required and recommended properties
+// 3. Inject the JSON-LD into your Gatsby pages
+//
+// Example transformation:
+// ArticleConfig.content_type = CONTENT_TYPE_RESEARCH
+// -> Lookup in ContentTypeMappings
+// -> Generate: { "@type": "ScholarlyArticle", ... }
+// =============================================================================

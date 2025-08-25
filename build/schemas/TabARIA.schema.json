@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TabARIA",
+  "definitions": {
+    "TabARIA": {
+      "properties": {
+        "orientation": {
+          "type": "string",
+          "description": "Tab orientation"
+        },
+        "auto_activation": {
+          "type": "boolean",
+          "description": "Auto activation"
+        },
+        "panel_association": {
+          "type": "boolean",
+          "description": "Tab panel association"
+        },
+        "arrow_navigation": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab ARIA",
+      "description": "Tab ARIA configuration"
+    }
+  },
+  "title": "TABARIA Configuration Schema",
+  "description": "JSON Schema for TabARIA configuration"
+}

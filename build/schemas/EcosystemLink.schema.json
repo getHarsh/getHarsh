@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EcosystemLink",
+  "definitions": {
+    "EcosystemLink": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Site domain"
+        },
+        "title": {
+          "type": "string",
+          "description": "Site title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Site type"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type"
+        },
+        "url": {
+          "type": "string",
+          "description": "Site URL"
+        },
+        "manifest_url": {
+          "type": "string",
+          "description": "Manifest URL for that site"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Link",
+      "description": "Ecosystem link information"
+    }
+  },
+  "title": "ECOSYSTEMLINK Configuration Schema",
+  "description": "JSON Schema for EcosystemLink configuration"
+}

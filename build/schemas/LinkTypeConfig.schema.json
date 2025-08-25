@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkTypeConfig",
+  "definitions": {
+    "LinkTypeConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type name"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class or URL"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label template"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "CSS class to apply"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Config",
+      "description": "Link type configuration"
+    }
+  },
+  "title": "LINKTYPECONFIG Configuration Schema",
+  "description": "JSON Schema for LinkTypeConfig configuration"
+}

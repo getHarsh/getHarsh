@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SidebarPositionDefaults",
+  "definitions": {
+    "SidebarPositionDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.SidebarPositionMapping",
+          "description": "SIDEBAR_POSITION_UNSPECIFIED  position_name: \"\" grid_area: \"\" float_direction: \"\""
+        },
+        "left": {
+          "$ref": "#/definitions/website.config.SidebarPositionMapping",
+          "description": "SIDEBAR_POSITION_LEFT  position_name: \"Left\" grid_area: \"sidebar-left\" float_direction: \"left\""
+        },
+        "right": {
+          "$ref": "#/definitions/website.config.SidebarPositionMapping",
+          "description": "SIDEBAR_POSITION_RIGHT  position_name: \"Right\" grid_area: \"sidebar-right\" float_direction: \"right\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sidebar Position Defaults",
+      "description": "Complete sidebar position mappings"
+    },
+    "website.config.SidebarPositionMapping": {
+      "properties": {
+        "position_name": {
+          "type": "string",
+          "description": "Position name"
+        },
+        "grid_area": {
+          "type": "string",
+          "description": "CSS grid area"
+        },
+        "float_direction": {
+          "type": "string",
+          "description": "Float direction"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sidebar Position Mapping"
+    }
+  },
+  "title": "SIDEBARPOSITIONDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SidebarPositionDefaults configuration"
+}

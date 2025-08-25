@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SmartLinkSettings",
+  "definitions": {
+    "SmartLinkSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable smart link detection"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect link types"
+        },
+        "show_icons": {
+          "type": "boolean",
+          "description": "Show icons for link types"
+        },
+        "add_aria_labels": {
+          "type": "boolean",
+          "description": "Add ARIA labels"
+        },
+        "patterns": {
+          "$ref": "#/definitions/website.config.LinkTypePatterns",
+          "description": "Link type detection patterns"
+        },
+        "custom_types": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.LinkTypeConfig"
+          },
+          "type": "object",
+          "description": "Custom link type mappings"
+        },
+        "ecosystem_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Ecosystem domains (auto-populated from config)"
+        },
+        "external_new_tab": {
+          "type": "boolean",
+          "description": "Open external links in new tab"
+        },
+        "external_nofollow": {
+          "type": "boolean",
+          "description": "Add rel=\"nofollow\" to external links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Smart Link Settings",
+      "description": "Smart link settings for rich semantic links Maps to various Schema.org types based on link destination"
+    },
+    "website.config.LinkTypeConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type name"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class or URL"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label template"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "CSS class to apply"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Config",
+      "description": "Link type configuration"
+    },
+    "website.config.LinkTypePatterns": {
+      "properties": {
+        "google_docs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Google Workspace patterns"
+        },
+        "google_sheets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_slides": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_drive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_repo": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "GitHub patterns"
+        },
+        "github_file": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_issue": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_pr": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "file_extensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "File extension patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Patterns",
+      "description": "Link type detection patterns"
+    }
+  },
+  "title": "SMARTLINKSETTINGS Configuration Schema",
+  "description": "JSON Schema for SmartLinkSettings configuration"
+}

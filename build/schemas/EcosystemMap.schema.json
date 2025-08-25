@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EcosystemMap",
+  "definitions": {
+    "EcosystemMap": {
+      "properties": {
+        "domains": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.DomainMetadata"
+          },
+          "type": "object",
+          "description": "All domains in the ecosystem with their metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Map",
+      "description": "Cross-domain ecosystem mapping"
+    },
+    "website.config.DomainMetadata": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Primary domain (e.g., \"getHarsh.in\")"
+        },
+        "blog": {
+          "type": "string",
+          "description": "Blog subdomain (e.g., \"blog.getHarsh.in\")"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity that owns this domain (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "color": {
+          "type": "string",
+          "description": "Brand color for this domain (hex)"
+        },
+        "projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects hosted under this domain"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Metadata",
+      "description": "Metadata for each domain in the ecosystem"
+    }
+  },
+  "title": "ECOSYSTEMMAP Configuration Schema",
+  "description": "JSON Schema for EcosystemMap configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusRestoration",
+  "definitions": {
+    "FocusRestoration": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable restoration"
+        },
+        "save_on_navigation": {
+          "type": "boolean",
+          "description": "Save focus on navigation"
+        },
+        "restore_on_back": {
+          "type": "boolean",
+          "description": "Restore on back"
+        },
+        "memory_duration_ms": {
+          "type": "integer",
+          "description": "Focus memory duration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Restoration",
+      "description": "Focus restoration configuration"
+    }
+  },
+  "title": "FOCUSRESTORATION Configuration Schema",
+  "description": "JSON Schema for FocusRestoration configuration"
+}

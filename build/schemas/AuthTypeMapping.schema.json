@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AuthTypeMapping",
+  "definitions": {
+    "AuthTypeMapping": {
+      "properties": {
+        "scheme_type": {
+          "type": "string",
+          "description": "Security scheme type"
+        },
+        "oauth2_flows": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "OAuth2 flows (if applicable)"
+        },
+        "required_headers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required headers"
+        },
+        "access_specification": {
+          "type": "string",
+          "description": "Schema.org ActionAccessSpecification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Auth Type Mapping"
+    }
+  },
+  "title": "AUTHTYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for AuthTypeMapping configuration"
+}

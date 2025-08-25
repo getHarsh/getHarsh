@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Publication",
+  "definitions": {
+    "Publication": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Publication title"
+        },
+        "authors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Authors"
+        },
+        "venue": {
+          "type": "string",
+          "description": "Publication venue"
+        },
+        "year": {
+          "type": "integer",
+          "description": "Year"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to paper"
+        },
+        "doi": {
+          "type": "string",
+          "description": "DOI if available"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publication",
+      "description": "Publication/paper reference"
+    }
+  },
+  "title": "PUBLICATION Configuration Schema",
+  "description": "JSON Schema for Publication configuration"
+}

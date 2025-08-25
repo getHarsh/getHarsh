@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeBlockAccessibility",
+  "definitions": {
+    "CodeBlockAccessibility": {
+      "properties": {
+        "syntax_roles": {
+          "type": "boolean",
+          "description": "Syntax role descriptions"
+        },
+        "line_announcements": {
+          "type": "boolean",
+          "description": "Line number announcements"
+        },
+        "copy_announcements": {
+          "type": "boolean",
+          "description": "Copy status announcements"
+        },
+        "language_identification": {
+          "type": "boolean",
+          "description": "Language identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Accessibility",
+      "description": "Code block accessibility"
+    }
+  },
+  "title": "CODEBLOCKACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for CodeBlockAccessibility configuration"
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIAuthConfig",
+  "definitions": {
+    "APIAuthConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            0,
+            "AUTH_TYPE_NONE",
+            1,
+            "AUTH_TYPE_API_KEY",
+            2,
+            "AUTH_TYPE_OAUTH2",
+            3,
+            "AUTH_TYPE_BASIC",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Note: APIDocGenerator is imported from project.proto",
+          "description": "Note: APIDocGenerator is imported from project.proto  Authentication types"
+        },
+        "api_key_param": {
+          "type": "string",
+          "description": "Parameter name for API key"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/website.config.OAuth2Config",
+          "description": "OAuth2 configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Auth Config",
+      "description": "API authentication configuration"
+    },
+    "website.config.OAuth2Config": {
+      "properties": {
+        "flow": {
+          "enum": [
+            "OAUTH2_FLOW_UNSPECIFIED",
+            0,
+            "OAUTH2_FLOW_IMPLICIT",
+            1,
+            "OAUTH2_FLOW_AUTHORIZATION_CODE",
+            2,
+            "OAUTH2_FLOW_CLIENT_CREDENTIALS",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "O Auth 2 Flow",
+          "description": "OAuth2 flow types"
+        },
+        "auth_url": {
+          "type": "string",
+          "description": "Authorization URL"
+        },
+        "token_url": {
+          "type": "string",
+          "description": "Token URL"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Available scopes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Config",
+      "description": "OAuth2 configuration"
+    }
+  },
+  "title": "APIAUTHCONFIG Configuration Schema",
+  "description": "JSON Schema for APIAuthConfig configuration"
+}

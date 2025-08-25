@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DependencyScopeDefaults",
+  "definitions": {
+    "DependencyScopeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_UNSPECIFIED  scope_name: \"\" when_needed: \"\" package_manager_scopes: {}"
+        },
+        "runtime": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_RUNTIME  scope_name: \"Runtime\" when_needed: \"Required when application runs\" package_manager_scopes: { \"npm\": \"dependencies\", \"maven\": \"compile\", \"pip\": \"install_requires\" }"
+        },
+        "development": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_DEVELOPMENT  scope_name: \"Development\" when_needed: \"Only during development\" package_manager_scopes: { \"npm\": \"devDependencies\", \"maven\": \"test\", \"pip\": \"dev\" }"
+        },
+        "documentation": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_DOCUMENTATION  scope_name: \"Documentation\" when_needed: \"For generating documentation\" package_manager_scopes: { \"npm\": \"devDependencies\", \"maven\": \"site\", \"pip\": \"docs\" }"
+        },
+        "testing": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_TESTING  scope_name: \"Testing\" when_needed: \"Only for running tests\" package_manager_scopes: { \"npm\": \"devDependencies\", \"maven\": \"test\", \"pip\": \"tests_require\" }"
+        },
+        "build": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_BUILD  scope_name: \"Build\" when_needed: \"During build process only\" package_manager_scopes: { \"npm\": \"devDependencies\", \"maven\": \"provided\", \"pip\": \"setup_requires\" }"
+        },
+        "optional": {
+          "$ref": "#/definitions/website.config.DependencyScopeMapping",
+          "description": "DEPENDENCY_SCOPE_OPTIONAL  scope_name: \"Optional\" when_needed: \"For optional features\" package_manager_scopes: { \"npm\": \"optionalDependencies\", \"maven\": \"optional\", \"pip\": \"extras_require\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency Scope Defaults",
+      "description": "Complete dependency scope mappings"
+    },
+    "website.config.DependencyScopeMapping": {
+      "properties": {
+        "scope_name": {
+          "type": "string",
+          "description": "Scope name"
+        },
+        "when_needed": {
+          "type": "string",
+          "description": "When dependency is needed"
+        },
+        "package_manager_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Package manager scope equivalent"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency Scope Mapping"
+    }
+  },
+  "title": "DEPENDENCYSCOPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for DependencyScopeDefaults configuration"
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NavigationItem",
+  "definitions": {
+    "NavigationItem": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Display label (e.g., \"Home\", \"About\", \"Thoughts\")"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL or path (e.g., \"/\", \"/about\", \"/blog\")"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "Opens in new tab/window"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon name (optional, for icon fonts or SVG)"
+        },
+        "required_feature": {
+          "type": "string",
+          "description": "Show only when feature is enabled"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Display order (lower numbers first)"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Item",
+      "description": "Individual navigation item"
+    }
+  },
+  "title": "NAVIGATIONITEM Configuration Schema",
+  "description": "JSON Schema for NavigationItem configuration"
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SocialDiscussion",
+  "definitions": {
+    "SocialDiscussion": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable discussion features"
+        },
+        "discussion_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform-specific discussion URLs (key is platform name as string)"
+        },
+        "enabled_platforms": {
+          "items": {
+            "enum": [
+              "DISCUSSION_PLATFORM_UNSPECIFIED",
+              0,
+              "DISCUSSION_PLATFORM_GITHUB_ISSUE",
+              1,
+              "DISCUSSION_PLATFORM_GITHUB_GIST",
+              2,
+              "DISCUSSION_PLATFORM_TWITTER_THREAD",
+              3,
+              "DISCUSSION_PLATFORM_LINKEDIN_POST",
+              4,
+              "DISCUSSION_PLATFORM_REDDIT_THREAD",
+              5,
+              "DISCUSSION_PLATFORM_CHATGPT_CHAT",
+              6,
+              "DISCUSSION_PLATFORM_CLAUDE_CHAT",
+              7,
+              "DISCUSSION_PLATFORM_CLAUDE_ARTIFACT",
+              8,
+              "DISCUSSION_PLATFORM_PERPLEXITY_THREAD",
+              9
+            ]
+          },
+          "type": "array",
+          "title": "Discussion Platform",
+          "description": "Discussion platforms for social discussion and comments Maps to Schema.org DiscussionForumPosting, SocialMediaPosting, Comment"
+        },
+        "discussion_prompt": {
+          "type": "string",
+          "description": "Default text for discussion prompt"
+        },
+        "show_on_mobile": {
+          "type": "boolean",
+          "description": "Show discussion section on mobile"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position in article (\"bottom\", \"sidebar\")"
+        },
+        "group_by_platform_type": {
+          "type": "boolean",
+          "description": "Group discussions by category"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Discussion",
+      "description": "Social discussion configuration for external platforms Maps to Schema.org DiscussionForumPosting, Comment"
+    }
+  },
+  "title": "SOCIALDISCUSSION Configuration Schema",
+  "description": "JSON Schema for SocialDiscussion configuration"
+}

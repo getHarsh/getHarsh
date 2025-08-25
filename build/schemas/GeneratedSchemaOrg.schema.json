@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GeneratedSchemaOrg",
+  "definitions": {
+    "GeneratedSchemaOrg": {
+      "properties": {
+        "website_jsonld": {
+          "type": "string",
+          "description": "Main website JSON-LD"
+        },
+        "organization_jsonld": {
+          "type": "string",
+          "description": "Organization JSON-LD"
+        },
+        "navigation_jsonld": {
+          "type": "string",
+          "description": "Navigation JSON-LD"
+        },
+        "pages_jsonld": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All pages JSON-LD map"
+        },
+        "entities": {
+          "$ref": "#/definitions/website.config.ConsolidatedEntities",
+          "description": "Consolidated entities"
+        },
+        "metadata": {
+          "$ref": "#/definitions/website.config.GenerationMetadata",
+          "description": "Generation metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Generated Schema Org",
+      "description": "Generated Schema.org data"
+    },
+    "website.config.ConsolidatedEntities": {
+      "properties": {
+        "organizations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All organizations"
+        },
+        "persons": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All persons"
+        },
+        "brands": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All brands"
+        },
+        "creative_works": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All creative works"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/definitions/website.config.EntityRelation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity relationships graph"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consolidated Entities",
+      "description": "Consolidated entities"
+    },
+    "website.config.EntityRelation": {
+      "properties": {
+        "from_id": {
+          "type": "string",
+          "description": "Source entity @id"
+        },
+        "to_id": {
+          "type": "string",
+          "description": "Target entity @id"
+        },
+        "relation_type": {
+          "type": "string",
+          "description": "Relationship type"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Relationship properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Relation",
+      "description": "Entity relation in graph"
+    },
+    "website.config.GenerationMetadata": {
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "description": "Generation timestamp"
+        },
+        "schema_version": {
+          "type": "string",
+          "description": "Schema.org version used"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.ValidationResults",
+          "description": "Validation results"
+        },
+        "stats": {
+          "$ref": "#/definitions/website.config.GenerationStats",
+          "description": "Statistics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Generation Metadata",
+      "description": "Generation metadata"
+    },
+    "website.config.GenerationStats": {
+      "properties": {
+        "total_entities": {
+          "type": "integer",
+          "description": "Total entities generated"
+        },
+        "entities_by_type": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Entities by type"
+        },
+        "total_properties": {
+          "type": "integer",
+          "description": "Total properties"
+        },
+        "total_relationships": {
+          "type": "integer",
+          "description": "Total relationships"
+        },
+        "total_size": {
+          "type": "integer",
+          "description": "JSON-LD size (bytes)"
+        },
+        "generation_time": {
+          "type": "integer",
+          "description": "Generation time (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Generation Stats",
+      "description": "Generation statistics"
+    },
+    "website.config.ValidationError": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Error type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type involved"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Error",
+      "description": "Validation error"
+    },
+    "website.config.ValidationResults": {
+      "properties": {
+        "is_valid": {
+          "type": "boolean",
+          "description": "Is valid"
+        },
+        "errors": {
+          "items": {
+            "$ref": "#/definitions/website.config.ValidationError"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Errors"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/definitions/website.config.ValidationWarning"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Warnings"
+        },
+        "type_coverage": {
+          "type": "number",
+          "description": "Schema.org type coverage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Results",
+      "description": "Validation results"
+    },
+    "website.config.ValidationWarning": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Warning type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Warning message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "suggestion": {
+          "type": "string",
+          "description": "Suggestion"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Warning",
+      "description": "Validation warning"
+    }
+  },
+  "title": "GENERATEDSCHEMAORG Configuration Schema",
+  "description": "JSON Schema for GeneratedSchemaOrg configuration"
+}

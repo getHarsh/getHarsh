@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MagnificationSupport",
+  "definitions": {
+    "MagnificationSupport": {
+      "properties": {
+        "reflow_content": {
+          "type": "boolean",
+          "description": "Reflow content"
+        },
+        "high_res_images": {
+          "type": "boolean",
+          "description": "High resolution images"
+        },
+        "avoid_horizontal": {
+          "type": "boolean",
+          "description": "Avoid horizontal scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Magnification Support",
+      "description": "Magnification support"
+    }
+  },
+  "title": "MAGNIFICATIONSUPPORT Configuration Schema",
+  "description": "JSON Schema for MagnificationSupport configuration"
+}

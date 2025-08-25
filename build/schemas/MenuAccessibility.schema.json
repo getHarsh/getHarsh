@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MenuAccessibility",
+  "definitions": {
+    "MenuAccessibility": {
+      "properties": {
+        "keyboard_navigation": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        },
+        "structure": {
+          "$ref": "#/definitions/website.config.aria.MenuStructure",
+          "description": "Menu structure"
+        },
+        "mobile": {
+          "$ref": "#/definitions/website.config.aria.MobileMenu",
+          "description": "Mobile menu"
+        },
+        "announce_changes": {
+          "type": "boolean",
+          "description": "Menu announcements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Menu Accessibility",
+      "description": "Menu accessibility"
+    },
+    "website.config.aria.MenuStructure": {
+      "properties": {
+        "proper_roles": {
+          "type": "boolean",
+          "description": "Use proper roles"
+        },
+        "nested_indication": {
+          "type": "boolean",
+          "description": "Nested menus"
+        },
+        "current_indication": {
+          "type": "boolean",
+          "description": "Current page"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Menu Structure",
+      "description": "Menu structure"
+    },
+    "website.config.aria.MobileMenu": {
+      "properties": {
+        "accessible_toggle": {
+          "type": "boolean",
+          "description": "Accessible toggle"
+        },
+        "focus_management": {
+          "type": "boolean",
+          "description": "Focus management"
+        },
+        "escape_close": {
+          "type": "boolean",
+          "description": "Escape to close"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Mobile Menu",
+      "description": "Mobile menu configuration"
+    }
+  },
+  "title": "MENUACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for MenuAccessibility configuration"
+}

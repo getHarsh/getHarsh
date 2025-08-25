@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapMediaConfig",
+  "definitions": {
+    "DecapMediaConfig": {
+      "properties": {
+        "media_folder": {
+          "type": "string",
+          "description": "Media folder path"
+        },
+        "public_folder": {
+          "type": "string",
+          "description": "Public folder URL"
+        },
+        "allow_uploads": {
+          "type": "boolean",
+          "description": "Allow uploads"
+        },
+        "max_file_size_mb": {
+          "type": "integer",
+          "description": "Max file size (MB)"
+        },
+        "allowed_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Allowed file types"
+        },
+        "optimize_images": {
+          "type": "boolean",
+          "description": "Image optimization"
+        },
+        "generate_thumbnails": {
+          "type": "boolean",
+          "description": "Generate thumbnails"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Media Config",
+      "description": "Decap media upload configuration"
+    }
+  },
+  "title": "DECAPMEDIACONFIG Configuration Schema",
+  "description": "JSON Schema for DecapMediaConfig configuration"
+}

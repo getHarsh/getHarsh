@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeLanguageMappings",
+  "definitions": {
+    "CodeLanguageMappings": {
+      "properties": {
+        "language_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> language name for Schema.org e.g., \"CODE_LANGUAGE_JAVASCRIPT\" -> \"JavaScript\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CODE LANGUAGE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= CODE LANGUAGE MAPPINGS =============================================================================  Maps CodeLanguage enum values to Schema.org ComputerLanguage"
+    }
+  },
+  "title": "CODELANGUAGEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for CodeLanguageMappings configuration"
+}

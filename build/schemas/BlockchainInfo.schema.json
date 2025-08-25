@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlockchainInfo",
+  "definitions": {
+    "BlockchainInfo": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "explorer_url": {
+          "type": "string"
+        },
+        "network_type": {
+          "type": "string",
+          "description": "\"mainnet\", \"layer2\", etc."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blockchain Info"
+    }
+  },
+  "title": "BLOCKCHAININFO Configuration Schema",
+  "description": "JSON Schema for BlockchainInfo configuration"
+}

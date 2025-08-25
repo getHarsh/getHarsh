@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentPurpose",
+  "definitions": {
+    "ConsentPurpose": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Purpose ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Purpose name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Purpose description"
+        },
+        "legal_basis": {
+          "enum": [
+            "LEGAL_BASIS_UNSPECIFIED",
+            0,
+            "LEGAL_BASIS_CONSENT",
+            1,
+            "LEGAL_BASIS_LEGITIMATE_INTEREST",
+            2,
+            "LEGAL_BASIS_CONTRACT",
+            3,
+            "LEGAL_BASIS_LEGAL_OBLIGATION",
+            4,
+            "LEGAL_BASIS_VITAL_INTERESTS",
+            5,
+            "LEGAL_BASIS_PUBLIC_TASK",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Legal Basis",
+          "description": "Legal basis for processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Purpose",
+      "description": "Consent purpose"
+    }
+  },
+  "title": "CONSENTPURPOSE Configuration Schema",
+  "description": "JSON Schema for ConsentPurpose configuration"
+}

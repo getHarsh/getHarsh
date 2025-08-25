@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LiveRegions",
+  "definitions": {
+    "LiveRegions": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable live regions"
+        },
+        "status": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Status messages"
+        },
+        "alerts": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Alert messages"
+        },
+        "progress": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Progress indicators"
+        },
+        "notifications": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Notifications"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.CustomLiveRegion"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom live regions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Live Regions",
+      "description": "Live regions configuration"
+    },
+    "website.config.aria.CustomLiveRegion": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Region identifier"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "config": {
+          "$ref": "#/definitions/website.config.aria.LiveRegionConfig",
+          "description": "Configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Live Region",
+      "description": "Custom live region"
+    },
+    "website.config.aria.LiveRegionConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable this live region"
+        },
+        "politeness": {
+          "enum": [
+            "POLITENESS_LEVEL_UNSPECIFIED",
+            0,
+            "POLITENESS_LEVEL_OFF",
+            1,
+            "POLITENESS_LEVEL_POLITE",
+            2,
+            "POLITENESS_LEVEL_ASSERTIVE",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Politeness Level",
+          "description": "Politeness levels for live regions"
+        },
+        "atomic": {
+          "type": "boolean",
+          "description": "Atomic updates"
+        },
+        "relevant": {
+          "type": "string",
+          "description": "Relevant changes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Live Region Config",
+      "description": "Live region configuration"
+    }
+  },
+  "title": "LIVEREGIONS Configuration Schema",
+  "description": "JSON Schema for LiveRegions configuration"
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DataLayerPush",
+  "definitions": {
+    "DataLayerPush": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "Event name to push"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Event parameters"
+        },
+        "triggers": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.TriggerCondition"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Trigger conditions"
+        },
+        "delay_ms": {
+          "type": "integer",
+          "description": "Delay in milliseconds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Layer Push",
+      "description": "Custom data layer push configuration"
+    },
+    "website.config.gtm.TriggerCondition": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            0,
+            "TRIGGER_TYPE_PAGE_VIEW",
+            1,
+            "TRIGGER_TYPE_DOM_READY",
+            2,
+            "TRIGGER_TYPE_WINDOW_LOADED",
+            3,
+            "TRIGGER_TYPE_CLICK",
+            4,
+            "TRIGGER_TYPE_FORM_SUBMIT",
+            5,
+            "TRIGGER_TYPE_SCROLL",
+            6,
+            "TRIGGER_TYPE_TIMER",
+            7,
+            "TRIGGER_TYPE_CUSTOM",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Trigger Type",
+          "description": "Trigger types"
+        },
+        "value": {
+          "type": "string",
+          "description": "Trigger value (selector, URL pattern, etc.)"
+        },
+        "conditions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional conditions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Condition",
+      "description": "Trigger condition for events"
+    }
+  },
+  "title": "DATALAYERPUSH Configuration Schema",
+  "description": "JSON Schema for DataLayerPush configuration"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProgressIndicators",
+  "definitions": {
+    "ProgressIndicators": {
+      "properties": {
+        "announce_progress": {
+          "type": "boolean",
+          "description": "Progress announcements"
+        },
+        "text_alternatives": {
+          "type": "boolean",
+          "description": "Text alternatives"
+        },
+        "show_percentage": {
+          "type": "boolean",
+          "description": "Determinate progress"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Progress Indicators",
+      "description": "Progress indicators"
+    }
+  },
+  "title": "PROGRESSINDICATORS Configuration Schema",
+  "description": "JSON Schema for ProgressIndicators configuration"
+}

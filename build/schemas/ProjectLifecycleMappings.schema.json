@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectLifecycleMappings",
+  "definitions": {
+    "ProjectLifecycleMappings": {
+      "properties": {
+        "lifecycle_to_stage": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> lifecycle stage e.g., \"PROJECT_LIFECYCLE_EMERGE\" -> \"Emerge\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT LIFECYCLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT LIFECYCLE MAPPINGS =============================================================================  Maps ProjectLifecycle enum to semantic lifecycle stages"
+    }
+  },
+  "title": "PROJECTLIFECYCLEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ProjectLifecycleMappings configuration"
+}

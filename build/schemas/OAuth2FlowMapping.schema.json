@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OAuth2FlowMapping",
+  "definitions": {
+    "OAuth2FlowMapping": {
+      "properties": {
+        "flow_name": {
+          "type": "string",
+          "description": "Flow name"
+        },
+        "required_params": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required parameters"
+        },
+        "grant_type": {
+          "type": "string",
+          "description": "Grant type"
+        },
+        "security_notes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Security considerations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Flow Mapping"
+    }
+  },
+  "title": "OAUTH2FLOWMAPPING Configuration Schema",
+  "description": "JSON Schema for OAuth2FlowMapping configuration"
+}

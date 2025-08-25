@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AppointmentSettings",
+  "definitions": {
+    "AppointmentSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable appointment booking"
+        },
+        "google_calendar_id": {
+          "type": "string",
+          "description": "Google Calendar ID for appointments"
+        },
+        "booking_url": {
+          "type": "string",
+          "description": "Public booking URL"
+        },
+        "time_zone": {
+          "type": "string",
+          "description": "Time zone for appointments"
+        },
+        "available_days": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available days of week (e.g., [\"Monday\", \"Wednesday\", \"Friday\"])"
+        },
+        "default_duration": {
+          "type": "string",
+          "description": "Default appointment duration (ISO 8601, e.g., \"PT30M\")"
+        },
+        "min_advance_hours": {
+          "type": "integer",
+          "description": "Minimum advance booking time (hours)"
+        },
+        "max_advance_days": {
+          "type": "integer",
+          "description": "Maximum advance booking time (days)"
+        },
+        "buffer_minutes": {
+          "type": "integer",
+          "description": "Buffer time between appointments (minutes)"
+        },
+        "business_hours": {
+          "$ref": "#/definitions/website.config.BusinessHours",
+          "description": "Business hours"
+        },
+        "appointment_types": {
+          "items": {
+            "$ref": "#/definitions/website.config.AppointmentType"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Appointment types available"
+        },
+        "embed_settings": {
+          "$ref": "#/definitions/website.config.CalendarEmbed",
+          "description": "Calendar embed settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Appointment Settings",
+      "description": "Appointment booking settings Maps to Schema.org ScheduleAction, Event, EventReservation"
+    },
+    "website.config.AppointmentType": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Type name (e.g., \"Consultation\", \"Technical Review\")"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration for this type (ISO 8601)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "price": {
+          "type": "string",
+          "description": "Price (if applicable)"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color for calendar display"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Appointment Type",
+      "description": "Appointment type configuration"
+    },
+    "website.config.BusinessHours": {
+      "properties": {
+        "start_time": {
+          "type": "string",
+          "description": "Start time (24h format, e.g., \"09:00\")"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time (24h format, e.g., \"17:00\")"
+        },
+        "lunch_start": {
+          "type": "string",
+          "description": "Lunch break start"
+        },
+        "lunch_end": {
+          "type": "string",
+          "description": "Lunch break end"
+        },
+        "custom_hours": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.DayHours"
+          },
+          "type": "object",
+          "description": "Custom hours per day"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Business Hours",
+      "description": "Business hours configuration"
+    },
+    "website.config.CalendarEmbed": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable calendar embedding"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Embed height in pixels"
+        },
+        "width": {
+          "type": "string",
+          "description": "Embed width (percentage or pixels)"
+        },
+        "free_busy_only": {
+          "type": "boolean",
+          "description": "Show only free/busy"
+        },
+        "default_view": {
+          "type": "string",
+          "description": "Default view (\"week\", \"month\", \"agenda\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Calendar Embed",
+      "description": "Calendar embed configuration"
+    },
+    "website.config.DayHours": {
+      "properties": {
+        "available": {
+          "type": "boolean",
+          "description": "Is this day available"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "Start time for this day"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time for this day"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Day Hours",
+      "description": "Custom hours for specific days"
+    }
+  },
+  "title": "APPOINTMENTSETTINGS Configuration Schema",
+  "description": "JSON Schema for AppointmentSettings configuration"
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SocialShareDefaults",
+  "definitions": {
+    "SocialShareDefaults": {
+      "properties": {
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Enabled platforms"
+        },
+        "desktop_position": {
+          "type": "string",
+          "description": "Position on desktop (\"left\", \"right\", \"bottom\")"
+        },
+        "show_counts": {
+          "type": "boolean",
+          "description": "Show counts"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky on scroll"
+        },
+        "include_via": {
+          "type": "boolean",
+          "description": "Include via parameter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Share Defaults",
+      "description": "Social share defaults"
+    }
+  },
+  "title": "SOCIALSHAREDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SocialShareDefaults configuration"
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CryptoAddress",
+  "definitions": {
+    "CryptoAddress": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Wallet address"
+        },
+        "qr_code_url": {
+          "type": "string",
+          "description": "QR code URL"
+        },
+        "network_name": {
+          "type": "string",
+          "description": "Network name (for display)"
+        },
+        "explorer_url": {
+          "type": "string",
+          "description": "Explorer URL"
+        },
+        "domain_name": {
+          "type": "string",
+          "description": "ENS/Domain name (if applicable)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Address",
+      "description": "Cryptocurrency address configuration"
+    }
+  },
+  "title": "CRYPTOADDRESS Configuration Schema",
+  "description": "JSON Schema for CryptoAddress configuration"
+}

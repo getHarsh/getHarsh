@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentLinks",
+  "definitions": {
+    "PaymentLinks": {
+      "properties": {
+        "paypal": {
+          "type": "string",
+          "description": "PayPal donation link"
+        },
+        "github_sponsors": {
+          "type": "string",
+          "description": "GitHub Sponsors profile (auto-generated from social.github if not provided)"
+        },
+        "patreon": {
+          "type": "string",
+          "description": "Patreon page"
+        },
+        "buymeacoffee": {
+          "type": "string",
+          "description": "Buy Me a Coffee link"
+        },
+        "youtube_membership": {
+          "type": "string",
+          "description": "YouTube membership (auto-generated from social.youtube if not provided)"
+        },
+        "crypto": {
+          "$ref": "#/definitions/website.config.CryptoWallets",
+          "description": "Cryptocurrency wallets"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom payment links (e.g., UPI, region-specific)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Links",
+      "description": "Payment links for sponsorship"
+    },
+    "website.config.CryptoWallets": {
+      "properties": {
+        "bitcoin": {
+          "type": "string",
+          "description": "Bitcoin wallet address"
+        },
+        "ethereum": {
+          "type": "string",
+          "description": "Ethereum wallet address (supports ENS)"
+        },
+        "solana": {
+          "type": "string",
+          "description": "Solana wallet address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Wallets",
+      "description": "Cryptocurrency wallet addresses"
+    }
+  },
+  "title": "PAYMENTLINKS Configuration Schema",
+  "description": "JSON Schema for PaymentLinks configuration"
+}

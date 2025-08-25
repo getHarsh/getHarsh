@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIExampleSettings",
+  "definitions": {
+    "APIExampleSettings": {
+      "properties": {
+        "include_examples": {
+          "type": "boolean",
+          "description": "Include examples"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Example languages"
+        },
+        "include_responses": {
+          "type": "boolean",
+          "description": "Include responses"
+        },
+        "include_errors": {
+          "type": "boolean",
+          "description": "Include error examples"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Example Settings",
+      "description": "API example settings"
+    }
+  },
+  "title": "APIEXAMPLESETTINGS Configuration Schema",
+  "description": "JSON Schema for APIExampleSettings configuration"
+}

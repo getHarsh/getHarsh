@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NavigationSchemaSettings",
+  "definitions": {
+    "NavigationSchemaSettings": {
+      "properties": {
+        "create_nav_elements": {
+          "type": "boolean",
+          "description": "Create SiteNavigationElement"
+        },
+        "create_breadcrumbs": {
+          "type": "boolean",
+          "description": "Create BreadcrumbList"
+        },
+        "create_item_lists": {
+          "type": "boolean",
+          "description": "Create ItemList for sections"
+        },
+        "max_hierarchy_depth": {
+          "type": "integer",
+          "description": "Navigation hierarchy depth"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Schema Settings",
+      "description": "Navigation Schema.org settings"
+    }
+  },
+  "title": "NAVIGATIONSCHEMASETTINGS Configuration Schema",
+  "description": "JSON Schema for NavigationSchemaSettings configuration"
+}

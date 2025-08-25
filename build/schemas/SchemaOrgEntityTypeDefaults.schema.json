@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgEntityTypeDefaults",
+  "definitions": {
+    "SchemaOrgEntityTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED  type_url: \"https://schema.org/Thing\" parent_type: \"\" required_properties: [\"@type\"] recommended_properties: [\"name\", \"description\"]"
+        },
+        "person": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_PERSON  type_url: \"https://schema.org/Person\" parent_type: \"Thing\" required_properties: [\"@type\", \"name\"] recommended_properties: [\"givenName\", \"familyName\", \"email\", \"jobTitle\", \"image\"]"
+        },
+        "organization": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_ORGANIZATION  type_url: \"https://schema.org/Organization\" parent_type: \"Thing\" required_properties: [\"@type\", \"name\"] recommended_properties: [\"url\", \"logo\", \"description\", \"sameAs\", \"contactPoint\"]"
+        },
+        "corporation": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_CORPORATION  type_url: \"https://schema.org/Corporation\" parent_type: \"Organization\" required_properties: [\"@type\", \"name\", \"legalName\"] recommended_properties: [\"tickerSymbol\", \"taxID\", \"vatID\"]"
+        },
+        "local_business": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_LOCAL_BUSINESS  type_url: \"https://schema.org/LocalBusiness\" parent_type: \"Organization\" required_properties: [\"@type\", \"name\", \"address\"] recommended_properties: [\"telephone\", \"openingHours\", \"priceRange\", \"geo\"]"
+        },
+        "educational_organization": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION  type_url: \"https://schema.org/EducationalOrganization\" parent_type: \"Organization\" required_properties: [\"@type\", \"name\"] recommended_properties: [\"alumni\", \"accreditation\", \"areaServed\"]"
+        },
+        "research_organization": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_RESEARCH_ORGANIZATION  type_url: \"https://schema.org/ResearchOrganization\" parent_type: \"Organization\" required_properties: [\"@type\", \"name\"] recommended_properties: [\"researchField\", \"fundingSource\", \"publication\"]"
+        },
+        "consortium": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_CONSORTIUM  type_url: \"https://schema.org/Consortium\" parent_type: \"Organization\" required_properties: [\"@type\", \"name\", \"member\"] recommended_properties: [\"foundingDate\", \"dissolutionDate\"]"
+        },
+        "creative_work": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_CREATIVE_WORK  type_url: \"https://schema.org/CreativeWork\" parent_type: \"Thing\" required_properties: [\"@type\", \"name\", \"author\"] recommended_properties: [\"datePublished\", \"publisher\", \"license\"]"
+        },
+        "article": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_ARTICLE  type_url: \"https://schema.org/Article\" parent_type: \"CreativeWork\" required_properties: [\"@type\", \"headline\", \"author\", \"datePublished\"] recommended_properties: [\"articleBody\", \"articleSection\", \"wordCount\"]"
+        },
+        "blog_posting": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_BLOG_POSTING  type_url: \"https://schema.org/BlogPosting\" parent_type: \"Article\" required_properties: [\"@type\", \"headline\", \"author\", \"datePublished\"] recommended_properties: [\"blogPost\", \"articleBody\", \"keywords\"]"
+        },
+        "news_article": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_NEWS_ARTICLE  type_url: \"https://schema.org/NewsArticle\" parent_type: \"Article\" required_properties: [\"@type\", \"headline\", \"author\", \"datePublished\", \"dateline\"] recommended_properties: [\"articleSection\", \"printPage\", \"printEdition\"]"
+        },
+        "scholarly_article": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_SCHOLARLY_ARTICLE  type_url: \"https://schema.org/ScholarlyArticle\" parent_type: \"Article\" required_properties: [\"@type\", \"headline\", \"author\", \"datePublished\"] recommended_properties: [\"abstract\", \"citation\", \"academicField\"]"
+        },
+        "tech_article": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_TECH_ARTICLE  type_url: \"https://schema.org/TechArticle\" parent_type: \"Article\" required_properties: [\"@type\", \"headline\", \"author\", \"datePublished\"] recommended_properties: [\"proficiencyLevel\", \"dependencies\", \"techStack\"]"
+        },
+        "software_application": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_SOFTWARE_APPLICATION  type_url: \"https://schema.org/SoftwareApplication\" parent_type: \"CreativeWork\" required_properties: [\"@type\", \"name\", \"applicationCategory\"] recommended_properties: [\"operatingSystem\", \"softwareVersion\", \"downloadUrl\"]"
+        },
+        "web_application": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_WEB_APPLICATION  type_url: \"https://schema.org/WebApplication\" parent_type: \"SoftwareApplication\" required_properties: [\"@type\", \"name\", \"applicationCategory\", \"url\"] recommended_properties: [\"browserRequirements\", \"permissions\"]"
+        },
+        "mobile_application": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_MOBILE_APPLICATION  type_url: \"https://schema.org/MobileApplication\" parent_type: \"SoftwareApplication\" required_properties: [\"@type\", \"name\", \"applicationCategory\", \"operatingSystem\"] recommended_properties: [\"carrierRequirements\", \"permissions\"]"
+        },
+        "web_site": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_WEB_SITE  type_url: \"https://schema.org/WebSite\" parent_type: \"CreativeWork\" required_properties: [\"@type\", \"name\", \"url\"] recommended_properties: [\"potentialAction\", \"siteNavigationElement\"]"
+        },
+        "blog": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_BLOG  type_url: \"https://schema.org/Blog\" parent_type: \"CreativeWork\" required_properties: [\"@type\", \"name\", \"url\", \"blogPost\"] recommended_properties: [\"author\", \"issn\", \"about\"]"
+        },
+        "research_project": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_RESEARCH_PROJECT  type_url: \"https://schema.org/ResearchProject\" parent_type: \"Project\" required_properties: [\"@type\", \"name\", \"researcher\"] recommended_properties: [\"fundingScheme\", \"researchOutput\", \"studySubject\"]"
+        },
+        "service": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_SERVICE  type_url: \"https://schema.org/Service\" parent_type: \"Intangible\" required_properties: [\"@type\", \"name\", \"provider\"] recommended_properties: [\"serviceType\", \"areaServed\", \"availableChannel\"]"
+        },
+        "collection_page": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_COLLECTION_PAGE  type_url: \"https://schema.org/CollectionPage\" parent_type: \"WebPage\" required_properties: [\"@type\", \"name\", \"url\", \"mainEntity\"] recommended_properties: [\"hasPart\", \"numberOfItems\"]"
+        },
+        "about_page": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_ABOUT_PAGE  type_url: \"https://schema.org/AboutPage\" parent_type: \"WebPage\" required_properties: [\"@type\", \"name\", \"url\", \"about\"] recommended_properties: [\"mainEntity\"]"
+        },
+        "contact_page": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_CONTACT_PAGE  type_url: \"https://schema.org/ContactPage\" parent_type: \"WebPage\" required_properties: [\"@type\", \"name\", \"url\"] recommended_properties: [\"contactPoint\", \"mainEntity\"]"
+        },
+        "web_page": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMapping",
+          "description": "SCHEMA_ORG_WEB_PAGE  type_url: \"https://schema.org/WebPage\" parent_type: \"CreativeWork\" required_properties: [\"@type\", \"name\", \"url\"] recommended_properties: [\"datePublished\", \"dateModified\", \"author\"]"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity Type Defaults",
+      "description": "Complete Schema.org entity type mappings"
+    },
+    "website.config.SchemaOrgEntityTypeMapping": {
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "Full Schema.org type URL"
+        },
+        "parent_type": {
+          "type": "string",
+          "description": "Parent type"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties for this type"
+        },
+        "recommended_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Recommended properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity Type Mapping"
+    }
+  },
+  "title": "SCHEMAORGENTITYTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SchemaOrgEntityTypeDefaults configuration"
+}

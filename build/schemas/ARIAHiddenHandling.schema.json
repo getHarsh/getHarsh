@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ARIAHiddenHandling",
+  "definitions": {
+    "ARIAHiddenHandling": {
+      "properties": {
+        "hide_decorative": {
+          "type": "boolean",
+          "description": "Hide decorative images"
+        },
+        "hide_icons": {
+          "type": "boolean",
+          "description": "Hide icon fonts"
+        },
+        "respect_explicit": {
+          "type": "boolean",
+          "description": "Respect explicit hidden"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "ARIA Hidden Handling",
+      "description": "ARIA hidden handling"
+    }
+  },
+  "title": "ARIAHIDDENHANDLING Configuration Schema",
+  "description": "JSON Schema for ARIAHiddenHandling configuration"
+}

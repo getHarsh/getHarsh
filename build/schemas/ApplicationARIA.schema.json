@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ApplicationARIA",
+  "definitions": {
+    "ApplicationARIA": {
+      "properties": {
+        "use_application_role": {
+          "type": "boolean",
+          "description": "Application role usage"
+        },
+        "provide_context": {
+          "type": "boolean",
+          "description": "Widget context"
+        },
+        "provide_instructions": {
+          "type": "boolean",
+          "description": "Instructions"
+        },
+        "mode_announcements": {
+          "type": "boolean",
+          "description": "Mode switching"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Application ARIA",
+      "description": "Application ARIA configuration"
+    }
+  },
+  "title": "APPLICATIONARIA Configuration Schema",
+  "description": "JSON Schema for ApplicationARIA configuration"
+}

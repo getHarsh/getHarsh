@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CookieFlags",
+  "definitions": {
+    "CookieFlags": {
+      "properties": {
+        "cookie_prefix": {
+          "type": "string",
+          "description": "Cookie prefix"
+        },
+        "cookie_update": {
+          "type": "boolean",
+          "description": "Cookie update"
+        },
+        "cookie_expires": {
+          "type": "integer",
+          "description": "Cookie expires (days)"
+        },
+        "cookie_path": {
+          "type": "string",
+          "description": "Cookie path"
+        },
+        "cookie_samesite": {
+          "type": "string",
+          "description": "Cookie samesite  \"Strict\", \"Lax\", \"None\""
+        },
+        "cookie_secure": {
+          "type": "boolean",
+          "description": "Cookie secure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cookie Flags",
+      "description": "Cookie configuration flags"
+    }
+  },
+  "title": "COOKIEFLAGS Configuration Schema",
+  "description": "JSON Schema for CookieFlags configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PWAIcon",
+  "definitions": {
+    "PWAIcon": {
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "Icon source path"
+        },
+        "sizes": {
+          "type": "string",
+          "description": "Icon sizes (e.g., \"192x192\")"
+        },
+        "type": {
+          "type": "string",
+          "description": "Icon MIME type"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Icon purpose (\"any\", \"maskable\", \"monochrome\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "PWA Icon",
+      "description": "PWA icon configuration"
+    }
+  },
+  "title": "PWAICON Configuration Schema",
+  "description": "JSON Schema for PWAIcon configuration"
+}

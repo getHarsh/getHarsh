@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AccordionARIA",
+  "definitions": {
+    "AccordionARIA": {
+      "properties": {
+        "multi_expand": {
+          "type": "boolean",
+          "description": "Multi-expand allowed"
+        },
+        "announce_changes": {
+          "type": "boolean",
+          "description": "Announce state changes"
+        },
+        "header_level": {
+          "type": "integer",
+          "description": "Header level"
+        },
+        "enhanced_keyboard": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accordion ARIA",
+      "description": "Accordion ARIA configuration"
+    }
+  },
+  "title": "ACCORDIONARIA Configuration Schema",
+  "description": "JSON Schema for AccordionARIA configuration"
+}

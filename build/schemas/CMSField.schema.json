@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CMSField",
+  "definitions": {
+    "CMSField": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Field name"
+        },
+        "label": {
+          "type": "string",
+          "description": "Field label"
+        },
+        "widget": {
+          "type": "string",
+          "description": "Widget type"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required field"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Field hint"
+        },
+        "pattern": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Pattern validation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CMS Field",
+      "description": "CMS field definition"
+    }
+  },
+  "title": "CMSFIELD Configuration Schema",
+  "description": "JSON Schema for CMSField configuration"
+}

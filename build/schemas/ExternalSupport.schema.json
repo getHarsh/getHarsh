@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ExternalSupport",
+  "definitions": {
+    "ExternalSupport": {
+      "properties": {
+        "entity_key": {
+          "type": "string",
+          "description": "Entity key from organizations or legal_entities catalog"
+        },
+        "support_type": {
+          "enum": [
+            "SUPPORT_TYPE_UNSPECIFIED",
+            0,
+            "SUPPORT_TYPE_FUNDING",
+            1,
+            "SUPPORT_TYPE_INFRASTRUCTURE",
+            2,
+            "SUPPORT_TYPE_ADVISORY",
+            3,
+            "SUPPORT_TYPE_TECHNICAL",
+            4,
+            "SUPPORT_TYPE_COMMUNITY",
+            5,
+            "SUPPORT_TYPE_MARKETING",
+            6,
+            "SUPPORT_TYPE_LEGAL",
+            7,
+            "SUPPORT_TYPE_MENTORSHIP",
+            8,
+            "SUPPORT_TYPE_RESOURCES",
+            9,
+            "SUPPORT_TYPE_PARTNERSHIP",
+            10
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Support Type",
+          "description": "Support types for external entity support"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the support provided"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date of support (ISO 8601)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date of support (ISO 8601, omit if ongoing)"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "Whether support is currently active"
+        },
+        "value": {
+          "type": "string",
+          "description": "Support value/amount (if applicable, e.g., \"$10k\", \"100 GPU hours/month\")"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "External Support",
+      "description": "External support definition"
+    }
+  },
+  "title": "EXTERNALSUPPORT Configuration Schema",
+  "description": "JSON Schema for ExternalSupport configuration"
+}

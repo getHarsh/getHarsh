@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FormTracking",
+  "definitions": {
+    "FormTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable form tracking"
+        },
+        "track_starts": {
+          "type": "boolean",
+          "description": "Track form starts"
+        },
+        "track_abandonment": {
+          "type": "boolean",
+          "description": "Track form abandonment"
+        },
+        "track_field_interactions": {
+          "type": "boolean",
+          "description": "Track field interactions"
+        },
+        "excluded_forms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Excluded form selectors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Tracking",
+      "description": "Form tracking configuration"
+    }
+  },
+  "title": "FORMTRACKING Configuration Schema",
+  "description": "JSON Schema for FormTracking configuration"
+}

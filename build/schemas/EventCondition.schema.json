@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EventCondition",
+  "definitions": {
+    "EventCondition": {
+      "properties": {
+        "variable": {
+          "type": "string",
+          "description": "Condition variable"
+        },
+        "operator": {
+          "enum": [
+            "CONDITION_OPERATOR_UNSPECIFIED",
+            0,
+            "CONDITION_OPERATOR_EQUALS",
+            1,
+            "CONDITION_OPERATOR_NOT_EQUALS",
+            2,
+            "CONDITION_OPERATOR_CONTAINS",
+            3,
+            "CONDITION_OPERATOR_NOT_CONTAINS",
+            4,
+            "CONDITION_OPERATOR_STARTS_WITH",
+            5,
+            "CONDITION_OPERATOR_ENDS_WITH",
+            6,
+            "CONDITION_OPERATOR_MATCHES_REGEX",
+            7,
+            "CONDITION_OPERATOR_GREATER_THAN",
+            8,
+            "CONDITION_OPERATOR_LESS_THAN",
+            9
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Condition Operator",
+          "description": "Condition operators"
+        },
+        "value": {
+          "type": "string",
+          "description": "Condition value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Condition",
+      "description": "Event condition"
+    }
+  },
+  "title": "EVENTCONDITION Configuration Schema",
+  "description": "JSON Schema for EventCondition configuration"
+}

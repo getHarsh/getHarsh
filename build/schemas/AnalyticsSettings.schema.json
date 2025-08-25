@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AnalyticsSettings",
+  "definitions": {
+    "AnalyticsSettings": {
+      "properties": {
+        "primary_conversion_event": {
+          "type": "string",
+          "description": "Conversion tracking"
+        },
+        "secondary_conversion_event": {
+          "type": "string"
+        },
+        "industry_view_event": {
+          "type": "string",
+          "description": "Industry page tracking"
+        },
+        "service_interest_event": {
+          "type": "string",
+          "description": "Service interest tracking"
+        },
+        "attribution_model": {
+          "type": "string",
+          "description": "Attribution model  \"last-click\", \"data-driven\", \"position-based\""
+        },
+        "custom_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom dimensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Settings",
+      "description": "Analytics configuration"
+    }
+  },
+  "title": "ANALYTICSSETTINGS Configuration Schema",
+  "description": "JSON Schema for AnalyticsSettings configuration"
+}

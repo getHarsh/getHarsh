@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TriggerDetails",
+  "definitions": {
+    "TriggerDetails": {
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "CSS selector for clicks"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "URL pattern for page views"
+        },
+        "scroll_percentage": {
+          "type": "integer",
+          "description": "Scroll percentage"
+        },
+        "timer_interval": {
+          "type": "integer",
+          "description": "Timer interval (ms)"
+        },
+        "js_condition": {
+          "type": "string",
+          "description": "Custom JavaScript condition"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Details",
+      "description": "Trigger details"
+    }
+  },
+  "title": "TRIGGERDETAILS Configuration Schema",
+  "description": "JSON Schema for TriggerDetails configuration"
+}

@@ -1,0 +1,450 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgProjectConfig",
+  "definitions": {
+    "SchemaOrgProjectConfig": {
+      "properties": {
+        "config_override": {
+          "$ref": "#/definitions/website.config.SchemaOrgConfig",
+          "description": "Override domain Schema.org config"
+        },
+        "type_mappings": {
+          "$ref": "#/definitions/website.config.ProjectTypeMappings",
+          "description": "Project type mappings"
+        },
+        "software_settings": {
+          "$ref": "#/definitions/website.config.SoftwareSchemaSettings",
+          "description": "Software-specific settings"
+        },
+        "research_settings": {
+          "$ref": "#/definitions/website.config.ResearchSchemaSettings",
+          "description": "Research-specific settings"
+        },
+        "repository_integration": {
+          "$ref": "#/definitions/website.config.RepositoryIntegration",
+          "description": "Repository integration"
+        },
+        "docs_integration": {
+          "$ref": "#/definitions/website.config.DocumentationIntegration",
+          "description": "Documentation integration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Project Config",
+      "description": "Schema.org configuration for projects"
+    },
+    "website.config.ApplicationCategoryMapping": {
+      "properties": {
+        "default_category": {
+          "type": "string",
+          "description": "Default category"
+        },
+        "type_categories": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Type-based categories"
+        },
+        "custom_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom categories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Application Category Mapping",
+      "description": "Application category mapping"
+    },
+    "website.config.DatasetSettings": {
+      "properties": {
+        "include_datasets": {
+          "type": "boolean",
+          "description": "Include datasets"
+        },
+        "dataset_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Dataset type mapping"
+        },
+        "license_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "License mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dataset Settings",
+      "description": "Dataset settings"
+    },
+    "website.config.DocumentationIntegration": {
+      "properties": {
+        "include_docs": {
+          "type": "boolean",
+          "description": "Include docs in Schema.org"
+        },
+        "docs_type": {
+          "type": "string",
+          "description": "Documentation type"
+        },
+        "include_api": {
+          "type": "boolean",
+          "description": "Include API docs"
+        },
+        "include_tutorials": {
+          "type": "boolean",
+          "description": "Include tutorials"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation Integration",
+      "description": "Documentation integration"
+    },
+    "website.config.FundingInfo": {
+      "properties": {
+        "include_funding": {
+          "type": "boolean",
+          "description": "Include funding info"
+        },
+        "funder_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Funder type mapping"
+        },
+        "grant_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Grant type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Funding Info",
+      "description": "Funding information"
+    },
+    "website.config.PlatformSupport": {
+      "properties": {
+        "os_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Operating systems mapping"
+        },
+        "arch_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Architecture mapping"
+        },
+        "runtime_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Runtime mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Platform Support",
+      "description": "Platform support configuration"
+    },
+    "website.config.ProjectTypeMappings": {
+      "properties": {
+        "project_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"PROJECT_TYPE_RESEARCH\" -> \"ResearchProject\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT TYPE MAPPINGS =============================================================================  Maps ProjectType enum to Schema.org types"
+    },
+    "website.config.PublicationSettings": {
+      "properties": {
+        "include_publications": {
+          "type": "boolean",
+          "description": "Include publications"
+        },
+        "pub_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Publication type mapping"
+        },
+        "venue_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Venue type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publication Settings",
+      "description": "Publication settings"
+    },
+    "website.config.RepositoryIntegration": {
+      "properties": {
+        "include_repository": {
+          "type": "boolean",
+          "description": "Include repository info"
+        },
+        "repo_type": {
+          "type": "string",
+          "description": "Repository type (\"GitHub\", \"GitLab\", etc.)"
+        },
+        "include_stats": {
+          "type": "boolean",
+          "description": "Include statistics"
+        },
+        "include_contributors": {
+          "type": "boolean",
+          "description": "Include contributors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/website.config.RepositoryMetadata",
+          "description": "Repository metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Repository Integration",
+      "description": "Repository integration for Schema.org"
+    },
+    "website.config.RepositoryMetadata": {
+      "properties": {
+        "include_languages": {
+          "type": "boolean",
+          "description": "Include languages"
+        },
+        "include_topics": {
+          "type": "boolean",
+          "description": "Include topics/tags"
+        },
+        "include_license": {
+          "type": "boolean",
+          "description": "Include license"
+        },
+        "include_activity": {
+          "type": "boolean",
+          "description": "Include activity metrics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Repository Metadata",
+      "description": "Repository metadata"
+    },
+    "website.config.RequirementsSpec": {
+      "properties": {
+        "include_system_reqs": {
+          "type": "boolean",
+          "description": "Include system requirements"
+        },
+        "include_dependencies": {
+          "type": "boolean",
+          "description": "Include dependencies"
+        },
+        "memory_format": {
+          "type": "string",
+          "description": "Memory requirements format"
+        },
+        "storage_format": {
+          "type": "string",
+          "description": "Storage requirements format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Requirements Spec",
+      "description": "Requirements specification"
+    },
+    "website.config.ResearchAreaMapping": {
+      "properties": {
+        "default_area": {
+          "type": "string",
+          "description": "Default research area"
+        },
+        "keyword_areas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Keywords to area mapping"
+        },
+        "disciplines": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Discipline mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Research Area Mapping",
+      "description": "Research area mapping"
+    },
+    "website.config.ResearchSchemaSettings": {
+      "properties": {
+        "area_mapping": {
+          "$ref": "#/definitions/website.config.ResearchAreaMapping",
+          "description": "Research area mapping"
+        },
+        "funding": {
+          "$ref": "#/definitions/website.config.FundingInfo",
+          "description": "Funding information"
+        },
+        "publications": {
+          "$ref": "#/definitions/website.config.PublicationSettings",
+          "description": "Publication settings"
+        },
+        "datasets": {
+          "$ref": "#/definitions/website.config.DatasetSettings",
+          "description": "Dataset settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Research Schema Settings",
+      "description": "Research-specific Schema.org settings"
+    },
+    "website.config.SchemaOrgConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Schema.org JSON-LD generation"
+        },
+        "mapping_mode": {
+          "type": "string",
+          "description": "Mapping mode (\"automatic\", \"manual\", \"hybrid\")"
+        },
+        "include_all_mappings": {
+          "type": "boolean",
+          "description": "Include all enum mappings in build"
+        },
+        "included_mappings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Specific mappings to include (if not including all)"
+        },
+        "custom_mappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom mapping overrides"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.SchemaOrgValidation",
+          "description": "Validation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Config",
+      "description": "Schema.org configuration for build-time mapping"
+    },
+    "website.config.SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    },
+    "website.config.SoftwareFeatures": {
+      "properties": {
+        "auto_extract_features": {
+          "type": "boolean",
+          "description": "Feature extraction"
+        },
+        "feature_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Feature categories"
+        },
+        "feature_benefits": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Feature to benefit mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Features",
+      "description": "Software features configuration"
+    },
+    "website.config.SoftwareSchemaSettings": {
+      "properties": {
+        "category_mapping": {
+          "$ref": "#/definitions/website.config.ApplicationCategoryMapping",
+          "description": "Application category mapping"
+        },
+        "requirements": {
+          "$ref": "#/definitions/website.config.RequirementsSpec",
+          "description": "Requirements specification"
+        },
+        "platforms": {
+          "$ref": "#/definitions/website.config.PlatformSupport",
+          "description": "Platform support"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.SoftwareFeatures",
+          "description": "Software features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Schema Settings",
+      "description": "Software-specific Schema.org settings"
+    }
+  },
+  "title": "SCHEMAORGPROJECTCONFIG Configuration Schema",
+  "description": "JSON Schema for SchemaOrgProjectConfig configuration"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TechnicalLevelSettings",
+  "definitions": {
+    "TechnicalLevelSettings": {
+      "properties": {
+        "include_level": {
+          "type": "boolean",
+          "description": "Include tech level"
+        },
+        "level_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Level categories"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Level Settings",
+      "description": "Technical level settings"
+    }
+  },
+  "title": "TECHNICALLEVELSETTINGS Configuration Schema",
+  "description": "JSON Schema for TechnicalLevelSettings configuration"
+}

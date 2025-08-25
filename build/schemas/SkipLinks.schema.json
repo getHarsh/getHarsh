@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SkipLinks",
+  "definitions": {
+    "SkipLinks": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable skip links"
+        },
+        "links": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.SkipLink"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Skip link items"
+        },
+        "styling": {
+          "$ref": "#/definitions/website.config.aria.SkipLinkStyling",
+          "description": "Skip link styling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Links",
+      "description": "Skip links configuration"
+    },
+    "website.config.aria.SkipLink": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Link text"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target element ID"
+        },
+        "shortcut": {
+          "type": "string",
+          "description": "Keyboard shortcut"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Link",
+      "description": "Individual skip link"
+    },
+    "website.config.aria.SkipLinkStyling": {
+      "properties": {
+        "show_on_focus": {
+          "type": "boolean",
+          "description": "Show on focus only"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position"
+        },
+        "z_index": {
+          "type": "integer",
+          "description": "Z-index"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Custom CSS class"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Link Styling",
+      "description": "Skip link styling"
+    }
+  },
+  "title": "SKIPLINKS Configuration Schema",
+  "description": "JSON Schema for SkipLinks configuration"
+}

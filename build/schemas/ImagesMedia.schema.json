@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ImagesMedia",
+  "definitions": {
+    "ImagesMedia": {
+      "properties": {
+        "alt_text": {
+          "$ref": "#/definitions/website.config.aria.AltTextRequirements",
+          "description": "Alt text requirements"
+        },
+        "long_descriptions": {
+          "type": "boolean",
+          "description": "Image descriptions"
+        },
+        "decorative": {
+          "$ref": "#/definitions/website.config.aria.DecorativeImages",
+          "description": "Decorative images"
+        },
+        "complex": {
+          "$ref": "#/definitions/website.config.aria.ComplexImages",
+          "description": "Complex images"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Images Media",
+      "description": "Images and media configuration"
+    },
+    "website.config.aria.AltTextRequirements": {
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Require alt text"
+        },
+        "min_length": {
+          "type": "integer",
+          "description": "Minimum length"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Maximum length"
+        },
+        "quality_check": {
+          "type": "boolean",
+          "description": "Quality checking"
+        },
+        "empty_for_decorative": {
+          "type": "boolean",
+          "description": "Empty alt for decorative"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Alt Text Requirements",
+      "description": "Alt text requirements"
+    },
+    "website.config.aria.ComplexImages": {
+      "properties": {
+        "require_description": {
+          "type": "boolean",
+          "description": "Require descriptions"
+        },
+        "description_format": {
+          "type": "string",
+          "description": "Description format"
+        },
+        "link_to_description": {
+          "type": "boolean",
+          "description": "Link to description"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Complex Images",
+      "description": "Complex images handling"
+    },
+    "website.config.aria.DecorativeImages": {
+      "properties": {
+        "allow_marking": {
+          "type": "boolean",
+          "description": "Mark as decorative"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect decorative"
+        },
+        "hide_from_sr": {
+          "type": "boolean",
+          "description": "Hide from screen readers"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decorative Images",
+      "description": "Decorative images handling"
+    }
+  },
+  "title": "IMAGESMEDIA Configuration Schema",
+  "description": "JSON Schema for ImagesMedia configuration"
+}

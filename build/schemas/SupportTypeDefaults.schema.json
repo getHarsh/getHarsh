@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SupportTypeDefaults",
+  "definitions": {
+    "SupportTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_UNSPECIFIED  schema_type: \"Thing\" funding_type: \"\" category: \"\""
+        },
+        "funding": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_FUNDING  schema_type: \"MonetaryGrant\" funding_type: \"Financial\" category: \"Monetary\""
+        },
+        "infrastructure": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_INFRASTRUCTURE  schema_type: \"Service\" funding_type: \"In-Kind\" category: \"Technical\""
+        },
+        "advisory": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_ADVISORY  schema_type: \"ProfessionalService\" funding_type: \"In-Kind\" category: \"Expertise\""
+        },
+        "technical": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_TECHNICAL  schema_type: \"TechArticle\" funding_type: \"In-Kind\" category: \"Technical\""
+        },
+        "community": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_COMMUNITY  schema_type: \"Organization\" funding_type: \"In-Kind\" category: \"Social\""
+        },
+        "marketing": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_MARKETING  schema_type: \"MarketingCampaign\" funding_type: \"In-Kind\" category: \"Promotional\""
+        },
+        "legal": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_LEGAL  schema_type: \"LegalService\" funding_type: \"In-Kind\" category: \"Professional\""
+        },
+        "mentorship": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_MENTORSHIP  schema_type: \"EducationalOccupationalProgram\" funding_type: \"In-Kind\" category: \"Educational\""
+        },
+        "resources": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_RESOURCES  schema_type: \"Grant\" funding_type: \"In-Kind\" category: \"Material\""
+        },
+        "partnership": {
+          "$ref": "#/definitions/website.config.SupportTypeMapping",
+          "description": "SUPPORT_TYPE_PARTNERSHIP  schema_type: \"Organization\" funding_type: \"Strategic\" category: \"Collaborative\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Type Defaults",
+      "description": "Complete support type mappings"
+    },
+    "website.config.SupportTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "funding_type": {
+          "type": "string",
+          "description": "Funding type"
+        },
+        "category": {
+          "type": "string",
+          "description": "Support category"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Type Mapping"
+    }
+  },
+  "title": "SUPPORTTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SupportTypeDefaults configuration"
+}

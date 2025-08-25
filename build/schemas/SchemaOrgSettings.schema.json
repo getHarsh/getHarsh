@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgSettings",
+  "definitions": {
+    "SchemaOrgSettings": {
+      "properties": {
+        "provider_type": {
+          "type": "string",
+          "description": "Organization providing services  \"Organization\" or \"Person\""
+        },
+        "provider_name": {
+          "type": "string"
+        },
+        "offer_catalog_name": {
+          "type": "string",
+          "description": "Service catalog settings"
+        },
+        "area_served": {
+          "type": "string",
+          "description": "e.g., \"Worldwide\", \"India\""
+        },
+        "available_languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Settings",
+      "description": "Schema.org configuration"
+    }
+  },
+  "title": "SCHEMAORGSETTINGS Configuration Schema",
+  "description": "JSON Schema for SchemaOrgSettings configuration"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DownloadTracking",
+  "definitions": {
+    "DownloadTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Track all downloads"
+        },
+        "tracked_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File types to track"
+        },
+        "track_version": {
+          "type": "boolean",
+          "description": "Track by version"
+        },
+        "track_platform": {
+          "type": "boolean",
+          "description": "Track by platform"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Download Tracking",
+      "description": "Download tracking configuration"
+    }
+  },
+  "title": "DOWNLOADTRACKING Configuration Schema",
+  "description": "JSON Schema for DownloadTracking configuration"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EditorConfig",
+  "definitions": {
+    "EditorConfig": {
+      "properties": {
+        "preview": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editor Config",
+      "description": "Editor configuration"
+    }
+  },
+  "title": "EDITORCONFIG Configuration Schema",
+  "description": "JSON Schema for EditorConfig configuration"
+}

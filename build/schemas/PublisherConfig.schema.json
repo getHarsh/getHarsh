@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PublisherConfig",
+  "definitions": {
+    "PublisherConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Publisher type (\"Organization\" or \"Person\")"
+        },
+        "use_domain_entity": {
+          "type": "boolean",
+          "description": "Use domain entity as publisher"
+        },
+        "include_logo": {
+          "type": "boolean",
+          "description": "Include logo"
+        },
+        "name_override": {
+          "type": "string",
+          "description": "Publisher name override"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publisher Config",
+      "description": "Publisher configuration"
+    }
+  },
+  "title": "PUBLISHERCONFIG Configuration Schema",
+  "description": "JSON Schema for PublisherConfig configuration"
+}

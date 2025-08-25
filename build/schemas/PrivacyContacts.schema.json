@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PrivacyContacts",
+  "definitions": {
+    "PrivacyContacts": {
+      "properties": {
+        "privacy_email": {
+          "type": "string",
+          "description": "Privacy email"
+        },
+        "dpo_email": {
+          "type": "string",
+          "description": "DPO email"
+        },
+        "privacy_phone": {
+          "type": "string",
+          "description": "Privacy phone"
+        },
+        "privacy_address": {
+          "type": "string",
+          "description": "Privacy address"
+        },
+        "support_url": {
+          "type": "string",
+          "description": "Support URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Privacy Contacts",
+      "description": "Privacy contacts"
+    }
+  },
+  "title": "PRIVACYCONTACTS Configuration Schema",
+  "description": "JSON Schema for PrivacyContacts configuration"
+}

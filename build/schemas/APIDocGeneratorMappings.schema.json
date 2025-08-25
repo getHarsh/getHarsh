@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIDocGeneratorMappings",
+  "definitions": {
+    "APIDocGeneratorMappings": {
+      "properties": {
+        "generator_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> generator name e.g., \"API_DOC_GENERATOR_SWAGGER_UI\" -> \"Swagger UI\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n API DOC GENERATOR MAPPINGS\n =============================================================================",
+      "description": "============================================================================= API DOC GENERATOR MAPPINGS =============================================================================  Maps APIDocGenerator enum to generator configurations"
+    }
+  },
+  "title": "APIDOCGENERATORMAPPINGS Configuration Schema",
+  "description": "JSON Schema for APIDocGeneratorMappings configuration"
+}

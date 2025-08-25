@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AnalyticsServices",
+  "definitions": {
+    "AnalyticsServices": {
+      "properties": {
+        "google_analytics": {
+          "$ref": "#/definitions/website.config.GoogleAnalytics",
+          "description": "Google Analytics configuration"
+        },
+        "meta_pixel": {
+          "$ref": "#/definitions/website.config.MetaPixel",
+          "description": "Meta/Facebook Pixel configuration"
+        },
+        "microsoft_clarity": {
+          "$ref": "#/definitions/website.config.MicrosoftClarity",
+          "description": "Microsoft Clarity configuration"
+        },
+        "twitter_pixel": {
+          "$ref": "#/definitions/website.config.TwitterPixel",
+          "description": "Twitter/X Pixel configuration"
+        },
+        "linkedin_insight": {
+          "$ref": "#/definitions/website.config.LinkedInInsight",
+          "description": "LinkedIn Insight Tag configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Services",
+      "description": "Enhanced analytics services configuration"
+    },
+    "website.config.GoogleAnalytics": {
+      "properties": {
+        "tracking_id": {
+          "type": "string",
+          "description": "Tracking ID (supports environment variable)"
+        },
+        "enable_enhanced_ecommerce": {
+          "type": "boolean",
+          "description": "Enable enhanced ecommerce"
+        },
+        "enable_demographics": {
+          "type": "boolean",
+          "description": "Enable demographics reports"
+        },
+        "enable_remarketing": {
+          "type": "boolean",
+          "description": "Enable remarketing features"
+        },
+        "gtm_container_id": {
+          "type": "string",
+          "description": "Google Tag Manager container ID (supports environment variable)"
+        },
+        "enable_ga4_features": {
+          "type": "boolean",
+          "description": "Enable Google Analytics 4 features"
+        },
+        "enable_server_side_tagging": {
+          "type": "boolean",
+          "description": "Enable server-side tagging"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Analytics",
+      "description": "Google Analytics specific settings"
+    },
+    "website.config.LinkedInInsight": {
+      "properties": {
+        "partner_id": {
+          "type": "string",
+          "description": "LinkedIn Partner ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_matched_audiences": {
+          "type": "boolean",
+          "description": "Enable matched audiences (retargeting)"
+        },
+        "enable_website_demographics": {
+          "type": "boolean",
+          "description": "Enable website demographics"
+        },
+        "conversion_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Conversion IDs to track"
+        },
+        "enable_enhanced_conversion": {
+          "type": "boolean",
+          "description": "Enable enhanced conversion tracking (1st party cookies)"
+        },
+        "enable_cross_domain": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Insight",
+      "description": "LinkedIn Insight Tag configuration"
+    },
+    "website.config.MetaPixel": {
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "Pixel ID (supports environment variable)"
+        },
+        "enable_automatic_matching": {
+          "type": "boolean",
+          "description": "Enable automatic matching"
+        },
+        "enable_advanced_matching": {
+          "type": "boolean",
+          "description": "Enable advanced matching"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Meta Pixel",
+      "description": "Meta/Facebook Pixel settings"
+    },
+    "website.config.MicrosoftClarity": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Clarity"
+        },
+        "project_id": {
+          "type": "string",
+          "description": "Clarity project ID"
+        },
+        "integrate_with_bing": {
+          "type": "boolean",
+          "description": "Auto-integrate with Bing Webmaster Tools"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Microsoft Clarity",
+      "description": "Microsoft Clarity settings"
+    },
+    "website.config.TwitterPixel": {
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "Twitter Pixel ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_website_tag": {
+          "type": "boolean",
+          "description": "Enable website tag (universal)"
+        },
+        "twitter_site_tag_id": {
+          "type": "string",
+          "description": "Twitter site tag ID (for website tag)"
+        },
+        "track_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Event types to track  e.g., [\"PageView\", \"Purchase\", \"AddToCart\"]"
+        },
+        "enable_enhanced_matching": {
+          "type": "boolean",
+          "description": "Enable enhanced matching"
+        },
+        "restricted_data_processing": {
+          "type": "boolean",
+          "description": "Enable restricted data processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Twitter Pixel",
+      "description": "Twitter/X Pixel configuration"
+    }
+  },
+  "title": "ANALYTICSSERVICES Configuration Schema",
+  "description": "JSON Schema for AnalyticsServices configuration"
+}

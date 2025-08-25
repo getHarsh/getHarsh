@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerAnimations",
+  "definitions": {
+    "BannerAnimations": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable animations"
+        },
+        "entry": {
+          "enum": [
+            "ANIMATION_TYPE_UNSPECIFIED",
+            0,
+            "ANIMATION_TYPE_FADE",
+            1,
+            "ANIMATION_TYPE_SLIDE",
+            2,
+            "ANIMATION_TYPE_SCALE",
+            3,
+            "ANIMATION_TYPE_NONE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Animation Type",
+          "description": "Animation types"
+        },
+        "exit": {
+          "enum": [
+            "ANIMATION_TYPE_UNSPECIFIED",
+            0,
+            "ANIMATION_TYPE_FADE",
+            1,
+            "ANIMATION_TYPE_SLIDE",
+            2,
+            "ANIMATION_TYPE_SCALE",
+            3,
+            "ANIMATION_TYPE_NONE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Animation Type",
+          "description": "Animation types"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Animation duration (ms)"
+        },
+        "easing": {
+          "type": "string",
+          "description": "Animation easing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Animations",
+      "description": "Banner animation configuration"
+    }
+  },
+  "title": "BANNERANIMATIONS Configuration Schema",
+  "description": "JSON Schema for BannerAnimations configuration"
+}

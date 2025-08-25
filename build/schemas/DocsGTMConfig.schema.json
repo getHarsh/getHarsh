@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsGTMConfig",
+  "definitions": {
+    "DocsGTMConfig": {
+      "properties": {
+        "nav_tracking": {
+          "$ref": "#/definitions/website.config.NavigationTracking",
+          "description": "Advanced navigation tracking"
+        },
+        "code_tracking": {
+          "$ref": "#/definitions/website.config.CodeInteractionTracking",
+          "description": "Code interaction tracking"
+        },
+        "api_tracking": {
+          "$ref": "#/definitions/website.config.APIExplorerTracking",
+          "description": "API explorer tracking"
+        },
+        "track_version_switching": {
+          "type": "boolean",
+          "description": "Version switching tracking"
+        },
+        "search_tracking": {
+          "$ref": "#/definitions/website.config.SearchTracking",
+          "description": "Search behavior tracking"
+        },
+        "doc_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Documentation-specific events"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs GTM Config",
+      "description": "Documentation-specific GTM configuration"
+    },
+    "website.config.APIExplorerTracking": {
+      "properties": {
+        "track_try_it": {
+          "type": "boolean",
+          "description": "Track try-it-out usage"
+        },
+        "track_param_changes": {
+          "type": "boolean",
+          "description": "Track parameter changes"
+        },
+        "track_response_views": {
+          "type": "boolean",
+          "description": "Track response views"
+        },
+        "track_auth_setup": {
+          "type": "boolean",
+          "description": "Track auth setup"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Explorer Tracking",
+      "description": "API explorer tracking"
+    },
+    "website.config.CodeInteractionTracking": {
+      "properties": {
+        "track_copy": {
+          "type": "boolean",
+          "description": "Track code copy events"
+        },
+        "track_execution": {
+          "type": "boolean",
+          "description": "Track code execution (if interactive)"
+        },
+        "track_language_switch": {
+          "type": "boolean",
+          "description": "Track language switching"
+        },
+        "track_expand_collapse": {
+          "type": "boolean",
+          "description": "Track expand/collapse"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Interaction Tracking",
+      "description": "Code interaction tracking"
+    },
+    "website.config.NavigationTracking": {
+      "properties": {
+        "track_sidebar": {
+          "type": "boolean",
+          "description": "Track sidebar navigation"
+        },
+        "track_breadcrumbs": {
+          "type": "boolean",
+          "description": "Track breadcrumb usage"
+        },
+        "track_anchors": {
+          "type": "boolean",
+          "description": "Track anchor link clicks"
+        },
+        "track_toc": {
+          "type": "boolean",
+          "description": "Track TOC navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Tracking",
+      "description": "Navigation tracking for docs"
+    },
+    "website.config.SearchTracking": {
+      "properties": {
+        "track_queries": {
+          "type": "boolean",
+          "description": "Track search queries"
+        },
+        "track_result_clicks": {
+          "type": "boolean",
+          "description": "Track search results clicked"
+        },
+        "track_no_results": {
+          "type": "boolean",
+          "description": "Track no results scenarios"
+        },
+        "track_filters": {
+          "type": "boolean",
+          "description": "Track filter usage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Tracking",
+      "description": "Search tracking configuration"
+    }
+  },
+  "title": "DOCSGTMCONFIG Configuration Schema",
+  "description": "JSON Schema for DocsGTMConfig configuration"
+}

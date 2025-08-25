@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APISpecFormatDefaults",
+  "definitions": {
+    "APISpecFormatDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.APISpecFormatMapping",
+          "description": "API_SPEC_FORMAT_UNSPECIFIED  spec_name: \"\" spec_url: \"\" mime_type: \"\" file_extensions: []"
+        },
+        "openapi": {
+          "$ref": "#/definitions/website.config.APISpecFormatMapping",
+          "description": "API_SPEC_FORMAT_OPENAPI  spec_name: \"OpenAPI\" spec_url: \"https://spec.openapis.org/oas/latest.html\" mime_type: \"application/vnd.oai.openapi+json\" file_extensions: [\"openapi.json\", \"openapi.yaml\", \"openapi.yml\"]"
+        },
+        "graphql": {
+          "$ref": "#/definitions/website.config.APISpecFormatMapping",
+          "description": "API_SPEC_FORMAT_GRAPHQL  spec_name: \"GraphQL\" spec_url: \"https://spec.graphql.org/\" mime_type: \"application/graphql\" file_extensions: [\"graphql\", \"gql\", \"graphqls\"]"
+        },
+        "grpc": {
+          "$ref": "#/definitions/website.config.APISpecFormatMapping",
+          "description": "API_SPEC_FORMAT_GRPC  spec_name: \"gRPC\" spec_url: \"https://grpc.io/docs/what-is-grpc/core-concepts/\" mime_type: \"application/x-protobuf\" file_extensions: [\"proto\", \"protobuf\"]"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Spec Format Defaults",
+      "description": "Complete API spec format mappings"
+    },
+    "website.config.APISpecFormatMapping": {
+      "properties": {
+        "spec_name": {
+          "type": "string",
+          "description": "Specification name"
+        },
+        "spec_url": {
+          "type": "string",
+          "description": "Specification URL"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "file_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Spec Format Mapping"
+    }
+  },
+  "title": "APISPECFORMATDEFAULTS Configuration Schema",
+  "description": "JSON Schema for APISpecFormatDefaults configuration"
+}

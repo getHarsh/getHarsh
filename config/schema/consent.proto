@@ -1,0 +1,1232 @@
+syntax = "proto3";
+
+package website.config.consent;
+
+option go_package = "github.com/getHarsh/getHarsh/config/consent";
+
+// =============================================================================
+// CONSENT MANAGEMENT CONFIGURATION PROTO
+// =============================================================================
+// Defines comprehensive consent management for GDPR, CCPA, and Google Consent
+// Mode v2 compliance across the ecosystem.
+//
+// This schema enables:
+// - Multi-jurisdiction consent management (EU, US, India)
+// - Google Consent Mode v2 with regional defaults
+// - Cross-domain consent synchronization
+// - Entity-specific privacy policies
+// - Granular consent categories
+// - Consent versioning and audit trails
+//
+// Related Documentation:
+// - Implementation Guide: ../CONSENT-EXAMPLES.md
+// - Mappings: consent-mappings.yml
+// - Parent Schema: ecosystem.proto
+// =============================================================================
+
+// ConsentConfig defines the complete consent management configuration
+message ConsentConfig {
+  // Core consent settings
+  ConsentCore core = 1;
+  
+  // Banner configuration
+  ConsentBanner banner = 2;
+  
+  // Consent categories
+  repeated ConsentCategory categories = 3;
+  
+  // Google Consent Mode v2 settings
+  GoogleConsentMode google_consent_mode = 4;
+  
+  // Regional compliance settings
+  repeated RegionalCompliance regional_compliance = 5;
+  
+  // Cross-domain synchronization
+  CrossDomainSync cross_domain = 6;
+  
+  // Entity-specific configuration
+  map<string, EntityConsent> entity_configs = 7;
+  
+  // Consent storage settings
+  ConsentStorage storage = 8;
+  
+  // Audit and logging
+  AuditSettings audit = 9;
+  
+  // Advanced settings
+  AdvancedSettings advanced = 10;
+}
+
+// Core consent settings
+message ConsentCore {
+  // Enable consent management
+  bool enabled = 1;
+  
+  // Consent version (for updates)
+  string version = 2;
+  
+  // Default consent state
+  DefaultConsentState default_state = 3;
+  
+  // Consent expiry (days)
+  int32 expiry_days = 4;
+  
+  // Require explicit consent
+  bool require_explicit_consent = 5;
+  
+  // Enable granular control
+  bool enable_granular_control = 6;
+  
+  // Consent refresh period (days)
+  int32 refresh_period_days = 7;
+  
+  // Block content until consent
+  bool block_until_consent = 8;
+}
+
+// Default consent state
+message DefaultConsentState {
+  // Analytics consent
+  ConsentValue analytics = 1;
+  
+  // Marketing consent
+  ConsentValue marketing = 2;
+  
+  // Functional consent
+  ConsentValue functional = 3;
+  
+  // Necessary consent (always granted)
+  ConsentValue necessary = 4;
+  
+  // Personalization consent
+  ConsentValue personalization = 5;
+  
+  // Social media consent
+  ConsentValue social_media = 6;
+}
+
+// Consent value
+enum ConsentValue {
+  CONSENT_VALUE_UNSPECIFIED = 0;
+  CONSENT_VALUE_DENIED = 1;
+  CONSENT_VALUE_GRANTED = 2;
+  CONSENT_VALUE_PENDING = 3;
+}
+
+// Consent banner configuration
+message ConsentBanner {
+  // Banner display settings
+  BannerDisplay display = 1;
+  
+  // Banner content
+  BannerContent content = 2;
+  
+  // Banner styling
+  BannerStyling styling = 3;
+  
+  // Banner behavior
+  BannerBehavior behavior = 4;
+  
+  // Banner buttons
+  BannerButtons buttons = 5;
+  
+  // Banner animations
+  BannerAnimations animations = 6;
+}
+
+// Banner display settings
+message BannerDisplay {
+  // Banner position
+  BannerPosition position = 1;
+  
+  // Display on first visit
+  bool show_on_first_visit = 2;
+  
+  // Display delay (ms)
+  int32 display_delay_ms = 3;
+  
+  // Z-index for layering
+  int32 z_index = 4;
+  
+  // Show backdrop overlay
+  bool show_backdrop = 5;
+  
+  // Backdrop opacity (0-1)
+  float backdrop_opacity = 6;
+}
+
+// Banner position
+enum BannerPosition {
+  BANNER_POSITION_UNSPECIFIED = 0;
+  BANNER_POSITION_TOP = 1;
+  BANNER_POSITION_BOTTOM = 2;
+  BANNER_POSITION_CENTER = 3;
+  BANNER_POSITION_TOP_LEFT = 4;
+  BANNER_POSITION_TOP_RIGHT = 5;
+  BANNER_POSITION_BOTTOM_LEFT = 6;
+  BANNER_POSITION_BOTTOM_RIGHT = 7;
+}
+
+// Banner content configuration
+message BannerContent {
+  // Main banner text
+  string text = 1;
+  
+  // Privacy policy link text
+  string privacy_link_text = 2;
+  
+  // Privacy policy URL
+  string privacy_url = 3;
+  
+  // Cookie policy link text
+  string cookie_link_text = 4;
+  
+  // Cookie policy URL
+  string cookie_url = 5;
+  
+  // Legitimate interest text
+  string legitimate_interest_text = 6;
+  
+  // Vendor list link
+  string vendor_list_url = 7;
+  
+  // Custom HTML support
+  bool enable_html = 8;
+}
+
+// Banner styling configuration
+message BannerStyling {
+  // Theme mode
+  ThemeMode theme = 1;
+  
+  // Custom CSS class
+  string css_class = 2;
+  
+  // Max width (px)
+  int32 max_width = 3;
+  
+  // Border radius (px)
+  int32 border_radius = 4;
+  
+  // Padding (px)
+  int32 padding = 5;
+  
+  // Font family override
+  string font_family = 6;
+  
+  // Custom colors
+  BannerColors colors = 7;
+}
+
+// Theme mode
+enum ThemeMode {
+  THEME_MODE_UNSPECIFIED = 0;
+  THEME_MODE_LIGHT = 1;
+  THEME_MODE_DARK = 2;
+  THEME_MODE_AUTO = 3;  // Follow system
+  THEME_MODE_CUSTOM = 4;
+}
+
+// Banner color configuration
+message BannerColors {
+  // Background color
+  string background = 1;
+  
+  // Text color
+  string text = 2;
+  
+  // Link color
+  string link = 3;
+  
+  // Button primary color
+  string button_primary = 4;
+  
+  // Button secondary color
+  string button_secondary = 5;
+  
+  // Border color
+  string border = 6;
+}
+
+// Banner behavior configuration
+message BannerBehavior {
+  // Auto-hide after accept
+  bool auto_hide = 1;
+  
+  // Remember dismiss action
+  bool remember_dismiss = 2;
+  
+  // Dismiss duration (days)
+  int32 dismiss_duration_days = 3;
+  
+  // Re-show on policy update
+  bool reshow_on_update = 4;
+  
+  // Close on backdrop click
+  bool close_on_backdrop = 5;
+  
+  // Close on ESC key
+  bool close_on_escape = 6;
+  
+  // Focus trap in banner
+  bool focus_trap = 7;
+}
+
+// Banner button configuration
+message BannerButtons {
+  // Accept all button
+  ButtonConfig accept_all = 1;
+  
+  // Reject all button
+  ButtonConfig reject_all = 2;
+  
+  // Settings button
+  ButtonConfig settings = 3;
+  
+  // Save preferences button
+  ButtonConfig save = 4;
+  
+  // Close button
+  ButtonConfig close = 5;
+  
+  // Button order
+  repeated string button_order = 6;
+}
+
+// Button configuration
+message ButtonConfig {
+  // Button text
+  string text = 1;
+  
+  // Show button
+  bool show = 2;
+  
+  // Button style
+  ButtonStyle style = 3;
+  
+  // CSS class
+  string css_class = 4;
+  
+  // ARIA label
+  string aria_label = 5;
+}
+
+// Button style
+enum ButtonStyle {
+  BUTTON_STYLE_UNSPECIFIED = 0;
+  BUTTON_STYLE_PRIMARY = 1;
+  BUTTON_STYLE_SECONDARY = 2;
+  BUTTON_STYLE_TEXT = 3;
+  BUTTON_STYLE_OUTLINE = 4;
+}
+
+// Banner animation configuration
+message BannerAnimations {
+  // Enable animations
+  bool enabled = 1;
+  
+  // Entry animation
+  AnimationType entry = 2;
+  
+  // Exit animation
+  AnimationType exit = 3;
+  
+  // Animation duration (ms)
+  int32 duration_ms = 4;
+  
+  // Animation easing
+  string easing = 5;
+}
+
+// Animation types
+enum AnimationType {
+  ANIMATION_TYPE_UNSPECIFIED = 0;
+  ANIMATION_TYPE_FADE = 1;
+  ANIMATION_TYPE_SLIDE = 2;
+  ANIMATION_TYPE_SCALE = 3;
+  ANIMATION_TYPE_NONE = 4;
+}
+
+// Consent category configuration
+message ConsentCategory {
+  // Category ID
+  string id = 1;
+  
+  // Category name
+  string name = 2;
+  
+  // Category description
+  string description = 3;
+  
+  // Required category
+  bool required = 4;
+  
+  // Pre-selected by default
+  bool pre_selected = 5;
+  
+  // Linked categories (auto-enable)
+  repeated string linked_categories = 6;
+  
+  // Providers/vendors
+  repeated ConsentProvider providers = 7;
+  
+  // Purposes
+  repeated ConsentPurpose purposes = 8;
+  
+  // Cookies used
+  repeated CookieInfo cookies = 9;
+  
+  // Storage types
+  repeated StorageType storage_types = 10;
+  
+  // Category icon
+  string icon = 11;
+}
+
+// Consent provider/vendor
+message ConsentProvider {
+  // Provider name
+  string name = 1;
+  
+  // Provider description
+  string description = 2;
+  
+  // Privacy policy URL
+  string privacy_url = 3;
+  
+  // Provider type
+  ProviderType type = 4;
+  
+  // Purposes
+  repeated string purposes = 5;
+}
+
+// Provider type
+enum ProviderType {
+  PROVIDER_TYPE_UNSPECIFIED = 0;
+  PROVIDER_TYPE_ANALYTICS = 1;
+  PROVIDER_TYPE_ADVERTISING = 2;
+  PROVIDER_TYPE_SOCIAL_MEDIA = 3;
+  PROVIDER_TYPE_FUNCTIONAL = 4;
+  PROVIDER_TYPE_SECURITY = 5;
+}
+
+// Consent purpose
+message ConsentPurpose {
+  // Purpose ID
+  string id = 1;
+  
+  // Purpose name
+  string name = 2;
+  
+  // Purpose description
+  string description = 3;
+  
+  // Legal basis
+  LegalBasis legal_basis = 4;
+}
+
+// Legal basis for processing
+enum LegalBasis {
+  LEGAL_BASIS_UNSPECIFIED = 0;
+  LEGAL_BASIS_CONSENT = 1;
+  LEGAL_BASIS_LEGITIMATE_INTEREST = 2;
+  LEGAL_BASIS_CONTRACT = 3;
+  LEGAL_BASIS_LEGAL_OBLIGATION = 4;
+  LEGAL_BASIS_VITAL_INTERESTS = 5;
+  LEGAL_BASIS_PUBLIC_TASK = 6;
+}
+
+// Cookie information
+message CookieInfo {
+  // Cookie name
+  string name = 1;
+  
+  // Cookie domain
+  string domain = 2;
+  
+  // Cookie path
+  string path = 3;
+  
+  // Expiry time
+  string expiry = 4;
+  
+  // Cookie type
+  CookieType type = 5;
+  
+  // Cookie description
+  string description = 6;
+}
+
+// Cookie type
+enum CookieType {
+  COOKIE_TYPE_UNSPECIFIED = 0;
+  COOKIE_TYPE_FIRST_PARTY = 1;
+  COOKIE_TYPE_THIRD_PARTY = 2;
+  COOKIE_TYPE_SESSION = 3;
+  COOKIE_TYPE_PERSISTENT = 4;
+}
+
+// Storage type
+enum StorageType {
+  STORAGE_TYPE_UNSPECIFIED = 0;
+  STORAGE_TYPE_COOKIE = 1;
+  STORAGE_TYPE_LOCAL_STORAGE = 2;
+  STORAGE_TYPE_SESSION_STORAGE = 3;
+  STORAGE_TYPE_INDEXED_DB = 4;
+  STORAGE_TYPE_CACHE = 5;
+}
+
+// Google Consent Mode v2 configuration
+message GoogleConsentMode {
+  // Enable Google Consent Mode
+  bool enabled = 1;
+  
+  // Default consent state
+  GoogleConsentState default_state = 2;
+  
+  // Regional consent states
+  repeated RegionalGoogleConsent regional_states = 3;
+  
+  // Advanced settings
+  GoogleConsentAdvanced advanced = 4;
+  
+  // Update settings
+  GoogleConsentUpdate update_settings = 5;
+  
+  // Integration settings
+  GoogleConsentIntegration integration = 6;
+}
+
+// Google consent state
+message GoogleConsentState {
+  // Analytics storage
+  ConsentValue analytics_storage = 1;
+  
+  // Ad storage
+  ConsentValue ad_storage = 2;
+  
+  // Ad user data
+  ConsentValue ad_user_data = 3;
+  
+  // Ad personalization
+  ConsentValue ad_personalization = 4;
+  
+  // Functionality storage
+  ConsentValue functionality_storage = 5;
+  
+  // Personalization storage
+  ConsentValue personalization_storage = 6;
+  
+  // Security storage
+  ConsentValue security_storage = 7;
+}
+
+// Regional Google consent
+message RegionalGoogleConsent {
+  // Region code
+  string region = 1;
+  
+  // Consent state for region
+  GoogleConsentState state = 2;
+  
+  // Region detection
+  RegionDetection detection = 3;
+}
+
+// Region detection settings
+message RegionDetection {
+  // Detection method
+  DetectionMethod method = 1;
+  
+  // Custom detection function
+  string custom_function = 2;
+  
+  // Fallback region
+  string fallback_region = 3;
+}
+
+// Detection method
+enum DetectionMethod {
+  DETECTION_METHOD_UNSPECIFIED = 0;
+  DETECTION_METHOD_IP = 1;
+  DETECTION_METHOD_TIMEZONE = 2;
+  DETECTION_METHOD_LOCALE = 3;
+  DETECTION_METHOD_CUSTOM = 4;
+}
+
+// Google consent advanced settings
+message GoogleConsentAdvanced {
+  // URL passthrough
+  bool url_passthrough = 1;
+  
+  // Ads data redaction
+  bool ads_data_redaction = 2;
+  
+  // Developer ID
+  string developer_id = 3;
+  
+  // Enable consent mode on page load
+  bool enable_on_page_load = 4;
+  
+  // Wait for update (ms)
+  int32 wait_for_update_ms = 5;
+  
+  // Region-specific features
+  map<string, bool> region_features = 6;
+}
+
+// Google consent update settings
+message GoogleConsentUpdate {
+  // Update command
+  string update_command = 1;
+  
+  // Update on event
+  string update_event = 2;
+  
+  // Batch updates
+  bool batch_updates = 3;
+  
+  // Update delay (ms)
+  int32 update_delay_ms = 4;
+}
+
+// Google consent integration
+message GoogleConsentIntegration {
+  // GTM integration
+  bool gtm_enabled = 1;
+  
+  // GTM consent events
+  repeated string gtm_events = 2;
+  
+  // Direct gtag integration
+  bool gtag_enabled = 3;
+  
+  // Custom integration
+  string custom_integration = 4;
+}
+
+// Regional compliance settings
+message RegionalCompliance {
+  // Region identifier
+  string region = 1;
+  
+  // Applicable laws
+  repeated ComplianceLaw laws = 2;
+  
+  // Required disclosures
+  repeated RequiredDisclosure disclosures = 3;
+  
+  // Age restrictions
+  AgeRestrictions age_restrictions = 4;
+  
+  // Data retention
+  DataRetention retention = 5;
+  
+  // Rights and requests
+  DataSubjectRights rights = 6;
+  
+  // Special requirements
+  map<string, string> special_requirements = 7;
+}
+
+// Compliance law
+enum ComplianceLaw {
+  COMPLIANCE_LAW_UNSPECIFIED = 0;
+  COMPLIANCE_LAW_GDPR = 1;      // EU
+  COMPLIANCE_LAW_CCPA = 2;      // California
+  COMPLIANCE_LAW_LGPD = 3;      // Brazil
+  COMPLIANCE_LAW_PIPEDA = 4;    // Canada
+  COMPLIANCE_LAW_POPI = 5;      // South Africa
+  COMPLIANCE_LAW_PDPA = 6;      // Singapore
+  COMPLIANCE_LAW_DPA = 7;       // India
+}
+
+// Required disclosure
+message RequiredDisclosure {
+  // Disclosure type
+  string type = 1;
+  
+  // Disclosure text
+  string text = 2;
+  
+  // Prominence level
+  ProminenceLevel prominence = 3;
+  
+  // Required location
+  string location = 4;
+}
+
+// Prominence level
+enum ProminenceLevel {
+  PROMINENCE_LEVEL_UNSPECIFIED = 0;
+  PROMINENCE_LEVEL_STANDARD = 1;
+  PROMINENCE_LEVEL_PROMINENT = 2;
+  PROMINENCE_LEVEL_VERY_PROMINENT = 3;
+}
+
+// Age restrictions
+message AgeRestrictions {
+  // Minimum age
+  int32 minimum_age = 1;
+  
+  // Require age verification
+  bool require_verification = 2;
+  
+  // Parental consent age
+  int32 parental_consent_age = 3;
+  
+  // Age verification method
+  string verification_method = 4;
+}
+
+// Data retention settings
+message DataRetention {
+  // Default retention period (days)
+  int32 default_period_days = 1;
+  
+  // Category-specific retention
+  map<string, int32> category_retention = 2;
+  
+  // Auto-delete enabled
+  bool auto_delete = 3;
+  
+  // Retention policy URL
+  string policy_url = 4;
+}
+
+// Data subject rights
+message DataSubjectRights {
+  // Enable rights portal
+  bool enable_portal = 1;
+  
+  // Portal URL
+  string portal_url = 2;
+  
+  // Supported rights
+  repeated DataRight supported_rights = 3;
+  
+  // Response time (days)
+  int32 response_time_days = 4;
+  
+  // Verification required
+  bool verification_required = 5;
+}
+
+// Data rights
+enum DataRight {
+  DATA_RIGHT_UNSPECIFIED = 0;
+  DATA_RIGHT_ACCESS = 1;
+  DATA_RIGHT_RECTIFICATION = 2;
+  DATA_RIGHT_ERASURE = 3;
+  DATA_RIGHT_PORTABILITY = 4;
+  DATA_RIGHT_RESTRICTION = 5;
+  DATA_RIGHT_OBJECTION = 6;
+  DATA_RIGHT_AUTOMATED_DECISION = 7;
+}
+
+// Cross-domain synchronization
+message CrossDomainSync {
+  // Enable synchronization
+  bool enabled = 1;
+  
+  // Sync method
+  SyncMethod method = 2;
+  
+  // Sync domains
+  repeated string domains = 3;
+  
+  // Sync key
+  string sync_key = 4;
+  
+  // Sync events
+  SyncEvents events = 5;
+  
+  // Conflict resolution
+  ConflictResolution conflict_resolution = 6;
+  
+  // Sync security
+  SyncSecurity security = 7;
+}
+
+// Sync method
+enum SyncMethod {
+  SYNC_METHOD_UNSPECIFIED = 0;
+  SYNC_METHOD_LOCAL_STORAGE = 1;
+  SYNC_METHOD_COOKIE = 2;
+  SYNC_METHOD_POST_MESSAGE = 3;
+  SYNC_METHOD_CUSTOM = 4;
+}
+
+// Sync events configuration
+message SyncEvents {
+  // Sync on consent given
+  bool on_consent_given = 1;
+  
+  // Sync on consent changed
+  bool on_consent_changed = 2;
+  
+  // Sync on page load
+  bool on_page_load = 3;
+  
+  // Sync interval (ms)
+  int32 sync_interval_ms = 4;
+  
+  // Custom sync events
+  repeated string custom_events = 5;
+}
+
+// Conflict resolution strategy
+enum ConflictResolution {
+  CONFLICT_RESOLUTION_UNSPECIFIED = 0;
+  CONFLICT_RESOLUTION_MOST_RECENT = 1;
+  CONFLICT_RESOLUTION_MOST_RESTRICTIVE = 2;
+  CONFLICT_RESOLUTION_LEAST_RESTRICTIVE = 3;
+  CONFLICT_RESOLUTION_CUSTOM = 4;
+}
+
+// Sync security settings
+message SyncSecurity {
+  // Enable encryption
+  bool encrypt = 1;
+  
+  // Verify origin
+  bool verify_origin = 2;
+  
+  // Allowed origins
+  repeated string allowed_origins = 3;
+  
+  // HMAC validation
+  bool hmac_validation = 4;
+  
+  // HMAC secret key
+  string hmac_secret = 5;
+}
+
+// Entity-specific consent configuration
+message EntityConsent {
+  // Entity name (RTEPL, DSPL)
+  string entity_name = 1;
+  
+  // Legal entity information
+  LegalEntity legal_info = 2;
+  
+  // Privacy contacts
+  PrivacyContacts contacts = 3;
+  
+  // Entity-specific text overrides
+  TextOverrides text_overrides = 4;
+  
+  // Entity-specific categories
+  repeated ConsentCategory entity_categories = 5;
+  
+  // Jurisdiction
+  string jurisdiction = 6;
+  
+  // Special compliance requirements
+  map<string, string> compliance_requirements = 7;
+}
+
+// Legal entity information
+message LegalEntity {
+  // Full legal name
+  string full_name = 1;
+  
+  // Registration number
+  string registration_number = 2;
+  
+  // Registered address
+  string registered_address = 3;
+  
+  // Data controller
+  bool is_data_controller = 4;
+  
+  // Data processor
+  bool is_data_processor = 5;
+  
+  // Joint controller
+  string joint_controller = 6;
+}
+
+// Privacy contacts
+message PrivacyContacts {
+  // Privacy email
+  string privacy_email = 1;
+  
+  // DPO email
+  string dpo_email = 2;
+  
+  // Privacy phone
+  string privacy_phone = 3;
+  
+  // Privacy address
+  string privacy_address = 4;
+  
+  // Support URL
+  string support_url = 5;
+}
+
+// Text overrides for entity
+message TextOverrides {
+  // Banner text override
+  string banner_text = 1;
+  
+  // Privacy policy URL
+  string privacy_url = 2;
+  
+  // Cookie policy URL
+  string cookie_url = 3;
+  
+  // Terms URL
+  string terms_url = 4;
+  
+  // Custom text replacements
+  map<string, string> replacements = 5;
+}
+
+// Consent storage settings
+message ConsentStorage {
+  // Storage method
+  StorageMethod method = 1;
+  
+  // Cookie settings
+  CookieStorage cookie = 2;
+  
+  // Local storage settings
+  LocalStorage local = 3;
+  
+  // Server storage settings
+  ServerStorage server = 4;
+  
+  // Backup storage
+  bool enable_backup = 5;
+  
+  // Storage encryption
+  bool encrypt_storage = 6;
+}
+
+// Storage method
+enum StorageMethod {
+  STORAGE_METHOD_UNSPECIFIED = 0;
+  STORAGE_METHOD_COOKIE = 1;
+  STORAGE_METHOD_LOCAL_STORAGE = 2;
+  STORAGE_METHOD_SERVER = 3;
+  STORAGE_METHOD_HYBRID = 4;
+}
+
+// Cookie storage settings
+message CookieStorage {
+  // Cookie name
+  string name = 1;
+  
+  // Cookie domain
+  string domain = 2;
+  
+  // Cookie path
+  string path = 3;
+  
+  // Secure flag
+  bool secure = 4;
+  
+  // SameSite setting
+  string same_site = 5;
+  
+  // HttpOnly flag
+  bool http_only = 6;
+}
+
+// Local storage settings
+message LocalStorage {
+  // Storage key prefix
+  string key_prefix = 1;
+  
+  // Use session storage
+  bool use_session_storage = 2;
+  
+  // Compress data
+  bool compress = 3;
+}
+
+// Server storage settings
+message ServerStorage {
+  // API endpoint
+  string endpoint = 1;
+  
+  // Authentication required
+  bool auth_required = 2;
+  
+  // Sync interval (ms)
+  int32 sync_interval_ms = 3;
+}
+
+// Audit settings
+message AuditSettings {
+  // Enable audit logging
+  bool enabled = 1;
+  
+  // Log consent events
+  bool log_consent_events = 2;
+  
+  // Log preference changes
+  bool log_preference_changes = 3;
+  
+  // Log page views
+  bool log_page_views = 4;
+  
+  // Retention period (days)
+  int32 retention_days = 5;
+  
+  // Export settings
+  AuditExport export = 6;
+  
+  // Anonymization
+  bool anonymize_ip = 7;
+}
+
+// Audit export settings
+message AuditExport {
+  // Enable export
+  bool enabled = 1;
+  
+  // Export format
+  ExportFormat format = 2;
+  
+  // Export endpoint
+  string endpoint = 3;
+  
+  // Export frequency
+  string frequency = 4;
+}
+
+// Export format
+enum ExportFormat {
+  EXPORT_FORMAT_UNSPECIFIED = 0;
+  EXPORT_FORMAT_JSON = 1;
+  EXPORT_FORMAT_CSV = 2;
+  EXPORT_FORMAT_PARQUET = 3;
+}
+
+// Advanced consent settings
+message AdvancedSettings {
+  // A/B testing
+  ABTesting ab_testing = 1;
+  
+  // Consent API
+  ConsentAPI api = 2;
+  
+  // Webhooks
+  Webhooks webhooks = 3;
+  
+  // Custom scripts
+  CustomScripts scripts = 4;
+  
+  // Performance settings
+  PerformanceSettings performance = 5;
+  
+  // Developer settings
+  DeveloperSettings developer = 6;
+}
+
+// A/B testing configuration
+message ABTesting {
+  // Enable A/B testing
+  bool enabled = 1;
+  
+  // Test variants
+  repeated TestVariant variants = 2;
+  
+  // Traffic allocation
+  map<string, int32> traffic_allocation = 3;
+  
+  // Success metrics
+  repeated string success_metrics = 4;
+}
+
+// Test variant
+message TestVariant {
+  // Variant ID
+  string id = 1;
+  
+  // Variant name
+  string name = 2;
+  
+  // Configuration overrides
+  map<string, string> overrides = 3;
+}
+
+// Consent API configuration
+message ConsentAPI {
+  // Enable API
+  bool enabled = 1;
+  
+  // API endpoints
+  APIEndpoints endpoints = 2;
+  
+  // Authentication
+  APIAuth auth = 3;
+  
+  // Rate limiting
+  RateLimiting rate_limiting = 4;
+}
+
+// API endpoints
+message APIEndpoints {
+  // Get consent endpoint
+  string get_consent = 1;
+  
+  // Update consent endpoint
+  string update_consent = 2;
+  
+  // Delete consent endpoint
+  string delete_consent = 3;
+  
+  // Export data endpoint
+  string export_data = 4;
+}
+
+// API authentication
+message APIAuth {
+  // Auth type
+  AuthType type = 1;
+  
+  // API key header
+  string api_key_header = 2;
+  
+  // JWT settings
+  JWTSettings jwt = 3;
+}
+
+// Auth type
+enum AuthType {
+  AUTH_TYPE_UNSPECIFIED = 0;
+  AUTH_TYPE_NONE = 1;
+  AUTH_TYPE_API_KEY = 2;
+  AUTH_TYPE_JWT = 3;
+  AUTH_TYPE_OAUTH2 = 4;
+}
+
+// JWT settings
+message JWTSettings {
+  // JWT secret
+  string secret = 1;
+  
+  // JWT algorithm
+  string algorithm = 2;
+  
+  // JWT expiry (seconds)
+  int32 expiry_seconds = 3;
+}
+
+// Rate limiting
+message RateLimiting {
+  // Enable rate limiting
+  bool enabled = 1;
+  
+  // Requests per minute
+  int32 requests_per_minute = 2;
+  
+  // Burst limit
+  int32 burst_limit = 3;
+}
+
+// Webhook configuration
+message Webhooks {
+  // Enable webhooks
+  bool enabled = 1;
+  
+  // Webhook endpoints
+  repeated WebhookEndpoint endpoints = 2;
+  
+  // Retry settings
+  RetrySettings retry = 3;
+  
+  // Security settings
+  WebhookSecurity security = 4;
+}
+
+// Webhook endpoint
+message WebhookEndpoint {
+  // Endpoint URL
+  string url = 1;
+  
+  // Events to send
+  repeated string events = 2;
+  
+  // Headers
+  map<string, string> headers = 3;
+  
+  // Active
+  bool active = 4;
+}
+
+// Retry settings
+message RetrySettings {
+  // Max retries
+  int32 max_retries = 1;
+  
+  // Retry delay (ms)
+  int32 retry_delay_ms = 2;
+  
+  // Backoff multiplier
+  float backoff_multiplier = 3;
+}
+
+// Webhook security
+message WebhookSecurity {
+  // Sign payloads
+  bool sign_payloads = 1;
+  
+  // Signing secret
+  string signing_secret = 2;
+  
+  // Verify SSL
+  bool verify_ssl = 3;
+}
+
+// Custom scripts
+message CustomScripts {
+  // Before consent show
+  string before_show = 1;
+  
+  // After consent given
+  string after_consent = 2;
+  
+  // After consent denied
+  string after_denial = 3;
+  
+  // Custom validation
+  string validation = 4;
+}
+
+// Performance settings
+message PerformanceSettings {
+  // Lazy load consent
+  bool lazy_load = 1;
+  
+  // Preload resources
+  bool preload_resources = 2;
+  
+  // Cache duration (seconds)
+  int32 cache_duration = 3;
+  
+  // Minify resources
+  bool minify = 4;
+}
+
+// Developer settings
+message DeveloperSettings {
+  // Debug mode
+  bool debug = 1;
+  
+  // Console logging
+  bool console_logging = 2;
+  
+  // Test mode
+  bool test_mode = 3;
+  
+  // Mock responses
+  bool mock_responses = 4;
+  
+  // Developer email
+  string developer_email = 5;
+}

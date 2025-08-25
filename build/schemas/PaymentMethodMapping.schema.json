@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentMethodMapping",
+  "definitions": {
+    "PaymentMethodMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "service_info": {
+          "$ref": "#/definitions/website.config.PaymentServiceInfo",
+          "description": "Payment service properties"
+        },
+        "accepted_actions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Accepted actions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Method Mapping"
+    },
+    "website.config.PaymentServiceInfo": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "provider_type": {
+          "type": "string"
+        },
+        "additional_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Service Info"
+    }
+  },
+  "title": "PAYMENTMETHODMAPPING Configuration Schema",
+  "description": "JSON Schema for PaymentMethodMapping configuration"
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityConsolidation",
+  "definitions": {
+    "EntityConsolidation": {
+      "properties": {
+        "consolidate_orgs": {
+          "type": "boolean",
+          "description": "Consolidate organizations"
+        },
+        "consolidate_persons": {
+          "type": "boolean",
+          "description": "Consolidate persons"
+        },
+        "consolidate_brands": {
+          "type": "boolean",
+          "description": "Consolidate brands"
+        },
+        "use_id_references": {
+          "type": "boolean",
+          "description": "Use @id references"
+        },
+        "id_pattern": {
+          "type": "string",
+          "description": "ID generation pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Consolidation",
+      "description": "Entity consolidation settings"
+    }
+  },
+  "title": "ENTITYCONSOLIDATION Configuration Schema",
+  "description": "JSON Schema for EntityConsolidation configuration"
+}

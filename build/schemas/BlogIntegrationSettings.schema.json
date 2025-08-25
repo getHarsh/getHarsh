@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogIntegrationSettings",
+  "definitions": {
+    "BlogIntegrationSettings": {
+      "properties": {
+        "enable_service_links": {
+          "type": "boolean",
+          "description": "Enable service links in blog posts"
+        },
+        "default_cta_text": {
+          "type": "string",
+          "description": "Default CTA text for blog posts  e.g., \"Get in touch with our team...\""
+        },
+        "link_style": {
+          "type": "string",
+          "description": "Service link styling  \"inline\", \"card\", \"banner\""
+        },
+        "link_position": {
+          "type": "string",
+          "description": "Position in article  \"after-intro\", \"before-conclusion\", \"custom\""
+        },
+        "add_schema_markup": {
+          "type": "boolean",
+          "description": "Schema markup for service links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Integration Settings",
+      "description": "Blog integration settings"
+    }
+  },
+  "title": "BLOGINTEGRATIONSETTINGS Configuration Schema",
+  "description": "JSON Schema for BlogIntegrationSettings configuration"
+}

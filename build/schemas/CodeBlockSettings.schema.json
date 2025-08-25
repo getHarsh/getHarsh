@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeBlockSettings",
+  "definitions": {
+    "CodeBlockSettings": {
+      "properties": {
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers"
+        },
+        "show_copy_button": {
+          "type": "boolean",
+          "description": "Show copy button"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Syntax highlighting theme"
+        },
+        "enable_line_highlighting": {
+          "type": "boolean",
+          "description": "Enable highlighting specific lines"
+        },
+        "tab_size": {
+          "type": "integer",
+          "description": "Tab size"
+        },
+        "wrap_lines": {
+          "type": "boolean",
+          "description": "Wrap long lines"
+        },
+        "show_language_label": {
+          "type": "boolean",
+          "description": "Show language label"
+        },
+        "enable_diff_view": {
+          "type": "boolean",
+          "description": "Enable diff view"
+        },
+        "max_height": {
+          "type": "integer",
+          "description": "Max height before scroll (pixels)"
+        },
+        "language_aliases": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom language mappings"
+        },
+        "inline_highlighting": {
+          "type": "boolean",
+          "description": "Enable inline code syntax highlighting"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Settings",
+      "description": "Enhanced code block settings Maps to Schema.org SoftwareSourceCode"
+    }
+  },
+  "title": "CODEBLOCKSETTINGS Configuration Schema",
+  "description": "JSON Schema for CodeBlockSettings configuration"
+}

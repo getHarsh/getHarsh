@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SponsorshipTier",
+  "definitions": {
+    "SponsorshipTier": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Tier name"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount (per month/year)"
+        },
+        "benefits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Benefits/perks"
+        },
+        "badge_url": {
+          "type": "string",
+          "description": "Badge/icon URL"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color theme"
+        },
+        "max_sponsors": {
+          "type": "integer",
+          "description": "Limited slots available"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsorship Tier",
+      "description": "Sponsorship tier configuration"
+    }
+  },
+  "title": "SPONSORSHIPTIER Configuration Schema",
+  "description": "JSON Schema for SponsorshipTier configuration"
+}

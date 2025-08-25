@@ -1,0 +1,1086 @@
+syntax = "proto3";
+
+package website.config;
+
+import "domain.proto";
+import "ecosystem.proto";
+import "schema.proto";
+import "gtm.proto";
+import "aria.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// =============================================================================
+// BLOG CONFIGURATION PROTO
+// =============================================================================
+// Defines configuration overrides for blog subdomains (e.g., blog.getHarsh.in).
+// Blogs inherit from their parent domain and can selectively override settings.
+//
+// Key Features:
+// - Limited theme overrides (colors, typography)
+// - Blog-specific features (comments, math, syntax highlighting)
+// - Content presentation settings
+// - Schema.org and policy inheritance with overrides
+//
+// Related Documentation:
+// - Blog Examples: ../SCHEMA-ORG-EXAMPLES.md#blog-specific-pages
+// - Inheritance: ../SCHEMA-ORG-EXAMPLES.md#inheritance--overrides
+// - Configuration Guide: ../CONFIG.md
+// =============================================================================
+
+// BlogConfig defines configuration overrides for blog subdomains.
+// It can only override specific fields from the parent domain config.
+// Stored in blog.[domain].in/config.yml
+message BlogConfig {
+  // Blog inherits everything from parent domain by default.
+  // Only fields defined here can be overridden.
+  
+  // Theme overrides (only specific fields can be changed)
+  BlogThemeOverrides theme_overrides = 1;
+  
+  // Blog-specific features
+  BlogFeatures features = 2;
+  
+  // Content presentation settings
+  BlogContent content = 3;
+  
+  // Layout adjustments for blog
+  BlogLayout layout = 4;
+  
+  // Blog hero content configuration
+  BlogHeroContent blog_hero = 5;
+  
+  // Blog-level policy page overrides
+  // Inherits from domain by default, can selectively override
+  // See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance
+  PolicyOverrides policy_overrides = 6;
+  
+  // Blog-specific Schema.org entity configuration
+  // Typically type: "Blog" with additional_types: ["Periodical"]
+  // See ../SCHEMA-ORG-EXAMPLES.md#blog-examples
+  SchemaOrgEntity schema_org_entity = 7;
+  
+  // Blog-specific page schema overrides
+  // Can override domain's pages_schema or add new page types
+  // See ../SCHEMA-ORG-EXAMPLES.md#blog-specific-pages
+  map<string, SchemaOrgEntity> pages_schema_overrides = 8;
+  
+  // Blog-specific GTM overrides
+  // Inherits from domain, adds blog-specific tracking
+  BlogGTMOverrides gtm_overrides = 9;
+  
+  // Blog-specific ARIA overrides
+  // Inherits from domain, adds article-specific settings
+  BlogARIAOverrides aria_overrides = 10;
+}
+
+// Theme overrides allowed for blogs
+message BlogThemeOverrides {
+  // Color overrides (limited set)
+  BlogColors colors = 1;
+  
+  // Typography adjustments
+  BlogTypography typography = 2;
+}
+
+// Blog-specific color overrides
+message BlogColors {
+  // Background color override
+  string background = 1;
+  
+  // Code block background color
+  string code_background = 2;
+  
+  // Blockquote border color
+  string quote_border = 3;
+  
+  // Tag/category pill colors
+  string tag_background = 4;
+  string tag_text = 5;
+}
+
+// Blog-specific typography overrides
+message BlogTypography {
+  // Font family for article content
+  string article_font = 1;
+  
+  // Font size for article text
+  string article_size = 2;
+  
+  // Line height for articles
+  float article_line_height = 3;
+  
+  // Code font family
+  string code_font = 4;
+}
+
+// Blog-specific features
+message BlogFeatures {
+  // Enable comments system
+  bool comments = 1;
+  
+  // Comments provider ("disqus", "giscus", "utterances")
+  string comments_provider = 2;
+  
+  // Show reading time estimate
+  bool reading_time = 3;
+  
+  // Show table of contents for long posts
+  bool table_of_contents = 4;
+  
+  // TOC threshold (min headings)
+  int32 toc_min_headings = 5;
+  
+  // Enable math rendering (KaTeX/MathJax)
+  bool enable_math = 6;
+  
+  // Math renderer ("katex", "mathjax")
+  string math_renderer = 7;
+  
+  // Enable Graphviz diagram rendering
+  bool graphviz = 8;
+  
+  // Enable code syntax highlighting
+  bool syntax_highlighting = 9;
+  
+  // Syntax theme ("github", "monokai", "dracula", etc.)
+  string syntax_theme = 10;
+  
+  // Show related posts
+  bool related_posts = 11;
+  
+  // Number of related posts to show
+  int32 related_posts_count = 12;
+  
+  // Enable post series navigation
+  bool series_navigation = 13;
+  
+  // Custom blog features
+  map<string, bool> custom = 14;
+}
+
+// Blog content presentation settings
+message BlogContent {
+  // Posts per page override
+  int32 posts_per_page = 1;
+  
+  // Excerpt length override
+  int32 excerpt_length = 2;
+  
+  // Show full content on index page
+  bool show_full_content = 3;
+  
+  // Date format override
+  string date_format = 4;
+  
+  // Show author info
+  bool show_author = 5;
+  
+  // Show post categories
+  bool show_categories = 6;
+  
+  // Show post tags
+  bool show_tags = 7;
+  
+  // Enable RSS feed
+  bool rss_enabled = 8;
+  
+  // RSS feed limit
+  int32 rss_limit = 9;
+}
+
+// Blog layout adjustments
+message BlogLayout {
+  // Maximum content width for articles
+  string article_max_width = 1;
+  
+  // Sidebar on blog pages ("left", "right", "none")
+  string sidebar = 2;
+  
+  // Layout style ("list", "grid", "card")
+  string index_layout = 3;
+  
+  // Columns for grid layout
+  int32 grid_columns = 4;
+  
+  // Show featured image on post
+  bool show_featured_image = 5;
+  
+  // Featured image position ("top", "hero", "inline")
+  string featured_image_position = 6;
+}
+
+// Blog hero content for landing page
+message BlogHeroContent {
+  // Main hero title (e.g., "Thoughts", "Articles", "Blog")
+  string hero_title = 1;
+  
+  // Hero tagline (e.g., "Ideas, explorations, and digital consciousness fragments")
+  string hero_tagline = 2;
+  
+  // Extended description for the blog
+  string hero_description = 3;
+  
+  // CTA button text (e.g., "Read Latest", "Browse Articles")
+  string cta_text = 4;
+  
+  // CTA button link
+  string cta_link = 5;
+  
+  // Show visualization behind hero
+  bool show_visualization = 6;
+  
+  // Visualization variant ("prominent", "subtle", "none")
+  string visualization_variant = 7;
+}
+
+// =============================================================================
+// ARTICLE CONFIGURATION FOR DECAP CMS
+// =============================================================================
+// Messages for individual article/post configuration in Decap CMS.
+// Replaces Jekyll frontmatter with type-safe proto schema.
+// Maps to Schema.org BlogPosting, Article, ScholarlyArticle types.
+// =============================================================================
+
+// Individual article configuration for Decap CMS
+// Replaces Jekyll frontmatter with type-safe proto schema
+// Maps to Schema.org BlogPosting, Article types
+message ArticleConfig {
+  // Basic metadata
+  string title = 1;                    // Article title (H1)
+  string slug = 2;                     // URL slug
+  string summary = 3;                  // 2-3 line summary for meta description
+  ContentType content_type = 4;        // Type of content (tutorial, update, etc.)
+  
+  // Author information (populated by build scripts)
+  repeated string author_keys = 5;     // References to persons catalog
+  // Note: Full author details populated from persons catalog at build time
+  
+  // Dates
+  string date_published = 6;           // ISO 8601 format
+  string date_modified = 7;            // ISO 8601 format (optional)
+  
+  // Content
+  string content = 8;                  // Markdown content
+  int32 reading_time_minutes = 9;     // Auto-calculated or manual override
+  
+  // Cross-posting configuration
+  CrossPostingInfo cross_posting = 10;
+  
+  // Discussion threads (key is platform name as string)
+  map<string, string> discussion_urls = 11;
+  
+  // Project relationships
+  repeated string uses_project_keys = 12;    // Projects this article uses/relates to
+  repeated string updates_project_keys = 13; // Projects this article updates
+  
+  // Sponsorship (if applicable)
+  ArticleSponsor sponsor = 14;
+  
+  // Media attachments
+  ArticleMedia media = 15;
+  
+  // SEO and discovery
+  repeated string keywords = 16;       // SEO keywords
+  repeated string tags = 17;           // Content tags/categories
+  string featured_image_url = 18;      // OG image / hero image
+  
+  // Schema.org overrides for this article
+  SchemaOrgEntity article_schema = 19;
+  
+  // Display settings
+  ArticleDisplaySettings display = 20;
+  
+  // Language and localization
+  string language = 21;                // Language code (e.g., "en", "es")
+  map<string, string> translations = 22; // Language -> translated article URL
+  
+  // Series information (if part of a series)
+  ArticleSeries series = 23;
+  
+  // Custom metadata
+  map<string, string> custom_meta = 24;
+  
+  // Draft/publish status
+  bool is_draft = 25;
+  bool is_featured = 26;
+  
+  // Content warnings/notices
+  repeated string content_warnings = 27;
+  
+  // Canonical URL (if different from generated)
+  string canonical_url = 28;
+  
+  // No-index flag (for SEO)
+  bool no_index = 29;
+  
+  // Disable specific features for this article
+  ArticleFeatureOverrides feature_overrides = 30;
+}
+
+// Cross-posting information for an article
+message CrossPostingInfo {
+  // Canonical domain where originally published
+  string canonical_domain = 1;
+  
+  // Domains where this article is syndicated
+  repeated string published_domains = 2;
+  
+  // Show cross-post chips on article
+  bool show_cross_post_chips = 3;
+  
+  // Domain to URL mapping for cross-posts
+  map<string, string> domain_urls = 4;
+  
+  // Cross-posting date (if different from publish date)
+  string cross_post_date = 5;
+  
+  // Import source (if imported from elsewhere)
+  string import_source = 6;
+}
+
+// Article sponsorship details
+message ArticleSponsor {
+  // Sponsor name
+  string name = 1;
+  
+  // Sponsor website URL
+  string url = 2;
+  
+  // Custom disclosure text
+  string disclosure_text = 3;
+  
+  // Is this an affiliate relationship
+  bool is_affiliate = 4;
+  
+  // Campaign/tracking ID
+  string campaign_id = 5;
+  
+  // Sponsor logo URL
+  string logo_url = 6;
+  
+  // Disclosure position ("top", "bottom", "both")
+  string disclosure_position = 7;
+  
+  // Schema.org sponsor entity
+  SchemaOrgEntity sponsor_schema = 8;
+}
+
+// Article media attachments
+message ArticleMedia {
+  // Audio recording (e.g., author narration)
+  AudioRecording audio = 1;
+  
+  // Embedded videos
+  repeated VideoEmbed videos = 2;
+  
+  // Code snippets/gists
+  repeated CodeSnippet code_snippets = 3;
+  
+  // Diagrams (Mermaid, etc.)
+  repeated Diagram diagrams = 4;
+  
+  // Image gallery
+  repeated ImageAttachment images = 5;
+  
+  // Downloadable files
+  repeated FileAttachment files = 6;
+  
+  // Interactive demos
+  repeated InteractiveDemo demos = 7;
+}
+
+// Audio recording configuration
+message AudioRecording {
+  // Google Drive URL or direct URL
+  string url = 1;
+  
+  // Duration in ISO 8601 format
+  string duration = 2;
+  
+  // Recording date
+  string recorded_date = 3;
+  
+  // Narrator (usually author key)
+  string narrator_key = 4;
+  
+  // Title/description
+  string title = 5;
+  
+  // Transcript URL (if available)
+  string transcript_url = 6;
+  
+  // Google Drive specific
+  GoogleDriveMedia google_drive = 7;
+}
+
+// Video embed configuration
+message VideoEmbed {
+  // Platform using MediaType enum
+  MediaType platform = 1;
+  
+  // Embed URL
+  string embed_url = 2;
+  
+  // Video title
+  string title = 3;
+  
+  // Thumbnail URL
+  string thumbnail_url = 4;
+  
+  // Duration
+  string duration = 5;
+  
+  // Caption/description
+  string caption = 6;
+  
+  // Aspect ratio (e.g., "16:9")
+  string aspect_ratio = 7;
+  
+  // Autoplay settings
+  bool autoplay = 8;
+  
+  // Privacy-enhanced mode
+  bool privacy_mode = 9;
+}
+
+// Code snippet configuration
+message CodeSnippet {
+  // GitHub Gist URL or ID
+  string gist_url = 1;
+  
+  // Programming language
+  CodeLanguage language = 2;
+  
+  // Snippet title
+  string title = 3;
+  
+  // Show line numbers
+  bool show_line_numbers = 4;
+  
+  // Highlighted lines (e.g., "3-5,8,10-12")
+  string highlight_lines = 5;
+  
+  // Inline code (if not using Gist)
+  string inline_code = 6;
+  
+  // File name (if applicable)
+  string filename = 7;
+}
+
+// Diagram configuration
+message Diagram {
+  // Diagram type ("mermaid", "graphviz", "plantuml")
+  string type = 1;
+  
+  // Diagram code
+  string code = 2;
+  
+  // Diagram title
+  string title = 3;
+  
+  // Alt text for accessibility
+  string alt_text = 4;
+  
+  // Theme override
+  string theme = 5;
+  
+  // Render as image (vs interactive)
+  bool render_as_image = 6;
+}
+
+// Image attachment
+message ImageAttachment {
+  // Image URL
+  string url = 1;
+  
+  // Alt text (required for accessibility)
+  string alt_text = 2;
+  
+  // Caption
+  string caption = 3;
+  
+  // Width hint
+  int32 width = 4;
+  
+  // Height hint
+  int32 height = 5;
+  
+  // Link URL (if image is clickable)
+  string link_url = 6;
+  
+  // Loading strategy ("lazy", "eager")
+  string loading = 7;
+}
+
+// File attachment
+message FileAttachment {
+  // File URL
+  string url = 1;
+  
+  // File name
+  string filename = 2;
+  
+  // File size (human readable)
+  string size = 3;
+  
+  // MIME type
+  string mime_type = 4;
+  
+  // Description
+  string description = 5;
+  
+  // Icon class/URL
+  string icon = 6;
+}
+
+// Interactive demo configuration
+message InteractiveDemo {
+  // Demo type ("codepen", "codesandbox", "stackblitz", "jsfiddle")
+  string type = 1;
+  
+  // Embed URL
+  string embed_url = 2;
+  
+  // Demo title
+  string title = 3;
+  
+  // Height in pixels
+  int32 height = 4;
+  
+  // Show preview by default
+  bool show_preview = 5;
+}
+
+// Article display settings
+message ArticleDisplaySettings {
+  // Show table of contents
+  bool show_toc = 1;
+  
+  // Show author bio
+  bool show_author_bio = 2;
+  
+  // Show social share buttons
+  bool show_social_share = 3;
+  
+  // Show comments section
+  bool show_comments = 4;
+  
+  // Show related articles
+  bool show_related = 5;
+  
+  // Show series navigation
+  bool show_series_nav = 6;
+  
+  // Enable math rendering
+  bool enable_math = 7;
+  
+  // Enable footnotes
+  bool enable_footnotes = 8;
+  
+  // Custom CSS class
+  string custom_class = 9;
+  
+  // Layout override ("default", "wide", "narrow")
+  string layout = 10;
+}
+
+// Article series information
+message ArticleSeries {
+  // Series key/ID
+  string series_key = 1;
+  
+  // Series title
+  string series_title = 2;
+  
+  // Part number in series
+  int32 part_number = 3;
+  
+  // Total parts (if known)
+  int32 total_parts = 4;
+  
+  // Previous article slug
+  string previous_slug = 5;
+  
+  // Next article slug
+  string next_slug = 6;
+  
+  // Series description
+  string description = 7;
+  
+  // Series landing page URL
+  string landing_url = 8;
+}
+
+// Feature overrides for specific article
+message ArticleFeatureOverrides {
+  // Disable features for this article
+  bool disable_comments = 1;
+  bool disable_share = 2;
+  bool disable_toc = 3;
+  bool disable_related = 4;
+  bool disable_author_bio = 5;
+  bool disable_series_nav = 6;
+  bool disable_math = 7;
+  bool disable_syntax_highlighting = 8;
+  bool disable_footnotes = 9;
+  bool disable_discussion = 10;
+}
+
+// =============================================================================
+// DECAP CMS INTEGRATION
+// =============================================================================
+// Messages for Decap CMS field configuration and widget mapping
+// =============================================================================
+
+// Decap CMS article field configuration
+message DecapArticleFields {
+  // Field configurations that map to ArticleConfig
+  repeated DecapFieldMapping field_mappings = 1;
+  
+  // Author selection widget config
+  DecapAuthorWidget author_widget = 2;
+  
+  // Project selection widget config
+  DecapProjectWidget project_widget = 3;
+  
+  // Discussion platform widgets
+  DecapDiscussionWidget discussion_widget = 4;
+  
+  // Media upload configuration
+  DecapMediaConfig media_config = 5;
+  
+  // Custom preview templates
+  repeated string preview_templates = 6;
+  
+  // Validation rules
+  DecapValidation validation = 7;
+}
+
+// Decap field mapping configuration
+message DecapFieldMapping {
+  // Proto field name in ArticleConfig
+  string proto_field = 1;
+  
+  // Decap widget type
+  string widget_type = 2;
+  
+  // UI label
+  string label = 3;
+  
+  // Help text
+  string hint = 4;
+  
+  // Required field
+  bool required = 5;
+  
+  // Default value
+  string default_value = 6;
+  
+  // Widget-specific options
+  map<string, string> widget_options = 7;
+  
+  // Conditional display
+  string condition = 8;
+  
+  // Validation pattern
+  string pattern = 9;
+}
+
+// Decap author selection widget
+message DecapAuthorWidget {
+  // Allow multiple authors
+  bool allow_multiple = 1;
+  
+  // Show author avatar
+  bool show_avatar = 2;
+  
+  // Data source
+  string data_source = 3; // "persons_catalog"
+  
+  // Display format
+  string display_format = 4;
+  
+  // Filter by author flag
+  bool filter_authors_only = 5;
+}
+
+// Decap project selection widget
+message DecapProjectWidget {
+  // Allow multiple selection
+  bool allow_multiple = 1;
+  
+  // Data source
+  string data_source = 2; // "projects_catalog"
+  
+  // Group by domain
+  bool group_by_domain = 3;
+  
+  // Show project status
+  bool show_status = 4;
+  
+  // Filter options
+  repeated string filter_by_type = 5;
+}
+
+// Decap discussion platform widget
+message DecapDiscussionWidget {
+  // Enabled platforms
+  repeated DiscussionPlatform enabled_platforms = 1;
+  
+  // Platform hints (key is platform name as string)
+  map<string, string> platform_hints = 2;
+  
+  // URL validation patterns (key is platform name as string)
+  map<string, string> url_patterns = 3;
+  
+  // Show platform icons
+  bool show_icons = 4;
+}
+
+// Decap media upload configuration
+message DecapMediaConfig {
+  // Media folder path
+  string media_folder = 1;
+  
+  // Public folder URL
+  string public_folder = 2;
+  
+  // Allow uploads
+  bool allow_uploads = 3;
+  
+  // Max file size (MB)
+  int32 max_file_size_mb = 4;
+  
+  // Allowed file types
+  repeated string allowed_types = 5;
+  
+  // Image optimization
+  bool optimize_images = 6;
+  
+  // Generate thumbnails
+  bool generate_thumbnails = 7;
+}
+
+// Decap validation rules
+message DecapValidation {
+  // Title constraints
+  TitleValidation title = 1;
+  
+  // Slug constraints  
+  SlugValidation slug = 2;
+  
+  // Content constraints
+  ContentValidation content = 3;
+  
+  // Custom validators
+  repeated CustomValidator custom = 4;
+}
+
+// Title validation rules
+message TitleValidation {
+  // Min length
+  int32 min_length = 1;
+  
+  // Max length
+  int32 max_length = 2;
+  
+  // Required words
+  repeated string required_words = 3;
+  
+  // Forbidden words
+  repeated string forbidden_words = 4;
+}
+
+// Slug validation rules
+message SlugValidation {
+  // Pattern
+  string pattern = 1;
+  
+  // Max length
+  int32 max_length = 2;
+  
+  // Reserved slugs
+  repeated string reserved = 3;
+}
+
+// Content validation rules
+message ContentValidation {
+  // Min word count
+  int32 min_words = 1;
+  
+  // Max word count
+  int32 max_words = 2;
+  
+  // Required sections
+  repeated string required_sections = 3;
+}
+
+// Custom validator
+message CustomValidator {
+  // Field name
+  string field = 1;
+  
+  // Validator name
+  string validator = 2;
+  
+  // Error message
+  string message = 3;
+  
+  // Validator options
+  map<string, string> options = 4;
+}
+
+// Schema.org configuration for blog content
+message SchemaOrgBlogConfig {
+  // Override domain Schema.org config
+  SchemaOrgConfig config_override = 1;
+  
+  // Blog post type mappings
+  BlogPostTypeMappings post_mappings = 2;
+  
+  // Author configuration
+  AuthorConfig author_config = 3;
+  
+  // Publisher configuration
+  PublisherConfig publisher_config = 4;
+  
+  // Content enhancement settings
+  ContentEnhancement content_enhancement = 5;
+}
+
+// Blog post type mappings
+message BlogPostTypeMappings {
+  // Default article type for posts
+  string default_article_type = 1; // "BlogPosting"
+  
+  // Content type to Schema.org mapping
+  map<string, string> content_type_mapping = 2;
+  
+  // Category-based type mapping
+  map<string, string> category_type_mapping = 3;
+  
+  // Tag-based type mapping  
+  map<string, string> tag_type_mapping = 4;
+  
+  // Length-based type selection
+  LengthBasedTypes length_based = 5;
+}
+
+// Length-based article type selection
+message LengthBasedTypes {
+  // Short posts (< N words)
+  int32 short_threshold = 1;
+  string short_type = 2; // "SocialMediaPosting"
+  
+  // Long posts (> N words)
+  int32 long_threshold = 3;
+  string long_type = 4; // "Article"
+  
+  // Default for medium length
+  string medium_type = 5; // "BlogPosting"
+}
+
+// Author configuration for Schema.org
+message AuthorConfig {
+  // Always include author
+  bool always_include = 1;
+  
+  // Author type ("Person" or "Organization")
+  string default_type = 2;
+  
+  // Include author image
+  bool include_image = 3;
+  
+  // Include author bio
+  bool include_bio = 4;
+  
+  // Include social profiles
+  bool include_social = 5;
+  
+  // Author page URL pattern
+  string author_page_pattern = 6;
+}
+
+// Publisher configuration
+message PublisherConfig {
+  // Publisher type ("Organization" or "Person")
+  string type = 1;
+  
+  // Use domain entity as publisher
+  bool use_domain_entity = 2;
+  
+  // Include logo
+  bool include_logo = 3;
+  
+  // Publisher name override
+  string name_override = 4;
+}
+
+// Content enhancement for Schema.org
+message ContentEnhancement {
+  // Extract keywords from content
+  bool auto_keywords = 1;
+  
+  // Generate article sections
+  bool auto_sections = 2;
+  
+  // Include word count
+  bool include_word_count = 3;
+  
+  // Include citations as references
+  bool include_citations = 4;
+  
+  // Media object enhancement
+  MediaEnhancement media_enhancement = 5;
+  
+  // Code block enhancement
+  CodeEnhancement code_enhancement = 6;
+}
+
+// Media enhancement settings
+message MediaEnhancement {
+  // Create MediaObject for images
+  bool enhance_images = 1;
+  
+  // Create VideoObject for videos
+  bool enhance_videos = 2;
+  
+  // Create AudioObject for audio
+  bool enhance_audio = 3;
+  
+  // Include captions as description
+  bool use_captions = 4;
+  
+  // Generate thumbnails info
+  bool include_thumbnails = 5;
+}
+
+// Code enhancement settings
+message CodeEnhancement {
+  // Create SoftwareSourceCode objects
+  bool create_code_objects = 1;
+  
+  // Include programming language
+  bool include_language = 2;
+  
+  // Include runtime/platform info
+  bool include_runtime = 3;
+  
+  // Link to repositories
+  bool link_repositories = 4;
+}
+
+// Article Schema.org defaults
+message ArticleSchemaDefaults {
+  // Include all default properties
+  bool include_all_properties = 1;
+  
+  // Properties to always include
+  repeated string required_properties = 2;
+  
+  // Properties to exclude
+  repeated string excluded_properties = 3;
+  
+  // Image requirements
+  ArticleImageRequirements image_requirements = 4;
+  
+  // Content requirements
+  ArticleContentRequirements content_requirements = 5;
+}
+
+// Article image requirements
+message ArticleImageRequirements {
+  // Require featured image
+  bool require_featured = 1;
+  
+  // Minimum image width
+  int32 min_width = 2;
+  
+  // Minimum image height
+  int32 min_height = 3;
+  
+  // Fallback image URL
+  string fallback_url = 4;
+}
+
+// Article content requirements
+message ArticleContentRequirements {
+  // Minimum word count
+  int32 min_words = 1;
+  
+  // Require excerpt
+  bool require_excerpt = 2;
+  
+  // Maximum excerpt length
+  int32 max_excerpt_length = 3;
+  
+  // Require categories
+  bool require_categories = 4;
+}
+
+// Content categorization for Schema.org
+message ContentCategorization {
+  // Category to Schema.org mapping
+  map<string, string> category_to_type = 1;
+  
+  // Tag to Schema.org mapping
+  map<string, string> tag_to_type = 2;
+  
+  // Multi-tag combinations
+  repeated TagCombination tag_combinations = 3;
+  
+  // Default categorization
+  string default_type = 4;
+}
+
+// Tag combination mapping
+message TagCombination {
+  // Required tags
+  repeated string tags = 1;
+  
+  // Resulting Schema.org type
+  string schema_type = 2;
+  
+  // Priority (higher wins)
+  int32 priority = 3;
+}
+
+// Blog-specific GTM overrides
+message BlogGTMOverrides {
+  // Additional scroll tracking for long articles
+  website.config.gtm.ScrollTracking article_scroll_tracking = 1;
+  
+  // Reading time tracking
+  bool track_reading_time = 2;
+  
+  // Article engagement events
+  repeated string article_events = 3;
+  
+  // Comment interaction tracking
+  bool track_comment_interactions = 4;
+  
+  // Social share tracking
+  bool track_social_shares = 5;
+  
+  // Custom dimensions for articles
+  map<string, string> article_dimensions = 6;
+}
+
+// Blog-specific ARIA overrides
+message BlogARIAOverrides {
+  // Article navigation landmarks
+  bool article_landmarks = 1;
+  
+  // Live region for comment updates
+  bool comment_live_region = 2;
+  
+  // Reading progress indicator
+  bool reading_progress_aria = 3;
+  
+  // Article-specific ARIA labels
+  map<string, string> article_labels = 4;
+  
+  // Enhanced keyboard navigation for articles
+  bool enhanced_article_navigation = 5;
+}

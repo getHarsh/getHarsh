@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentAccessibility",
+  "definitions": {
+    "ContentAccessibility": {
+      "properties": {
+        "reading": {
+          "$ref": "#/definitions/website.config.aria.ReadingLevel",
+          "description": "Reading level"
+        },
+        "structure": {
+          "$ref": "#/definitions/website.config.aria.ContentStructure",
+          "description": "Content structure"
+        },
+        "language": {
+          "$ref": "#/definitions/website.config.aria.LanguageSupport",
+          "description": "Language support"
+        },
+        "abbreviations": {
+          "$ref": "#/definitions/website.config.aria.AbbreviationsAcronyms",
+          "description": "Abbreviations and acronyms"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Accessibility",
+      "description": "Content accessibility settings"
+    },
+    "website.config.aria.AbbreviationsAcronyms": {
+      "properties": {
+        "expand_first_use": {
+          "type": "boolean",
+          "description": "Expand on first use"
+        },
+        "provide_definitions": {
+          "type": "boolean",
+          "description": "Provide definitions"
+        },
+        "use_abbr_element": {
+          "type": "boolean",
+          "description": "Use abbr element"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Abbreviations Acronyms",
+      "description": "Abbreviations and acronyms"
+    },
+    "website.config.aria.ContentStructure": {
+      "properties": {
+        "semantic_html": {
+          "type": "boolean",
+          "description": "Use semantic HTML"
+        },
+        "logical_flow": {
+          "type": "boolean",
+          "description": "Logical flow"
+        },
+        "consistent_layout": {
+          "type": "boolean",
+          "description": "Consistent layout"
+        },
+        "clear_hierarchy": {
+          "type": "boolean",
+          "description": "Clear hierarchy"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Structure",
+      "description": "Content structure"
+    },
+    "website.config.aria.LanguageSupport": {
+      "properties": {
+        "language_switching": {
+          "type": "boolean",
+          "description": "Language switching"
+        },
+        "translations": {
+          "type": "boolean",
+          "description": "Translation availability"
+        },
+        "rtl_support": {
+          "type": "boolean",
+          "description": "RTL support"
+        },
+        "identify_language": {
+          "type": "boolean",
+          "description": "Language identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Language Support",
+      "description": "Language support"
+    },
+    "website.config.aria.ReadingLevel": {
+      "properties": {
+        "target_level": {
+          "type": "string",
+          "description": "Target reading level"
+        },
+        "provide_summaries": {
+          "type": "boolean",
+          "description": "Provide summaries"
+        },
+        "glossary": {
+          "type": "boolean",
+          "description": "Glossary support"
+        },
+        "simplified_version": {
+          "type": "boolean",
+          "description": "Simplified version"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Reading Level",
+      "description": "Reading level configuration"
+    }
+  },
+  "title": "CONTENTACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for ContentAccessibility configuration"
+}

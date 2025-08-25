@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecorativeImages",
+  "definitions": {
+    "DecorativeImages": {
+      "properties": {
+        "allow_marking": {
+          "type": "boolean",
+          "description": "Mark as decorative"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect decorative"
+        },
+        "hide_from_sr": {
+          "type": "boolean",
+          "description": "Hide from screen readers"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decorative Images",
+      "description": "Decorative images handling"
+    }
+  },
+  "title": "DECORATIVEIMAGES Configuration Schema",
+  "description": "JSON Schema for DecorativeImages configuration"
+}

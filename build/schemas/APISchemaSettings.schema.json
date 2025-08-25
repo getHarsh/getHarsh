@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APISchemaSettings",
+  "definitions": {
+    "APISchemaSettings": {
+      "properties": {
+        "include_request": {
+          "type": "boolean",
+          "description": "Include request schemas"
+        },
+        "include_response": {
+          "type": "boolean",
+          "description": "Include response schemas"
+        },
+        "include_errors": {
+          "type": "boolean",
+          "description": "Include error schemas"
+        },
+        "schema_format": {
+          "type": "string",
+          "description": "Schema format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Schema Settings",
+      "description": "API schema settings"
+    }
+  },
+  "title": "APISCHEMASETTINGS Configuration Schema",
+  "description": "JSON Schema for APISchemaSettings configuration"
+}

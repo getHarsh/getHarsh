@@ -1,0 +1,394 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleMedia",
+  "definitions": {
+    "ArticleMedia": {
+      "properties": {
+        "audio": {
+          "$ref": "#/definitions/website.config.AudioRecording",
+          "description": "Audio recording (e.g., author narration)"
+        },
+        "videos": {
+          "items": {
+            "$ref": "#/definitions/website.config.VideoEmbed"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Embedded videos"
+        },
+        "code_snippets": {
+          "items": {
+            "$ref": "#/definitions/website.config.CodeSnippet"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Code snippets/gists"
+        },
+        "diagrams": {
+          "items": {
+            "$ref": "#/definitions/website.config.Diagram"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Diagrams (Mermaid, etc.)"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/website.config.ImageAttachment"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Image gallery"
+        },
+        "files": {
+          "items": {
+            "$ref": "#/definitions/website.config.FileAttachment"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Downloadable files"
+        },
+        "demos": {
+          "items": {
+            "$ref": "#/definitions/website.config.InteractiveDemo"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Interactive demos"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Media",
+      "description": "Article media attachments"
+    },
+    "website.config.AudioRecording": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Google Drive URL or direct URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration in ISO 8601 format"
+        },
+        "recorded_date": {
+          "type": "string",
+          "description": "Recording date"
+        },
+        "narrator_key": {
+          "type": "string",
+          "description": "Narrator (usually author key)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title/description"
+        },
+        "transcript_url": {
+          "type": "string",
+          "description": "Transcript URL (if available)"
+        },
+        "google_drive": {
+          "$ref": "#/definitions/website.config.GoogleDriveMedia",
+          "description": "Google Drive specific"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Recording",
+      "description": "Audio recording configuration"
+    },
+    "website.config.CodeSnippet": {
+      "properties": {
+        "gist_url": {
+          "type": "string",
+          "description": "GitHub Gist URL or ID"
+        },
+        "language": {
+          "enum": [
+            "CODE_LANGUAGE_UNSPECIFIED",
+            0,
+            "CODE_LANGUAGE_JAVASCRIPT",
+            1,
+            "CODE_LANGUAGE_TYPESCRIPT",
+            2,
+            "CODE_LANGUAGE_PYTHON",
+            3,
+            "CODE_LANGUAGE_C",
+            4,
+            "CODE_LANGUAGE_CPP",
+            5,
+            "CODE_LANGUAGE_SHELL",
+            6,
+            "CODE_LANGUAGE_YAML",
+            7,
+            "CODE_LANGUAGE_JSON",
+            8,
+            "CODE_LANGUAGE_MARKDOWN",
+            9,
+            "CODE_LANGUAGE_PROTOBUF",
+            10,
+            "CODE_LANGUAGE_OTHER",
+            99
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Code Language",
+          "description": "Programming languages for code blocks and snippets Maps to Schema.org SoftwareSourceCode with programmingLanguage property"
+        },
+        "title": {
+          "type": "string",
+          "description": "Snippet title"
+        },
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers"
+        },
+        "highlight_lines": {
+          "type": "string",
+          "description": "Highlighted lines (e.g., \"3-5,8,10-12\")"
+        },
+        "inline_code": {
+          "type": "string",
+          "description": "Inline code (if not using Gist)"
+        },
+        "filename": {
+          "type": "string",
+          "description": "File name (if applicable)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Snippet",
+      "description": "Code snippet configuration"
+    },
+    "website.config.Diagram": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Diagram type (\"mermaid\", \"graphviz\", \"plantuml\")"
+        },
+        "code": {
+          "type": "string",
+          "description": "Diagram code"
+        },
+        "title": {
+          "type": "string",
+          "description": "Diagram title"
+        },
+        "alt_text": {
+          "type": "string",
+          "description": "Alt text for accessibility"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Theme override"
+        },
+        "render_as_image": {
+          "type": "boolean",
+          "description": "Render as image (vs interactive)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Diagram",
+      "description": "Diagram configuration"
+    },
+    "website.config.FileAttachment": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "File URL"
+        },
+        "filename": {
+          "type": "string",
+          "description": "File name"
+        },
+        "size": {
+          "type": "string",
+          "description": "File size (human readable)"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class/URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "File Attachment",
+      "description": "File attachment"
+    },
+    "website.config.GoogleDriveMedia": {
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "Google Drive file ID"
+        },
+        "folder_id": {
+          "type": "string",
+          "description": "Folder ID where media is stored"
+        },
+        "enable_streaming": {
+          "type": "boolean",
+          "description": "Enable direct streaming"
+        },
+        "share_setting": {
+          "type": "string",
+          "description": "Share settings (public, restricted, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Drive Media",
+      "description": "Google Drive media integration"
+    },
+    "website.config.ImageAttachment": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image URL"
+        },
+        "alt_text": {
+          "type": "string",
+          "description": "Alt text (required for accessibility)"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width hint"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height hint"
+        },
+        "link_url": {
+          "type": "string",
+          "description": "Link URL (if image is clickable)"
+        },
+        "loading": {
+          "type": "string",
+          "description": "Loading strategy (\"lazy\", \"eager\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Attachment",
+      "description": "Image attachment"
+    },
+    "website.config.InteractiveDemo": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Demo type (\"codepen\", \"codesandbox\", \"stackblitz\", \"jsfiddle\")"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embed URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Demo title"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in pixels"
+        },
+        "show_preview": {
+          "type": "boolean",
+          "description": "Show preview by default"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Interactive Demo",
+      "description": "Interactive demo configuration"
+    },
+    "website.config.VideoEmbed": {
+      "properties": {
+        "platform": {
+          "enum": [
+            "MEDIA_TYPE_UNSPECIFIED",
+            0,
+            "MEDIA_TYPE_IMAGE",
+            1,
+            "MEDIA_TYPE_VIDEO",
+            2,
+            "MEDIA_TYPE_AUDIO",
+            3,
+            "MEDIA_TYPE_CODE",
+            4,
+            "MEDIA_TYPE_GIST",
+            5,
+            "MEDIA_TYPE_DIAGRAM",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Media Type",
+          "description": "Media types for content Maps to Schema.org MediaObject, AudioObject, VideoObject, ImageObject"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embed URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "thumbnail_url": {
+          "type": "string",
+          "description": "Thumbnail URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption/description"
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "description": "Aspect ratio (e.g., \"16:9\")"
+        },
+        "autoplay": {
+          "type": "boolean",
+          "description": "Autoplay settings"
+        },
+        "privacy_mode": {
+          "type": "boolean",
+          "description": "Privacy-enhanced mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Embed",
+      "description": "Video embed configuration"
+    }
+  },
+  "title": "ARTICLEMEDIA Configuration Schema",
+  "description": "JSON Schema for ArticleMedia configuration"
+}

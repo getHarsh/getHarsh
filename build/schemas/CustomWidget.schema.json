@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CustomWidget",
+  "definitions": {
+    "CustomWidget": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Widget name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Widget type"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Widget options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Widget",
+      "description": "Custom widget configuration"
+    }
+  },
+  "title": "CUSTOMWIDGET Configuration Schema",
+  "description": "JSON Schema for CustomWidget configuration"
+}

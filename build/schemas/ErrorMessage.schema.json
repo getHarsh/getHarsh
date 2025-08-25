@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ErrorMessage",
+  "definitions": {
+    "ErrorMessage": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code (404, 500, etc.)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Primary message"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Secondary/explanation text"
+        },
+        "variations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Quirky variations"
+        },
+        "image_url": {
+          "type": "string",
+          "description": "Custom image/illustration URL"
+        },
+        "tone": {
+          "type": "string",
+          "description": "Tone (\"playful\", \"apologetic\", \"technical\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Message",
+      "description": "Individual error message configuration"
+    }
+  },
+  "title": "ERRORMESSAGE Configuration Schema",
+  "description": "JSON Schema for ErrorMessage configuration"
+}

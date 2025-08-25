@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MenuStructure",
+  "definitions": {
+    "MenuStructure": {
+      "properties": {
+        "proper_roles": {
+          "type": "boolean",
+          "description": "Use proper roles"
+        },
+        "nested_indication": {
+          "type": "boolean",
+          "description": "Nested menus"
+        },
+        "current_indication": {
+          "type": "boolean",
+          "description": "Current page"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Menu Structure",
+      "description": "Menu structure"
+    }
+  },
+  "title": "MENUSTRUCTURE Configuration Schema",
+  "description": "JSON Schema for MenuStructure configuration"
+}

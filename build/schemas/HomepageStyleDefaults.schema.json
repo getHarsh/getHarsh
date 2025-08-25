@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HomepageStyleDefaults",
+  "definitions": {
+    "HomepageStyleDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.HomepageStyleMapping",
+          "description": "HOMEPAGE_STYLE_UNSPECIFIED  template_name: \"\" components: [] layout_grid: \"\""
+        },
+        "hero": {
+          "$ref": "#/definitions/website.config.HomepageStyleMapping",
+          "description": "HOMEPAGE_STYLE_HERO  template_name: \"Hero Homepage\" components: [\"hero-banner\", \"cta-section\", \"features\", \"footer\"] layout_grid: \"full-width\""
+        },
+        "documentation": {
+          "$ref": "#/definitions/website.config.HomepageStyleMapping",
+          "description": "HOMEPAGE_STYLE_DOCUMENTATION  template_name: \"Documentation Homepage\" components: [\"header\", \"nav-grid\", \"quick-start\", \"resources\"] layout_grid: \"container\""
+        },
+        "showcase": {
+          "$ref": "#/definitions/website.config.HomepageStyleMapping",
+          "description": "HOMEPAGE_STYLE_SHOWCASE  template_name: \"Showcase Homepage\" components: [\"hero\", \"demo\", \"screenshots\", \"features\", \"cta\"] layout_grid: \"full-width\""
+        },
+        "custom": {
+          "$ref": "#/definitions/website.config.HomepageStyleMapping",
+          "description": "HOMEPAGE_STYLE_CUSTOM  template_name: \"Custom Homepage\" components: [] layout_grid: \"custom\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Homepage Style Defaults",
+      "description": "Complete homepage style mappings"
+    },
+    "website.config.HomepageStyleMapping": {
+      "properties": {
+        "template_name": {
+          "type": "string",
+          "description": "Template name"
+        },
+        "components": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary components"
+        },
+        "layout_grid": {
+          "type": "string",
+          "description": "Layout grid"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Homepage Style Mapping"
+    }
+  },
+  "title": "HOMEPAGESTYLEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for HomepageStyleDefaults configuration"
+}

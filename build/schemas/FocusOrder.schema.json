@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusOrder",
+  "definitions": {
+    "FocusOrder": {
+      "properties": {
+        "match_reading_order": {
+          "type": "boolean",
+          "description": "Reading order matches focus"
+        },
+        "group_related": {
+          "type": "boolean",
+          "description": "Group related elements"
+        },
+        "regions": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.FocusRegion"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Focus regions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Order",
+      "description": "Focus order configuration"
+    },
+    "website.config.aria.FocusRegion": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Region name"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "tab_behavior": {
+          "type": "string",
+          "description": "Tab behavior"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Region",
+      "description": "Focus region"
+    }
+  },
+  "title": "FOCUSORDER Configuration Schema",
+  "description": "JSON Schema for FocusOrder configuration"
+}

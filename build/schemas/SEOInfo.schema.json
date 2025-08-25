@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SEOInfo",
+  "definitions": {
+    "SEOInfo": {
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Default author"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "Twitter handle"
+        },
+        "ai_optimization": {
+          "type": "boolean",
+          "description": "Whether AI optimization is enabled"
+        },
+        "sitemap_url": {
+          "type": "string",
+          "description": "Sitemap URL"
+        },
+        "robots_url": {
+          "type": "string",
+          "description": "Robots.txt URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "SEO Info",
+      "description": "SEO information"
+    }
+  },
+  "title": "SEOINFO Configuration Schema",
+  "description": "JSON Schema for SEOInfo configuration"
+}

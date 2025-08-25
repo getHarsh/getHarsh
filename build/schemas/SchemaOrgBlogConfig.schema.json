@@ -1,0 +1,303 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgBlogConfig",
+  "definitions": {
+    "SchemaOrgBlogConfig": {
+      "properties": {
+        "config_override": {
+          "$ref": "#/definitions/website.config.SchemaOrgConfig",
+          "description": "Override domain Schema.org config"
+        },
+        "post_mappings": {
+          "$ref": "#/definitions/website.config.BlogPostTypeMappings",
+          "description": "Blog post type mappings"
+        },
+        "author_config": {
+          "$ref": "#/definitions/website.config.AuthorConfig",
+          "description": "Author configuration"
+        },
+        "publisher_config": {
+          "$ref": "#/definitions/website.config.PublisherConfig",
+          "description": "Publisher configuration"
+        },
+        "content_enhancement": {
+          "$ref": "#/definitions/website.config.ContentEnhancement",
+          "description": "Content enhancement settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Blog Config",
+      "description": "Schema.org configuration for blog content"
+    },
+    "website.config.AuthorConfig": {
+      "properties": {
+        "always_include": {
+          "type": "boolean",
+          "description": "Always include author"
+        },
+        "default_type": {
+          "type": "string",
+          "description": "Author type (\"Person\" or \"Organization\")"
+        },
+        "include_image": {
+          "type": "boolean",
+          "description": "Include author image"
+        },
+        "include_bio": {
+          "type": "boolean",
+          "description": "Include author bio"
+        },
+        "include_social": {
+          "type": "boolean",
+          "description": "Include social profiles"
+        },
+        "author_page_pattern": {
+          "type": "string",
+          "description": "Author page URL pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Author Config",
+      "description": "Author configuration for Schema.org"
+    },
+    "website.config.BlogPostTypeMappings": {
+      "properties": {
+        "default_article_type": {
+          "type": "string",
+          "description": "Default article type for posts  \"BlogPosting\""
+        },
+        "content_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Content type to Schema.org mapping"
+        },
+        "category_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Category-based type mapping"
+        },
+        "tag_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Tag-based type mapping"
+        },
+        "length_based": {
+          "$ref": "#/definitions/website.config.LengthBasedTypes",
+          "description": "Length-based type selection"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Post Type Mappings",
+      "description": "Blog post type mappings"
+    },
+    "website.config.CodeEnhancement": {
+      "properties": {
+        "create_code_objects": {
+          "type": "boolean",
+          "description": "Create SoftwareSourceCode objects"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include programming language"
+        },
+        "include_runtime": {
+          "type": "boolean",
+          "description": "Include runtime/platform info"
+        },
+        "link_repositories": {
+          "type": "boolean",
+          "description": "Link to repositories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Enhancement",
+      "description": "Code enhancement settings"
+    },
+    "website.config.ContentEnhancement": {
+      "properties": {
+        "auto_keywords": {
+          "type": "boolean",
+          "description": "Extract keywords from content"
+        },
+        "auto_sections": {
+          "type": "boolean",
+          "description": "Generate article sections"
+        },
+        "include_word_count": {
+          "type": "boolean",
+          "description": "Include word count"
+        },
+        "include_citations": {
+          "type": "boolean",
+          "description": "Include citations as references"
+        },
+        "media_enhancement": {
+          "$ref": "#/definitions/website.config.MediaEnhancement",
+          "description": "Media object enhancement"
+        },
+        "code_enhancement": {
+          "$ref": "#/definitions/website.config.CodeEnhancement",
+          "description": "Code block enhancement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Enhancement",
+      "description": "Content enhancement for Schema.org"
+    },
+    "website.config.LengthBasedTypes": {
+      "properties": {
+        "short_threshold": {
+          "type": "integer",
+          "description": "Short posts (< N words)"
+        },
+        "short_type": {
+          "type": "string",
+          "description": "\"SocialMediaPosting\""
+        },
+        "long_threshold": {
+          "type": "integer",
+          "description": "Long posts (> N words)"
+        },
+        "long_type": {
+          "type": "string",
+          "description": "\"Article\""
+        },
+        "medium_type": {
+          "type": "string",
+          "description": "Default for medium length  \"BlogPosting\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Length Based Types",
+      "description": "Length-based article type selection"
+    },
+    "website.config.MediaEnhancement": {
+      "properties": {
+        "enhance_images": {
+          "type": "boolean",
+          "description": "Create MediaObject for images"
+        },
+        "enhance_videos": {
+          "type": "boolean",
+          "description": "Create VideoObject for videos"
+        },
+        "enhance_audio": {
+          "type": "boolean",
+          "description": "Create AudioObject for audio"
+        },
+        "use_captions": {
+          "type": "boolean",
+          "description": "Include captions as description"
+        },
+        "include_thumbnails": {
+          "type": "boolean",
+          "description": "Generate thumbnails info"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Media Enhancement",
+      "description": "Media enhancement settings"
+    },
+    "website.config.PublisherConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Publisher type (\"Organization\" or \"Person\")"
+        },
+        "use_domain_entity": {
+          "type": "boolean",
+          "description": "Use domain entity as publisher"
+        },
+        "include_logo": {
+          "type": "boolean",
+          "description": "Include logo"
+        },
+        "name_override": {
+          "type": "string",
+          "description": "Publisher name override"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publisher Config",
+      "description": "Publisher configuration"
+    },
+    "website.config.SchemaOrgConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Schema.org JSON-LD generation"
+        },
+        "mapping_mode": {
+          "type": "string",
+          "description": "Mapping mode (\"automatic\", \"manual\", \"hybrid\")"
+        },
+        "include_all_mappings": {
+          "type": "boolean",
+          "description": "Include all enum mappings in build"
+        },
+        "included_mappings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Specific mappings to include (if not including all)"
+        },
+        "custom_mappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom mapping overrides"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.SchemaOrgValidation",
+          "description": "Validation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Config",
+      "description": "Schema.org configuration for build-time mapping"
+    },
+    "website.config.SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    }
+  },
+  "title": "SCHEMAORGBLOGCONFIG Configuration Schema",
+  "description": "JSON Schema for SchemaOrgBlogConfig configuration"
+}

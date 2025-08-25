@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleAnalytics",
+  "definitions": {
+    "GoogleAnalytics": {
+      "properties": {
+        "tracking_id": {
+          "type": "string",
+          "description": "Tracking ID (supports environment variable)"
+        },
+        "enable_enhanced_ecommerce": {
+          "type": "boolean",
+          "description": "Enable enhanced ecommerce"
+        },
+        "enable_demographics": {
+          "type": "boolean",
+          "description": "Enable demographics reports"
+        },
+        "enable_remarketing": {
+          "type": "boolean",
+          "description": "Enable remarketing features"
+        },
+        "gtm_container_id": {
+          "type": "string",
+          "description": "Google Tag Manager container ID (supports environment variable)"
+        },
+        "enable_ga4_features": {
+          "type": "boolean",
+          "description": "Enable Google Analytics 4 features"
+        },
+        "enable_server_side_tagging": {
+          "type": "boolean",
+          "description": "Enable server-side tagging"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Analytics",
+      "description": "Google Analytics specific settings"
+    }
+  },
+  "title": "GOOGLEANALYTICS Configuration Schema",
+  "description": "JSON Schema for GoogleAnalytics configuration"
+}

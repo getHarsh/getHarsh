@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OrganizationOverride",
+  "definitions": {
+    "OrganizationOverride": {
+      "properties": {
+        "name_override": {
+          "type": "string",
+          "description": "Override organization name"
+        },
+        "additional_same_as": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional same as URLs"
+        },
+        "domain_contact": {
+          "$ref": "#/definitions/website.config.ContactPoint",
+          "description": "Domain-specific contact point"
+        },
+        "domain_logo_url": {
+          "type": "string",
+          "description": "Domain-specific logo"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Organization Override",
+      "description": "Organization override for domain"
+    },
+    "website.config.ContactPoint": {
+      "properties": {
+        "contact_type": {
+          "type": "string",
+          "description": "Contact type (e.g., \"customer service\")"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone number"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address"
+        },
+        "available_language": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available languages"
+        },
+        "area_served": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Area served"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Point",
+      "description": "Contact point for organization"
+    }
+  },
+  "title": "ORGANIZATIONOVERRIDE Configuration Schema",
+  "description": "JSON Schema for OrganizationOverride configuration"
+}

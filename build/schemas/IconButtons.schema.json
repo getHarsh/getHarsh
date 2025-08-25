@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/IconButtons",
+  "definitions": {
+    "IconButtons": {
+      "properties": {
+        "require_text": {
+          "type": "boolean",
+          "description": "Require text alternative"
+        },
+        "show_tooltip": {
+          "type": "boolean",
+          "description": "Tooltip on hover"
+        },
+        "sr_text": {
+          "type": "boolean",
+          "description": "Screen reader text"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Icon Buttons",
+      "description": "Icon button configuration"
+    }
+  },
+  "title": "ICONBUTTONS Configuration Schema",
+  "description": "JSON Schema for IconButtons configuration"
+}

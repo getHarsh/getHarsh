@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeInteractionTracking",
+  "definitions": {
+    "CodeInteractionTracking": {
+      "properties": {
+        "track_copy": {
+          "type": "boolean",
+          "description": "Track code copy events"
+        },
+        "track_execution": {
+          "type": "boolean",
+          "description": "Track code execution (if interactive)"
+        },
+        "track_language_switch": {
+          "type": "boolean",
+          "description": "Track language switching"
+        },
+        "track_expand_collapse": {
+          "type": "boolean",
+          "description": "Track expand/collapse"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Interaction Tracking",
+      "description": "Code interaction tracking"
+    }
+  },
+  "title": "CODEINTERACTIONTRACKING Configuration Schema",
+  "description": "JSON Schema for CodeInteractionTracking configuration"
+}

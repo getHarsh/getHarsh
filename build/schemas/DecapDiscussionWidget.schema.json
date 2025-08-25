@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapDiscussionWidget",
+  "definitions": {
+    "DecapDiscussionWidget": {
+      "properties": {
+        "enabled_platforms": {
+          "items": {
+            "enum": [
+              "DISCUSSION_PLATFORM_UNSPECIFIED",
+              0,
+              "DISCUSSION_PLATFORM_GITHUB_ISSUE",
+              1,
+              "DISCUSSION_PLATFORM_GITHUB_GIST",
+              2,
+              "DISCUSSION_PLATFORM_TWITTER_THREAD",
+              3,
+              "DISCUSSION_PLATFORM_LINKEDIN_POST",
+              4,
+              "DISCUSSION_PLATFORM_REDDIT_THREAD",
+              5,
+              "DISCUSSION_PLATFORM_CHATGPT_CHAT",
+              6,
+              "DISCUSSION_PLATFORM_CLAUDE_CHAT",
+              7,
+              "DISCUSSION_PLATFORM_CLAUDE_ARTIFACT",
+              8,
+              "DISCUSSION_PLATFORM_PERPLEXITY_THREAD",
+              9
+            ]
+          },
+          "type": "array",
+          "title": "Discussion Platform",
+          "description": "Discussion platforms for social discussion and comments Maps to Schema.org DiscussionForumPosting, SocialMediaPosting, Comment"
+        },
+        "platform_hints": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform hints (key is platform name as string)"
+        },
+        "url_patterns": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "URL validation patterns (key is platform name as string)"
+        },
+        "show_icons": {
+          "type": "boolean",
+          "description": "Show platform icons"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Discussion Widget",
+      "description": "Decap discussion platform widget"
+    }
+  },
+  "title": "DECAPDISCUSSIONWIDGET Configuration Schema",
+  "description": "JSON Schema for DecapDiscussionWidget configuration"
+}

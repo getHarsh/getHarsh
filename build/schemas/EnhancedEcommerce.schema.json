@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EnhancedEcommerce",
+  "definitions": {
+    "EnhancedEcommerce": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable enhanced ecommerce"
+        },
+        "data_layer_version": {
+          "type": "string",
+          "description": "Data layer version (GA4 or UA)"
+        },
+        "currency_code": {
+          "type": "string",
+          "description": "Currency code"
+        },
+        "products": {
+          "$ref": "#/definitions/website.config.gtm.ProductTracking",
+          "description": "Product tracking"
+        },
+        "cart": {
+          "$ref": "#/definitions/website.config.gtm.CartTracking",
+          "description": "Cart tracking"
+        },
+        "checkout": {
+          "$ref": "#/definitions/website.config.gtm.CheckoutTracking",
+          "description": "Checkout tracking"
+        },
+        "purchase": {
+          "$ref": "#/definitions/website.config.gtm.PurchaseTracking",
+          "description": "Purchase tracking"
+        },
+        "refunds": {
+          "$ref": "#/definitions/website.config.gtm.RefundTracking",
+          "description": "Refund tracking"
+        },
+        "promotions": {
+          "$ref": "#/definitions/website.config.gtm.PromotionTracking",
+          "description": "Promotion tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Enhanced Ecommerce",
+      "description": "Enhanced ecommerce configuration"
+    },
+    "website.config.gtm.CartTracking": {
+      "properties": {
+        "track_add_to_cart": {
+          "type": "boolean",
+          "description": "Track add to cart"
+        },
+        "track_remove_from_cart": {
+          "type": "boolean",
+          "description": "Track remove from cart"
+        },
+        "track_cart_views": {
+          "type": "boolean",
+          "description": "Track cart views"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cart Tracking",
+      "description": "Cart tracking configuration"
+    },
+    "website.config.gtm.CheckoutTracking": {
+      "properties": {
+        "track_steps": {
+          "type": "boolean",
+          "description": "Track checkout steps"
+        },
+        "step_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Checkout step names"
+        },
+        "track_options": {
+          "type": "boolean",
+          "description": "Track checkout options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Checkout Tracking",
+      "description": "Checkout tracking configuration"
+    },
+    "website.config.gtm.ProductTracking": {
+      "properties": {
+        "track_impressions": {
+          "type": "boolean",
+          "description": "Track product impressions"
+        },
+        "track_clicks": {
+          "type": "boolean",
+          "description": "Track product clicks"
+        },
+        "track_details": {
+          "type": "boolean",
+          "description": "Track product details"
+        },
+        "list_names": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Product list names"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Product Tracking",
+      "description": "Product tracking configuration"
+    },
+    "website.config.gtm.PromotionTracking": {
+      "properties": {
+        "track_impressions": {
+          "type": "boolean",
+          "description": "Track promotion impressions"
+        },
+        "track_clicks": {
+          "type": "boolean",
+          "description": "Track promotion clicks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Promotion Tracking",
+      "description": "Promotion tracking configuration"
+    },
+    "website.config.gtm.PurchaseTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Track purchases"
+        },
+        "include_transaction_details": {
+          "type": "boolean",
+          "description": "Include transaction details"
+        },
+        "include_product_details": {
+          "type": "boolean",
+          "description": "Include product details"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Purchase Tracking",
+      "description": "Purchase tracking configuration"
+    },
+    "website.config.gtm.RefundTracking": {
+      "properties": {
+        "track_full_refunds": {
+          "type": "boolean",
+          "description": "Track full refunds"
+        },
+        "track_partial_refunds": {
+          "type": "boolean",
+          "description": "Track partial refunds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Refund Tracking",
+      "description": "Refund tracking configuration"
+    }
+  },
+  "title": "ENHANCEDECOMMERCE Configuration Schema",
+  "description": "JSON Schema for EnhancedEcommerce configuration"
+}

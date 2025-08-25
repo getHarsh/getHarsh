@@ -1,0 +1,382 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapArticleFields",
+  "definitions": {
+    "DecapArticleFields": {
+      "properties": {
+        "field_mappings": {
+          "items": {
+            "$ref": "#/definitions/website.config.DecapFieldMapping"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Field configurations that map to ArticleConfig"
+        },
+        "author_widget": {
+          "$ref": "#/definitions/website.config.DecapAuthorWidget",
+          "description": "Author selection widget config"
+        },
+        "project_widget": {
+          "$ref": "#/definitions/website.config.DecapProjectWidget",
+          "description": "Project selection widget config"
+        },
+        "discussion_widget": {
+          "$ref": "#/definitions/website.config.DecapDiscussionWidget",
+          "description": "Discussion platform widgets"
+        },
+        "media_config": {
+          "$ref": "#/definitions/website.config.DecapMediaConfig",
+          "description": "Media upload configuration"
+        },
+        "preview_templates": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom preview templates"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.DecapValidation",
+          "description": "Validation rules"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DECAP CMS INTEGRATION\n =============================================================================\n Messages for Decap CMS field configuration and widget mapping\n =============================================================================",
+      "description": "============================================================================= DECAP CMS INTEGRATION ============================================================================= Messages for Decap CMS field configuration and widget mapping =============================================================================  Decap CMS article field configuration"
+    },
+    "website.config.ContentValidation": {
+      "properties": {
+        "min_words": {
+          "type": "integer",
+          "description": "Min word count"
+        },
+        "max_words": {
+          "type": "integer",
+          "description": "Max word count"
+        },
+        "required_sections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required sections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Validation",
+      "description": "Content validation rules"
+    },
+    "website.config.CustomValidator": {
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field name"
+        },
+        "validator": {
+          "type": "string",
+          "description": "Validator name"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Validator options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Validator",
+      "description": "Custom validator"
+    },
+    "website.config.DecapAuthorWidget": {
+      "properties": {
+        "allow_multiple": {
+          "type": "boolean",
+          "description": "Allow multiple authors"
+        },
+        "show_avatar": {
+          "type": "boolean",
+          "description": "Show author avatar"
+        },
+        "data_source": {
+          "type": "string",
+          "description": "Data source  \"persons_catalog\""
+        },
+        "display_format": {
+          "type": "string",
+          "description": "Display format"
+        },
+        "filter_authors_only": {
+          "type": "boolean",
+          "description": "Filter by author flag"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Author Widget",
+      "description": "Decap author selection widget"
+    },
+    "website.config.DecapDiscussionWidget": {
+      "properties": {
+        "enabled_platforms": {
+          "items": {
+            "enum": [
+              "DISCUSSION_PLATFORM_UNSPECIFIED",
+              0,
+              "DISCUSSION_PLATFORM_GITHUB_ISSUE",
+              1,
+              "DISCUSSION_PLATFORM_GITHUB_GIST",
+              2,
+              "DISCUSSION_PLATFORM_TWITTER_THREAD",
+              3,
+              "DISCUSSION_PLATFORM_LINKEDIN_POST",
+              4,
+              "DISCUSSION_PLATFORM_REDDIT_THREAD",
+              5,
+              "DISCUSSION_PLATFORM_CHATGPT_CHAT",
+              6,
+              "DISCUSSION_PLATFORM_CLAUDE_CHAT",
+              7,
+              "DISCUSSION_PLATFORM_CLAUDE_ARTIFACT",
+              8,
+              "DISCUSSION_PLATFORM_PERPLEXITY_THREAD",
+              9
+            ]
+          },
+          "type": "array",
+          "title": "Discussion Platform",
+          "description": "Discussion platforms for social discussion and comments Maps to Schema.org DiscussionForumPosting, SocialMediaPosting, Comment"
+        },
+        "platform_hints": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform hints (key is platform name as string)"
+        },
+        "url_patterns": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "URL validation patterns (key is platform name as string)"
+        },
+        "show_icons": {
+          "type": "boolean",
+          "description": "Show platform icons"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Discussion Widget",
+      "description": "Decap discussion platform widget"
+    },
+    "website.config.DecapFieldMapping": {
+      "properties": {
+        "proto_field": {
+          "type": "string",
+          "description": "Proto field name in ArticleConfig"
+        },
+        "widget_type": {
+          "type": "string",
+          "description": "Decap widget type"
+        },
+        "label": {
+          "type": "string",
+          "description": "UI label"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Help text"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required field"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        },
+        "widget_options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Widget-specific options"
+        },
+        "condition": {
+          "type": "string",
+          "description": "Conditional display"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Validation pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Field Mapping",
+      "description": "Decap field mapping configuration"
+    },
+    "website.config.DecapMediaConfig": {
+      "properties": {
+        "media_folder": {
+          "type": "string",
+          "description": "Media folder path"
+        },
+        "public_folder": {
+          "type": "string",
+          "description": "Public folder URL"
+        },
+        "allow_uploads": {
+          "type": "boolean",
+          "description": "Allow uploads"
+        },
+        "max_file_size_mb": {
+          "type": "integer",
+          "description": "Max file size (MB)"
+        },
+        "allowed_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Allowed file types"
+        },
+        "optimize_images": {
+          "type": "boolean",
+          "description": "Image optimization"
+        },
+        "generate_thumbnails": {
+          "type": "boolean",
+          "description": "Generate thumbnails"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Media Config",
+      "description": "Decap media upload configuration"
+    },
+    "website.config.DecapProjectWidget": {
+      "properties": {
+        "allow_multiple": {
+          "type": "boolean",
+          "description": "Allow multiple selection"
+        },
+        "data_source": {
+          "type": "string",
+          "description": "Data source  \"projects_catalog\""
+        },
+        "group_by_domain": {
+          "type": "boolean",
+          "description": "Group by domain"
+        },
+        "show_status": {
+          "type": "boolean",
+          "description": "Show project status"
+        },
+        "filter_by_type": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Filter options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Project Widget",
+      "description": "Decap project selection widget"
+    },
+    "website.config.DecapValidation": {
+      "properties": {
+        "title": {
+          "$ref": "#/definitions/website.config.TitleValidation",
+          "description": "Title constraints"
+        },
+        "slug": {
+          "$ref": "#/definitions/website.config.SlugValidation",
+          "description": "Slug constraints"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.ContentValidation",
+          "description": "Content constraints"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/definitions/website.config.CustomValidator"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom validators"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Validation",
+      "description": "Decap validation rules"
+    },
+    "website.config.SlugValidation": {
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Pattern"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Max length"
+        },
+        "reserved": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Reserved slugs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Slug Validation",
+      "description": "Slug validation rules"
+    },
+    "website.config.TitleValidation": {
+      "properties": {
+        "min_length": {
+          "type": "integer",
+          "description": "Min length"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Max length"
+        },
+        "required_words": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required words"
+        },
+        "forbidden_words": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Forbidden words"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Title Validation",
+      "description": "Title validation rules"
+    }
+  },
+  "title": "DECAPARTICLEFIELDS Configuration Schema",
+  "description": "JSON Schema for DecapArticleFields configuration"
+}

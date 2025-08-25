@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkerConfig",
+  "definitions": {
+    "LinkerConfig": {
+      "properties": {
+        "accept_incoming": {
+          "type": "boolean",
+          "description": "Accept incoming linker"
+        },
+        "decorate_forms": {
+          "type": "boolean",
+          "description": "Decorate forms"
+        },
+        "url_position": {
+          "type": "string",
+          "description": "URL position for linker  \"query\" or \"fragment\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linker Config",
+      "description": "Linker configuration"
+    }
+  },
+  "title": "LINKERCONFIG Configuration Schema",
+  "description": "JSON Schema for LinkerConfig configuration"
+}

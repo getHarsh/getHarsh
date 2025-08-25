@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AnimationControls",
+  "definitions": {
+    "AnimationControls": {
+      "properties": {
+        "allow_pause": {
+          "type": "boolean",
+          "description": "Pause animations"
+        },
+        "speed_control": {
+          "type": "boolean",
+          "description": "Animation speed"
+        },
+        "disable_option": {
+          "type": "boolean",
+          "description": "Disable all animations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Animation Controls",
+      "description": "Animation controls"
+    }
+  },
+  "title": "ANIMATIONCONTROLS Configuration Schema",
+  "description": "JSON Schema for AnimationControls configuration"
+}

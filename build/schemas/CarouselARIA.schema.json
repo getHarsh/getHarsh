@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CarouselARIA",
+  "definitions": {
+    "CarouselARIA": {
+      "properties": {
+        "autoplay_control": {
+          "type": "boolean",
+          "description": "Auto-play handling"
+        },
+        "announce_slides": {
+          "type": "boolean",
+          "description": "Slide announcements"
+        },
+        "navigation_labels": {
+          "type": "boolean",
+          "description": "Navigation labels"
+        },
+        "live_updates": {
+          "type": "boolean",
+          "description": "Live region for updates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Carousel ARIA",
+      "description": "Carousel ARIA configuration"
+    }
+  },
+  "title": "CAROUSELARIA Configuration Schema",
+  "description": "JSON Schema for CarouselARIA configuration"
+}

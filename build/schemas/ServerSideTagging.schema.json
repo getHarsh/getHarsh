@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServerSideTagging",
+  "definitions": {
+    "ServerSideTagging": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable server-side tagging"
+        },
+        "server_container_url": {
+          "type": "string",
+          "description": "Server container URL"
+        },
+        "transport": {
+          "enum": [
+            "TRANSPORT_METHOD_UNSPECIFIED",
+            0,
+            "TRANSPORT_METHOD_GTAG",
+            1,
+            "TRANSPORT_METHOD_GTM",
+            2,
+            "TRANSPORT_METHOD_CUSTOM",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Transport Method",
+          "description": "Transport method for server-side"
+        },
+        "first_party": {
+          "$ref": "#/definitions/website.config.gtm.FirstPartyConfig",
+          "description": "First-party collection"
+        },
+        "client_id": {
+          "$ref": "#/definitions/website.config.gtm.ClientIdentification",
+          "description": "Client identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Server Side Tagging",
+      "description": "Server-side tagging configuration"
+    },
+    "website.config.gtm.ClientIdentification": {
+      "properties": {
+        "cookie_name": {
+          "type": "string",
+          "description": "Client ID cookie name"
+        },
+        "generate_if_missing": {
+          "type": "boolean",
+          "description": "Generate if missing"
+        },
+        "hash_client_id": {
+          "type": "boolean",
+          "description": "Hash client ID"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Client Identification",
+      "description": "Client identification for server-side"
+    },
+    "website.config.gtm.FirstPartyConfig": {
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "Collection endpoint"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom headers"
+        },
+        "batch_requests": {
+          "type": "boolean",
+          "description": "Batch requests"
+        },
+        "batch_size": {
+          "type": "integer",
+          "description": "Batch size"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "First Party Config",
+      "description": "First-party collection configuration"
+    }
+  },
+  "title": "SERVERSIDETAGGING Configuration Schema",
+  "description": "JSON Schema for ServerSideTagging configuration"
+}

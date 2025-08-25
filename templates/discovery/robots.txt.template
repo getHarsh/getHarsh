@@ -1,0 +1,289 @@
+# Robots.txt for {{ENTITY_NAME}}
+# Generated on {{GENERATION_DATE}}
+# Entity Type: {{ENTITY_TYPE}}
+{{IF_DOMAIN_ALIASES}}
+# Domain Aliases: {{DOMAIN_ALIASES}}
+{{END_IF_DOMAIN_ALIASES}}
+
+# ===========================
+# LEGAL NOTICE & TDM RIGHTS RESERVATION
+# ===========================
+# Copyright {{CURRENT_YEAR}} {{LEGAL_ENTITY_FULL}}. All rights reserved.
+# Text and Data Mining (TDM) rights explicitly reserved under EU Directive 2019/790
+# AI Training: PROHIBITED without explicit license
+# AI Assistance/Search: ALLOWED with attribution
+# See: {{BASE_URL}}/ai-policy
+# Contact: {{AI_POLICY_EMAIL}} for licensing inquiries
+
+# ===========================
+# CANONICAL DOMAIN NOTICE
+# ===========================
+{{IF_DOMAIN_ALIASES}}
+# This robots.txt applies to {{ENTITY_NAME}}
+# For alias domains ({{DOMAIN_ALIASES}}), separate robots.txt files
+# may exist with 301 redirects to the canonical domain.
+# Canonical URLs are specified in HTML meta tags, not here.
+{{END_IF_DOMAIN_ALIASES}}
+
+# ===========================
+# FEDERATION & DISCOVERY
+# ===========================
+# TDM Reservation Protocol (W3C)
+See-Also: {{BASE_URL}}/.well-known/tdmrep.json
+
+# AI-Specific Policies
+See-Also: {{BASE_URL}}/ai.txt
+
+# LLM-Friendly Content
+See-Also: {{BASE_URL}}/llms.txt
+
+# Ecosystem Mapping (includes all aliases)
+See-Also: {{BASE_URL}}/ecosystem.json
+
+# ===========================
+# BOT TRACKING NOTICE
+# ===========================
+# This site tracks crawler activity for analytics and security purposes.
+# Legitimate bots should verify via reverse DNS lookup.
+# We respect privacy and only track aggregate statistics.
+# See: {{BASE_URL}}/privacy-policy#bot-tracking
+
+# ===========================
+# IMPLEMENTATION NOTES
+# ===========================
+# For webmasters implementing X-Robots-Tag headers:
+# - Use "X-Robots-Tag: noai" to prevent AI training on specific resources
+# - Use "X-Robots-Tag: noimageai" for image-specific training restrictions
+# - These headers complement but don't replace robots.txt directives
+# Note: X-Robots-Tag is an HTTP response header, not a robots.txt directive
+
+# ===========================
+# AI CRAWLERS - CONDITIONAL ACCESS
+# ===========================
+# ALLOWED: Crawling for search, Q&A, and user assistance
+# PROHIBITED: Training ML models on content without license
+# See {{BASE_URL}}/.well-known/tdmrep.json for formal TDM opt-out
+
+# OpenAI - ChatGPT
+# Note: GPTBot is for training, ChatGPT-User is for search/assistance
+User-agent: GPTBot
+Disallow: /
+Crawl-delay: 86400  # Effectively blocking training crawls
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 2
+
+# Google AI
+# Note: Google-Extended is for Bard/AI training
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic - Claude
+# Note: Different agents for different purposes
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 2
+
+# Common Crawl - Major training data source
+User-agent: CCBot
+Disallow: /
+
+# Perplexity
+# Note: Known for not respecting robots.txt - monitor closely
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 5
+
+# You.com
+User-agent: YouBot
+Allow: /
+Crawl-delay: 2
+
+# Facebook AI
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 2
+
+# Apple AI
+User-agent: Applebot
+Allow: /
+Crawl-delay: 2
+
+# Training-Specific Crawlers to Block
+User-agent: GPTBot
+User-agent: CCBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Bytespider
+User-agent: DataForSeoBot
+User-agent: img2dataset
+User-agent: Diffbot
+Disallow: /
+
+# ===========================
+# TRADITIONAL SEARCH ENGINES
+# ===========================
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: Yandexbot
+Allow: /
+Crawl-delay: 2
+
+# ===========================
+# SOCIAL MEDIA CRAWLERS
+# ===========================
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# ===========================
+# BOT VERIFICATION GUIDELINES
+# ===========================
+# Legitimate bots can be verified via reverse DNS lookup:
+# 1. Reverse DNS lookup on crawler IP → hostname
+# 2. Forward DNS lookup on hostname → IP
+# 3. Verify IP matches original crawler IP
+#
+# Example for Googlebot:
+# - Reverse DNS should end in .googlebot.com or .google.com
+# - Forward DNS should match original IP
+#
+# Known legitimate bot hostname patterns:
+# - *.googlebot.com (Google)
+# - *.search.msn.com (Bing)
+# - *.crawl.amazonbot.amazon (Amazon)
+# - *.fbsv.net (Facebook)
+# - *.applebot.apple.com (Apple)
+
+# ===========================
+# DEFAULT RULES
+# ===========================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /config/
+Disallow: /.well-known/tdmrep.json  # Except for TDM agents
+Crawl-delay: 2
+
+# ===========================
+# SITEMAP REFERENCES
+# ===========================
+
+# Primary sitemap for this entity
+Sitemap: {{BASE_URL}}/sitemap.xml
+
+{{IF_PARENT_DOMAIN}}
+# Federation sitemap reference
+Sitemap: {{PARENT_URL}}/sitemap-index.xml
+{{END_IF_PARENT_DOMAIN}}
+
+# ===========================
+# LLM CONTENT DISCOVERY
+# ===========================
+
+# LLM-friendly content summary
+See-Also: {{BASE_URL}}/llms.txt
+
+{{IF_PARENT_DOMAIN}}
+# Parent entity LLM content
+See-Also: {{PARENT_URL}}/llms.txt
+{{END_IF_PARENT_DOMAIN}}
+
+# ===========================
+# DISCOVERY ENDPOINTS
+# ===========================
+
+# AI Agent Manifest
+See-Also: {{BASE_URL}}/manifest.json
+
+# Search Index
+See-Also: {{BASE_URL}}/search/index.json
+
+# Federated Search
+See-Also: {{BASE_URL}}/search/federated-manifest.json
+
+# PWA Manifest
+See-Also: {{BASE_URL}}/site.webmanifest
+
+# RSS/Atom Feeds
+See-Also: {{BASE_URL}}/rss.xml
+See-Also: {{BASE_URL}}/feed.xml
+
+# JSON-LD Structured Data
+See-Also: {{BASE_URL}}/jsonld/organization.json
+See-Also: {{BASE_URL}}/jsonld/website.json
+
+{{IF_ENTITY_TYPE_DOMAIN}}
+# Ecosystem Federation Hub (domain only)
+See-Also: {{BASE_URL}}/ecosystem/sitemap-index.xml
+See-Also: {{BASE_URL}}/ecosystem/entities.json
+See-Also: {{BASE_URL}}/ecosystem/federation.json
+{{END_IF_ENTITY_TYPE_DOMAIN}}
+
+# ===========================
+# REQUEST RATE LIMITS
+# ===========================
+
+# Preferred request rate for all crawlers
+Request-rate: 1/1
+
+# Rate limit suggestions by crawler type:
+# - Search engines: 1 request/second
+# - AI assistants: 1 request/2 seconds  
+# - Training crawlers: Blocked via Disallow
+# - Unknown bots: 1 request/5 seconds (via *)
+
+# ===========================
+# LEGAL ENFORCEMENT
+# ===========================
+# Violation of these terms may result in:
+# - IP blocking at CDN level
+# - Legal action under copyright law
+# - DMCA takedown requests
+# - TDM rights enforcement under EU law
+
+# For licensing inquiries: {{AI_POLICY_EMAIL}}
+
+# ===========================
+# END OF ROBOTS.TXT
+# ===========================
+# Last updated: {{GENERATION_DATE}}
+# Entity: {{ENTITY_NAME}}
+# Type: {{ENTITY_TYPE}}
+# Mode: {{MODE}}

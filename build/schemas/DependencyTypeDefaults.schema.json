@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DependencyTypeDefaults",
+  "definitions": {
+    "DependencyTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_UNSPECIFIED  relationship: \"\" strength: \"\" schema_property: \"\""
+        },
+        "uses": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_USES  relationship: \"uses\" strength: \"optional\" schema_property: \"dependencies\""
+        },
+        "extends": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_EXTENDS  relationship: \"extends\" strength: \"required\" schema_property: \"isBasedOn\""
+        },
+        "integrates": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_INTEGRATES  relationship: \"integrates\" strength: \"optional\" schema_property: \"interactionStatistic\""
+        },
+        "requires": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_REQUIRES  relationship: \"requires\" strength: \"required\" schema_property: \"requirements\""
+        },
+        "optional": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_OPTIONAL  relationship: \"optional\" strength: \"optional\" schema_property: \"softwareRequirements\""
+        },
+        "replaces": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_REPLACES  relationship: \"replaces\" strength: \"migration\" schema_property: \"replacer\""
+        },
+        "bundles": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_BUNDLES  relationship: \"bundles\" strength: \"included\" schema_property: \"hasPart\""
+        },
+        "inspired_by": {
+          "$ref": "#/definitions/website.config.DependencyTypeMapping",
+          "description": "DEPENDENCY_TYPE_INSPIRED_BY  relationship: \"inspired_by\" strength: \"reference\" schema_property: \"citation\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency Type Defaults",
+      "description": "Complete dependency type mappings"
+    },
+    "website.config.DependencyTypeMapping": {
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "description": "Relationship name"
+        },
+        "strength": {
+          "type": "string",
+          "description": "Relationship strength (required, optional, etc.)"
+        },
+        "schema_property": {
+          "type": "string",
+          "description": "Schema.org property"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency Type Mapping"
+    }
+  },
+  "title": "DEPENDENCYTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for DependencyTypeDefaults configuration"
+}

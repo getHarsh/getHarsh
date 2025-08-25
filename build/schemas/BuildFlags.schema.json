@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BuildFlags",
+  "definitions": {
+    "BuildFlags": {
+      "properties": {
+        "fast_refresh": {
+          "type": "boolean",
+          "description": "Enable fast refresh in development"
+        },
+        "cache": {
+          "type": "boolean",
+          "description": "Enable build caching"
+        },
+        "parallel": {
+          "type": "boolean",
+          "description": "Enable parallel processing"
+        },
+        "verbose": {
+          "type": "boolean",
+          "description": "Enable verbose logging"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Flags",
+      "description": "Build flags for Gatsby"
+    }
+  },
+  "title": "BUILDFLAGS Configuration Schema",
+  "description": "JSON Schema for BuildFlags configuration"
+}

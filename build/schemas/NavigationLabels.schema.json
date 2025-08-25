@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NavigationLabels",
+  "definitions": {
+    "NavigationLabels": {
+      "properties": {
+        "contact": {
+          "type": "string",
+          "description": "Display string for contact page (default: \"Connect\")"
+        },
+        "about": {
+          "type": "string",
+          "description": "Display string for about page (default: \"About\")"
+        },
+        "home": {
+          "type": "string",
+          "description": "Display string for home/index (default: \"Home\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Labels",
+      "description": "Navigation display labels"
+    }
+  },
+  "title": "NAVIGATIONLABELS Configuration Schema",
+  "description": "JSON Schema for NavigationLabels configuration"
+}

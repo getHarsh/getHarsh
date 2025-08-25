@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PlaygroundProviderDefaults",
+  "definitions": {
+    "PlaygroundProviderDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.PlaygroundProviderMapping",
+          "description": "PLAYGROUND_PROVIDER_UNSPECIFIED  name: \"\" embed_url_pattern: \"\" supported_languages: [] features: {}"
+        },
+        "codepen": {
+          "$ref": "#/definitions/website.config.PlaygroundProviderMapping",
+          "description": "PLAYGROUND_PROVIDER_CODEPEN  name: \"CodePen\" embed_url_pattern: \"https://codepen.io/{user}/embed/{pen}\" supported_languages: [\"html\", \"css\", \"javascript\"] features: { \"live_preview\": \"true\", \"console\": \"true\", \"assets\": \"true\" }"
+        },
+        "codesandbox": {
+          "$ref": "#/definitions/website.config.PlaygroundProviderMapping",
+          "description": "PLAYGROUND_PROVIDER_CODESANDBOX  name: \"CodeSandbox\" embed_url_pattern: \"https://codesandbox.io/embed/{sandbox_id}\" supported_languages: [\"javascript\", \"typescript\", \"react\", \"vue\", \"angular\"] features: { \"live_preview\": \"true\", \"console\": \"true\", \"npm\": \"true\", \"github_import\": \"true\" }"
+        },
+        "stackblitz": {
+          "$ref": "#/definitions/website.config.PlaygroundProviderMapping",
+          "description": "PLAYGROUND_PROVIDER_STACKBLITZ  name: \"StackBlitz\" embed_url_pattern: \"https://stackblitz.com/edit/{project_id}\" supported_languages: [\"javascript\", \"typescript\", \"angular\", \"react\", \"vue\"] features: { \"live_preview\": \"true\", \"terminal\": \"true\", \"npm\": \"true\", \"vscode\": \"true\" }"
+        },
+        "custom": {
+          "$ref": "#/definitions/website.config.PlaygroundProviderMapping",
+          "description": "PLAYGROUND_PROVIDER_CUSTOM  name: \"Custom Playground\" embed_url_pattern: \"\" supported_languages: [] features: {}"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Playground Provider Defaults",
+      "description": "Complete playground provider mappings"
+    },
+    "website.config.PlaygroundProviderMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Provider name"
+        },
+        "embed_url_pattern": {
+          "type": "string",
+          "description": "Embed URL pattern"
+        },
+        "supported_languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported languages"
+        },
+        "features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Playground Provider Mapping"
+    }
+  },
+  "title": "PLAYGROUNDPROVIDERDEFAULTS Configuration Schema",
+  "description": "JSON Schema for PlaygroundProviderDefaults configuration"
+}

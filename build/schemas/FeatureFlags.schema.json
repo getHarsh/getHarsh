@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FeatureFlags",
+  "definitions": {
+    "FeatureFlags": {
+      "properties": {
+        "comments": {
+          "type": "boolean",
+          "description": "Enable comments by default"
+        },
+        "math": {
+          "type": "boolean",
+          "description": "Enable math rendering by default"
+        },
+        "graphviz": {
+          "type": "boolean",
+          "description": "Enable GraphViz diagrams by default"
+        },
+        "mermaid": {
+          "type": "boolean",
+          "description": "Enable Mermaid diagrams by default"
+        },
+        "search": {
+          "type": "boolean",
+          "description": "Enable search functionality by default"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Enable reading time display by default"
+        },
+        "share_buttons": {
+          "type": "boolean",
+          "description": "Enable share buttons by default"
+        },
+        "table_of_contents": {
+          "type": "boolean",
+          "description": "Enable table of contents by default"
+        },
+        "syntax_highlighting": {
+          "type": "boolean",
+          "description": "Enable syntax highlighting by default"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Feature Flags",
+      "description": "Default feature flags for all domains"
+    }
+  },
+  "title": "FEATUREFLAGS Configuration Schema",
+  "description": "JSON Schema for FeatureFlags configuration"
+}

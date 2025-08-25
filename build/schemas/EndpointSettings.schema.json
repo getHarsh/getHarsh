@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EndpointSettings",
+  "definitions": {
+    "EndpointSettings": {
+      "properties": {
+        "include_all": {
+          "type": "boolean",
+          "description": "Include all endpoints"
+        },
+        "group_by_resource": {
+          "type": "boolean",
+          "description": "Group by resource"
+        },
+        "include_deprecated": {
+          "type": "boolean",
+          "description": "Include deprecated"
+        },
+        "include_auth": {
+          "type": "boolean",
+          "description": "Authentication info"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Endpoint Settings",
+      "description": "Endpoint settings"
+    }
+  },
+  "title": "ENDPOINTSETTINGS Configuration Schema",
+  "description": "JSON Schema for EndpointSettings configuration"
+}

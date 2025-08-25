@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeLanguageDefaults",
+  "definitions": {
+    "CodeLanguageDefaults": {
+      "properties": {
+        "javascript": {
+          "$ref": "#/definitions/website.config.CodeLanguageMapping",
+          "description": "CODE_LANGUAGE_JAVASCRIPT  name: \"JavaScript\" alternate_names: [\"JS\", \"ECMAScript\"] url: \"https://www.ecma-international.org/publications-and-standards/standards/ecma-262/\" file_extensions: [\".js\", \".mjs\", \".cjs\"] mime_type: \"application/javascript\""
+        },
+        "typescript": {
+          "$ref": "#/definitions/website.config.CodeLanguageMapping",
+          "description": "CODE_LANGUAGE_TYPESCRIPT  name: \"TypeScript\" alternate_names: [\"TS\"] url: \"https://www.typescriptlang.org/\" file_extensions: [\".ts\", \".tsx\"] mime_type: \"application/typescript\""
+        },
+        "python": {
+          "$ref": "#/definitions/website.config.CodeLanguageMapping",
+          "description": "CODE_LANGUAGE_PYTHON  name: \"Python\" url: \"https://www.python.org/\" file_extensions: [\".py\", \".pyi\"] mime_type: \"text/x-python\""
+        },
+        "c": {
+          "$ref": "#/definitions/website.config.CodeLanguageMapping",
+          "description": "CODE_LANGUAGE_C  name: \"C\" url: \"https://www.iso.org/standard/74528.html\" file_extensions: [\".c\", \".h\"] mime_type: \"text/x-c\""
+        },
+        "cpp": {
+          "$ref": "#/definitions/website.config.CodeLanguageMapping",
+          "description": "CODE_LANGUAGE_CPP  name: \"C++\" alternate_names: [\"CPP\", \"CXX\"] url: \"https://isocpp.org/\" file_extensions: [\".cpp\", \".cc\", \".cxx\", \".hpp\", \".h\"] mime_type: \"text/x-c++\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Language Defaults",
+      "description": "Predefined code language mappings"
+    },
+    "website.config.CodeLanguageMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Language name for Schema.org"
+        },
+        "alternate_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Alternative names"
+        },
+        "url": {
+          "type": "string",
+          "description": "Language specification URL"
+        },
+        "file_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File extensions"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "highlight_js_id": {
+          "type": "string",
+          "description": "Syntax highlighting identifier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Language Mapping"
+    }
+  },
+  "title": "CODELANGUAGEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for CodeLanguageDefaults configuration"
+}

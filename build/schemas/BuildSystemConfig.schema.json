@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BuildSystemConfig",
+  "definitions": {
+    "BuildSystemConfig": {
+      "properties": {
+        "auto_generate_jsonld": {
+          "type": "boolean",
+          "description": "Enable automatic JSON-LD generation"
+        },
+        "output_directory": {
+          "type": "string",
+          "description": "Output directory for generated Schema.org files"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.ValidationConfig",
+          "description": "Validation settings"
+        },
+        "transformation_rules": {
+          "items": {
+            "$ref": "#/definitions/website.config.TransformationRule"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Transformation rules"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n BUILD SYSTEM INTEGRATION\n =============================================================================",
+      "description": "============================================================================= BUILD SYSTEM INTEGRATION =============================================================================  Configuration for build-time processing"
+    },
+    "website.config.TransformationRule": {
+      "properties": {
+        "enum_type": {
+          "type": "string",
+          "description": "Source enum type"
+        },
+        "target_context": {
+          "type": "string",
+          "description": "Target Schema.org context"
+        },
+        "transform_function": {
+          "type": "string",
+          "description": "Custom transformation function (if needed)"
+        },
+        "apply_to_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Apply to specific fields only"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Transformation Rule",
+      "description": "Transformation rule for build system"
+    },
+    "website.config.ValidationConfig": {
+      "properties": {
+        "validate_schema_org": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required_properties": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "fail_on_error": {
+          "type": "boolean",
+          "description": "Fail build on validation errors"
+        },
+        "validator_url": {
+          "type": "string",
+          "description": "Schema.org validator URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Config",
+      "description": "Validation configuration"
+    }
+  },
+  "title": "BUILDSYSTEMCONFIG Configuration Schema",
+  "description": "JSON Schema for BuildSystemConfig configuration"
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PublicationSettings",
+  "definitions": {
+    "PublicationSettings": {
+      "properties": {
+        "include_publications": {
+          "type": "boolean",
+          "description": "Include publications"
+        },
+        "pub_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Publication type mapping"
+        },
+        "venue_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Venue type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Publication Settings",
+      "description": "Publication settings"
+    }
+  },
+  "title": "PUBLICATIONSETTINGS Configuration Schema",
+  "description": "JSON Schema for PublicationSettings configuration"
+}

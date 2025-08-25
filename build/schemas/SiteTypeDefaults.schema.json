@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SiteTypeDefaults",
+  "definitions": {
+    "SiteTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.SiteTypeMapping",
+          "description": "SITE_TYPE_UNSPECIFIED  schema_type: \"WebSite\" additional_types: [] required_properties: [] description: \"\""
+        },
+        "domain": {
+          "$ref": "#/definitions/website.config.SiteTypeMapping",
+          "description": "SITE_TYPE_DOMAIN  schema_type: \"WebSite\" additional_types: [\"Organization\"] required_properties: [\"name\", \"url\", \"publisher\"] description: \"Main domain website\""
+        },
+        "blog": {
+          "$ref": "#/definitions/website.config.SiteTypeMapping",
+          "description": "SITE_TYPE_BLOG  schema_type: \"Blog\" additional_types: [\"WebSite\", \"Periodical\"] required_properties: [\"name\", \"url\", \"blogPost\", \"author\"] description: \"Blog subdomain\""
+        },
+        "project": {
+          "$ref": "#/definitions/website.config.SiteTypeMapping",
+          "description": "SITE_TYPE_PROJECT  schema_type: \"SoftwareSourceCode\" additional_types: [\"WebSite\", \"CreativeWork\"] required_properties: [\"name\", \"url\", \"codeRepository\"] description: \"Project documentation site\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Type Defaults",
+      "description": "Complete site type mappings"
+    },
+    "website.config.SiteTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties for this site type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Site type description"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Site Type Mapping"
+    }
+  },
+  "title": "SITETYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SiteTypeDefaults configuration"
+}

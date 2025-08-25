@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EventTrigger",
+  "definitions": {
+    "EventTrigger": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            0,
+            "TRIGGER_TYPE_PAGE_VIEW",
+            1,
+            "TRIGGER_TYPE_DOM_READY",
+            2,
+            "TRIGGER_TYPE_WINDOW_LOADED",
+            3,
+            "TRIGGER_TYPE_CLICK",
+            4,
+            "TRIGGER_TYPE_FORM_SUBMIT",
+            5,
+            "TRIGGER_TYPE_SCROLL",
+            6,
+            "TRIGGER_TYPE_TIMER",
+            7,
+            "TRIGGER_TYPE_CUSTOM",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Trigger Type",
+          "description": "Trigger types"
+        },
+        "details": {
+          "$ref": "#/definitions/website.config.gtm.TriggerDetails",
+          "description": "Trigger details"
+        },
+        "debounce_ms": {
+          "type": "integer",
+          "description": "Debounce delay (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Trigger",
+      "description": "Event trigger configuration"
+    },
+    "website.config.gtm.TriggerDetails": {
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "CSS selector for clicks"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "URL pattern for page views"
+        },
+        "scroll_percentage": {
+          "type": "integer",
+          "description": "Scroll percentage"
+        },
+        "timer_interval": {
+          "type": "integer",
+          "description": "Timer interval (ms)"
+        },
+        "js_condition": {
+          "type": "string",
+          "description": "Custom JavaScript condition"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Details",
+      "description": "Trigger details"
+    }
+  },
+  "title": "EVENTTRIGGER Configuration Schema",
+  "description": "JSON Schema for EventTrigger configuration"
+}

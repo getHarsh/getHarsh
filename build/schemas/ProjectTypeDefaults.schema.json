@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectTypeDefaults",
+  "definitions": {
+    "ProjectTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_UNSPECIFIED  schema_type: \"Project\" application_category: \"\" additional_types: [] properties: {}"
+        },
+        "research": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_RESEARCH  schema_type: \"ResearchProject\" application_category: \"Research\" additional_types: [\"CreativeWork\", \"ScholarlyArticle\"] properties: { \"@type\": \"ResearchProject\", \"studySubject\": \"Computer Science\" }"
+        },
+        "tool": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_TOOL  schema_type: \"SoftwareApplication\" application_category: \"DeveloperTools\" additional_types: [\"SoftwareSourceCode\"] properties: { \"@type\": \"SoftwareApplication\", \"applicationSubCategory\": \"Tool\" }"
+        },
+        "framework": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_FRAMEWORK  schema_type: \"SoftwareApplication\" application_category: \"Framework\" additional_types: [\"SoftwareSourceCode\", \"APIReference\"] properties: { \"@type\": \"SoftwareApplication\", \"applicationSubCategory\": \"Framework\" }"
+        },
+        "library": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_LIBRARY  schema_type: \"SoftwareSourceCode\" application_category: \"Library\" additional_types: [\"CreativeWork\"] properties: { \"@type\": \"SoftwareSourceCode\", \"codeRepository\": \"{repo_url}\" }"
+        },
+        "service": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_SERVICE  schema_type: \"WebApplication\" application_category: \"WebService\" additional_types: [\"Service\", \"SoftwareApplication\"] properties: { \"@type\": \"WebApplication\", \"serviceType\": \"SaaS\" }"
+        },
+        "application": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_APPLICATION  schema_type: \"SoftwareApplication\" application_category: \"Application\" additional_types: [\"CreativeWork\"] properties: { \"@type\": \"SoftwareApplication\" }"
+        },
+        "protocol": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_PROTOCOL  schema_type: \"TechArticle\" application_category: \"Protocol\" additional_types: [\"Specification\", \"CreativeWork\"] properties: { \"@type\": \"TechArticle\", \"about\": \"Protocol Specification\" }"
+        },
+        "platform": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_PLATFORM  schema_type: \"WebApplication\" application_category: \"Platform\" additional_types: [\"Service\", \"Organization\"] properties: { \"@type\": \"WebApplication\", \"applicationCategory\": \"Platform\" }"
+        },
+        "infrastructure": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_INFRASTRUCTURE  schema_type: \"SoftwareApplication\" application_category: \"Infrastructure\" additional_types: [\"Service\"] properties: { \"@type\": \"SoftwareApplication\", \"applicationSubCategory\": \"Infrastructure\" }"
+        },
+        "educational": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_EDUCATIONAL  schema_type: \"Course\" application_category: \"Educational\" additional_types: [\"CreativeWork\", \"LearningResource\"] properties: { \"@type\": \"Course\", \"educationalUse\": \"Teaching\" }"
+        },
+        "experimental": {
+          "$ref": "#/definitions/website.config.ProjectTypeMapping",
+          "description": "PROJECT_TYPE_EXPERIMENTAL  schema_type: \"ResearchProject\" application_category: \"Experimental\" additional_types: [\"CreativeWork\"] properties: { \"@type\": \"ResearchProject\", \"status\": \"Experimental\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Type Defaults",
+      "description": "Complete project type mappings"
+    },
+    "website.config.ProjectTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type (SoftwareApplication, Service, etc.)"
+        },
+        "application_category": {
+          "type": "string",
+          "description": "Application category"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Type-specific properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Type Mapping"
+    }
+  },
+  "title": "PROJECTTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ProjectTypeDefaults configuration"
+}

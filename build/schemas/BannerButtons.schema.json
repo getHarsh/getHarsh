@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerButtons",
+  "definitions": {
+    "BannerButtons": {
+      "properties": {
+        "accept_all": {
+          "$ref": "#/definitions/website.config.consent.ButtonConfig",
+          "description": "Accept all button"
+        },
+        "reject_all": {
+          "$ref": "#/definitions/website.config.consent.ButtonConfig",
+          "description": "Reject all button"
+        },
+        "settings": {
+          "$ref": "#/definitions/website.config.consent.ButtonConfig",
+          "description": "Settings button"
+        },
+        "save": {
+          "$ref": "#/definitions/website.config.consent.ButtonConfig",
+          "description": "Save preferences button"
+        },
+        "close": {
+          "$ref": "#/definitions/website.config.consent.ButtonConfig",
+          "description": "Close button"
+        },
+        "button_order": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Button order"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Buttons",
+      "description": "Banner button configuration"
+    },
+    "website.config.consent.ButtonConfig": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Button text"
+        },
+        "show": {
+          "type": "boolean",
+          "description": "Show button"
+        },
+        "style": {
+          "enum": [
+            "BUTTON_STYLE_UNSPECIFIED",
+            0,
+            "BUTTON_STYLE_PRIMARY",
+            1,
+            "BUTTON_STYLE_SECONDARY",
+            2,
+            "BUTTON_STYLE_TEXT",
+            3,
+            "BUTTON_STYLE_OUTLINE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Button Style",
+          "description": "Button style"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "CSS class"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Button Config",
+      "description": "Button configuration"
+    }
+  },
+  "title": "BANNERBUTTONS Configuration Schema",
+  "description": "JSON Schema for BannerButtons configuration"
+}

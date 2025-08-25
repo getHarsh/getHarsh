@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ButtonAccessibility",
+  "definitions": {
+    "ButtonAccessibility": {
+      "properties": {
+        "require_names": {
+          "type": "boolean",
+          "description": "Accessible names"
+        },
+        "proper_semantics": {
+          "type": "boolean",
+          "description": "Button vs link"
+        },
+        "disabled": {
+          "$ref": "#/definitions/website.config.aria.DisabledHandling",
+          "description": "Disabled handling"
+        },
+        "icons": {
+          "$ref": "#/definitions/website.config.aria.IconButtons",
+          "description": "Icon buttons"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Button Accessibility",
+      "description": "Button accessibility"
+    },
+    "website.config.aria.DisabledHandling": {
+      "properties": {
+        "explain_disabled": {
+          "type": "boolean",
+          "description": "Explain why disabled"
+        },
+        "keep_focusable": {
+          "type": "boolean",
+          "description": "Keyboard focusable"
+        },
+        "provide_alternatives": {
+          "type": "boolean",
+          "description": "Alternative actions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Disabled Handling",
+      "description": "Disabled handling"
+    },
+    "website.config.aria.IconButtons": {
+      "properties": {
+        "require_text": {
+          "type": "boolean",
+          "description": "Require text alternative"
+        },
+        "show_tooltip": {
+          "type": "boolean",
+          "description": "Tooltip on hover"
+        },
+        "sr_text": {
+          "type": "boolean",
+          "description": "Screen reader text"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Icon Buttons",
+      "description": "Icon button configuration"
+    }
+  },
+  "title": "BUTTONACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for ButtonAccessibility configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleContentRequirements",
+  "definitions": {
+    "ArticleContentRequirements": {
+      "properties": {
+        "min_words": {
+          "type": "integer",
+          "description": "Minimum word count"
+        },
+        "require_excerpt": {
+          "type": "boolean",
+          "description": "Require excerpt"
+        },
+        "max_excerpt_length": {
+          "type": "integer",
+          "description": "Maximum excerpt length"
+        },
+        "require_categories": {
+          "type": "boolean",
+          "description": "Require categories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Content Requirements",
+      "description": "Article content requirements"
+    }
+  },
+  "title": "ARTICLECONTENTREQUIREMENTS Configuration Schema",
+  "description": "JSON Schema for ArticleContentRequirements configuration"
+}

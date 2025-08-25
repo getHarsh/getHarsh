@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeLanguageMapping",
+  "definitions": {
+    "CodeLanguageMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Language name for Schema.org"
+        },
+        "alternate_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Alternative names"
+        },
+        "url": {
+          "type": "string",
+          "description": "Language specification URL"
+        },
+        "file_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File extensions"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "highlight_js_id": {
+          "type": "string",
+          "description": "Syntax highlighting identifier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Language Mapping"
+    }
+  },
+  "title": "CODELANGUAGEMAPPING Configuration Schema",
+  "description": "JSON Schema for CodeLanguageMapping configuration"
+}

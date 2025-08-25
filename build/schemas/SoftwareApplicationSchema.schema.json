@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SoftwareApplicationSchema",
+  "definitions": {
+    "SoftwareApplicationSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable software app markup"
+        },
+        "application_category": {
+          "type": "string",
+          "description": "Application category"
+        },
+        "operating_system": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Operating system"
+        },
+        "software_version": {
+          "type": "string",
+          "description": "Software version"
+        },
+        "download_url": {
+          "type": "string",
+          "description": "Download URL"
+        },
+        "install_url": {
+          "type": "string",
+          "description": "Installation URL"
+        },
+        "memory_requirements": {
+          "type": "string",
+          "description": "Memory requirements"
+        },
+        "storage_requirements": {
+          "type": "string",
+          "description": "Storage requirements"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Permissions required"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Application Schema",
+      "description": "Software application schema"
+    }
+  },
+  "title": "SOFTWAREAPPLICATIONSCHEMA Configuration Schema",
+  "description": "JSON Schema for SoftwareApplicationSchema configuration"
+}

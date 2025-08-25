@@ -1,0 +1,409 @@
+# Consent Schema Mappings
+# Maps consent proto enums and types to their semantic meanings and legal frameworks
+
+# Consent value mappings
+ConsentValue:
+  CONSENT_VALUE_DENIED: "denied"
+  CONSENT_VALUE_GRANTED: "granted"
+  CONSENT_VALUE_PENDING: "pending"
+
+# Banner position mappings
+BannerPosition:
+  BANNER_POSITION_TOP: "top"
+  BANNER_POSITION_BOTTOM: "bottom"
+  BANNER_POSITION_CENTER: "center"
+  BANNER_POSITION_TOP_LEFT: "top-left"
+  BANNER_POSITION_TOP_RIGHT: "top-right"
+  BANNER_POSITION_BOTTOM_LEFT: "bottom-left"
+  BANNER_POSITION_BOTTOM_RIGHT: "bottom-right"
+
+# Theme mode mappings
+ThemeMode:
+  THEME_MODE_LIGHT: "light"
+  THEME_MODE_DARK: "dark"
+  THEME_MODE_AUTO: "auto"
+  THEME_MODE_CUSTOM: "custom"
+
+# Button style mappings
+ButtonStyle:
+  BUTTON_STYLE_PRIMARY: "primary"
+  BUTTON_STYLE_SECONDARY: "secondary"
+  BUTTON_STYLE_TEXT: "text"
+  BUTTON_STYLE_OUTLINE: "outline"
+
+# Animation type mappings
+AnimationType:
+  ANIMATION_TYPE_FADE: "fade"
+  ANIMATION_TYPE_SLIDE: "slide"
+  ANIMATION_TYPE_SCALE: "scale"
+  ANIMATION_TYPE_NONE: "none"
+
+# Provider type mappings
+ProviderType:
+  PROVIDER_TYPE_ANALYTICS: "Analytics"
+  PROVIDER_TYPE_ADVERTISING: "Advertising"
+  PROVIDER_TYPE_SOCIAL_MEDIA: "Social Media"
+  PROVIDER_TYPE_FUNCTIONAL: "Functional"
+  PROVIDER_TYPE_SECURITY: "Security"
+
+# Legal basis mappings (GDPR Article 6)
+LegalBasis:
+  LEGAL_BASIS_CONSENT: "consent"                           # Article 6(1)(a)
+  LEGAL_BASIS_LEGITIMATE_INTEREST: "legitimate_interest"   # Article 6(1)(f)
+  LEGAL_BASIS_CONTRACT: "contract"                         # Article 6(1)(b)
+  LEGAL_BASIS_LEGAL_OBLIGATION: "legal_obligation"         # Article 6(1)(c)
+  LEGAL_BASIS_VITAL_INTERESTS: "vital_interests"           # Article 6(1)(d)
+  LEGAL_BASIS_PUBLIC_TASK: "public_task"                   # Article 6(1)(e)
+
+# Cookie type mappings
+CookieType:
+  COOKIE_TYPE_FIRST_PARTY: "first_party"
+  COOKIE_TYPE_THIRD_PARTY: "third_party"
+  COOKIE_TYPE_SESSION: "session"
+  COOKIE_TYPE_PERSISTENT: "persistent"
+
+# Storage type mappings
+StorageType:
+  STORAGE_TYPE_COOKIE: "cookie"
+  STORAGE_TYPE_LOCAL_STORAGE: "localStorage"
+  STORAGE_TYPE_SESSION_STORAGE: "sessionStorage"
+  STORAGE_TYPE_INDEXED_DB: "indexedDB"
+  STORAGE_TYPE_CACHE: "cache"
+
+# Detection method mappings
+DetectionMethod:
+  DETECTION_METHOD_IP: "ip_geolocation"
+  DETECTION_METHOD_TIMEZONE: "timezone"
+  DETECTION_METHOD_LOCALE: "browser_locale"
+  DETECTION_METHOD_CUSTOM: "custom"
+
+# Compliance law mappings
+ComplianceLaw:
+  COMPLIANCE_LAW_GDPR: "GDPR"        # General Data Protection Regulation (EU)
+  COMPLIANCE_LAW_CCPA: "CCPA"        # California Consumer Privacy Act
+  COMPLIANCE_LAW_LGPD: "LGPD"        # Lei Geral de Proteção de Dados (Brazil)
+  COMPLIANCE_LAW_PIPEDA: "PIPEDA"    # Personal Information Protection and Electronic Documents Act (Canada)
+  COMPLIANCE_LAW_POPI: "POPIA"       # Protection of Personal Information Act (South Africa)
+  COMPLIANCE_LAW_PDPA: "PDPA"        # Personal Data Protection Act (Singapore)
+  COMPLIANCE_LAW_DPA: "DPA"          # Data Protection Act (India - proposed)
+
+# Prominence level mappings
+ProminenceLevel:
+  PROMINENCE_LEVEL_STANDARD: "standard"
+  PROMINENCE_LEVEL_PROMINENT: "prominent"
+  PROMINENCE_LEVEL_VERY_PROMINENT: "very_prominent"
+
+# Data rights mappings (GDPR Chapter 3)
+DataRight:
+  DATA_RIGHT_ACCESS: "access"                            # Article 15
+  DATA_RIGHT_RECTIFICATION: "rectification"              # Article 16
+  DATA_RIGHT_ERASURE: "erasure"                          # Article 17 (Right to be forgotten)
+  DATA_RIGHT_PORTABILITY: "portability"                  # Article 20
+  DATA_RIGHT_RESTRICTION: "restriction"                  # Article 18
+  DATA_RIGHT_OBJECTION: "objection"                      # Article 21
+  DATA_RIGHT_AUTOMATED_DECISION: "automated_decision"    # Article 22
+
+# Sync method mappings
+SyncMethod:
+  SYNC_METHOD_LOCAL_STORAGE: "localStorage"
+  SYNC_METHOD_COOKIE: "cookie"
+  SYNC_METHOD_POST_MESSAGE: "postMessage"
+  SYNC_METHOD_CUSTOM: "custom"
+
+# Conflict resolution mappings
+ConflictResolution:
+  CONFLICT_RESOLUTION_MOST_RECENT: "most_recent"
+  CONFLICT_RESOLUTION_MOST_RESTRICTIVE: "most_restrictive"
+  CONFLICT_RESOLUTION_LEAST_RESTRICTIVE: "least_restrictive"
+  CONFLICT_RESOLUTION_CUSTOM: "custom"
+
+# Storage method mappings
+StorageMethod:
+  STORAGE_METHOD_COOKIE: "cookie"
+  STORAGE_METHOD_LOCAL_STORAGE: "localStorage"
+  STORAGE_METHOD_SERVER: "server"
+  STORAGE_METHOD_HYBRID: "hybrid"
+
+# Export format mappings
+ExportFormat:
+  EXPORT_FORMAT_JSON: "json"
+  EXPORT_FORMAT_CSV: "csv"
+  EXPORT_FORMAT_PARQUET: "parquet"
+
+# Auth type mappings
+AuthType:
+  AUTH_TYPE_NONE: "none"
+  AUTH_TYPE_API_KEY: "api_key"
+  AUTH_TYPE_JWT: "jwt"
+  AUTH_TYPE_OAUTH2: "oauth2"
+
+# Standard consent categories (static site optimized)
+StandardCategories:
+  necessary:
+    name: "Necessary"
+    description: "Essential cookies required for the website to function properly"
+    required: true
+    pre_selected: true
+    providers:
+      - "GitHub Pages"  # Hosting
+      - "CloudFlare"   # CDN/Security
+    cookies:
+      - name: "consent_state"
+        type: "first_party"
+        expiry: "1 year"
+  
+  analytics:
+    name: "Analytics"
+    description: "Help us understand how visitors interact with our websites"
+    required: false
+    pre_selected: false
+    providers:
+      - "Google Analytics"
+      - "Microsoft Clarity"
+      - "Plausible Analytics"
+    cookies:
+      - name: "_ga"
+        type: "first_party"
+        expiry: "2 years"
+      - name: "_gid"
+        type: "first_party"
+        expiry: "24 hours"
+  
+  marketing:
+    name: "Marketing"
+    description: "Used to track visitors across websites for advertising"
+    required: false
+    pre_selected: false
+    providers:
+      - "Meta Pixel"
+      - "Twitter Pixel"
+      - "LinkedIn Insight Tag"
+      - "Google Ads"
+    cookies:
+      - name: "_fbp"
+        type: "third_party"
+        expiry: "3 months"
+      - name: "li_sugr"
+        type: "third_party"
+        expiry: "90 days"
+  
+  functional:
+    name: "Functional"
+    description: "Enable enhanced functionality like embedded content"
+    required: false
+    pre_selected: false  # Changed to false for GDPR compliance
+    providers:
+      - "YouTube"          # Video embeds
+      - "Google Calendar"  # Appointment booking
+      - "Google Drive"     # Audio player
+    cookies:
+      - name: "theme_preference"  # Light/dark mode
+        type: "first_party"
+        expiry: "1 year"
+  
+  social_media:
+    name: "Social Media"
+    description: "Enable social media features and sharing"
+    required: false
+    pre_selected: false
+    providers:
+      - "Twitter"
+      - "LinkedIn"
+      - "Facebook"
+    cookies:
+      - name: "datr"
+        type: "third_party"
+        expiry: "2 years"
+
+# Google Consent Mode v2 mappings
+GoogleConsentTypes:
+  analytics_storage:
+    name: "Analytics Storage"
+    description: "Enables storage related to analytics e.g. visit duration"
+    category: "analytics"
+  ad_storage:
+    name: "Ad Storage"
+    description: "Enables storage related to advertising"
+    category: "marketing"
+  ad_user_data:
+    name: "Ad User Data"
+    description: "Sets consent for sending user data to Google for advertising purposes"
+    category: "marketing"
+  ad_personalization:
+    name: "Ad Personalization"
+    description: "Sets consent for personalized advertising"
+    category: "marketing"
+  functionality_storage:
+    name: "Functionality Storage"
+    description: "Enables storage that supports website functionality"
+    category: "functional"
+  personalization_storage:
+    name: "Personalization Storage"
+    description: "Enables storage related to personalization"
+    category: "functional"
+  security_storage:
+    name: "Security Storage"
+    description: "Enables storage related to security"
+    category: "necessary"
+
+# Regional defaults
+RegionalDefaults:
+  EU:
+    laws: ["GDPR"]
+    default_consent:
+      analytics: "denied"
+      marketing: "denied"
+      functional: "granted"
+      necessary: "granted"
+    minimum_age: 16
+    parental_consent_age: 13
+  
+  US:
+    laws: []
+    default_consent:
+      analytics: "granted"
+      marketing: "granted"
+      functional: "granted"
+      necessary: "granted"
+    minimum_age: 13
+    parental_consent_age: 13
+  
+  US-CA:
+    laws: ["CCPA"]
+    default_consent:
+      analytics: "granted"
+      marketing: "denied"
+      functional: "granted"
+      necessary: "granted"
+    minimum_age: 13
+    parental_consent_age: 13
+    
+  IN:
+    laws: ["DPA"]
+    default_consent:
+      analytics: "granted"
+      marketing: "granted"
+      functional: "granted"
+      necessary: "granted"
+    minimum_age: 18
+    parental_consent_age: 18
+
+# Entity-based consent boundaries
+# Each entity in EntityCatalog creates a consent boundary
+# Build system reads from ecosystem.legal_entities catalog
+EntityConsentBoundaries:
+  # Pattern for all legal entities (not hardcoded)
+  entity_pattern:
+    entity_type: ENTITY_TYPE_LEGAL_ENTITY
+    consent_scope: "separate_controller"
+    cookie_sharing: "within_entity_only"
+    data_controller: true
+    
+  # Entity relationships affect consent
+  relationship_rules:
+    - relationship: RELATIONSHIP_OWNS
+      consent_sharing: "allowed_with_disclosure"
+    - relationship: RELATIONSHIP_PARTNER
+      consent_sharing: "separate_consent_required"
+    - relationship: RELATIONSHIP_PARENT_ORGANIZATION
+      consent_sharing: "inherited_with_notice"
+
+# Cookie SameSite values
+CookieSameSite:
+  strict: "Strict"
+  lax: "Lax"
+  none: "None"
+
+# Browser-specific consent handling
+BrowserSpecificHandling:
+  safari:
+    # Safari ITP (Intelligent Tracking Prevention) considerations
+    storage_access_api: true
+    cookie_lifetime_limit: "7 days"
+    third_party_cookies: "blocked by default"
+    recommendations:
+      - "Use first-party cookies only"
+      - "Implement Storage Access API for embeds"
+      - "Refresh consent within 7 days"
+  
+  chrome:
+    # Chrome Privacy Sandbox
+    third_party_phase_out: "2024"
+    topics_api: "available"
+    recommendations:
+      - "Prepare for cookieless future"
+      - "Consider Topics API integration"
+      - "Focus on first-party data"
+  
+  firefox:
+    # Firefox Enhanced Tracking Protection
+    tracking_protection: "standard"
+    third_party_cookies: "blocked in private mode"
+    recommendations:
+      - "Test in private browsing mode"
+      - "Use explicit consent for all tracking"
+
+# Cross-domain consent limitations
+CrossDomainLimitations:
+  technical_constraints:
+    - "Third-party cookies blocked by default in Safari/Firefox"
+    - "SameSite=Lax default prevents cross-domain sharing"
+    - "localStorage not shared across domains"
+    - "postMessage requires explicit origin validation"
+  
+  recommended_approach:
+    primary_method: "Independent consent per domain"
+    sync_method: "Server-side sync with consent IDs"
+    fallback: "Re-request consent on each domain"
+    
+  implementation_notes:
+    - "Each domain maintains own consent state"
+    - "Use consent ID to sync server-side"
+    - "Display sync status to users"
+    - "Honor most restrictive consent across domains"
+
+# Animation easing functions
+AnimationEasing:
+  linear: "linear"
+  ease: "ease"
+  ease_in: "ease-in"
+  ease_out: "ease-out"
+  ease_in_out: "ease-in-out"
+  cubic_bezier: "cubic-bezier(0.4, 0, 0.2, 1)"
+
+# Webhook events
+WebhookEvents:
+  consent_given: "consent.given"
+  consent_denied: "consent.denied"
+  consent_changed: "consent.changed"
+  consent_withdrawn: "consent.withdrawn"
+  preferences_updated: "preferences.updated"
+  banner_shown: "banner.shown"
+  banner_closed: "banner.closed"
+  settings_opened: "settings.opened"
+  data_request: "data.request"
+
+# Test variant success metrics
+SuccessMetrics:
+  consent_rate: "Percentage of users who give consent"
+  interaction_rate: "Percentage of users who interact with banner"
+  time_to_consent: "Average time to make consent decision"
+  bounce_rate: "Bounce rate after consent interaction"
+  settings_usage: "Percentage using granular settings"
+
+# JWT algorithms
+JWTAlgorithms:
+  HS256: "HMAC SHA-256"
+  HS384: "HMAC SHA-384"
+  HS512: "HMAC SHA-512"
+  RS256: "RSA SHA-256"
+  RS384: "RSA SHA-384"
+  RS512: "RSA SHA-512"
+
+# Age verification methods
+AgeVerificationMethods:
+  self_declaration: "Self Declaration"
+  birthdate: "Birth Date Entry"
+  credit_card: "Credit Card Verification"
+  id_verification: "ID Document Verification"
+  parental_consent: "Parental Consent Required"

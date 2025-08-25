@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AppointmentType",
+  "definitions": {
+    "AppointmentType": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Type name (e.g., \"Consultation\", \"Technical Review\")"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration for this type (ISO 8601)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "price": {
+          "type": "string",
+          "description": "Price (if applicable)"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color for calendar display"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Appointment Type",
+      "description": "Appointment type configuration"
+    }
+  },
+  "title": "APPOINTMENTTYPE Configuration Schema",
+  "description": "JSON Schema for AppointmentType configuration"
+}

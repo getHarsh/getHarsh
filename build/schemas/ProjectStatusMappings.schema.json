@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectStatusMappings",
+  "definitions": {
+    "ProjectStatusMappings": {
+      "properties": {
+        "status_to_value": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> status value e.g., \"PROJECT_STATUS_ACTIVE\" -> \"Active\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT STATUS MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT STATUS MAPPINGS =============================================================================  Maps ProjectStatus enum to Schema.org status values"
+    }
+  },
+  "title": "PROJECTSTATUSMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ProjectStatusMappings configuration"
+}

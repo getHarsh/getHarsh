@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityTypeDefaults",
+  "definitions": {
+    "EntityTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_UNSPECIFIED  schema_type: \"Thing\" alternate_types: [] properties: {}"
+        },
+        "person": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_PERSON  schema_type: \"Person\" alternate_types: [\"Individual\"] properties: { \"entityType\": \"person\" }"
+        },
+        "legal_entity": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_LEGAL_ENTITY  schema_type: \"Corporation\" alternate_types: [\"Organization\", \"LegalEntity\"] properties: { \"entityType\": \"legal\", \"legalForm\": \"corporation\" }"
+        },
+        "organization": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_ORGANIZATION  schema_type: \"Organization\" alternate_types: [\"Institution\"] properties: { \"entityType\": \"organization\" }"
+        },
+        "brand": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_BRAND  schema_type: \"Brand\" alternate_types: [\"Organization\"] properties: { \"entityType\": \"brand\" }"
+        },
+        "project": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_PROJECT  schema_type: \"Project\" alternate_types: [\"CreativeWork\", \"ResearchProject\"] properties: { \"entityType\": \"project\" }"
+        },
+        "community": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_COMMUNITY  schema_type: \"Organization\" alternate_types: [\"Community\", \"Consortium\"] properties: { \"entityType\": \"community\", \"organizationType\": \"community\" }"
+        },
+        "domain": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_DOMAIN  schema_type: \"WebSite\" alternate_types: [\"WebPage\"] properties: { \"entityType\": \"domain\" }"
+        },
+        "blog": {
+          "$ref": "#/definitions/website.config.EntityTypeMapping",
+          "description": "ENTITY_TYPE_BLOG  schema_type: \"Blog\" alternate_types: [\"WebSite\", \"Periodical\"] properties: { \"entityType\": \"blog\", \"periodicalType\": \"Blog\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Type Defaults",
+      "description": "Complete entity type mappings"
+    },
+    "website.config.EntityTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Primary Schema.org type"
+        },
+        "alternate_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Alternative types"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Entity-specific properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Type Mapping"
+    }
+  },
+  "title": "ENTITYTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for EntityTypeDefaults configuration"
+}

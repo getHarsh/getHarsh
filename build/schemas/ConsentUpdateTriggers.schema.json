@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentUpdateTriggers",
+  "definitions": {
+    "ConsentUpdateTriggers": {
+      "properties": {
+        "on_consent_given": {
+          "$ref": "#/definitions/website.config.gtm.ConsentEventTrigger",
+          "description": "Update on consent given"
+        },
+        "on_consent_withdrawn": {
+          "$ref": "#/definitions/website.config.gtm.ConsentEventTrigger",
+          "description": "Update on consent withdrawn"
+        },
+        "on_consent_changed": {
+          "$ref": "#/definitions/website.config.gtm.ConsentEventTrigger",
+          "description": "Update on consent changed"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Update Triggers",
+      "description": "Consent update triggers"
+    },
+    "website.config.gtm.ConsentEventTrigger": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "GTM event name"
+        },
+        "consent_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Consent types to update"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Event Trigger",
+      "description": "Consent event trigger"
+    }
+  },
+  "title": "CONSENTUPDATETRIGGERS Configuration Schema",
+  "description": "JSON Schema for ConsentUpdateTriggers configuration"
+}

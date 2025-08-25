@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AffiliationTypeDefaults",
+  "definitions": {
+    "AffiliationTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_TYPE_UNSPECIFIED  schema_role_type: \"Role\" additional_types: [] role_properties: {}"
+        },
+        "employee": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_EMPLOYEE  schema_role_type: \"EmployeeRole\" additional_types: [\"OrganizationRole\"] role_properties: { \"roleName\": \"Employee\", \"@type\": \"EmployeeRole\" }"
+        },
+        "founder": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_FOUNDER  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Founder\", \"@type\": \"OrganizationRole\" } Note: Use with founder property on Organization"
+        },
+        "advisor": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_ADVISOR  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Advisor\", \"@type\": \"OrganizationRole\" }"
+        },
+        "member": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_MEMBER  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Member\", \"@type\": \"OrganizationRole\" } Note: Use with member/memberOf properties"
+        },
+        "alumni": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_ALUMNI  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Alumni\", \"@type\": \"OrganizationRole\" } Note: Use with alumniOf property"
+        },
+        "board_member": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_BOARD_MEMBER  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Board Member\", \"@type\": \"OrganizationRole\" }"
+        },
+        "investor": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_INVESTOR  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Investor\", \"@type\": \"OrganizationRole\" } Note: Use with funder property when applicable"
+        },
+        "consultant": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_CONSULTANT  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\", \"Service\"] role_properties: { \"roleName\": \"Consultant\", \"@type\": \"OrganizationRole\" }"
+        },
+        "volunteer": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_VOLUNTEER  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Volunteer\", \"@type\": \"OrganizationRole\" }"
+        },
+        "mentor": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_MENTOR  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\", \"EducationalRole\"] role_properties: { \"roleName\": \"Mentor\", \"@type\": \"OrganizationRole\" }"
+        },
+        "partner": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_PARTNER  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\"] role_properties: { \"roleName\": \"Partner\", \"@type\": \"OrganizationRole\" }"
+        },
+        "contractor": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMapping",
+          "description": "AFFILIATION_CONTRACTOR  schema_role_type: \"OrganizationRole\" additional_types: [\"Role\", \"Service\"] role_properties: { \"roleName\": \"Contractor\", \"@type\": \"OrganizationRole\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PREDEFINED DEFAULTS - THE COMPLETE SCHEMA.ORG BIBLE\n =============================================================================",
+      "description": "============================================================================= PREDEFINED DEFAULTS - THE COMPLETE SCHEMA.ORG BIBLE =============================================================================  Complete affiliation type mappings"
+    },
+    "website.config.AffiliationTypeMapping": {
+      "properties": {
+        "schema_role_type": {
+          "type": "string",
+          "description": "Schema.org role type"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional type refinements"
+        },
+        "role_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Role properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Affiliation Type Mapping"
+    }
+  },
+  "title": "AFFILIATIONTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for AffiliationTypeDefaults configuration"
+}

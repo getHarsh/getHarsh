@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/InteractiveDemo",
+  "definitions": {
+    "InteractiveDemo": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Demo type (\"codepen\", \"codesandbox\", \"stackblitz\", \"jsfiddle\")"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embed URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Demo title"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in pixels"
+        },
+        "show_preview": {
+          "type": "boolean",
+          "description": "Show preview by default"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Interactive Demo",
+      "description": "Interactive demo configuration"
+    }
+  },
+  "title": "INTERACTIVEDEMO Configuration Schema",
+  "description": "JSON Schema for InteractiveDemo configuration"
+}

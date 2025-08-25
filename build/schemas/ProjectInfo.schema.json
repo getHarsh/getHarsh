@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectInfo",
+  "definitions": {
+    "ProjectInfo": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name (e.g., \"HENA\", \"JARVIS\") - REQUIRED"
+        },
+        "type": {
+          "enum": [
+            "PROJECT_TYPE_UNSPECIFIED",
+            0,
+            "PROJECT_TYPE_RESEARCH",
+            1,
+            "PROJECT_TYPE_TOOL",
+            2,
+            "PROJECT_TYPE_FRAMEWORK",
+            3,
+            "PROJECT_TYPE_LIBRARY",
+            4,
+            "PROJECT_TYPE_SERVICE",
+            5,
+            "PROJECT_TYPE_APPLICATION",
+            6,
+            "PROJECT_TYPE_PROTOCOL",
+            7,
+            "PROJECT_TYPE_PLATFORM",
+            8,
+            "PROJECT_TYPE_INFRASTRUCTURE",
+            9,
+            "PROJECT_TYPE_EDUCATIONAL",
+            10,
+            "PROJECT_TYPE_EXPERIMENTAL",
+            11
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Project Type",
+          "description": "Project types for type-safe project categorization"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description (one line) - REQUIRED"
+        },
+        "detailed_description": {
+          "type": "string",
+          "description": "Detailed description (markdown supported)"
+        },
+        "status": {
+          "enum": [
+            "PROJECT_STATUS_UNSPECIFIED",
+            0,
+            "PROJECT_STATUS_CONCEPT",
+            1,
+            "PROJECT_STATUS_ALPHA",
+            2,
+            "PROJECT_STATUS_BETA",
+            3,
+            "PROJECT_STATUS_STABLE",
+            4,
+            "PROJECT_STATUS_DEPRECATED",
+            5,
+            "PROJECT_STATUS_ARCHIVED",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Project Development Status",
+          "description": "Project development status (different from lifecycle) Maps to CreativeWork status properties in Schema.org"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (YYYY-MM-DD)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version (if applicable)"
+        },
+        "license": {
+          "enum": [
+            "LICENSE_TYPE_UNSPECIFIED",
+            0,
+            "LICENSE_TYPE_MIT",
+            1,
+            "LICENSE_TYPE_APACHE_2_0",
+            2,
+            "LICENSE_TYPE_GPL_3",
+            3,
+            "LICENSE_TYPE_PROPRIETARY",
+            4,
+            "LICENSE_TYPE_CC_BY_4_0",
+            5
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "License Type",
+          "description": "License types for projects and content Only supporting: MIT, Apache 2.0, GPL 3.0, Creative Commons with attribution, and Proprietary"
+        },
+        "tech_stack": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary tech stack (for display in project cards)"
+        },
+        "tools_stack": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary tools/platforms used"
+        },
+        "domain_aliases": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project aliases (other names/domains that refer to this project) These become Schema.org sameAs URLs Examples: [\"jarvis-ai.com\", \"jarvis.dev\", \"projectjarvis.org\"]"
+        },
+        "lifecycle": {
+          "enum": [
+            "PROJECT_LIFECYCLE_UNSPECIFIED",
+            0,
+            "PROJECT_LIFECYCLE_EMERGE",
+            1,
+            "PROJECT_LIFECYCLE_SCALE",
+            2,
+            "PROJECT_LIFECYCLE_STAGNATE",
+            3,
+            "PROJECT_LIFECYCLE_PIVOT",
+            4,
+            "PROJECT_LIFECYCLE_ACCELERATE",
+            5,
+            "PROJECT_LIFECYCLE_MAINTAIN",
+            6,
+            "PROJECT_LIFECYCLE_SUNSET",
+            7,
+            "PROJECT_LIFECYCLE_ARCHIVED",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Project Lifecycle",
+          "description": "Project lifecycle stages based on ecosystem philosophy From what_is_getHarsh.md: emerge, scale, stagnate, pivot, accelerate"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Info",
+      "description": "Basic project information"
+    }
+  },
+  "title": "PROJECTINFO Configuration Schema",
+  "description": "JSON Schema for ProjectInfo configuration"
+}

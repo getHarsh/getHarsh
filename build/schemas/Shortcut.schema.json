@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Shortcut",
+  "definitions": {
+    "Shortcut": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Shortcut key combination"
+        },
+        "action": {
+          "type": "string",
+          "description": "Action description"
+        },
+        "context": {
+          "type": "string",
+          "description": "Context (global, form, etc.)"
+        },
+        "customizable": {
+          "type": "boolean",
+          "description": "Customizable"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Shortcut",
+      "description": "Individual shortcut"
+    }
+  },
+  "title": "SHORTCUT Configuration Schema",
+  "description": "JSON Schema for Shortcut configuration"
+}

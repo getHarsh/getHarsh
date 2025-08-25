@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CustomMetric",
+  "definitions": {
+    "CustomMetric": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Metric name"
+        },
+        "index": {
+          "type": "integer",
+          "description": "Metric index"
+        },
+        "type": {
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            0,
+            "METRIC_TYPE_NUMBER",
+            1,
+            "METRIC_TYPE_CURRENCY",
+            2,
+            "METRIC_TYPE_TIME",
+            3,
+            "METRIC_TYPE_PERCENTAGE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Metric Type",
+          "description": "Metric types"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Metric",
+      "description": "Custom metric configuration"
+    }
+  },
+  "title": "CUSTOMMETRIC Configuration Schema",
+  "description": "JSON Schema for CustomMetric configuration"
+}

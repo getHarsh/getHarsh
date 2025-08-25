@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LengthBasedTypes",
+  "definitions": {
+    "LengthBasedTypes": {
+      "properties": {
+        "short_threshold": {
+          "type": "integer",
+          "description": "Short posts (< N words)"
+        },
+        "short_type": {
+          "type": "string",
+          "description": "\"SocialMediaPosting\""
+        },
+        "long_threshold": {
+          "type": "integer",
+          "description": "Long posts (> N words)"
+        },
+        "long_type": {
+          "type": "string",
+          "description": "\"Article\""
+        },
+        "medium_type": {
+          "type": "string",
+          "description": "Default for medium length  \"BlogPosting\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Length Based Types",
+      "description": "Length-based article type selection"
+    }
+  },
+  "title": "LENGTHBASEDTYPES Configuration Schema",
+  "description": "JSON Schema for LengthBasedTypes configuration"
+}

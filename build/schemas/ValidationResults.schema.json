@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ValidationResults",
+  "definitions": {
+    "ValidationResults": {
+      "properties": {
+        "is_valid": {
+          "type": "boolean",
+          "description": "Is valid"
+        },
+        "errors": {
+          "items": {
+            "$ref": "#/definitions/website.config.ValidationError"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Errors"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/definitions/website.config.ValidationWarning"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Warnings"
+        },
+        "type_coverage": {
+          "type": "number",
+          "description": "Schema.org type coverage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Results",
+      "description": "Validation results"
+    },
+    "website.config.ValidationError": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Error type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type involved"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Error",
+      "description": "Validation error"
+    },
+    "website.config.ValidationWarning": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Warning type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Warning message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "suggestion": {
+          "type": "string",
+          "description": "Suggestion"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Warning",
+      "description": "Validation warning"
+    }
+  },
+  "title": "VALIDATIONRESULTS Configuration Schema",
+  "description": "JSON Schema for ValidationResults configuration"
+}

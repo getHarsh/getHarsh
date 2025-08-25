@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleImageRequirements",
+  "definitions": {
+    "ArticleImageRequirements": {
+      "properties": {
+        "require_featured": {
+          "type": "boolean",
+          "description": "Require featured image"
+        },
+        "min_width": {
+          "type": "integer",
+          "description": "Minimum image width"
+        },
+        "min_height": {
+          "type": "integer",
+          "description": "Minimum image height"
+        },
+        "fallback_url": {
+          "type": "string",
+          "description": "Fallback image URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Image Requirements",
+      "description": "Article image requirements"
+    }
+  },
+  "title": "ARTICLEIMAGEREQUIREMENTS Configuration Schema",
+  "description": "JSON Schema for ArticleImageRequirements configuration"
+}

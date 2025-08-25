@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocumentARIA",
+  "definitions": {
+    "DocumentARIA": {
+      "properties": {
+        "headings": {
+          "$ref": "#/definitions/website.config.aria.HeadingStructure",
+          "description": "Heading structure"
+        },
+        "lists": {
+          "$ref": "#/definitions/website.config.aria.ListStructure",
+          "description": "List structure"
+        },
+        "tables": {
+          "$ref": "#/definitions/website.config.aria.TableStructure",
+          "description": "Table structure"
+        },
+        "articles": {
+          "$ref": "#/definitions/website.config.aria.ArticleStructure",
+          "description": "Article structure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Document ARIA",
+      "description": "Document structure ARIA"
+    },
+    "website.config.aria.ArticleStructure": {
+      "properties": {
+        "use_article_role": {
+          "type": "boolean",
+          "description": "Article landmarks"
+        },
+        "semantic_time": {
+          "type": "boolean",
+          "description": "Time elements"
+        },
+        "author_info": {
+          "type": "boolean",
+          "description": "Author information"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Structure",
+      "description": "Article structure configuration"
+    },
+    "website.config.aria.HeadingStructure": {
+      "properties": {
+        "enforce_hierarchy": {
+          "type": "boolean",
+          "description": "Enforce hierarchy"
+        },
+        "single_h1": {
+          "type": "boolean",
+          "description": "Single H1 rule"
+        },
+        "check_empty": {
+          "type": "boolean",
+          "description": "Empty heading check"
+        },
+        "use_landmarks": {
+          "type": "boolean",
+          "description": "Heading landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Heading Structure",
+      "description": "Heading structure configuration"
+    },
+    "website.config.aria.ListStructure": {
+      "properties": {
+        "enforce_nesting": {
+          "type": "boolean",
+          "description": "Proper nesting"
+        },
+        "require_items": {
+          "type": "boolean",
+          "description": "List item requirement"
+        },
+        "support_description": {
+          "type": "boolean",
+          "description": "Description lists"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "List Structure",
+      "description": "List structure configuration"
+    },
+    "website.config.aria.TableStructure": {
+      "properties": {
+        "require_captions": {
+          "type": "boolean",
+          "description": "Require captions"
+        },
+        "header_associations": {
+          "type": "boolean",
+          "description": "Header associations"
+        },
+        "use_scope": {
+          "type": "boolean",
+          "description": "Scope attributes"
+        },
+        "complex_summary": {
+          "type": "boolean",
+          "description": "Summary for complex tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Structure",
+      "description": "Table structure configuration"
+    }
+  },
+  "title": "DOCUMENTARIA Configuration Schema",
+  "description": "JSON Schema for DocumentARIA configuration"
+}

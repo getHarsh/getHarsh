@@ -1,0 +1,219 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectRelationships",
+  "definitions": {
+    "ProjectRelationships": {
+      "properties": {
+        "dependencies": {
+          "items": {
+            "$ref": "#/definitions/website.config.ProjectDependency"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Other projects this project depends on"
+        },
+        "external_support": {
+          "items": {
+            "$ref": "#/definitions/website.config.ExternalSupport"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "External entities supporting this project"
+        },
+        "related_project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related projects in the ecosystem"
+        },
+        "used_by_project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects that use this project"
+        },
+        "evolved_from_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects this evolved from (if applicable)"
+        },
+        "hosts_project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects this project hosts/contains"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Relationships",
+      "description": "Project relationships - dependencies and external support"
+    },
+    "website.config.ExternalSupport": {
+      "properties": {
+        "entity_key": {
+          "type": "string",
+          "description": "Entity key from organizations or legal_entities catalog"
+        },
+        "support_type": {
+          "enum": [
+            "SUPPORT_TYPE_UNSPECIFIED",
+            0,
+            "SUPPORT_TYPE_FUNDING",
+            1,
+            "SUPPORT_TYPE_INFRASTRUCTURE",
+            2,
+            "SUPPORT_TYPE_ADVISORY",
+            3,
+            "SUPPORT_TYPE_TECHNICAL",
+            4,
+            "SUPPORT_TYPE_COMMUNITY",
+            5,
+            "SUPPORT_TYPE_MARKETING",
+            6,
+            "SUPPORT_TYPE_LEGAL",
+            7,
+            "SUPPORT_TYPE_MENTORSHIP",
+            8,
+            "SUPPORT_TYPE_RESOURCES",
+            9,
+            "SUPPORT_TYPE_PARTNERSHIP",
+            10
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Support Type",
+          "description": "Support types for external entity support"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the support provided"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date of support (ISO 8601)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date of support (ISO 8601, omit if ongoing)"
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "Whether support is currently active"
+        },
+        "value": {
+          "type": "string",
+          "description": "Support value/amount (if applicable, e.g., \"$10k\", \"100 GPU hours/month\")"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "External Support",
+      "description": "External support definition"
+    },
+    "website.config.ProjectDependency": {
+      "properties": {
+        "project_key": {
+          "type": "string",
+          "description": "Project key from ecosystem projects"
+        },
+        "dependency_type": {
+          "enum": [
+            "DEPENDENCY_TYPE_UNSPECIFIED",
+            0,
+            "DEPENDENCY_TYPE_USES",
+            1,
+            "DEPENDENCY_TYPE_EXTENDS",
+            2,
+            "DEPENDENCY_TYPE_INTEGRATES",
+            3,
+            "DEPENDENCY_TYPE_REQUIRES",
+            4,
+            "DEPENDENCY_TYPE_OPTIONAL",
+            5,
+            "DEPENDENCY_TYPE_REPLACES",
+            6,
+            "DEPENDENCY_TYPE_BUNDLES",
+            7,
+            "DEPENDENCY_TYPE_INSPIRED_BY",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Dependency Type",
+          "description": "Dependency types for project relationships"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of how the dependency is used"
+        },
+        "version_requirement": {
+          "type": "string",
+          "description": "Version requirement (if applicable)"
+        },
+        "is_critical": {
+          "type": "boolean",
+          "description": "Whether this is a critical dependency"
+        },
+        "scope": {
+          "enum": [
+            "DEPENDENCY_SCOPE_UNSPECIFIED",
+            0,
+            "DEPENDENCY_SCOPE_RUNTIME",
+            1,
+            "DEPENDENCY_SCOPE_DEVELOPMENT",
+            2,
+            "DEPENDENCY_SCOPE_DOCUMENTATION",
+            3,
+            "DEPENDENCY_SCOPE_TESTING",
+            4,
+            "DEPENDENCY_SCOPE_BUILD",
+            5,
+            "DEPENDENCY_SCOPE_OPTIONAL",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Dependency Scope",
+          "description": "Dependency scope for project dependencies"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Dependency",
+      "description": "Project dependency definition"
+    }
+  },
+  "title": "PROJECTRELATIONSHIPS Configuration Schema",
+  "description": "JSON Schema for ProjectRelationships configuration"
+}

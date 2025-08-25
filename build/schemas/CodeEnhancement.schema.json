@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeEnhancement",
+  "definitions": {
+    "CodeEnhancement": {
+      "properties": {
+        "create_code_objects": {
+          "type": "boolean",
+          "description": "Create SoftwareSourceCode objects"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include programming language"
+        },
+        "include_runtime": {
+          "type": "boolean",
+          "description": "Include runtime/platform info"
+        },
+        "link_repositories": {
+          "type": "boolean",
+          "description": "Link to repositories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Enhancement",
+      "description": "Code enhancement settings"
+    }
+  },
+  "title": "CODEENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for CodeEnhancement configuration"
+}

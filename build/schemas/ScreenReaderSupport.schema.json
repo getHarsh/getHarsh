@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ScreenReaderSupport",
+  "definitions": {
+    "ScreenReaderSupport": {
+      "properties": {
+        "optimize": {
+          "type": "boolean",
+          "description": "Optimize for screen readers"
+        },
+        "tested_with": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tested screen readers"
+        },
+        "announcements": {
+          "$ref": "#/definitions/website.config.aria.ScreenReaderAnnouncements",
+          "description": "Announcements"
+        },
+        "virtual_cursor": {
+          "type": "boolean",
+          "description": "Virtual cursor support"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screen Reader Support",
+      "description": "Screen reader support"
+    },
+    "website.config.aria.ScreenReaderAnnouncements": {
+      "properties": {
+        "announce_dynamic": {
+          "type": "boolean",
+          "description": "Dynamic content"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "State changes"
+        },
+        "announce_pages": {
+          "type": "boolean",
+          "description": "Page changes"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom announcements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screen Reader Announcements",
+      "description": "Screen reader announcements"
+    }
+  },
+  "title": "SCREENREADERSUPPORT Configuration Schema",
+  "description": "JSON Schema for ScreenReaderSupport configuration"
+}

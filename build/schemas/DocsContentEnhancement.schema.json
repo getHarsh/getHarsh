@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsContentEnhancement",
+  "definitions": {
+    "DocsContentEnhancement": {
+      "properties": {
+        "code_samples": {
+          "$ref": "#/definitions/website.config.CodeSampleEnhancement",
+          "description": "Code sample enhancement"
+        },
+        "steps": {
+          "$ref": "#/definitions/website.config.StepEnhancement",
+          "description": "Step-by-step enhancement"
+        },
+        "faq": {
+          "$ref": "#/definitions/website.config.FAQEnhancement",
+          "description": "FAQ enhancement"
+        },
+        "tables": {
+          "$ref": "#/definitions/website.config.TableEnhancement",
+          "description": "Table enhancement"
+        },
+        "glossary": {
+          "$ref": "#/definitions/website.config.GlossaryEnhancement",
+          "description": "Glossary enhancement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Content Enhancement",
+      "description": "Documentation content enhancement"
+    },
+    "website.config.CodeSampleEnhancement": {
+      "properties": {
+        "create_code_objects": {
+          "type": "boolean",
+          "description": "Create SoftwareSourceCode objects"
+        },
+        "include_context": {
+          "type": "boolean",
+          "description": "Include code context"
+        },
+        "link_live_examples": {
+          "type": "boolean",
+          "description": "Link to live examples"
+        },
+        "include_results": {
+          "type": "boolean",
+          "description": "Include execution results"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Sample Enhancement",
+      "description": "Code sample enhancement"
+    },
+    "website.config.FAQEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect Q&A pairs"
+        },
+        "create_faq_page": {
+          "type": "boolean",
+          "description": "Create FAQPage markup"
+        },
+        "group_questions": {
+          "type": "boolean",
+          "description": "Group related questions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "FAQ Enhancement",
+      "description": "FAQ enhancement"
+    },
+    "website.config.GlossaryEnhancement": {
+      "properties": {
+        "create_defined_terms": {
+          "type": "boolean",
+          "description": "Create DefinedTerm objects"
+        },
+        "link_occurrences": {
+          "type": "boolean",
+          "description": "Link term occurrences"
+        },
+        "include_relationships": {
+          "type": "boolean",
+          "description": "Include term relationships"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Glossary Enhancement",
+      "description": "Glossary enhancement"
+    },
+    "website.config.StepEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect step lists"
+        },
+        "create_howto": {
+          "type": "boolean",
+          "description": "Create HowTo objects"
+        },
+        "include_time": {
+          "type": "boolean",
+          "description": "Include time estimates"
+        },
+        "include_difficulty": {
+          "type": "boolean",
+          "description": "Include difficulty level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Step Enhancement",
+      "description": "Step-by-step enhancement"
+    },
+    "website.config.TableEnhancement": {
+      "properties": {
+        "create_table_objects": {
+          "type": "boolean",
+          "description": "Create Table objects"
+        },
+        "include_captions": {
+          "type": "boolean",
+          "description": "Include table captions"
+        },
+        "create_datasets": {
+          "type": "boolean",
+          "description": "Create Dataset for data tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Enhancement",
+      "description": "Table enhancement"
+    }
+  },
+  "title": "DOCSCONTENTENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for DocsContentEnhancement configuration"
+}

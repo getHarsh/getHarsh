@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleSearchConsole",
+  "definitions": {
+    "GoogleSearchConsole": {
+      "properties": {
+        "site_verification": {
+          "type": "string",
+          "description": "Site verification HTML tag content"
+        },
+        "auto_submit_sitemap": {
+          "type": "boolean",
+          "description": "Auto-submit sitemap on build"
+        },
+        "enable_indexing_api": {
+          "type": "boolean",
+          "description": "Enable Index API for instant indexing"
+        },
+        "service_account_key": {
+          "type": "string",
+          "description": "Service account JSON key path (for API)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Search Console",
+      "description": "Google Search Console configuration"
+    }
+  },
+  "title": "GOOGLESEARCHCONSOLE Configuration Schema",
+  "description": "JSON Schema for GoogleSearchConsole configuration"
+}

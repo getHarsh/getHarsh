@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SearchProviderDefaults",
+  "definitions": {
+    "SearchProviderDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.SearchProviderMapping",
+          "description": "SEARCH_PROVIDER_UNSPECIFIED  name: \"\" service_url: \"\" client_library: \"\" index_config: {} features: {}"
+        },
+        "algolia": {
+          "$ref": "#/definitions/website.config.SearchProviderMapping",
+          "description": "SEARCH_PROVIDER_ALGOLIA  name: \"Algolia\" service_url: \"https://www.algolia.com/\" client_library: \"algoliasearch\" index_config: { \"attributesToIndex\": \"title,content,tags\", \"attributesToHighlight\": \"title,content\" } features: { \"instant_search\": \"true\", \"facets\": \"true\", \"analytics\": \"true\", \"ai_powered\": \"true\" }"
+        },
+        "lunr": {
+          "$ref": "#/definitions/website.config.SearchProviderMapping",
+          "description": "SEARCH_PROVIDER_LUNR  name: \"Lunr.js\" service_url: \"https://lunrjs.com/\" client_library: \"lunr\" index_config: { \"fields\": \"title,content,tags\", \"boost\": \"title^10\" } features: { \"offline\": \"true\", \"stemming\": \"true\", \"stop_words\": \"true\", \"client_side\": \"true\" }"
+        },
+        "fuse": {
+          "$ref": "#/definitions/website.config.SearchProviderMapping",
+          "description": "SEARCH_PROVIDER_FUSE  name: \"Fuse.js\" service_url: \"https://fusejs.io/\" client_library: \"fuse.js\" index_config: { \"keys\": \"title,content,tags\", \"threshold\": \"0.3\" } features: { \"fuzzy_search\": \"true\", \"offline\": \"true\", \"lightweight\": \"true\" }"
+        },
+        "custom": {
+          "$ref": "#/definitions/website.config.SearchProviderMapping",
+          "description": "SEARCH_PROVIDER_CUSTOM  name: \"Custom Search\" service_url: \"\" client_library: \"\" index_config: {} features: {}"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Provider Defaults",
+      "description": "Complete search provider mappings"
+    },
+    "website.config.SearchProviderMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Provider name"
+        },
+        "service_url": {
+          "type": "string",
+          "description": "Service URL"
+        },
+        "client_library": {
+          "type": "string",
+          "description": "Client library"
+        },
+        "index_config": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Index configuration"
+        },
+        "features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Provider Mapping"
+    }
+  },
+  "title": "SEARCHPROVIDERDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SearchProviderDefaults configuration"
+}

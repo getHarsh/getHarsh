@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/UserProperties",
+  "definitions": {
+    "UserProperties": {
+      "properties": {
+        "track_user_id": {
+          "type": "boolean",
+          "description": "Track user ID (hashed)"
+        },
+        "track_user_type": {
+          "type": "boolean",
+          "description": "Track user type (visitor, member, etc.)"
+        },
+        "track_user_segment": {
+          "type": "boolean",
+          "description": "Track user segment"
+        },
+        "track_login_status": {
+          "type": "boolean",
+          "description": "Track login status"
+        },
+        "track_subscription_status": {
+          "type": "boolean",
+          "description": "Track subscription status"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom user properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "User Properties",
+      "description": "User properties for tracking"
+    }
+  },
+  "title": "USERPROPERTIES Configuration Schema",
+  "description": "JSON Schema for UserProperties configuration"
+}

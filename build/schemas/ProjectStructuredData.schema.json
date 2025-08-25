@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectStructuredData",
+  "definitions": {
+    "ProjectStructuredData": {
+      "properties": {
+        "software_app": {
+          "$ref": "#/definitions/website.config.SoftwareApplicationSchema",
+          "description": "Software application schema"
+        },
+        "dataset": {
+          "$ref": "#/definitions/website.config.DatasetSchema",
+          "description": "Dataset schema (for data projects)"
+        },
+        "course": {
+          "$ref": "#/definitions/website.config.CourseSchema",
+          "description": "Course schema (for educational projects)"
+        },
+        "custom_schemas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom schema extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Structured Data",
+      "description": "Project-specific structured data"
+    },
+    "website.config.CourseSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable course markup"
+        },
+        "description": {
+          "type": "string",
+          "description": "Course description"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Course duration"
+        },
+        "language": {
+          "type": "string",
+          "description": "Course language"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Prerequisites"
+        },
+        "target_audience": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Target audience"
+        },
+        "educational_level": {
+          "type": "string",
+          "description": "Educational level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Course Schema",
+      "description": "Course schema"
+    },
+    "website.config.DatasetSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable dataset markup"
+        },
+        "description": {
+          "type": "string",
+          "description": "Dataset description"
+        },
+        "distribution_format": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Distribution format"
+        },
+        "license": {
+          "type": "string",
+          "description": "License"
+        },
+        "temporal_coverage": {
+          "type": "string",
+          "description": "Temporal coverage"
+        },
+        "spatial_coverage": {
+          "type": "string",
+          "description": "Spatial coverage"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dataset Schema",
+      "description": "Dataset schema"
+    },
+    "website.config.SoftwareApplicationSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable software app markup"
+        },
+        "application_category": {
+          "type": "string",
+          "description": "Application category"
+        },
+        "operating_system": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Operating system"
+        },
+        "software_version": {
+          "type": "string",
+          "description": "Software version"
+        },
+        "download_url": {
+          "type": "string",
+          "description": "Download URL"
+        },
+        "install_url": {
+          "type": "string",
+          "description": "Installation URL"
+        },
+        "memory_requirements": {
+          "type": "string",
+          "description": "Memory requirements"
+        },
+        "storage_requirements": {
+          "type": "string",
+          "description": "Storage requirements"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Permissions required"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Application Schema",
+      "description": "Software application schema"
+    }
+  },
+  "title": "PROJECTSTRUCTUREDDATA Configuration Schema",
+  "description": "JSON Schema for ProjectStructuredData configuration"
+}

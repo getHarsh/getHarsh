@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PolicyUpdateNotification",
+  "definitions": {
+    "PolicyUpdateNotification": {
+      "properties": {
+        "show_last_updated": {
+          "type": "boolean",
+          "description": "Show last updated date"
+        },
+        "highlight_changes": {
+          "type": "boolean",
+          "description": "Highlight recent changes"
+        },
+        "recent_days_threshold": {
+          "type": "integer",
+          "description": "Days to consider \"recent\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Update Notification",
+      "description": "Policy update notification configuration"
+    }
+  },
+  "title": "POLICYUPDATENOTIFICATION Configuration Schema",
+  "description": "JSON Schema for PolicyUpdateNotification configuration"
+}

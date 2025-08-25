@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkTypePatterns",
+  "definitions": {
+    "LinkTypePatterns": {
+      "properties": {
+        "google_docs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Google Workspace patterns"
+        },
+        "google_sheets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_slides": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_drive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_repo": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "GitHub patterns"
+        },
+        "github_file": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_issue": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_pr": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "file_extensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "File extension patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Patterns",
+      "description": "Link type detection patterns"
+    }
+  },
+  "title": "LINKTYPEPATTERNS Configuration Schema",
+  "description": "JSON Schema for LinkTypePatterns configuration"
+}

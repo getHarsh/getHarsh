@@ -1,0 +1,823 @@
+# =============================================================================
+# SCHEMA.ORG MAPPING DICTIONARY
+# =============================================================================
+# This file contains ALL enum-to-Schema.org mappings for the ecosystem.
+# It is the single source of truth for automatic Schema.org generation.
+#
+# How it works:
+# 1. Config files use enums (e.g., content_type: CONTENT_TYPE_TUTORIAL)
+# 2. Build system reads this dictionary
+# 3. Automatically maps to Schema.org (e.g., "HowToArticle")
+# 4. Generates proper JSON-LD structured data
+#
+# This ensures "safe by default" - configs can only use valid enums,
+# and Schema.org mapping is automatic and consistent.
+# =============================================================================
+
+# Discussion platforms to Schema.org types
+discussion_platforms:
+  DISCUSSION_PLATFORM_UNSPECIFIED: ""
+  DISCUSSION_PLATFORM_TWITTER: "SocialMediaPosting"
+  DISCUSSION_PLATFORM_LINKEDIN: "SocialMediaPosting"
+  DISCUSSION_PLATFORM_HACKERNEWS: "DiscussionForumPosting"
+  DISCUSSION_PLATFORM_REDDIT: "DiscussionForumPosting"
+  DISCUSSION_PLATFORM_MEDIUM: "Article"
+  DISCUSSION_PLATFORM_STACKOVERFLOW: "Question"
+  DISCUSSION_PLATFORM_GITHUB_ISSUES: "DiscussionForumPosting"
+  DISCUSSION_PLATFORM_GITHUB_DISCUSSIONS: "DiscussionForumPosting"
+  DISCUSSION_PLATFORM_YOUTUBE: "VideoObject"
+  DISCUSSION_PLATFORM_PODCAST: "PodcastEpisode"
+  DISCUSSION_PLATFORM_SUBSTACK: "BlogPosting"
+  DISCUSSION_PLATFORM_DISCOURSE: "DiscussionForumPosting"
+  DISCUSSION_PLATFORM_SLACK: "Conversation"
+  DISCUSSION_PLATFORM_DISCORD: "Conversation"
+  DISCUSSION_PLATFORM_TELEGRAM: "Conversation"
+  DISCUSSION_PLATFORM_CHATGPT_CHATS: "Conversation"
+  DISCUSSION_PLATFORM_CLAUDE_CHATS: "Conversation"
+  DISCUSSION_PLATFORM_CLAUDE_ARTIFACTS: "CreativeWork"
+  DISCUSSION_PLATFORM_PERPLEXITY_THREADS: "Conversation"
+
+# Media types to Schema.org MediaObject types
+media_types:
+  MEDIA_TYPE_UNSPECIFIED: ""
+  MEDIA_TYPE_YOUTUBE: "VideoObject"
+  MEDIA_TYPE_SPOTIFY: "AudioObject"
+  MEDIA_TYPE_SOUNDCLOUD: "AudioObject"
+  MEDIA_TYPE_APPLE_PODCASTS: "PodcastEpisode"
+  MEDIA_TYPE_GOOGLE_PODCASTS: "PodcastEpisode"
+  MEDIA_TYPE_GOOGLE_DRIVE: "MediaObject"
+  MEDIA_TYPE_INSTAGRAM: "ImageObject"
+  MEDIA_TYPE_UNSPLASH: "ImageObject"
+  MEDIA_TYPE_DROPBOX: "MediaObject"
+  MEDIA_TYPE_FIGMA: "CreativeWork"
+
+# Content types to Schema.org Article subtypes
+content_types:
+  CONTENT_TYPE_UNSPECIFIED: "Article"
+  CONTENT_TYPE_ANNOUNCEMENT: "NewsArticle"
+  CONTENT_TYPE_TUTORIAL: "HowTo"  # More specific than HowToArticle
+  CONTENT_TYPE_DEEP_DIVE: "TechArticle"  # Better for technical deep dives
+  CONTENT_TYPE_UPDATE: "BlogPosting"
+  CONTENT_TYPE_OPINION: "Opinion"
+  CONTENT_TYPE_CASE_STUDY: "Article"
+  CONTENT_TYPE_REVIEW: "Review"
+  CONTENT_TYPE_GUIDE: "HowTo"  # HowTo is the proper type
+  CONTENT_TYPE_INTERVIEW: "Interview"
+  CONTENT_TYPE_RESEARCH: "ScholarlyArticle"
+  CONTENT_TYPE_ANALYSIS: "TechArticle"  # Better for technical analysis
+  CONTENT_TYPE_REFLECTION: "BlogPosting"
+  CONTENT_TYPE_EXPERIMENT: "ScholarlyArticle"
+  CONTENT_TYPE_ROUNDUP: "Article"
+  CONTENT_TYPE_COMPARISON: "Review"
+  CONTENT_TYPE_CHECKLIST: "HowTo"
+  CONTENT_TYPE_FAQ: "FAQPage"
+  CONTENT_TYPE_THOUGHT_PIECE: "Opinion"
+  CONTENT_TYPE_AUDIO_RECORDING: "AudioObject"
+  CONTENT_TYPE_TECHNICAL: "TechArticle"  # New: for technical blog posts
+  CONTENT_TYPE_EDUCATIONAL: "LearningResource"  # New: for educational content
+  CONTENT_TYPE_API_DOCS: "APIReference"  # New: for API documentation
+
+# Payment methods to Schema.org types
+payment_methods:
+  PAYMENT_METHOD_UNSPECIFIED: ""
+  PAYMENT_METHOD_PAYPAL: "PaymentService"
+  PAYMENT_METHOD_GITHUB_SPONSORS: "DonateAction"
+  PAYMENT_METHOD_YOUTUBE_MEMBERSHIP: "PaymentService"
+  PAYMENT_METHOD_CRYPTO: "PaymentMethod"
+
+# Code languages to language names for Schema.org
+code_languages:
+  CODE_LANGUAGE_UNSPECIFIED: ""
+  CODE_LANGUAGE_JAVASCRIPT: "JavaScript"
+  CODE_LANGUAGE_TYPESCRIPT: "TypeScript"
+  CODE_LANGUAGE_PYTHON: "Python"
+  CODE_LANGUAGE_GO: "Go"
+  CODE_LANGUAGE_RUST: "Rust"
+  CODE_LANGUAGE_JAVA: "Java"
+  CODE_LANGUAGE_C: "C"
+  CODE_LANGUAGE_CPP: "C++"
+  CODE_LANGUAGE_SHELL: "Shell"
+  CODE_LANGUAGE_YAML: "YAML"
+  CODE_LANGUAGE_JSON: "JSON"
+  CODE_LANGUAGE_MARKDOWN: "Markdown"
+  CODE_LANGUAGE_HTML: "HTML"
+  CODE_LANGUAGE_CSS: "CSS"
+  CODE_LANGUAGE_GRAPHQL: "GraphQL"
+  CODE_LANGUAGE_PROTO: "Protocol Buffers"
+
+# Crypto networks to currency codes
+crypto_networks:
+  CRYPTO_NETWORK_UNSPECIFIED: ""
+  CRYPTO_NETWORK_BITCOIN: "BTC"
+  CRYPTO_NETWORK_ETHEREUM: "ETH"
+  CRYPTO_NETWORK_USDT: "USDT"
+
+# Affiliation types to Schema.org Role types
+affiliation_types:
+  AFFILIATION_TYPE_UNSPECIFIED: "Role"
+  AFFILIATION_EMPLOYEE: "EmployeeRole"
+  AFFILIATION_FOUNDER: "OrganizationRole"
+  AFFILIATION_ADVISOR: "OrganizationRole"
+  AFFILIATION_MEMBER: "OrganizationRole"
+  AFFILIATION_ALUMNI: "OrganizationRole"
+  AFFILIATION_BOARD_MEMBER: "OrganizationRole"
+  AFFILIATION_INVESTOR: "OrganizationRole"
+  AFFILIATION_CONSULTANT: "OrganizationRole"
+  AFFILIATION_VOLUNTEER: "OrganizationRole"
+  AFFILIATION_MENTOR: "OrganizationRole"
+  AFFILIATION_PARTNER: "OrganizationRole"
+  AFFILIATION_CONTRACTOR: "OrganizationRole"
+
+# Relationship types to Schema.org properties
+relationship_types:
+  RELATIONSHIP_TYPE_UNSPECIFIED: ""
+  RELATIONSHIP_OWNS: "owns"
+  RELATIONSHIP_OWNED_BY: "ownedBy"
+  RELATIONSHIP_PARENT_ORGANIZATION: "parentOrganization"
+  RELATIONSHIP_SUB_ORGANIZATION: "subOrganization"
+  RELATIONSHIP_FOUNDER: "founder"
+  RELATIONSHIP_FOUNDED_BY: "foundedBy"
+  RELATIONSHIP_EMPLOYEE: "employee"
+  RELATIONSHIP_EMPLOYER: "employer"
+  RELATIONSHIP_MEMBER: "member"
+  RELATIONSHIP_MEMBER_OF: "memberOf"
+  RELATIONSHIP_ADVISOR: "advisor"
+  RELATIONSHIP_ADVISES: "advises"
+  RELATIONSHIP_PARTNER: "partner"
+  RELATIONSHIP_PARTNER_OF: "partnerOf"
+  RELATIONSHIP_SPONSOR: "sponsor"
+  RELATIONSHIP_SPONSORED_BY: "sponsoredBy"
+  RELATIONSHIP_FUNDER: "funder"
+  RELATIONSHIP_FUNDED_BY: "fundedBy"
+  RELATIONSHIP_AFFILIATED_WITH: "affiliation"
+  RELATIONSHIP_ALUMNI_OF: "alumniOf"
+  RELATIONSHIP_KNOWS: "knows"
+  RELATIONSHIP_COLLEAGUE_OF: "colleague"
+  RELATIONSHIP_CLIENT: "client"
+  RELATIONSHIP_CLIENT_OF: "clientOf"
+  RELATIONSHIP_USES: "uses"
+  RELATIONSHIP_USED_BY: "usedBy"
+  RELATIONSHIP_INSPIRED_BY: "isBasedOn"
+  RELATIONSHIP_INSPIRES: "inspires"
+  RELATIONSHIP_EVOLVED_FROM: "isBasedOn"
+  RELATIONSHIP_EVOLVED_TO: "evolvedTo"
+  RELATIONSHIP_HOSTS: "hosts"
+  RELATIONSHIP_HOSTED_BY: "hostedBy"
+
+# Schema.org entity types
+schema_org_entity_types:
+  SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED: "Thing"
+  SCHEMA_ORG_PERSON: "Person"
+  SCHEMA_ORG_ORGANIZATION: "Organization"
+  SCHEMA_ORG_CORPORATION: "Corporation"
+  SCHEMA_ORG_LOCAL_BUSINESS: "LocalBusiness"
+  SCHEMA_ORG_EDUCATIONAL_ORGANIZATION: "EducationalOrganization"
+  SCHEMA_ORG_RESEARCH_ORGANIZATION: "ResearchOrganization"
+  SCHEMA_ORG_CONSORTIUM: "Consortium"
+  SCHEMA_ORG_CREATIVE_WORK: "CreativeWork"
+  SCHEMA_ORG_ARTICLE: "Article"
+  SCHEMA_ORG_BLOG_POSTING: "BlogPosting"
+  SCHEMA_ORG_NEWS_ARTICLE: "NewsArticle"
+  SCHEMA_ORG_SCHOLARLY_ARTICLE: "ScholarlyArticle"
+  SCHEMA_ORG_TECH_ARTICLE: "TechArticle"
+  SCHEMA_ORG_SOFTWARE_APPLICATION: "SoftwareApplication"
+  SCHEMA_ORG_WEB_APPLICATION: "WebApplication"
+  SCHEMA_ORG_MOBILE_APPLICATION: "MobileApplication"
+  SCHEMA_ORG_WEB_SITE: "WebSite"
+  SCHEMA_ORG_BLOG: "Blog"
+  SCHEMA_ORG_RESEARCH_PROJECT: "ResearchProject"
+  SCHEMA_ORG_SERVICE: "Service"
+  SCHEMA_ORG_COLLECTION_PAGE: "CollectionPage"
+  SCHEMA_ORG_ABOUT_PAGE: "AboutPage"
+  SCHEMA_ORG_CONTACT_PAGE: "ContactPage"
+  SCHEMA_ORG_WEB_PAGE: "WebPage"
+
+# Entity types to Schema.org types
+entity_types:
+  ENTITY_TYPE_UNSPECIFIED: "Thing"
+  ENTITY_TYPE_PERSON: "Person"
+  ENTITY_TYPE_LEGAL_ENTITY: "Corporation"
+  ENTITY_TYPE_ORGANIZATION: "Organization"
+  ENTITY_TYPE_BRAND: "Brand"
+  ENTITY_TYPE_PROJECT: "Project"
+  ENTITY_TYPE_COMMUNITY: "Organization"
+  ENTITY_TYPE_DOMAIN: "WebSite"
+  ENTITY_TYPE_BLOG: "Blog"
+
+# Project-specific schema types (for [project_name].domain.in structure)
+project_schema_types:
+  SCHEMA_ORG_PROJECT: "Project"
+  SCHEMA_ORG_SOFTWARE_SOURCE_CODE: "SoftwareSourceCode"
+  SCHEMA_ORG_CODE_REPOSITORY: "codeRepository"
+  SCHEMA_ORG_PROGRAMMING_LANGUAGE: "programmingLanguage"
+  SCHEMA_ORG_RUNTIME_PLATFORM: "runtimePlatform"
+  SCHEMA_ORG_TARGET_PRODUCT: "targetProduct"
+
+# Project types to Schema.org types
+project_types:
+  PROJECT_TYPE_UNSPECIFIED: "Project"
+  PROJECT_TYPE_RESEARCH: "ResearchProject"
+  PROJECT_TYPE_TOOL: "SoftwareApplication"
+  PROJECT_TYPE_FRAMEWORK: "SoftwareApplication"
+  PROJECT_TYPE_LIBRARY: "SoftwareSourceCode"
+  PROJECT_TYPE_SERVICE: "WebApplication"
+  PROJECT_TYPE_APPLICATION: "SoftwareApplication"
+  PROJECT_TYPE_PROTOCOL: "TechArticle"
+  PROJECT_TYPE_PLATFORM: "WebApplication"
+  PROJECT_TYPE_INFRASTRUCTURE: "SoftwareApplication"
+  PROJECT_TYPE_EDUCATIONAL: "Course"
+  PROJECT_TYPE_EXPERIMENTAL: "ResearchProject"
+  PROJECT_TYPE_DATASET: "Dataset"  # New: for AI/ML datasets
+  PROJECT_TYPE_API: "WebAPI"  # New: for API projects
+  PROJECT_TYPE_DOCUMENTATION: "TechArticle"  # New: for doc-only projects
+
+# Project statuses (legacy - use project_development_statuses instead)
+project_statuses:
+  PROJECT_STATUS_UNSPECIFIED: ""
+  PROJECT_STATUS_ACTIVE: "Active"
+  PROJECT_STATUS_BETA: "Beta"
+  PROJECT_STATUS_STABLE: "Stable"
+  PROJECT_STATUS_MAINTENANCE: "Maintenance"
+  PROJECT_STATUS_DEPRECATED: "Deprecated"
+  PROJECT_STATUS_ARCHIVED: "Archived"
+
+# Project development statuses (maps to CreativeWork status)
+project_development_statuses:
+  PROJECT_STATUS_UNSPECIFIED: ""
+  PROJECT_STATUS_CONCEPT: "Incomplete"
+  PROJECT_STATUS_ALPHA: "Draft"
+  PROJECT_STATUS_BETA: "InProgress"
+  PROJECT_STATUS_STABLE: "Completed"
+  PROJECT_STATUS_DEPRECATED: "Discontinued"
+  PROJECT_STATUS_ARCHIVED: "Archived"
+
+# Project lifecycles
+project_lifecycles:
+  PROJECT_LIFECYCLE_UNSPECIFIED: ""
+  PROJECT_LIFECYCLE_EMERGE: "Emerge"
+  PROJECT_LIFECYCLE_SCALE: "Scale"
+  PROJECT_LIFECYCLE_STAGNATE: "Stagnate"
+  PROJECT_LIFECYCLE_PIVOT: "Pivot"
+  PROJECT_LIFECYCLE_ACCELERATE: "Accelerate"
+  PROJECT_LIFECYCLE_MAINTAIN: "Maintain"
+  PROJECT_LIFECYCLE_SUNSET: "Sunset"
+  PROJECT_LIFECYCLE_ARCHIVED: "Archived"
+
+# License types to URLs (only 5 supported)
+license_types:
+  LICENSE_TYPE_UNSPECIFIED: ""
+  LICENSE_TYPE_MIT: "https://opensource.org/licenses/MIT"
+  LICENSE_TYPE_APACHE_2_0: "https://opensource.org/licenses/Apache-2.0"
+  LICENSE_TYPE_GPL_3: "https://www.gnu.org/licenses/gpl-3.0.en.html"
+  LICENSE_TYPE_PROPRIETARY: ""
+  LICENSE_TYPE_CC_BY_4_0: "https://creativecommons.org/licenses/by/4.0/"
+
+# Support types to Schema.org types
+support_types:
+  SUPPORT_TYPE_UNSPECIFIED: ""
+  SUPPORT_TYPE_FUNDING: "MonetaryGrant"
+  SUPPORT_TYPE_INFRASTRUCTURE: "Service"
+  SUPPORT_TYPE_ADVISORY: "Service"  # ProfessionalService is deprecated
+  SUPPORT_TYPE_TECHNICAL: "TechArticle"
+  SUPPORT_TYPE_COMMUNITY: "Organization"
+  SUPPORT_TYPE_MARKETING: "MarketingCampaign"
+  SUPPORT_TYPE_LEGAL: "LegalService"
+  SUPPORT_TYPE_MENTORSHIP: "EducationalOccupationalProgram"
+  SUPPORT_TYPE_RESOURCES: "Grant"
+  SUPPORT_TYPE_PARTNERSHIP: "Organization"
+
+# Dependency types
+dependency_types:
+  DEPENDENCY_TYPE_UNSPECIFIED: ""
+  DEPENDENCY_TYPE_USES: "uses"
+  DEPENDENCY_TYPE_EXTENDS: "isBasedOn"
+  DEPENDENCY_TYPE_INTEGRATES: "interactionStatistic"
+  DEPENDENCY_TYPE_REQUIRES: "requirements"
+  DEPENDENCY_TYPE_OPTIONAL: "softwareRequirements"
+  DEPENDENCY_TYPE_REPLACES: "replacer"
+  DEPENDENCY_TYPE_BUNDLES: "hasPart"
+  DEPENDENCY_TYPE_INSPIRED_BY: "citation"
+
+# Dependency scopes
+dependency_scopes:
+  DEPENDENCY_SCOPE_UNSPECIFIED: ""
+  DEPENDENCY_SCOPE_RUNTIME: "Runtime"
+  DEPENDENCY_SCOPE_DEVELOPMENT: "Development"
+  DEPENDENCY_SCOPE_DOCUMENTATION: "Documentation"
+  DEPENDENCY_SCOPE_TESTING: "Testing"
+  DEPENDENCY_SCOPE_BUILD: "Build"
+  DEPENDENCY_SCOPE_OPTIONAL: "Optional"
+
+# Service types to Schema.org types
+service_types:
+  SERVICE_TYPE_UNSPECIFIED: "Service"
+  CONSULTING_SERVICE: "Service"  # ProfessionalService is deprecated
+  TECHNOLOGY_SERVICE: "Service"  # ProfessionalService is deprecated
+  AI_SERVICE: "Service"
+  RESEARCH_SERVICE: "ResearchProject"
+  SOFTWARE_SERVICE: "SoftwareApplication"
+  PROFESSIONAL_SERVICE: "Service"  # ProfessionalService is deprecated
+  
+# Industry schema types for service pages
+industry_schema_types:
+  INDUSTRY_TYPE_UNSPECIFIED: "WebPage"
+  CUSTOMER_SERVICE: "CustomerService"
+  HEALTHCARE: "HealthAndBeautyBusiness"
+  FINTECH: "FinancialService"
+  EDUCATION: "EducationalOrganization"
+  RETAIL: "Store"
+  MANUFACTURING: "Corporation"
+  TECHNOLOGY: "Corporation"
+  CONSULTING: "Service"  # ProfessionalService is deprecated
+
+# Community statuses
+community_statuses:
+  COMMUNITY_STATUS_UNSPECIFIED: ""
+  COMMUNITY_STATUS_FORMING: "Forming"
+  COMMUNITY_STATUS_ACTIVE: "Active"
+  COMMUNITY_STATUS_INACTIVE: "Inactive"
+  COMMUNITY_STATUS_DISSOLVED: "Dissolved"
+  COMMUNITY_STATUS_MERGED: "Merged"
+
+# API specification formats
+api_spec_formats:
+  API_SPEC_FORMAT_UNSPECIFIED: ""
+  API_SPEC_FORMAT_OPENAPI: "OpenAPI"
+  API_SPEC_FORMAT_GRAPHQL: "GraphQL"
+  API_SPEC_FORMAT_GRPC: "gRPC"
+
+# Authentication types
+auth_types:
+  AUTH_TYPE_UNSPECIFIED: ""
+  AUTH_TYPE_NONE: "None"
+  AUTH_TYPE_API_KEY: "ApiKey"
+  AUTH_TYPE_OAUTH2: "OAuth2"
+  AUTH_TYPE_BASIC: "Basic"
+
+# OAuth2 flows
+oauth2_flows:
+  OAUTH2_FLOW_UNSPECIFIED: ""
+  OAUTH2_FLOW_IMPLICIT: "Implicit"
+  OAUTH2_FLOW_AUTHORIZATION_CODE: "Authorization Code"
+  OAUTH2_FLOW_CLIENT_CREDENTIALS: "Client Credentials"
+
+# Documentation navigation styles
+doc_navigation_styles:
+  DOC_NAVIGATION_STYLE_UNSPECIFIED: ""
+  DOC_NAVIGATION_STYLE_SIDEBAR: "Sidebar"
+  DOC_NAVIGATION_STYLE_TOP_NAV: "Top Navigation"
+  DOC_NAVIGATION_STYLE_BOTH: "Both"
+
+# Documentation landing styles
+doc_landing_styles:
+  DOC_LANDING_STYLE_UNSPECIFIED: ""
+  DOC_LANDING_STYLE_HERO: "Hero Landing"
+  DOC_LANDING_STYLE_QUICK_START: "Quick Start"
+  DOC_LANDING_STYLE_OVERVIEW: "Overview"
+
+# Sidebar positions
+sidebar_positions:
+  SIDEBAR_POSITION_UNSPECIFIED: ""
+  SIDEBAR_POSITION_LEFT: "Left"
+  SIDEBAR_POSITION_RIGHT: "Right"
+
+# Link behaviors
+link_behaviors:
+  LINK_BEHAVIOR_UNSPECIFIED: ""
+  LINK_BEHAVIOR_NEW_TAB: "_blank"
+  LINK_BEHAVIOR_SAME_TAB: "_self"
+
+# API documentation generators
+api_doc_generators:
+  API_DOC_GENERATOR_UNSPECIFIED: ""
+  API_DOC_GENERATOR_SWAGGER_UI: "Swagger UI"
+  API_DOC_GENERATOR_REDOC: "ReDoc"
+  API_DOC_GENERATOR_GRAPHDOC: "GraphDoc"
+  API_DOC_GENERATOR_CUSTOM: "Custom"
+
+# Homepage styles
+homepage_styles:
+  HOMEPAGE_STYLE_UNSPECIFIED: ""
+  HOMEPAGE_STYLE_HERO: "Hero Homepage"
+  HOMEPAGE_STYLE_DOCUMENTATION: "Documentation Homepage"
+  HOMEPAGE_STYLE_SHOWCASE: "Showcase Homepage"
+  HOMEPAGE_STYLE_CUSTOM: "Custom Homepage"
+
+# Documentation layout styles
+docs_layout_styles:
+  DOCS_LAYOUT_STYLE_UNSPECIFIED: ""
+  DOCS_LAYOUT_STYLE_SINGLE_PAGE: "Single Page"
+  DOCS_LAYOUT_STYLE_MULTI_PAGE: "Multi Page"
+  DOCS_LAYOUT_STYLE_VERSIONED: "Versioned"
+
+# Playground providers
+playground_providers:
+  PLAYGROUND_PROVIDER_UNSPECIFIED: ""
+  PLAYGROUND_PROVIDER_CODEPEN: "CodePen"
+  PLAYGROUND_PROVIDER_CODESANDBOX: "CodeSandbox"
+  PLAYGROUND_PROVIDER_STACKBLITZ: "StackBlitz"
+  PLAYGROUND_PROVIDER_CUSTOM: "Custom"
+
+# Search providers
+search_providers:
+  SEARCH_PROVIDER_UNSPECIFIED: ""
+  SEARCH_PROVIDER_ALGOLIA: "Algolia"
+  SEARCH_PROVIDER_LUNR: "Lunr.js"
+  SEARCH_PROVIDER_FUSE: "Fuse.js"
+  SEARCH_PROVIDER_CUSTOM: "Custom"
+
+# Manifest formats
+manifest_formats:
+  MANIFEST_FORMAT_UNSPECIFIED: ""
+  MANIFEST_FORMAT_JSON: "JSON"
+  MANIFEST_FORMAT_PROTOBUF: "Protocol Buffers"
+
+# Site types to Schema.org types
+site_types:
+  SITE_TYPE_UNSPECIFIED: "WebSite"
+  SITE_TYPE_DOMAIN: "WebSite"
+  SITE_TYPE_BLOG: "Blog"
+  SITE_TYPE_PROJECT: "SoftwareSourceCode"
+
+# Node types to Schema.org types
+node_types:
+  NODE_TYPE_UNSPECIFIED: ""
+  NODE_TYPE_PAGE: "WebPage"
+  NODE_TYPE_SECTION: "WebPageElement"
+  NODE_TYPE_EXTERNAL: "WebPage"
+
+# Service types to Schema.org Service types (for service components)
+service_component_types:
+  SERVICE_TYPE_UNSPECIFIED: "Service"
+  SERVICE_TYPE_CONSULTING: "Service"  # ProfessionalService is deprecated
+  SERVICE_TYPE_DEVELOPMENT: "Service"
+  SERVICE_TYPE_TRAINING: "EducationalOccupationalProgram"
+  SERVICE_TYPE_RESEARCH: "ResearchProject"
+  SERVICE_TYPE_ADVISORY: "Service"  # ProfessionalService is deprecated
+
+# Comic types to Schema.org comic types
+comic_types:
+  COMIC_TYPE_UNSPECIFIED: "CreativeWork"
+  COMIC_TYPE_SERIES: "ComicSeries"
+  COMIC_TYPE_ISSUE: "ComicIssue"
+  COMIC_TYPE_STORY: "ComicStory"
+  COMIC_TYPE_COVER: "CoverArt"
+
+# Book structure to Schema.org types
+book_structures:
+  BOOK_STRUCTURE_UNSPECIFIED: "CreativeWork"
+  BOOK_STRUCTURE_BOOK: "Book"
+  BOOK_STRUCTURE_CHAPTER: "Chapter"
+  BOOK_STRUCTURE_SECTION: "CreativeWork"
+  BOOK_STRUCTURE_APPENDIX: "CreativeWork"
+
+# =============================================================================
+# EXTENDED MAPPINGS WITH METADATA
+# =============================================================================
+# These mappings include additional metadata beyond simple string mappings
+
+# Discussion platform providers
+discussion_platform_providers:
+  DISCUSSION_PLATFORM_TWITTER:
+    name: "Twitter"
+    url: "https://twitter.com"
+    type: "Organization"
+  DISCUSSION_PLATFORM_LINKEDIN:
+    name: "LinkedIn"
+    url: "https://linkedin.com"
+    type: "Organization"
+  DISCUSSION_PLATFORM_REDDIT:
+    name: "Reddit"
+    url: "https://reddit.com"
+    type: "Organization"
+  DISCUSSION_PLATFORM_GITHUB_ISSUES:
+    name: "GitHub"
+    url: "https://github.com"
+    type: "Organization"
+  DISCUSSION_PLATFORM_CHATGPT_CHATS:
+    name: "OpenAI"
+    url: "https://openai.com"
+    type: "Organization"
+  DISCUSSION_PLATFORM_CLAUDE_CHATS:
+    name: "Anthropic"
+    url: "https://anthropic.com"
+    type: "Organization"
+  DISCUSSION_PLATFORM_PERPLEXITY_THREADS:
+    name: "Perplexity"
+    url: "https://perplexity.ai"
+    type: "Organization"
+
+# Media type required properties
+media_type_properties:
+  MEDIA_TYPE_YOUTUBE:
+    required: ["contentUrl", "name", "uploadDate"]
+    recommended: ["duration", "thumbnail", "embedUrl", "description"]
+  MEDIA_TYPE_SPOTIFY:
+    required: ["contentUrl", "name"]
+    recommended: ["duration", "transcript", "encodingFormat"]
+  MEDIA_TYPE_GOOGLE_DRIVE:
+    required: ["contentUrl", "name"]
+    recommended: ["contentSize", "encodingFormat", "dateModified"]
+
+# Code language metadata
+code_language_metadata:
+  CODE_LANGUAGE_JAVASCRIPT:
+    file_extensions: [".js", ".mjs", ".cjs"]
+    mime_type: "application/javascript"
+    highlight_js_id: "javascript"
+  CODE_LANGUAGE_TYPESCRIPT:
+    file_extensions: [".ts", ".tsx"]
+    mime_type: "application/typescript"
+    highlight_js_id: "typescript"
+  CODE_LANGUAGE_PYTHON:
+    file_extensions: [".py", ".pyi"]
+    mime_type: "text/x-python"
+    highlight_js_id: "python"
+  CODE_LANGUAGE_C:
+    file_extensions: [".c", ".h"]
+    mime_type: "text/x-c"
+    highlight_js_id: "c"
+  CODE_LANGUAGE_CPP:
+    file_extensions: [".cpp", ".cc", ".cxx", ".hpp", ".h"]
+    mime_type: "text/x-c++"
+    highlight_js_id: "cpp"
+
+# Crypto network details
+crypto_network_details:
+  CRYPTO_NETWORK_BITCOIN:
+    name: "Bitcoin"
+    blockchain: "Bitcoin"
+    explorer_url: "https://blockchain.info"
+    network_type: "mainnet"
+  CRYPTO_NETWORK_ETHEREUM:
+    name: "Ethereum"
+    blockchain: "Ethereum"
+    explorer_url: "https://etherscan.io"
+    network_type: "mainnet"
+  CRYPTO_NETWORK_USDT:
+    name: "Tether"
+    blockchain: "Multiple"
+    network_type: "multi-chain"
+
+# License metadata
+license_metadata:
+  LICENSE_TYPE_MIT:
+    spdx_id: "MIT"
+    name: "MIT License"
+    osi_approved: true
+    license_type: "permissive"
+  LICENSE_TYPE_APACHE_2_0:
+    spdx_id: "Apache-2.0"
+    name: "Apache License 2.0"
+    osi_approved: true
+    license_type: "permissive"
+  LICENSE_TYPE_CC_BY_4_0:
+    spdx_id: "CC-BY-4.0"
+    name: "Creative Commons Attribution 4.0 International"
+    osi_approved: false
+    license_type: "content"
+  LICENSE_TYPE_PROPRIETARY:
+    spdx_id: "Proprietary"
+    name: "Proprietary License"
+    osi_approved: false
+    license_type: "proprietary"
+
+# Search provider features
+search_provider_features:
+  SEARCH_PROVIDER_ALGOLIA:
+    instant_search: true
+    facets: true
+    analytics: true
+    ai_powered: true
+  SEARCH_PROVIDER_LUNR:
+    offline: true
+    stemming: true
+    stop_words: true
+    client_side: true
+  SEARCH_PROVIDER_FUSE:
+    fuzzy_search: true
+    offline: true
+    lightweight: true
+
+# Person roles for content attribution
+person_roles:
+  PERSON_ROLE_UNSPECIFIED: ""
+  PERSON_ROLE_AUTHOR: "Author"
+  PERSON_ROLE_CONTRIBUTOR: "Contributor"
+  PERSON_ROLE_REVIEWER: "Reviewer"
+  PERSON_ROLE_EDITOR: "Editor"
+  PERSON_ROLE_FOUNDER: "Founder"
+  PERSON_ROLE_DEVELOPER: "Developer"
+  PERSON_ROLE_DESIGNER: "Designer"
+  PERSON_ROLE_RESEARCHER: "Researcher"
+  PERSON_ROLE_ADVISOR: "Advisor"
+  PERSON_ROLE_DIRECTOR: "Director"
+  PERSON_ROLE_SPEAKER: "Speaker"
+  PERSON_ROLE_MENTOR: "Mentor"
+
+# Accessibility metadata (comprehensive for neurodiversity)
+accessibility_features:
+  # Visual
+  ACCESSIBILITY_FEATURE_ALTERNATIVE_TEXT: "alternativeText"
+  ACCESSIBILITY_FEATURE_LONG_DESCRIPTION: "longDescription"
+  ACCESSIBILITY_FEATURE_HIGH_CONTRAST_DISPLAY: "highContrastDisplay"
+  ACCESSIBILITY_FEATURE_LARGE_PRINT: "largePrint"
+  ACCESSIBILITY_FEATURE_BRAILLE: "braille"
+  ACCESSIBILITY_FEATURE_TACTILE_GRAPHIC: "tactileGraphic"
+  ACCESSIBILITY_FEATURE_DESCRIBED_MATH: "describedMath"
+  
+  # Cognitive/Neurodivergent
+  ACCESSIBILITY_FEATURE_STRUCTURAL_NAVIGATION: "structuralNavigation"  # Official Schema.org
+  # Custom extensions for neurodivergent support (not official Schema.org)
+  # ACCESSIBILITY_FEATURE_READING_CONTROL: "readingControl"  # Custom
+  # ACCESSIBILITY_FEATURE_CONSISTENT_LAYOUT: "consistentLayout"  # Custom
+  # ACCESSIBILITY_FEATURE_PLAIN_LANGUAGE: "plainLanguage"  # Custom
+  # ACCESSIBILITY_FEATURE_SIMPLIFIED_UI: "simplifiedUI"  # Custom
+  ACCESSIBILITY_FEATURE_READING_ORDER: "readingOrder"  # Official Schema.org
+  ACCESSIBILITY_FEATURE_TIMING_CONTROL: "timingControl"  # Official Schema.org
+  ACCESSIBILITY_FEATURE_UNLOCKED: "unlocked"  # Official Schema.org
+  
+  # Navigation
+  ACCESSIBILITY_FEATURE_TABLE_OF_CONTENTS: "tableOfContents"
+  ACCESSIBILITY_FEATURE_INDEX: "index"
+  ACCESSIBILITY_FEATURE_PAGE_NAVIGATION: "pageNavigation"
+  ACCESSIBILITY_FEATURE_PRINT_PAGE_NUMBERS: "printPageNumbers"
+  ACCESSIBILITY_FEATURE_BREADCRUMB: "breadcrumb"
+  
+  # Media
+  ACCESSIBILITY_FEATURE_AUDIO_DESCRIPTION: "audioDescription"
+  ACCESSIBILITY_FEATURE_CAPTIONS: "captions"
+  ACCESSIBILITY_FEATURE_SIGN_LANGUAGE: "signLanguage"
+  ACCESSIBILITY_FEATURE_TRANSCRIPT: "transcript"
+  ACCESSIBILITY_FEATURE_SYNCHRONIZED_AUDIO_TEXT: "synchronizedAudioText"
+  
+  # Interactive
+  ACCESSIBILITY_FEATURE_ANNOTATIONS: "annotations"
+  ACCESSIBILITY_FEATURE_ARIA: "ARIA"
+  ACCESSIBILITY_FEATURE_BOOK_MARKS: "bookmarks"
+  ACCESSIBILITY_FEATURE_TAG_STRUCTURE: "taggedPDF"
+  ACCESSIBILITY_FEATURE_CHEMICAL_ML: "ChemML"
+  ACCESSIBILITY_FEATURE_LATEX: "latex"
+  ACCESSIBILITY_FEATURE_MATH_ML: "MathML"
+  ACCESSIBILITY_FEATURE_STILL_IMAGE: "stillImage"
+
+accessibility_hazards:
+  ACCESSIBILITY_HAZARD_NONE: "none"
+  ACCESSIBILITY_HAZARD_UNKNOWN: "unknown"
+  ACCESSIBILITY_HAZARD_FLASHING: "flashing"
+  ACCESSIBILITY_HAZARD_MOTION_SIMULATION: "motionSimulation"
+  ACCESSIBILITY_HAZARD_SOUND: "sound"
+  ACCESSIBILITY_HAZARD_NO_FLASHING: "noFlashingHazard"
+  ACCESSIBILITY_HAZARD_NO_MOTION: "noMotionSimulationHazard"
+  ACCESSIBILITY_HAZARD_NO_SOUND: "noSoundHazard"
+
+# Neurodivergent-specific enhancements (Custom extensions - not official Schema.org)
+# These are custom values for internal use only
+# neurodivergent_accommodations:
+#   ADHD_FOCUS_MODE: "focusMode"  # Custom
+#   AUTISM_PREDICTABLE_LAYOUT: "predictableLayout"  # Custom
+#   DYSLEXIA_FRIENDLY_FONT: "dyslexiaFriendlyFont"  # Custom
+#   SENSORY_REDUCED_ANIMATIONS: "reducedAnimations"  # Custom
+#   COGNITIVE_LOAD_INDICATOR: "cognitiveLoadIndicator"  # Custom
+
+# Schema.org type mappings (for SchemaOrgType enum)
+schema_org_types:
+  SCHEMA_ORG_TYPE_UNSPECIFIED: ""
+  SCHEMA_ORG_TYPE_PERSON: "Person"
+  SCHEMA_ORG_TYPE_ORGANIZATION: "Organization"
+  SCHEMA_ORG_TYPE_CORPORATION: "Corporation"
+  SCHEMA_ORG_TYPE_LOCAL_BUSINESS: "LocalBusiness"
+  SCHEMA_ORG_TYPE_EDUCATIONAL_ORGANIZATION: "EducationalOrganization"
+  SCHEMA_ORG_TYPE_CREATIVE_WORK: "CreativeWork"
+  SCHEMA_ORG_TYPE_RESEARCH_PROJECT: "ResearchProject"
+  SCHEMA_ORG_TYPE_WEB_SITE: "WebSite"
+  SCHEMA_ORG_TYPE_WEB_PAGE: "WebPage"
+  SCHEMA_ORG_TYPE_BLOG: "Blog"
+  SCHEMA_ORG_TYPE_ARTICLE: "Article"
+  SCHEMA_ORG_TYPE_VISUAL_ARTWORK: "VisualArtwork"
+  SCHEMA_ORG_TYPE_SOFTWARE_APPLICATION: "SoftwareApplication"
+  SCHEMA_ORG_TYPE_WEB_APPLICATION: "WebApplication"
+  SCHEMA_ORG_TYPE_MOBILE_APPLICATION: "MobileApplication"
+  SCHEMA_ORG_TYPE_VIDEO_GAME: "VideoGame"
+  SCHEMA_ORG_TYPE_SERVICE: "Service"
+  SCHEMA_ORG_TYPE_PROFESSIONAL_SERVICE: "Service"  # ProfessionalService is deprecated
+
+# Complete page type mappings
+page_types:
+  # Core pages
+  PAGE_TYPE_HOME: "WebPage"
+  PAGE_TYPE_ABOUT: "AboutPage"
+  PAGE_TYPE_CONTACT: "ContactPage"
+  PAGE_TYPE_SEARCH: "WebPage"  # SearchResultsPage doesn't exist in Schema.org
+  PAGE_TYPE_404: "WebPage"
+  
+  # Special pages
+  PAGE_TYPE_DEMO: "WebPage"
+  PAGE_TYPE_SPONSOR: "DonateAction"
+  PAGE_TYPE_SERVICES: "CollectionPage"
+  PAGE_TYPE_PROJECTS: "CollectionPage"
+  
+  # Content pages
+  PAGE_TYPE_ARTICLE: "Article"
+  PAGE_TYPE_DOCUMENTATION: "TechArticle"
+  PAGE_TYPE_API_REFERENCE: "APIReference"
+  PAGE_TYPE_TUTORIAL: "HowTo"
+  PAGE_TYPE_FAQ: "FAQPage"
+  PAGE_TYPE_QA: "QAPage"
+  
+  # Project-specific pages
+  PAGE_TYPE_PROJECT_HOME: "SoftwareApplication"
+  PAGE_TYPE_PROJECT_DOCS: "TechArticle"
+  PAGE_TYPE_PROJECT_CHANGELOG: "WebPage"
+  PAGE_TYPE_PROJECT_ROADMAP: "WebPage"
+
+# Collection types (for portfolio structure)
+collection_types:
+  COLLECTION_TYPE_PORTFOLIO: "CollectionPage"
+  COLLECTION_TYPE_PROJECT_LIST: "ItemList"
+  COLLECTION_TYPE_SERVICE_LIST: "OfferCatalog"
+  COLLECTION_TYPE_BLOG_ARCHIVE: "Blog"
+
+# Semantic web/knowledge graph types
+knowledge_graph_types:
+  KNOWLEDGE_GRAPH_DATASET: "Dataset"
+  KNOWLEDGE_GRAPH_DATA_CATALOG: "DataCatalog"
+  KNOWLEDGE_GRAPH_DATA_DOWNLOAD: "DataDownload"
+  KNOWLEDGE_GRAPH_CREATIVE_WORK_SERIES: "CreativeWorkSeries"
+  KNOWLEDGE_GRAPH_PUBLICATION_ISSUE: "PublicationIssue"
+  KNOWLEDGE_GRAPH_PUBLICATION_VOLUME: "PublicationVolume"
+
+# Action types for CTAs
+action_types:
+  ACTION_DOWNLOAD: "DownloadAction"
+  ACTION_INSTALL: "InstallAction"
+  ACTION_USE: "UseAction"
+  ACTION_WATCH: "WatchAction"
+  ACTION_SUBSCRIBE: "SubscribeAction"
+  ACTION_FOLLOW: "FollowAction"
+  ACTION_SHARE: "ShareAction"
+  ACTION_COMMENT: "CommentAction"
+  ACTION_ASK: "AskAction"
+  ACTION_DONATE: "DonateAction"
+  ACTION_CONTACT: "CommunicateAction"
+
+# Semantic trace types
+semantic_trace_types:
+  TRACE_TYPE_THOUGHT: "Thought"
+  TRACE_TYPE_IDEA: "Idea"
+  TRACE_TYPE_OBSERVATION: "Observation"
+  TRACE_TYPE_HYPOTHESIS: "Hypothesis"
+  TRACE_TYPE_EXPERIMENT: "Experiment"
+  TRACE_TYPE_CONCLUSION: "Conclusion"
+  TRACE_TYPE_REFLECTION: "Reflection"
+
+# AI/ML specific types
+ai_ml_types:
+  AI_TRAINING_DATASET: "Dataset"
+  AI_MODEL: "SoftwareApplication"
+  AI_PROMPT: "Text"
+  AI_COMPLETION: "Text"
+  AI_CONVERSATION: "Conversation"
+  AI_AGENT: "SoftwareApplication"  # SoftwareAgent doesn't exist in Schema.org
+  AI_DATASET_COLLECTION: "DataCatalog"  # New: for collections of datasets
+  AI_DATASET_DOWNLOAD: "DataDownload"  # New: for downloadable datasets
+
+# Consent and privacy schema types
+consent_schema_types:
+  CONSENT_BANNER: "WebPageElement"
+  CONSENT_FORM: "Form"
+  PRIVACY_POLICY: "WebPage"
+  COOKIE_POLICY: "WebPage"
+  DATA_CONTROLLER: "Organization"
+  DATA_PROCESSOR: "Organization"
+  
+# Legal document types
+legal_document_types:
+  TERMS_OF_SERVICE: "WebPage"
+  PRIVACY_POLICY: "WebPage"  # PrivacyPolicy doesn't exist in Schema.org
+  COOKIE_POLICY: "WebPage"
+  DPA: "Contract"
+  GDPR_COMPLIANCE: "WebPage"  # ComplianceDocument doesn't exist in Schema.org
+  
+# User rights actions
+user_rights_actions:
+  REQUEST_DATA: "RequestAction"
+  DELETE_DATA: "DeleteAction"
+  EXPORT_DATA: "DownloadAction"
+  CORRECT_DATA: "UpdateAction"
+  RESTRICT_PROCESSING: "RestrictAction"
+  OBJECT_PROCESSING: "RejectAction"
+
+# =============================================================================
+# HOW TO USE THIS DICTIONARY
+# =============================================================================
+# 1. Build system reads this file at build time
+# 2. When processing configs with enum values, it looks up mappings here
+# 3. Automatically generates Schema.org JSON-LD without manual configuration
+# 4. Validates that only valid enum values are used
+#
+# Example:
+# Config: content_type: CONTENT_TYPE_TUTORIAL
+# Lookup: content_types[CONTENT_TYPE_TUTORIAL] = "HowToArticle"
+# Output: { "@type": "HowToArticle", ... }
+# =============================================================================

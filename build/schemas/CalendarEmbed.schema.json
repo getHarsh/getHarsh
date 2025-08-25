@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CalendarEmbed",
+  "definitions": {
+    "CalendarEmbed": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable calendar embedding"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Embed height in pixels"
+        },
+        "width": {
+          "type": "string",
+          "description": "Embed width (percentage or pixels)"
+        },
+        "free_busy_only": {
+          "type": "boolean",
+          "description": "Show only free/busy"
+        },
+        "default_view": {
+          "type": "string",
+          "description": "Default view (\"week\", \"month\", \"agenda\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Calendar Embed",
+      "description": "Calendar embed configuration"
+    }
+  },
+  "title": "CALENDAREMBED Configuration Schema",
+  "description": "JSON Schema for CalendarEmbed configuration"
+}

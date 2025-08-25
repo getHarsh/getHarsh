@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkAccessibility",
+  "definitions": {
+    "LinkAccessibility": {
+      "properties": {
+        "descriptive_text": {
+          "type": "boolean",
+          "description": "Descriptive text"
+        },
+        "avoid_generic": {
+          "type": "boolean",
+          "description": "Avoid \"click here\""
+        },
+        "purpose": {
+          "$ref": "#/definitions/website.config.aria.LinkPurpose",
+          "description": "Link purpose"
+        },
+        "combine_adjacent": {
+          "type": "boolean",
+          "description": "Adjacent links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Accessibility",
+      "description": "Link accessibility"
+    },
+    "website.config.aria.LinkPurpose": {
+      "properties": {
+        "indicate_file_type": {
+          "type": "boolean",
+          "description": "File type indication"
+        },
+        "indicate_file_size": {
+          "type": "boolean",
+          "description": "File size indication"
+        },
+        "indicate_external": {
+          "type": "boolean",
+          "description": "External indication"
+        },
+        "warn_new_window": {
+          "type": "boolean",
+          "description": "New window warning"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Purpose",
+      "description": "Link purpose indication"
+    }
+  },
+  "title": "LINKACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for LinkAccessibility configuration"
+}

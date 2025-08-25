@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BingWebmasterTools",
+  "definitions": {
+    "BingWebmasterTools": {
+      "properties": {
+        "site_verification": {
+          "type": "string",
+          "description": "Site verification HTML tag content"
+        },
+        "auto_submit_sitemap": {
+          "type": "boolean",
+          "description": "Auto-submit sitemap on build"
+        },
+        "enable_clarity_integration": {
+          "type": "boolean",
+          "description": "Enable Clarity integration"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key for programmatic access"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Bing Webmaster Tools",
+      "description": "Bing Webmaster Tools configuration"
+    }
+  },
+  "title": "BINGWEBMASTERTOOLS Configuration Schema",
+  "description": "JSON Schema for BingWebmasterTools configuration"
+}

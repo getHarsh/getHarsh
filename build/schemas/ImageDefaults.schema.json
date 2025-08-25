@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ImageDefaults",
+  "definitions": {
+    "ImageDefaults": {
+      "properties": {
+        "lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        },
+        "loading_animation": {
+          "type": "string",
+          "description": "Loading animation (\"blur\", \"skeleton\", \"none\")"
+        },
+        "default_quality": {
+          "type": "integer",
+          "description": "Default quality (1-100)"
+        },
+        "enable_zoom": {
+          "type": "boolean",
+          "description": "Enable zoom on click"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Defaults",
+      "description": "Image component defaults"
+    }
+  },
+  "title": "IMAGEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ImageDefaults configuration"
+}

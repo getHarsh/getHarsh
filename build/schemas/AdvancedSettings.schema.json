@@ -1,0 +1,399 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AdvancedSettings",
+  "definitions": {
+    "AdvancedSettings": {
+      "properties": {
+        "ab_testing": {
+          "$ref": "#/definitions/website.config.consent.ABTesting",
+          "description": "A/B testing"
+        },
+        "api": {
+          "$ref": "#/definitions/website.config.consent.ConsentAPI",
+          "description": "Consent API"
+        },
+        "webhooks": {
+          "$ref": "#/definitions/website.config.consent.Webhooks",
+          "description": "Webhooks"
+        },
+        "scripts": {
+          "$ref": "#/definitions/website.config.consent.CustomScripts",
+          "description": "Custom scripts"
+        },
+        "performance": {
+          "$ref": "#/definitions/website.config.consent.PerformanceSettings",
+          "description": "Performance settings"
+        },
+        "developer": {
+          "$ref": "#/definitions/website.config.consent.DeveloperSettings",
+          "description": "Developer settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Advanced Settings",
+      "description": "Advanced consent settings"
+    },
+    "website.config.consent.ABTesting": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable A/B testing"
+        },
+        "variants": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.TestVariant"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Test variants"
+        },
+        "traffic_allocation": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Traffic allocation"
+        },
+        "success_metrics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Success metrics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AB Testing",
+      "description": "A/B testing configuration"
+    },
+    "website.config.consent.APIAuth": {
+      "properties": {
+        "type": {
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            0,
+            "AUTH_TYPE_NONE",
+            1,
+            "AUTH_TYPE_API_KEY",
+            2,
+            "AUTH_TYPE_JWT",
+            3,
+            "AUTH_TYPE_OAUTH2",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Auth Type",
+          "description": "Auth type"
+        },
+        "api_key_header": {
+          "type": "string",
+          "description": "API key header"
+        },
+        "jwt": {
+          "$ref": "#/definitions/website.config.consent.JWTSettings",
+          "description": "JWT settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Auth",
+      "description": "API authentication"
+    },
+    "website.config.consent.APIEndpoints": {
+      "properties": {
+        "get_consent": {
+          "type": "string",
+          "description": "Get consent endpoint"
+        },
+        "update_consent": {
+          "type": "string",
+          "description": "Update consent endpoint"
+        },
+        "delete_consent": {
+          "type": "string",
+          "description": "Delete consent endpoint"
+        },
+        "export_data": {
+          "type": "string",
+          "description": "Export data endpoint"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Endpoints",
+      "description": "API endpoints"
+    },
+    "website.config.consent.ConsentAPI": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable API"
+        },
+        "endpoints": {
+          "$ref": "#/definitions/website.config.consent.APIEndpoints",
+          "description": "API endpoints"
+        },
+        "auth": {
+          "$ref": "#/definitions/website.config.consent.APIAuth",
+          "description": "Authentication"
+        },
+        "rate_limiting": {
+          "$ref": "#/definitions/website.config.consent.RateLimiting",
+          "description": "Rate limiting"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent API",
+      "description": "Consent API configuration"
+    },
+    "website.config.consent.CustomScripts": {
+      "properties": {
+        "before_show": {
+          "type": "string",
+          "description": "Before consent show"
+        },
+        "after_consent": {
+          "type": "string",
+          "description": "After consent given"
+        },
+        "after_denial": {
+          "type": "string",
+          "description": "After consent denied"
+        },
+        "validation": {
+          "type": "string",
+          "description": "Custom validation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Scripts",
+      "description": "Custom scripts"
+    },
+    "website.config.consent.DeveloperSettings": {
+      "properties": {
+        "debug": {
+          "type": "boolean",
+          "description": "Debug mode"
+        },
+        "console_logging": {
+          "type": "boolean",
+          "description": "Console logging"
+        },
+        "test_mode": {
+          "type": "boolean",
+          "description": "Test mode"
+        },
+        "mock_responses": {
+          "type": "boolean",
+          "description": "Mock responses"
+        },
+        "developer_email": {
+          "type": "string",
+          "description": "Developer email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Developer Settings",
+      "description": "Developer settings"
+    },
+    "website.config.consent.JWTSettings": {
+      "properties": {
+        "secret": {
+          "type": "string",
+          "description": "JWT secret"
+        },
+        "algorithm": {
+          "type": "string",
+          "description": "JWT algorithm"
+        },
+        "expiry_seconds": {
+          "type": "integer",
+          "description": "JWT expiry (seconds)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "JWT Settings",
+      "description": "JWT settings"
+    },
+    "website.config.consent.PerformanceSettings": {
+      "properties": {
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Lazy load consent"
+        },
+        "preload_resources": {
+          "type": "boolean",
+          "description": "Preload resources"
+        },
+        "cache_duration": {
+          "type": "integer",
+          "description": "Cache duration (seconds)"
+        },
+        "minify": {
+          "type": "boolean",
+          "description": "Minify resources"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Performance Settings",
+      "description": "Performance settings"
+    },
+    "website.config.consent.RateLimiting": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable rate limiting"
+        },
+        "requests_per_minute": {
+          "type": "integer",
+          "description": "Requests per minute"
+        },
+        "burst_limit": {
+          "type": "integer",
+          "description": "Burst limit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Rate Limiting",
+      "description": "Rate limiting"
+    },
+    "website.config.consent.RetrySettings": {
+      "properties": {
+        "max_retries": {
+          "type": "integer",
+          "description": "Max retries"
+        },
+        "retry_delay_ms": {
+          "type": "integer",
+          "description": "Retry delay (ms)"
+        },
+        "backoff_multiplier": {
+          "type": "number",
+          "description": "Backoff multiplier"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Retry Settings",
+      "description": "Retry settings"
+    },
+    "website.config.consent.TestVariant": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Variant ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Variant name"
+        },
+        "overrides": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Configuration overrides"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Test Variant",
+      "description": "Test variant"
+    },
+    "website.config.consent.WebhookEndpoint": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Endpoint URL"
+        },
+        "events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Events to send"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Headers"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Active"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhook Endpoint",
+      "description": "Webhook endpoint"
+    },
+    "website.config.consent.WebhookSecurity": {
+      "properties": {
+        "sign_payloads": {
+          "type": "boolean",
+          "description": "Sign payloads"
+        },
+        "signing_secret": {
+          "type": "string",
+          "description": "Signing secret"
+        },
+        "verify_ssl": {
+          "type": "boolean",
+          "description": "Verify SSL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhook Security",
+      "description": "Webhook security"
+    },
+    "website.config.consent.Webhooks": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable webhooks"
+        },
+        "endpoints": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.WebhookEndpoint"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Webhook endpoints"
+        },
+        "retry": {
+          "$ref": "#/definitions/website.config.consent.RetrySettings",
+          "description": "Retry settings"
+        },
+        "security": {
+          "$ref": "#/definitions/website.config.consent.WebhookSecurity",
+          "description": "Security settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhooks",
+      "description": "Webhook configuration"
+    }
+  },
+  "title": "ADVANCEDSETTINGS Configuration Schema",
+  "description": "JSON Schema for AdvancedSettings configuration"
+}

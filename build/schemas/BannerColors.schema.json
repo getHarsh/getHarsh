@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerColors",
+  "definitions": {
+    "BannerColors": {
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Background color"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text color"
+        },
+        "link": {
+          "type": "string",
+          "description": "Link color"
+        },
+        "button_primary": {
+          "type": "string",
+          "description": "Button primary color"
+        },
+        "button_secondary": {
+          "type": "string",
+          "description": "Button secondary color"
+        },
+        "border": {
+          "type": "string",
+          "description": "Border color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Colors",
+      "description": "Banner color configuration"
+    }
+  },
+  "title": "BANNERCOLORS Configuration Schema",
+  "description": "JSON Schema for BannerColors configuration"
+}

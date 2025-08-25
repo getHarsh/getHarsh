@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CookieStorage",
+  "definitions": {
+    "CookieStorage": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Cookie name"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Cookie domain"
+        },
+        "path": {
+          "type": "string",
+          "description": "Cookie path"
+        },
+        "secure": {
+          "type": "boolean",
+          "description": "Secure flag"
+        },
+        "same_site": {
+          "type": "string",
+          "description": "SameSite setting"
+        },
+        "http_only": {
+          "type": "boolean",
+          "description": "HttpOnly flag"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cookie Storage",
+      "description": "Cookie storage settings"
+    }
+  },
+  "title": "COOKIESTORAGE Configuration Schema",
+  "description": "JSON Schema for CookieStorage configuration"
+}

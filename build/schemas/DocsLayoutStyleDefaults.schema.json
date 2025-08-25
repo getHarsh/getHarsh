@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsLayoutStyleDefaults",
+  "definitions": {
+    "DocsLayoutStyleDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.DocsLayoutStyleMapping",
+          "description": "DOCS_LAYOUT_STYLE_UNSPECIFIED  layout_name: \"\" navigation_type: \"\" page_structure: \"\" supports_versions: false"
+        },
+        "single_page": {
+          "$ref": "#/definitions/website.config.DocsLayoutStyleMapping",
+          "description": "DOCS_LAYOUT_STYLE_SINGLE_PAGE  layout_name: \"Single Page\" navigation_type: \"anchor-links\" page_structure: \"linear\" supports_versions: false"
+        },
+        "multi_page": {
+          "$ref": "#/definitions/website.config.DocsLayoutStyleMapping",
+          "description": "DOCS_LAYOUT_STYLE_MULTI_PAGE  layout_name: \"Multi Page\" navigation_type: \"hierarchical\" page_structure: \"tree\" supports_versions: true"
+        },
+        "versioned": {
+          "$ref": "#/definitions/website.config.DocsLayoutStyleMapping",
+          "description": "DOCS_LAYOUT_STYLE_VERSIONED  layout_name: \"Versioned\" navigation_type: \"version-aware\" page_structure: \"tree\" supports_versions: true"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Layout Style Defaults",
+      "description": "Complete docs layout style mappings"
+    },
+    "website.config.DocsLayoutStyleMapping": {
+      "properties": {
+        "layout_name": {
+          "type": "string",
+          "description": "Layout name"
+        },
+        "navigation_type": {
+          "type": "string",
+          "description": "Navigation type"
+        },
+        "page_structure": {
+          "type": "string",
+          "description": "Page structure"
+        },
+        "supports_versions": {
+          "type": "boolean",
+          "description": "Version support"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Layout Style Mapping"
+    }
+  },
+  "title": "DOCSLAYOUTSTYLEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for DocsLayoutStyleDefaults configuration"
+}

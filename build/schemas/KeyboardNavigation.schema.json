@@ -1,0 +1,279 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/KeyboardNavigation",
+  "definitions": {
+    "KeyboardNavigation": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable enhanced keyboard navigation"
+        },
+        "tab_order": {
+          "$ref": "#/definitions/website.config.aria.TabOrder",
+          "description": "Tab order management"
+        },
+        "shortcuts": {
+          "$ref": "#/definitions/website.config.aria.KeyboardShortcuts",
+          "description": "Keyboard shortcuts"
+        },
+        "patterns": {
+          "$ref": "#/definitions/website.config.aria.NavigationPatterns",
+          "description": "Navigation patterns"
+        },
+        "indicators": {
+          "$ref": "#/definitions/website.config.aria.KeyboardIndicators",
+          "description": "Keyboard indicators"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Keyboard Navigation",
+      "description": "Keyboard navigation configuration"
+    },
+    "website.config.aria.ArrowContext": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Context name (menu, grid, etc.)"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "type": {
+          "enum": [
+            "ARROW_NAVIGATION_TYPE_UNSPECIFIED",
+            0,
+            "ARROW_NAVIGATION_TYPE_HORIZONTAL",
+            1,
+            "ARROW_NAVIGATION_TYPE_VERTICAL",
+            2,
+            "ARROW_NAVIGATION_TYPE_GRID",
+            3,
+            "ARROW_NAVIGATION_TYPE_TREE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Arrow Navigation Type",
+          "description": "Arrow navigation types"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Arrow Context",
+      "description": "Arrow navigation context"
+    },
+    "website.config.aria.ArrowNavigation": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable arrow navigation"
+        },
+        "contexts": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ArrowContext"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Navigation contexts"
+        },
+        "wrap_around": {
+          "type": "boolean",
+          "description": "Wrap around"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Arrow Navigation",
+      "description": "Arrow navigation configuration"
+    },
+    "website.config.aria.FocusStyle": {
+      "properties": {
+        "outline_width": {
+          "type": "integer",
+          "description": "Outline width"
+        },
+        "outline_color": {
+          "type": "string",
+          "description": "Outline color"
+        },
+        "outline_offset": {
+          "type": "integer",
+          "description": "Outline offset"
+        },
+        "custom_css": {
+          "type": "string",
+          "description": "Custom CSS"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Style",
+      "description": "Focus style configuration"
+    },
+    "website.config.aria.KeyboardIndicators": {
+      "properties": {
+        "show_focus": {
+          "type": "boolean",
+          "description": "Show focus indicators"
+        },
+        "focus_style": {
+          "$ref": "#/definitions/website.config.aria.FocusStyle",
+          "description": "Focus style"
+        },
+        "skip_indicators": {
+          "type": "boolean",
+          "description": "Skip link indicators"
+        },
+        "active_indication": {
+          "type": "boolean",
+          "description": "Active element indication"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Keyboard Indicators",
+      "description": "Keyboard indicators"
+    },
+    "website.config.aria.KeyboardShortcuts": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable shortcuts"
+        },
+        "shortcuts": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.Shortcut"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Shortcut list"
+        },
+        "detect_conflicts": {
+          "type": "boolean",
+          "description": "Conflict detection"
+        },
+        "show_help": {
+          "type": "boolean",
+          "description": "Help dialog"
+        },
+        "help_key": {
+          "type": "string",
+          "description": "Help key"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Keyboard Shortcuts",
+      "description": "Keyboard shortcuts configuration"
+    },
+    "website.config.aria.NavigationPatterns": {
+      "properties": {
+        "arrows": {
+          "$ref": "#/definitions/website.config.aria.ArrowNavigation",
+          "description": "Arrow key navigation"
+        },
+        "home_end_support": {
+          "type": "boolean",
+          "description": "Home/End key support"
+        },
+        "page_support": {
+          "type": "boolean",
+          "description": "Page Up/Down support"
+        },
+        "escape_handling": {
+          "type": "boolean",
+          "description": "Escape key handling"
+        },
+        "enter_behavior": {
+          "type": "string",
+          "description": "Enter key behavior"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Patterns",
+      "description": "Navigation patterns"
+    },
+    "website.config.aria.Shortcut": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Shortcut key combination"
+        },
+        "action": {
+          "type": "string",
+          "description": "Action description"
+        },
+        "context": {
+          "type": "string",
+          "description": "Context (global, form, etc.)"
+        },
+        "customizable": {
+          "type": "boolean",
+          "description": "Customizable"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Shortcut",
+      "description": "Individual shortcut"
+    },
+    "website.config.aria.TabIndexManagement": {
+      "properties": {
+        "remove_positive": {
+          "type": "boolean",
+          "description": "Remove positive tabindex"
+        },
+        "interactive_only": {
+          "type": "boolean",
+          "description": "Interactive elements only"
+        },
+        "custom_stops": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom tab stops"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab Index Management",
+      "description": "Tab index management"
+    },
+    "website.config.aria.TabOrder": {
+      "properties": {
+        "enforce_logical": {
+          "type": "boolean",
+          "description": "Logical tab order"
+        },
+        "skip_hidden": {
+          "type": "boolean",
+          "description": "Skip hidden elements"
+        },
+        "tab_index": {
+          "$ref": "#/definitions/website.config.aria.TabIndexManagement",
+          "description": "Tab index management"
+        },
+        "show_visualization": {
+          "type": "boolean",
+          "description": "Tab order visualization"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab Order",
+      "description": "Tab order configuration"
+    }
+  },
+  "title": "KEYBOARDNAVIGATION Configuration Schema",
+  "description": "JSON Schema for KeyboardNavigation configuration"
+}

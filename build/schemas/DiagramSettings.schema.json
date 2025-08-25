@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DiagramSettings",
+  "definitions": {
+    "DiagramSettings": {
+      "properties": {
+        "include_diagrams": {
+          "type": "boolean",
+          "description": "Include diagrams"
+        },
+        "type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Diagram type mapping"
+        },
+        "generate_from_code": {
+          "type": "boolean",
+          "description": "Generate from code"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Diagram Settings",
+      "description": "Diagram settings"
+    }
+  },
+  "title": "DIAGRAMSETTINGS Configuration Schema",
+  "description": "JSON Schema for DiagramSettings configuration"
+}

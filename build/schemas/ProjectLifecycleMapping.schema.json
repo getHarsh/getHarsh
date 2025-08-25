@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectLifecycleMapping",
+  "definitions": {
+    "ProjectLifecycleMapping": {
+      "properties": {
+        "stage_name": {
+          "type": "string",
+          "description": "Lifecycle stage name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Stage description"
+        },
+        "typical_duration": {
+          "type": "string",
+          "description": "Typical duration"
+        },
+        "next_stages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Next possible stages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Lifecycle Mapping"
+    }
+  },
+  "title": "PROJECTLIFECYCLEMAPPING Configuration Schema",
+  "description": "JSON Schema for ProjectLifecycleMapping configuration"
+}

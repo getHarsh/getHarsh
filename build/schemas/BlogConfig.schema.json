@@ -1,0 +1,671 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogConfig",
+  "definitions": {
+    "BlogConfig": {
+      "properties": {
+        "theme_overrides": {
+          "$ref": "#/definitions/website.config.BlogThemeOverrides",
+          "description": "Theme overrides (only specific fields can be changed)"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.BlogFeatures",
+          "description": "Blog-specific features"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.BlogContent",
+          "description": "Content presentation settings"
+        },
+        "layout": {
+          "$ref": "#/definitions/website.config.BlogLayout",
+          "description": "Layout adjustments for blog"
+        },
+        "blog_hero": {
+          "$ref": "#/definitions/website.config.BlogHeroContent",
+          "description": "Blog hero content configuration"
+        },
+        "policy_overrides": {
+          "$ref": "#/definitions/website.config.PolicyOverrides",
+          "description": "Blog-level policy page overrides Inherits from domain by default, can selectively override See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance"
+        },
+        "schema_org_entity": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Blog-specific Schema.org entity configuration Typically type: \"Blog\" with additional_types: [\"Periodical\"] See ../SCHEMA-ORG-EXAMPLES.md#blog-examples"
+        },
+        "pages_schema_overrides": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.SchemaOrgEntity"
+          },
+          "type": "object",
+          "description": "Blog-specific page schema overrides Can override domain's pages_schema or add new page types See ../SCHEMA-ORG-EXAMPLES.md#blog-specific-pages"
+        },
+        "gtm_overrides": {
+          "$ref": "#/definitions/website.config.BlogGTMOverrides",
+          "description": "Blog-specific GTM overrides Inherits from domain, adds blog-specific tracking"
+        },
+        "aria_overrides": {
+          "$ref": "#/definitions/website.config.BlogARIAOverrides",
+          "description": "Blog-specific ARIA overrides Inherits from domain, adds article-specific settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n BLOG CONFIGURATION PROTO\n =============================================================================\n Defines configuration overrides for blog subdomains (e.g., blog.getHarsh.in).\n Blogs inherit from their parent domain and can selectively override settings.\n\n Key Features:\n - Limited theme overrides (colors, typography)\n - Blog-specific features (comments, math, syntax highlighting)\n - Content presentation settings\n - Schema.org and policy inheritance with overrides\n\n Related Documentation:\n - Blog Examples: ../SCHEMA-ORG-EXAMPLES.md#blog-specific-pages\n - Inheritance: ../SCHEMA-ORG-EXAMPLES.md#inheritance--overrides\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+      "description": "============================================================================= BLOG CONFIGURATION PROTO ============================================================================= Defines configuration overrides for blog subdomains (e.g., blog.getHarsh.in). Blogs inherit from their parent domain and can selectively override settings. Key Features: - Limited theme overrides (colors, typography) - Blog-specific features (comments, math, syntax highlighting) - Content presentation settings - Schema.org and policy inheritance with overrides Related Documentation: - Blog Examples: ../SCHEMA-ORG-EXAMPLES.md#blog-specific-pages - Inheritance: ../SCHEMA-ORG-EXAMPLES.md#inheritance--overrides - Configuration Guide: ../CONFIG.md =============================================================================  BlogConfig defines configuration overrides for blog subdomains. It can only override specific fields from the parent domain config. Stored in blog.[domain].in/config.yml  Blog inherits everything from parent domain by default. Only fields defined here can be overridden."
+    },
+    "website.config.BlogARIAOverrides": {
+      "properties": {
+        "article_landmarks": {
+          "type": "boolean",
+          "description": "Article navigation landmarks"
+        },
+        "comment_live_region": {
+          "type": "boolean",
+          "description": "Live region for comment updates"
+        },
+        "reading_progress_aria": {
+          "type": "boolean",
+          "description": "Reading progress indicator"
+        },
+        "article_labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Article-specific ARIA labels"
+        },
+        "enhanced_article_navigation": {
+          "type": "boolean",
+          "description": "Enhanced keyboard navigation for articles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog ARIA Overrides",
+      "description": "Blog-specific ARIA overrides"
+    },
+    "website.config.BlogColors": {
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Background color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "quote_border": {
+          "type": "string",
+          "description": "Blockquote border color"
+        },
+        "tag_background": {
+          "type": "string",
+          "description": "Tag/category pill colors"
+        },
+        "tag_text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Colors",
+      "description": "Blog-specific color overrides"
+    },
+    "website.config.BlogContent": {
+      "properties": {
+        "posts_per_page": {
+          "type": "integer",
+          "description": "Posts per page override"
+        },
+        "excerpt_length": {
+          "type": "integer",
+          "description": "Excerpt length override"
+        },
+        "show_full_content": {
+          "type": "boolean",
+          "description": "Show full content on index page"
+        },
+        "date_format": {
+          "type": "string",
+          "description": "Date format override"
+        },
+        "show_author": {
+          "type": "boolean",
+          "description": "Show author info"
+        },
+        "show_categories": {
+          "type": "boolean",
+          "description": "Show post categories"
+        },
+        "show_tags": {
+          "type": "boolean",
+          "description": "Show post tags"
+        },
+        "rss_enabled": {
+          "type": "boolean",
+          "description": "Enable RSS feed"
+        },
+        "rss_limit": {
+          "type": "integer",
+          "description": "RSS feed limit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Content",
+      "description": "Blog content presentation settings"
+    },
+    "website.config.BlogFeatures": {
+      "properties": {
+        "comments": {
+          "type": "boolean",
+          "description": "Enable comments system"
+        },
+        "comments_provider": {
+          "type": "string",
+          "description": "Comments provider (\"disqus\", \"giscus\", \"utterances\")"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Show reading time estimate"
+        },
+        "table_of_contents": {
+          "type": "boolean",
+          "description": "Show table of contents for long posts"
+        },
+        "toc_min_headings": {
+          "type": "integer",
+          "description": "TOC threshold (min headings)"
+        },
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math rendering (KaTeX/MathJax)"
+        },
+        "math_renderer": {
+          "type": "string",
+          "description": "Math renderer (\"katex\", \"mathjax\")"
+        },
+        "graphviz": {
+          "type": "boolean",
+          "description": "Enable Graphviz diagram rendering"
+        },
+        "syntax_highlighting": {
+          "type": "boolean",
+          "description": "Enable code syntax highlighting"
+        },
+        "syntax_theme": {
+          "type": "string",
+          "description": "Syntax theme (\"github\", \"monokai\", \"dracula\", etc.)"
+        },
+        "related_posts": {
+          "type": "boolean",
+          "description": "Show related posts"
+        },
+        "related_posts_count": {
+          "type": "integer",
+          "description": "Number of related posts to show"
+        },
+        "series_navigation": {
+          "type": "boolean",
+          "description": "Enable post series navigation"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom blog features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Features",
+      "description": "Blog-specific features"
+    },
+    "website.config.BlogGTMOverrides": {
+      "properties": {
+        "article_scroll_tracking": {
+          "$ref": "#/definitions/website.config.gtm.ScrollTracking",
+          "description": "Additional scroll tracking for long articles"
+        },
+        "track_reading_time": {
+          "type": "boolean",
+          "description": "Reading time tracking"
+        },
+        "article_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Article engagement events"
+        },
+        "track_comment_interactions": {
+          "type": "boolean",
+          "description": "Comment interaction tracking"
+        },
+        "track_social_shares": {
+          "type": "boolean",
+          "description": "Social share tracking"
+        },
+        "article_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom dimensions for articles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog GTM Overrides",
+      "description": "Blog-specific GTM overrides"
+    },
+    "website.config.BlogHeroContent": {
+      "properties": {
+        "hero_title": {
+          "type": "string",
+          "description": "Main hero title (e.g., \"Thoughts\", \"Articles\", \"Blog\")"
+        },
+        "hero_tagline": {
+          "type": "string",
+          "description": "Hero tagline (e.g., \"Ideas, explorations, and digital consciousness fragments\")"
+        },
+        "hero_description": {
+          "type": "string",
+          "description": "Extended description for the blog"
+        },
+        "cta_text": {
+          "type": "string",
+          "description": "CTA button text (e.g., \"Read Latest\", \"Browse Articles\")"
+        },
+        "cta_link": {
+          "type": "string",
+          "description": "CTA button link"
+        },
+        "show_visualization": {
+          "type": "boolean",
+          "description": "Show visualization behind hero"
+        },
+        "visualization_variant": {
+          "type": "string",
+          "description": "Visualization variant (\"prominent\", \"subtle\", \"none\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Hero Content",
+      "description": "Blog hero content for landing page"
+    },
+    "website.config.BlogLayout": {
+      "properties": {
+        "article_max_width": {
+          "type": "string",
+          "description": "Maximum content width for articles"
+        },
+        "sidebar": {
+          "type": "string",
+          "description": "Sidebar on blog pages (\"left\", \"right\", \"none\")"
+        },
+        "index_layout": {
+          "type": "string",
+          "description": "Layout style (\"list\", \"grid\", \"card\")"
+        },
+        "grid_columns": {
+          "type": "integer",
+          "description": "Columns for grid layout"
+        },
+        "show_featured_image": {
+          "type": "boolean",
+          "description": "Show featured image on post"
+        },
+        "featured_image_position": {
+          "type": "string",
+          "description": "Featured image position (\"top\", \"hero\", \"inline\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Layout",
+      "description": "Blog layout adjustments"
+    },
+    "website.config.BlogThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.BlogColors",
+          "description": "Color overrides (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.BlogTypography",
+          "description": "Typography adjustments"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Theme Overrides",
+      "description": "Theme overrides allowed for blogs"
+    },
+    "website.config.BlogTypography": {
+      "properties": {
+        "article_font": {
+          "type": "string",
+          "description": "Font family for article content"
+        },
+        "article_size": {
+          "type": "string",
+          "description": "Font size for article text"
+        },
+        "article_line_height": {
+          "type": "number",
+          "description": "Line height for articles"
+        },
+        "code_font": {
+          "type": "string",
+          "description": "Code font family"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Typography",
+      "description": "Blog-specific typography overrides"
+    },
+    "website.config.PolicyOverrides": {
+      "properties": {
+        "enabled_policies": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Enable/disable specific policy pages at this level Example: {\"privacy_policy\": true, \"refund_policy\": false}"
+        },
+        "policy_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Override policy URLs for this entity Example: {\"terms_of_service\": \"/custom-terms\"}"
+        },
+        "custom_policies": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom policy pages unique to this entity Example: {\"api_terms\": \"/api/terms\"} for API projects"
+        },
+        "hidden_policies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Hide policies from navigation/footer while keeping them accessible Example: [\"refund_policy\", \"dpa\"] for non-commerce sites"
+        },
+        "inherit_parent_policies": {
+          "type": "boolean",
+          "description": "Whether to inherit parent's policy configuration (default: true) Set to false to completely override parent settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Overrides",
+      "description": "Policy page overrides for domain/blog/project level control Provides granular control over which policies are shown and their URLs See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance for examples"
+    },
+    "website.config.SchemaOrgAffiliation": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL (optional)"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (optional, ISO 8601 format)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (optional, ISO 8601 format, omit if current)"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type (optional, e.g., \"Corporation\", \"EducationalOrganization\")"
+        },
+        "affiliation_type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization @id reference (for linking to existing entities) Example: \"https://rawthoughts.in/#organization\""
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Affiliation",
+      "description": "Affiliation for Person type in Schema.org JSON-LD output DEPRECATED: Use PersonAffiliation for configuration, this is for output only"
+    },
+    "website.config.SchemaOrgChild": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Child entity ID/URL"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type  e.g., \"owns\", \"subOrganization\", \"hasPart\""
+        },
+        "type": {
+          "type": "string",
+          "description": "Child type  e.g., \"ResearchProject\", \"SoftwareApplication\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Child",
+      "description": "Child entity reference for Schema.org"
+    },
+    "website.config.SchemaOrgEntity": {
+      "properties": {
+        "type_enum": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "custom_type": {
+          "type": "string",
+          "description": "Custom type string for types not in our enum Use this for rare/specialized types (e.g., \"MedicalOrganization\")"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types for multi-type entities Example: [\"WebSite\", \"Brand\"] for getHarsh.in See ../SCHEMA-ORG-EXAMPLES.md#quick-start for patterns"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string properties (name, description, url, etc.)"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations (for Person type)"
+        },
+        "parent_entity_id": {
+          "type": "string",
+          "description": "Parent entity reference (for hierarchy)  e.g., \"@id\" reference"
+        },
+        "parent_relationship": {
+          "type": "string",
+          "description": "Relationship type to parent  e.g., \"parentOrganization\", \"creator\", \"owns\""
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgChild"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child entities (for org -> projects)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity",
+      "description": "Schema.org entity configuration Used to define the semantic type of any entity (domain, blog, project, page) See ../SCHEMA-ORG-EXAMPLES.md#configuration-examples for usage"
+    },
+    "website.config.gtm.ScrollTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable scroll tracking"
+        },
+        "thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Scroll depth thresholds (percentages)"
+        },
+        "track_time_to_scroll": {
+          "type": "boolean",
+          "description": "Track time to scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scroll Tracking",
+      "description": "Scroll tracking configuration"
+    }
+  },
+  "title": "BLOGCONFIG Configuration Schema",
+  "description": "JSON Schema for BlogConfig configuration"
+}

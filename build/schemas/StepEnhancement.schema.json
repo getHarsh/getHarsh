@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/StepEnhancement",
+  "definitions": {
+    "StepEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect step lists"
+        },
+        "create_howto": {
+          "type": "boolean",
+          "description": "Create HowTo objects"
+        },
+        "include_time": {
+          "type": "boolean",
+          "description": "Include time estimates"
+        },
+        "include_difficulty": {
+          "type": "boolean",
+          "description": "Include difficulty level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Step Enhancement",
+      "description": "Step-by-step enhancement"
+    }
+  },
+  "title": "STEPENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for StepEnhancement configuration"
+}

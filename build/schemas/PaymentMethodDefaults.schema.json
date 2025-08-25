@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PaymentMethodDefaults",
+  "definitions": {
+    "PaymentMethodDefaults": {
+      "properties": {
+        "paypal": {
+          "$ref": "#/definitions/website.config.PaymentMethodMapping",
+          "description": "PAYMENT_METHOD_PAYPAL  schema_type: \"PaymentService\" service_info: { name: \"PayPal\", url: \"https://paypal.com\", provider_type: \"FinancialService\" } accepted_actions: [\"DonateAction\", \"PayAction\"]"
+        },
+        "github_sponsors": {
+          "$ref": "#/definitions/website.config.PaymentMethodMapping",
+          "description": "PAYMENT_METHOD_GITHUB_SPONSORS  schema_type: \"DonateAction\" service_info: { name: \"GitHub Sponsors\", url: \"https://github.com/sponsors\" } additional_properties: { \"fundingScheme\": \"FundingScheme\" }"
+        },
+        "youtube_membership": {
+          "$ref": "#/definitions/website.config.PaymentMethodMapping",
+          "description": "PAYMENT_METHOD_YOUTUBE_MEMBERSHIP  schema_type: \"PaymentService\" service_info: { name: \"YouTube Channel Membership\", provider_type: \"Subscription\" }"
+        },
+        "crypto": {
+          "$ref": "#/definitions/website.config.PaymentMethodMapping",
+          "description": "PAYMENT_METHOD_CRYPTO  schema_type: \"PaymentMethod\" additional_properties: { \"paymentMethodType\": \"DigitalWallet\" }"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Method Defaults",
+      "description": "Predefined payment method mappings"
+    },
+    "website.config.PaymentMethodMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "service_info": {
+          "$ref": "#/definitions/website.config.PaymentServiceInfo",
+          "description": "Payment service properties"
+        },
+        "accepted_actions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Accepted actions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Method Mapping"
+    },
+    "website.config.PaymentServiceInfo": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "provider_type": {
+          "type": "string"
+        },
+        "additional_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Payment Service Info"
+    }
+  },
+  "title": "PAYMENTMETHODDEFAULTS Configuration Schema",
+  "description": "JSON Schema for PaymentMethodDefaults configuration"
+}

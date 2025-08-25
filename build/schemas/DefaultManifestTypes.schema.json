@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DefaultManifestTypes",
+  "definitions": {
+    "DefaultManifestTypes": {
+      "properties": {
+        "default_site_type": {
+          "type": "string",
+          "description": "Default site type  \"WebSite\""
+        },
+        "default_page_type": {
+          "type": "string",
+          "description": "Default page type  \"WebPage\""
+        },
+        "default_section_type": {
+          "type": "string",
+          "description": "Default section type  \"WebPageElement\""
+        },
+        "default_external_type": {
+          "type": "string",
+          "description": "Default external type  \"ExternalLink\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Default Manifest Types",
+      "description": "Default manifest types"
+    }
+  },
+  "title": "DEFAULTMANIFESTTYPES Configuration Schema",
+  "description": "JSON Schema for DefaultManifestTypes configuration"
+}

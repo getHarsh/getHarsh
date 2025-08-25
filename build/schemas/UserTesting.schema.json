@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/UserTesting",
+  "definitions": {
+    "UserTesting": {
+      "properties": {
+        "include_pwd": {
+          "type": "boolean",
+          "description": "Include users with disabilities"
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Testing frequency"
+        },
+        "collect_feedback": {
+          "type": "boolean",
+          "description": "Feedback collection"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "User Testing",
+      "description": "User testing"
+    }
+  },
+  "title": "USERTESTING Configuration Schema",
+  "description": "JSON Schema for UserTesting configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContrastScheme",
+  "definitions": {
+    "ContrastScheme": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Scheme name"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color"
+        },
+        "foreground": {
+          "type": "string",
+          "description": "Foreground color"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Scheme",
+      "description": "Contrast scheme"
+    }
+  },
+  "title": "CONTRASTSCHEME Configuration Schema",
+  "description": "JSON Schema for ContrastScheme configuration"
+}

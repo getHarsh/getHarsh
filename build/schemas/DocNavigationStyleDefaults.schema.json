@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocNavigationStyleDefaults",
+  "definitions": {
+    "DocNavigationStyleDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.DocNavigationStyleMapping",
+          "description": "DOC_NAVIGATION_STYLE_UNSPECIFIED  style_name: \"\" css_classes: [] layout_type: \"\" mobile_behavior: \"\""
+        },
+        "sidebar": {
+          "$ref": "#/definitions/website.config.DocNavigationStyleMapping",
+          "description": "DOC_NAVIGATION_STYLE_SIDEBAR  style_name: \"Sidebar\" css_classes: [\"docs-sidebar\", \"sticky-nav\"] layout_type: \"fixed-sidebar\" mobile_behavior: \"hamburger-menu\""
+        },
+        "top_nav": {
+          "$ref": "#/definitions/website.config.DocNavigationStyleMapping",
+          "description": "DOC_NAVIGATION_STYLE_TOP_NAV  style_name: \"Top Navigation\" css_classes: [\"docs-topnav\", \"horizontal-nav\"] layout_type: \"horizontal-bar\" mobile_behavior: \"dropdown-menu\""
+        },
+        "both": {
+          "$ref": "#/definitions/website.config.DocNavigationStyleMapping",
+          "description": "DOC_NAVIGATION_STYLE_BOTH  style_name: \"Both\" css_classes: [\"docs-sidebar\", \"docs-topnav\", \"dual-nav\"] layout_type: \"hybrid\" mobile_behavior: \"hamburger-menu\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Navigation Style Defaults",
+      "description": "Complete doc navigation style mappings"
+    },
+    "website.config.DocNavigationStyleMapping": {
+      "properties": {
+        "style_name": {
+          "type": "string",
+          "description": "Style name"
+        },
+        "css_classes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "CSS class names"
+        },
+        "layout_type": {
+          "type": "string",
+          "description": "Layout type"
+        },
+        "mobile_behavior": {
+          "type": "string",
+          "description": "Mobile behavior"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Navigation Style Mapping"
+    }
+  },
+  "title": "DOCNAVIGATIONSTYLEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for DocNavigationStyleDefaults configuration"
+}

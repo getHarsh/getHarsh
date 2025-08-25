@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsolidatedEntities",
+  "definitions": {
+    "ConsolidatedEntities": {
+      "properties": {
+        "organizations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All organizations"
+        },
+        "persons": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All persons"
+        },
+        "brands": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All brands"
+        },
+        "creative_works": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "All creative works"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/definitions/website.config.EntityRelation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity relationships graph"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consolidated Entities",
+      "description": "Consolidated entities"
+    },
+    "website.config.EntityRelation": {
+      "properties": {
+        "from_id": {
+          "type": "string",
+          "description": "Source entity @id"
+        },
+        "to_id": {
+          "type": "string",
+          "description": "Target entity @id"
+        },
+        "relation_type": {
+          "type": "string",
+          "description": "Relationship type"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Relationship properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Relation",
+      "description": "Entity relation in graph"
+    }
+  },
+  "title": "CONSOLIDATEDENTITIES Configuration Schema",
+  "description": "JSON Schema for ConsolidatedEntities configuration"
+}

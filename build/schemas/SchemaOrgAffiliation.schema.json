@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgAffiliation",
+  "definitions": {
+    "SchemaOrgAffiliation": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL (optional)"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (optional, ISO 8601 format)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (optional, ISO 8601 format, omit if current)"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type (optional, e.g., \"Corporation\", \"EducationalOrganization\")"
+        },
+        "affiliation_type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization @id reference (for linking to existing entities) Example: \"https://rawthoughts.in/#organization\""
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Affiliation",
+      "description": "Affiliation for Person type in Schema.org JSON-LD output DEPRECATED: Use PersonAffiliation for configuration, this is for output only"
+    }
+  },
+  "title": "SCHEMAORGAFFILIATION Configuration Schema",
+  "description": "JSON Schema for SchemaOrgAffiliation configuration"
+}

@@ -1,0 +1,499 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VisualAccessibility",
+  "definitions": {
+    "VisualAccessibility": {
+      "properties": {
+        "contrast": {
+          "$ref": "#/definitions/website.config.aria.ColorContrast",
+          "description": "Color contrast"
+        },
+        "scaling": {
+          "$ref": "#/definitions/website.config.aria.TextScaling",
+          "description": "Text scaling"
+        },
+        "motion": {
+          "$ref": "#/definitions/website.config.aria.MotionSettings",
+          "description": "Motion and animation"
+        },
+        "images": {
+          "$ref": "#/definitions/website.config.aria.ImagesMedia",
+          "description": "Images and media"
+        },
+        "indicators": {
+          "$ref": "#/definitions/website.config.aria.VisualIndicators",
+          "description": "Visual indicators"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Visual Accessibility",
+      "description": "Visual accessibility settings"
+    },
+    "website.config.aria.AltTextRequirements": {
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Require alt text"
+        },
+        "min_length": {
+          "type": "integer",
+          "description": "Minimum length"
+        },
+        "max_length": {
+          "type": "integer",
+          "description": "Maximum length"
+        },
+        "quality_check": {
+          "type": "boolean",
+          "description": "Quality checking"
+        },
+        "empty_for_decorative": {
+          "type": "boolean",
+          "description": "Empty alt for decorative"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Alt Text Requirements",
+      "description": "Alt text requirements"
+    },
+    "website.config.aria.AnimationControls": {
+      "properties": {
+        "allow_pause": {
+          "type": "boolean",
+          "description": "Pause animations"
+        },
+        "speed_control": {
+          "type": "boolean",
+          "description": "Animation speed"
+        },
+        "disable_option": {
+          "type": "boolean",
+          "description": "Disable all animations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Animation Controls",
+      "description": "Animation controls"
+    },
+    "website.config.aria.ColorBlindSupport": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable support"
+        },
+        "use_safe_palette": {
+          "type": "boolean",
+          "description": "Safe color palette"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Pattern alternatives"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ColorFilter"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Color filters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Blind Support",
+      "description": "Color blind support"
+    },
+    "website.config.aria.ColorContrast": {
+      "properties": {
+        "ratios": {
+          "$ref": "#/definitions/website.config.aria.ContrastRatios",
+          "description": "Minimum contrast ratios"
+        },
+        "high_contrast": {
+          "$ref": "#/definitions/website.config.aria.HighContrastMode",
+          "description": "High contrast mode"
+        },
+        "color_blind": {
+          "$ref": "#/definitions/website.config.aria.ColorBlindSupport",
+          "description": "Color blind friendly"
+        },
+        "enable_checking": {
+          "type": "boolean",
+          "description": "Contrast checking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Contrast",
+      "description": "Color contrast configuration"
+    },
+    "website.config.aria.ColorFilter": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Filter name"
+        },
+        "type": {
+          "enum": [
+            "COLOR_FILTER_TYPE_UNSPECIFIED",
+            0,
+            "COLOR_FILTER_TYPE_PROTANOPIA",
+            1,
+            "COLOR_FILTER_TYPE_DEUTERANOPIA",
+            2,
+            "COLOR_FILTER_TYPE_TRITANOPIA",
+            3,
+            "COLOR_FILTER_TYPE_ACHROMATOPSIA",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Color Filter Type",
+          "description": "Color filter types"
+        },
+        "css_filter": {
+          "type": "string",
+          "description": "CSS filter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Filter",
+      "description": "Color filter"
+    },
+    "website.config.aria.ComplexImages": {
+      "properties": {
+        "require_description": {
+          "type": "boolean",
+          "description": "Require descriptions"
+        },
+        "description_format": {
+          "type": "string",
+          "description": "Description format"
+        },
+        "link_to_description": {
+          "type": "boolean",
+          "description": "Link to description"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Complex Images",
+      "description": "Complex images handling"
+    },
+    "website.config.aria.ContrastRatios": {
+      "properties": {
+        "normal_text": {
+          "type": "number",
+          "description": "Normal text (AA: 4.5:1)"
+        },
+        "large_text": {
+          "type": "number",
+          "description": "Large text (AA: 3:1)"
+        },
+        "ui_components": {
+          "type": "number",
+          "description": "UI components (3:1)"
+        },
+        "use_enhanced": {
+          "type": "boolean",
+          "description": "Enhanced ratios (AAA)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Ratios",
+      "description": "Contrast ratio requirements"
+    },
+    "website.config.aria.ContrastScheme": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Scheme name"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color"
+        },
+        "foreground": {
+          "type": "string",
+          "description": "Foreground color"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Scheme",
+      "description": "Contrast scheme"
+    },
+    "website.config.aria.DecorativeImages": {
+      "properties": {
+        "allow_marking": {
+          "type": "boolean",
+          "description": "Mark as decorative"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect decorative"
+        },
+        "hide_from_sr": {
+          "type": "boolean",
+          "description": "Hide from screen readers"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decorative Images",
+      "description": "Decorative images handling"
+    },
+    "website.config.aria.ErrorIndicators": {
+      "properties": {
+        "icons_with_text": {
+          "type": "boolean",
+          "description": "Use icons with text"
+        },
+        "avoid_color_only": {
+          "type": "boolean",
+          "description": "Color coding only"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Error patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Indicators",
+      "description": "Error indicators"
+    },
+    "website.config.aria.HighContrastMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable high contrast"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect system setting"
+        },
+        "show_toggle": {
+          "type": "boolean",
+          "description": "Toggle button"
+        },
+        "schemes": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ContrastScheme"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom schemes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "High Contrast Mode",
+      "description": "High contrast mode"
+    },
+    "website.config.aria.ImagesMedia": {
+      "properties": {
+        "alt_text": {
+          "$ref": "#/definitions/website.config.aria.AltTextRequirements",
+          "description": "Alt text requirements"
+        },
+        "long_descriptions": {
+          "type": "boolean",
+          "description": "Image descriptions"
+        },
+        "decorative": {
+          "$ref": "#/definitions/website.config.aria.DecorativeImages",
+          "description": "Decorative images"
+        },
+        "complex": {
+          "$ref": "#/definitions/website.config.aria.ComplexImages",
+          "description": "Complex images"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Images Media",
+      "description": "Images and media configuration"
+    },
+    "website.config.aria.LoadingIndicators": {
+      "properties": {
+        "show_loading": {
+          "type": "boolean",
+          "description": "Show loading state"
+        },
+        "loading_text": {
+          "type": "string",
+          "description": "Loading text"
+        },
+        "text_alternative": {
+          "type": "boolean",
+          "description": "Spinner alternative"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Loading Indicators",
+      "description": "Loading indicators"
+    },
+    "website.config.aria.MotionSettings": {
+      "properties": {
+        "respect_preference": {
+          "type": "boolean",
+          "description": "Respect prefers-reduced-motion"
+        },
+        "controls": {
+          "$ref": "#/definitions/website.config.aria.AnimationControls",
+          "description": "Animation controls"
+        },
+        "prevent_autoplay": {
+          "type": "boolean",
+          "description": "Auto-play prevention"
+        },
+        "disable_parallax": {
+          "type": "boolean",
+          "description": "Parallax effects"
+        },
+        "optional_smooth_scroll": {
+          "type": "boolean",
+          "description": "Smooth scrolling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Motion Settings",
+      "description": "Motion settings"
+    },
+    "website.config.aria.ProgressIndicators": {
+      "properties": {
+        "announce_progress": {
+          "type": "boolean",
+          "description": "Progress announcements"
+        },
+        "text_alternatives": {
+          "type": "boolean",
+          "description": "Text alternatives"
+        },
+        "show_percentage": {
+          "type": "boolean",
+          "description": "Determinate progress"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Progress Indicators",
+      "description": "Progress indicators"
+    },
+    "website.config.aria.ScalingControls": {
+      "properties": {
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show controls"
+        },
+        "position": {
+          "type": "string",
+          "description": "Control position"
+        },
+        "steps": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array",
+          "description": "Scaling steps"
+        },
+        "remember": {
+          "type": "boolean",
+          "description": "Remember preference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scaling Controls",
+      "description": "Scaling controls"
+    },
+    "website.config.aria.SuccessIndicators": {
+      "properties": {
+        "announce_success": {
+          "type": "boolean",
+          "description": "Success announcements"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Success patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Success Indicators",
+      "description": "Success indicators"
+    },
+    "website.config.aria.TextScaling": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable text scaling"
+        },
+        "controls": {
+          "$ref": "#/definitions/website.config.aria.ScalingControls",
+          "description": "Scaling controls"
+        },
+        "responsive_sizing": {
+          "type": "boolean",
+          "description": "Responsive sizing"
+        },
+        "scale_line_height": {
+          "type": "boolean",
+          "description": "Line height scaling"
+        },
+        "max_scale": {
+          "type": "number",
+          "description": "Maximum scale"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Text Scaling",
+      "description": "Text scaling configuration"
+    },
+    "website.config.aria.VisualIndicators": {
+      "properties": {
+        "loading": {
+          "$ref": "#/definitions/website.config.aria.LoadingIndicators",
+          "description": "Loading indicators"
+        },
+        "errors": {
+          "$ref": "#/definitions/website.config.aria.ErrorIndicators",
+          "description": "Error indicators"
+        },
+        "success": {
+          "$ref": "#/definitions/website.config.aria.SuccessIndicators",
+          "description": "Success indicators"
+        },
+        "progress": {
+          "$ref": "#/definitions/website.config.aria.ProgressIndicators",
+          "description": "Progress indicators"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Visual Indicators",
+      "description": "Visual indicators"
+    }
+  },
+  "title": "VISUALACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for VisualAccessibility configuration"
+}

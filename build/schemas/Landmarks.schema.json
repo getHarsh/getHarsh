@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Landmarks",
+  "definitions": {
+    "Landmarks": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ARIA landmarks"
+        },
+        "main": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Main landmark"
+        },
+        "navigation": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Navigation landmark"
+        },
+        "banner": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Banner landmark"
+        },
+        "complementary": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Complementary landmark"
+        },
+        "contentinfo": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Content info landmark"
+        },
+        "search": {
+          "$ref": "#/definitions/website.config.aria.LandmarkConfig",
+          "description": "Search landmark"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.CustomLandmark"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Landmarks",
+      "description": "Landmarks configuration"
+    },
+    "website.config.aria.CustomLandmark": {
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "Landmark role"
+        },
+        "label": {
+          "type": "string",
+          "description": "Landmark label"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Landmark",
+      "description": "Custom landmark"
+    },
+    "website.config.aria.LandmarkConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable this landmark"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        },
+        "aria_labelledby": {
+          "type": "string",
+          "description": "ARIA labelledby"
+        },
+        "multiple_allowed": {
+          "type": "boolean",
+          "description": "Multiple instances handling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Landmark Config",
+      "description": "Landmark configuration"
+    }
+  },
+  "title": "LANDMARKS Configuration Schema",
+  "description": "JSON Schema for Landmarks configuration"
+}

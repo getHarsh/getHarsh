@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PlaygroundProviderMappings",
+  "definitions": {
+    "PlaygroundProviderMappings": {
+      "properties": {
+        "provider_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> provider name e.g., \"PLAYGROUND_PROVIDER_CODEPEN\" -> \"CodePen\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PLAYGROUND PROVIDER MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PLAYGROUND PROVIDER MAPPINGS =============================================================================  Maps PlaygroundProvider enum to embedded playground services"
+    }
+  },
+  "title": "PLAYGROUNDPROVIDERMAPPINGS Configuration Schema",
+  "description": "JSON Schema for PlaygroundProviderMappings configuration"
+}

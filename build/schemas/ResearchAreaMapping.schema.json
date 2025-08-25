@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ResearchAreaMapping",
+  "definitions": {
+    "ResearchAreaMapping": {
+      "properties": {
+        "default_area": {
+          "type": "string",
+          "description": "Default research area"
+        },
+        "keyword_areas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Keywords to area mapping"
+        },
+        "disciplines": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Discipline mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Research Area Mapping",
+      "description": "Research area mapping"
+    }
+  },
+  "title": "RESEARCHAREAMAPPING Configuration Schema",
+  "description": "JSON Schema for ResearchAreaMapping configuration"
+}

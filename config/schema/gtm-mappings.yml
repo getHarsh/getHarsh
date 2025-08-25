@@ -1,0 +1,822 @@
+# GTM Schema Mappings
+# Maps GTM proto enums and types to their semantic meanings and GA4 equivalents
+
+# Loading strategy mappings
+LoadingStrategy:
+  LOADING_STRATEGY_SYNC: "synchronous"
+  LOADING_STRATEGY_ASYNC: "asynchronous"
+  LOADING_STRATEGY_DEFER: "deferred"
+  LOADING_STRATEGY_LAZY: "lazy"
+
+# Trigger type mappings to GTM trigger types
+TriggerType:
+  TRIGGER_TYPE_PAGE_VIEW: "Page View"
+  TRIGGER_TYPE_DOM_READY: "DOM Ready"
+  TRIGGER_TYPE_WINDOW_LOADED: "Window Loaded"
+  TRIGGER_TYPE_CLICK: "Click - All Elements"
+  TRIGGER_TYPE_FORM_SUBMIT: "Form Submission"
+  TRIGGER_TYPE_SCROLL: "Scroll Depth"
+  TRIGGER_TYPE_TIMER: "Timer"
+  TRIGGER_TYPE_CUSTOM: "Custom Event"
+
+# Parameter type mappings
+ParameterType:
+  PARAMETER_TYPE_STATIC: "Constant"
+  PARAMETER_TYPE_DYNAMIC: "Data Layer Variable"
+  PARAMETER_TYPE_DOM: "DOM Element"
+  PARAMETER_TYPE_URL: "URL Variable"
+  PARAMETER_TYPE_COOKIE: "1st Party Cookie"
+  PARAMETER_TYPE_JS_VARIABLE: "JavaScript Variable"
+
+# Condition operator mappings
+ConditionOperator:
+  CONDITION_OPERATOR_EQUALS: "equals"
+  CONDITION_OPERATOR_NOT_EQUALS: "does not equal"
+  CONDITION_OPERATOR_CONTAINS: "contains"
+  CONDITION_OPERATOR_NOT_CONTAINS: "does not contain"
+  CONDITION_OPERATOR_STARTS_WITH: "starts with"
+  CONDITION_OPERATOR_ENDS_WITH: "ends with"
+  CONDITION_OPERATOR_MATCHES_REGEX: "matches RegEx"
+  CONDITION_OPERATOR_GREATER_THAN: "greater than"
+  CONDITION_OPERATOR_LESS_THAN: "less than"
+
+# Value type mappings
+ValueType:
+  VALUE_TYPE_STATIC: "constant"
+  VALUE_TYPE_DYNAMIC: "variable"
+  VALUE_TYPE_CALCULATED: "custom_javascript"
+
+# Dimension scope mappings to GA4
+DimensionScope:
+  DIMENSION_SCOPE_USER: "user"
+  DIMENSION_SCOPE_SESSION: "session"
+  DIMENSION_SCOPE_EVENT: "event"
+  DIMENSION_SCOPE_ITEM: "item"
+
+# Metric type mappings
+MetricType:
+  METRIC_TYPE_NUMBER: "number"
+  METRIC_TYPE_CURRENCY: "currency"
+  METRIC_TYPE_TIME: "time"
+  METRIC_TYPE_PERCENTAGE: "percentage"
+
+# Consent state mappings
+ConsentState:
+  CONSENT_STATE_GRANTED: "granted"
+  CONSENT_STATE_DENIED: "denied"
+
+# Detection type mappings
+DetectionType:
+  DETECTION_TYPE_IP_BASED: "ip_geolocation"
+  DETECTION_TYPE_TIMEZONE: "timezone"
+  DETECTION_TYPE_BROWSER_LOCALE: "browser_locale"
+  DETECTION_TYPE_CUSTOM: "custom_function"
+
+# Transport method mappings
+TransportMethod:
+  TRANSPORT_METHOD_GTAG: "gtag"
+  TRANSPORT_METHOD_GTM: "gtm_native"
+  TRANSPORT_METHOD_CUSTOM: "custom_implementation"
+
+# Log level mappings
+LogLevel:
+  LOG_LEVEL_ERROR: "error"
+  LOG_LEVEL_WARNING: "warning"
+  LOG_LEVEL_INFO: "info"
+  LOG_LEVEL_DEBUG: "debug"
+  LOG_LEVEL_VERBOSE: "verbose"
+
+# Standard GA4 event mappings
+StandardEvents:
+  page_view: "page_view"
+  user_engagement: "user_engagement"
+  scroll: "scroll"
+  click: "click"
+  view_search_results: "view_search_results"
+  video_start: "video_start"
+  video_progress: "video_progress"
+  video_complete: "video_complete"
+  file_download: "file_download"
+  share: "share"  # GA4 recommended for social sharing
+  generate_lead: "generate_lead"  # For appointment booking
+
+# Content discovery and engagement events (MTA)
+ContentEngagementEvents:
+  view_item: "view_item"  # Article/content view
+  view_item_list: "view_item_list"  # Blog index view
+  select_item: "select_item"  # Click on related content
+  engaged_reader:  # Custom event for true engagement
+    event_name: "engaged_reader"
+    conditions:
+      scroll_percent: 50
+      time_on_page: 30
+    parameters:
+      - engagement_type
+      - content_group
+      - author
+
+# Social proof and sharing events
+SocialEvents:
+  share: "share"  # GA4 standard share event
+  share_complete:  # Custom event for completed shares
+    event_name: "share_complete"
+    parameters:
+      - method
+      - share_url
+      - content_type
+      - item_id
+
+# Cross-domain journey tracking
+EcosystemEvents:
+  cross_entity_navigation:  # Track movement between entities
+    event_name: "cross_entity_navigation"
+    parameters:
+      - from_entity
+      - to_entity
+      - from_domain
+      - to_domain
+      - navigation_type
+
+# Enhanced cross-domain configuration
+CrossDomainConfig:
+  patterns:
+    base_domains: "^[^.]+\.in$"  # getHarsh.in, causality.in, etc.
+    blog_subdomains: "^blog\.[^.]+\.in$"  # blog.getHarsh.in, etc.
+    project_subdomains: "^[^.]+\.[^.]+\.in$"  # HENA.getHarsh.in, etc.
+  
+  linker_config:
+    accept_incoming: true
+    auto_link: true
+    decorate_forms: true
+    domains:
+      - "*.in"  # All .in domains
+      - "blog.*.in"  # All blog subdomains
+      - "*.*.in"  # All project subdomains
+    url_position: "query"  # or "fragment"
+    
+  subdomain_tracking:
+    cookie_domain: "auto"  # Automatically set to .domain.in
+    cookie_flags: "SameSite=None; Secure"
+    cookie_prefix: "_gcl_"
+
+# Comprehensive event taxonomy
+# NOTE: These are CUSTOM events for the getHarsh ecosystem, not standard GA4 events.
+# Custom events are encouraged in GA4 for domain-specific tracking needs.
+# Event names follow GA4 conventions: lowercase with underscores, max 40 characters.
+EventTaxonomy:
+  # Navigation events (custom)
+  navigation_events:
+    ecosystem_entry:
+      event_name: "ecosystem_entry"
+      parameters:
+        - entry_point  # direct, search, social, referral
+        - landing_entity  # which domain/project
+        - user_intent  # explore, learn, contribute, sponsor
+    
+    cross_subdomain_navigation:
+      event_name: "cross_subdomain_navigation"
+      parameters:
+        - from_type  # base, blog, project
+        - from_subdomain
+        - to_type  # base, blog, project
+        - to_subdomain
+        - navigation_method  # link, search, menu, keyboard
+    
+    project_discovery_journey:
+      event_name: "project_discovery_journey"
+      parameters:
+        - discovery_source  # projects_page, blog_mention, search
+        - projects_viewed  # array of projects
+        - time_to_first_interaction
+        - total_projects_explored
+  
+  # Content engagement with semantic tracking
+  semantic_engagement_events:
+    semantic_trace_captured:
+      event_name: "semantic_trace_captured"
+      parameters:
+        - trace_type  # thought, observation, reflection
+        - content_depth  # shallow, medium, deep
+        - schema_coverage  # percentage of schema.org coverage
+        - neurodivergent_features_used  # array of features
+    
+    knowledge_graph_interaction:
+      event_name: "knowledge_graph_interaction"
+      parameters:
+        - node_type  # person, project, concept
+        - relationship_explored
+        - graph_depth_traversed
+        - time_spent_exploring
+  
+  # Neurodivergent accommodation usage
+  accessibility_events:
+    accommodation_activated:
+      event_name: "accommodation_activated"
+      parameters:
+        - accommodation_type
+        - user_preference_saved
+        - activation_source
+    
+    cognitive_load_adjusted:
+      event_name: "cognitive_load_adjusted"
+      parameters:
+        - previous_level
+        - new_level
+        - adjustment_reason
+    
+    focus_session_completed:
+      event_name: "focus_session_completed"
+      parameters:
+        - session_duration
+        - content_consumed
+        - distractions_blocked
+  
+  # Enhanced sponsorship funnel
+  sponsorship_funnel:
+    sponsor_awareness:
+      event_name: "sponsor_awareness"
+      parameters:
+        - awareness_source  # footer, nav, content_cta
+        - current_page_type
+        - time_on_site_before_awareness
+    
+    sponsor_interest:
+      event_name: "sponsor_interest"
+      parameters:
+        - interest_signal  # hover, click, scroll_to
+        - sponsorship_type_interested
+        - user_engagement_score
+    
+    sponsor_consideration:
+      event_name: "sponsor_consideration"
+      parameters:
+        - options_compared
+        - time_on_sponsor_page
+        - faq_sections_read
+        - external_links_clicked
+    
+    sponsor_action:
+      event_name: "sponsor_action"
+      parameters:
+        - action_type  # paypal, github, contact, calendar
+        - sponsorship_tier
+        - estimated_value
+        - completion_status
+  
+  # Project lifecycle tracking
+  project_tracking:
+    project_awareness:
+      event_name: "project_awareness"
+      parameters:
+        - project_name
+        - discovery_context
+        - project_status
+        - technologies
+    
+    project_engagement:
+      event_name: "project_engagement"
+      parameters:
+        - engagement_type  # readme, docs, demo, code
+        - engagement_depth
+        - features_explored
+        - time_spent
+    
+    project_contribution_intent:
+      event_name: "project_contribution_intent"
+      parameters:
+        - contribution_type  # star, fork, issue, pr
+        - project_name
+        - user_expertise_match
+
+# Conversion events for consulting model
+ConversionEvents:
+  generate_lead: "generate_lead"  # Appointment book intent
+  appointment_view:  # Custom event for calendar widget view
+    event_name: "appointment_view"
+    parameters:
+      - calendar_type
+      - available_slots
+  sponsor_interest:  # High-value lead for sponsorship
+    event_name: "sponsor_interest"
+    parameters:
+      - sponsor_type
+      - estimated_value
+      
+  # Lead reports configuration
+  lead_reports:
+    lead_acquisition:
+      dimensions: ["lead_source", "lead_type", "first_user_source"]
+      metrics: ["leads", "qualified_leads", "conversion_rate"]
+    
+    lead_funnel:
+      stages:
+        - generate_lead
+        - working_lead
+        - qualify_lead
+        - close_convert_lead
+      
+    lost_lead_analysis:
+      dimensions: ["unconvert_lead_reason", "disqualified_lead_reason"]
+      metrics: ["lost_leads", "disqualification_rate"]
+  
+  # Sponsorship conversion events
+  sponsorship_events:
+    sponsor_page_view:
+      event_name: "sponsor_page_view"
+      parameters:
+        - sponsorship_types_available
+        - has_paypal
+        - has_github_sponsors
+        - has_youtube_membership
+    
+    sponsor_click:
+      event_name: "sponsor_click"
+      parameters:
+        - sponsor_platform
+        - sponsor_type
+        - click_location
+    
+    sponsor_inquiry:
+      event_name: "sponsor_inquiry"
+      parameters:
+        - inquiry_type
+        - estimated_value
+        - contact_method
+  
+  # Project discovery events
+  project_discovery:
+    project_view:
+      event_name: "project_view"
+      parameters:
+        - project_name
+        - project_type
+        - project_status
+        - technologies_used
+    
+    project_interaction:
+      event_name: "project_interaction"
+      parameters:
+        - interaction_type  # demo, docs, source_code
+        - project_name
+        - time_spent
+
+# Consent type mappings
+ConsentTypes:
+  analytics_storage: "analytics_storage"
+  ad_storage: "ad_storage"
+  ad_user_data: "ad_user_data"
+  ad_personalization: "ad_personalization"
+  functionality_storage: "functionality_storage"
+  personalization_storage: "personalization_storage"
+  security_storage: "security_storage"
+
+# Custom dimension suggestions
+CustomDimensionSuggestions:
+  user_dimensions:
+    - name: "user_type"
+      description: "Visitor, Member, Subscriber, etc."
+    - name: "user_segment"
+      description: "Marketing segment classification"
+    - name: "lifetime_value_range"
+      description: "LTV buckets for analysis"
+  event_dimensions:
+    - name: "content_group"
+      description: "Content categorization"
+    - name: "author"
+      description: "Content author"
+    - name: "publication_date"
+      description: "When content was published"
+    - name: "content_length"
+      description: "Word count or reading time"
+    - name: "interaction_type"
+      description: "Type of user interaction"
+
+# Entity dimension mappings (dynamic, not hardcoded)
+EntityDimensions:
+  legal_entity: "custom_dimension_1"  # From EntityCatalog
+  brand: "custom_dimension_2"  # From BrandCatalog
+  project: "custom_dimension_3"  # From ProjectCatalog
+  content_source: "custom_dimension_4"
+  cross_domain_source: "custom_dimension_5"
+  author: "custom_dimension_6"  # From PersonCatalog
+  service_interest: "custom_dimension_7"  # ServiceType enum
+  content_type: "custom_dimension_8"  # ContentType enum
+  user_persona: "custom_dimension_9"  # Inferred from behavior
+  journey_stage: "custom_dimension_10"  # Discovery/Engagement/Consideration/Conversion
+
+# GTM built-in variables
+GTMBuiltInVariables:
+  - "Page URL"
+  - "Page Path"
+  - "Page Hostname"
+  - "Referrer"
+  - "Event"
+  - "Click Element"
+  - "Click Classes"
+  - "Click ID"
+  - "Click URL"
+  - "Click Text"
+  - "Form Element"
+  - "Form Classes"
+  - "Form ID"
+  - "Error Message"
+  - "Error URL"
+  - "Error Line"
+  - "New History State"
+  - "Old History State"
+  - "History Source"
+  - "Container ID"
+  - "Container Version"
+  - "Debug Mode"
+  - "Random Number"
+  - "HTML ID"
+
+# Data layer variable conventions
+DataLayerConventions:
+  page:
+    title: "pageTitle"
+    type: "pageType"
+    category: "pageCategory"
+    author: "pageAuthor"
+    publishDate: "pagePublishDate"
+    modifiedDate: "pageModifiedDate"
+  user:
+    id: "userId"
+    type: "userType"
+    segment: "userSegment"
+    loginStatus: "userLoginStatus"
+  entity:
+    legalEntity: "entityLegal"
+    brand: "entityBrand"
+    project: "entityProject"
+    source: "entitySource"
+  event:
+    category: "eventCategory"
+    action: "eventAction"
+    label: "eventLabel"
+    value: "eventValue"
+
+# Cookie settings defaults
+CookieDefaults:
+  prefix: "_ec_"
+  expires: 365
+  path: "/"
+  samesite: "Lax"
+  secure: true
+
+# Server-side endpoint patterns
+ServerSideEndpoints:
+  google: "https://analytics.google.com"
+  custom: "/collect"
+  batch: "/batch"
+
+# Consent tracking events (privacy-compliant)
+ConsentTrackingEvents:
+  # Initial consent interaction
+  consent_banner_impression:
+    event_name: "consent_banner_shown"
+    parameters:
+      - banner_variant  # A/B test variant
+      - user_region  # EU, US-CA, IN, etc.
+      - legal_basis  # GDPR, CCPA, DPA
+      - entity_controller  # Which legal entity
+    consent_required: false  # Can track before consent
+  
+  consent_interaction:
+    event_name: "consent_interaction"
+    parameters:
+      - interaction_type  # accept_all, reject_all, customize
+      - time_to_decision  # Milliseconds
+      - categories_accepted  # Array of categories
+      - sync_enabled  # Cross-domain sync opted in
+    consent_required: false
+  
+  consent_preferences_changed:
+    event_name: "consent_preferences_changed"
+    parameters:
+      - previous_state  # Object of previous consents
+      - new_state  # Object of new consents
+      - change_location  # banner, settings, API
+      - entity_affected  # Which domains affected
+    consent_required: true  # Only if analytics consented
+  
+  # Cross-domain consent events
+  consent_sync_attempted:
+    event_name: "consent_sync_attempted"
+    parameters:
+      - sync_method  # postMessage, server, cookie
+      - source_domain
+      - target_domains  # Array of domains to sync
+      - sync_id  # Unique sync identifier
+    consent_required: true
+  
+  consent_sync_result:
+    event_name: "consent_sync_result"
+    parameters:
+      - sync_id
+      - success_count
+      - failure_count
+      - failure_reasons  # Array of reasons
+      - time_taken
+    consent_required: true
+
+# Enhanced consent mode configuration
+ConsentModeV2Config:
+  # Wait for consent update
+  wait_for_update: 
+    EU: 500  # ms to wait
+    US-CA: 300
+    IN: 100
+    default: 0
+  
+  # Consent type mappings to categories
+  consent_type_mapping:
+    analytics_storage: ["analytics"]
+    ad_storage: ["marketing"]
+    ad_user_data: ["marketing"]
+    ad_personalization: ["marketing"]
+    functionality_storage: ["functional", "necessary"]
+    personalization_storage: ["functional"]
+    security_storage: ["necessary"]
+  
+  # Region detection for consent
+  region_detection:
+    primary: "timezone"  # Most reliable for static sites
+    fallback: "browser_locale"
+    override: "user_selection"  # Allow manual region selection
+  
+  # URL passthrough for consent state
+  url_parameters:
+    consent_mode: "gcm"  # Google Consent Mode state
+    consent_sync: "cs"  # Cross-domain sync ID
+    consent_region: "cr"  # Detected/selected region
+
+# Entity-specific consent boundaries
+EntityConsentTracking:
+  # Each legal entity has separate consent
+  legal_entity_boundaries:
+    track_separately: true
+    share_analytics: false  # Don't share data between entities
+    consent_federation: "opt-in"  # User can opt into federation
+  
+  # Consent inheritance rules
+  consent_inheritance:
+    blog_inherits_from_base: true
+    project_inherits_from_base: false  # Projects are separate
+    inheritance_notice_required: true
+
+# Privacy-preserving analytics
+PrivacyPreservingAnalytics:
+  # Before consent granted
+  cookieless_tracking:
+    page_views: true  # Basic page views only
+    engagement_signals: false
+    conversion_tracking: false
+    session_stitching: false
+  
+  # After consent granted
+  consented_tracking:
+    enhanced_measurement: true
+    cross_domain_tracking: true
+    user_properties: true
+    remarketing: false  # Unless marketing consented
+
+# Consent-aware custom dimensions
+ConsentAwareDimensions:
+  # Dimensions that can be set without consent
+  pre_consent_dimensions:
+    - page_type
+    - content_category
+    - user_region
+    - consent_status
+  
+  # Dimensions requiring consent
+  post_consent_dimensions:
+    - user_id
+    - cross_domain_journey
+    - engagement_score
+    - conversion_path
+
+# Enhanced e-commerce tracking (for sponsorship)
+EcommerceEvents:
+  view_item:  # Sponsorship option
+    parameters:
+      - item_id  # sponsor_tier_id
+      - item_name  # "GitHub Sponsors - Tier 1"
+      - item_category  # "recurring" or "one-time"
+      - price
+      - currency
+  
+  add_to_cart:  # Sponsorship interest
+    parameters:
+      - item_id
+      - item_name
+      - item_category
+      - price
+      - quantity  # Always 1 for sponsorship
+  
+  begin_checkout:  # External redirect
+    parameters:
+      - items  # Array of sponsorship options
+      - value  # Total potential value
+      - currency
+      - checkout_platform  # paypal, github, etc.
+
+# Server-side tracking
+ServerSideTracking:
+  measurement_protocol:
+    endpoint: "https://www.google-analytics.com/mp/collect"
+    validation_endpoint: "https://www.google-analytics.com/debug/mp/collect"
+  
+  events:
+    - api_usage  # Track API calls server-side
+    - build_completion  # Track build success/failure
+    - deployment_status  # Track deployment events
+    - cron_execution  # Track scheduled tasks
+
+# Debug mode enhancements
+DebugMode:
+  enhanced_logging:
+    log_all_events: true
+    log_data_layer: true
+    log_consent_state: true
+    log_user_properties: true
+  
+  validation:
+    validate_events: true
+    validate_parameters: true
+    validate_user_properties: true
+    strict_mode: true  # Fail on validation errors
+
+# Testing and debugging
+ConsentDebugEvents:
+  - consent_mode_init  # Initial state
+  - consent_mode_update  # State changes
+  - consent_conflict  # Conflicting states
+  - consent_sync_debug  # Sync attempts
+  - region_detection_debug  # How region was determined
+
+# Debug event suggestions
+DebugEventSuggestions:
+  - "gtm.load"
+  - "gtm.dom"
+  - "gtm.willSendPageview"
+  - "consent_update"
+  - "user_engagement"
+  - "page_view"
+  - "error"
+
+# Regional consent defaults
+RegionalConsentDefaults:
+  EU:
+    analytics_storage: "denied"
+    ad_storage: "denied"
+    ad_user_data: "denied"
+    ad_personalization: "denied"
+  US:
+    analytics_storage: "granted"
+    ad_storage: "granted"
+    ad_user_data: "granted"
+    ad_personalization: "granted"
+  US-CA:
+    analytics_storage: "granted"
+    ad_storage: "denied"
+    ad_user_data: "denied"
+    ad_personalization: "denied"
+  IN:
+    analytics_storage: "granted"
+    ad_storage: "denied"
+    ad_user_data: "denied"
+    ad_personalization: "denied"
+
+# Enhanced custom dimensions (GA4 format - named parameters, not numbered)
+CustomDimensions:
+  # User dimensions (user-scoped)
+  user_dimensions:
+    user_type: "user_type"  # visitor, reader, contributor, sponsor
+    neurodivergent_profile: "neurodivergent_profile"  # accommodation preferences
+    expertise_level: "expertise_level"  # beginner, intermediate, expert
+    engagement_persona: "engagement_persona"  # explorer, learner, builder
+    cross_domain_id: "cross_domain_id"  # unified user ID across ecosystem
+  
+  # Content dimensions (event-scoped)
+  content_dimensions:
+    semantic_richness: "semantic_richness"  # schema.org coverage %
+    cognitive_load: "cognitive_load"  # 1-4 scale
+    content_format: "content_format"  # article, tutorial, reference
+    technical_depth: "technical_depth"  # conceptual, practical, advanced
+    cross_reference_count: "cross_reference_count"  # links to other ecosystem content
+  
+  # Entity dimensions (event-scoped)
+  entity_dimensions:
+    current_entity: "current_entity"  # from EntityCatalog
+    current_subdomain: "current_subdomain"  # base, blog, project name
+    navigation_context: "navigation_context"  # where user came from
+    legal_boundary: "legal_boundary"  # privacy/legal jurisdiction
+    brand_association: "brand_association"  # from BrandCatalog
+  
+  # Project dimensions (event-scoped)
+  project_dimensions:
+    project_name: "project_name"
+    project_type: "project_type"  # from ProjectType enum
+    project_status: "project_status"  # from ProjectStatus enum
+    project_lifecycle: "project_lifecycle"  # from ProjectLifecycle enum
+    technology_stack: "technology_stack"  # primary technologies
+
+  # Ecosystem-specific dimensions (event-scoped)
+  ecosystem_dimensions:
+    - name: "semantic_trace_type"
+      description: "Type of semantic trace captured"
+      scope: "event"  # GA4 requires scope specification
+    - name: "neurodivergent_feature"
+      description: "Accessibility feature in use"
+      scope: "event"
+    - name: "cross_domain_journey"
+      description: "Path across ecosystem domains"
+      scope: "session"  # Journey spans session
+    - name: "content_semantic_richness"
+      description: "Schema.org coverage percentage"
+      scope: "event"
+    - name: "ai_agent_interaction"
+      description: "AI/LLM tool interactions"
+      scope: "event"
+
+# Privacy-conscious analytics
+PrivacyFirstEvents:
+  page_view_minimal:
+    event_name: "page_view"
+    parameters:  # Only non-PII data
+      - page_type
+      - content_category
+      - theme_name
+  
+  engagement_anonymous:
+    event_name: "user_engagement"
+    parameters:
+      - engagement_time_msec
+      - scroll_percentage
+      - content_group
+
+# Privacy-first measurement
+PrivacyFirstConfig:
+  consent_mode_v2:
+    default_state:
+      analytics_storage: "denied"
+      ad_storage: "denied"
+      ad_user_data: "denied"
+      ad_personalization: "denied"
+      functionality_storage: "granted"
+      personalization_storage: "denied"
+      security_storage: "granted"
+    
+    region_specific:
+      EU:
+        wait_for_update: 500  # milliseconds
+        ads_data_redaction: true
+      US-CA:
+        wait_for_update: 300
+        ads_data_redaction: true
+      IN:
+        wait_for_update: 100
+        ads_data_redaction: false
+  
+  cookieless_tracking:
+    enabled: true
+    methods:
+      - fingerprinting: false  # Never use
+      - session_storage: true
+      - url_parameters: true
+      - modeling: true  # GA4 behavioral modeling
+
+# Professional services specific events
+ProfessionalServicesEvents:
+  consultation_funnel:
+    consultation_interest:
+      event_name: "consultation_interest"
+      parameters:
+        - service_type  # AI, coaching, development
+        - interest_source  # service_page, blog_cta, contact_form
+        - user_industry
+        - company_size
+    
+    consultation_request:
+      event_name: "consultation_request"
+      parameters:
+        - consultation_type
+        - preferred_time
+        - budget_range
+        - project_timeline
+    
+    consultation_scheduled:
+      event_name: "consultation_scheduled"
+      parameters:
+        - meeting_platform  # zoom, meet, phone
+        - consultation_duration
+        - service_package
+    
+    consultation_completed:
+      event_name: "consultation_completed"
+      parameters:
+        - consultation_outcome  # proposal_sent, follow_up, no_fit
+        - next_steps
+        - estimated_project_value

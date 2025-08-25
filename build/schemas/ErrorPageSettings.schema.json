@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ErrorPageSettings",
+  "definitions": {
+    "ErrorPageSettings": {
+      "properties": {
+        "error_messages": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom messages for each error code  e.g., 404 -> \"Oops! Lost in the void...\""
+        },
+        "show_ecosystem_link": {
+          "type": "boolean",
+          "description": "Show ecosystem learn more link"
+        },
+        "style": {
+          "type": "string",
+          "description": "Error page style (\"quirky\", \"minimal\", \"technical\")"
+        },
+        "custom_ctas": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom CTAs for error pages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page Settings",
+      "description": "Error page custom messages"
+    }
+  },
+  "title": "ERRORPAGESETTINGS Configuration Schema",
+  "description": "JSON Schema for ErrorPageSettings configuration"
+}

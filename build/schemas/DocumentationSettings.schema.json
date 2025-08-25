@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocumentationSettings",
+  "definitions": {
+    "DocumentationSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable documentation site at /[project]/docs/"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version/branch to pull docs from (in main branch)  \"main\", \"v2.0.0\", \"v1.0.0\", etc."
+        },
+        "has_docs_folder": {
+          "type": "boolean",
+          "description": "Whether docs folder exists in the repository"
+        },
+        "has_own_config": {
+          "type": "boolean",
+          "description": "Documentation inherits from project and can have its own config.yml"
+        },
+        "enable_version_switcher": {
+          "type": "boolean",
+          "description": "Enable version switcher in docs UI"
+        },
+        "available_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "List of available versions (for version switcher)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation Settings",
+      "description": "Documentation settings for project"
+    }
+  },
+  "title": "DOCUMENTATIONSETTINGS Configuration Schema",
+  "description": "JSON Schema for DocumentationSettings configuration"
+}

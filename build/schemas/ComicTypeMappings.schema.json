@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ComicTypeMappings",
+  "definitions": {
+    "ComicTypeMappings": {
+      "properties": {
+        "comic_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"COMIC_TYPE_SERIES\" -> \"ComicSeries\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n COMIC TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= COMIC TYPE MAPPINGS =============================================================================  Maps ComicType enum values to Schema.org comic types"
+    }
+  },
+  "title": "COMICTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ComicTypeMappings configuration"
+}

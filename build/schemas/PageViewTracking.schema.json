@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PageViewTracking",
+  "definitions": {
+    "PageViewTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable page view tracking"
+        },
+        "track_spa_navigation": {
+          "type": "boolean",
+          "description": "Track single page app navigation"
+        },
+        "custom_parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Include custom parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page View Tracking",
+      "description": "Page view tracking configuration"
+    }
+  },
+  "title": "PAGEVIEWTRACKING Configuration Schema",
+  "description": "JSON Schema for PageViewTracking configuration"
+}

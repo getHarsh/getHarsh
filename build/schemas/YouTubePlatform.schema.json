@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/YouTubePlatform",
+  "definitions": {
+    "YouTubePlatform": {
+      "properties": {
+        "channel_url": {
+          "type": "string",
+          "description": "Channel URL"
+        },
+        "show_subscribe_button": {
+          "type": "boolean",
+          "description": "Show subscribe button"
+        },
+        "enable_embeds": {
+          "type": "boolean",
+          "description": "Enable video embeds"
+        },
+        "privacy_enhanced_mode": {
+          "type": "boolean",
+          "description": "Default embed privacy mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Platform",
+      "description": "YouTube platform configuration"
+    }
+  },
+  "title": "YOUTUBEPLATFORM Configuration Schema",
+  "description": "JSON Schema for YouTubePlatform configuration"
+}

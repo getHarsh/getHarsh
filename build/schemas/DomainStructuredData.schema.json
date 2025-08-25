@@ -1,0 +1,217 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DomainStructuredData",
+  "definitions": {
+    "DomainStructuredData": {
+      "properties": {
+        "organization_override": {
+          "$ref": "#/definitions/website.config.OrganizationOverride",
+          "description": "Organization override for this domain"
+        },
+        "domain_author_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domain-specific author keys (references ecosystem.authors) Example: [\"harsh\", \"john_doe\"]"
+        },
+        "local_business": {
+          "$ref": "#/definitions/website.config.LocalBusinessSchema",
+          "description": "Local business schema (if applicable)"
+        },
+        "service": {
+          "$ref": "#/definitions/website.config.ServiceSchema",
+          "description": "Service schema (if applicable)"
+        },
+        "custom_schemas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom schema extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Structured Data",
+      "description": "Domain-specific structured data overrides"
+    },
+    "website.config.ContactPoint": {
+      "properties": {
+        "contact_type": {
+          "type": "string",
+          "description": "Contact type (e.g., \"customer service\")"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone number"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address"
+        },
+        "available_language": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available languages"
+        },
+        "area_served": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Area served"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Point",
+      "description": "Contact point for organization"
+    },
+    "website.config.LocalBusinessSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable local business markup"
+        },
+        "business_type": {
+          "type": "string",
+          "description": "Business type (e.g., \"ProfessionalService\")"
+        },
+        "address": {
+          "$ref": "#/definitions/website.config.PostalAddress",
+          "description": "Physical address"
+        },
+        "opening_hours": {
+          "items": {
+            "$ref": "#/definitions/website.config.OpeningHours"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Business hours"
+        },
+        "price_range": {
+          "type": "string",
+          "description": "Price range (e.g., \"$$\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Local Business Schema",
+      "description": "Local business schema"
+    },
+    "website.config.OpeningHours": {
+      "properties": {
+        "day_of_week": {
+          "type": "string",
+          "description": "Day of week"
+        },
+        "opens": {
+          "type": "string",
+          "description": "Opening time (24h format)"
+        },
+        "closes": {
+          "type": "string",
+          "description": "Closing time (24h format)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Opening Hours",
+      "description": "Opening hours specification"
+    },
+    "website.config.OrganizationOverride": {
+      "properties": {
+        "name_override": {
+          "type": "string",
+          "description": "Override organization name"
+        },
+        "additional_same_as": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional same as URLs"
+        },
+        "domain_contact": {
+          "$ref": "#/definitions/website.config.ContactPoint",
+          "description": "Domain-specific contact point"
+        },
+        "domain_logo_url": {
+          "type": "string",
+          "description": "Domain-specific logo"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Organization Override",
+      "description": "Organization override for domain"
+    },
+    "website.config.PostalAddress": {
+      "properties": {
+        "street_address": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "locality": {
+          "type": "string",
+          "description": "City/locality"
+        },
+        "region": {
+          "type": "string",
+          "description": "State/region"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Postal Address",
+      "description": "Postal address for local business"
+    },
+    "website.config.ServiceSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable service markup"
+        },
+        "service_type": {
+          "type": "string",
+          "description": "Service type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Service description"
+        },
+        "area_served": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Area served"
+        },
+        "available_channel": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available channels"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service Schema",
+      "description": "Service schema for domain"
+    }
+  },
+  "title": "DOMAINSTRUCTUREDDATA Configuration Schema",
+  "description": "JSON Schema for DomainStructuredData configuration"
+}

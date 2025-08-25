@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RepositoryMetadata",
+  "definitions": {
+    "RepositoryMetadata": {
+      "properties": {
+        "include_languages": {
+          "type": "boolean",
+          "description": "Include languages"
+        },
+        "include_topics": {
+          "type": "boolean",
+          "description": "Include topics/tags"
+        },
+        "include_license": {
+          "type": "boolean",
+          "description": "Include license"
+        },
+        "include_activity": {
+          "type": "boolean",
+          "description": "Include activity metrics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Repository Metadata",
+      "description": "Repository metadata"
+    }
+  },
+  "title": "REPOSITORYMETADATA Configuration Schema",
+  "description": "JSON Schema for RepositoryMetadata configuration"
+}

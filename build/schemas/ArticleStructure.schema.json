@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleStructure",
+  "definitions": {
+    "ArticleStructure": {
+      "properties": {
+        "use_article_role": {
+          "type": "boolean",
+          "description": "Article landmarks"
+        },
+        "semantic_time": {
+          "type": "boolean",
+          "description": "Time elements"
+        },
+        "author_info": {
+          "type": "boolean",
+          "description": "Author information"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Structure",
+      "description": "Article structure configuration"
+    }
+  },
+  "title": "ARTICLESTRUCTURE Configuration Schema",
+  "description": "JSON Schema for ArticleStructure configuration"
+}

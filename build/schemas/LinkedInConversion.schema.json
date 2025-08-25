@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkedInConversion",
+  "definitions": {
+    "LinkedInConversion": {
+      "properties": {
+        "conversion_id": {
+          "type": "string",
+          "description": "Conversion ID from LinkedIn Campaign Manager"
+        },
+        "conversion_name": {
+          "type": "string",
+          "description": "Conversion name for tracking"
+        },
+        "value": {
+          "type": "number",
+          "description": "Conversion value (optional)"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code (e.g., \"USD\", \"EUR\")"
+        },
+        "triggers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Trigger conditions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Conversion",
+      "description": "LinkedIn conversion configuration"
+    }
+  },
+  "title": "LINKEDINCONVERSION Configuration Schema",
+  "description": "JSON Schema for LinkedInConversion configuration"
+}

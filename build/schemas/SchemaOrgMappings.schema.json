@@ -1,0 +1,738 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgMappings",
+  "definitions": {
+    "SchemaOrgMappings": {
+      "properties": {
+        "discussion_platforms": {
+          "$ref": "#/definitions/website.config.DiscussionPlatformMappings",
+          "description": "All enum mappings organized by type"
+        },
+        "media_types": {
+          "$ref": "#/definitions/website.config.MediaTypeMappings"
+        },
+        "content_types": {
+          "$ref": "#/definitions/website.config.ContentTypeMappings"
+        },
+        "payment_methods": {
+          "$ref": "#/definitions/website.config.PaymentMethodMappings"
+        },
+        "code_languages": {
+          "$ref": "#/definitions/website.config.CodeLanguageMappings"
+        },
+        "crypto_networks": {
+          "$ref": "#/definitions/website.config.CryptoNetworkMappings"
+        },
+        "affiliation_types": {
+          "$ref": "#/definitions/website.config.AffiliationTypeMappings",
+          "description": "Entity and relationship mappings"
+        },
+        "relationship_types": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMappings"
+        },
+        "schema_org_entity_types": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntityTypeMappings"
+        },
+        "entity_types": {
+          "$ref": "#/definitions/website.config.EntityTypeMappings"
+        },
+        "project_types": {
+          "$ref": "#/definitions/website.config.ProjectTypeMappings",
+          "description": "Project-related mappings"
+        },
+        "project_statuses": {
+          "$ref": "#/definitions/website.config.ProjectStatusMappings"
+        },
+        "project_lifecycles": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMappings"
+        },
+        "license_types": {
+          "$ref": "#/definitions/website.config.LicenseTypeMappings"
+        },
+        "support_types": {
+          "$ref": "#/definitions/website.config.SupportTypeMappings",
+          "description": "Support and dependency mappings"
+        },
+        "dependency_types": {
+          "$ref": "#/definitions/website.config.DependencyTypeMappings"
+        },
+        "dependency_scopes": {
+          "$ref": "#/definitions/website.config.DependencyScopeMappings"
+        },
+        "community_statuses": {
+          "$ref": "#/definitions/website.config.CommunityStatusMappings",
+          "description": "Community and API mappings"
+        },
+        "api_spec_formats": {
+          "$ref": "#/definitions/website.config.APISpecFormatMappings"
+        },
+        "auth_types": {
+          "$ref": "#/definitions/website.config.AuthTypeMappings"
+        },
+        "doc_navigation_styles": {
+          "$ref": "#/definitions/website.config.DocNavigationStyleMappings",
+          "description": "Documentation and UI mappings"
+        },
+        "doc_landing_styles": {
+          "$ref": "#/definitions/website.config.DocLandingStyleMappings"
+        },
+        "sidebar_positions": {
+          "$ref": "#/definitions/website.config.SidebarPositionMappings"
+        },
+        "link_behaviors": {
+          "$ref": "#/definitions/website.config.LinkBehaviorMappings"
+        },
+        "api_doc_generators": {
+          "$ref": "#/definitions/website.config.APIDocGeneratorMappings"
+        },
+        "oauth2_flows": {
+          "$ref": "#/definitions/website.config.OAuth2FlowMappings"
+        },
+        "homepage_styles": {
+          "$ref": "#/definitions/website.config.HomepageStyleMappings",
+          "description": "Project UI mappings"
+        },
+        "docs_layout_styles": {
+          "$ref": "#/definitions/website.config.DocsLayoutStyleMappings"
+        },
+        "playground_providers": {
+          "$ref": "#/definitions/website.config.PlaygroundProviderMappings"
+        },
+        "search_providers": {
+          "$ref": "#/definitions/website.config.SearchProviderMappings"
+        },
+        "manifest_formats": {
+          "$ref": "#/definitions/website.config.ManifestFormatMappings",
+          "description": "Manifest mappings"
+        },
+        "site_types": {
+          "$ref": "#/definitions/website.config.SiteTypeMappings"
+        },
+        "node_types": {
+          "$ref": "#/definitions/website.config.NodeTypeMappings"
+        },
+        "service_types": {
+          "$ref": "#/definitions/website.config.ServiceTypeMappings",
+          "description": "New content and service mappings"
+        },
+        "project_development_statuses": {
+          "$ref": "#/definitions/website.config.ProjectDevelopmentStatusMappings"
+        },
+        "comic_types": {
+          "$ref": "#/definitions/website.config.ComicTypeMappings"
+        },
+        "book_structures": {
+          "$ref": "#/definitions/website.config.BookStructureMappings"
+        },
+        "person_roles": {
+          "$ref": "#/definitions/website.config.PersonRoleMappings",
+          "description": "Person role mappings"
+        },
+        "config": {
+          "$ref": "#/definitions/website.config.MappingConfig",
+          "description": "Global mapping configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SCHEMA.ORG MAPPING DEFINITIONS\n =============================================================================\n This file defines the STRUCTURE for Schema.org mappings in the ecosystem.\n The actual mapping values are stored in schema-mappings.yml.\n\n How it works:\n 1. Proto files define message structures (this file)\n 2. schema-mappings.yml contains the actual enum-to-Schema.org mappings\n 3. Config files use enums (e.g., CONTENT_TYPE_TUTORIAL)\n 4. Build system reads schema-mappings.yml and applies mappings automatically\n 5. Generates proper Schema.org JSON-LD structured data\n\n Benefits:\n - Type-safe enum usage in configs\n - Automatic Schema.org mapping (no manual configuration needed)\n - Single source of truth (schema-mappings.yml)\n - Safe by default - configs can only use valid enums\n\n See: schema-mappings.yml for the complete mapping dictionary\n =============================================================================",
+      "description": "============================================================================= SCHEMA.ORG MAPPING DEFINITIONS ============================================================================= This file defines the STRUCTURE for Schema.org mappings in the ecosystem. The actual mapping values are stored in schema-mappings.yml. How it works: 1. Proto files define message structures (this file) 2. schema-mappings.yml contains the actual enum-to-Schema.org mappings 3. Config files use enums (e.g., CONTENT_TYPE_TUTORIAL) 4. Build system reads schema-mappings.yml and applies mappings automatically 5. Generates proper Schema.org JSON-LD structured data Benefits: - Type-safe enum usage in configs - Automatic Schema.org mapping (no manual configuration needed) - Single source of truth (schema-mappings.yml) - Safe by default - configs can only use valid enums See: schema-mappings.yml for the complete mapping dictionary =============================================================================  Complete Schema.org mapping configuration for the ecosystem"
+    },
+    "website.config.APIDocGeneratorMappings": {
+      "properties": {
+        "generator_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> generator name e.g., \"API_DOC_GENERATOR_SWAGGER_UI\" -> \"Swagger UI\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n API DOC GENERATOR MAPPINGS\n =============================================================================",
+      "description": "============================================================================= API DOC GENERATOR MAPPINGS =============================================================================  Maps APIDocGenerator enum to generator configurations"
+    },
+    "website.config.APISpecFormatMappings": {
+      "properties": {
+        "format_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> spec name e.g., \"API_SPEC_FORMAT_OPENAPI\" -> \"OpenAPI\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n API SPECIFICATION FORMAT MAPPINGS\n =============================================================================",
+      "description": "============================================================================= API SPECIFICATION FORMAT MAPPINGS =============================================================================  Maps API specification formats to Schema.org types"
+    },
+    "website.config.AffiliationTypeMappings": {
+      "properties": {
+        "affiliation_to_role": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org role type e.g., \"AFFILIATION_EMPLOYEE\" -> \"EmployeeRole\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n AFFILIATION TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= AFFILIATION TYPE MAPPINGS =============================================================================  Maps AffiliationType enum values to Schema.org Role types"
+    },
+    "website.config.AuthTypeMappings": {
+      "properties": {
+        "auth_to_scheme": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> scheme type e.g., \"AUTH_TYPE_OAUTH2\" -> \"OAuth2\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n AUTHENTICATION TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= AUTHENTICATION TYPE MAPPINGS =============================================================================  Maps authentication types to security schemes"
+    },
+    "website.config.BookStructureMappings": {
+      "properties": {
+        "book_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"BOOK_STRUCTURE_CHAPTER\" -> \"Chapter\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n BOOK STRUCTURE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= BOOK STRUCTURE MAPPINGS =============================================================================  Maps BookStructure enum values to Schema.org book types"
+    },
+    "website.config.CodeLanguageMappings": {
+      "properties": {
+        "language_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> language name for Schema.org e.g., \"CODE_LANGUAGE_JAVASCRIPT\" -> \"JavaScript\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CODE LANGUAGE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= CODE LANGUAGE MAPPINGS =============================================================================  Maps CodeLanguage enum values to Schema.org ComputerLanguage"
+    },
+    "website.config.ComicTypeMappings": {
+      "properties": {
+        "comic_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"COMIC_TYPE_SERIES\" -> \"ComicSeries\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n COMIC TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= COMIC TYPE MAPPINGS =============================================================================  Maps ComicType enum values to Schema.org comic types"
+    },
+    "website.config.CommunityStatusMappings": {
+      "properties": {
+        "status_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> status name e.g., \"COMMUNITY_STATUS_ACTIVE\" -> \"Active\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n COMMUNITY STATUS MAPPINGS\n =============================================================================",
+      "description": "============================================================================= COMMUNITY STATUS MAPPINGS =============================================================================  Maps CommunityStatus enum to organization lifecycle states"
+    },
+    "website.config.ContentTypeMappings": {
+      "properties": {
+        "content_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"CONTENT_TYPE_TUTORIAL\" -> \"HowToArticle\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CONTENT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= CONTENT TYPE MAPPINGS =============================================================================  Maps ContentType enum values to Schema.org Article subtypes"
+    },
+    "website.config.CryptoNetworkMappings": {
+      "properties": {
+        "crypto_to_code": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> currency code e.g., \"CRYPTO_NETWORK_BITCOIN\" -> \"BTC\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CRYPTO NETWORK MAPPINGS\n =============================================================================",
+      "description": "============================================================================= CRYPTO NETWORK MAPPINGS =============================================================================  Maps CryptoNetwork enum values to Schema.org currency representations"
+    },
+    "website.config.DependencyScopeMappings": {
+      "properties": {
+        "scope_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> scope name e.g., \"DEPENDENCY_SCOPE_RUNTIME\" -> \"Runtime\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DEPENDENCY SCOPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DEPENDENCY SCOPE MAPPINGS =============================================================================  Maps DependencyScope enum to scope definitions"
+    },
+    "website.config.DependencyTypeMappings": {
+      "properties": {
+        "dependency_to_relation": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> relationship e.g., \"DEPENDENCY_TYPE_USES\" -> \"uses\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DEPENDENCY TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DEPENDENCY TYPE MAPPINGS =============================================================================  Maps DependencyType enum to dependency relationships"
+    },
+    "website.config.DiscussionPlatformMappings": {
+      "properties": {
+        "platform_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"DISCUSSION_PLATFORM_TWITTER\" -> \"SocialMediaPosting\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DISCUSSION PLATFORM MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DISCUSSION PLATFORM MAPPINGS =============================================================================  Maps DiscussionPlatform enum values to Schema.org types"
+    },
+    "website.config.DocLandingStyleMappings": {
+      "properties": {
+        "style_to_template": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> template name e.g., \"DOC_LANDING_STYLE_HERO\" -> \"Hero Landing\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DOCUMENTATION LANDING STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DOCUMENTATION LANDING STYLE MAPPINGS =============================================================================  Maps DocLandingStyle enum to page templates"
+    },
+    "website.config.DocNavigationStyleMappings": {
+      "properties": {
+        "style_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> style name e.g., \"DOC_NAVIGATION_STYLE_SIDEBAR\" -> \"Sidebar\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DOCUMENTATION NAVIGATION STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DOCUMENTATION NAVIGATION STYLE MAPPINGS =============================================================================  Maps DocNavigationStyle enum to UI patterns"
+    },
+    "website.config.DocsLayoutStyleMappings": {
+      "properties": {
+        "layout_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> layout name e.g., \"DOCS_LAYOUT_STYLE_SINGLE_PAGE\" -> \"Single Page\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DOCS LAYOUT STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DOCS LAYOUT STYLE MAPPINGS =============================================================================  Maps DocsLayoutStyle enum to documentation structures"
+    },
+    "website.config.EntityTypeMappings": {
+      "properties": {
+        "entity_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"ENTITY_TYPE_PERSON\" -> \"Person\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n ENTITY TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= ENTITY TYPE MAPPINGS =============================================================================  Maps EntityType enum to Schema.org types"
+    },
+    "website.config.HomepageStyleMappings": {
+      "properties": {
+        "style_to_template": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> template name e.g., \"HOMEPAGE_STYLE_HERO\" -> \"Hero Homepage\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n HOMEPAGE STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= HOMEPAGE STYLE MAPPINGS =============================================================================  Maps HomepageStyle enum to page templates"
+    },
+    "website.config.LicenseTypeMappings": {
+      "properties": {
+        "license_to_url": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> license URL e.g., \"LICENSE_TYPE_MIT\" -> \"https://opensource.org/licenses/MIT\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n LICENSE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= LICENSE TYPE MAPPINGS =============================================================================  Maps LicenseType enum to Schema.org license URLs"
+    },
+    "website.config.LinkBehaviorMappings": {
+      "properties": {
+        "behavior_to_target": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> target attribute e.g., \"LINK_BEHAVIOR_NEW_TAB\" -> \"_blank\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n LINK BEHAVIOR MAPPINGS\n =============================================================================",
+      "description": "============================================================================= LINK BEHAVIOR MAPPINGS =============================================================================  Maps LinkBehavior enum to HTML attributes"
+    },
+    "website.config.ManifestFormatMappings": {
+      "properties": {
+        "format_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> format name e.g., \"MANIFEST_FORMAT_JSON\" -> \"JSON\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n MANIFEST FORMAT MAPPINGS\n =============================================================================",
+      "description": "============================================================================= MANIFEST FORMAT MAPPINGS =============================================================================  Maps ManifestFormat enum to format specifications"
+    },
+    "website.config.MappingConfig": {
+      "properties": {
+        "default_context": {
+          "type": "string",
+          "description": "Default context URL  \"https://schema.org\""
+        },
+        "enable_rich_snippets": {
+          "type": "boolean",
+          "description": "Enable rich snippets"
+        },
+        "include_id_references": {
+          "type": "boolean",
+          "description": "Include @id references"
+        },
+        "validation_level": {
+          "type": "string",
+          "description": "Validation level (\"strict\", \"lenient\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Mapping Config",
+      "description": "Global configuration for Schema.org mapping behavior"
+    },
+    "website.config.MediaTypeMappings": {
+      "properties": {
+        "media_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"MEDIA_TYPE_YOUTUBE\" -> \"VideoObject\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n MEDIA TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= MEDIA TYPE MAPPINGS =============================================================================  Maps MediaType enum values to Schema.org MediaObject types"
+    },
+    "website.config.NodeTypeMappings": {
+      "properties": {
+        "node_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"NODE_TYPE_PAGE\" -> \"WebPage\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n NODE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= NODE TYPE MAPPINGS =============================================================================  Maps NodeType enum to navigation node types"
+    },
+    "website.config.OAuth2FlowMappings": {
+      "properties": {
+        "flow_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> flow name e.g., \"OAUTH2_FLOW_AUTHORIZATION_CODE\" -> \"Authorization Code\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n OAUTH2 FLOW MAPPINGS\n =============================================================================",
+      "description": "============================================================================= OAUTH2 FLOW MAPPINGS =============================================================================  Maps OAuth2Flow enum to flow configurations"
+    },
+    "website.config.PaymentMethodMappings": {
+      "properties": {
+        "payment_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"PAYMENT_METHOD_PAYPAL\" -> \"PaymentService\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PAYMENT METHOD MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PAYMENT METHOD MAPPINGS =============================================================================  Maps PaymentMethod enum values to Schema.org payment types"
+    },
+    "website.config.PersonRoleMappings": {
+      "properties": {
+        "role_to_label": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> role description e.g., \"PERSON_ROLE_AUTHOR\" -> \"Author\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PERSON ROLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PERSON ROLE MAPPINGS =============================================================================  Maps PersonRole enum values to semantic meanings"
+    },
+    "website.config.PlaygroundProviderMappings": {
+      "properties": {
+        "provider_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> provider name e.g., \"PLAYGROUND_PROVIDER_CODEPEN\" -> \"CodePen\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PLAYGROUND PROVIDER MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PLAYGROUND PROVIDER MAPPINGS =============================================================================  Maps PlaygroundProvider enum to embedded playground services"
+    },
+    "website.config.ProjectDevelopmentStatusMappings": {
+      "properties": {
+        "status_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org status e.g., \"PROJECT_STATUS_BETA\" -> \"Beta\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT DEVELOPMENT STATUS MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT DEVELOPMENT STATUS MAPPINGS =============================================================================  Maps ProjectDevelopmentStatus enum values to Schema.org CreativeWork status"
+    },
+    "website.config.ProjectLifecycleMappings": {
+      "properties": {
+        "lifecycle_to_stage": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> lifecycle stage e.g., \"PROJECT_LIFECYCLE_EMERGE\" -> \"Emerge\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT LIFECYCLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT LIFECYCLE MAPPINGS =============================================================================  Maps ProjectLifecycle enum to semantic lifecycle stages"
+    },
+    "website.config.ProjectStatusMappings": {
+      "properties": {
+        "status_to_value": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> status value e.g., \"PROJECT_STATUS_ACTIVE\" -> \"Active\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT STATUS MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT STATUS MAPPINGS =============================================================================  Maps ProjectStatus enum to Schema.org status values"
+    },
+    "website.config.ProjectTypeMappings": {
+      "properties": {
+        "project_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"PROJECT_TYPE_RESEARCH\" -> \"ResearchProject\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT TYPE MAPPINGS =============================================================================  Maps ProjectType enum to Schema.org types"
+    },
+    "website.config.RelationshipTypeMappings": {
+      "properties": {
+        "relationship_to_property": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org property e.g., \"RELATIONSHIP_FOUNDER\" -> \"founder\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n RELATIONSHIP TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= RELATIONSHIP TYPE MAPPINGS =============================================================================  Maps RelationshipType enum values to Schema.org relationships"
+    },
+    "website.config.SchemaOrgEntityTypeMappings": {
+      "properties": {
+        "entity_to_type": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SCHEMA_ORG_PERSON\" -> \"Person\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SCHEMA.ORG ENTITY TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SCHEMA.ORG ENTITY TYPE MAPPINGS =============================================================================  Maps SchemaOrgEntityType enum to actual Schema.org types"
+    },
+    "website.config.SearchProviderMappings": {
+      "properties": {
+        "provider_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> provider name e.g., \"SEARCH_PROVIDER_ALGOLIA\" -> \"Algolia\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SEARCH PROVIDER MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SEARCH PROVIDER MAPPINGS =============================================================================  Maps SearchProvider enum to search service configurations"
+    },
+    "website.config.ServiceTypeMappings": {
+      "properties": {
+        "service_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SERVICE_TYPE_CONSULTING\" -> \"ProfessionalService\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SERVICE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SERVICE TYPE MAPPINGS =============================================================================  Maps ServiceType enum values to Schema.org Service types"
+    },
+    "website.config.SidebarPositionMappings": {
+      "properties": {
+        "position_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> position name e.g., \"SIDEBAR_POSITION_LEFT\" -> \"Left\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SIDEBAR POSITION MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SIDEBAR POSITION MAPPINGS =============================================================================  Maps SidebarPosition enum to layout configurations"
+    },
+    "website.config.SiteTypeMappings": {
+      "properties": {
+        "site_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SITE_TYPE_BLOG\" -> \"Blog\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SITE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SITE TYPE MAPPINGS =============================================================================  Maps SiteType enum to Schema.org WebSite subtypes"
+    },
+    "website.config.SupportTypeMappings": {
+      "properties": {
+        "support_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SUPPORT_TYPE_FUNDING\" -> \"MonetaryGrant\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SUPPORT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SUPPORT TYPE MAPPINGS =============================================================================  Maps SupportType enum to Schema.org FundingScheme types"
+    }
+  },
+  "title": "SCHEMAORGMAPPINGS Configuration Schema",
+  "description": "JSON Schema for SchemaOrgMappings configuration"
+}

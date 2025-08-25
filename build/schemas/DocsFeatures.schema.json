@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsFeatures",
+  "definitions": {
+    "DocsFeatures": {
+      "properties": {
+        "copy_code_button": {
+          "type": "boolean",
+          "description": "Enable copy button on code blocks"
+        },
+        "code_line_numbers": {
+          "type": "boolean",
+          "description": "Enable line numbers in code blocks"
+        },
+        "collapsible_sections": {
+          "type": "boolean",
+          "description": "Enable expandable/collapsible sections"
+        },
+        "prev_next_nav": {
+          "type": "boolean",
+          "description": "Enable previous/next navigation"
+        },
+        "breadcrumbs": {
+          "type": "boolean",
+          "description": "Enable breadcrumb navigation"
+        },
+        "print_version": {
+          "type": "boolean",
+          "description": "Enable print-friendly version"
+        },
+        "dark_mode_toggle": {
+          "type": "boolean",
+          "description": "Enable dark mode toggle (if not inherited)"
+        },
+        "version_warning": {
+          "type": "boolean",
+          "description": "Enable version warning for old docs"
+        },
+        "edit_on_github": {
+          "type": "boolean",
+          "description": "Enable edit on GitHub link"
+        },
+        "show_last_updated": {
+          "type": "boolean",
+          "description": "Enable last updated timestamp"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Enable estimated reading time"
+        },
+        "heading_anchors": {
+          "type": "boolean",
+          "description": "Enable anchor links on headings"
+        },
+        "docs_search": {
+          "type": "boolean",
+          "description": "Enable search within docs"
+        },
+        "search_provider": {
+          "type": "string",
+          "description": "Search provider override"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom documentation features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Features",
+      "description": "Documentation-specific features"
+    }
+  },
+  "title": "DOCSFEATURES Configuration Schema",
+  "description": "JSON Schema for DocsFeatures configuration"
+}

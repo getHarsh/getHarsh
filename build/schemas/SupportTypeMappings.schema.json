@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SupportTypeMappings",
+  "definitions": {
+    "SupportTypeMappings": {
+      "properties": {
+        "support_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SUPPORT_TYPE_FUNDING\" -> \"MonetaryGrant\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SUPPORT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SUPPORT TYPE MAPPINGS =============================================================================  Maps SupportType enum to Schema.org FundingScheme types"
+    }
+  },
+  "title": "SUPPORTTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for SupportTypeMappings configuration"
+}

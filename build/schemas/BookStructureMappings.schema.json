@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BookStructureMappings",
+  "definitions": {
+    "BookStructureMappings": {
+      "properties": {
+        "book_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"BOOK_STRUCTURE_CHAPTER\" -> \"Chapter\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n BOOK STRUCTURE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= BOOK STRUCTURE MAPPINGS =============================================================================  Maps BookStructure enum values to Schema.org book types"
+    }
+  },
+  "title": "BOOKSTRUCTUREMAPPINGS Configuration Schema",
+  "description": "JSON Schema for BookStructureMappings configuration"
+}

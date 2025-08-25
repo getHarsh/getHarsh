@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogPostTypeMappings",
+  "definitions": {
+    "BlogPostTypeMappings": {
+      "properties": {
+        "default_article_type": {
+          "type": "string",
+          "description": "Default article type for posts  \"BlogPosting\""
+        },
+        "content_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Content type to Schema.org mapping"
+        },
+        "category_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Category-based type mapping"
+        },
+        "tag_type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Tag-based type mapping"
+        },
+        "length_based": {
+          "$ref": "#/definitions/website.config.LengthBasedTypes",
+          "description": "Length-based type selection"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Post Type Mappings",
+      "description": "Blog post type mappings"
+    },
+    "website.config.LengthBasedTypes": {
+      "properties": {
+        "short_threshold": {
+          "type": "integer",
+          "description": "Short posts (< N words)"
+        },
+        "short_type": {
+          "type": "string",
+          "description": "\"SocialMediaPosting\""
+        },
+        "long_threshold": {
+          "type": "integer",
+          "description": "Long posts (> N words)"
+        },
+        "long_type": {
+          "type": "string",
+          "description": "\"Article\""
+        },
+        "medium_type": {
+          "type": "string",
+          "description": "Default for medium length  \"BlogPosting\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Length Based Types",
+      "description": "Length-based article type selection"
+    }
+  },
+  "title": "BLOGPOSTTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for BlogPostTypeMappings configuration"
+}

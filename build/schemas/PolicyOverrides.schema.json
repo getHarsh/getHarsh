@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PolicyOverrides",
+  "definitions": {
+    "PolicyOverrides": {
+      "properties": {
+        "enabled_policies": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Enable/disable specific policy pages at this level Example: {\"privacy_policy\": true, \"refund_policy\": false}"
+        },
+        "policy_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Override policy URLs for this entity Example: {\"terms_of_service\": \"/custom-terms\"}"
+        },
+        "custom_policies": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom policy pages unique to this entity Example: {\"api_terms\": \"/api/terms\"} for API projects"
+        },
+        "hidden_policies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Hide policies from navigation/footer while keeping them accessible Example: [\"refund_policy\", \"dpa\"] for non-commerce sites"
+        },
+        "inherit_parent_policies": {
+          "type": "boolean",
+          "description": "Whether to inherit parent's policy configuration (default: true) Set to false to completely override parent settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Overrides",
+      "description": "Policy page overrides for domain/blog/project level control Provides granular control over which policies are shown and their URLs See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance for examples"
+    }
+  },
+  "title": "POLICYOVERRIDES Configuration Schema",
+  "description": "JSON Schema for PolicyOverrides configuration"
+}

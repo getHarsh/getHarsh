@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FAQEnhancement",
+  "definitions": {
+    "FAQEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect Q&A pairs"
+        },
+        "create_faq_page": {
+          "type": "boolean",
+          "description": "Create FAQPage markup"
+        },
+        "group_questions": {
+          "type": "boolean",
+          "description": "Group related questions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "FAQ Enhancement",
+      "description": "FAQ enhancement"
+    }
+  },
+  "title": "FAQENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for FAQEnhancement configuration"
+}

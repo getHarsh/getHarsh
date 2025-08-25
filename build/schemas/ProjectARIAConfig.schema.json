@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectARIAConfig",
+  "definitions": {
+    "ProjectARIAConfig": {
+      "properties": {
+        "documentation_aria": {
+          "$ref": "#/definitions/website.config.DocumentationARIA",
+          "description": "Documentation-specific ARIA settings"
+        },
+        "code_aria": {
+          "$ref": "#/definitions/website.config.CodeExampleARIA",
+          "description": "Code example ARIA settings"
+        },
+        "demo_aria": {
+          "$ref": "#/definitions/website.config.DemoARIA",
+          "description": "Interactive demo ARIA settings"
+        },
+        "api_aria": {
+          "$ref": "#/definitions/website.config.APIDocumentationARIA",
+          "description": "API documentation ARIA"
+        },
+        "project_landmarks": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Project-specific landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project ARIA Config",
+      "description": "Project-specific ARIA configuration"
+    },
+    "website.config.APIDocumentationARIA": {
+      "properties": {
+        "endpoint_navigation": {
+          "type": "boolean",
+          "description": "Endpoint navigation"
+        },
+        "parameter_descriptions": {
+          "type": "boolean",
+          "description": "Parameter descriptions"
+        },
+        "response_labels": {
+          "type": "boolean",
+          "description": "Response example labels"
+        },
+        "auth_section_aria": {
+          "type": "boolean",
+          "description": "Authentication section ARIA"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Documentation ARIA",
+      "description": "API documentation ARIA settings"
+    },
+    "website.config.CodeExampleARIA": {
+      "properties": {
+        "code_block_labels": {
+          "type": "boolean",
+          "description": "Code block labels"
+        },
+        "copy_button_labels": {
+          "type": "boolean",
+          "description": "Copy button labels"
+        },
+        "syntax_highlighting_aria": {
+          "type": "boolean",
+          "description": "Syntax highlighting ARIA"
+        },
+        "line_number_navigation": {
+          "type": "boolean",
+          "description": "Line number navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Example ARIA",
+      "description": "Code example ARIA settings"
+    },
+    "website.config.DemoARIA": {
+      "properties": {
+        "widget_labels": {
+          "type": "boolean",
+          "description": "Interactive widget labels"
+        },
+        "live_regions": {
+          "type": "boolean",
+          "description": "Live demo regions"
+        },
+        "keyboard_hints": {
+          "type": "boolean",
+          "description": "Keyboard navigation hints"
+        },
+        "focus_management": {
+          "type": "boolean",
+          "description": "Focus management"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Demo ARIA",
+      "description": "Demo ARIA settings"
+    },
+    "website.config.DocumentationARIA": {
+      "properties": {
+        "version_selector_labels": {
+          "type": "boolean",
+          "description": "Version selector ARIA labels"
+        },
+        "search_live_region": {
+          "type": "boolean",
+          "description": "Search results live region"
+        },
+        "navigation_tree_aria": {
+          "type": "boolean",
+          "description": "Navigation tree ARIA"
+        },
+        "breadcrumb_aria": {
+          "type": "boolean",
+          "description": "Breadcrumb ARIA"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation ARIA",
+      "description": "Documentation ARIA settings"
+    }
+  },
+  "title": "PROJECTARIACONFIG Configuration Schema",
+  "description": "JSON Schema for ProjectARIAConfig configuration"
+}

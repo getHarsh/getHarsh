@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocPage",
+  "definitions": {
+    "DocPage": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "url": {
+          "type": "string",
+          "description": "Page URL (relative)"
+        },
+        "section": {
+          "type": "string",
+          "description": "Section/category"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order in navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Page",
+      "description": "Documentation page (for project sites)"
+    }
+  },
+  "title": "DOCPAGE Configuration Schema",
+  "description": "JSON Schema for DocPage configuration"
+}

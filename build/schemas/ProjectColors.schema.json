@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectColors",
+  "definitions": {
+    "ProjectColors": {
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary color override (for project branding)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color override"
+        },
+        "code_background": {
+          "type": "string",
+          "description": "Code/terminal background color"
+        },
+        "docs_header": {
+          "type": "string",
+          "description": "Documentation section colors"
+        },
+        "docs_sidebar": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Colors",
+      "description": "Project-specific color overrides"
+    }
+  },
+  "title": "PROJECTCOLORS Configuration Schema",
+  "description": "JSON Schema for ProjectColors configuration"
+}

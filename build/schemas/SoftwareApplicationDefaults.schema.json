@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SoftwareApplicationDefaults",
+  "definitions": {
+    "SoftwareApplicationDefaults": {
+      "properties": {
+        "default_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Default properties to include"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        },
+        "download_settings": {
+          "$ref": "#/definitions/website.config.DownloadSettings",
+          "description": "Download/install settings"
+        },
+        "screenshot_settings": {
+          "$ref": "#/definitions/website.config.ScreenshotSettings",
+          "description": "Screenshot settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Application Defaults",
+      "description": "Software application defaults"
+    },
+    "website.config.DownloadSettings": {
+      "properties": {
+        "include_download": {
+          "type": "boolean",
+          "description": "Include download URL"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "Download URL pattern"
+        },
+        "include_size": {
+          "type": "boolean",
+          "description": "Include file size"
+        },
+        "include_checksums": {
+          "type": "boolean",
+          "description": "Include checksums"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Download Settings",
+      "description": "Download settings"
+    },
+    "website.config.ScreenshotSettings": {
+      "properties": {
+        "include_screenshots": {
+          "type": "boolean",
+          "description": "Include screenshots"
+        },
+        "type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Screenshot type mapping"
+        },
+        "max_screenshots": {
+          "type": "integer",
+          "description": "Max screenshots"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Screenshot Settings",
+      "description": "Screenshot settings"
+    }
+  },
+  "title": "SOFTWAREAPPLICATIONDEFAULTS Configuration Schema",
+  "description": "JSON Schema for SoftwareApplicationDefaults configuration"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TagCombination",
+  "definitions": {
+    "TagCombination": {
+      "properties": {
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required tags"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Resulting Schema.org type"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Priority (higher wins)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tag Combination",
+      "description": "Tag combination mapping"
+    }
+  },
+  "title": "TAGCOMBINATION Configuration Schema",
+  "description": "JSON Schema for TagCombination configuration"
+}

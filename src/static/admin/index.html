@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+  @fileoverview Decap CMS Entry Point with Proto-Driven Configuration
+  @module static/admin/index
+  
+  @description
+  Entry point HTML for the Decap CMS (formerly Netlify CMS) admin interface.
+  This minimal HTML file bootstraps the entire CMS application, providing the
+  DOM container and loading the TypeScript initialization module that configures
+  the proto-driven content management system.
+  
+  The CMS interface is generated from 77+ protobuf definitions, creating a
+  type-safe editing environment with 381 JSON schemas and 689 TypeScript types.
+  This ensures all content created through the CMS adheres to the semantic
+  model defined in the proto schemas.
+  
+  @architecture
+  The CMS loading sequence:
+  1. Browser loads /admin/index.html
+  2. HTML imports cms.ts as ES6 module
+  3. cms.ts loads discovery manifest
+  4. cms.ts registers widgets and templates
+  5. Decap CMS React app renders
+  6. User authenticates via Git Gateway
+  7. Content editing interface appears
+  
+  @authentication
+  Two authentication methods supported:
+  - **LOCAL Mode**: Test-repo backend (filesystem)
+  - **PRODUCTION Mode**: Git Gateway (GitHub OAuth)
+  Both configured in config.yml/config.local.yml
+  
+  @ecosystem-integration
+  - CMS Module: cms.ts handles all initialization
+  - Proto System: 77+ protos define content structure
+  - Schema System: 381 JSON schemas validate content
+  - Type System: 689 TypeScript types ensure safety
+  - Widget System: 10 custom widgets for complex fields
+  - Theme System: Domain-specific Chakra-aligned themes
+  - Build System: Gatsby processes during Phase 4.1
+  - Discovery: Manifest loaded from /discovery-manifest.json
+  
+  @security-notes
+  - robots="noindex" prevents search engine indexing
+  - CMS requires authentication to access
+  - Content changes require Git permissions
+  - Preview templates run in sandboxed iframe
+  - No sensitive data in client-side code
+  - All API keys use environment variables
+  
+  @accessibility
+  - viewport meta ensures mobile responsiveness
+  - lang="en" attribute for screen readers
+  - Semantic HTML5 document structure
+  - Font preloading for performance
+  - WCAG 2.1 AA compliance in CMS interface
+  
+  @performance
+  - Fonts preloaded with dns-prefetch and preconnect
+  - CSS font-display:swap for progressive rendering
+  - Module loading deferred until DOM ready
+  - Discovery manifest cached after first load
+  
+  @dos
+  - Keep HTML minimal and clean
+  - Use type="module" for ES6 support
+  - Preload critical fonts
+  - Set proper meta tags
+  - Include noindex for admin pages
+  
+  @donts
+  - Don't include inline scripts
+  - Don't hardcode configuration
+  - Don't skip viewport meta
+  - Don't remove lang attribute
+  - Don't index admin pages
+  
+  @see {@link file://./cms.ts} - CMS initialization module
+  @see {@link file://./CMS.md} - Complete CMS documentation  
+  @see {@link file://./BUILD.md#phase-4} - CMS generation phase
+  @see {@link file://./config/CONFIG.md#cms} - CMS configuration
+  @see {@link file://./DEV-TOOLING.md#cms-integration} - Development setup
+  @see {@link https://decapcms.org/} - Decap CMS documentation
+  
+  @since 1.0.0
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Prevent search engine indexing of admin interface -->
+  <meta name="robots" content="noindex" />
+  <title>Content Manager - getHarsh CMS</title>
+  
+  <!--
+    Google Fonts for retrofuturistic theme
+    - Orbitron: Used for headings, gives cyberpunk aesthetic
+    - Roboto Mono: Used for body text and code, maintains readability
+    Weights selected for optimal hierarchy and emphasis
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!--
+    Include our custom CMS initialization
+    This TypeScript module:
+    - Loads discovery data (domains, blogs, projects)
+    - Registers 10 custom proto-aware widgets
+    - Configures preview templates
+    - Applies theme-specific styling
+    - Initializes Decap CMS
+    
+    The module type ensures ES6 module support and proper async loading.
+  -->
+  <script src="./cms.ts" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentEndpoints",
+  "definitions": {
+    "ContentEndpoints": {
+      "properties": {
+        "rss": {
+          "type": "string",
+          "description": "RSS feed URL (e.g., /feed.xml)"
+        },
+        "json_feed": {
+          "type": "string",
+          "description": "JSON feed URL (e.g., /feed.json)"
+        },
+        "search_index": {
+          "type": "string",
+          "description": "Search index file (e.g., /search-index.json for client-side search)"
+        },
+        "categories_index": {
+          "type": "string",
+          "description": "Categories index (e.g., /categories.json)"
+        },
+        "tags_index": {
+          "type": "string",
+          "description": "Tags index (e.g., /tags.json)"
+        },
+        "posts_index": {
+          "type": "string",
+          "description": "Archive/posts index (e.g., /posts.json)"
+        },
+        "sitemap": {
+          "type": "string",
+          "description": "Sitemap URL (e.g., /sitemap.xml)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Endpoints",
+      "description": "Static content file locations (all served by GitHub Pages)"
+    }
+  },
+  "title": "CONTENTENDPOINTS Configuration Schema",
+  "description": "JSON Schema for ContentEndpoints configuration"
+}

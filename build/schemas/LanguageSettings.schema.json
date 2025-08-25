@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LanguageSettings",
+  "definitions": {
+    "LanguageSettings": {
+      "properties": {
+        "primary_language": {
+          "type": "string",
+          "description": "Primary language code"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Language direction (ltr/rtl)"
+        },
+        "multi_language": {
+          "type": "boolean",
+          "description": "Multi-language support"
+        },
+        "language_switcher_label": {
+          "type": "string",
+          "description": "Language switcher ARIA"
+        },
+        "hreflang_enabled": {
+          "type": "boolean",
+          "description": "Hreflang implementation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Language Settings",
+      "description": "Language settings for accessibility"
+    }
+  },
+  "title": "LANGUAGESETTINGS Configuration Schema",
+  "description": "JSON Schema for LanguageSettings configuration"
+}

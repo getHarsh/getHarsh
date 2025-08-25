@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CodeExampleARIA",
+  "definitions": {
+    "CodeExampleARIA": {
+      "properties": {
+        "code_block_labels": {
+          "type": "boolean",
+          "description": "Code block labels"
+        },
+        "copy_button_labels": {
+          "type": "boolean",
+          "description": "Copy button labels"
+        },
+        "syntax_highlighting_aria": {
+          "type": "boolean",
+          "description": "Syntax highlighting ARIA"
+        },
+        "line_number_navigation": {
+          "type": "boolean",
+          "description": "Line number navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Example ARIA",
+      "description": "Code example ARIA settings"
+    }
+  },
+  "title": "CODEEXAMPLEARIA Configuration Schema",
+  "description": "JSON Schema for CodeExampleARIA configuration"
+}

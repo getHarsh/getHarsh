@@ -1,0 +1,1657 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsConfig",
+  "definitions": {
+    "DocsConfig": {
+      "properties": {
+        "theme_overrides": {
+          "$ref": "#/definitions/website.config.DocsThemeOverrides",
+          "description": "Theme overrides for documentation (limited set)"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.DocsFeatures",
+          "description": "Documentation-specific features"
+        },
+        "structure": {
+          "$ref": "#/definitions/website.config.DocsStructure",
+          "description": "Documentation structure and navigation"
+        },
+        "content": {
+          "$ref": "#/definitions/website.config.DocsContent",
+          "description": "Documentation content settings"
+        },
+        "api": {
+          "$ref": "#/definitions/website.config.APIDocSettings",
+          "description": "API documentation settings"
+        },
+        "metadata": {
+          "$ref": "#/definitions/website.config.DocsMetadata",
+          "description": "Documentation metadata"
+        },
+        "schema_org_config": {
+          "$ref": "#/definitions/website.config.SchemaOrgDocsConfig",
+          "description": "Schema.org configuration for documentation Controls how docs map to TechArticle, APIReference, etc."
+        },
+        "tech_article_defaults": {
+          "$ref": "#/definitions/website.config.TechnicalArticleDefaults",
+          "description": "Technical article defaults Settings for technical documentation pages"
+        },
+        "api_reference_defaults": {
+          "$ref": "#/definitions/website.config.APIReferenceDefaults",
+          "description": "API reference defaults Settings for API documentation"
+        },
+        "docs_gtm": {
+          "$ref": "#/definitions/website.config.DocsGTMConfig",
+          "description": "Documentation-specific GTM configuration Enhanced tracking for technical documentation"
+        },
+        "docs_aria": {
+          "$ref": "#/definitions/website.config.DocsARIAConfig",
+          "description": "Documentation-specific ARIA configuration Optimized for technical content accessibility"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Config",
+      "description": "DocsConfig defines configuration overrides for project documentation. It inherits from the parent project and can only override specific fields. Stored in [project]/docs/config.yml (in the version/branch specified by project config) Example: HENA/docs/config.yml in main branch or v2.0.0 tag  Docs inherit everything from parent project by default. Only fields defined here can be overridden."
+    },
+    "website.config.APIAuthConfig": {
+      "properties": {
+        "type": {
+          "enum": [
+            "AUTH_TYPE_UNSPECIFIED",
+            0,
+            "AUTH_TYPE_NONE",
+            1,
+            "AUTH_TYPE_API_KEY",
+            2,
+            "AUTH_TYPE_OAUTH2",
+            3,
+            "AUTH_TYPE_BASIC",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Note: APIDocGenerator is imported from project.proto",
+          "description": "Note: APIDocGenerator is imported from project.proto  Authentication types"
+        },
+        "api_key_param": {
+          "type": "string",
+          "description": "Parameter name for API key"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/website.config.OAuth2Config",
+          "description": "OAuth2 configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Auth Config",
+      "description": "API authentication configuration"
+    },
+    "website.config.APIDocSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable API documentation"
+        },
+        "spec_format": {
+          "enum": [
+            "API_SPEC_FORMAT_UNSPECIFIED",
+            0,
+            "API_SPEC_FORMAT_OPENAPI",
+            1,
+            "API_SPEC_FORMAT_GRAPHQL",
+            2,
+            "API_SPEC_FORMAT_GRPC",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "API Spec Format",
+          "description": "API specification formats"
+        },
+        "spec_path": {
+          "type": "string",
+          "description": "Path to API spec file (relative to docs/)"
+        },
+        "generator": {
+          "enum": [
+            "API_DOC_GENERATOR_UNSPECIFIED",
+            0,
+            "API_DOC_GENERATOR_SWAGGER_UI",
+            1,
+            "API_DOC_GENERATOR_REDOC",
+            2,
+            "API_DOC_GENERATOR_GRAPHDOC",
+            3,
+            "API_DOC_GENERATOR_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "API Doc Generator",
+          "description": "API documentation generators (moved from docs.proto)"
+        },
+        "try_it_out": {
+          "type": "boolean",
+          "description": "Enable try-it-out feature"
+        },
+        "api_base_url": {
+          "type": "string",
+          "description": "Base URL for API calls"
+        },
+        "auth": {
+          "$ref": "#/definitions/website.config.APIAuthConfig",
+          "description": "Authentication configuration"
+        },
+        "code_gen": {
+          "$ref": "#/definitions/website.config.CodeGenSettings",
+          "description": "Code generation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Doc Settings",
+      "description": "API documentation settings"
+    },
+    "website.config.APIExampleSettings": {
+      "properties": {
+        "include_examples": {
+          "type": "boolean",
+          "description": "Include examples"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Example languages"
+        },
+        "include_responses": {
+          "type": "boolean",
+          "description": "Include responses"
+        },
+        "include_errors": {
+          "type": "boolean",
+          "description": "Include error examples"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Example Settings",
+      "description": "API example settings"
+    },
+    "website.config.APIExplorerTracking": {
+      "properties": {
+        "track_try_it": {
+          "type": "boolean",
+          "description": "Track try-it-out usage"
+        },
+        "track_param_changes": {
+          "type": "boolean",
+          "description": "Track parameter changes"
+        },
+        "track_response_views": {
+          "type": "boolean",
+          "description": "Track response views"
+        },
+        "track_auth_setup": {
+          "type": "boolean",
+          "description": "Track auth setup"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Explorer Tracking",
+      "description": "API explorer tracking"
+    },
+    "website.config.APIReferenceAccessibility": {
+      "properties": {
+        "parameter_tables": {
+          "type": "boolean",
+          "description": "Parameter table ARIA"
+        },
+        "response_descriptions": {
+          "type": "boolean",
+          "description": "Response code descriptions"
+        },
+        "interactive_aria": {
+          "type": "boolean",
+          "description": "Interactive example ARIA"
+        },
+        "schema_navigation": {
+          "type": "boolean",
+          "description": "Schema navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Reference Accessibility",
+      "description": "API reference accessibility"
+    },
+    "website.config.APIReferenceDefaults": {
+      "properties": {
+        "default_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Default properties"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        },
+        "endpoint_settings": {
+          "$ref": "#/definitions/website.config.EndpointSettings",
+          "description": "Endpoint settings"
+        },
+        "schema_settings": {
+          "$ref": "#/definitions/website.config.APISchemaSettings",
+          "description": "Schema settings"
+        },
+        "example_settings": {
+          "$ref": "#/definitions/website.config.APIExampleSettings",
+          "description": "Example settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Reference Defaults",
+      "description": "API reference defaults"
+    },
+    "website.config.APISchemaSettings": {
+      "properties": {
+        "include_request": {
+          "type": "boolean",
+          "description": "Include request schemas"
+        },
+        "include_response": {
+          "type": "boolean",
+          "description": "Include response schemas"
+        },
+        "include_errors": {
+          "type": "boolean",
+          "description": "Include error schemas"
+        },
+        "schema_format": {
+          "type": "string",
+          "description": "Schema format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Schema Settings",
+      "description": "API schema settings"
+    },
+    "website.config.CodeBlockAccessibility": {
+      "properties": {
+        "syntax_roles": {
+          "type": "boolean",
+          "description": "Syntax role descriptions"
+        },
+        "line_announcements": {
+          "type": "boolean",
+          "description": "Line number announcements"
+        },
+        "copy_announcements": {
+          "type": "boolean",
+          "description": "Copy status announcements"
+        },
+        "language_identification": {
+          "type": "boolean",
+          "description": "Language identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Accessibility",
+      "description": "Code block accessibility"
+    },
+    "website.config.CodeExampleSettings": {
+      "properties": {
+        "require_examples": {
+          "type": "boolean",
+          "description": "Require examples"
+        },
+        "min_examples": {
+          "type": "integer",
+          "description": "Min examples per article"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include language info"
+        },
+        "include_line_numbers": {
+          "type": "boolean",
+          "description": "Include line numbers"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Example Settings",
+      "description": "Code example settings"
+    },
+    "website.config.CodeGenSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable code examples generation"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Languages to generate examples for"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Code generator (\"openapi-generator\", \"custom\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Gen Settings",
+      "description": "Code generation settings"
+    },
+    "website.config.CodeInteractionTracking": {
+      "properties": {
+        "track_copy": {
+          "type": "boolean",
+          "description": "Track code copy events"
+        },
+        "track_execution": {
+          "type": "boolean",
+          "description": "Track code execution (if interactive)"
+        },
+        "track_language_switch": {
+          "type": "boolean",
+          "description": "Track language switching"
+        },
+        "track_expand_collapse": {
+          "type": "boolean",
+          "description": "Track expand/collapse"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Interaction Tracking",
+      "description": "Code interaction tracking"
+    },
+    "website.config.CodeSampleEnhancement": {
+      "properties": {
+        "create_code_objects": {
+          "type": "boolean",
+          "description": "Create SoftwareSourceCode objects"
+        },
+        "include_context": {
+          "type": "boolean",
+          "description": "Include code context"
+        },
+        "link_live_examples": {
+          "type": "boolean",
+          "description": "Link to live examples"
+        },
+        "include_results": {
+          "type": "boolean",
+          "description": "Include execution results"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Sample Enhancement",
+      "description": "Code sample enhancement"
+    },
+    "website.config.Contributor": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Contributor name"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role/title"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Avatar URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contributor",
+      "description": "Contributor information"
+    },
+    "website.config.DiagramSettings": {
+      "properties": {
+        "include_diagrams": {
+          "type": "boolean",
+          "description": "Include diagrams"
+        },
+        "type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Diagram type mapping"
+        },
+        "generate_from_code": {
+          "type": "boolean",
+          "description": "Generate from code"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Diagram Settings",
+      "description": "Diagram settings"
+    },
+    "website.config.DocsARIAConfig": {
+      "properties": {
+        "nav_accessibility": {
+          "$ref": "#/definitions/website.config.NavigationAccessibility",
+          "description": "Navigation accessibility"
+        },
+        "code_accessibility": {
+          "$ref": "#/definitions/website.config.CodeBlockAccessibility",
+          "description": "Code block accessibility"
+        },
+        "api_accessibility": {
+          "$ref": "#/definitions/website.config.APIReferenceAccessibility",
+          "description": "API reference accessibility"
+        },
+        "search_accessibility": {
+          "$ref": "#/definitions/website.config.SearchAccessibility",
+          "description": "Search accessibility"
+        },
+        "doc_landmarks": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Documentation landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs ARIA Config",
+      "description": "Documentation-specific ARIA configuration"
+    },
+    "website.config.DocsColors": {
+      "properties": {
+        "code_background": {
+          "type": "string",
+          "description": "Code block background color"
+        },
+        "inline_code_bg": {
+          "type": "string",
+          "description": "Inline code color"
+        },
+        "nav_active": {
+          "type": "string",
+          "description": "Navigation active item color"
+        },
+        "search_highlight": {
+          "type": "string",
+          "description": "Search highlight color"
+        },
+        "warning_bg": {
+          "type": "string",
+          "description": "Warning/note block colors"
+        },
+        "note_bg": {
+          "type": "string"
+        },
+        "tip_bg": {
+          "type": "string"
+        },
+        "important_bg": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Colors",
+      "description": "Documentation-specific color overrides"
+    },
+    "website.config.DocsContent": {
+      "properties": {
+        "default_code_language": {
+          "type": "string",
+          "description": "Default code language for syntax highlighting"
+        },
+        "auto_api_reference": {
+          "type": "boolean",
+          "description": "Enable automatic API reference generation"
+        },
+        "glossary_tooltips": {
+          "type": "boolean",
+          "description": "Enable glossary/terminology tooltips"
+        },
+        "external_link_behavior": {
+          "enum": [
+            "LINK_BEHAVIOR_UNSPECIFIED",
+            0,
+            "LINK_BEHAVIOR_NEW_TAB",
+            1,
+            "LINK_BEHAVIOR_SAME_TAB",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Link Behavior",
+          "description": "External link behavior"
+        },
+        "images": {
+          "$ref": "#/definitions/website.config.ImageSettings",
+          "description": "Image optimization settings"
+        },
+        "videos": {
+          "$ref": "#/definitions/website.config.VideoSettings",
+          "description": "Video embedding settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Content",
+      "description": "Documentation content settings"
+    },
+    "website.config.DocsContentEnhancement": {
+      "properties": {
+        "code_samples": {
+          "$ref": "#/definitions/website.config.CodeSampleEnhancement",
+          "description": "Code sample enhancement"
+        },
+        "steps": {
+          "$ref": "#/definitions/website.config.StepEnhancement",
+          "description": "Step-by-step enhancement"
+        },
+        "faq": {
+          "$ref": "#/definitions/website.config.FAQEnhancement",
+          "description": "FAQ enhancement"
+        },
+        "tables": {
+          "$ref": "#/definitions/website.config.TableEnhancement",
+          "description": "Table enhancement"
+        },
+        "glossary": {
+          "$ref": "#/definitions/website.config.GlossaryEnhancement",
+          "description": "Glossary enhancement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Content Enhancement",
+      "description": "Documentation content enhancement"
+    },
+    "website.config.DocsFeatures": {
+      "properties": {
+        "copy_code_button": {
+          "type": "boolean",
+          "description": "Enable copy button on code blocks"
+        },
+        "code_line_numbers": {
+          "type": "boolean",
+          "description": "Enable line numbers in code blocks"
+        },
+        "collapsible_sections": {
+          "type": "boolean",
+          "description": "Enable expandable/collapsible sections"
+        },
+        "prev_next_nav": {
+          "type": "boolean",
+          "description": "Enable previous/next navigation"
+        },
+        "breadcrumbs": {
+          "type": "boolean",
+          "description": "Enable breadcrumb navigation"
+        },
+        "print_version": {
+          "type": "boolean",
+          "description": "Enable print-friendly version"
+        },
+        "dark_mode_toggle": {
+          "type": "boolean",
+          "description": "Enable dark mode toggle (if not inherited)"
+        },
+        "version_warning": {
+          "type": "boolean",
+          "description": "Enable version warning for old docs"
+        },
+        "edit_on_github": {
+          "type": "boolean",
+          "description": "Enable edit on GitHub link"
+        },
+        "show_last_updated": {
+          "type": "boolean",
+          "description": "Enable last updated timestamp"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Enable estimated reading time"
+        },
+        "heading_anchors": {
+          "type": "boolean",
+          "description": "Enable anchor links on headings"
+        },
+        "docs_search": {
+          "type": "boolean",
+          "description": "Enable search within docs"
+        },
+        "search_provider": {
+          "type": "string",
+          "description": "Search provider override"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom documentation features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Features",
+      "description": "Documentation-specific features"
+    },
+    "website.config.DocsGTMConfig": {
+      "properties": {
+        "nav_tracking": {
+          "$ref": "#/definitions/website.config.NavigationTracking",
+          "description": "Advanced navigation tracking"
+        },
+        "code_tracking": {
+          "$ref": "#/definitions/website.config.CodeInteractionTracking",
+          "description": "Code interaction tracking"
+        },
+        "api_tracking": {
+          "$ref": "#/definitions/website.config.APIExplorerTracking",
+          "description": "API explorer tracking"
+        },
+        "track_version_switching": {
+          "type": "boolean",
+          "description": "Version switching tracking"
+        },
+        "search_tracking": {
+          "$ref": "#/definitions/website.config.SearchTracking",
+          "description": "Search behavior tracking"
+        },
+        "doc_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Documentation-specific events"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs GTM Config",
+      "description": "Documentation-specific GTM configuration"
+    },
+    "website.config.DocsMetadata": {
+      "properties": {
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords for SEO (docs-specific)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Documentation version"
+        },
+        "release_date": {
+          "type": "string",
+          "description": "Release date of this version"
+        },
+        "changelog_url": {
+          "type": "string",
+          "description": "Changelog URL"
+        },
+        "migration_guide_url": {
+          "type": "string",
+          "description": "Migration guide URL (from previous version)"
+        },
+        "support": {
+          "$ref": "#/definitions/website.config.SupportLinks",
+          "description": "Support/help URLs"
+        },
+        "contributors": {
+          "items": {
+            "$ref": "#/definitions/website.config.Contributor"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Contributors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Metadata",
+      "description": "Documentation metadata"
+    },
+    "website.config.DocsNavigationSidebar": {
+      "properties": {
+        "position": {
+          "enum": [
+            "SIDEBAR_POSITION_UNSPECIFIED",
+            0,
+            "SIDEBAR_POSITION_LEFT",
+            1,
+            "SIDEBAR_POSITION_RIGHT",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Sidebar Position",
+          "description": "Sidebar position options"
+        },
+        "collapsible": {
+          "type": "boolean",
+          "description": "Collapsible sections"
+        },
+        "auto_expand_current": {
+          "type": "boolean",
+          "description": "Auto-expand current section"
+        },
+        "mobile_visible": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky sidebar"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth for auto-generated nav"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Navigation Sidebar",
+      "description": "Documentation sidebar configuration"
+    },
+    "website.config.DocsPage": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Page identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "path": {
+          "type": "string",
+          "description": "Page path (relative to docs/)"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order within section"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Hide from navigation"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "External link (if not a local page)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Page",
+      "description": "Documentation page reference"
+    },
+    "website.config.DocsSection": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Section identifier"
+        },
+        "title": {
+          "type": "string",
+          "description": "Section title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Section description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Section icon"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order in navigation"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsPage"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Pages in this section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Section",
+      "description": "Documentation section"
+    },
+    "website.config.DocsStructure": {
+      "properties": {
+        "nav_style": {
+          "enum": [
+            "DOC_NAVIGATION_STYLE_UNSPECIFIED",
+            0,
+            "DOC_NAVIGATION_STYLE_SIDEBAR",
+            1,
+            "DOC_NAVIGATION_STYLE_TOP_NAV",
+            2,
+            "DOC_NAVIGATION_STYLE_BOTH",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n DOCUMENTATION ENUMS\n =============================================================================",
+          "description": "============================================================================= DOCUMENTATION ENUMS =============================================================================  Documentation navigation styles"
+        },
+        "sidebar": {
+          "$ref": "#/definitions/website.config.DocsNavigationSidebar",
+          "description": "Sidebar configuration"
+        },
+        "toc": {
+          "$ref": "#/definitions/website.config.DocsTableOfContents",
+          "description": "Table of contents configuration"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/website.config.DocsSection"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Documentation sections/categories"
+        },
+        "landing_style": {
+          "enum": [
+            "DOC_LANDING_STYLE_UNSPECIFIED",
+            0,
+            "DOC_LANDING_STYLE_HERO",
+            1,
+            "DOC_LANDING_STYLE_QUICK_START",
+            2,
+            "DOC_LANDING_STYLE_OVERVIEW",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Doc Landing Style",
+          "description": "Documentation landing page styles"
+        },
+        "show_version_selector": {
+          "type": "boolean",
+          "description": "Show version selector"
+        },
+        "available_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available versions (for version selector)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Structure",
+      "description": "Documentation structure and navigation"
+    },
+    "website.config.DocsTableOfContents": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"right\", \"inline\")"
+        },
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth to include"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky TOC on scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Table Of Contents",
+      "description": "Table of contents configuration"
+    },
+    "website.config.DocsThemeOverrides": {
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/website.config.DocsColors",
+          "description": "Color overrides for docs (limited set)"
+        },
+        "typography": {
+          "$ref": "#/definitions/website.config.DocsTypography",
+          "description": "Typography adjustments for documentation"
+        },
+        "custom_docs_css": {
+          "type": "string",
+          "description": "Custom CSS specific to docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Theme Overrides",
+      "description": "Theme overrides allowed for documentation"
+    },
+    "website.config.DocsTypeMappings": {
+      "properties": {
+        "default_type": {
+          "type": "string",
+          "description": "Default doc page type  \"TechArticle\""
+        },
+        "section_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Section-based type mapping"
+        },
+        "path_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Path pattern to type mapping"
+        },
+        "nav_style_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Navigation style to type mapping"
+        },
+        "api_format_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "API spec format to type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Type Mappings",
+      "description": "Documentation type mappings"
+    },
+    "website.config.DocsTypography": {
+      "properties": {
+        "docs_font": {
+          "type": "string",
+          "description": "Font for documentation content"
+        },
+        "docs_font_size": {
+          "type": "string",
+          "description": "Font size for documentation"
+        },
+        "docs_line_height": {
+          "type": "number",
+          "description": "Line height for docs"
+        },
+        "code_font": {
+          "type": "string",
+          "description": "Code block font"
+        },
+        "heading_scale": {
+          "type": "number",
+          "description": "Heading scale for docs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Typography",
+      "description": "Documentation-specific typography"
+    },
+    "website.config.EndpointSettings": {
+      "properties": {
+        "include_all": {
+          "type": "boolean",
+          "description": "Include all endpoints"
+        },
+        "group_by_resource": {
+          "type": "boolean",
+          "description": "Group by resource"
+        },
+        "include_deprecated": {
+          "type": "boolean",
+          "description": "Include deprecated"
+        },
+        "include_auth": {
+          "type": "boolean",
+          "description": "Authentication info"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Endpoint Settings",
+      "description": "Endpoint settings"
+    },
+    "website.config.FAQEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect Q&A pairs"
+        },
+        "create_faq_page": {
+          "type": "boolean",
+          "description": "Create FAQPage markup"
+        },
+        "group_questions": {
+          "type": "boolean",
+          "description": "Group related questions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "FAQ Enhancement",
+      "description": "FAQ enhancement"
+    },
+    "website.config.GlossaryEnhancement": {
+      "properties": {
+        "create_defined_terms": {
+          "type": "boolean",
+          "description": "Create DefinedTerm objects"
+        },
+        "link_occurrences": {
+          "type": "boolean",
+          "description": "Link term occurrences"
+        },
+        "include_relationships": {
+          "type": "boolean",
+          "description": "Include term relationships"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Glossary Enhancement",
+      "description": "Glossary enhancement"
+    },
+    "website.config.HowToSettings": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect how-to content"
+        },
+        "default_category": {
+          "type": "string",
+          "description": "Default category"
+        },
+        "include_tools": {
+          "type": "boolean",
+          "description": "Include tools/supplies"
+        },
+        "include_cost": {
+          "type": "boolean",
+          "description": "Include cost estimates"
+        },
+        "step_style": {
+          "type": "string",
+          "description": "Step numbering style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "How To Settings",
+      "description": "How-to guide settings"
+    },
+    "website.config.ImageSettings": {
+      "properties": {
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        },
+        "click_to_zoom": {
+          "type": "boolean",
+          "description": "Enable zoom on click"
+        },
+        "default_align": {
+          "type": "string",
+          "description": "Default alignment (\"left\", \"center\", \"right\")"
+        },
+        "show_captions": {
+          "type": "boolean",
+          "description": "Enable captions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Settings",
+      "description": "Image settings for documentation"
+    },
+    "website.config.LearningResourceSettings": {
+      "properties": {
+        "is_learning_resource": {
+          "type": "boolean",
+          "description": "Mark as learning resource"
+        },
+        "educational_level": {
+          "type": "string",
+          "description": "Educational level"
+        },
+        "time_required": {
+          "type": "string",
+          "description": "Time required"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Prerequisites"
+        },
+        "objectives": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Learning objectives"
+        },
+        "competencies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Competencies gained"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Learning Resource Settings",
+      "description": "Learning resource settings"
+    },
+    "website.config.NavigationAccessibility": {
+      "properties": {
+        "sidebar_tree_aria": {
+          "type": "boolean",
+          "description": "Sidebar tree ARIA"
+        },
+        "expandable_sections": {
+          "type": "boolean",
+          "description": "Expandable sections ARIA"
+        },
+        "current_page_indication": {
+          "type": "boolean",
+          "description": "Current page indication"
+        },
+        "navigation_hints": {
+          "type": "boolean",
+          "description": "Navigation hints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Accessibility",
+      "description": "Navigation accessibility settings"
+    },
+    "website.config.NavigationSchemaSettings": {
+      "properties": {
+        "create_nav_elements": {
+          "type": "boolean",
+          "description": "Create SiteNavigationElement"
+        },
+        "create_breadcrumbs": {
+          "type": "boolean",
+          "description": "Create BreadcrumbList"
+        },
+        "create_item_lists": {
+          "type": "boolean",
+          "description": "Create ItemList for sections"
+        },
+        "max_hierarchy_depth": {
+          "type": "integer",
+          "description": "Navigation hierarchy depth"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Schema Settings",
+      "description": "Navigation Schema.org settings"
+    },
+    "website.config.NavigationTracking": {
+      "properties": {
+        "track_sidebar": {
+          "type": "boolean",
+          "description": "Track sidebar navigation"
+        },
+        "track_breadcrumbs": {
+          "type": "boolean",
+          "description": "Track breadcrumb usage"
+        },
+        "track_anchors": {
+          "type": "boolean",
+          "description": "Track anchor link clicks"
+        },
+        "track_toc": {
+          "type": "boolean",
+          "description": "Track TOC navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Tracking",
+      "description": "Navigation tracking for docs"
+    },
+    "website.config.OAuth2Config": {
+      "properties": {
+        "flow": {
+          "enum": [
+            "OAUTH2_FLOW_UNSPECIFIED",
+            0,
+            "OAUTH2_FLOW_IMPLICIT",
+            1,
+            "OAUTH2_FLOW_AUTHORIZATION_CODE",
+            2,
+            "OAUTH2_FLOW_CLIENT_CREDENTIALS",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "O Auth 2 Flow",
+          "description": "OAuth2 flow types"
+        },
+        "auth_url": {
+          "type": "string",
+          "description": "Authorization URL"
+        },
+        "token_url": {
+          "type": "string",
+          "description": "Token URL"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Available scopes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "O Auth 2 Config",
+      "description": "OAuth2 configuration"
+    },
+    "website.config.SchemaOrgConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Schema.org JSON-LD generation"
+        },
+        "mapping_mode": {
+          "type": "string",
+          "description": "Mapping mode (\"automatic\", \"manual\", \"hybrid\")"
+        },
+        "include_all_mappings": {
+          "type": "boolean",
+          "description": "Include all enum mappings in build"
+        },
+        "included_mappings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Specific mappings to include (if not including all)"
+        },
+        "custom_mappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom mapping overrides"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.SchemaOrgValidation",
+          "description": "Validation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Config",
+      "description": "Schema.org configuration for build-time mapping"
+    },
+    "website.config.SchemaOrgDocsConfig": {
+      "properties": {
+        "config_override": {
+          "$ref": "#/definitions/website.config.SchemaOrgConfig",
+          "description": "Override project Schema.org config"
+        },
+        "type_mappings": {
+          "$ref": "#/definitions/website.config.DocsTypeMappings",
+          "description": "Documentation type mappings"
+        },
+        "nav_settings": {
+          "$ref": "#/definitions/website.config.NavigationSchemaSettings",
+          "description": "Navigation Schema.org settings"
+        },
+        "content_enhancement": {
+          "$ref": "#/definitions/website.config.DocsContentEnhancement",
+          "description": "Content enhancement"
+        },
+        "learning_settings": {
+          "$ref": "#/definitions/website.config.LearningResourceSettings",
+          "description": "Learning resource settings"
+        },
+        "howto_settings": {
+          "$ref": "#/definitions/website.config.HowToSettings",
+          "description": "How-to guide settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Docs Config",
+      "description": "Schema.org configuration for documentation"
+    },
+    "website.config.SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    },
+    "website.config.SearchAccessibility": {
+      "properties": {
+        "search_input_aria": {
+          "type": "boolean",
+          "description": "Search input ARIA"
+        },
+        "results_announcement": {
+          "type": "boolean",
+          "description": "Results announcement"
+        },
+        "filter_aria": {
+          "type": "boolean",
+          "description": "Filter controls ARIA"
+        },
+        "keyboard_navigation": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Accessibility",
+      "description": "Search accessibility settings"
+    },
+    "website.config.SearchTracking": {
+      "properties": {
+        "track_queries": {
+          "type": "boolean",
+          "description": "Track search queries"
+        },
+        "track_result_clicks": {
+          "type": "boolean",
+          "description": "Track search results clicked"
+        },
+        "track_no_results": {
+          "type": "boolean",
+          "description": "Track no results scenarios"
+        },
+        "track_filters": {
+          "type": "boolean",
+          "description": "Track filter usage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Tracking",
+      "description": "Search tracking configuration"
+    },
+    "website.config.StepEnhancement": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect step lists"
+        },
+        "create_howto": {
+          "type": "boolean",
+          "description": "Create HowTo objects"
+        },
+        "include_time": {
+          "type": "boolean",
+          "description": "Include time estimates"
+        },
+        "include_difficulty": {
+          "type": "boolean",
+          "description": "Include difficulty level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Step Enhancement",
+      "description": "Step-by-step enhancement"
+    },
+    "website.config.SupportLinks": {
+      "properties": {
+        "forum": {
+          "type": "string",
+          "description": "Community forum URL"
+        },
+        "chat": {
+          "type": "string",
+          "description": "Discord/Slack invite URL"
+        },
+        "stack_overflow_tag": {
+          "type": "string",
+          "description": "Stack Overflow tag"
+        },
+        "discussions": {
+          "type": "string",
+          "description": "GitHub discussions URL"
+        },
+        "email": {
+          "type": "string",
+          "description": "Support email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Links",
+      "description": "Support link configuration"
+    },
+    "website.config.TableEnhancement": {
+      "properties": {
+        "create_table_objects": {
+          "type": "boolean",
+          "description": "Create Table objects"
+        },
+        "include_captions": {
+          "type": "boolean",
+          "description": "Include table captions"
+        },
+        "create_datasets": {
+          "type": "boolean",
+          "description": "Create Dataset for data tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Enhancement",
+      "description": "Table enhancement"
+    },
+    "website.config.TechnicalArticleDefaults": {
+      "properties": {
+        "default_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Default properties"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        },
+        "level_settings": {
+          "$ref": "#/definitions/website.config.TechnicalLevelSettings",
+          "description": "Technical level settings"
+        },
+        "code_settings": {
+          "$ref": "#/definitions/website.config.CodeExampleSettings",
+          "description": "Code example settings"
+        },
+        "diagram_settings": {
+          "$ref": "#/definitions/website.config.DiagramSettings",
+          "description": "Diagram settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Article Defaults",
+      "description": "Technical article defaults"
+    },
+    "website.config.TechnicalLevelSettings": {
+      "properties": {
+        "include_level": {
+          "type": "boolean",
+          "description": "Include tech level"
+        },
+        "level_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Level categories"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Level Settings",
+      "description": "Technical level settings"
+    },
+    "website.config.VideoSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable video embeds"
+        },
+        "default_width": {
+          "type": "string",
+          "description": "Default video width"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported providers"
+        },
+        "lazy_load": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Settings",
+      "description": "Video embedding settings"
+    }
+  },
+  "title": "DOCSCONFIG Configuration Schema",
+  "description": "JSON Schema for DocsConfig configuration"
+}

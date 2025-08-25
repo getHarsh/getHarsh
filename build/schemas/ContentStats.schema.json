@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentStats",
+  "definitions": {
+    "ContentStats": {
+      "properties": {
+        "total_posts": {
+          "type": "integer",
+          "description": "Total number of posts"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "Total number of pages"
+        },
+        "total_categories": {
+          "type": "integer",
+          "description": "Total number of categories"
+        },
+        "total_tags": {
+          "type": "integer",
+          "description": "Total number of tags"
+        },
+        "avg_post_length": {
+          "type": "integer",
+          "description": "Average post length (words)"
+        },
+        "last_updated": {
+          "type": "string",
+          "description": "Last updated timestamp"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Stats",
+      "description": "Content statistics"
+    }
+  },
+  "title": "CONTENTSTATS Configuration Schema",
+  "description": "JSON Schema for ContentStats configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkPurpose",
+  "definitions": {
+    "LinkPurpose": {
+      "properties": {
+        "indicate_file_type": {
+          "type": "boolean",
+          "description": "File type indication"
+        },
+        "indicate_file_size": {
+          "type": "boolean",
+          "description": "File size indication"
+        },
+        "indicate_external": {
+          "type": "boolean",
+          "description": "External indication"
+        },
+        "warn_new_window": {
+          "type": "boolean",
+          "description": "New window warning"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Purpose",
+      "description": "Link purpose indication"
+    }
+  },
+  "title": "LINKPURPOSE Configuration Schema",
+  "description": "JSON Schema for LinkPurpose configuration"
+}

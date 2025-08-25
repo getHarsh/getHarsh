@@ -1,0 +1,1043 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectOverrides",
+  "definitions": {
+    "ProjectOverrides": {
+      "properties": {
+        "social_override": {
+          "$ref": "#/definitions/website.config.SocialMedia",
+          "description": "Override social media accounts for this project"
+        },
+        "contact_override": {
+          "$ref": "#/definitions/website.config.ContactEmails",
+          "description": "Override contact emails for this project"
+        },
+        "sponsor_override": {
+          "$ref": "#/definitions/website.config.SponsorSettings",
+          "description": "Project-specific sponsor settings"
+        },
+        "structured_data_override": {
+          "$ref": "#/definitions/website.config.ProjectStructuredData",
+          "description": "Project-specific structured data"
+        },
+        "policy_override": {
+          "$ref": "#/definitions/website.config.PolicyOverrides",
+          "description": "Project-level policy page overrides Can add project-specific policies like API terms See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance"
+        },
+        "schema_org_override": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Project-specific Schema.org entity configuration Typically: SoftwareApplication, WebApplication, Service See ../SCHEMA-ORG-EXAMPLES.md#project-examples"
+        },
+        "pages_schema_override": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.SchemaOrgEntity"
+          },
+          "type": "object",
+          "description": "Project-specific page schema overrides Commonly overrides /contact and /sponsor for project-specific info See ../SCHEMA-ORG-EXAMPLES.md#project-with-custom-contact"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Overrides",
+      "description": "Project-specific overrides (optional) These fields allow projects to override domain-level settings"
+    },
+    "website.config.AppointmentSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable appointment booking"
+        },
+        "google_calendar_id": {
+          "type": "string",
+          "description": "Google Calendar ID for appointments"
+        },
+        "booking_url": {
+          "type": "string",
+          "description": "Public booking URL"
+        },
+        "time_zone": {
+          "type": "string",
+          "description": "Time zone for appointments"
+        },
+        "available_days": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available days of week (e.g., [\"Monday\", \"Wednesday\", \"Friday\"])"
+        },
+        "default_duration": {
+          "type": "string",
+          "description": "Default appointment duration (ISO 8601, e.g., \"PT30M\")"
+        },
+        "min_advance_hours": {
+          "type": "integer",
+          "description": "Minimum advance booking time (hours)"
+        },
+        "max_advance_days": {
+          "type": "integer",
+          "description": "Maximum advance booking time (days)"
+        },
+        "buffer_minutes": {
+          "type": "integer",
+          "description": "Buffer time between appointments (minutes)"
+        },
+        "business_hours": {
+          "$ref": "#/definitions/website.config.BusinessHours",
+          "description": "Business hours"
+        },
+        "appointment_types": {
+          "items": {
+            "$ref": "#/definitions/website.config.AppointmentType"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Appointment types available"
+        },
+        "embed_settings": {
+          "$ref": "#/definitions/website.config.CalendarEmbed",
+          "description": "Calendar embed settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Appointment Settings",
+      "description": "Appointment booking settings Maps to Schema.org ScheduleAction, Event, EventReservation"
+    },
+    "website.config.AppointmentType": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Type name (e.g., \"Consultation\", \"Technical Review\")"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration for this type (ISO 8601)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "price": {
+          "type": "string",
+          "description": "Price (if applicable)"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color for calendar display"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Appointment Type",
+      "description": "Appointment type configuration"
+    },
+    "website.config.BusinessHours": {
+      "properties": {
+        "start_time": {
+          "type": "string",
+          "description": "Start time (24h format, e.g., \"09:00\")"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time (24h format, e.g., \"17:00\")"
+        },
+        "lunch_start": {
+          "type": "string",
+          "description": "Lunch break start"
+        },
+        "lunch_end": {
+          "type": "string",
+          "description": "Lunch break end"
+        },
+        "custom_hours": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.DayHours"
+          },
+          "type": "object",
+          "description": "Custom hours per day"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Business Hours",
+      "description": "Business hours configuration"
+    },
+    "website.config.BuyMeACoffeeSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Username"
+        },
+        "widget_url": {
+          "type": "string",
+          "description": "Widget URL"
+        },
+        "button_color": {
+          "type": "string",
+          "description": "Button color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Buy Me A Coffee Settings",
+      "description": "Buy Me a Coffee configuration"
+    },
+    "website.config.CalendarEmbed": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable calendar embedding"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Embed height in pixels"
+        },
+        "width": {
+          "type": "string",
+          "description": "Embed width (percentage or pixels)"
+        },
+        "free_busy_only": {
+          "type": "boolean",
+          "description": "Show only free/busy"
+        },
+        "default_view": {
+          "type": "string",
+          "description": "Default view (\"week\", \"month\", \"agenda\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Calendar Embed",
+      "description": "Calendar embed configuration"
+    },
+    "website.config.ContactEmails": {
+      "properties": {
+        "info": {
+          "type": "string",
+          "description": "General information email - REQUIRED"
+        },
+        "proposal": {
+          "type": "string",
+          "description": "Business proposals email - REQUIRED"
+        },
+        "accounts": {
+          "type": "string",
+          "description": "Accounts/billing email - REQUIRED"
+        },
+        "support": {
+          "type": "string",
+          "description": "Technical support email (optional)"
+        },
+        "legal": {
+          "type": "string",
+          "description": "Legal/compliance email (optional)"
+        },
+        "sponsorship": {
+          "type": "string",
+          "description": "Sponsorship/funding email (optional)"
+        },
+        "media": {
+          "type": "string",
+          "description": "Media/press inquiries email (optional)"
+        },
+        "partnership": {
+          "type": "string",
+          "description": "Partnership inquiries email (optional)"
+        },
+        "careers": {
+          "type": "string",
+          "description": "Careers/HR email (optional)"
+        },
+        "appointment_booking": {
+          "$ref": "#/definitions/website.config.AppointmentSettings",
+          "description": "Appointment booking settings Maps to Schema.org ScheduleAction"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Emails",
+      "description": "Contact email configuration"
+    },
+    "website.config.CourseSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable course markup"
+        },
+        "description": {
+          "type": "string",
+          "description": "Course description"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Course duration"
+        },
+        "language": {
+          "type": "string",
+          "description": "Course language"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Prerequisites"
+        },
+        "target_audience": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Target audience"
+        },
+        "educational_level": {
+          "type": "string",
+          "description": "Educational level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Course Schema",
+      "description": "Course schema"
+    },
+    "website.config.CryptoAddress": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Wallet address"
+        },
+        "qr_code_url": {
+          "type": "string",
+          "description": "QR code URL"
+        },
+        "network_name": {
+          "type": "string",
+          "description": "Network name (for display)"
+        },
+        "explorer_url": {
+          "type": "string",
+          "description": "Explorer URL"
+        },
+        "domain_name": {
+          "type": "string",
+          "description": "ENS/Domain name (if applicable)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Address",
+      "description": "Cryptocurrency address configuration"
+    },
+    "website.config.DatasetSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable dataset markup"
+        },
+        "description": {
+          "type": "string",
+          "description": "Dataset description"
+        },
+        "distribution_format": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Distribution format"
+        },
+        "license": {
+          "type": "string",
+          "description": "License"
+        },
+        "temporal_coverage": {
+          "type": "string",
+          "description": "Temporal coverage"
+        },
+        "spatial_coverage": {
+          "type": "string",
+          "description": "Spatial coverage"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dataset Schema",
+      "description": "Dataset schema"
+    },
+    "website.config.DayHours": {
+      "properties": {
+        "available": {
+          "type": "boolean",
+          "description": "Is this day available"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "Start time for this day"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time for this day"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Day Hours",
+      "description": "Custom hours for specific days"
+    },
+    "website.config.GitHubSponsors": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "show_button": {
+          "type": "boolean",
+          "description": "Show sponsor button"
+        },
+        "tier_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom tiers mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Sponsors",
+      "description": "GitHub Sponsors configuration"
+    },
+    "website.config.PatreonSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Patreon username"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign ID"
+        },
+        "show_patron_count": {
+          "type": "boolean",
+          "description": "Show patron count"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Patreon Settings",
+      "description": "Patreon configuration"
+    },
+    "website.config.PayPalSettings": {
+      "properties": {
+        "paypal_me": {
+          "type": "string",
+          "description": "PayPal.me username"
+        },
+        "business_email": {
+          "type": "string",
+          "description": "Business email"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code"
+        },
+        "button_style": {
+          "type": "string",
+          "description": "Button style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Pay Pal Settings",
+      "description": "PayPal configuration"
+    },
+    "website.config.PlatformSponsorSettings": {
+      "properties": {
+        "github": {
+          "$ref": "#/definitions/website.config.GitHubSponsors",
+          "description": "GitHub Sponsors"
+        },
+        "youtube": {
+          "$ref": "#/definitions/website.config.YouTubeMembership",
+          "description": "YouTube Membership"
+        },
+        "patreon": {
+          "$ref": "#/definitions/website.config.PatreonSettings",
+          "description": "Patreon"
+        },
+        "buymeacoffee": {
+          "$ref": "#/definitions/website.config.BuyMeACoffeeSettings",
+          "description": "Buy Me a Coffee"
+        },
+        "paypal": {
+          "$ref": "#/definitions/website.config.PayPalSettings",
+          "description": "PayPal"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Platform Sponsor Settings",
+      "description": "Platform-specific sponsor settings"
+    },
+    "website.config.PolicyOverrides": {
+      "properties": {
+        "enabled_policies": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Enable/disable specific policy pages at this level Example: {\"privacy_policy\": true, \"refund_policy\": false}"
+        },
+        "policy_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Override policy URLs for this entity Example: {\"terms_of_service\": \"/custom-terms\"}"
+        },
+        "custom_policies": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom policy pages unique to this entity Example: {\"api_terms\": \"/api/terms\"} for API projects"
+        },
+        "hidden_policies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Hide policies from navigation/footer while keeping them accessible Example: [\"refund_policy\", \"dpa\"] for non-commerce sites"
+        },
+        "inherit_parent_policies": {
+          "type": "boolean",
+          "description": "Whether to inherit parent's policy configuration (default: true) Set to false to completely override parent settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Overrides",
+      "description": "Policy page overrides for domain/blog/project level control Provides granular control over which policies are shown and their URLs See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance for examples"
+    },
+    "website.config.ProjectStructuredData": {
+      "properties": {
+        "software_app": {
+          "$ref": "#/definitions/website.config.SoftwareApplicationSchema",
+          "description": "Software application schema"
+        },
+        "dataset": {
+          "$ref": "#/definitions/website.config.DatasetSchema",
+          "description": "Dataset schema (for data projects)"
+        },
+        "course": {
+          "$ref": "#/definitions/website.config.CourseSchema",
+          "description": "Course schema (for educational projects)"
+        },
+        "custom_schemas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom schema extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Structured Data",
+      "description": "Project-specific structured data"
+    },
+    "website.config.SchemaOrgAffiliation": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL (optional)"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (optional, ISO 8601 format)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (optional, ISO 8601 format, omit if current)"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type (optional, e.g., \"Corporation\", \"EducationalOrganization\")"
+        },
+        "affiliation_type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization @id reference (for linking to existing entities) Example: \"https://rawthoughts.in/#organization\""
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Affiliation",
+      "description": "Affiliation for Person type in Schema.org JSON-LD output DEPRECATED: Use PersonAffiliation for configuration, this is for output only"
+    },
+    "website.config.SchemaOrgChild": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Child entity ID/URL"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type  e.g., \"owns\", \"subOrganization\", \"hasPart\""
+        },
+        "type": {
+          "type": "string",
+          "description": "Child type  e.g., \"ResearchProject\", \"SoftwareApplication\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Child",
+      "description": "Child entity reference for Schema.org"
+    },
+    "website.config.SchemaOrgEntity": {
+      "properties": {
+        "type_enum": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "custom_type": {
+          "type": "string",
+          "description": "Custom type string for types not in our enum Use this for rare/specialized types (e.g., \"MedicalOrganization\")"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types for multi-type entities Example: [\"WebSite\", \"Brand\"] for getHarsh.in See ../SCHEMA-ORG-EXAMPLES.md#quick-start for patterns"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string properties (name, description, url, etc.)"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations (for Person type)"
+        },
+        "parent_entity_id": {
+          "type": "string",
+          "description": "Parent entity reference (for hierarchy)  e.g., \"@id\" reference"
+        },
+        "parent_relationship": {
+          "type": "string",
+          "description": "Relationship type to parent  e.g., \"parentOrganization\", \"creator\", \"owns\""
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgChild"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child entities (for org -> projects)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity",
+      "description": "Schema.org entity configuration Used to define the semantic type of any entity (domain, blog, project, page) See ../SCHEMA-ORG-EXAMPLES.md#configuration-examples for usage"
+    },
+    "website.config.SocialMedia": {
+      "properties": {
+        "twitter": {
+          "type": "string",
+          "description": "Twitter/X handle (without @)"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "LinkedIn profile URL"
+        },
+        "instagram": {
+          "type": "string",
+          "description": "Instagram handle"
+        },
+        "youtube": {
+          "type": "string",
+          "description": "YouTube channel URL"
+        },
+        "reddit": {
+          "type": "string",
+          "description": "Reddit username (without u/)"
+        },
+        "discord": {
+          "type": "string",
+          "description": "Discord server invite or username"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom social links for other platforms"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Media",
+      "description": "Social media configuration"
+    },
+    "website.config.SoftwareApplicationSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable software app markup"
+        },
+        "application_category": {
+          "type": "string",
+          "description": "Application category"
+        },
+        "operating_system": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Operating system"
+        },
+        "software_version": {
+          "type": "string",
+          "description": "Software version"
+        },
+        "download_url": {
+          "type": "string",
+          "description": "Download URL"
+        },
+        "install_url": {
+          "type": "string",
+          "description": "Installation URL"
+        },
+        "memory_requirements": {
+          "type": "string",
+          "description": "Memory requirements"
+        },
+        "storage_requirements": {
+          "type": "string",
+          "description": "Storage requirements"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Permissions required"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Software Application Schema",
+      "description": "Software application schema"
+    },
+    "website.config.SponsorSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable sponsorship features"
+        },
+        "crypto_addresses": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CryptoAddress"
+          },
+          "type": "object",
+          "description": "Cryptocurrency addresses (key is network name as string)"
+        },
+        "enabled_methods": {
+          "items": {
+            "enum": [
+              "PAYMENT_METHOD_UNSPECIFIED",
+              0,
+              "PAYMENT_METHOD_PAYPAL",
+              1,
+              "PAYMENT_METHOD_GITHUB_SPONSORS",
+              2,
+              "PAYMENT_METHOD_YOUTUBE_MEMBERSHIP",
+              3,
+              "PAYMENT_METHOD_CRYPTO",
+              4
+            ]
+          },
+          "type": "array",
+          "title": "Payment Method",
+          "description": "Payment methods for sponsorship and donations Maps to Schema.org PaymentMethod, PaymentCard, PaymentService"
+        },
+        "disclosure_template": {
+          "type": "string",
+          "description": "Sponsor disclosure text template"
+        },
+        "min_amount": {
+          "type": "string",
+          "description": "Minimum sponsorship amount"
+        },
+        "tiers": {
+          "items": {
+            "$ref": "#/definitions/website.config.SponsorshipTier"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sponsorship tiers"
+        },
+        "platform_settings": {
+          "$ref": "#/definitions/website.config.PlatformSponsorSettings",
+          "description": "Platform-specific settings"
+        },
+        "thank_you_url": {
+          "type": "string",
+          "description": "Thank you page URL"
+        },
+        "show_recognition": {
+          "type": "boolean",
+          "description": "Show sponsor recognition"
+        },
+        "sponsor_wall": {
+          "$ref": "#/definitions/website.config.SponsorWall",
+          "description": "Sponsor wall configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Settings",
+      "description": "Sponsor settings with crypto support Maps to Schema.org MonetaryGrant, DonateAction, sponsor property"
+    },
+    "website.config.SponsorWall": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable sponsor wall"
+        },
+        "page_path": {
+          "type": "string",
+          "description": "Wall position (\"/sponsors\" page)"
+        },
+        "group_by_tier": {
+          "type": "boolean",
+          "description": "Group by tier"
+        },
+        "show_amounts": {
+          "type": "boolean",
+          "description": "Show amounts"
+        },
+        "allow_anonymous": {
+          "type": "boolean",
+          "description": "Anonymous option"
+        },
+        "update_frequency": {
+          "type": "string",
+          "description": "Update frequency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Wall",
+      "description": "Sponsor wall configuration"
+    },
+    "website.config.SponsorshipTier": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Tier name"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount (per month/year)"
+        },
+        "benefits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Benefits/perks"
+        },
+        "badge_url": {
+          "type": "string",
+          "description": "Badge/icon URL"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color theme"
+        },
+        "max_sponsors": {
+          "type": "integer",
+          "description": "Limited slots available"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsorship Tier",
+      "description": "Sponsorship tier configuration"
+    },
+    "website.config.YouTubeMembership": {
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "Channel ID"
+        },
+        "membership_url": {
+          "type": "string",
+          "description": "Membership URL"
+        },
+        "show_join_button": {
+          "type": "boolean",
+          "description": "Show join button"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Membership",
+      "description": "YouTube Membership configuration"
+    }
+  },
+  "title": "PROJECTOVERRIDES Configuration Schema",
+  "description": "JSON Schema for ProjectOverrides configuration"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RichSnippetsConfig",
+  "definitions": {
+    "RichSnippetsConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable rich snippets"
+        },
+        "snippet_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Types to generate snippets for"
+        },
+        "include_images": {
+          "type": "boolean",
+          "description": "Include preview images"
+        },
+        "include_ratings": {
+          "type": "boolean",
+          "description": "Include ratings/reviews"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Rich Snippets Config",
+      "description": "Rich snippets configuration"
+    }
+  },
+  "title": "RICHSNIPPETSCONFIG Configuration Schema",
+  "description": "JSON Schema for RichSnippetsConfig configuration"
+}

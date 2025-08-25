@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogFeatures",
+  "definitions": {
+    "BlogFeatures": {
+      "properties": {
+        "comments": {
+          "type": "boolean",
+          "description": "Enable comments system"
+        },
+        "comments_provider": {
+          "type": "string",
+          "description": "Comments provider (\"disqus\", \"giscus\", \"utterances\")"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Show reading time estimate"
+        },
+        "table_of_contents": {
+          "type": "boolean",
+          "description": "Show table of contents for long posts"
+        },
+        "toc_min_headings": {
+          "type": "integer",
+          "description": "TOC threshold (min headings)"
+        },
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math rendering (KaTeX/MathJax)"
+        },
+        "math_renderer": {
+          "type": "string",
+          "description": "Math renderer (\"katex\", \"mathjax\")"
+        },
+        "graphviz": {
+          "type": "boolean",
+          "description": "Enable Graphviz diagram rendering"
+        },
+        "syntax_highlighting": {
+          "type": "boolean",
+          "description": "Enable code syntax highlighting"
+        },
+        "syntax_theme": {
+          "type": "string",
+          "description": "Syntax theme (\"github\", \"monokai\", \"dracula\", etc.)"
+        },
+        "related_posts": {
+          "type": "boolean",
+          "description": "Show related posts"
+        },
+        "related_posts_count": {
+          "type": "integer",
+          "description": "Number of related posts to show"
+        },
+        "series_navigation": {
+          "type": "boolean",
+          "description": "Enable post series navigation"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Custom blog features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Features",
+      "description": "Blog-specific features"
+    }
+  },
+  "title": "BLOGFEATURES Configuration Schema",
+  "description": "JSON Schema for BlogFeatures configuration"
+}

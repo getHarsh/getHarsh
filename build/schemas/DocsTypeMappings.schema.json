@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsTypeMappings",
+  "definitions": {
+    "DocsTypeMappings": {
+      "properties": {
+        "default_type": {
+          "type": "string",
+          "description": "Default doc page type  \"TechArticle\""
+        },
+        "section_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Section-based type mapping"
+        },
+        "path_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Path pattern to type mapping"
+        },
+        "nav_style_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Navigation style to type mapping"
+        },
+        "api_format_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "API spec format to type mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Type Mappings",
+      "description": "Documentation type mappings"
+    }
+  },
+  "title": "DOCSTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for DocsTypeMappings configuration"
+}

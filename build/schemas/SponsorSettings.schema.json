@@ -1,0 +1,308 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SponsorSettings",
+  "definitions": {
+    "SponsorSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable sponsorship features"
+        },
+        "crypto_addresses": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CryptoAddress"
+          },
+          "type": "object",
+          "description": "Cryptocurrency addresses (key is network name as string)"
+        },
+        "enabled_methods": {
+          "items": {
+            "enum": [
+              "PAYMENT_METHOD_UNSPECIFIED",
+              0,
+              "PAYMENT_METHOD_PAYPAL",
+              1,
+              "PAYMENT_METHOD_GITHUB_SPONSORS",
+              2,
+              "PAYMENT_METHOD_YOUTUBE_MEMBERSHIP",
+              3,
+              "PAYMENT_METHOD_CRYPTO",
+              4
+            ]
+          },
+          "type": "array",
+          "title": "Payment Method",
+          "description": "Payment methods for sponsorship and donations Maps to Schema.org PaymentMethod, PaymentCard, PaymentService"
+        },
+        "disclosure_template": {
+          "type": "string",
+          "description": "Sponsor disclosure text template"
+        },
+        "min_amount": {
+          "type": "string",
+          "description": "Minimum sponsorship amount"
+        },
+        "tiers": {
+          "items": {
+            "$ref": "#/definitions/website.config.SponsorshipTier"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Sponsorship tiers"
+        },
+        "platform_settings": {
+          "$ref": "#/definitions/website.config.PlatformSponsorSettings",
+          "description": "Platform-specific settings"
+        },
+        "thank_you_url": {
+          "type": "string",
+          "description": "Thank you page URL"
+        },
+        "show_recognition": {
+          "type": "boolean",
+          "description": "Show sponsor recognition"
+        },
+        "sponsor_wall": {
+          "$ref": "#/definitions/website.config.SponsorWall",
+          "description": "Sponsor wall configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Settings",
+      "description": "Sponsor settings with crypto support Maps to Schema.org MonetaryGrant, DonateAction, sponsor property"
+    },
+    "website.config.BuyMeACoffeeSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Username"
+        },
+        "widget_url": {
+          "type": "string",
+          "description": "Widget URL"
+        },
+        "button_color": {
+          "type": "string",
+          "description": "Button color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Buy Me A Coffee Settings",
+      "description": "Buy Me a Coffee configuration"
+    },
+    "website.config.CryptoAddress": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Wallet address"
+        },
+        "qr_code_url": {
+          "type": "string",
+          "description": "QR code URL"
+        },
+        "network_name": {
+          "type": "string",
+          "description": "Network name (for display)"
+        },
+        "explorer_url": {
+          "type": "string",
+          "description": "Explorer URL"
+        },
+        "domain_name": {
+          "type": "string",
+          "description": "ENS/Domain name (if applicable)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Crypto Address",
+      "description": "Cryptocurrency address configuration"
+    },
+    "website.config.GitHubSponsors": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "show_button": {
+          "type": "boolean",
+          "description": "Show sponsor button"
+        },
+        "tier_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom tiers mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Sponsors",
+      "description": "GitHub Sponsors configuration"
+    },
+    "website.config.PatreonSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Patreon username"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign ID"
+        },
+        "show_patron_count": {
+          "type": "boolean",
+          "description": "Show patron count"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Patreon Settings",
+      "description": "Patreon configuration"
+    },
+    "website.config.PayPalSettings": {
+      "properties": {
+        "paypal_me": {
+          "type": "string",
+          "description": "PayPal.me username"
+        },
+        "business_email": {
+          "type": "string",
+          "description": "Business email"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code"
+        },
+        "button_style": {
+          "type": "string",
+          "description": "Button style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Pay Pal Settings",
+      "description": "PayPal configuration"
+    },
+    "website.config.PlatformSponsorSettings": {
+      "properties": {
+        "github": {
+          "$ref": "#/definitions/website.config.GitHubSponsors",
+          "description": "GitHub Sponsors"
+        },
+        "youtube": {
+          "$ref": "#/definitions/website.config.YouTubeMembership",
+          "description": "YouTube Membership"
+        },
+        "patreon": {
+          "$ref": "#/definitions/website.config.PatreonSettings",
+          "description": "Patreon"
+        },
+        "buymeacoffee": {
+          "$ref": "#/definitions/website.config.BuyMeACoffeeSettings",
+          "description": "Buy Me a Coffee"
+        },
+        "paypal": {
+          "$ref": "#/definitions/website.config.PayPalSettings",
+          "description": "PayPal"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Platform Sponsor Settings",
+      "description": "Platform-specific sponsor settings"
+    },
+    "website.config.SponsorWall": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable sponsor wall"
+        },
+        "page_path": {
+          "type": "string",
+          "description": "Wall position (\"/sponsors\" page)"
+        },
+        "group_by_tier": {
+          "type": "boolean",
+          "description": "Group by tier"
+        },
+        "show_amounts": {
+          "type": "boolean",
+          "description": "Show amounts"
+        },
+        "allow_anonymous": {
+          "type": "boolean",
+          "description": "Anonymous option"
+        },
+        "update_frequency": {
+          "type": "string",
+          "description": "Update frequency"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Wall",
+      "description": "Sponsor wall configuration"
+    },
+    "website.config.SponsorshipTier": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Tier name"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount (per month/year)"
+        },
+        "benefits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Benefits/perks"
+        },
+        "badge_url": {
+          "type": "string",
+          "description": "Badge/icon URL"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color theme"
+        },
+        "max_sponsors": {
+          "type": "integer",
+          "description": "Limited slots available"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsorship Tier",
+      "description": "Sponsorship tier configuration"
+    },
+    "website.config.YouTubeMembership": {
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "Channel ID"
+        },
+        "membership_url": {
+          "type": "string",
+          "description": "Membership URL"
+        },
+        "show_join_button": {
+          "type": "boolean",
+          "description": "Show join button"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Membership",
+      "description": "YouTube Membership configuration"
+    }
+  },
+  "title": "SPONSORSETTINGS Configuration Schema",
+  "description": "JSON Schema for SponsorSettings configuration"
+}

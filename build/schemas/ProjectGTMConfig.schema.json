@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectGTMConfig",
+  "definitions": {
+    "ProjectGTMConfig": {
+      "properties": {
+        "doc_tracking": {
+          "$ref": "#/definitions/website.config.DocumentationTracking",
+          "description": "Documentation interaction tracking"
+        },
+        "api_tracking": {
+          "$ref": "#/definitions/website.config.APIUsageTracking",
+          "description": "API usage tracking"
+        },
+        "download_tracking": {
+          "$ref": "#/definitions/website.config.DownloadTracking",
+          "description": "Download tracking configuration"
+        },
+        "track_demo_interactions": {
+          "type": "boolean",
+          "description": "Demo interaction tracking"
+        },
+        "track_code_copy": {
+          "type": "boolean",
+          "description": "Code example copy tracking"
+        },
+        "project_conversions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.ConversionEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Project-specific conversion events"
+        },
+        "project_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom project dimensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project GTM Config",
+      "description": "Project-specific GTM configuration"
+    },
+    "website.config.APIUsageTracking": {
+      "properties": {
+        "track_key_generation": {
+          "type": "boolean",
+          "description": "Track API key generation"
+        },
+        "track_endpoint_clicks": {
+          "type": "boolean",
+          "description": "Track API endpoint usage (from docs)"
+        },
+        "track_sdk_downloads": {
+          "type": "boolean",
+          "description": "Track SDK downloads"
+        },
+        "custom_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom API events"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Usage Tracking",
+      "description": "API usage tracking configuration"
+    },
+    "website.config.DocumentationTracking": {
+      "properties": {
+        "track_navigation": {
+          "type": "boolean",
+          "description": "Track documentation navigation"
+        },
+        "track_search": {
+          "type": "boolean",
+          "description": "Track search queries"
+        },
+        "track_version_switch": {
+          "type": "boolean",
+          "description": "Track version switching"
+        },
+        "track_time_on_page": {
+          "type": "boolean",
+          "description": "Track time on page"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation Tracking",
+      "description": "Documentation tracking configuration"
+    },
+    "website.config.DownloadTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Track all downloads"
+        },
+        "tracked_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File types to track"
+        },
+        "track_version": {
+          "type": "boolean",
+          "description": "Track by version"
+        },
+        "track_platform": {
+          "type": "boolean",
+          "description": "Track by platform"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Download Tracking",
+      "description": "Download tracking configuration"
+    },
+    "website.config.gtm.ConversionEvent": {
+      "properties": {
+        "conversion_name": {
+          "type": "string",
+          "description": "Conversion name"
+        },
+        "value": {
+          "$ref": "#/definitions/website.config.gtm.ConversionValue",
+          "description": "Conversion value"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Conversion currency"
+        },
+        "send_to_google_ads": {
+          "type": "boolean",
+          "description": "Send to Google Ads"
+        },
+        "google_ads_conversion_id": {
+          "type": "string",
+          "description": "Google Ads conversion ID"
+        },
+        "google_ads_conversion_label": {
+          "type": "string",
+          "description": "Google Ads conversion label"
+        },
+        "custom_parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Event",
+      "description": "Conversion event configuration"
+    },
+    "website.config.gtm.ConversionValue": {
+      "properties": {
+        "type": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            0,
+            "VALUE_TYPE_STATIC",
+            1,
+            "VALUE_TYPE_DYNAMIC",
+            2,
+            "VALUE_TYPE_CALCULATED",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Value Type",
+          "description": "Value types"
+        },
+        "static_value": {
+          "type": "number",
+          "description": "Static value"
+        },
+        "dynamic_source": {
+          "type": "string",
+          "description": "Dynamic value source"
+        },
+        "default_value": {
+          "type": "number",
+          "description": "Default value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Value",
+      "description": "Conversion value configuration"
+    }
+  },
+  "title": "PROJECTGTMCONFIG Configuration Schema",
+  "description": "JSON Schema for ProjectGTMConfig configuration"
+}

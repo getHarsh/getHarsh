@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LocalBusinessSchema",
+  "definitions": {
+    "LocalBusinessSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable local business markup"
+        },
+        "business_type": {
+          "type": "string",
+          "description": "Business type (e.g., \"ProfessionalService\")"
+        },
+        "address": {
+          "$ref": "#/definitions/website.config.PostalAddress",
+          "description": "Physical address"
+        },
+        "opening_hours": {
+          "items": {
+            "$ref": "#/definitions/website.config.OpeningHours"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Business hours"
+        },
+        "price_range": {
+          "type": "string",
+          "description": "Price range (e.g., \"$$\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Local Business Schema",
+      "description": "Local business schema"
+    },
+    "website.config.OpeningHours": {
+      "properties": {
+        "day_of_week": {
+          "type": "string",
+          "description": "Day of week"
+        },
+        "opens": {
+          "type": "string",
+          "description": "Opening time (24h format)"
+        },
+        "closes": {
+          "type": "string",
+          "description": "Closing time (24h format)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Opening Hours",
+      "description": "Opening hours specification"
+    },
+    "website.config.PostalAddress": {
+      "properties": {
+        "street_address": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "locality": {
+          "type": "string",
+          "description": "City/locality"
+        },
+        "region": {
+          "type": "string",
+          "description": "State/region"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Postal Address",
+      "description": "Postal address for local business"
+    }
+  },
+  "title": "LOCALBUSINESSSCHEMA Configuration Schema",
+  "description": "JSON Schema for LocalBusinessSchema configuration"
+}

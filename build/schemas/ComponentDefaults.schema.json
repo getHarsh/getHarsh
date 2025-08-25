@@ -1,0 +1,757 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ComponentDefaults",
+  "definitions": {
+    "ComponentDefaults": {
+      "properties": {
+        "code_block": {
+          "$ref": "#/definitions/website.config.CodeBlockDefaults",
+          "description": "Code block defaults"
+        },
+        "table_of_contents": {
+          "$ref": "#/definitions/website.config.TableOfContentsDefaults",
+          "description": "Table of contents defaults"
+        },
+        "social_share": {
+          "$ref": "#/definitions/website.config.SocialShareDefaults",
+          "description": "Social share defaults"
+        },
+        "audio_player": {
+          "$ref": "#/definitions/website.config.AudioPlayerDefaults",
+          "description": "Audio player defaults"
+        },
+        "image": {
+          "$ref": "#/definitions/website.config.ImageDefaults",
+          "description": "Image component defaults"
+        },
+        "video_embed": {
+          "$ref": "#/definitions/website.config.VideoEmbedDefaults",
+          "description": "Video embed defaults"
+        },
+        "enhanced_code_block": {
+          "$ref": "#/definitions/website.config.CodeBlockSettings",
+          "description": "Enhanced code block settings"
+        },
+        "technical_content": {
+          "$ref": "#/definitions/website.config.TechnicalContentSettings",
+          "description": "Technical content settings"
+        },
+        "responsive_rules": {
+          "$ref": "#/definitions/website.config.ResponsiveDisplayRules",
+          "description": "Responsive display rules"
+        },
+        "error_pages": {
+          "$ref": "#/definitions/website.config.ErrorPageContent",
+          "description": "Error page content"
+        },
+        "social_discussion": {
+          "$ref": "#/definitions/website.config.SocialDiscussion",
+          "description": "Social discussion settings"
+        },
+        "smart_links": {
+          "$ref": "#/definitions/website.config.SmartLinkSettings",
+          "description": "Smart link settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Component Defaults",
+      "description": "Component default settings"
+    },
+    "website.config.AudioPlayerDefaults": {
+      "properties": {
+        "auto_play": {
+          "type": "boolean",
+          "description": "Auto play"
+        },
+        "show_download": {
+          "type": "boolean",
+          "description": "Show download button"
+        },
+        "preload": {
+          "type": "string",
+          "description": "Preload strategy (\"none\", \"metadata\", \"auto\")"
+        },
+        "default_volume": {
+          "type": "number",
+          "description": "Default volume (0-1)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Player Defaults",
+      "description": "Audio player defaults"
+    },
+    "website.config.BreakpointSettings": {
+      "properties": {
+        "mobile_max": {
+          "type": "integer",
+          "description": "Mobile max width (pixels)"
+        },
+        "tablet_min": {
+          "type": "integer",
+          "description": "Tablet min width (pixels)"
+        },
+        "tablet_max": {
+          "type": "integer",
+          "description": "Tablet max width (pixels)"
+        },
+        "desktop_min": {
+          "type": "integer",
+          "description": "Desktop min width (pixels)"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Custom breakpoints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Breakpoint Settings",
+      "description": "Breakpoint configuration"
+    },
+    "website.config.CodeBlockDefaults": {
+      "properties": {
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers by default"
+        },
+        "show_copy_button": {
+          "type": "boolean",
+          "description": "Show copy button"
+        },
+        "default_theme": {
+          "type": "string",
+          "description": "Default syntax theme"
+        },
+        "enable_line_highlighting": {
+          "type": "boolean",
+          "description": "Enable line highlighting"
+        },
+        "tab_size": {
+          "type": "integer",
+          "description": "Tab size"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Defaults",
+      "description": "Code block default settings"
+    },
+    "website.config.CodeBlockSettings": {
+      "properties": {
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers"
+        },
+        "show_copy_button": {
+          "type": "boolean",
+          "description": "Show copy button"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Syntax highlighting theme"
+        },
+        "enable_line_highlighting": {
+          "type": "boolean",
+          "description": "Enable highlighting specific lines"
+        },
+        "tab_size": {
+          "type": "integer",
+          "description": "Tab size"
+        },
+        "wrap_lines": {
+          "type": "boolean",
+          "description": "Wrap long lines"
+        },
+        "show_language_label": {
+          "type": "boolean",
+          "description": "Show language label"
+        },
+        "enable_diff_view": {
+          "type": "boolean",
+          "description": "Enable diff view"
+        },
+        "max_height": {
+          "type": "integer",
+          "description": "Max height before scroll (pixels)"
+        },
+        "language_aliases": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom language mappings"
+        },
+        "inline_highlighting": {
+          "type": "boolean",
+          "description": "Enable inline code syntax highlighting"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Settings",
+      "description": "Enhanced code block settings Maps to Schema.org SoftwareSourceCode"
+    },
+    "website.config.ComponentVisibility": {
+      "properties": {
+        "mobile": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "tablet": {
+          "type": "boolean",
+          "description": "Show on tablet"
+        },
+        "desktop": {
+          "type": "boolean",
+          "description": "Show on desktop"
+        },
+        "alternatives": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Alternative component for different sizes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Component Visibility",
+      "description": "Component visibility rules"
+    },
+    "website.config.ErrorMessage": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code (404, 500, etc.)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Primary message"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Secondary/explanation text"
+        },
+        "variations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Quirky variations"
+        },
+        "image_url": {
+          "type": "string",
+          "description": "Custom image/illustration URL"
+        },
+        "tone": {
+          "type": "string",
+          "description": "Tone (\"playful\", \"apologetic\", \"technical\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Message",
+      "description": "Individual error message configuration"
+    },
+    "website.config.ErrorPageCTA": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Button text"
+        },
+        "url": {
+          "type": "string",
+          "description": "Button URL"
+        },
+        "style": {
+          "type": "string",
+          "description": "Button style (\"primary\", \"secondary\", \"ghost\")"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page CTA",
+      "description": "Error page CTA configuration"
+    },
+    "website.config.ErrorPageContent": {
+      "properties": {
+        "error_messages": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ErrorMessage"
+          },
+          "type": "object",
+          "description": "Error code to message mapping"
+        },
+        "default_template": {
+          "type": "string",
+          "description": "Default error message template"
+        },
+        "learn_more_suffix": {
+          "type": "string",
+          "description": "Learn more URL suffix"
+        },
+        "enable_quirky_messages": {
+          "type": "boolean",
+          "description": "Enable quirky messages"
+        },
+        "rotation_strategy": {
+          "type": "string",
+          "description": "Rotation strategy for multiple messages  \"random\", \"sequential\", \"time-based\""
+        },
+        "cta_buttons": {
+          "items": {
+            "$ref": "#/definitions/website.config.ErrorPageCTA"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom CTA buttons for error pages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page Content",
+      "description": "Error page content configuration For quirky 404, 500, etc. messages"
+    },
+    "website.config.ImageDefaults": {
+      "properties": {
+        "lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        },
+        "loading_animation": {
+          "type": "string",
+          "description": "Loading animation (\"blur\", \"skeleton\", \"none\")"
+        },
+        "default_quality": {
+          "type": "integer",
+          "description": "Default quality (1-100)"
+        },
+        "enable_zoom": {
+          "type": "boolean",
+          "description": "Enable zoom on click"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Defaults",
+      "description": "Image component defaults"
+    },
+    "website.config.LinkTypeConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type name"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class or URL"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label template"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "CSS class to apply"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Config",
+      "description": "Link type configuration"
+    },
+    "website.config.LinkTypePatterns": {
+      "properties": {
+        "google_docs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Google Workspace patterns"
+        },
+        "google_sheets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_slides": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_drive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_repo": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "GitHub patterns"
+        },
+        "github_file": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_issue": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_pr": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "file_extensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "File extension patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Patterns",
+      "description": "Link type detection patterns"
+    },
+    "website.config.ResponsiveDisplayRules": {
+      "properties": {
+        "mobile_hidden": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components hidden on mobile"
+        },
+        "tablet_only": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components visible only on tablet"
+        },
+        "desktop_only": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components visible only on desktop"
+        },
+        "breakpoints": {
+          "$ref": "#/definitions/website.config.BreakpointSettings",
+          "description": "Custom breakpoints"
+        },
+        "component_rules": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ComponentVisibility"
+          },
+          "type": "object",
+          "description": "Component-specific rules"
+        },
+        "responsive_images": {
+          "type": "boolean",
+          "description": "Enable responsive images"
+        },
+        "responsive_tables": {
+          "type": "boolean",
+          "description": "Enable responsive tables"
+        },
+        "mobile_first": {
+          "type": "boolean",
+          "description": "Mobile-first approach"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Responsive Display Rules",
+      "description": "Responsive display rules for components Controls visibility based on viewport size"
+    },
+    "website.config.SmartLinkSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable smart link detection"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect link types"
+        },
+        "show_icons": {
+          "type": "boolean",
+          "description": "Show icons for link types"
+        },
+        "add_aria_labels": {
+          "type": "boolean",
+          "description": "Add ARIA labels"
+        },
+        "patterns": {
+          "$ref": "#/definitions/website.config.LinkTypePatterns",
+          "description": "Link type detection patterns"
+        },
+        "custom_types": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.LinkTypeConfig"
+          },
+          "type": "object",
+          "description": "Custom link type mappings"
+        },
+        "ecosystem_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Ecosystem domains (auto-populated from config)"
+        },
+        "external_new_tab": {
+          "type": "boolean",
+          "description": "Open external links in new tab"
+        },
+        "external_nofollow": {
+          "type": "boolean",
+          "description": "Add rel=\"nofollow\" to external links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Smart Link Settings",
+      "description": "Smart link settings for rich semantic links Maps to various Schema.org types based on link destination"
+    },
+    "website.config.SocialDiscussion": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable discussion features"
+        },
+        "discussion_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform-specific discussion URLs (key is platform name as string)"
+        },
+        "enabled_platforms": {
+          "items": {
+            "enum": [
+              "DISCUSSION_PLATFORM_UNSPECIFIED",
+              0,
+              "DISCUSSION_PLATFORM_GITHUB_ISSUE",
+              1,
+              "DISCUSSION_PLATFORM_GITHUB_GIST",
+              2,
+              "DISCUSSION_PLATFORM_TWITTER_THREAD",
+              3,
+              "DISCUSSION_PLATFORM_LINKEDIN_POST",
+              4,
+              "DISCUSSION_PLATFORM_REDDIT_THREAD",
+              5,
+              "DISCUSSION_PLATFORM_CHATGPT_CHAT",
+              6,
+              "DISCUSSION_PLATFORM_CLAUDE_CHAT",
+              7,
+              "DISCUSSION_PLATFORM_CLAUDE_ARTIFACT",
+              8,
+              "DISCUSSION_PLATFORM_PERPLEXITY_THREAD",
+              9
+            ]
+          },
+          "type": "array",
+          "title": "Discussion Platform",
+          "description": "Discussion platforms for social discussion and comments Maps to Schema.org DiscussionForumPosting, SocialMediaPosting, Comment"
+        },
+        "discussion_prompt": {
+          "type": "string",
+          "description": "Default text for discussion prompt"
+        },
+        "show_on_mobile": {
+          "type": "boolean",
+          "description": "Show discussion section on mobile"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position in article (\"bottom\", \"sidebar\")"
+        },
+        "group_by_platform_type": {
+          "type": "boolean",
+          "description": "Group discussions by category"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Discussion",
+      "description": "Social discussion configuration for external platforms Maps to Schema.org DiscussionForumPosting, Comment"
+    },
+    "website.config.SocialShareDefaults": {
+      "properties": {
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Enabled platforms"
+        },
+        "desktop_position": {
+          "type": "string",
+          "description": "Position on desktop (\"left\", \"right\", \"bottom\")"
+        },
+        "show_counts": {
+          "type": "boolean",
+          "description": "Show counts"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky on scroll"
+        },
+        "include_via": {
+          "type": "boolean",
+          "description": "Include via parameter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Share Defaults",
+      "description": "Social share defaults"
+    },
+    "website.config.TableOfContentsDefaults": {
+      "properties": {
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Maximum depth"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"left\", \"right\", \"top\")"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky on scroll"
+        },
+        "smooth_scroll": {
+          "type": "boolean",
+          "description": "Smooth scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Of Contents Defaults",
+      "description": "Table of contents defaults"
+    },
+    "website.config.TechnicalContentSettings": {
+      "properties": {
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math formula rendering (LaTeX/KaTeX)"
+        },
+        "math_engine": {
+          "type": "string",
+          "description": "Math rendering engine (\"katex\", \"mathjax\")"
+        },
+        "enable_mermaid": {
+          "type": "boolean",
+          "description": "Enable Mermaid diagrams"
+        },
+        "mermaid_theme": {
+          "type": "string",
+          "description": "Mermaid theme (\"default\", \"dark\", \"forest\", \"neutral\")"
+        },
+        "enable_footnotes": {
+          "type": "boolean",
+          "description": "Enable footnotes"
+        },
+        "footnote_style": {
+          "type": "string",
+          "description": "Footnote style (\"numeric\", \"symbolic\")"
+        },
+        "enable_table_of_contents": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "toc_max_depth": {
+          "type": "integer",
+          "description": "TOC max depth (e.g., 3 for H1-H3)"
+        },
+        "toc_position": {
+          "type": "string",
+          "description": "TOC position (\"left\", \"right\", \"top\")"
+        },
+        "enable_citations": {
+          "type": "boolean",
+          "description": "Enable citations/bibliography"
+        },
+        "citation_style": {
+          "type": "string",
+          "description": "Citation style (\"apa\", \"mla\", \"chicago\", \"ieee\")"
+        },
+        "enable_definitions": {
+          "type": "boolean",
+          "description": "Enable glossary/definitions"
+        },
+        "enable_interactive": {
+          "type": "boolean",
+          "description": "Enable interactive examples"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Content Settings",
+      "description": "Technical content settings for academic/research content Maps to Schema.org ScholarlyArticle features"
+    },
+    "website.config.VideoEmbedDefaults": {
+      "properties": {
+        "aspect_ratio": {
+          "type": "string",
+          "description": "Default aspect ratio"
+        },
+        "privacy_mode": {
+          "type": "boolean",
+          "description": "Enable privacy mode"
+        },
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show controls"
+        },
+        "lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Embed Defaults",
+      "description": "Video embed defaults"
+    }
+  },
+  "title": "COMPONENTDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ComponentDefaults configuration"
+}

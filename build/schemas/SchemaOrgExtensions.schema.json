@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgExtensions",
+  "definitions": {
+    "SchemaOrgExtensions": {
+      "properties": {
+        "custom_contexts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom @context URLs"
+        },
+        "custom_types": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CustomTypeDefinition"
+          },
+          "type": "object",
+          "description": "Custom type definitions"
+        },
+        "property_extensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Property extensions"
+        },
+        "enable_experimental": {
+          "type": "boolean",
+          "description": "Enable experimental features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Extensions",
+      "description": "Schema.org extensions for domains"
+    },
+    "website.config.CustomTypeDefinition": {
+      "properties": {
+        "extends_type": {
+          "type": "string",
+          "description": "Base Schema.org type"
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.PropertyDefinition"
+          },
+          "type": "object",
+          "description": "Custom properties"
+        },
+        "required": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Type Definition",
+      "description": "Custom type definition"
+    },
+    "website.config.PropertyDefinition": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Property type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Property description"
+        },
+        "expected_type": {
+          "type": "string",
+          "description": "Expected Schema.org type"
+        },
+        "multiple": {
+          "type": "boolean",
+          "description": "Multiple values allowed"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Property Definition",
+      "description": "Property definition for custom types"
+    }
+  },
+  "title": "SCHEMAORGEXTENSIONS Configuration Schema",
+  "description": "JSON Schema for SchemaOrgExtensions configuration"
+}

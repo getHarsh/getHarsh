@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BreadcrumbAccessibility",
+  "definitions": {
+    "BreadcrumbAccessibility": {
+      "properties": {
+        "use_nav": {
+          "type": "boolean",
+          "description": "Use nav element"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label"
+        },
+        "structured_data": {
+          "type": "boolean",
+          "description": "Structured data"
+        },
+        "current_indication": {
+          "type": "boolean",
+          "description": "Current page indication"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Breadcrumb Accessibility",
+      "description": "Breadcrumb accessibility"
+    }
+  },
+  "title": "BREADCRUMBACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for BreadcrumbAccessibility configuration"
+}

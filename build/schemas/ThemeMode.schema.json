@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ThemeMode",
+  "definitions": {
+    "ThemeMode": {
+      "properties": {
+        "enable_dark_mode": {
+          "type": "boolean",
+          "description": "Enable dark mode feature"
+        },
+        "default_mode": {
+          "type": "string",
+          "description": "Default mode when user first visits (\"light\", \"dark\", \"system\")"
+        },
+        "show_mode_toggle": {
+          "type": "boolean",
+          "description": "Show mode toggle button in UI"
+        },
+        "remember_preference": {
+          "type": "boolean",
+          "description": "Store user preference in localStorage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Mode",
+      "description": "Dark mode configuration"
+    }
+  },
+  "title": "THEMEMODE Configuration Schema",
+  "description": "JSON Schema for ThemeMode configuration"
+}

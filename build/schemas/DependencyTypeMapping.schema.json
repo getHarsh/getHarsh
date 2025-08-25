@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DependencyTypeMapping",
+  "definitions": {
+    "DependencyTypeMapping": {
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "description": "Relationship name"
+        },
+        "strength": {
+          "type": "string",
+          "description": "Relationship strength (required, optional, etc.)"
+        },
+        "schema_property": {
+          "type": "string",
+          "description": "Schema.org property"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dependency Type Mapping"
+    }
+  },
+  "title": "DEPENDENCYTYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for DependencyTypeMapping configuration"
+}

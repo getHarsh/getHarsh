@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/VolumeControls",
+  "definitions": {
+    "VolumeControls": {
+      "properties": {
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show volume controls"
+        },
+        "keyboard_control": {
+          "type": "boolean",
+          "description": "Keyboard control"
+        },
+        "remember_preference": {
+          "type": "boolean",
+          "description": "Remember volume"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Volume Controls",
+      "description": "Volume controls"
+    }
+  },
+  "title": "VOLUMECONTROLS Configuration Schema",
+  "description": "JSON Schema for VolumeControls configuration"
+}

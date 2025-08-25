@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AffiliationTypeMapping",
+  "definitions": {
+    "AffiliationTypeMapping": {
+      "properties": {
+        "schema_role_type": {
+          "type": "string",
+          "description": "Schema.org role type"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional type refinements"
+        },
+        "role_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Role properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Affiliation Type Mapping"
+    }
+  },
+  "title": "AFFILIATIONTYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for AffiliationTypeMapping configuration"
+}

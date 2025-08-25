@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConversionValue",
+  "definitions": {
+    "ConversionValue": {
+      "properties": {
+        "type": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            0,
+            "VALUE_TYPE_STATIC",
+            1,
+            "VALUE_TYPE_DYNAMIC",
+            2,
+            "VALUE_TYPE_CALCULATED",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Value Type",
+          "description": "Value types"
+        },
+        "static_value": {
+          "type": "number",
+          "description": "Static value"
+        },
+        "dynamic_source": {
+          "type": "string",
+          "description": "Dynamic value source"
+        },
+        "default_value": {
+          "type": "number",
+          "description": "Default value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Value",
+      "description": "Conversion value configuration"
+    }
+  },
+  "title": "CONVERSIONVALUE Configuration Schema",
+  "description": "JSON Schema for ConversionValue configuration"
+}

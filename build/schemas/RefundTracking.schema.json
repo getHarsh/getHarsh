@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RefundTracking",
+  "definitions": {
+    "RefundTracking": {
+      "properties": {
+        "track_full_refunds": {
+          "type": "boolean",
+          "description": "Track full refunds"
+        },
+        "track_partial_refunds": {
+          "type": "boolean",
+          "description": "Track partial refunds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Refund Tracking",
+      "description": "Refund tracking configuration"
+    }
+  },
+  "title": "REFUNDTRACKING Configuration Schema",
+  "description": "JSON Schema for RefundTracking configuration"
+}

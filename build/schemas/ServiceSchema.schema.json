@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServiceSchema",
+  "definitions": {
+    "ServiceSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable service markup"
+        },
+        "service_type": {
+          "type": "string",
+          "description": "Service type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Service description"
+        },
+        "area_served": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Area served"
+        },
+        "available_channel": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available channels"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service Schema",
+      "description": "Service schema for domain"
+    }
+  },
+  "title": "SERVICESCHEMA Configuration Schema",
+  "description": "JSON Schema for ServiceSchema configuration"
+}

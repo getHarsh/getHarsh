@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapFieldMapping",
+  "definitions": {
+    "DecapFieldMapping": {
+      "properties": {
+        "proto_field": {
+          "type": "string",
+          "description": "Proto field name in ArticleConfig"
+        },
+        "widget_type": {
+          "type": "string",
+          "description": "Decap widget type"
+        },
+        "label": {
+          "type": "string",
+          "description": "UI label"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Help text"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required field"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        },
+        "widget_options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Widget-specific options"
+        },
+        "condition": {
+          "type": "string",
+          "description": "Conditional display"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Validation pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Field Mapping",
+      "description": "Decap field mapping configuration"
+    }
+  },
+  "title": "DECAPFIELDMAPPING Configuration Schema",
+  "description": "JSON Schema for DecapFieldMapping configuration"
+}

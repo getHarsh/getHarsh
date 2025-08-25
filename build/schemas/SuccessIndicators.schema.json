@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SuccessIndicators",
+  "definitions": {
+    "SuccessIndicators": {
+      "properties": {
+        "announce_success": {
+          "type": "boolean",
+          "description": "Success announcements"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Success patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Success Indicators",
+      "description": "Success indicators"
+    }
+  },
+  "title": "SUCCESSINDICATORS Configuration Schema",
+  "description": "JSON Schema for SuccessIndicators configuration"
+}

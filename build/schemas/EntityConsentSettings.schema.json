@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityConsentSettings",
+  "definitions": {
+    "EntityConsentSettings": {
+      "properties": {
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Privacy policy URL for this entity"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Cookie policy URL for this entity"
+        },
+        "data_controller": {
+          "type": "string",
+          "description": "Data controller name"
+        },
+        "data_controller_email": {
+          "type": "string",
+          "description": "Data controller contact"
+        },
+        "banner_text_override": {
+          "type": "string",
+          "description": "Entity-specific banner text"
+        },
+        "gtm_container_id": {
+          "type": "string",
+          "description": "GTM container ID for this entity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Consent Settings",
+      "description": "Entity-specific consent settings"
+    }
+  },
+  "title": "ENTITYCONSENTSETTINGS Configuration Schema",
+  "description": "JSON Schema for EntityConsentSettings configuration"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PlatformSupport",
+  "definitions": {
+    "PlatformSupport": {
+      "properties": {
+        "os_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Operating systems mapping"
+        },
+        "arch_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Architecture mapping"
+        },
+        "runtime_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Runtime mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Platform Support",
+      "description": "Platform support configuration"
+    }
+  },
+  "title": "PLATFORMSUPPORT Configuration Schema",
+  "description": "JSON Schema for PlatformSupport configuration"
+}

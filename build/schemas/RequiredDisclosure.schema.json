@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RequiredDisclosure",
+  "definitions": {
+    "RequiredDisclosure": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Disclosure type"
+        },
+        "text": {
+          "type": "string",
+          "description": "Disclosure text"
+        },
+        "prominence": {
+          "enum": [
+            "PROMINENCE_LEVEL_UNSPECIFIED",
+            0,
+            "PROMINENCE_LEVEL_STANDARD",
+            1,
+            "PROMINENCE_LEVEL_PROMINENT",
+            2,
+            "PROMINENCE_LEVEL_VERY_PROMINENT",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Prominence Level",
+          "description": "Prominence level"
+        },
+        "location": {
+          "type": "string",
+          "description": "Required location"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Required Disclosure",
+      "description": "Required disclosure"
+    }
+  },
+  "title": "REQUIREDDISCLOSURE Configuration Schema",
+  "description": "JSON Schema for RequiredDisclosure configuration"
+}

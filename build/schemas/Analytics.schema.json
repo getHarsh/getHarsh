@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Analytics",
+  "definitions": {
+    "Analytics": {
+      "properties": {
+        "ga_tracking_id": {
+          "type": "string",
+          "description": "Google Analytics tracking ID (supports ${GA_TRACKING_ID})"
+        },
+        "meta_pixel_id": {
+          "type": "string",
+          "description": "Meta/Facebook Pixel ID (supports ${META_PIXEL_ID})"
+        },
+        "cross_domain_tracking": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking between ecosystem sites"
+        },
+        "linked_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to link for cross-domain tracking"
+        },
+        "twitter_pixel": {
+          "$ref": "#/definitions/website.config.TwitterPixel",
+          "description": "Twitter Pixel configuration"
+        },
+        "linkedin_insight": {
+          "$ref": "#/definitions/website.config.LinkedInInsight",
+          "description": "LinkedIn Insight Tag configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics",
+      "description": "Analytics configuration for tracking and metrics"
+    },
+    "website.config.LinkedInInsight": {
+      "properties": {
+        "partner_id": {
+          "type": "string",
+          "description": "LinkedIn Partner ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_matched_audiences": {
+          "type": "boolean",
+          "description": "Enable matched audiences (retargeting)"
+        },
+        "enable_website_demographics": {
+          "type": "boolean",
+          "description": "Enable website demographics"
+        },
+        "conversion_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Conversion IDs to track"
+        },
+        "enable_enhanced_conversion": {
+          "type": "boolean",
+          "description": "Enable enhanced conversion tracking (1st party cookies)"
+        },
+        "enable_cross_domain": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Insight",
+      "description": "LinkedIn Insight Tag configuration"
+    },
+    "website.config.TwitterPixel": {
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "Twitter Pixel ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_website_tag": {
+          "type": "boolean",
+          "description": "Enable website tag (universal)"
+        },
+        "twitter_site_tag_id": {
+          "type": "string",
+          "description": "Twitter site tag ID (for website tag)"
+        },
+        "track_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Event types to track  e.g., [\"PageView\", \"Purchase\", \"AddToCart\"]"
+        },
+        "enable_enhanced_matching": {
+          "type": "boolean",
+          "description": "Enable enhanced matching"
+        },
+        "restricted_data_processing": {
+          "type": "boolean",
+          "description": "Enable restricted data processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Twitter Pixel",
+      "description": "Twitter/X Pixel configuration"
+    }
+  },
+  "title": "ANALYTICS Configuration Schema",
+  "description": "JSON Schema for Analytics configuration"
+}

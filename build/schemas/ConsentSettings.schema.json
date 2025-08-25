@@ -1,0 +1,266 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentSettings",
+  "definitions": {
+    "ConsentSettings": {
+      "properties": {
+        "enable_consent_banner": {
+          "type": "boolean",
+          "description": "Enable cookie consent banner"
+        },
+        "consent_cookie_name": {
+          "type": "string",
+          "description": "Cookie name for storing consent state  default: \"analytics_consent\""
+        },
+        "consent_duration_days": {
+          "type": "integer",
+          "description": "How long consent is valid (in days)  default: 365"
+        },
+        "google_consent_mode_v2": {
+          "type": "boolean",
+          "description": "Enable Google Consent Mode v2 (required by March 2024)"
+        },
+        "banner_text": {
+          "type": "string",
+          "description": "Text for the consent banner"
+        },
+        "accept_button_text": {
+          "type": "string",
+          "description": "Text for the accept button"
+        },
+        "decline_button_text": {
+          "type": "string",
+          "description": "Text for the decline button"
+        },
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Link to privacy policy"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Link to cookie policy"
+        },
+        "consent_mode_v2": {
+          "$ref": "#/definitions/website.config.ConsentModeV2",
+          "description": "Google Consent Mode v2 specific configuration"
+        },
+        "enable_cross_domain_consent": {
+          "type": "boolean",
+          "description": "Enable cross-domain consent sharing"
+        },
+        "consent_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to share consent across"
+        },
+        "banner_position": {
+          "type": "string",
+          "description": "Consent UI position (\"bottom\", \"top\", \"center\")"
+        },
+        "banner_theme": {
+          "type": "string",
+          "description": "Banner theme (\"light\", \"dark\", \"auto\")"
+        },
+        "consent_categories": {
+          "$ref": "#/definitions/website.config.ConsentCategories",
+          "description": "Consent categories configuration"
+        },
+        "entity_specific": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.EntityConsentSettings"
+          },
+          "type": "object",
+          "description": "Entity-specific consent settings"
+        },
+        "settings_button_text": {
+          "type": "string",
+          "description": "Settings button text"
+        },
+        "save_preferences_text": {
+          "type": "string",
+          "description": "Save preferences button text"
+        },
+        "consent_version": {
+          "type": "string",
+          "description": "Consent version (for updates)"
+        },
+        "show_consent_icon": {
+          "type": "boolean",
+          "description": "Show consent status icon"
+        },
+        "region_defaults": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Regional consent defaults See: CONSENT-ARCHITECTURE.md#regional-detection Format: [\"EU:denied\", \"US-CA:denied\", \"IN:granted\", \"DEFAULT:granted\"]"
+        },
+        "enable_granular_control": {
+          "type": "boolean",
+          "description": "Enable granular category control See: CONSENT-ARCHITECTURE.md#granular-consent-ui"
+        },
+        "categories_config": {
+          "$ref": "#/definitions/website.config.ConsentCategories",
+          "description": "Category configuration for granular consent See: CONSENT-ARCHITECTURE.md#granular-consent-ui"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Settings",
+      "description": "Cookie consent configuration for GDPR/ePrivacy compliance LEGALLY REQUIRED: EU law mandates explicit consent BEFORE loading analytics Reference: €1.34M fine example for non-compliance"
+    },
+    "website.config.ConsentCategories": {
+      "properties": {
+        "analytics": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Analytics category settings"
+        },
+        "marketing": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Marketing category settings"
+        },
+        "functional": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Functional category settings"
+        },
+        "necessary": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Necessary category settings (always enabled)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Categories",
+      "description": "Consent categories configuration"
+    },
+    "website.config.ConsentCategory": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Category title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Category description"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Providers/services in this category"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required by default"
+        },
+        "pre_selected": {
+          "type": "boolean",
+          "description": "Pre-selected in UI"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Category",
+      "description": "Individual consent category configuration"
+    },
+    "website.config.ConsentModeV2": {
+      "properties": {
+        "ad_user_data_default": {
+          "type": "boolean",
+          "description": "Default consent states"
+        },
+        "ad_personalization_default": {
+          "type": "boolean"
+        },
+        "implementation_mode": {
+          "type": "string",
+          "description": "Implementation mode (\"basic\" or \"advanced\")"
+        },
+        "enable_cookieless_pings": {
+          "type": "boolean",
+          "description": "Advanced mode features"
+        },
+        "enable_data_modeling": {
+          "type": "boolean"
+        },
+        "wait_for_update_ms": {
+          "type": "integer",
+          "description": "Wait for consent update (milliseconds)"
+        },
+        "region_defaults": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.RegionConsent"
+          },
+          "type": "object",
+          "description": "Region-specific defaults"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Mode V 2",
+      "description": "Enhanced Google Consent Mode v2 configuration"
+    },
+    "website.config.EntityConsentSettings": {
+      "properties": {
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Privacy policy URL for this entity"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Cookie policy URL for this entity"
+        },
+        "data_controller": {
+          "type": "string",
+          "description": "Data controller name"
+        },
+        "data_controller_email": {
+          "type": "string",
+          "description": "Data controller contact"
+        },
+        "banner_text_override": {
+          "type": "string",
+          "description": "Entity-specific banner text"
+        },
+        "gtm_container_id": {
+          "type": "string",
+          "description": "GTM container ID for this entity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Consent Settings",
+      "description": "Entity-specific consent settings"
+    },
+    "website.config.RegionConsent": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region code (e.g., \"EU\", \"US\", \"CA\")"
+        },
+        "analytics_storage": {
+          "type": "boolean",
+          "description": "Consent defaults for this region"
+        },
+        "ad_storage": {
+          "type": "boolean"
+        },
+        "ad_user_data": {
+          "type": "boolean"
+        },
+        "ad_personalization": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Consent",
+      "description": "Region-specific consent defaults"
+    }
+  },
+  "title": "CONSENTSETTINGS Configuration Schema",
+  "description": "JSON Schema for ConsentSettings configuration"
+}

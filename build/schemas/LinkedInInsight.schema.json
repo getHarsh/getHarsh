@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkedInInsight",
+  "definitions": {
+    "LinkedInInsight": {
+      "properties": {
+        "partner_id": {
+          "type": "string",
+          "description": "LinkedIn Partner ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_matched_audiences": {
+          "type": "boolean",
+          "description": "Enable matched audiences (retargeting)"
+        },
+        "enable_website_demographics": {
+          "type": "boolean",
+          "description": "Enable website demographics"
+        },
+        "conversion_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Conversion IDs to track"
+        },
+        "enable_enhanced_conversion": {
+          "type": "boolean",
+          "description": "Enable enhanced conversion tracking (1st party cookies)"
+        },
+        "enable_cross_domain": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Insight",
+      "description": "LinkedIn Insight Tag configuration"
+    }
+  },
+  "title": "LINKEDININSIGHT Configuration Schema",
+  "description": "JSON Schema for LinkedInInsight configuration"
+}

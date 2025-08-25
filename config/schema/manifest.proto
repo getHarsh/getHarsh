@@ -1,0 +1,741 @@
+syntax = "proto3";
+
+package website.config;
+
+import "schema.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// =============================================================================
+// MANIFEST ENUMS
+// =============================================================================
+
+// Manifest format types
+enum ManifestFormat {
+  MANIFEST_FORMAT_UNSPECIFIED = 0;
+  MANIFEST_FORMAT_JSON = 1;
+  MANIFEST_FORMAT_PROTOBUF = 2;
+}
+
+// Site types in the ecosystem
+enum SiteType {
+  SITE_TYPE_UNSPECIFIED = 0;
+  SITE_TYPE_DOMAIN = 1;
+  SITE_TYPE_BLOG = 2;
+  SITE_TYPE_PROJECT = 3;
+}
+
+// Hierarchy node types
+enum NodeType {
+  NODE_TYPE_UNSPECIFIED = 0;
+  NODE_TYPE_PAGE = 1;
+  NODE_TYPE_SECTION = 2;
+  NODE_TYPE_EXTERNAL = 3;
+}
+
+// SiteManifest is the standardized static JSON file generated after every successful build.
+// This file is designed for AI agents and automated tools to understand the site structure.
+// Generated at: /manifest.json on every site (static file served by GitHub Pages)
+// This is a STATIC manifest - no dynamic APIs, only references to other static files
+message SiteManifest {
+  // Manifest metadata
+  ManifestMeta meta = 1;
+  
+  // Site identification and basic info
+  SiteIdentity identity = 2;
+  
+  // Site configuration snapshot
+  SiteConfiguration configuration = 3;
+  
+  // Content inventory
+  ContentInventory content = 4;
+  
+  // Site structure and navigation
+  SiteStructure structure = 5;
+  
+  // Integration points for AI agents
+  AIIntegration ai_integration = 6;
+  
+  // Cross-domain relationships
+  EcosystemConnections ecosystem = 7;
+  
+  // Build information
+  BuildInfo build_info = 8;
+  
+  // Schema.org manifest configuration
+  // Controls how the manifest generates JSON-LD
+  SchemaOrgManifestConfig schema_org_config = 9;
+  
+  // Generated Schema.org data
+  // Contains the actual JSON-LD structured data
+  GeneratedSchemaOrg generated_schema = 10;
+}
+
+// Manifest metadata
+message ManifestMeta {
+  // Manifest schema version
+  string schema_version = 1;
+  
+  // When this manifest was generated
+  string generated_at = 2;
+  
+  // Manifest format
+  ManifestFormat format = 3;
+  
+  // Checksum of the manifest
+  string checksum = 4;
+}
+
+// Site identity information
+message SiteIdentity {
+  // Site type
+  SiteType site_type = 1;
+  
+  // Full domain (e.g., "causality.in", "blog.causality.in", "causality.in/HENA")
+  string domain = 2;
+  
+  // Site title
+  string title = 3;
+  
+  // Site description
+  string description = 4;
+  
+  // Parent domain (for blogs and projects)
+  string parent_domain = 5;
+  
+  // Legal entity
+  string entity = 6;
+  
+  // Primary language
+  string language = 7;
+  
+  // Site URL (full URL including protocol)
+  string url = 8;
+}
+
+// Site configuration snapshot
+message SiteConfiguration {
+  // Theme colors
+  map<string, string> colors = 1;
+  
+  // Active features
+  map<string, bool> features = 2;
+  
+  // Contact information
+  map<string, string> contacts = 3;
+  
+  // Social media links
+  map<string, string> social = 4;
+  
+  // Analytics IDs (sanitized for security)
+  AnalyticsInfo analytics = 5;
+  
+  // SEO configuration
+  SEOInfo seo = 6;
+}
+
+// Analytics information (sanitized for public consumption)
+message AnalyticsInfo {
+  // Whether analytics is enabled
+  bool enabled = 1;
+  
+  // Analytics providers in use
+  repeated string providers = 2;
+  
+  // Cross-domain tracking enabled
+  bool cross_domain = 3;
+  
+  // NOTE: Actual tracking IDs are redacted in published manifest
+  // GA_TRACKING_ID shows as "GA-XXXXXXXX"
+  // META_PIXEL_ID shows as "PIXEL-XXXX"
+}
+
+// SEO information
+message SEOInfo {
+  // Default author
+  string author = 1;
+  
+  // Default locale
+  string locale = 2;
+  
+  // Twitter handle
+  string twitter = 3;
+  
+  // Whether AI optimization is enabled
+  bool ai_optimization = 4;
+  
+  // Sitemap URL
+  string sitemap_url = 5;
+  
+  // Robots.txt URL
+  string robots_url = 6;
+}
+
+// Content inventory
+message ContentInventory {
+  // Content statistics
+  ContentStats stats = 1;
+  
+  // Recent posts (last 10)
+  repeated PostSummary recent_posts = 2;
+  
+  // Featured content
+  repeated PostSummary featured = 3;
+  
+  // Categories with post counts
+  map<string, int32> categories = 4;
+  
+  // Tags with post counts
+  map<string, int32> tags = 5;
+  
+  // For project sites: documentation pages
+  repeated DocPage documentation = 6;
+  
+  // Content endpoints
+  ContentEndpoints endpoints = 7;
+}
+
+// Content statistics
+message ContentStats {
+  // Total number of posts
+  int32 total_posts = 1;
+  
+  // Total number of pages
+  int32 total_pages = 2;
+  
+  // Total number of categories
+  int32 total_categories = 3;
+  
+  // Total number of tags
+  int32 total_tags = 4;
+  
+  // Average post length (words)
+  int32 avg_post_length = 5;
+  
+  // Last updated timestamp
+  string last_updated = 6;
+}
+
+// Post summary for manifest
+message PostSummary {
+  // Post title
+  string title = 1;
+  
+  // Post URL (relative)
+  string url = 2;
+  
+  // Publication date
+  string date = 3;
+  
+  // Categories
+  repeated string categories = 4;
+  
+  // Tags
+  repeated string tags = 5;
+  
+  // Excerpt
+  string excerpt = 6;
+  
+  // Reading time (minutes)
+  int32 reading_time = 7;
+  
+  // Whether it has math/code
+  bool has_math = 8;
+  bool has_code = 9;
+}
+
+// Documentation page (for project sites)
+message DocPage {
+  // Page title
+  string title = 1;
+  
+  // Page URL (relative)
+  string url = 2;
+  
+  // Section/category
+  string section = 3;
+  
+  // Order in navigation
+  int32 order = 4;
+}
+
+// Static content file locations (all served by GitHub Pages)
+message ContentEndpoints {
+  // RSS feed URL (e.g., /feed.xml)
+  string rss = 1;
+  
+  // JSON feed URL (e.g., /feed.json)
+  string json_feed = 2;
+  
+  // Search index file (e.g., /search-index.json for client-side search)
+  string search_index = 3;
+  
+  // Categories index (e.g., /categories.json)
+  string categories_index = 4;
+  
+  // Tags index (e.g., /tags.json)
+  string tags_index = 5;
+  
+  // Archive/posts index (e.g., /posts.json)
+  string posts_index = 6;
+  
+  // Sitemap URL (e.g., /sitemap.xml)
+  string sitemap = 7;
+}
+
+// Site structure and navigation
+message SiteStructure {
+  // Main navigation items
+  repeated NavItem main_nav = 1;
+  
+  // Footer navigation
+  repeated NavItem footer_nav = 2;
+  
+  // Site hierarchy (for projects)
+  repeated HierarchyNode hierarchy = 3;
+  
+  // Important URLs
+  ImportantURLs urls = 4;
+}
+
+// Navigation item
+message NavItem {
+  // Display text
+  string label = 1;
+  
+  // URL (relative or absolute)
+  string url = 2;
+  
+  // Whether it's external
+  bool external = 3;
+  
+  // Icon/identifier
+  string icon = 4;
+  
+  // Sub-items
+  repeated NavItem children = 5;
+}
+
+// Hierarchy node (for complex sites)
+message HierarchyNode {
+  // Node path
+  string path = 1;
+  
+  // Node title
+  string title = 2;
+  
+  // Node type
+  NodeType type = 3;
+  
+  // Child nodes
+  repeated HierarchyNode children = 4;
+}
+
+// Important URLs for AI agents
+message ImportantURLs {
+  // Homepage
+  string home = 1;
+  
+  // About page
+  string about = 2;
+  
+  // Contact page
+  string contact = 3;
+  
+  // Archive/all posts
+  string archive = 4;
+  
+  // Search page
+  string search = 5;
+  
+  // For projects: documentation root
+  string docs = 6;
+  
+  // For projects: API reference
+  string api = 7;
+  
+  // For projects: demos/playground
+  string demos = 8;
+}
+
+// AI integration information (for static GitHub Pages sites)
+message AIIntegration {
+  // LLMs.txt location (static file)
+  string llms_txt_url = 1;
+  
+  // robots.txt location
+  string robots_txt_url = 2;
+  
+  // Whether the site has AI-friendly structured data
+  bool ai_friendly_structured_data = 3;
+  
+  // Static data files available for AI consumption
+  repeated string structured_data_files = 4;
+  
+  // Recommended crawl patterns
+  repeated string crawl_patterns = 5;
+  
+  // Static indexes for AI processing
+  AIStaticIndexes static_indexes = 6;
+}
+
+// Static index files for AI consumption (all JSON files)
+message AIStaticIndexes {
+  // Full content dump (e.g., /ai/content.json)
+  string full_content = 1;
+  
+  // Post summaries with embeddings-friendly text (e.g., /ai/summaries.json)
+  string summaries = 2;
+  
+  // Structured navigation (e.g., /ai/navigation.json)
+  string navigation = 3;
+  
+  // Knowledge graph relationships (e.g., /ai/graph.json)
+  string knowledge_graph = 4;
+  
+  // Q&A pairs if available (e.g., /ai/qa.json)
+  string qa_pairs = 5;
+}
+
+// Ecosystem connections
+message EcosystemConnections {
+  // Parent site (for blogs/projects)
+  EcosystemLink parent = 1;
+  
+  // Child sites (blogs/projects under this domain)
+  repeated EcosystemLink children = 2;
+  
+  // Sibling sites (other sites in ecosystem)
+  repeated EcosystemLink siblings = 3;
+  
+  // Counterpart site (special relationship)
+  EcosystemLink counterpart = 4;
+  
+  // All ecosystem domains
+  repeated string ecosystem_domains = 5;
+}
+
+// Ecosystem link information
+message EcosystemLink {
+  // Site domain
+  string domain = 1;
+  
+  // Site title
+  string title = 2;
+  
+  // Site type
+  string type = 3;
+  
+  // Relationship type
+  string relationship = 4;
+  
+  // Site URL
+  string url = 5;
+  
+  // Manifest URL for that site
+  string manifest_url = 6;
+}
+
+// Build information
+message BuildInfo {
+  // Build timestamp
+  string timestamp = 1;
+  
+  // Build ID/hash
+  string build_id = 2;
+  
+  // Git commit hash
+  string git_commit = 3;
+  
+  // Git branch
+  string git_branch = 4;
+  
+  // Builder version
+  string builder_version = 5;
+  
+  // Build duration (seconds)
+  int32 build_duration = 6;
+  
+  // Whether this was a full rebuild
+  bool full_rebuild = 7;
+  
+  // Errors/warnings count
+  int32 error_count = 8;
+  int32 warning_count = 9;
+}
+
+// Schema.org manifest configuration
+message SchemaOrgManifestConfig {
+  // Enable Schema.org generation in manifest
+  bool enabled = 1;
+  
+  // Include in manifest JSON
+  bool include_in_manifest = 2;
+  
+  // Generate separate JSON-LD files
+  bool generate_separate_files = 3;
+  
+  // Manifest type mappings
+  ManifestTypeMappings type_mappings = 4;
+  
+  // Site structure settings
+  SiteStructureSettings structure_settings = 5;
+  
+  // Entity consolidation
+  EntityConsolidation consolidation = 6;
+}
+
+// Manifest type mappings
+message ManifestTypeMappings {
+  // Site type to Schema.org mapping
+  map<string, string> site_type_mapping = 1;
+  
+  // Node type to Schema.org mapping
+  map<string, string> node_type_mapping = 2;
+  
+  // Format to encoding mapping
+  map<string, string> format_mapping = 3;
+  
+  // Default types
+  DefaultManifestTypes defaults = 4;
+}
+
+// Default manifest types
+message DefaultManifestTypes {
+  // Default site type
+  string default_site_type = 1; // "WebSite"
+  
+  // Default page type
+  string default_page_type = 2; // "WebPage"
+  
+  // Default section type
+  string default_section_type = 3; // "WebPageElement"
+  
+  // Default external type
+  string default_external_type = 4; // "ExternalLink"
+}
+
+// Site structure settings for Schema.org
+message SiteStructureSettings {
+  // Create WebSite object
+  bool create_website = 1;
+  
+  // Create SiteNavigationElement
+  bool create_navigation = 2;
+  
+  // Create BreadcrumbList
+  bool create_breadcrumbs = 3;
+  
+  // Create ItemList for sections
+  bool create_item_lists = 4;
+  
+  // Include search action
+  bool include_search_action = 5;
+  
+  // Navigation depth
+  int32 max_nav_depth = 6;
+}
+
+// Entity consolidation settings
+message EntityConsolidation {
+  // Consolidate organizations
+  bool consolidate_orgs = 1;
+  
+  // Consolidate persons
+  bool consolidate_persons = 2;
+  
+  // Consolidate brands
+  bool consolidate_brands = 3;
+  
+  // Use @id references
+  bool use_id_references = 4;
+  
+  // ID generation pattern
+  string id_pattern = 5;
+}
+
+// Generated Schema.org data
+message GeneratedSchemaOrg {
+  // Main website JSON-LD
+  string website_jsonld = 1;
+  
+  // Organization JSON-LD
+  string organization_jsonld = 2;
+  
+  // Navigation JSON-LD
+  string navigation_jsonld = 3;
+  
+  // All pages JSON-LD map
+  map<string, string> pages_jsonld = 4;
+  
+  // Consolidated entities
+  ConsolidatedEntities entities = 5;
+  
+  // Generation metadata
+  GenerationMetadata metadata = 6;
+}
+
+// Consolidated entities
+message ConsolidatedEntities {
+  // All organizations
+  map<string, string> organizations = 1;
+  
+  // All persons
+  map<string, string> persons = 2;
+  
+  // All brands
+  map<string, string> brands = 3;
+  
+  // All creative works
+  map<string, string> creative_works = 4;
+  
+  // Entity relationships graph
+  repeated EntityRelation relations = 5;
+}
+
+// Entity relation in graph
+message EntityRelation {
+  // Source entity @id
+  string from_id = 1;
+  
+  // Target entity @id
+  string to_id = 2;
+  
+  // Relationship type
+  string relation_type = 3;
+  
+  // Relationship properties
+  map<string, string> properties = 4;
+}
+
+// Generation metadata
+message GenerationMetadata {
+  // Generation timestamp
+  string generated_at = 1;
+  
+  // Schema.org version used
+  string schema_version = 2;
+  
+  // Validation results
+  ValidationResults validation = 3;
+  
+  // Statistics
+  GenerationStats stats = 4;
+}
+
+// Validation results
+message ValidationResults {
+  // Is valid
+  bool is_valid = 1;
+  
+  // Errors
+  repeated ValidationError errors = 2;
+  
+  // Warnings
+  repeated ValidationWarning warnings = 3;
+  
+  // Schema.org type coverage
+  float type_coverage = 4;
+}
+
+// Validation error
+message ValidationError {
+  // Error type
+  string type = 1;
+  
+  // Error message
+  string message = 2;
+  
+  // Location/path
+  string location = 3;
+  
+  // Schema.org type involved
+  string schema_type = 4;
+}
+
+// Validation warning
+message ValidationWarning {
+  // Warning type
+  string type = 1;
+  
+  // Warning message
+  string message = 2;
+  
+  // Location/path
+  string location = 3;
+  
+  // Suggestion
+  string suggestion = 4;
+}
+
+// Generation statistics
+message GenerationStats {
+  // Total entities generated
+  int32 total_entities = 1;
+  
+  // Entities by type
+  map<string, int32> entities_by_type = 2;
+  
+  // Total properties
+  int32 total_properties = 3;
+  
+  // Total relationships
+  int32 total_relationships = 4;
+  
+  // JSON-LD size (bytes)
+  int64 total_size = 5;
+  
+  // Generation time (ms)
+  int32 generation_time = 6;
+}
+
+// AI Search optimization configuration for client-side search
+message AISearchOptimization {
+  // Enable AI-optimized search
+  bool enabled = 1;
+  
+  // Path to search index file
+  string index_path = 2;
+  
+  // Path to federated search manifest
+  string federated_manifest_path = 3;
+  
+  // Content types to prioritize in search
+  repeated string priority_content_types = 4;
+  
+  // Field boost factors for relevance
+  map<string, float> boost_factors = 5;
+  
+  // UI settings for search interface
+  SearchUISettings ui_settings = 6;
+}
+
+// Search UI configuration settings
+message SearchUISettings {
+  // Show filter sidebar
+  bool show_filters = 1;
+  
+  // Show search suggestions
+  bool show_suggestions = 2;
+  
+  // Enable fuzzy matching
+  bool enable_fuzzy = 3;
+  
+  // Enable result highlighting
+  bool enable_highlighting = 4;
+  
+  // Results per page
+  int32 results_per_page = 5;
+  
+  // Group results by type
+  bool group_by_type = 6;
+  
+  // Debounce delay in ms
+  int32 debounce_delay = 7;
+  
+  // Enable keyboard shortcuts
+  bool enable_hotkeys = 8;
+  
+  // Show federation results
+  bool enable_federation = 9;
+}

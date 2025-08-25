@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MappingConfig",
+  "definitions": {
+    "MappingConfig": {
+      "properties": {
+        "default_context": {
+          "type": "string",
+          "description": "Default context URL  \"https://schema.org\""
+        },
+        "enable_rich_snippets": {
+          "type": "boolean",
+          "description": "Enable rich snippets"
+        },
+        "include_id_references": {
+          "type": "boolean",
+          "description": "Include @id references"
+        },
+        "validation_level": {
+          "type": "string",
+          "description": "Validation level (\"strict\", \"lenient\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Mapping Config",
+      "description": "Global configuration for Schema.org mapping behavior"
+    }
+  },
+  "title": "MAPPINGCONFIG Configuration Schema",
+  "description": "JSON Schema for MappingConfig configuration"
+}

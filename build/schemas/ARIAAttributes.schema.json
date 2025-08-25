@@ -1,0 +1,466 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ARIAAttributes",
+  "definitions": {
+    "ARIAAttributes": {
+      "properties": {
+        "global": {
+          "$ref": "#/definitions/website.config.aria.GlobalARIA",
+          "description": "Global ARIA attributes"
+        },
+        "widgets": {
+          "$ref": "#/definitions/website.config.aria.WidgetARIA",
+          "description": "Widget ARIA patterns"
+        },
+        "document": {
+          "$ref": "#/definitions/website.config.aria.DocumentARIA",
+          "description": "Document structure ARIA"
+        },
+        "application": {
+          "$ref": "#/definitions/website.config.aria.ApplicationARIA",
+          "description": "Application ARIA"
+        },
+        "custom_rules": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ARIARule"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom ARIA rules"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "ARIA Attributes",
+      "description": "ARIA attributes configuration"
+    },
+    "website.config.aria.ARIAHiddenHandling": {
+      "properties": {
+        "hide_decorative": {
+          "type": "boolean",
+          "description": "Hide decorative images"
+        },
+        "hide_icons": {
+          "type": "boolean",
+          "description": "Hide icon fonts"
+        },
+        "respect_explicit": {
+          "type": "boolean",
+          "description": "Respect explicit hidden"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "ARIA Hidden Handling",
+      "description": "ARIA hidden handling"
+    },
+    "website.config.aria.ARIARule": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Rule name"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        },
+        "required_attributes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required attributes"
+        },
+        "forbidden_attributes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Forbidden attributes"
+        },
+        "validation": {
+          "type": "string",
+          "description": "Validation function"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "ARIA Rule",
+      "description": "Custom ARIA rule"
+    },
+    "website.config.aria.AccordionARIA": {
+      "properties": {
+        "multi_expand": {
+          "type": "boolean",
+          "description": "Multi-expand allowed"
+        },
+        "announce_changes": {
+          "type": "boolean",
+          "description": "Announce state changes"
+        },
+        "header_level": {
+          "type": "integer",
+          "description": "Header level"
+        },
+        "enhanced_keyboard": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accordion ARIA",
+      "description": "Accordion ARIA configuration"
+    },
+    "website.config.aria.ApplicationARIA": {
+      "properties": {
+        "use_application_role": {
+          "type": "boolean",
+          "description": "Application role usage"
+        },
+        "provide_context": {
+          "type": "boolean",
+          "description": "Widget context"
+        },
+        "provide_instructions": {
+          "type": "boolean",
+          "description": "Instructions"
+        },
+        "mode_announcements": {
+          "type": "boolean",
+          "description": "Mode switching"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Application ARIA",
+      "description": "Application ARIA configuration"
+    },
+    "website.config.aria.ArticleStructure": {
+      "properties": {
+        "use_article_role": {
+          "type": "boolean",
+          "description": "Article landmarks"
+        },
+        "semantic_time": {
+          "type": "boolean",
+          "description": "Time elements"
+        },
+        "author_info": {
+          "type": "boolean",
+          "description": "Author information"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Structure",
+      "description": "Article structure configuration"
+    },
+    "website.config.aria.ButtonARIA": {
+      "properties": {
+        "require_names": {
+          "type": "boolean",
+          "description": "Require accessible names"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "Button state announcements"
+        },
+        "loading_pattern": {
+          "type": "string",
+          "description": "Loading state pattern"
+        },
+        "disabled_handling": {
+          "type": "string",
+          "description": "Disabled state handling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Button ARIA",
+      "description": "Button ARIA configuration"
+    },
+    "website.config.aria.CarouselARIA": {
+      "properties": {
+        "autoplay_control": {
+          "type": "boolean",
+          "description": "Auto-play handling"
+        },
+        "announce_slides": {
+          "type": "boolean",
+          "description": "Slide announcements"
+        },
+        "navigation_labels": {
+          "type": "boolean",
+          "description": "Navigation labels"
+        },
+        "live_updates": {
+          "type": "boolean",
+          "description": "Live region for updates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Carousel ARIA",
+      "description": "Carousel ARIA configuration"
+    },
+    "website.config.aria.DialogARIA": {
+      "properties": {
+        "modal_handling": {
+          "type": "boolean",
+          "description": "Modal handling"
+        },
+        "focus_trap": {
+          "type": "boolean",
+          "description": "Focus trap"
+        },
+        "require_close": {
+          "type": "boolean",
+          "description": "Close button requirement"
+        },
+        "require_title": {
+          "type": "boolean",
+          "description": "Title requirement"
+        },
+        "announce_on_open": {
+          "type": "boolean",
+          "description": "Announce on open"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dialog ARIA",
+      "description": "Dialog ARIA configuration"
+    },
+    "website.config.aria.DocumentARIA": {
+      "properties": {
+        "headings": {
+          "$ref": "#/definitions/website.config.aria.HeadingStructure",
+          "description": "Heading structure"
+        },
+        "lists": {
+          "$ref": "#/definitions/website.config.aria.ListStructure",
+          "description": "List structure"
+        },
+        "tables": {
+          "$ref": "#/definitions/website.config.aria.TableStructure",
+          "description": "Table structure"
+        },
+        "articles": {
+          "$ref": "#/definitions/website.config.aria.ArticleStructure",
+          "description": "Article structure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Document ARIA",
+      "description": "Document structure ARIA"
+    },
+    "website.config.aria.GlobalARIA": {
+      "properties": {
+        "auto_labels": {
+          "type": "boolean",
+          "description": "Auto-generate ARIA labels"
+        },
+        "use_describedby": {
+          "type": "boolean",
+          "description": "Use ARIA describedby"
+        },
+        "hidden_handling": {
+          "$ref": "#/definitions/website.config.aria.ARIAHiddenHandling",
+          "description": "ARIA hidden handling"
+        },
+        "label_format": {
+          "type": "string",
+          "description": "ARIA label format"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Global ARIA",
+      "description": "Global ARIA attributes"
+    },
+    "website.config.aria.HeadingStructure": {
+      "properties": {
+        "enforce_hierarchy": {
+          "type": "boolean",
+          "description": "Enforce hierarchy"
+        },
+        "single_h1": {
+          "type": "boolean",
+          "description": "Single H1 rule"
+        },
+        "check_empty": {
+          "type": "boolean",
+          "description": "Empty heading check"
+        },
+        "use_landmarks": {
+          "type": "boolean",
+          "description": "Heading landmarks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Heading Structure",
+      "description": "Heading structure configuration"
+    },
+    "website.config.aria.LinkARIA": {
+      "properties": {
+        "indicate_external": {
+          "type": "boolean",
+          "description": "External link indication"
+        },
+        "new_window_warning": {
+          "type": "boolean",
+          "description": "New window warning"
+        },
+        "indicate_download": {
+          "type": "boolean",
+          "description": "Download indication"
+        },
+        "indicate_current": {
+          "type": "boolean",
+          "description": "Current page indication"
+        },
+        "require_purpose": {
+          "type": "boolean",
+          "description": "Link purpose requirement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link ARIA",
+      "description": "Link ARIA configuration"
+    },
+    "website.config.aria.ListStructure": {
+      "properties": {
+        "enforce_nesting": {
+          "type": "boolean",
+          "description": "Proper nesting"
+        },
+        "require_items": {
+          "type": "boolean",
+          "description": "List item requirement"
+        },
+        "support_description": {
+          "type": "boolean",
+          "description": "Description lists"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "List Structure",
+      "description": "List structure configuration"
+    },
+    "website.config.aria.MenuARIA": {
+      "properties": {
+        "orientation": {
+          "type": "string",
+          "description": "Menu orientation"
+        },
+        "indicate_submenu": {
+          "type": "boolean",
+          "description": "Submenu indication"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "Menu item states"
+        },
+        "enhanced_keyboard": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Menu ARIA",
+      "description": "Menu ARIA configuration"
+    },
+    "website.config.aria.TabARIA": {
+      "properties": {
+        "orientation": {
+          "type": "string",
+          "description": "Tab orientation"
+        },
+        "auto_activation": {
+          "type": "boolean",
+          "description": "Auto activation"
+        },
+        "panel_association": {
+          "type": "boolean",
+          "description": "Tab panel association"
+        },
+        "arrow_navigation": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab ARIA",
+      "description": "Tab ARIA configuration"
+    },
+    "website.config.aria.TableStructure": {
+      "properties": {
+        "require_captions": {
+          "type": "boolean",
+          "description": "Require captions"
+        },
+        "header_associations": {
+          "type": "boolean",
+          "description": "Header associations"
+        },
+        "use_scope": {
+          "type": "boolean",
+          "description": "Scope attributes"
+        },
+        "complex_summary": {
+          "type": "boolean",
+          "description": "Summary for complex tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Structure",
+      "description": "Table structure configuration"
+    },
+    "website.config.aria.WidgetARIA": {
+      "properties": {
+        "buttons": {
+          "$ref": "#/definitions/website.config.aria.ButtonARIA",
+          "description": "Button patterns"
+        },
+        "links": {
+          "$ref": "#/definitions/website.config.aria.LinkARIA",
+          "description": "Link patterns"
+        },
+        "menus": {
+          "$ref": "#/definitions/website.config.aria.MenuARIA",
+          "description": "Menu patterns"
+        },
+        "dialogs": {
+          "$ref": "#/definitions/website.config.aria.DialogARIA",
+          "description": "Dialog patterns"
+        },
+        "tabs": {
+          "$ref": "#/definitions/website.config.aria.TabARIA",
+          "description": "Tab patterns"
+        },
+        "accordions": {
+          "$ref": "#/definitions/website.config.aria.AccordionARIA",
+          "description": "Accordion patterns"
+        },
+        "carousels": {
+          "$ref": "#/definitions/website.config.aria.CarouselARIA",
+          "description": "Carousel patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Widget ARIA",
+      "description": "Widget ARIA patterns"
+    }
+  },
+  "title": "ARIAATTRIBUTES Configuration Schema",
+  "description": "JSON Schema for ARIAAttributes configuration"
+}

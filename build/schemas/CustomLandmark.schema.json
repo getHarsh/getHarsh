@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CustomLandmark",
+  "definitions": {
+    "CustomLandmark": {
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "Landmark role"
+        },
+        "label": {
+          "type": "string",
+          "description": "Landmark label"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Landmark",
+      "description": "Custom landmark"
+    }
+  },
+  "title": "CUSTOMLANDMARK Configuration Schema",
+  "description": "JSON Schema for CustomLandmark configuration"
+}

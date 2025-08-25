@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FormValidation",
+  "definitions": {
+    "FormValidation": {
+      "properties": {
+        "client_validation": {
+          "type": "boolean",
+          "description": "Client-side validation"
+        },
+        "realtime": {
+          "type": "boolean",
+          "description": "Real-time validation"
+        },
+        "indicate_success": {
+          "type": "boolean",
+          "description": "Success indication"
+        },
+        "messages": {
+          "$ref": "#/definitions/website.config.aria.ValidationMessages",
+          "description": "Validation messages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Validation",
+      "description": "Form validation"
+    },
+    "website.config.aria.ValidationMessages": {
+      "properties": {
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom messages"
+        },
+        "helpful_messages": {
+          "type": "boolean",
+          "description": "Helpful messages"
+        },
+        "avoid_jargon": {
+          "type": "boolean",
+          "description": "Avoid technical jargon"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Messages",
+      "description": "Validation messages"
+    }
+  },
+  "title": "FORMVALIDATION Configuration Schema",
+  "description": "JSON Schema for FormValidation configuration"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityTypeMappings",
+  "definitions": {
+    "EntityTypeMappings": {
+      "properties": {
+        "entity_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"ENTITY_TYPE_PERSON\" -> \"Person\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n ENTITY TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= ENTITY TYPE MAPPINGS =============================================================================  Maps EntityType enum to Schema.org types"
+    }
+  },
+  "title": "ENTITYTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for EntityTypeMappings configuration"
+}

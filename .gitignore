@@ -1,0 +1,77 @@
+# getHarsh Engine Repository .gitignore
+
+# Environment files (generated from root .env.example)
+.env
+.env.*
+
+# Master posts has its own Git repository
+/master_posts
+/master_posts/
+
+# Archive old config (keeping for reference but not tracking)
+/archive/
+
+# System files
+.DS_Store
+.tmp.drivedownload/
+.tmp.driveupload/
+
+# Build artifacts - SELECTIVE TRACKING
+# CRITICAL: We track /build/schemas/ (689 JSON schemas) but ignore rest of build/
+/build/*
+!/build/schemas/
+.build_history
+*.log
+*.tmp
+.config_cache
+
+# Source directory - SELECTIVE TRACKING
+# Track all source files but ignore logs and compiled artifacts
+/src/logs/
+/src/**/*.js
+/src/**/*.js.map
+/src/**/*.d.ts
+/src/**/*.d.ts.map
+# Exception: Keep gatsby-node.js and gatsby-config.js (build config files)
+!/src/gatsby-node.js
+!/src/gatsby-config.js
+# Exception: Keep tool scripts that are JS
+!/src/config/tools/*.js
+# Exception: Keep ALL TypeScript type definitions
+!/src/types/**/*.d.ts
+!/src/types/**/*.d.ts.map
+
+# TypeScript types - ALL TRACKED
+# Track ALL types including generated ones from proto2ts
+# /src/types/ - entire directory tracked (689 generated + hand-written)
+
+# Gatsby public directory (build output)
+/src/public/
+/src/.cache/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python artifacts (if any scripts use Python)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# CRITICAL FILES EXPLICITLY TRACKED:
+# /config/ - ENTIRE directory (ecosystem core!)
+# /build/schemas/ - Generated JSON schemas (689 files)
+# /src/types/ - ALL TypeScript types (including 689 generated)
+# /templates/discovery/ - AI/LLM discovery templates
+# All root *.sh scripts - Build and utility scripts
+# All root *.md files - Documentation
+# /src/ TypeScript/React source files (*.ts, *.tsx)
+# Dockerfile and docker scripts

@@ -1,0 +1,220 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/WidgetARIA",
+  "definitions": {
+    "WidgetARIA": {
+      "properties": {
+        "buttons": {
+          "$ref": "#/definitions/website.config.aria.ButtonARIA",
+          "description": "Button patterns"
+        },
+        "links": {
+          "$ref": "#/definitions/website.config.aria.LinkARIA",
+          "description": "Link patterns"
+        },
+        "menus": {
+          "$ref": "#/definitions/website.config.aria.MenuARIA",
+          "description": "Menu patterns"
+        },
+        "dialogs": {
+          "$ref": "#/definitions/website.config.aria.DialogARIA",
+          "description": "Dialog patterns"
+        },
+        "tabs": {
+          "$ref": "#/definitions/website.config.aria.TabARIA",
+          "description": "Tab patterns"
+        },
+        "accordions": {
+          "$ref": "#/definitions/website.config.aria.AccordionARIA",
+          "description": "Accordion patterns"
+        },
+        "carousels": {
+          "$ref": "#/definitions/website.config.aria.CarouselARIA",
+          "description": "Carousel patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Widget ARIA",
+      "description": "Widget ARIA patterns"
+    },
+    "website.config.aria.AccordionARIA": {
+      "properties": {
+        "multi_expand": {
+          "type": "boolean",
+          "description": "Multi-expand allowed"
+        },
+        "announce_changes": {
+          "type": "boolean",
+          "description": "Announce state changes"
+        },
+        "header_level": {
+          "type": "integer",
+          "description": "Header level"
+        },
+        "enhanced_keyboard": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accordion ARIA",
+      "description": "Accordion ARIA configuration"
+    },
+    "website.config.aria.ButtonARIA": {
+      "properties": {
+        "require_names": {
+          "type": "boolean",
+          "description": "Require accessible names"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "Button state announcements"
+        },
+        "loading_pattern": {
+          "type": "string",
+          "description": "Loading state pattern"
+        },
+        "disabled_handling": {
+          "type": "string",
+          "description": "Disabled state handling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Button ARIA",
+      "description": "Button ARIA configuration"
+    },
+    "website.config.aria.CarouselARIA": {
+      "properties": {
+        "autoplay_control": {
+          "type": "boolean",
+          "description": "Auto-play handling"
+        },
+        "announce_slides": {
+          "type": "boolean",
+          "description": "Slide announcements"
+        },
+        "navigation_labels": {
+          "type": "boolean",
+          "description": "Navigation labels"
+        },
+        "live_updates": {
+          "type": "boolean",
+          "description": "Live region for updates"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Carousel ARIA",
+      "description": "Carousel ARIA configuration"
+    },
+    "website.config.aria.DialogARIA": {
+      "properties": {
+        "modal_handling": {
+          "type": "boolean",
+          "description": "Modal handling"
+        },
+        "focus_trap": {
+          "type": "boolean",
+          "description": "Focus trap"
+        },
+        "require_close": {
+          "type": "boolean",
+          "description": "Close button requirement"
+        },
+        "require_title": {
+          "type": "boolean",
+          "description": "Title requirement"
+        },
+        "announce_on_open": {
+          "type": "boolean",
+          "description": "Announce on open"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dialog ARIA",
+      "description": "Dialog ARIA configuration"
+    },
+    "website.config.aria.LinkARIA": {
+      "properties": {
+        "indicate_external": {
+          "type": "boolean",
+          "description": "External link indication"
+        },
+        "new_window_warning": {
+          "type": "boolean",
+          "description": "New window warning"
+        },
+        "indicate_download": {
+          "type": "boolean",
+          "description": "Download indication"
+        },
+        "indicate_current": {
+          "type": "boolean",
+          "description": "Current page indication"
+        },
+        "require_purpose": {
+          "type": "boolean",
+          "description": "Link purpose requirement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link ARIA",
+      "description": "Link ARIA configuration"
+    },
+    "website.config.aria.MenuARIA": {
+      "properties": {
+        "orientation": {
+          "type": "string",
+          "description": "Menu orientation"
+        },
+        "indicate_submenu": {
+          "type": "boolean",
+          "description": "Submenu indication"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "Menu item states"
+        },
+        "enhanced_keyboard": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Menu ARIA",
+      "description": "Menu ARIA configuration"
+    },
+    "website.config.aria.TabARIA": {
+      "properties": {
+        "orientation": {
+          "type": "string",
+          "description": "Tab orientation"
+        },
+        "auto_activation": {
+          "type": "boolean",
+          "description": "Auto activation"
+        },
+        "panel_association": {
+          "type": "boolean",
+          "description": "Tab panel association"
+        },
+        "arrow_navigation": {
+          "type": "boolean",
+          "description": "Keyboard navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tab ARIA",
+      "description": "Tab ARIA configuration"
+    }
+  },
+  "title": "WIDGETARIA Configuration Schema",
+  "description": "JSON Schema for WidgetARIA configuration"
+}

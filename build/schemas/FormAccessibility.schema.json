@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FormAccessibility",
+  "definitions": {
+    "FormAccessibility": {
+      "properties": {
+        "labels": {
+          "$ref": "#/definitions/website.config.aria.LabelRequirements",
+          "description": "Label requirements"
+        },
+        "errors": {
+          "$ref": "#/definitions/website.config.aria.FormErrorHandling",
+          "description": "Error handling"
+        },
+        "grouping": {
+          "$ref": "#/definitions/website.config.aria.FieldGrouping",
+          "description": "Field grouping"
+        },
+        "instructions": {
+          "$ref": "#/definitions/website.config.aria.FormInstructions",
+          "description": "Instructions"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.aria.FormValidation",
+          "description": "Validation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Accessibility",
+      "description": "Form accessibility"
+    },
+    "website.config.aria.FieldGrouping": {
+      "properties": {
+        "use_fieldsets": {
+          "type": "boolean",
+          "description": "Use fieldsets"
+        },
+        "group_related": {
+          "type": "boolean",
+          "description": "Group related fields"
+        },
+        "require_legend": {
+          "type": "boolean",
+          "description": "Legend requirement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Field Grouping",
+      "description": "Field grouping"
+    },
+    "website.config.aria.FormErrorHandling": {
+      "properties": {
+        "inline_errors": {
+          "type": "boolean",
+          "description": "Inline errors"
+        },
+        "error_summary": {
+          "type": "boolean",
+          "description": "Error summary"
+        },
+        "associate_errors": {
+          "type": "boolean",
+          "description": "Field association"
+        },
+        "success_messages": {
+          "type": "boolean",
+          "description": "Success messages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Error Handling",
+      "description": "Form error handling"
+    },
+    "website.config.aria.FormInstructions": {
+      "properties": {
+        "provide_instructions": {
+          "type": "boolean",
+          "description": "Provide instructions"
+        },
+        "associate_with_fields": {
+          "type": "boolean",
+          "description": "Associate with fields"
+        },
+        "format_hints": {
+          "type": "boolean",
+          "description": "Format requirements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Instructions",
+      "description": "Form instructions"
+    },
+    "website.config.aria.FormValidation": {
+      "properties": {
+        "client_validation": {
+          "type": "boolean",
+          "description": "Client-side validation"
+        },
+        "realtime": {
+          "type": "boolean",
+          "description": "Real-time validation"
+        },
+        "indicate_success": {
+          "type": "boolean",
+          "description": "Success indication"
+        },
+        "messages": {
+          "$ref": "#/definitions/website.config.aria.ValidationMessages",
+          "description": "Validation messages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Validation",
+      "description": "Form validation"
+    },
+    "website.config.aria.LabelRequirements": {
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Require labels"
+        },
+        "visible_labels": {
+          "type": "boolean",
+          "description": "Visible labels"
+        },
+        "placeholder_not_label": {
+          "type": "boolean",
+          "description": "Placeholder as label"
+        },
+        "required_indication": {
+          "type": "string",
+          "description": "Required field indication"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Label Requirements",
+      "description": "Label requirements"
+    },
+    "website.config.aria.ValidationMessages": {
+      "properties": {
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom messages"
+        },
+        "helpful_messages": {
+          "type": "boolean",
+          "description": "Helpful messages"
+        },
+        "avoid_jargon": {
+          "type": "boolean",
+          "description": "Avoid technical jargon"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Messages",
+      "description": "Validation messages"
+    }
+  },
+  "title": "FORMACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for FormAccessibility configuration"
+}

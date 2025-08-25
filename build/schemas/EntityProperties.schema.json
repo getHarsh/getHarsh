@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityProperties",
+  "definitions": {
+    "EntityProperties": {
+      "properties": {
+        "track_legal_entity": {
+          "type": "boolean",
+          "description": "Track legal entity (RTEPL, DSPL)"
+        },
+        "track_brand": {
+          "type": "boolean",
+          "description": "Track brand/domain"
+        },
+        "track_project": {
+          "type": "boolean",
+          "description": "Track project (if applicable)"
+        },
+        "track_content_source": {
+          "type": "boolean",
+          "description": "Track content source (domain, blog, project)"
+        },
+        "track_cross_entity": {
+          "type": "boolean",
+          "description": "Track cross-entity navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Properties",
+      "description": "Entity properties for multi-entity tracking"
+    }
+  },
+  "title": "ENTITYPROPERTIES Configuration Schema",
+  "description": "JSON Schema for EntityProperties configuration"
+}

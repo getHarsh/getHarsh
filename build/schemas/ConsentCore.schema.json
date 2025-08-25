@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ConsentCore",
+  "definitions": {
+    "ConsentCore": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable consent management"
+        },
+        "version": {
+          "type": "string",
+          "description": "Consent version (for updates)"
+        },
+        "default_state": {
+          "$ref": "#/definitions/website.config.consent.DefaultConsentState",
+          "description": "Default consent state"
+        },
+        "expiry_days": {
+          "type": "integer",
+          "description": "Consent expiry (days)"
+        },
+        "require_explicit_consent": {
+          "type": "boolean",
+          "description": "Require explicit consent"
+        },
+        "enable_granular_control": {
+          "type": "boolean",
+          "description": "Enable granular control"
+        },
+        "refresh_period_days": {
+          "type": "integer",
+          "description": "Consent refresh period (days)"
+        },
+        "block_until_consent": {
+          "type": "boolean",
+          "description": "Block content until consent"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Core",
+      "description": "Core consent settings"
+    },
+    "website.config.consent.DefaultConsentState": {
+      "properties": {
+        "analytics": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "marketing": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "functional": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "necessary": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "personalization": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "social_media": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Default Consent State",
+      "description": "Default consent state"
+    }
+  },
+  "title": "CONSENTCORE Configuration Schema",
+  "description": "JSON Schema for ConsentCore configuration"
+}

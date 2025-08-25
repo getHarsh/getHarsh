@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HowToSettings",
+  "definitions": {
+    "HowToSettings": {
+      "properties": {
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect how-to content"
+        },
+        "default_category": {
+          "type": "string",
+          "description": "Default category"
+        },
+        "include_tools": {
+          "type": "boolean",
+          "description": "Include tools/supplies"
+        },
+        "include_cost": {
+          "type": "boolean",
+          "description": "Include cost estimates"
+        },
+        "step_style": {
+          "type": "string",
+          "description": "Step numbering style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "How To Settings",
+      "description": "How-to guide settings"
+    }
+  },
+  "title": "HOWTOSETTINGS Configuration Schema",
+  "description": "JSON Schema for HowToSettings configuration"
+}

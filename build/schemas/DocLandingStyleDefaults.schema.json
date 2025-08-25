@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocLandingStyleDefaults",
+  "definitions": {
+    "DocLandingStyleDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.DocLandingStyleMapping",
+          "description": "DOC_LANDING_STYLE_UNSPECIFIED  template_name: \"\" sections: [] hero_type: \"\""
+        },
+        "hero": {
+          "$ref": "#/definitions/website.config.DocLandingStyleMapping",
+          "description": "DOC_LANDING_STYLE_HERO  template_name: \"Hero Landing\" sections: [\"hero\", \"features\", \"quick-links\", \"footer\"] hero_type: \"full-width\""
+        },
+        "quick_start": {
+          "$ref": "#/definitions/website.config.DocLandingStyleMapping",
+          "description": "DOC_LANDING_STYLE_QUICK_START  template_name: \"Quick Start\" sections: [\"title\", \"installation\", \"examples\", \"next-steps\"] hero_type: \"compact\""
+        },
+        "overview": {
+          "$ref": "#/definitions/website.config.DocLandingStyleMapping",
+          "description": "DOC_LANDING_STYLE_OVERVIEW  template_name: \"Overview\" sections: [\"title\", \"description\", \"navigation-grid\", \"resources\"] hero_type: \"minimal\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Landing Style Defaults",
+      "description": "Complete doc landing style mappings"
+    },
+    "website.config.DocLandingStyleMapping": {
+      "properties": {
+        "template_name": {
+          "type": "string",
+          "description": "Template name"
+        },
+        "sections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Primary sections"
+        },
+        "hero_type": {
+          "type": "string",
+          "description": "Hero type"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Doc Landing Style Mapping"
+    }
+  },
+  "title": "DOCLANDINGSTYLEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for DocLandingStyleDefaults configuration"
+}

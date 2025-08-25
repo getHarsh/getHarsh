@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DeveloperSettings",
+  "definitions": {
+    "DeveloperSettings": {
+      "properties": {
+        "debug": {
+          "type": "boolean",
+          "description": "Debug mode"
+        },
+        "console_logging": {
+          "type": "boolean",
+          "description": "Console logging"
+        },
+        "test_mode": {
+          "type": "boolean",
+          "description": "Test mode"
+        },
+        "mock_responses": {
+          "type": "boolean",
+          "description": "Mock responses"
+        },
+        "developer_email": {
+          "type": "string",
+          "description": "Developer email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Developer Settings",
+      "description": "Developer settings"
+    }
+  },
+  "title": "DEVELOPERSETTINGS Configuration Schema",
+  "description": "JSON Schema for DeveloperSettings configuration"
+}

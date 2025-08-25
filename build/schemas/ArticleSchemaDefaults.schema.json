@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleSchemaDefaults",
+  "definitions": {
+    "ArticleSchemaDefaults": {
+      "properties": {
+        "include_all_properties": {
+          "type": "boolean",
+          "description": "Include all default properties"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Properties to always include"
+        },
+        "excluded_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Properties to exclude"
+        },
+        "image_requirements": {
+          "$ref": "#/definitions/website.config.ArticleImageRequirements",
+          "description": "Image requirements"
+        },
+        "content_requirements": {
+          "$ref": "#/definitions/website.config.ArticleContentRequirements",
+          "description": "Content requirements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Schema Defaults",
+      "description": "Article Schema.org defaults"
+    },
+    "website.config.ArticleContentRequirements": {
+      "properties": {
+        "min_words": {
+          "type": "integer",
+          "description": "Minimum word count"
+        },
+        "require_excerpt": {
+          "type": "boolean",
+          "description": "Require excerpt"
+        },
+        "max_excerpt_length": {
+          "type": "integer",
+          "description": "Maximum excerpt length"
+        },
+        "require_categories": {
+          "type": "boolean",
+          "description": "Require categories"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Content Requirements",
+      "description": "Article content requirements"
+    },
+    "website.config.ArticleImageRequirements": {
+      "properties": {
+        "require_featured": {
+          "type": "boolean",
+          "description": "Require featured image"
+        },
+        "min_width": {
+          "type": "integer",
+          "description": "Minimum image width"
+        },
+        "min_height": {
+          "type": "integer",
+          "description": "Minimum image height"
+        },
+        "fallback_url": {
+          "type": "string",
+          "description": "Fallback image URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Image Requirements",
+      "description": "Article image requirements"
+    }
+  },
+  "title": "ARTICLESCHEMADEFAULTS Configuration Schema",
+  "description": "JSON Schema for ArticleSchemaDefaults configuration"
+}

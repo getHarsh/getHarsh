@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/WebhookSecurity",
+  "definitions": {
+    "WebhookSecurity": {
+      "properties": {
+        "sign_payloads": {
+          "type": "boolean",
+          "description": "Sign payloads"
+        },
+        "signing_secret": {
+          "type": "string",
+          "description": "Signing secret"
+        },
+        "verify_ssl": {
+          "type": "boolean",
+          "description": "Verify SSL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Webhook Security",
+      "description": "Webhook security"
+    }
+  },
+  "title": "WEBHOOKSECURITY Configuration Schema",
+  "description": "JSON Schema for WebhookSecurity configuration"
+}

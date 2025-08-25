@@ -1,0 +1,1089 @@
+syntax = "proto3";
+
+package website.config;
+
+import "domain.proto";
+import "ecosystem.proto";
+import "schema.proto";
+import "gtm.proto";
+import "aria.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// =============================================================================
+// PROJECT CONFIGURATION PROTO
+// =============================================================================
+// Defines configuration for projects hosted under domains (e.g., HENA, AIPM).
+// Projects are independent Git repositories that inherit from parent domains.
+//
+// Key Features:
+// - Schema.org override for software/service types
+// - Project-specific contact and sponsor overrides
+// - Tech stack and dependency tracking
+// - Documentation versioning support
+//
+// CRITICAL: Project configs live in the 'site' branch of project repos
+//
+// Related Documentation:
+// - Project Examples: ../SCHEMA-ORG-EXAMPLES.md#project-examples
+// - Override Patterns: ../SCHEMA-ORG-EXAMPLES.md#project-with-custom-contact
+// - Architecture: ../CONFIG.md#critical-project-repository-architecture
+// =============================================================================
+
+// ProjectConfig defines configuration for project websites hosted under domains.
+// Projects are separate repositories but inherit from their parent domain.
+// Stored in [domain].in/PROJECTS/[project]/config.yml in the project's site branch
+// Example: causality.in/PROJECTS/HENA/config.yml (in HENA repo's site branch)
+message ProjectConfig {
+  // Project inherits everything from parent domain by default.
+  // Only fields defined here can be overridden or added.
+  
+  // Basic project information (REQUIRED)
+  ProjectInfo project_info = 1;
+  
+  // Theme overrides (limited set from parent domain)
+  ProjectThemeOverrides theme_overrides = 2;
+  
+  // Project-specific features
+  ProjectFeatures features = 3;
+  
+  // Layout adjustments for project site
+  ProjectLayout layout = 4;
+  
+  // Technology stack and dependencies
+  TechStack tech_stack = 5;
+  
+  // External links and resources
+  ProjectLinks links = 6;
+  
+  // Showcase/gallery configuration
+  ProjectShowcase showcase = 7;
+  
+  // Project metadata for SEO and discovery
+  ProjectMetadata metadata = 8;
+  
+  // Documentation settings
+  DocumentationSettings documentation = 9;
+  
+  // Optional project-specific overrides (additive inheritance)
+  ProjectOverrides overrides = 10;
+  
+  // Project relationships - dependencies and external support
+  ProjectRelationships relationships = 11;
+  
+  // Schema.org configuration for projects
+  // Controls how projects map to SoftwareApplication, ResearchProject, etc.
+  SchemaOrgProjectConfig schema_org_config = 12;
+  
+  // Software application Schema.org settings
+  // Default settings for SoftwareApplication type
+  SoftwareApplicationDefaults software_defaults = 13;
+  
+  // Research project Schema.org settings
+  // Default settings for ResearchProject type
+  ResearchProjectDefaults research_defaults = 14;
+  
+  // Project-specific GTM configuration
+  // Tracks project interactions and API usage
+  ProjectGTMConfig project_gtm = 15;
+  
+  // Project-specific ARIA configuration
+  // Enhanced for documentation and code examples
+  ProjectARIAConfig project_aria = 16;
+}
+
+// Basic project information
+message ProjectInfo {
+  // Project name (e.g., "HENA", "JARVIS") - REQUIRED
+  string name = 1;
+  
+  // Project type (type-safe enum) - REQUIRED
+  ProjectType type = 2;
+  
+  // Short description (one line) - REQUIRED
+  string description = 3;
+  
+  // Detailed description (markdown supported)
+  string detailed_description = 4;
+  
+  // Project status (type-safe enum) - REQUIRED
+  ProjectDevelopmentStatus status = 5;
+  
+  // Start date (YYYY-MM-DD)
+  string start_date = 6;
+  
+  // Version (if applicable)
+  string version = 7;
+  
+  // License (type-safe enum)
+  LicenseType license = 8;
+  
+  // Primary tech stack (for display in project cards)
+  repeated string tech_stack = 9;
+  
+  // Primary tools/platforms used
+  repeated string tools_stack = 10;
+  
+  // Project aliases (other names/domains that refer to this project)
+  // These become Schema.org sameAs URLs
+  // Examples: ["jarvis-ai.com", "jarvis.dev", "projectjarvis.org"]
+  repeated string domain_aliases = 11;
+  
+  // Project lifecycle stage (based on ecosystem philosophy)
+  ProjectLifecycle lifecycle = 12;
+}
+
+// Project theme overrides
+message ProjectThemeOverrides {
+  // Color overrides (limited set)
+  ProjectColors colors = 1;
+  
+  // Typography adjustments
+  ProjectTypography typography = 2;
+  
+  // Custom CSS file (relative to project root)
+  string custom_css = 3;
+}
+
+// Project-specific color overrides
+message ProjectColors {
+  // Primary color override (for project branding)
+  string primary = 1;
+  
+  // Accent color override
+  string accent = 2;
+  
+  // Code/terminal background color
+  string code_background = 3;
+  
+  // Documentation section colors
+  string docs_header = 4;
+  string docs_sidebar = 5;
+}
+
+// Project-specific typography
+message ProjectTypography {
+  // Font for code/terminal display
+  string code_font = 1;
+  
+  // Font for documentation
+  string docs_font = 2;
+  
+  // Heading scale multiplier
+  float heading_scale = 3;
+}
+
+// Project-specific features
+message ProjectFeatures {
+  // Enable API documentation
+  bool api_docs = 1;
+  
+  // API documentation generator
+  APIDocGenerator api_docs_generator = 2;
+  
+  // Enable interactive demos
+  bool interactive_demos = 3;
+  
+  // Enable code playground
+  bool code_playground = 4;
+  
+  // Playground provider
+  PlaygroundProvider playground_provider = 5;
+  
+  // Enable documentation search
+  bool docs_search = 6;
+  
+  // Search provider
+  SearchProvider search_provider = 7;
+  
+  // Enable version switcher
+  bool version_switcher = 8;
+  
+  // Enable contribution guide
+  bool contribution_guide = 9;
+  
+  // Enable changelog display
+  bool changelog_display = 10;
+  
+  // Enable dependency graph
+  bool dependency_graph = 11;
+  
+  // Custom project features
+  map<string, bool> custom = 12;
+}
+
+// Project layout configuration
+message ProjectLayout {
+  // Homepage layout
+  HomepageStyle homepage_style = 1;
+  
+  // Documentation layout
+  DocsLayoutStyle docs_layout = 2;
+  
+  // Show project navigation separate from domain nav
+  bool separate_nav = 3;
+  
+  // Sidebar configuration for docs
+  DocsSidebar sidebar = 4;
+}
+
+// Documentation sidebar configuration
+message DocsSidebar {
+  // Sidebar position ("left", "right")
+  string position = 1;
+  
+  // Collapsible sections
+  bool collapsible = 2;
+  
+  // Show on mobile
+  bool mobile_visible = 3;
+  
+  // Auto-generate from headings
+  bool auto_generate = 4;
+}
+
+// Technology stack information
+message TechStack {
+  // Primary language(s)
+  repeated string languages = 1;
+  
+  // Frameworks used
+  repeated string frameworks = 2;
+  
+  // Major dependencies
+  repeated Dependency dependencies = 3;
+  
+  // Development tools
+  repeated string dev_tools = 4;
+  
+  // Deployment/infrastructure
+  repeated string infrastructure = 5;
+}
+
+// Dependency information
+message Dependency {
+  // Dependency name
+  string name = 1;
+  
+  // Version or version range
+  string version = 2;
+  
+  // Purpose/description
+  string purpose = 3;
+  
+  // Link to dependency
+  string url = 4;
+}
+
+// Project links and resources
+message ProjectLinks {
+  // Main repository URL - REQUIRED if open source
+  string repository = 1;
+  
+  // Documentation URL (if separate from project site)
+  string documentation = 2;
+  
+  // Live demo URL
+  string demo = 3;
+  
+  // Download/releases URL
+  string downloads = 4;
+  
+  // Issue tracker URL
+  string issues = 5;
+  
+  // Discussion forum URL
+  string discussions = 6;
+  
+  // Wiki URL
+  string wiki = 7;
+  
+  // Custom links
+  map<string, string> custom = 8;
+}
+
+// Project showcase/gallery configuration
+message ProjectShowcase {
+  // Enable screenshot gallery
+  bool screenshots = 1;
+  
+  // Screenshot images (relative paths)
+  repeated Screenshot images = 2;
+  
+  // Enable video demos
+  bool videos = 3;
+  
+  // Video URLs or embed codes
+  repeated Video video_items = 4;
+  
+  // Enable architecture diagrams
+  bool architecture_diagrams = 5;
+  
+  // Diagram images (relative paths)
+  repeated string diagrams = 6;
+}
+
+// Screenshot information
+message Screenshot {
+  // Image path (relative to project root)
+  string path = 1;
+  
+  // Alt text/description
+  string alt = 2;
+  
+  // Caption
+  string caption = 3;
+  
+  // Category (e.g., "desktop", "mobile", "cli")
+  string category = 4;
+}
+
+// Video information
+message Video {
+  // Video URL (YouTube, Vimeo, etc.)
+  string url = 1;
+  
+  // Video title
+  string title = 2;
+  
+  // Video description
+  string description = 3;
+  
+  // Thumbnail image path
+  string thumbnail = 4;
+}
+
+// Project metadata for SEO and discovery
+message ProjectMetadata {
+  // Keywords for SEO
+  repeated string keywords = 1;
+  
+  // Categories this project belongs to
+  repeated string categories = 2;
+  
+  // Tags for blog integration (posts with these tags show on project page)
+  repeated string blog_tags = 3;
+  
+  // Related projects (within the ecosystem)
+  repeated string related_projects = 4;
+  
+  // External similar projects
+  repeated string similar_projects = 5;
+  
+  // Research papers or articles
+  repeated Publication publications = 6;
+  
+  // Projects this relates to or uses
+  repeated string relates_to_projects = 7;
+  
+  // Projects this updates or succeeds
+  repeated string updates_projects = 8;
+}
+
+// Publication/paper reference
+message Publication {
+  // Publication title
+  string title = 1;
+  
+  // Authors
+  repeated string authors = 2;
+  
+  // Publication venue
+  string venue = 3;
+  
+  // Year
+  int32 year = 4;
+  
+  // URL to paper
+  string url = 5;
+  
+  // DOI if available
+  string doi = 6;
+}
+
+// Documentation settings for project
+message DocumentationSettings {
+  // Enable documentation site at /[project]/docs/
+  bool enabled = 1;
+  
+  // Version/branch to pull docs from (in main branch)
+  string version = 2;  // "main", "v2.0.0", "v1.0.0", etc.
+  
+  // Whether docs folder exists in the repository
+  bool has_docs_folder = 3;
+  
+  // Documentation inherits from project and can have its own config.yml
+  bool has_own_config = 4;
+  
+  // Enable version switcher in docs UI
+  bool enable_version_switcher = 5;
+  
+  // List of available versions (for version switcher)
+  repeated string available_versions = 6;
+}
+
+// Project-specific overrides (optional)
+// These fields allow projects to override domain-level settings
+message ProjectOverrides {
+  // Override social media accounts for this project
+  SocialMedia social_override = 1;
+  
+  // Override contact emails for this project
+  ContactEmails contact_override = 2;
+  
+  // Project-specific sponsor settings
+  SponsorSettings sponsor_override = 3;
+  
+  // Project-specific structured data
+  ProjectStructuredData structured_data_override = 4;
+  
+  // Project-level policy page overrides
+  // Can add project-specific policies like API terms
+  // See ../SCHEMA-ORG-EXAMPLES.md#policy-inheritance
+  PolicyOverrides policy_override = 5;
+  
+  // Project-specific Schema.org entity configuration
+  // Typically: SoftwareApplication, WebApplication, Service
+  // See ../SCHEMA-ORG-EXAMPLES.md#project-examples
+  SchemaOrgEntity schema_org_override = 6;
+  
+  // Project-specific page schema overrides
+  // Commonly overrides /contact and /sponsor for project-specific info
+  // See ../SCHEMA-ORG-EXAMPLES.md#project-with-custom-contact
+  map<string, SchemaOrgEntity> pages_schema_override = 7;
+}
+
+// Project-specific structured data
+message ProjectStructuredData {
+  // Software application schema
+  SoftwareApplicationSchema software_app = 1;
+  
+  // Dataset schema (for data projects)
+  DatasetSchema dataset = 2;
+  
+  // Course schema (for educational projects)
+  CourseSchema course = 3;
+  
+  // Custom schema extensions
+  map<string, string> custom_schemas = 4;
+}
+
+// Software application schema
+message SoftwareApplicationSchema {
+  // Enable software app markup
+  bool enabled = 1;
+  
+  // Application category
+  string application_category = 2;
+  
+  // Operating system
+  repeated string operating_system = 3;
+  
+  // Software version
+  string software_version = 4;
+  
+  // Download URL
+  string download_url = 5;
+  
+  // Installation URL
+  string install_url = 6;
+  
+  // Memory requirements
+  string memory_requirements = 7;
+  
+  // Storage requirements  
+  string storage_requirements = 8;
+  
+  // Permissions required
+  repeated string permissions = 9;
+}
+
+// Dataset schema
+message DatasetSchema {
+  // Enable dataset markup
+  bool enabled = 1;
+  
+  // Dataset description
+  string description = 2;
+  
+  // Distribution format
+  repeated string distribution_format = 3;
+  
+  // License
+  string license = 4;
+  
+  // Temporal coverage
+  string temporal_coverage = 5;
+  
+  // Spatial coverage
+  string spatial_coverage = 6;
+  
+  // Keywords
+  repeated string keywords = 7;
+}
+
+// Course schema
+message CourseSchema {
+  // Enable course markup
+  bool enabled = 1;
+  
+  // Course description
+  string description = 2;
+  
+  // Course duration
+  string duration = 3;
+  
+  // Course language
+  string language = 4;
+  
+  // Prerequisites
+  repeated string prerequisites = 5;
+  
+  // Target audience
+  repeated string target_audience = 6;
+  
+  // Educational level
+  string educational_level = 7;
+}
+
+// Homepage layout styles
+enum HomepageStyle {
+  HOMEPAGE_STYLE_UNSPECIFIED = 0;
+  HOMEPAGE_STYLE_HERO = 1;
+  HOMEPAGE_STYLE_DOCUMENTATION = 2;
+  HOMEPAGE_STYLE_SHOWCASE = 3;
+  HOMEPAGE_STYLE_CUSTOM = 4;
+}
+
+// Documentation layout styles
+enum DocsLayoutStyle {
+  DOCS_LAYOUT_STYLE_UNSPECIFIED = 0;
+  DOCS_LAYOUT_STYLE_SINGLE_PAGE = 1;
+  DOCS_LAYOUT_STYLE_MULTI_PAGE = 2;
+  DOCS_LAYOUT_STYLE_VERSIONED = 3;
+}
+
+// Code playground providers
+enum PlaygroundProvider {
+  PLAYGROUND_PROVIDER_UNSPECIFIED = 0;
+  PLAYGROUND_PROVIDER_CODEPEN = 1;
+  PLAYGROUND_PROVIDER_CODESANDBOX = 2;
+  PLAYGROUND_PROVIDER_STACKBLITZ = 3;
+  PLAYGROUND_PROVIDER_CUSTOM = 4;
+}
+
+// Search providers
+enum SearchProvider {
+  SEARCH_PROVIDER_UNSPECIFIED = 0;
+  SEARCH_PROVIDER_ALGOLIA = 1;
+  SEARCH_PROVIDER_LUNR = 2;
+  SEARCH_PROVIDER_FUSE = 3;
+  SEARCH_PROVIDER_CUSTOM = 4;
+}
+
+// API documentation generators (moved from docs.proto)
+enum APIDocGenerator {
+  API_DOC_GENERATOR_UNSPECIFIED = 0;
+  API_DOC_GENERATOR_SWAGGER_UI = 1;
+  API_DOC_GENERATOR_REDOC = 2;
+  API_DOC_GENERATOR_GRAPHDOC = 3;
+  API_DOC_GENERATOR_CUSTOM = 4;
+}
+
+// Project relationships - dependencies and external support
+message ProjectRelationships {
+  // Other projects this project depends on
+  repeated ProjectDependency dependencies = 1;
+  
+  // External entities supporting this project
+  repeated ExternalSupport external_support = 2;
+  
+  // Related projects in the ecosystem
+  repeated string related_project_keys = 3;
+  
+  // Projects that use this project
+  repeated string used_by_project_keys = 4;
+  
+  // Projects this evolved from (if applicable)
+  repeated string evolved_from_keys = 5;
+  
+  // Projects this project hosts/contains
+  repeated string hosts_project_keys = 6;
+}
+
+// Project dependency definition
+message ProjectDependency {
+  // Project key from ecosystem projects
+  string project_key = 1;
+  
+  // Type of dependency (type-safe enum)
+  DependencyType dependency_type = 2;
+  
+  // Description of how the dependency is used
+  string description = 3;
+  
+  // Version requirement (if applicable)
+  string version_requirement = 4;
+  
+  // Whether this is a critical dependency
+  bool is_critical = 5;
+  
+  // Dependency scope (type-safe enum)
+  DependencyScope scope = 6;
+}
+
+// External support definition
+message ExternalSupport {
+  // Entity key from organizations or legal_entities catalog
+  string entity_key = 1;
+  
+  // Type of support (type-safe enum)
+  SupportType support_type = 2;
+  
+  // Description of the support provided
+  string description = 3;
+  
+  // Start date of support (ISO 8601)
+  string start_date = 4;
+  
+  // End date of support (ISO 8601, omit if ongoing)
+  string end_date = 5;
+  
+  // Whether support is currently active
+  bool is_active = 6;
+  
+  // Support value/amount (if applicable, e.g., "$10k", "100 GPU hours/month")
+  string value = 7;
+  
+  // Additional metadata
+  map<string, string> metadata = 8;
+}
+
+// Schema.org configuration for projects
+message SchemaOrgProjectConfig {
+  // Override domain Schema.org config
+  SchemaOrgConfig config_override = 1;
+  
+  // Project type mappings
+  ProjectTypeMappings type_mappings = 2;
+  
+  // Software-specific settings
+  SoftwareSchemaSettings software_settings = 3;
+  
+  // Research-specific settings
+  ResearchSchemaSettings research_settings = 4;
+  
+  // Repository integration
+  RepositoryIntegration repository_integration = 5;
+  
+  // Documentation integration
+  DocumentationIntegration docs_integration = 6;
+}
+
+// Software-specific Schema.org settings
+message SoftwareSchemaSettings {
+  // Application category mapping
+  ApplicationCategoryMapping category_mapping = 1;
+  
+  // Requirements specification
+  RequirementsSpec requirements = 2;
+  
+  // Platform support
+  PlatformSupport platforms = 3;
+  
+  // Software features
+  SoftwareFeatures features = 4;
+}
+
+// Application category mapping
+message ApplicationCategoryMapping {
+  // Default category
+  string default_category = 1;
+  
+  // Type-based categories
+  map<string, string> type_categories = 2;
+  
+  // Custom categories
+  repeated string custom_categories = 3;
+}
+
+// Requirements specification
+message RequirementsSpec {
+  // Include system requirements
+  bool include_system_reqs = 1;
+  
+  // Include dependencies
+  bool include_dependencies = 2;
+  
+  // Memory requirements format
+  string memory_format = 3;
+  
+  // Storage requirements format
+  string storage_format = 4;
+}
+
+// Platform support configuration
+message PlatformSupport {
+  // Operating systems mapping
+  map<string, string> os_mapping = 1;
+  
+  // Architecture mapping
+  map<string, string> arch_mapping = 2;
+  
+  // Runtime mapping
+  map<string, string> runtime_mapping = 3;
+}
+
+// Software features configuration
+message SoftwareFeatures {
+  // Feature extraction
+  bool auto_extract_features = 1;
+  
+  // Feature categories
+  repeated string feature_categories = 2;
+  
+  // Feature to benefit mapping
+  map<string, string> feature_benefits = 3;
+}
+
+// Research-specific Schema.org settings
+message ResearchSchemaSettings {
+  // Research area mapping
+  ResearchAreaMapping area_mapping = 1;
+  
+  // Funding information
+  FundingInfo funding = 2;
+  
+  // Publication settings
+  PublicationSettings publications = 3;
+  
+  // Dataset settings
+  DatasetSettings datasets = 4;
+}
+
+// Research area mapping
+message ResearchAreaMapping {
+  // Default research area
+  string default_area = 1;
+  
+  // Keywords to area mapping
+  map<string, string> keyword_areas = 2;
+  
+  // Discipline mapping
+  map<string, string> disciplines = 3;
+}
+
+// Funding information
+message FundingInfo {
+  // Include funding info
+  bool include_funding = 1;
+  
+  // Funder type mapping
+  map<string, string> funder_types = 2;
+  
+  // Grant type mapping
+  map<string, string> grant_types = 3;
+}
+
+// Publication settings
+message PublicationSettings {
+  // Include publications
+  bool include_publications = 1;
+  
+  // Publication type mapping
+  map<string, string> pub_type_mapping = 2;
+  
+  // Venue type mapping
+  map<string, string> venue_mapping = 3;
+}
+
+// Dataset settings
+message DatasetSettings {
+  // Include datasets
+  bool include_datasets = 1;
+  
+  // Dataset type mapping
+  map<string, string> dataset_types = 2;
+  
+  // License mapping
+  map<string, string> license_mapping = 3;
+}
+
+// Repository integration for Schema.org
+message RepositoryIntegration {
+  // Include repository info
+  bool include_repository = 1;
+  
+  // Repository type ("GitHub", "GitLab", etc.)
+  string repo_type = 2;
+  
+  // Include statistics
+  bool include_stats = 3;
+  
+  // Include contributors
+  bool include_contributors = 4;
+  
+  // Repository metadata
+  RepositoryMetadata metadata = 5;
+}
+
+// Repository metadata
+message RepositoryMetadata {
+  // Include languages
+  bool include_languages = 1;
+  
+  // Include topics/tags
+  bool include_topics = 2;
+  
+  // Include license
+  bool include_license = 3;
+  
+  // Include activity metrics
+  bool include_activity = 4;
+}
+
+// Documentation integration
+message DocumentationIntegration {
+  // Include docs in Schema.org
+  bool include_docs = 1;
+  
+  // Documentation type
+  string docs_type = 2;
+  
+  // Include API docs
+  bool include_api = 3;
+  
+  // Include tutorials
+  bool include_tutorials = 4;
+}
+
+// Software application defaults
+message SoftwareApplicationDefaults {
+  // Default properties to include
+  repeated string default_properties = 1;
+  
+  // Required properties
+  repeated string required_properties = 2;
+  
+  // Download/install settings
+  DownloadSettings download_settings = 3;
+  
+  // Screenshot settings
+  ScreenshotSettings screenshot_settings = 4;
+}
+
+// Download settings
+message DownloadSettings {
+  // Include download URL
+  bool include_download = 1;
+  
+  // Download URL pattern
+  string url_pattern = 2;
+  
+  // Include file size
+  bool include_size = 3;
+  
+  // Include checksums
+  bool include_checksums = 4;
+}
+
+// Screenshot settings
+message ScreenshotSettings {
+  // Include screenshots
+  bool include_screenshots = 1;
+  
+  // Screenshot type mapping
+  map<string, string> type_mapping = 2;
+  
+  // Max screenshots
+  int32 max_screenshots = 3;
+}
+
+// Research project defaults
+message ResearchProjectDefaults {
+  // Default properties
+  repeated string default_properties = 1;
+  
+  // Required properties
+  repeated string required_properties = 2;
+  
+  // Abstract settings
+  AbstractSettings abstract_settings = 3;
+  
+  // Keyword settings
+  KeywordSettings keyword_settings = 4;
+}
+
+// Abstract settings
+message AbstractSettings {
+  // Require abstract
+  bool require_abstract = 1;
+  
+  // Min length (words)
+  int32 min_length = 2;
+  
+  // Max length (words)
+  int32 max_length = 3;
+}
+
+// Keyword settings
+message KeywordSettings {
+  // Auto-extract keywords
+  bool auto_extract = 1;
+  
+  // Min keywords
+  int32 min_keywords = 2;
+  
+  // Max keywords
+  int32 max_keywords = 3;
+  
+  // Keyword categories
+  repeated string categories = 4;
+}
+
+// Project-specific GTM configuration
+message ProjectGTMConfig {
+  // Documentation interaction tracking
+  DocumentationTracking doc_tracking = 1;
+  
+  // API usage tracking
+  APIUsageTracking api_tracking = 2;
+  
+  // Download tracking configuration
+  DownloadTracking download_tracking = 3;
+  
+  // Demo interaction tracking
+  bool track_demo_interactions = 4;
+  
+  // Code example copy tracking
+  bool track_code_copy = 5;
+  
+  // Project-specific conversion events
+  repeated website.config.gtm.ConversionEvent project_conversions = 6;
+  
+  // Custom project dimensions
+  map<string, string> project_dimensions = 7;
+}
+
+// Documentation tracking configuration
+message DocumentationTracking {
+  // Track documentation navigation
+  bool track_navigation = 1;
+  
+  // Track search queries
+  bool track_search = 2;
+  
+  // Track version switching
+  bool track_version_switch = 3;
+  
+  // Track time on page
+  bool track_time_on_page = 4;
+}
+
+// API usage tracking configuration
+message APIUsageTracking {
+  // Track API key generation
+  bool track_key_generation = 1;
+  
+  // Track API endpoint usage (from docs)
+  bool track_endpoint_clicks = 2;
+  
+  // Track SDK downloads
+  bool track_sdk_downloads = 3;
+  
+  // Custom API events
+  repeated string custom_events = 4;
+}
+
+// Download tracking configuration
+message DownloadTracking {
+  // Track all downloads
+  bool enabled = 1;
+  
+  // File types to track
+  repeated string tracked_extensions = 2;
+  
+  // Track by version
+  bool track_version = 3;
+  
+  // Track by platform
+  bool track_platform = 4;
+}
+
+// Project-specific ARIA configuration
+message ProjectARIAConfig {
+  // Documentation-specific ARIA settings
+  DocumentationARIA documentation_aria = 1;
+  
+  // Code example ARIA settings
+  CodeExampleARIA code_aria = 2;
+  
+  // Interactive demo ARIA settings
+  DemoARIA demo_aria = 3;
+  
+  // API documentation ARIA
+  APIDocumentationARIA api_aria = 4;
+  
+  // Project-specific landmarks
+  map<string, string> project_landmarks = 5;
+}
+
+// Documentation ARIA settings
+message DocumentationARIA {
+  // Version selector ARIA labels
+  bool version_selector_labels = 1;
+  
+  // Search results live region
+  bool search_live_region = 2;
+  
+  // Navigation tree ARIA
+  bool navigation_tree_aria = 3;
+  
+  // Breadcrumb ARIA
+  bool breadcrumb_aria = 4;
+}
+
+// Code example ARIA settings
+message CodeExampleARIA {
+  // Code block labels
+  bool code_block_labels = 1;
+  
+  // Copy button labels
+  bool copy_button_labels = 2;
+  
+  // Syntax highlighting ARIA
+  bool syntax_highlighting_aria = 3;
+  
+  // Line number navigation
+  bool line_number_navigation = 4;
+}
+
+// Demo ARIA settings
+message DemoARIA {
+  // Interactive widget labels
+  bool widget_labels = 1;
+  
+  // Live demo regions
+  bool live_regions = 2;
+  
+  // Keyboard navigation hints
+  bool keyboard_hints = 3;
+  
+  // Focus management
+  bool focus_management = 4;
+}
+
+// API documentation ARIA settings
+message APIDocumentationARIA {
+  // Endpoint navigation
+  bool endpoint_navigation = 1;
+  
+  // Parameter descriptions
+  bool parameter_descriptions = 2;
+  
+  // Response example labels
+  bool response_labels = 3;
+  
+  // Authentication section ARIA
+  bool auth_section_aria = 4;
+}

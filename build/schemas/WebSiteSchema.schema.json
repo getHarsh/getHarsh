@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/WebSiteSchema",
+  "definitions": {
+    "WebSiteSchema": {
+      "properties": {
+        "enable_sitelinks_searchbox": {
+          "type": "boolean",
+          "description": "Enable sitelinks searchbox"
+        },
+        "search_action_template": {
+          "type": "string",
+          "description": "Search action URL template"
+        },
+        "alternate_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Alternate names for the website"
+        },
+        "in_language": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "In languages supported"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Web Site Schema",
+      "description": "Website schema for JSON-LD"
+    }
+  },
+  "title": "WEBSITESCHEMA Configuration Schema",
+  "description": "JSON Schema for WebSiteSchema configuration"
+}

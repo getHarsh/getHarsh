@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DialogARIA",
+  "definitions": {
+    "DialogARIA": {
+      "properties": {
+        "modal_handling": {
+          "type": "boolean",
+          "description": "Modal handling"
+        },
+        "focus_trap": {
+          "type": "boolean",
+          "description": "Focus trap"
+        },
+        "require_close": {
+          "type": "boolean",
+          "description": "Close button requirement"
+        },
+        "require_title": {
+          "type": "boolean",
+          "description": "Title requirement"
+        },
+        "announce_on_open": {
+          "type": "boolean",
+          "description": "Announce on open"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dialog ARIA",
+      "description": "Dialog ARIA configuration"
+    }
+  },
+  "title": "DIALOGARIA Configuration Schema",
+  "description": "JSON Schema for DialogARIA configuration"
+}

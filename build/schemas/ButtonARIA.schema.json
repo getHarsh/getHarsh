@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ButtonARIA",
+  "definitions": {
+    "ButtonARIA": {
+      "properties": {
+        "require_names": {
+          "type": "boolean",
+          "description": "Require accessible names"
+        },
+        "announce_states": {
+          "type": "boolean",
+          "description": "Button state announcements"
+        },
+        "loading_pattern": {
+          "type": "string",
+          "description": "Loading state pattern"
+        },
+        "disabled_handling": {
+          "type": "string",
+          "description": "Disabled state handling"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Button ARIA",
+      "description": "Button ARIA configuration"
+    }
+  },
+  "title": "BUTTONARIA Configuration Schema",
+  "description": "JSON Schema for ButtonARIA configuration"
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NavigationConfig",
+  "definitions": {
+    "NavigationConfig": {
+      "properties": {
+        "primary_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavigationItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Primary navigation items"
+        },
+        "footer_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavigationItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Footer navigation items"
+        },
+        "hero_ctas": {
+          "items": {
+            "$ref": "#/definitions/website.config.CTAButton"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Hero section CTAs"
+        },
+        "mobile_nav": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavigationItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Mobile menu items (if different from primary)"
+        },
+        "quick_links": {
+          "items": {
+            "$ref": "#/definitions/website.config.NavigationItem"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Quick links for footer or sidebar"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Config",
+      "description": "Navigation configuration with menu items and CTAs"
+    },
+    "website.config.CTAButton": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Button text (e.g., \"Get Started\", \"Learn More\")"
+        },
+        "url": {
+          "type": "string",
+          "description": "Button URL or action"
+        },
+        "variant": {
+          "type": "string",
+          "description": "Button variant (\"primary\", \"secondary\", \"ghost\", \"outline\")"
+        },
+        "size": {
+          "type": "string",
+          "description": "Button size (\"sm\", \"default\", \"lg\")"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon to display with button"
+        },
+        "track_click": {
+          "type": "boolean",
+          "description": "Track with analytics"
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Analytics event name"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CTA Button",
+      "description": "CTA button configuration"
+    },
+    "website.config.NavigationItem": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Display label (e.g., \"Home\", \"About\", \"Thoughts\")"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL or path (e.g., \"/\", \"/about\", \"/blog\")"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "Opens in new tab/window"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon name (optional, for icon fonts or SVG)"
+        },
+        "required_feature": {
+          "type": "string",
+          "description": "Show only when feature is enabled"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Display order (lower numbers first)"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Item",
+      "description": "Individual navigation item"
+    }
+  },
+  "title": "NAVIGATIONCONFIG Configuration Schema",
+  "description": "JSON Schema for NavigationConfig configuration"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BannerDisplay",
+  "definitions": {
+    "BannerDisplay": {
+      "properties": {
+        "position": {
+          "enum": [
+            "BANNER_POSITION_UNSPECIFIED",
+            0,
+            "BANNER_POSITION_TOP",
+            1,
+            "BANNER_POSITION_BOTTOM",
+            2,
+            "BANNER_POSITION_CENTER",
+            3,
+            "BANNER_POSITION_TOP_LEFT",
+            4,
+            "BANNER_POSITION_TOP_RIGHT",
+            5,
+            "BANNER_POSITION_BOTTOM_LEFT",
+            6,
+            "BANNER_POSITION_BOTTOM_RIGHT",
+            7
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Banner Position",
+          "description": "Banner position"
+        },
+        "show_on_first_visit": {
+          "type": "boolean",
+          "description": "Display on first visit"
+        },
+        "display_delay_ms": {
+          "type": "integer",
+          "description": "Display delay (ms)"
+        },
+        "z_index": {
+          "type": "integer",
+          "description": "Z-index for layering"
+        },
+        "show_backdrop": {
+          "type": "boolean",
+          "description": "Show backdrop overlay"
+        },
+        "backdrop_opacity": {
+          "type": "number",
+          "description": "Backdrop opacity (0-1)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Banner Display",
+      "description": "Banner display settings"
+    }
+  },
+  "title": "BANNERDISPLAY Configuration Schema",
+  "description": "JSON Schema for BannerDisplay configuration"
+}

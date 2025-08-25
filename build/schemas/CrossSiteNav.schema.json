@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CrossSiteNav",
+  "definitions": {
+    "CrossSiteNav": {
+      "properties": {
+        "show_blog_link": {
+          "type": "boolean",
+          "description": "Show link to blog subdomain"
+        },
+        "show_ecosystem_nav": {
+          "type": "boolean",
+          "description": "Show ecosystem navigation"
+        },
+        "counterpart_site": {
+          "type": "string",
+          "description": "Counterpart site (e.g., sleepwalker.in for causality.in)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Site Nav",
+      "description": "Cross-site navigation configuration"
+    }
+  },
+  "title": "CROSSSITENAV Configuration Schema",
+  "description": "JSON Schema for CrossSiteNav configuration"
+}

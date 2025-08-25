@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/KeyboardShortcuts",
+  "definitions": {
+    "KeyboardShortcuts": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable shortcuts"
+        },
+        "shortcuts": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.Shortcut"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Shortcut list"
+        },
+        "detect_conflicts": {
+          "type": "boolean",
+          "description": "Conflict detection"
+        },
+        "show_help": {
+          "type": "boolean",
+          "description": "Help dialog"
+        },
+        "help_key": {
+          "type": "string",
+          "description": "Help key"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Keyboard Shortcuts",
+      "description": "Keyboard shortcuts configuration"
+    },
+    "website.config.aria.Shortcut": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Shortcut key combination"
+        },
+        "action": {
+          "type": "string",
+          "description": "Action description"
+        },
+        "context": {
+          "type": "string",
+          "description": "Context (global, form, etc.)"
+        },
+        "customizable": {
+          "type": "boolean",
+          "description": "Customizable"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Shortcut",
+      "description": "Individual shortcut"
+    }
+  },
+  "title": "KEYBOARDSHORTCUTS Configuration Schema",
+  "description": "JSON Schema for KeyboardShortcuts configuration"
+}

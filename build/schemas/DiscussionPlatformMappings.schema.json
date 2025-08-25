@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DiscussionPlatformMappings",
+  "definitions": {
+    "DiscussionPlatformMappings": {
+      "properties": {
+        "platform_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"DISCUSSION_PLATFORM_TWITTER\" -> \"SocialMediaPosting\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n DISCUSSION PLATFORM MAPPINGS\n =============================================================================",
+      "description": "============================================================================= DISCUSSION PLATFORM MAPPINGS =============================================================================  Maps DiscussionPlatform enum values to Schema.org types"
+    }
+  },
+  "title": "DISCUSSIONPLATFORMMAPPINGS Configuration Schema",
+  "description": "JSON Schema for DiscussionPlatformMappings configuration"
+}

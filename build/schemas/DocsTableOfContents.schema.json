@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocsTableOfContents",
+  "definitions": {
+    "DocsTableOfContents": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"right\", \"inline\")"
+        },
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Max depth to include"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky TOC on scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Docs Table Of Contents",
+      "description": "Table of contents configuration"
+    }
+  },
+  "title": "DOCSTABLEOFCONTENTS Configuration Schema",
+  "description": "JSON Schema for DocsTableOfContents configuration"
+}

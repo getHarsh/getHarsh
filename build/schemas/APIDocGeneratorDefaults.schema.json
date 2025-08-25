@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIDocGeneratorDefaults",
+  "definitions": {
+    "APIDocGeneratorDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.APIDocGeneratorMapping",
+          "description": "API_DOC_GENERATOR_UNSPECIFIED  name: \"\" url: \"\" supported_formats: [] default_config: {}"
+        },
+        "swagger_ui": {
+          "$ref": "#/definitions/website.config.APIDocGeneratorMapping",
+          "description": "API_DOC_GENERATOR_SWAGGER_UI  name: \"Swagger UI\" url: \"https://swagger.io/tools/swagger-ui/\" supported_formats: [\"openapi\", \"swagger\"] default_config: { \"theme\": \"flattop\", \"syntaxHighlight\": \"true\", \"docExpansion\": \"list\" }"
+        },
+        "redoc": {
+          "$ref": "#/definitions/website.config.APIDocGeneratorMapping",
+          "description": "API_DOC_GENERATOR_REDOC  name: \"ReDoc\" url: \"https://github.com/Redocly/redoc\" supported_formats: [\"openapi\"] default_config: { \"nativeScrollbars\": \"true\", \"theme\": \"default\", \"scrollYOffset\": \"0\" }"
+        },
+        "graphdoc": {
+          "$ref": "#/definitions/website.config.APIDocGeneratorMapping",
+          "description": "API_DOC_GENERATOR_GRAPHDOC  name: \"GraphDoc\" url: \"https://github.com/2fd/graphdoc\" supported_formats: [\"graphql\"] default_config: { \"theme\": \"default\", \"plugins\": \"default\" }"
+        },
+        "custom": {
+          "$ref": "#/definitions/website.config.APIDocGeneratorMapping",
+          "description": "API_DOC_GENERATOR_CUSTOM  name: \"Custom Generator\" url: \"\" supported_formats: [\"openapi\", \"graphql\", \"grpc\", \"custom\"] default_config: {}"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Doc Generator Defaults",
+      "description": "Complete API doc generator mappings"
+    },
+    "website.config.APIDocGeneratorMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Generator name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Generator URL"
+        },
+        "supported_formats": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported spec formats"
+        },
+        "default_config": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Configuration options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Doc Generator Mapping"
+    }
+  },
+  "title": "APIDOCGENERATORDEFAULTS Configuration Schema",
+  "description": "JSON Schema for APIDocGeneratorDefaults configuration"
+}

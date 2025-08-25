@@ -1,0 +1,352 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleConsentMode",
+  "definitions": {
+    "GoogleConsentMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Google Consent Mode"
+        },
+        "default_state": {
+          "$ref": "#/definitions/website.config.consent.GoogleConsentState",
+          "description": "Default consent state"
+        },
+        "regional_states": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.RegionalGoogleConsent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Regional consent states"
+        },
+        "advanced": {
+          "$ref": "#/definitions/website.config.consent.GoogleConsentAdvanced",
+          "description": "Advanced settings"
+        },
+        "update_settings": {
+          "$ref": "#/definitions/website.config.consent.GoogleConsentUpdate",
+          "description": "Update settings"
+        },
+        "integration": {
+          "$ref": "#/definitions/website.config.consent.GoogleConsentIntegration",
+          "description": "Integration settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent Mode",
+      "description": "Google Consent Mode v2 configuration"
+    },
+    "website.config.consent.GoogleConsentAdvanced": {
+      "properties": {
+        "url_passthrough": {
+          "type": "boolean",
+          "description": "URL passthrough"
+        },
+        "ads_data_redaction": {
+          "type": "boolean",
+          "description": "Ads data redaction"
+        },
+        "developer_id": {
+          "type": "string",
+          "description": "Developer ID"
+        },
+        "enable_on_page_load": {
+          "type": "boolean",
+          "description": "Enable consent mode on page load"
+        },
+        "wait_for_update_ms": {
+          "type": "integer",
+          "description": "Wait for update (ms)"
+        },
+        "region_features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Region-specific features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent Advanced",
+      "description": "Google consent advanced settings"
+    },
+    "website.config.consent.GoogleConsentIntegration": {
+      "properties": {
+        "gtm_enabled": {
+          "type": "boolean",
+          "description": "GTM integration"
+        },
+        "gtm_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "GTM consent events"
+        },
+        "gtag_enabled": {
+          "type": "boolean",
+          "description": "Direct gtag integration"
+        },
+        "custom_integration": {
+          "type": "string",
+          "description": "Custom integration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent Integration",
+      "description": "Google consent integration"
+    },
+    "website.config.consent.GoogleConsentState": {
+      "properties": {
+        "analytics_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "ad_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "ad_user_data": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "ad_personalization": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "functionality_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "personalization_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        },
+        "security_storage": {
+          "enum": [
+            "CONSENT_VALUE_UNSPECIFIED",
+            0,
+            "CONSENT_VALUE_DENIED",
+            1,
+            "CONSENT_VALUE_GRANTED",
+            2,
+            "CONSENT_VALUE_PENDING",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent Value",
+          "description": "Consent value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent State",
+      "description": "Google consent state"
+    },
+    "website.config.consent.GoogleConsentUpdate": {
+      "properties": {
+        "update_command": {
+          "type": "string",
+          "description": "Update command"
+        },
+        "update_event": {
+          "type": "string",
+          "description": "Update on event"
+        },
+        "batch_updates": {
+          "type": "boolean",
+          "description": "Batch updates"
+        },
+        "update_delay_ms": {
+          "type": "integer",
+          "description": "Update delay (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent Update",
+      "description": "Google consent update settings"
+    },
+    "website.config.consent.RegionDetection": {
+      "properties": {
+        "method": {
+          "enum": [
+            "DETECTION_METHOD_UNSPECIFIED",
+            0,
+            "DETECTION_METHOD_IP",
+            1,
+            "DETECTION_METHOD_TIMEZONE",
+            2,
+            "DETECTION_METHOD_LOCALE",
+            3,
+            "DETECTION_METHOD_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Detection Method",
+          "description": "Detection method"
+        },
+        "custom_function": {
+          "type": "string",
+          "description": "Custom detection function"
+        },
+        "fallback_region": {
+          "type": "string",
+          "description": "Fallback region"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Detection",
+      "description": "Region detection settings"
+    },
+    "website.config.consent.RegionalGoogleConsent": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region code"
+        },
+        "state": {
+          "$ref": "#/definitions/website.config.consent.GoogleConsentState",
+          "description": "Consent state for region"
+        },
+        "detection": {
+          "$ref": "#/definitions/website.config.consent.RegionDetection",
+          "description": "Region detection"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Regional Google Consent",
+      "description": "Regional Google consent"
+    }
+  },
+  "title": "GOOGLECONSENTMODE Configuration Schema",
+  "description": "JSON Schema for GoogleConsentMode configuration"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AuthorConfig",
+  "definitions": {
+    "AuthorConfig": {
+      "properties": {
+        "always_include": {
+          "type": "boolean",
+          "description": "Always include author"
+        },
+        "default_type": {
+          "type": "string",
+          "description": "Author type (\"Person\" or \"Organization\")"
+        },
+        "include_image": {
+          "type": "boolean",
+          "description": "Include author image"
+        },
+        "include_bio": {
+          "type": "boolean",
+          "description": "Include author bio"
+        },
+        "include_social": {
+          "type": "boolean",
+          "description": "Include social profiles"
+        },
+        "author_page_pattern": {
+          "type": "string",
+          "description": "Author page URL pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Author Config",
+      "description": "Author configuration for Schema.org"
+    }
+  },
+  "title": "AUTHORCONFIG Configuration Schema",
+  "description": "JSON Schema for AuthorConfig configuration"
+}

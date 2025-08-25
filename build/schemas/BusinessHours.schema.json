@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BusinessHours",
+  "definitions": {
+    "BusinessHours": {
+      "properties": {
+        "start_time": {
+          "type": "string",
+          "description": "Start time (24h format, e.g., \"09:00\")"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time (24h format, e.g., \"17:00\")"
+        },
+        "lunch_start": {
+          "type": "string",
+          "description": "Lunch break start"
+        },
+        "lunch_end": {
+          "type": "string",
+          "description": "Lunch break end"
+        },
+        "custom_hours": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.DayHours"
+          },
+          "type": "object",
+          "description": "Custom hours per day"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Business Hours",
+      "description": "Business hours configuration"
+    },
+    "website.config.DayHours": {
+      "properties": {
+        "available": {
+          "type": "boolean",
+          "description": "Is this day available"
+        },
+        "start_time": {
+          "type": "string",
+          "description": "Start time for this day"
+        },
+        "end_time": {
+          "type": "string",
+          "description": "End time for this day"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Day Hours",
+      "description": "Custom hours for specific days"
+    }
+  },
+  "title": "BUSINESSHOURS Configuration Schema",
+  "description": "JSON Schema for BusinessHours configuration"
+}

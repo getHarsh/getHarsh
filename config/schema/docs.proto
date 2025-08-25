@@ -1,0 +1,956 @@
+syntax = "proto3";
+
+package website.config;
+
+import "project.proto";
+import "ecosystem.proto";
+import "schema.proto";
+import "gtm.proto";
+import "aria.proto";
+
+option go_package = "github.com/getHarsh/getHarsh/config";
+
+// =============================================================================
+// DOCUMENTATION ENUMS
+// =============================================================================
+
+// Documentation navigation styles
+enum DocNavigationStyle {
+  DOC_NAVIGATION_STYLE_UNSPECIFIED = 0;
+  DOC_NAVIGATION_STYLE_SIDEBAR = 1;
+  DOC_NAVIGATION_STYLE_TOP_NAV = 2;
+  DOC_NAVIGATION_STYLE_BOTH = 3;
+}
+
+// Documentation landing page styles
+enum DocLandingStyle {
+  DOC_LANDING_STYLE_UNSPECIFIED = 0;
+  DOC_LANDING_STYLE_HERO = 1;
+  DOC_LANDING_STYLE_QUICK_START = 2;
+  DOC_LANDING_STYLE_OVERVIEW = 3;
+}
+
+// Sidebar position options
+enum SidebarPosition {
+  SIDEBAR_POSITION_UNSPECIFIED = 0;
+  SIDEBAR_POSITION_LEFT = 1;
+  SIDEBAR_POSITION_RIGHT = 2;
+}
+
+// External link behavior
+enum LinkBehavior {
+  LINK_BEHAVIOR_UNSPECIFIED = 0;
+  LINK_BEHAVIOR_NEW_TAB = 1;
+  LINK_BEHAVIOR_SAME_TAB = 2;
+}
+
+// API specification formats
+enum APISpecFormat {
+  API_SPEC_FORMAT_UNSPECIFIED = 0;
+  API_SPEC_FORMAT_OPENAPI = 1;
+  API_SPEC_FORMAT_GRAPHQL = 2;
+  API_SPEC_FORMAT_GRPC = 3;
+}
+
+// Note: APIDocGenerator is imported from project.proto
+
+// Authentication types
+enum AuthType {
+  AUTH_TYPE_UNSPECIFIED = 0;
+  AUTH_TYPE_NONE = 1;
+  AUTH_TYPE_API_KEY = 2;
+  AUTH_TYPE_OAUTH2 = 3;
+  AUTH_TYPE_BASIC = 4;
+}
+
+// OAuth2 flow types
+enum OAuth2Flow {
+  OAUTH2_FLOW_UNSPECIFIED = 0;
+  OAUTH2_FLOW_IMPLICIT = 1;
+  OAUTH2_FLOW_AUTHORIZATION_CODE = 2;
+  OAUTH2_FLOW_CLIENT_CREDENTIALS = 3;
+}
+
+// DocsConfig defines configuration overrides for project documentation.
+// It inherits from the parent project and can only override specific fields.
+// Stored in [project]/docs/config.yml (in the version/branch specified by project config)
+// Example: HENA/docs/config.yml in main branch or v2.0.0 tag
+message DocsConfig {
+  // Docs inherit everything from parent project by default.
+  // Only fields defined here can be overridden.
+  
+  // Theme overrides for documentation (limited set)
+  DocsThemeOverrides theme_overrides = 1;
+  
+  // Documentation-specific features
+  DocsFeatures features = 2;
+  
+  // Documentation structure and navigation
+  DocsStructure structure = 3;
+  
+  // Documentation content settings
+  DocsContent content = 4;
+  
+  // API documentation settings
+  APIDocSettings api = 5;
+  
+  // Documentation metadata
+  DocsMetadata metadata = 6;
+  
+  // Schema.org configuration for documentation
+  // Controls how docs map to TechArticle, APIReference, etc.
+  SchemaOrgDocsConfig schema_org_config = 7;
+  
+  // Technical article defaults
+  // Settings for technical documentation pages
+  TechnicalArticleDefaults tech_article_defaults = 8;
+  
+  // API reference defaults
+  // Settings for API documentation
+  APIReferenceDefaults api_reference_defaults = 9;
+  
+  // Documentation-specific GTM configuration
+  // Enhanced tracking for technical documentation
+  DocsGTMConfig docs_gtm = 10;
+  
+  // Documentation-specific ARIA configuration
+  // Optimized for technical content accessibility
+  DocsARIAConfig docs_aria = 11;
+}
+
+// Theme overrides allowed for documentation
+message DocsThemeOverrides {
+  // Color overrides for docs (limited set)
+  DocsColors colors = 1;
+  
+  // Typography adjustments for documentation
+  DocsTypography typography = 2;
+  
+  // Custom CSS specific to docs
+  string custom_docs_css = 3;
+}
+
+// Documentation-specific color overrides
+message DocsColors {
+  // Code block background color
+  string code_background = 1;
+  
+  // Inline code color
+  string inline_code_bg = 2;
+  
+  // Navigation active item color
+  string nav_active = 3;
+  
+  // Search highlight color
+  string search_highlight = 4;
+  
+  // Warning/note block colors
+  string warning_bg = 5;
+  string note_bg = 6;
+  string tip_bg = 7;
+  string important_bg = 8;
+}
+
+// Documentation-specific typography
+message DocsTypography {
+  // Font for documentation content
+  string docs_font = 1;
+  
+  // Font size for documentation
+  string docs_font_size = 2;
+  
+  // Line height for docs
+  float docs_line_height = 3;
+  
+  // Code block font
+  string code_font = 4;
+  
+  // Heading scale for docs
+  float heading_scale = 5;
+}
+
+// Documentation-specific features
+message DocsFeatures {
+  // Enable copy button on code blocks
+  bool copy_code_button = 1;
+  
+  // Enable line numbers in code blocks
+  bool code_line_numbers = 2;
+  
+  // Enable expandable/collapsible sections
+  bool collapsible_sections = 3;
+  
+  // Enable previous/next navigation
+  bool prev_next_nav = 4;
+  
+  // Enable breadcrumb navigation
+  bool breadcrumbs = 5;
+  
+  // Enable print-friendly version
+  bool print_version = 6;
+  
+  // Enable dark mode toggle (if not inherited)
+  bool dark_mode_toggle = 7;
+  
+  // Enable version warning for old docs
+  bool version_warning = 8;
+  
+  // Enable edit on GitHub link
+  bool edit_on_github = 9;
+  
+  // Enable last updated timestamp
+  bool show_last_updated = 10;
+  
+  // Enable estimated reading time
+  bool reading_time = 11;
+  
+  // Enable anchor links on headings
+  bool heading_anchors = 12;
+  
+  // Enable search within docs
+  bool docs_search = 13;
+  
+  // Search provider override
+  string search_provider = 14;
+  
+  // Custom documentation features
+  map<string, bool> custom = 15;
+}
+
+// Documentation structure and navigation
+message DocsStructure {
+  // Navigation style
+  DocNavigationStyle nav_style = 1;
+  
+  // Sidebar configuration
+  DocsNavigationSidebar sidebar = 2;
+  
+  // Table of contents configuration
+  DocsTableOfContents toc = 3;
+  
+  // Documentation sections/categories
+  repeated DocsSection sections = 4;
+  
+  // Landing page style
+  DocLandingStyle landing_style = 5;
+  
+  // Show version selector
+  bool show_version_selector = 6;
+  
+  // Available versions (for version selector)
+  repeated string available_versions = 7;
+}
+
+// Documentation sidebar configuration
+message DocsNavigationSidebar {
+  // Sidebar position
+  SidebarPosition position = 1;
+  
+  // Collapsible sections
+  bool collapsible = 2;
+  
+  // Auto-expand current section
+  bool auto_expand_current = 3;
+  
+  // Show on mobile
+  bool mobile_visible = 4;
+  
+  // Sticky sidebar
+  bool sticky = 5;
+  
+  // Max depth for auto-generated nav
+  int32 max_depth = 6;
+}
+
+// Table of contents configuration
+message DocsTableOfContents {
+  // Enable table of contents
+  bool enabled = 1;
+  
+  // Position ("right", "inline")
+  string position = 2;
+  
+  // Minimum headings to show TOC
+  int32 min_headings = 3;
+  
+  // Max depth to include
+  int32 max_depth = 4;
+  
+  // Sticky TOC on scroll
+  bool sticky = 5;
+  
+  // Highlight current section
+  bool highlight_current = 6;
+}
+
+// Documentation section
+message DocsSection {
+  // Section identifier
+  string id = 1;
+  
+  // Section title
+  string title = 2;
+  
+  // Section description
+  string description = 3;
+  
+  // Section icon
+  string icon = 4;
+  
+  // Order in navigation
+  int32 order = 5;
+  
+  // Pages in this section
+  repeated DocsPage pages = 6;
+}
+
+// Documentation page reference
+message DocsPage {
+  // Page identifier
+  string id = 1;
+  
+  // Page title
+  string title = 2;
+  
+  // Page path (relative to docs/)
+  string path = 3;
+  
+  // Order within section
+  int32 order = 4;
+  
+  // Hide from navigation
+  bool hidden = 5;
+  
+  // External link (if not a local page)
+  bool external = 6;
+}
+
+// Documentation content settings
+message DocsContent {
+  // Default code language for syntax highlighting
+  string default_code_language = 1;
+  
+  // Enable automatic API reference generation
+  bool auto_api_reference = 2;
+  
+  // Enable glossary/terminology tooltips
+  bool glossary_tooltips = 3;
+  
+  // External link behavior
+  LinkBehavior external_link_behavior = 4;
+  
+  // Image optimization settings
+  ImageSettings images = 5;
+  
+  // Video embedding settings
+  VideoSettings videos = 6;
+}
+
+// Image settings for documentation
+message ImageSettings {
+  // Enable lazy loading
+  bool lazy_load = 1;
+  
+  // Enable zoom on click
+  bool click_to_zoom = 2;
+  
+  // Default alignment ("left", "center", "right")
+  string default_align = 3;
+  
+  // Enable captions
+  bool show_captions = 4;
+}
+
+// Video embedding settings
+message VideoSettings {
+  // Enable video embeds
+  bool enabled = 1;
+  
+  // Default video width
+  string default_width = 2;
+  
+  // Supported providers
+  repeated string providers = 3;
+  
+  // Enable lazy loading
+  bool lazy_load = 4;
+}
+
+// API documentation settings
+message APIDocSettings {
+  // Enable API documentation
+  bool enabled = 1;
+  
+  // API specification format
+  APISpecFormat spec_format = 2;
+  
+  // Path to API spec file (relative to docs/)
+  string spec_path = 3;
+  
+  // API doc generator
+  APIDocGenerator generator = 4;
+  
+  // Enable try-it-out feature
+  bool try_it_out = 5;
+  
+  // Base URL for API calls
+  string api_base_url = 6;
+  
+  // Authentication configuration
+  APIAuthConfig auth = 7;
+  
+  // Code generation settings
+  CodeGenSettings code_gen = 8;
+}
+
+// API authentication configuration
+message APIAuthConfig {
+  // Authentication type
+  AuthType type = 1;
+  
+  // Parameter name for API key
+  string api_key_param = 2;
+  
+  // OAuth2 configuration
+  OAuth2Config oauth2 = 3;
+}
+
+// OAuth2 configuration
+message OAuth2Config {
+  // OAuth2 flow
+  OAuth2Flow flow = 1;
+  
+  // Authorization URL
+  string auth_url = 2;
+  
+  // Token URL
+  string token_url = 3;
+  
+  // Available scopes
+  map<string, string> scopes = 4;
+}
+
+// Code generation settings
+message CodeGenSettings {
+  // Enable code examples generation
+  bool enabled = 1;
+  
+  // Languages to generate examples for
+  repeated string languages = 2;
+  
+  // Code generator ("openapi-generator", "custom")
+  string generator = 3;
+}
+
+// Documentation metadata
+message DocsMetadata {
+  // Keywords for SEO (docs-specific)
+  repeated string keywords = 1;
+  
+  // Documentation version
+  string version = 2;
+  
+  // Release date of this version
+  string release_date = 3;
+  
+  // Changelog URL
+  string changelog_url = 4;
+  
+  // Migration guide URL (from previous version)
+  string migration_guide_url = 5;
+  
+  // Support/help URLs
+  SupportLinks support = 6;
+  
+  // Contributors
+  repeated Contributor contributors = 7;
+}
+
+// Support link configuration
+message SupportLinks {
+  // Community forum URL
+  string forum = 1;
+  
+  // Discord/Slack invite URL
+  string chat = 2;
+  
+  // Stack Overflow tag
+  string stack_overflow_tag = 3;
+  
+  // GitHub discussions URL
+  string discussions = 4;
+  
+  // Support email
+  string email = 5;
+}
+
+// Contributor information
+message Contributor {
+  // Contributor name
+  string name = 1;
+  
+  // GitHub username
+  string github = 2;
+  
+  // Role/title
+  string role = 3;
+  
+  // Avatar URL
+  string avatar = 4;
+}
+
+// Schema.org configuration for documentation
+message SchemaOrgDocsConfig {
+  // Override project Schema.org config
+  SchemaOrgConfig config_override = 1;
+  
+  // Documentation type mappings
+  DocsTypeMappings type_mappings = 2;
+  
+  // Navigation Schema.org settings
+  NavigationSchemaSettings nav_settings = 3;
+  
+  // Content enhancement
+  DocsContentEnhancement content_enhancement = 4;
+  
+  // Learning resource settings
+  LearningResourceSettings learning_settings = 5;
+  
+  // How-to guide settings
+  HowToSettings howto_settings = 6;
+}
+
+// Documentation type mappings
+message DocsTypeMappings {
+  // Default doc page type
+  string default_type = 1; // "TechArticle"
+  
+  // Section-based type mapping
+  map<string, string> section_types = 2;
+  
+  // Path pattern to type mapping
+  map<string, string> path_types = 3;
+  
+  // Navigation style to type mapping
+  map<string, string> nav_style_types = 4;
+  
+  // API spec format to type mapping
+  map<string, string> api_format_types = 5;
+}
+
+// Navigation Schema.org settings
+message NavigationSchemaSettings {
+  // Create SiteNavigationElement
+  bool create_nav_elements = 1;
+  
+  // Create BreadcrumbList
+  bool create_breadcrumbs = 2;
+  
+  // Create ItemList for sections
+  bool create_item_lists = 3;
+  
+  // Navigation hierarchy depth
+  int32 max_hierarchy_depth = 4;
+}
+
+// Documentation content enhancement
+message DocsContentEnhancement {
+  // Code sample enhancement
+  CodeSampleEnhancement code_samples = 1;
+  
+  // Step-by-step enhancement
+  StepEnhancement steps = 2;
+  
+  // FAQ enhancement
+  FAQEnhancement faq = 3;
+  
+  // Table enhancement
+  TableEnhancement tables = 4;
+  
+  // Glossary enhancement
+  GlossaryEnhancement glossary = 5;
+}
+
+// Code sample enhancement
+message CodeSampleEnhancement {
+  // Create SoftwareSourceCode objects
+  bool create_code_objects = 1;
+  
+  // Include code context
+  bool include_context = 2;
+  
+  // Link to live examples
+  bool link_live_examples = 3;
+  
+  // Include execution results
+  bool include_results = 4;
+}
+
+// Step-by-step enhancement
+message StepEnhancement {
+  // Auto-detect step lists
+  bool auto_detect = 1;
+  
+  // Create HowTo objects
+  bool create_howto = 2;
+  
+  // Include time estimates
+  bool include_time = 3;
+  
+  // Include difficulty level
+  bool include_difficulty = 4;
+}
+
+// FAQ enhancement
+message FAQEnhancement {
+  // Auto-detect Q&A pairs
+  bool auto_detect = 1;
+  
+  // Create FAQPage markup
+  bool create_faq_page = 2;
+  
+  // Group related questions
+  bool group_questions = 3;
+}
+
+// Table enhancement
+message TableEnhancement {
+  // Create Table objects
+  bool create_table_objects = 1;
+  
+  // Include table captions
+  bool include_captions = 2;
+  
+  // Create Dataset for data tables
+  bool create_datasets = 3;
+}
+
+// Glossary enhancement
+message GlossaryEnhancement {
+  // Create DefinedTerm objects
+  bool create_defined_terms = 1;
+  
+  // Link term occurrences
+  bool link_occurrences = 2;
+  
+  // Include term relationships
+  bool include_relationships = 3;
+}
+
+// Learning resource settings
+message LearningResourceSettings {
+  // Mark as learning resource
+  bool is_learning_resource = 1;
+  
+  // Educational level
+  string educational_level = 2;
+  
+  // Time required
+  string time_required = 3;
+  
+  // Prerequisites
+  repeated string prerequisites = 4;
+  
+  // Learning objectives
+  repeated string objectives = 5;
+  
+  // Competencies gained
+  repeated string competencies = 6;
+}
+
+// How-to guide settings
+message HowToSettings {
+  // Auto-detect how-to content
+  bool auto_detect = 1;
+  
+  // Default category
+  string default_category = 2;
+  
+  // Include tools/supplies
+  bool include_tools = 3;
+  
+  // Include cost estimates
+  bool include_cost = 4;
+  
+  // Step numbering style
+  string step_style = 5;
+}
+
+// Technical article defaults
+message TechnicalArticleDefaults {
+  // Default properties
+  repeated string default_properties = 1;
+  
+  // Required properties
+  repeated string required_properties = 2;
+  
+  // Technical level settings
+  TechnicalLevelSettings level_settings = 3;
+  
+  // Code example settings
+  CodeExampleSettings code_settings = 4;
+  
+  // Diagram settings
+  DiagramSettings diagram_settings = 5;
+}
+
+// Technical level settings
+message TechnicalLevelSettings {
+  // Include tech level
+  bool include_level = 1;
+  
+  // Level categories
+  repeated string level_categories = 2;
+  
+  // Auto-detect level
+  bool auto_detect = 3;
+}
+
+// Code example settings
+message CodeExampleSettings {
+  // Require examples
+  bool require_examples = 1;
+  
+  // Min examples per article
+  int32 min_examples = 2;
+  
+  // Include language info
+  bool include_language = 3;
+  
+  // Include line numbers
+  bool include_line_numbers = 4;
+}
+
+// Diagram settings
+message DiagramSettings {
+  // Include diagrams
+  bool include_diagrams = 1;
+  
+  // Diagram type mapping
+  map<string, string> type_mapping = 2;
+  
+  // Generate from code
+  bool generate_from_code = 3;
+}
+
+// API reference defaults
+message APIReferenceDefaults {
+  // Default properties
+  repeated string default_properties = 1;
+  
+  // Required properties
+  repeated string required_properties = 2;
+  
+  // Endpoint settings
+  EndpointSettings endpoint_settings = 3;
+  
+  // Schema settings
+  APISchemaSettings schema_settings = 4;
+  
+  // Example settings
+  APIExampleSettings example_settings = 5;
+}
+
+// Endpoint settings
+message EndpointSettings {
+  // Include all endpoints
+  bool include_all = 1;
+  
+  // Group by resource
+  bool group_by_resource = 2;
+  
+  // Include deprecated
+  bool include_deprecated = 3;
+  
+  // Authentication info
+  bool include_auth = 4;
+}
+
+// API schema settings
+message APISchemaSettings {
+  // Include request schemas
+  bool include_request = 1;
+  
+  // Include response schemas
+  bool include_response = 2;
+  
+  // Include error schemas
+  bool include_errors = 3;
+  
+  // Schema format
+  string schema_format = 4;
+}
+
+// API example settings
+message APIExampleSettings {
+  // Include examples
+  bool include_examples = 1;
+  
+  // Example languages
+  repeated string languages = 2;
+  
+  // Include responses
+  bool include_responses = 3;
+  
+  // Include error examples
+  bool include_errors = 4;
+}
+
+// Documentation-specific GTM configuration
+message DocsGTMConfig {
+  // Advanced navigation tracking
+  NavigationTracking nav_tracking = 1;
+  
+  // Code interaction tracking
+  CodeInteractionTracking code_tracking = 2;
+  
+  // API explorer tracking
+  APIExplorerTracking api_tracking = 3;
+  
+  // Version switching tracking
+  bool track_version_switching = 4;
+  
+  // Search behavior tracking
+  SearchTracking search_tracking = 5;
+  
+  // Documentation-specific events
+  repeated string doc_events = 6;
+}
+
+// Navigation tracking for docs
+message NavigationTracking {
+  // Track sidebar navigation
+  bool track_sidebar = 1;
+  
+  // Track breadcrumb usage
+  bool track_breadcrumbs = 2;
+  
+  // Track anchor link clicks
+  bool track_anchors = 3;
+  
+  // Track TOC navigation
+  bool track_toc = 4;
+}
+
+// Code interaction tracking
+message CodeInteractionTracking {
+  // Track code copy events
+  bool track_copy = 1;
+  
+  // Track code execution (if interactive)
+  bool track_execution = 2;
+  
+  // Track language switching
+  bool track_language_switch = 3;
+  
+  // Track expand/collapse
+  bool track_expand_collapse = 4;
+}
+
+// API explorer tracking
+message APIExplorerTracking {
+  // Track try-it-out usage
+  bool track_try_it = 1;
+  
+  // Track parameter changes
+  bool track_param_changes = 2;
+  
+  // Track response views
+  bool track_response_views = 3;
+  
+  // Track auth setup
+  bool track_auth_setup = 4;
+}
+
+// Search tracking configuration
+message SearchTracking {
+  // Track search queries
+  bool track_queries = 1;
+  
+  // Track search results clicked
+  bool track_result_clicks = 2;
+  
+  // Track no results scenarios
+  bool track_no_results = 3;
+  
+  // Track filter usage
+  bool track_filters = 4;
+}
+
+// Documentation-specific ARIA configuration
+message DocsARIAConfig {
+  // Navigation accessibility
+  NavigationAccessibility nav_accessibility = 1;
+  
+  // Code block accessibility
+  CodeBlockAccessibility code_accessibility = 2;
+  
+  // API reference accessibility
+  APIReferenceAccessibility api_accessibility = 3;
+  
+  // Search accessibility
+  SearchAccessibility search_accessibility = 4;
+  
+  // Documentation landmarks
+  map<string, string> doc_landmarks = 5;
+}
+
+// Navigation accessibility settings
+message NavigationAccessibility {
+  // Sidebar tree ARIA
+  bool sidebar_tree_aria = 1;
+  
+  // Expandable sections ARIA
+  bool expandable_sections = 2;
+  
+  // Current page indication
+  bool current_page_indication = 3;
+  
+  // Navigation hints
+  bool navigation_hints = 4;
+}
+
+// Code block accessibility
+message CodeBlockAccessibility {
+  // Syntax role descriptions
+  bool syntax_roles = 1;
+  
+  // Line number announcements
+  bool line_announcements = 2;
+  
+  // Copy status announcements
+  bool copy_announcements = 3;
+  
+  // Language identification
+  bool language_identification = 4;
+}
+
+// API reference accessibility
+message APIReferenceAccessibility {
+  // Parameter table ARIA
+  bool parameter_tables = 1;
+  
+  // Response code descriptions
+  bool response_descriptions = 2;
+  
+  // Interactive example ARIA
+  bool interactive_aria = 3;
+  
+  // Schema navigation
+  bool schema_navigation = 4;
+}
+
+// Search accessibility settings
+message SearchAccessibility {
+  // Search input ARIA
+  bool search_input_aria = 1;
+  
+  // Results announcement
+  bool results_announcement = 2;
+  
+  // Filter controls ARIA
+  bool filter_aria = 3;
+  
+  // Keyboard navigation
+  bool keyboard_navigation = 4;
+}

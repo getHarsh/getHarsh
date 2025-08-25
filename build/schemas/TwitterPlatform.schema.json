@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TwitterPlatform",
+  "definitions": {
+    "TwitterPlatform": {
+      "properties": {
+        "default_handle": {
+          "type": "string",
+          "description": "Default handle (without @)"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_cards": {
+          "type": "boolean",
+          "description": "Enable Twitter cards"
+        },
+        "card_type": {
+          "type": "string",
+          "description": "Card type (\"summary\" or \"summary_large_image\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Twitter Platform",
+      "description": "Twitter/X platform configuration"
+    }
+  },
+  "title": "TWITTERPLATFORM Configuration Schema",
+  "description": "JSON Schema for TwitterPlatform configuration"
+}

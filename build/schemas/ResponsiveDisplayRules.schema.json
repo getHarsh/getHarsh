@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ResponsiveDisplayRules",
+  "definitions": {
+    "ResponsiveDisplayRules": {
+      "properties": {
+        "mobile_hidden": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components hidden on mobile"
+        },
+        "tablet_only": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components visible only on tablet"
+        },
+        "desktop_only": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components visible only on desktop"
+        },
+        "breakpoints": {
+          "$ref": "#/definitions/website.config.BreakpointSettings",
+          "description": "Custom breakpoints"
+        },
+        "component_rules": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ComponentVisibility"
+          },
+          "type": "object",
+          "description": "Component-specific rules"
+        },
+        "responsive_images": {
+          "type": "boolean",
+          "description": "Enable responsive images"
+        },
+        "responsive_tables": {
+          "type": "boolean",
+          "description": "Enable responsive tables"
+        },
+        "mobile_first": {
+          "type": "boolean",
+          "description": "Mobile-first approach"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Responsive Display Rules",
+      "description": "Responsive display rules for components Controls visibility based on viewport size"
+    },
+    "website.config.BreakpointSettings": {
+      "properties": {
+        "mobile_max": {
+          "type": "integer",
+          "description": "Mobile max width (pixels)"
+        },
+        "tablet_min": {
+          "type": "integer",
+          "description": "Tablet min width (pixels)"
+        },
+        "tablet_max": {
+          "type": "integer",
+          "description": "Tablet max width (pixels)"
+        },
+        "desktop_min": {
+          "type": "integer",
+          "description": "Desktop min width (pixels)"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Custom breakpoints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Breakpoint Settings",
+      "description": "Breakpoint configuration"
+    },
+    "website.config.ComponentVisibility": {
+      "properties": {
+        "mobile": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "tablet": {
+          "type": "boolean",
+          "description": "Show on tablet"
+        },
+        "desktop": {
+          "type": "boolean",
+          "description": "Show on desktop"
+        },
+        "alternatives": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Alternative component for different sizes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Component Visibility",
+      "description": "Component visibility rules"
+    }
+  },
+  "title": "RESPONSIVEDISPLAYRULES Configuration Schema",
+  "description": "JSON Schema for ResponsiveDisplayRules configuration"
+}

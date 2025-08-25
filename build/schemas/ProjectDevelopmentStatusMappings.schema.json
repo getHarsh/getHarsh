@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectDevelopmentStatusMappings",
+  "definitions": {
+    "ProjectDevelopmentStatusMappings": {
+      "properties": {
+        "status_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org status e.g., \"PROJECT_STATUS_BETA\" -> \"Beta\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n PROJECT DEVELOPMENT STATUS MAPPINGS\n =============================================================================",
+      "description": "============================================================================= PROJECT DEVELOPMENT STATUS MAPPINGS =============================================================================  Maps ProjectDevelopmentStatus enum values to Schema.org CreativeWork status"
+    }
+  },
+  "title": "PROJECTDEVELOPMENTSTATUSMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ProjectDevelopmentStatusMappings configuration"
+}

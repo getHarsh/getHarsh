@@ -1,0 +1,4165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EcosystemConfig",
+  "definitions": {
+    "EcosystemConfig": {
+      "properties": {
+        "analytics": {
+          "$ref": "#/definitions/website.config.Analytics",
+          "description": "Analytics configuration shared across all domains"
+        },
+        "seo_defaults": {
+          "$ref": "#/definitions/website.config.SeoDefaults",
+          "description": "Default SEO settings for all domains"
+        },
+        "gatsby_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Gatsby plugins used by all sites"
+        },
+        "content_defaults": {
+          "$ref": "#/definitions/website.config.ContentDefaults",
+          "description": "Default content settings"
+        },
+        "cross_domain_nav": {
+          "$ref": "#/definitions/website.config.CrossDomainNav",
+          "description": "Cross-domain navigation configuration"
+        },
+        "environment_vars": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.EnvironmentVar"
+          },
+          "type": "object",
+          "description": "Environment variable definitions required by the system"
+        },
+        "ecosystem": {
+          "$ref": "#/definitions/website.config.EcosystemMap",
+          "description": "Cross-domain ecosystem mapping and relationships"
+        },
+        "build_settings": {
+          "$ref": "#/definitions/website.config.BuildSettings",
+          "description": "Build and Gatsby configuration"
+        },
+        "theme_defaults": {
+          "$ref": "#/definitions/website.config.ThemeDefaults",
+          "description": "Default theme settings inherited by all domains"
+        },
+        "security": {
+          "$ref": "#/definitions/website.config.SecuritySettings",
+          "description": "Security configuration and environment variable classification"
+        },
+        "features": {
+          "$ref": "#/definitions/website.config.FeatureFlags",
+          "description": "Default feature flags for all domains"
+        },
+        "ai_agent": {
+          "$ref": "#/definitions/website.config.AIAgentSettings",
+          "description": "AI agent integration settings"
+        },
+        "copyright": {
+          "$ref": "#/definitions/website.config.CopyrightSettings",
+          "description": "Copyright configuration"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "Default timezone for all sites"
+        },
+        "consent_settings": {
+          "$ref": "#/definitions/website.config.ConsentSettings",
+          "description": "Cookie consent configuration (LEGALLY REQUIRED for GA/FB Pixel)"
+        },
+        "security_headers": {
+          "$ref": "#/definitions/website.config.SecurityHeaders",
+          "description": "Security headers for GitHub Pages (CSP via meta tags)"
+        },
+        "performance": {
+          "$ref": "#/definitions/website.config.PerformanceSettings",
+          "description": "Performance monitoring and optimization settings"
+        },
+        "analytics_services": {
+          "$ref": "#/definitions/website.config.AnalyticsServices",
+          "description": "Enhanced analytics services configuration"
+        },
+        "social_platforms": {
+          "$ref": "#/definitions/website.config.SocialPlatforms",
+          "description": "Social platforms configuration"
+        },
+        "google_services": {
+          "$ref": "#/definitions/website.config.GoogleServices",
+          "description": "Google services configuration"
+        },
+        "search_tools": {
+          "$ref": "#/definitions/website.config.SearchEngineTools",
+          "description": "Search engine tools configuration"
+        },
+        "structured_data": {
+          "$ref": "#/definitions/website.config.StructuredDataSettings",
+          "description": "Structured data (JSON-LD) configuration"
+        },
+        "component_defaults": {
+          "$ref": "#/definitions/website.config.ComponentDefaults",
+          "description": "Component default settings"
+        },
+        "ecosystem_learn_more_url": {
+          "type": "string",
+          "description": "Ecosystem learn more URL (e.g., GitHub README)"
+        },
+        "decap_cms": {
+          "$ref": "#/definitions/website.config.DecapCMSSettings",
+          "description": "Decap CMS configuration"
+        },
+        "rss_feed": {
+          "$ref": "#/definitions/website.config.RSSFeedSettings",
+          "description": "RSS feed configuration"
+        },
+        "audio_settings": {
+          "$ref": "#/definitions/website.config.AudioSettings",
+          "description": "Audio player settings for Google Drive integration"
+        },
+        "technical_links": {
+          "$ref": "#/definitions/website.config.TechnicalLinks",
+          "description": "Footer technical links configuration"
+        },
+        "policy_links": {
+          "$ref": "#/definitions/website.config.PolicyLinks",
+          "description": "Policy page links configuration See: ../SCHEMA-ORG-EXAMPLES.md#inheritance-and-override-rules"
+        },
+        "default_schema_org_type": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "legal_entities": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.LegalEntity"
+          },
+          "type": "object",
+          "description": "Legal entities catalog - all entities in the ecosystem Domains reference these by key (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "authors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Authors catalog - person keys who can author content Only persons who write articles/posts (appear in Decap CMS) References keys from the persons catalog"
+        },
+        "organizations": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ExternalOrganization"
+          },
+          "type": "object",
+          "description": "External organizations catalog - organizations not owned by ecosystem entities Referenced by key in person affiliations (e.g., \"AION\", \"SMART_JOULES\")"
+        },
+        "persons": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.PersonSchema"
+          },
+          "type": "object",
+          "description": "Persons catalog - all persons in the ecosystem Includes founders, directors, employees, advisors, etc. Referenced by key (e.g., \"harsh\", \"john_doe\")"
+        },
+        "brands": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.Brand"
+          },
+          "type": "object",
+          "description": "Brands catalog - all brands in the ecosystem Brands are verticals of legal entities that group projects Referenced by key (e.g., \"getHarsh\", \"causality\", \"rawThoughts\")"
+        },
+        "communities": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.Community"
+          },
+          "type": "object",
+          "description": "Communities catalog - external communities that leverage ecosystem Referenced by key (e.g., \"UPAI\")"
+        },
+        "entity_relationships": {
+          "items": {
+            "$ref": "#/definitions/website.config.EntityRelationship"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity relationships - all entity-to-entity relationships Supports flexible relationships between any entities"
+        },
+        "schema_org_config": {
+          "$ref": "#/definitions/website.config.SchemaOrgConfig",
+          "description": "Schema.org mapping configuration Controls how enums are mapped to Schema.org types at build time"
+        },
+        "schema_org_settings": {
+          "$ref": "#/definitions/website.config.SchemaOrgGlobalSettings",
+          "description": "Schema.org global settings Default values for all Schema.org JSON-LD generation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Config",
+      "description": "EcosystemConfig defines the default configuration inherited by all domains. These values are stored in getHarsh/config/ecosystem-defaults.yml and are automatically inherited by all domain configurations."
+    },
+    "website.config.AIAgentSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable AI agent features"
+        },
+        "manifest_path": {
+          "type": "string",
+          "description": "Path to manifest file"
+        },
+        "sitemap_path": {
+          "type": "string",
+          "description": "Path to sitemap"
+        },
+        "robots_path": {
+          "type": "string",
+          "description": "Path to robots.txt"
+        },
+        "llms_txt_path": {
+          "type": "string",
+          "description": "Path to LLMs.txt"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Agent Settings",
+      "description": "AI agent integration settings"
+    },
+    "website.config.AISearchOptimization": {
+      "properties": {
+        "enable_chatgpt_bot": {
+          "type": "boolean",
+          "description": "Enable specific AI crawlers"
+        },
+        "enable_perplexity_bot": {
+          "type": "boolean"
+        },
+        "enable_claude_bot": {
+          "type": "boolean"
+        },
+        "enable_bard_bot": {
+          "type": "boolean"
+        },
+        "custom_ai_agents": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom AI user agents to allow"
+        },
+        "generate_ai_summaries": {
+          "type": "boolean",
+          "description": "Generate AI-friendly content summaries"
+        },
+        "include_qa_pairs": {
+          "type": "boolean",
+          "description": "Include structured QA pairs for AI"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Search Optimization",
+      "description": "AI search optimization configuration"
+    },
+    "website.config.Analytics": {
+      "properties": {
+        "ga_tracking_id": {
+          "type": "string",
+          "description": "Google Analytics tracking ID (supports ${GA_TRACKING_ID})"
+        },
+        "meta_pixel_id": {
+          "type": "string",
+          "description": "Meta/Facebook Pixel ID (supports ${META_PIXEL_ID})"
+        },
+        "cross_domain_tracking": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking between ecosystem sites"
+        },
+        "linked_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to link for cross-domain tracking"
+        },
+        "twitter_pixel": {
+          "$ref": "#/definitions/website.config.TwitterPixel",
+          "description": "Twitter Pixel configuration"
+        },
+        "linkedin_insight": {
+          "$ref": "#/definitions/website.config.LinkedInInsight",
+          "description": "LinkedIn Insight Tag configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics",
+      "description": "Analytics configuration for tracking and metrics"
+    },
+    "website.config.AnalyticsServices": {
+      "properties": {
+        "google_analytics": {
+          "$ref": "#/definitions/website.config.GoogleAnalytics",
+          "description": "Google Analytics configuration"
+        },
+        "meta_pixel": {
+          "$ref": "#/definitions/website.config.MetaPixel",
+          "description": "Meta/Facebook Pixel configuration"
+        },
+        "microsoft_clarity": {
+          "$ref": "#/definitions/website.config.MicrosoftClarity",
+          "description": "Microsoft Clarity configuration"
+        },
+        "twitter_pixel": {
+          "$ref": "#/definitions/website.config.TwitterPixel",
+          "description": "Twitter/X Pixel configuration"
+        },
+        "linkedin_insight": {
+          "$ref": "#/definitions/website.config.LinkedInInsight",
+          "description": "LinkedIn Insight Tag configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Services",
+      "description": "Enhanced analytics services configuration"
+    },
+    "website.config.AudioPlayerDefaults": {
+      "properties": {
+        "auto_play": {
+          "type": "boolean",
+          "description": "Auto play"
+        },
+        "show_download": {
+          "type": "boolean",
+          "description": "Show download button"
+        },
+        "preload": {
+          "type": "string",
+          "description": "Preload strategy (\"none\", \"metadata\", \"auto\")"
+        },
+        "default_volume": {
+          "type": "number",
+          "description": "Default volume (0-1)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Player Defaults",
+      "description": "Audio player defaults"
+    },
+    "website.config.AudioSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable audio player features"
+        },
+        "google_drive_base_url": {
+          "type": "string",
+          "description": "Google Drive base URL for audio files"
+        },
+        "default_folder_id": {
+          "type": "string",
+          "description": "Default folder ID for audio recordings"
+        },
+        "supported_formats": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Supported audio formats"
+        },
+        "default_position": {
+          "type": "string",
+          "description": "Default player position (\"header\", \"sidebar\", \"bottom\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Settings",
+      "description": "Audio player settings for Google Drive integration"
+    },
+    "website.config.BingWebmasterTools": {
+      "properties": {
+        "site_verification": {
+          "type": "string",
+          "description": "Site verification HTML tag content"
+        },
+        "auto_submit_sitemap": {
+          "type": "boolean",
+          "description": "Auto-submit sitemap on build"
+        },
+        "enable_clarity_integration": {
+          "type": "boolean",
+          "description": "Enable Clarity integration"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key for programmatic access"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Bing Webmaster Tools",
+      "description": "Bing Webmaster Tools configuration"
+    },
+    "website.config.Brand": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Brand key (e.g., \"getHarsh\", \"causality\", \"rawThoughts\")"
+        },
+        "name": {
+          "type": "string",
+          "description": "Brand name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brand description"
+        },
+        "legal_entity_key": {
+          "type": "string",
+          "description": "Legal entity that owns this brand (key reference)"
+        },
+        "domain_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Associated domain keys (e.g., [\"getHarsh.in\"])"
+        },
+        "project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project keys hosted under this brand Populated dynamically from PROJECTS/ discovery"
+        },
+        "is_personal_brand": {
+          "type": "boolean",
+          "description": "Special flag for personal brands (like getHarsh)"
+        },
+        "is_entity_website": {
+          "type": "boolean",
+          "description": "Special flag for entity website brands (like rawThoughts, daostudio)"
+        },
+        "schema_org": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org entity definition for the brand"
+        },
+        "color": {
+          "type": "string",
+          "description": "Brand color (hex) for visual identity"
+        },
+        "focus_area": {
+          "type": "string",
+          "description": "Brand focus area (e.g., \"research\", \"consulting\", \"creative\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Brand",
+      "description": "Brand definition - brands are verticals of legal entities Groups related projects under a common identity and philosophy"
+    },
+    "website.config.BreakpointSettings": {
+      "properties": {
+        "mobile_max": {
+          "type": "integer",
+          "description": "Mobile max width (pixels)"
+        },
+        "tablet_min": {
+          "type": "integer",
+          "description": "Tablet min width (pixels)"
+        },
+        "tablet_max": {
+          "type": "integer",
+          "description": "Tablet max width (pixels)"
+        },
+        "desktop_min": {
+          "type": "integer",
+          "description": "Desktop min width (pixels)"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Custom breakpoints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Breakpoint Settings",
+      "description": "Breakpoint configuration"
+    },
+    "website.config.BuildFlags": {
+      "properties": {
+        "fast_refresh": {
+          "type": "boolean",
+          "description": "Enable fast refresh in development"
+        },
+        "cache": {
+          "type": "boolean",
+          "description": "Enable build caching"
+        },
+        "parallel": {
+          "type": "boolean",
+          "description": "Enable parallel processing"
+        },
+        "verbose": {
+          "type": "boolean",
+          "description": "Enable verbose logging"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Flags",
+      "description": "Build flags for Gatsby"
+    },
+    "website.config.BuildSettings": {
+      "properties": {
+        "build_mode": {
+          "type": "string",
+          "description": "Gatsby build mode (\"development\", \"production\")"
+        },
+        "path_prefix": {
+          "type": "string",
+          "description": "Path prefix for deployment (e.g., \"/blog\" for subpath deployment)"
+        },
+        "asset_prefix": {
+          "type": "string",
+          "description": "Asset prefix for CDN"
+        },
+        "flags": {
+          "$ref": "#/definitions/website.config.BuildFlags",
+          "description": "Build flags"
+        },
+        "mdx": {
+          "$ref": "#/definitions/website.config.MDXSettings",
+          "description": "MDX configuration for content"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Settings",
+      "description": "Build and Gatsby configuration"
+    },
+    "website.config.CMSField": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Field name"
+        },
+        "label": {
+          "type": "string",
+          "description": "Field label"
+        },
+        "widget": {
+          "type": "string",
+          "description": "Widget type"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required field"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Field hint"
+        },
+        "pattern": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Pattern validation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "CMS Field",
+      "description": "CMS field definition"
+    },
+    "website.config.CalendarService": {
+      "properties": {
+        "appointment_calendar_id": {
+          "type": "string",
+          "description": "Appointment calendar ID"
+        },
+        "booking_url": {
+          "type": "string",
+          "description": "Booking URL"
+        },
+        "embed_enabled": {
+          "type": "boolean",
+          "description": "Enable embedding"
+        },
+        "embed_height": {
+          "type": "integer",
+          "description": "Embed height"
+        },
+        "time_zone": {
+          "type": "string",
+          "description": "Time zone"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Calendar Service",
+      "description": "Google Calendar service configuration"
+    },
+    "website.config.CodeBlockDefaults": {
+      "properties": {
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers by default"
+        },
+        "show_copy_button": {
+          "type": "boolean",
+          "description": "Show copy button"
+        },
+        "default_theme": {
+          "type": "string",
+          "description": "Default syntax theme"
+        },
+        "enable_line_highlighting": {
+          "type": "boolean",
+          "description": "Enable line highlighting"
+        },
+        "tab_size": {
+          "type": "integer",
+          "description": "Tab size"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Defaults",
+      "description": "Code block default settings"
+    },
+    "website.config.CodeBlockSettings": {
+      "properties": {
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers"
+        },
+        "show_copy_button": {
+          "type": "boolean",
+          "description": "Show copy button"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Syntax highlighting theme"
+        },
+        "enable_line_highlighting": {
+          "type": "boolean",
+          "description": "Enable highlighting specific lines"
+        },
+        "tab_size": {
+          "type": "integer",
+          "description": "Tab size"
+        },
+        "wrap_lines": {
+          "type": "boolean",
+          "description": "Wrap long lines"
+        },
+        "show_language_label": {
+          "type": "boolean",
+          "description": "Show language label"
+        },
+        "enable_diff_view": {
+          "type": "boolean",
+          "description": "Enable diff view"
+        },
+        "max_height": {
+          "type": "integer",
+          "description": "Max height before scroll (pixels)"
+        },
+        "language_aliases": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom language mappings"
+        },
+        "inline_highlighting": {
+          "type": "boolean",
+          "description": "Enable inline code syntax highlighting"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Block Settings",
+      "description": "Enhanced code block settings Maps to Schema.org SoftwareSourceCode"
+    },
+    "website.config.CollectionConfig": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Collection name"
+        },
+        "label": {
+          "type": "string",
+          "description": "Collection label"
+        },
+        "folder": {
+          "type": "string",
+          "description": "Folder path (relative to repo root)"
+        },
+        "create": {
+          "type": "boolean",
+          "description": "Create new entries"
+        },
+        "slug": {
+          "type": "string",
+          "description": "Slug pattern"
+        },
+        "preview_path": {
+          "type": "string",
+          "description": "Preview path pattern"
+        },
+        "editor": {
+          "$ref": "#/definitions/website.config.EditorConfig",
+          "description": "Editor configuration"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Summary field pattern"
+        },
+        "sort": {
+          "$ref": "#/definitions/website.config.SortConfig",
+          "description": "Sort configuration"
+        },
+        "view_filters": {
+          "items": {
+            "$ref": "#/definitions/website.config.ViewFilter"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "View filters"
+        },
+        "view_groups": {
+          "items": {
+            "$ref": "#/definitions/website.config.ViewGroup"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "View groups"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Collection Config",
+      "description": "Collection configuration"
+    },
+    "website.config.Community": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Community key (e.g., \"UPAI\")"
+        },
+        "name": {
+          "type": "string",
+          "description": "Community name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Community description"
+        },
+        "status": {
+          "enum": [
+            "COMMUNITY_STATUS_UNSPECIFIED",
+            0,
+            "COMMUNITY_STATUS_FORMING",
+            1,
+            "COMMUNITY_STATUS_ACTIVE",
+            2,
+            "COMMUNITY_STATUS_INACTIVE",
+            3,
+            "COMMUNITY_STATUS_DISSOLVED",
+            4,
+            "COMMUNITY_STATUS_MERGED",
+            5
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Community Status",
+          "description": "Community status for external communities"
+        },
+        "website": {
+          "type": "string",
+          "description": "External website (if any)"
+        },
+        "member_person_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Member person keys from persons catalog"
+        },
+        "leverages_project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project keys this community leverages"
+        },
+        "schema_org": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org entity definition for the community"
+        },
+        "community_type": {
+          "type": "string",
+          "description": "Community type (e.g., \"research\", \"opensource\", \"professional\")"
+        },
+        "founding_date": {
+          "type": "string",
+          "description": "Founding date (ISO 8601)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Community",
+      "description": "Community definition - external communities that leverage ecosystem"
+    },
+    "website.config.ComponentDefaults": {
+      "properties": {
+        "code_block": {
+          "$ref": "#/definitions/website.config.CodeBlockDefaults",
+          "description": "Code block defaults"
+        },
+        "table_of_contents": {
+          "$ref": "#/definitions/website.config.TableOfContentsDefaults",
+          "description": "Table of contents defaults"
+        },
+        "social_share": {
+          "$ref": "#/definitions/website.config.SocialShareDefaults",
+          "description": "Social share defaults"
+        },
+        "audio_player": {
+          "$ref": "#/definitions/website.config.AudioPlayerDefaults",
+          "description": "Audio player defaults"
+        },
+        "image": {
+          "$ref": "#/definitions/website.config.ImageDefaults",
+          "description": "Image component defaults"
+        },
+        "video_embed": {
+          "$ref": "#/definitions/website.config.VideoEmbedDefaults",
+          "description": "Video embed defaults"
+        },
+        "enhanced_code_block": {
+          "$ref": "#/definitions/website.config.CodeBlockSettings",
+          "description": "Enhanced code block settings"
+        },
+        "technical_content": {
+          "$ref": "#/definitions/website.config.TechnicalContentSettings",
+          "description": "Technical content settings"
+        },
+        "responsive_rules": {
+          "$ref": "#/definitions/website.config.ResponsiveDisplayRules",
+          "description": "Responsive display rules"
+        },
+        "error_pages": {
+          "$ref": "#/definitions/website.config.ErrorPageContent",
+          "description": "Error page content"
+        },
+        "social_discussion": {
+          "$ref": "#/definitions/website.config.SocialDiscussion",
+          "description": "Social discussion settings"
+        },
+        "smart_links": {
+          "$ref": "#/definitions/website.config.SmartLinkSettings",
+          "description": "Smart link settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Component Defaults",
+      "description": "Component default settings"
+    },
+    "website.config.ComponentVisibility": {
+      "properties": {
+        "mobile": {
+          "type": "boolean",
+          "description": "Show on mobile"
+        },
+        "tablet": {
+          "type": "boolean",
+          "description": "Show on tablet"
+        },
+        "desktop": {
+          "type": "boolean",
+          "description": "Show on desktop"
+        },
+        "alternatives": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Alternative component for different sizes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Component Visibility",
+      "description": "Component visibility rules"
+    },
+    "website.config.ConsentCategories": {
+      "properties": {
+        "analytics": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Analytics category settings"
+        },
+        "marketing": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Marketing category settings"
+        },
+        "functional": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Functional category settings"
+        },
+        "necessary": {
+          "$ref": "#/definitions/website.config.ConsentCategory",
+          "description": "Necessary category settings (always enabled)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Categories",
+      "description": "Consent categories configuration"
+    },
+    "website.config.ConsentCategory": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Category title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Category description"
+        },
+        "providers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Providers/services in this category"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required by default"
+        },
+        "pre_selected": {
+          "type": "boolean",
+          "description": "Pre-selected in UI"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Category",
+      "description": "Individual consent category configuration"
+    },
+    "website.config.ConsentModeV2": {
+      "properties": {
+        "ad_user_data_default": {
+          "type": "boolean",
+          "description": "Default consent states"
+        },
+        "ad_personalization_default": {
+          "type": "boolean"
+        },
+        "implementation_mode": {
+          "type": "string",
+          "description": "Implementation mode (\"basic\" or \"advanced\")"
+        },
+        "enable_cookieless_pings": {
+          "type": "boolean",
+          "description": "Advanced mode features"
+        },
+        "enable_data_modeling": {
+          "type": "boolean"
+        },
+        "wait_for_update_ms": {
+          "type": "integer",
+          "description": "Wait for consent update (milliseconds)"
+        },
+        "region_defaults": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.RegionConsent"
+          },
+          "type": "object",
+          "description": "Region-specific defaults"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Mode V 2",
+      "description": "Enhanced Google Consent Mode v2 configuration"
+    },
+    "website.config.ConsentSettings": {
+      "properties": {
+        "enable_consent_banner": {
+          "type": "boolean",
+          "description": "Enable cookie consent banner"
+        },
+        "consent_cookie_name": {
+          "type": "string",
+          "description": "Cookie name for storing consent state  default: \"analytics_consent\""
+        },
+        "consent_duration_days": {
+          "type": "integer",
+          "description": "How long consent is valid (in days)  default: 365"
+        },
+        "google_consent_mode_v2": {
+          "type": "boolean",
+          "description": "Enable Google Consent Mode v2 (required by March 2024)"
+        },
+        "banner_text": {
+          "type": "string",
+          "description": "Text for the consent banner"
+        },
+        "accept_button_text": {
+          "type": "string",
+          "description": "Text for the accept button"
+        },
+        "decline_button_text": {
+          "type": "string",
+          "description": "Text for the decline button"
+        },
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Link to privacy policy"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Link to cookie policy"
+        },
+        "consent_mode_v2": {
+          "$ref": "#/definitions/website.config.ConsentModeV2",
+          "description": "Google Consent Mode v2 specific configuration"
+        },
+        "enable_cross_domain_consent": {
+          "type": "boolean",
+          "description": "Enable cross-domain consent sharing"
+        },
+        "consent_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to share consent across"
+        },
+        "banner_position": {
+          "type": "string",
+          "description": "Consent UI position (\"bottom\", \"top\", \"center\")"
+        },
+        "banner_theme": {
+          "type": "string",
+          "description": "Banner theme (\"light\", \"dark\", \"auto\")"
+        },
+        "consent_categories": {
+          "$ref": "#/definitions/website.config.ConsentCategories",
+          "description": "Consent categories configuration"
+        },
+        "entity_specific": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.EntityConsentSettings"
+          },
+          "type": "object",
+          "description": "Entity-specific consent settings"
+        },
+        "settings_button_text": {
+          "type": "string",
+          "description": "Settings button text"
+        },
+        "save_preferences_text": {
+          "type": "string",
+          "description": "Save preferences button text"
+        },
+        "consent_version": {
+          "type": "string",
+          "description": "Consent version (for updates)"
+        },
+        "show_consent_icon": {
+          "type": "boolean",
+          "description": "Show consent status icon"
+        },
+        "region_defaults": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Regional consent defaults See: CONSENT-ARCHITECTURE.md#regional-detection Format: [\"EU:denied\", \"US-CA:denied\", \"IN:granted\", \"DEFAULT:granted\"]"
+        },
+        "enable_granular_control": {
+          "type": "boolean",
+          "description": "Enable granular category control See: CONSENT-ARCHITECTURE.md#granular-consent-ui"
+        },
+        "categories_config": {
+          "$ref": "#/definitions/website.config.ConsentCategories",
+          "description": "Category configuration for granular consent See: CONSENT-ARCHITECTURE.md#granular-consent-ui"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Settings",
+      "description": "Cookie consent configuration for GDPR/ePrivacy compliance LEGALLY REQUIRED: EU law mandates explicit consent BEFORE loading analytics Reference: €1.34M fine example for non-compliance"
+    },
+    "website.config.ContactPoint": {
+      "properties": {
+        "contact_type": {
+          "type": "string",
+          "description": "Contact type (e.g., \"customer service\")"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone number"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address"
+        },
+        "available_language": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available languages"
+        },
+        "area_served": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Area served"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Point",
+      "description": "Contact point for organization"
+    },
+    "website.config.ContentCollections": {
+      "properties": {
+        "posts": {
+          "$ref": "#/definitions/website.config.CollectionConfig",
+          "description": "Posts collection settings"
+        },
+        "pages": {
+          "$ref": "#/definitions/website.config.CollectionConfig",
+          "description": "Pages collection settings"
+        },
+        "custom": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CollectionConfig"
+          },
+          "type": "object",
+          "description": "Custom collections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Collections",
+      "description": "Content collections configuration"
+    },
+    "website.config.ContentDefaults": {
+      "properties": {
+        "excerpt_length": {
+          "type": "integer",
+          "description": "Default excerpt length in words"
+        },
+        "posts_per_page": {
+          "type": "integer",
+          "description": "Default posts per page for pagination"
+        },
+        "date_format": {
+          "type": "string",
+          "description": "Default date format (e.g., \"%B %d, %Y\")"
+        },
+        "show_reading_time": {
+          "type": "boolean",
+          "description": "Enable reading time calculation by default"
+        },
+        "reading_wpm": {
+          "type": "integer",
+          "description": "Words per minute for reading time calculation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Defaults",
+      "description": "Default content settings for posts and pages"
+    },
+    "website.config.CopyrightSettings": {
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Copyright notice pattern (supports {year}, {entity} variables)"
+        },
+        "start_year": {
+          "type": "integer",
+          "description": "Starting year for copyright"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Copyright Settings",
+      "description": "Copyright configuration"
+    },
+    "website.config.CrossDomainNav": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ecosystem navigation bar"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position of the nav bar (\"top\", \"bottom\")"
+        },
+        "domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains to show in navigation (order matters)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Domain Nav",
+      "description": "Cross-domain navigation configuration"
+    },
+    "website.config.CustomWidget": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Widget name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Widget type"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Widget options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Widget",
+      "description": "Custom widget configuration"
+    },
+    "website.config.DecapBackend": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Backend name (\"git-gateway\", \"github\", \"gitlab\", \"test-repo\")"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository (for github/gitlab backends)"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Branch to use"
+        },
+        "api_root": {
+          "type": "string",
+          "description": "API root (for gitlab)"
+        },
+        "auth_endpoint": {
+          "type": "string",
+          "description": "Auth endpoint (for git-gateway)"
+        },
+        "cms_label_prefix": {
+          "type": "string",
+          "description": "CMS label prefix"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Backend",
+      "description": "Decap CMS backend configuration"
+    },
+    "website.config.DecapCMSSettings": {
+      "properties": {
+        "backend": {
+          "$ref": "#/definitions/website.config.DecapBackend",
+          "description": "Backend configuration"
+        },
+        "media_folder": {
+          "type": "string",
+          "description": "Media folder configuration"
+        },
+        "public_folder": {
+          "type": "string",
+          "description": "Public folder for media"
+        },
+        "editorial_workflow": {
+          "$ref": "#/definitions/website.config.EditorialWorkflow",
+          "description": "Editorial workflow settings"
+        },
+        "collections": {
+          "$ref": "#/definitions/website.config.ContentCollections",
+          "description": "Content collections configuration"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom preview styles"
+        },
+        "custom_widgets": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.CustomWidget"
+          },
+          "type": "object",
+          "description": "Custom widgets configuration"
+        },
+        "slug": {
+          "$ref": "#/definitions/website.config.SlugConfig",
+          "description": "Slug configuration"
+        },
+        "default_fields": {
+          "items": {
+            "$ref": "#/definitions/website.config.CMSField"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Default fields for all collections"
+        },
+        "gatsby_integration": {
+          "$ref": "#/definitions/website.config.GatsbyDecapIntegration",
+          "description": "Gatsby integration settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap CMS Settings",
+      "description": "Decap CMS configuration for content management"
+    },
+    "website.config.DefaultArticleSchema": {
+      "properties": {
+        "publisher_type": {
+          "type": "string",
+          "description": "Default publisher type (\"Organization\" or \"Person\")"
+        },
+        "default_image_width": {
+          "type": "integer",
+          "description": "Default image dimensions"
+        },
+        "default_image_height": {
+          "type": "integer"
+        },
+        "include_author": {
+          "type": "boolean",
+          "description": "Include author by default"
+        },
+        "include_date_modified": {
+          "type": "boolean",
+          "description": "Include modified date"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Default Article Schema",
+      "description": "Default article schema settings"
+    },
+    "website.config.DomainMetadata": {
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Primary domain (e.g., \"getHarsh.in\")"
+        },
+        "blog": {
+          "type": "string",
+          "description": "Blog subdomain (e.g., \"blog.getHarsh.in\")"
+        },
+        "entity": {
+          "type": "string",
+          "description": "Legal entity that owns this domain (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "color": {
+          "type": "string",
+          "description": "Brand color for this domain (hex)"
+        },
+        "projects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects hosted under this domain"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Metadata",
+      "description": "Metadata for each domain in the ecosystem"
+    },
+    "website.config.DriveService": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Drive integration"
+        },
+        "shared_folders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Shared folder IDs"
+        },
+        "enable_direct_downloads": {
+          "type": "boolean",
+          "description": "Enable direct downloads"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Drive Service",
+      "description": "Google Drive service configuration"
+    },
+    "website.config.EcosystemMap": {
+      "properties": {
+        "domains": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.DomainMetadata"
+          },
+          "type": "object",
+          "description": "All domains in the ecosystem with their metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Ecosystem Map",
+      "description": "Cross-domain ecosystem mapping"
+    },
+    "website.config.EditorConfig": {
+      "properties": {
+        "preview": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editor Config",
+      "description": "Editor configuration"
+    },
+    "website.config.EditorialWorkflow": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable editorial workflow"
+        },
+        "publish_mode": {
+          "type": "string",
+          "description": "Publish mode (\"simple\", \"editorial_workflow\")"
+        },
+        "preview_context": {
+          "type": "string",
+          "description": "Preview context (site URL for previews)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editorial Workflow",
+      "description": "Editorial workflow configuration"
+    },
+    "website.config.EntityConsentSettings": {
+      "properties": {
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Privacy policy URL for this entity"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Cookie policy URL for this entity"
+        },
+        "data_controller": {
+          "type": "string",
+          "description": "Data controller name"
+        },
+        "data_controller_email": {
+          "type": "string",
+          "description": "Data controller contact"
+        },
+        "banner_text_override": {
+          "type": "string",
+          "description": "Entity-specific banner text"
+        },
+        "gtm_container_id": {
+          "type": "string",
+          "description": "GTM container ID for this entity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Consent Settings",
+      "description": "Entity-specific consent settings"
+    },
+    "website.config.EntityContacts": {
+      "properties": {
+        "registered_email": {
+          "type": "string",
+          "description": "Registered email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Official phone number"
+        },
+        "tax_number": {
+          "type": "string",
+          "description": "GST/Tax number"
+        },
+        "pan_number": {
+          "type": "string",
+          "description": "PAN number (India specific)"
+        },
+        "legal_email": {
+          "type": "string",
+          "description": "Legal/compliance email"
+        },
+        "accounts_email": {
+          "type": "string",
+          "description": "Accounts/finance email"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Contacts",
+      "description": "Official entity contact information"
+    },
+    "website.config.EntityPerson": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Person's name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role in the entity"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date in role"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (if applicable)"
+        },
+        "person_url": {
+          "type": "string",
+          "description": "Person's Schema.org URL (if they have a domain)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Person",
+      "description": "Person associated with an entity"
+    },
+    "website.config.EntityRelationship": {
+      "properties": {
+        "from_key": {
+          "type": "string",
+          "description": "Source entity key (e.g., \"harsh\", \"RTEPL\", \"HENA\")"
+        },
+        "from_type": {
+          "enum": [
+            "ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "ENTITY_TYPE_PERSON",
+            1,
+            "ENTITY_TYPE_LEGAL_ENTITY",
+            2,
+            "ENTITY_TYPE_ORGANIZATION",
+            3,
+            "ENTITY_TYPE_BRAND",
+            4,
+            "ENTITY_TYPE_PROJECT",
+            5,
+            "ENTITY_TYPE_COMMUNITY",
+            6,
+            "ENTITY_TYPE_DOMAIN",
+            7,
+            "ENTITY_TYPE_BLOG",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Entity Type",
+          "description": "Entity types for entity relationships"
+        },
+        "to_key": {
+          "type": "string",
+          "description": "Target entity key (e.g., \"AION\", \"getHarsh\", \"JARVIS-kernel\")"
+        },
+        "to_type": {
+          "enum": [
+            "ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "ENTITY_TYPE_PERSON",
+            1,
+            "ENTITY_TYPE_LEGAL_ENTITY",
+            2,
+            "ENTITY_TYPE_ORGANIZATION",
+            3,
+            "ENTITY_TYPE_BRAND",
+            4,
+            "ENTITY_TYPE_PROJECT",
+            5,
+            "ENTITY_TYPE_COMMUNITY",
+            6,
+            "ENTITY_TYPE_DOMAIN",
+            7,
+            "ENTITY_TYPE_BLOG",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Entity Type",
+          "description": "Entity types for entity relationships"
+        },
+        "type": {
+          "enum": [
+            "RELATIONSHIP_TYPE_UNSPECIFIED",
+            0,
+            "RELATIONSHIP_OWNS",
+            1,
+            "RELATIONSHIP_OWNED_BY",
+            2,
+            "RELATIONSHIP_PARENT_ORGANIZATION",
+            3,
+            "RELATIONSHIP_SUB_ORGANIZATION",
+            4,
+            "RELATIONSHIP_FOUNDER",
+            5,
+            "RELATIONSHIP_FOUNDED_BY",
+            6,
+            "RELATIONSHIP_EMPLOYEE",
+            7,
+            "RELATIONSHIP_EMPLOYER",
+            8,
+            "RELATIONSHIP_MEMBER",
+            9,
+            "RELATIONSHIP_MEMBER_OF",
+            10,
+            "RELATIONSHIP_ADVISOR",
+            11,
+            "RELATIONSHIP_ADVISES",
+            12,
+            "RELATIONSHIP_PARTNER",
+            13,
+            "RELATIONSHIP_PARTNER_OF",
+            14,
+            "RELATIONSHIP_FUNDER",
+            15,
+            "RELATIONSHIP_FUNDED_BY",
+            16,
+            "RELATIONSHIP_SPONSOR",
+            17,
+            "RELATIONSHIP_SPONSORED_BY",
+            18,
+            "RELATIONSHIP_SUPPORTS",
+            19,
+            "RELATIONSHIP_SUPPORTED_BY",
+            20,
+            "RELATIONSHIP_USES",
+            21,
+            "RELATIONSHIP_USED_BY",
+            22,
+            "RELATIONSHIP_DEPENDS_ON",
+            23,
+            "RELATIONSHIP_DEPENDENCY_OF",
+            24,
+            "RELATIONSHIP_HAS_PART",
+            25,
+            "RELATIONSHIP_PART_OF",
+            26,
+            "RELATIONSHIP_BRAND",
+            27,
+            "RELATIONSHIP_BRAND_OF",
+            28,
+            "RELATIONSHIP_HOSTS",
+            29,
+            "RELATIONSHIP_HOSTED_BY",
+            30,
+            "RELATIONSHIP_LEVERAGES",
+            31,
+            "RELATIONSHIP_LEVERAGED_BY",
+            32,
+            "RELATIONSHIP_EVOLVED_FROM",
+            33,
+            "RELATIONSHIP_EVOLVES_TO",
+            34,
+            "RELATIONSHIP_REPLACES",
+            35,
+            "RELATIONSHIP_REPLACED_BY",
+            36,
+            "RELATIONSHIP_INTEGRATES_WITH",
+            37,
+            "RELATIONSHIP_EXTENDS",
+            38,
+            "RELATIONSHIP_EXTENDED_BY",
+            39
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Relationship Type",
+          "description": "Entity relationship types for flexible entity-to-entity relationships Used in EntityRelationship for type-safe relationship definitions"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the relationship"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (ISO 8601 format, e.g., \"2024-01-01\")"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (ISO 8601 format, omit if current)"
+        },
+        "is_current": {
+          "type": "boolean",
+          "description": "Whether this relationship is currently active"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional metadata as key-value pairs Examples: support_type=\"infrastructure\", evolution_stage=\"pivot\""
+        },
+        "role": {
+          "type": "string",
+          "description": "Optional role description (e.g., \"Founding Product Manager\")"
+        },
+        "schema_predicate": {
+          "type": "string",
+          "description": "Schema.org predicate for this relationship Populated from RelationshipTypeMappings at build time Examples: \"founder\", \"owns\", \"memberOf\", \"worksFor\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Relationship",
+      "description": "Flexible entity-to-entity relationship definition Supports relationships between any entities in the ecosystem"
+    },
+    "website.config.EnvironmentVar": {
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of what this variable is for"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether this variable is required"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value if not set (optional)"
+        },
+        "example": {
+          "type": "string",
+          "description": "Example value for documentation"
+        },
+        "security_level": {
+          "enum": [
+            "PUBLIC",
+            0,
+            "SENSITIVE",
+            1,
+            "SECRET",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Security Level",
+          "description": "Security classification for environment variables"
+        },
+        "redaction_strategy": {
+          "enum": [
+            "NONE",
+            0,
+            "PARTIAL",
+            1,
+            "REMOVE",
+            2,
+            "PLACEHOLDER",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Redaction Strategy",
+          "description": "How to redact sensitive values before publishing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Environment Var",
+      "description": "Environment variable definition with security classification"
+    },
+    "website.config.ErrorMessage": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code (404, 500, etc.)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Primary message"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Secondary/explanation text"
+        },
+        "variations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Quirky variations"
+        },
+        "image_url": {
+          "type": "string",
+          "description": "Custom image/illustration URL"
+        },
+        "tone": {
+          "type": "string",
+          "description": "Tone (\"playful\", \"apologetic\", \"technical\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Message",
+      "description": "Individual error message configuration"
+    },
+    "website.config.ErrorPageCTA": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Button text"
+        },
+        "url": {
+          "type": "string",
+          "description": "Button URL"
+        },
+        "style": {
+          "type": "string",
+          "description": "Button style (\"primary\", \"secondary\", \"ghost\")"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page CTA",
+      "description": "Error page CTA configuration"
+    },
+    "website.config.ErrorPageContent": {
+      "properties": {
+        "error_messages": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ErrorMessage"
+          },
+          "type": "object",
+          "description": "Error code to message mapping"
+        },
+        "default_template": {
+          "type": "string",
+          "description": "Default error message template"
+        },
+        "learn_more_suffix": {
+          "type": "string",
+          "description": "Learn more URL suffix"
+        },
+        "enable_quirky_messages": {
+          "type": "boolean",
+          "description": "Enable quirky messages"
+        },
+        "rotation_strategy": {
+          "type": "string",
+          "description": "Rotation strategy for multiple messages  \"random\", \"sequential\", \"time-based\""
+        },
+        "cta_buttons": {
+          "items": {
+            "$ref": "#/definitions/website.config.ErrorPageCTA"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom CTA buttons for error pages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Error Page Content",
+      "description": "Error page content configuration For quirky 404, 500, etc. messages"
+    },
+    "website.config.ExternalOrganization": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Short identifier (e.g., \"AION\", \"SMART_JOULES\")"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full organization name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization website URL"
+        },
+        "type": {
+          "type": "string",
+          "description": "Organization type (e.g., \"Corporation\", \"Startup\", \"NonProfit\")"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location (optional)"
+        },
+        "industry": {
+          "type": "string",
+          "description": "Industry/sector (optional)"
+        },
+        "schema_org": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org entity definition (optional)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "External Organization",
+      "description": "External organization definition for the ecosystem catalog These are organizations not owned by ecosystem entities (e.g., employers, partners)"
+    },
+    "website.config.FeatureFlags": {
+      "properties": {
+        "comments": {
+          "type": "boolean",
+          "description": "Enable comments by default"
+        },
+        "math": {
+          "type": "boolean",
+          "description": "Enable math rendering by default"
+        },
+        "graphviz": {
+          "type": "boolean",
+          "description": "Enable GraphViz diagrams by default"
+        },
+        "mermaid": {
+          "type": "boolean",
+          "description": "Enable Mermaid diagrams by default"
+        },
+        "search": {
+          "type": "boolean",
+          "description": "Enable search functionality by default"
+        },
+        "reading_time": {
+          "type": "boolean",
+          "description": "Enable reading time display by default"
+        },
+        "share_buttons": {
+          "type": "boolean",
+          "description": "Enable share buttons by default"
+        },
+        "table_of_contents": {
+          "type": "boolean",
+          "description": "Enable table of contents by default"
+        },
+        "syntax_highlighting": {
+          "type": "boolean",
+          "description": "Enable syntax highlighting by default"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Feature Flags",
+      "description": "Default feature flags for all domains"
+    },
+    "website.config.GatsbyDecapIntegration": {
+      "properties": {
+        "enable_preview": {
+          "type": "boolean",
+          "description": "Enable Gatsby preview with Decap CMS"
+        },
+        "preview_update_delay": {
+          "type": "integer",
+          "description": "Preview update delay (milliseconds)"
+        },
+        "real_time_preview": {
+          "type": "boolean",
+          "description": "Enable real-time preview"
+        },
+        "preview_templates_path": {
+          "type": "string",
+          "description": "Custom preview templates path"
+        },
+        "widget_scripts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Widget scripts to load"
+        },
+        "preview_styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preview styles to inject"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Decap Integration",
+      "description": "Gatsby + Decap CMS integration settings"
+    },
+    "website.config.GatsbyRemarkPlugin": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin name"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Plugin options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Remark Plugin",
+      "description": "Gatsby remark plugin configuration"
+    },
+    "website.config.GitHubPlatform": {
+      "properties": {
+        "organizations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Organizations list"
+        },
+        "default_branch": {
+          "type": "string",
+          "description": "Default branch name"
+        },
+        "show_stars": {
+          "type": "boolean",
+          "description": "Show star count on links"
+        },
+        "show_forks": {
+          "type": "boolean",
+          "description": "Show fork count on links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Platform",
+      "description": "GitHub platform configuration"
+    },
+    "website.config.GoogleAnalytics": {
+      "properties": {
+        "tracking_id": {
+          "type": "string",
+          "description": "Tracking ID (supports environment variable)"
+        },
+        "enable_enhanced_ecommerce": {
+          "type": "boolean",
+          "description": "Enable enhanced ecommerce"
+        },
+        "enable_demographics": {
+          "type": "boolean",
+          "description": "Enable demographics reports"
+        },
+        "enable_remarketing": {
+          "type": "boolean",
+          "description": "Enable remarketing features"
+        },
+        "gtm_container_id": {
+          "type": "string",
+          "description": "Google Tag Manager container ID (supports environment variable)"
+        },
+        "enable_ga4_features": {
+          "type": "boolean",
+          "description": "Enable Google Analytics 4 features"
+        },
+        "enable_server_side_tagging": {
+          "type": "boolean",
+          "description": "Enable server-side tagging"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Analytics",
+      "description": "Google Analytics specific settings"
+    },
+    "website.config.GoogleSearchConsole": {
+      "properties": {
+        "site_verification": {
+          "type": "string",
+          "description": "Site verification HTML tag content"
+        },
+        "auto_submit_sitemap": {
+          "type": "boolean",
+          "description": "Auto-submit sitemap on build"
+        },
+        "enable_indexing_api": {
+          "type": "boolean",
+          "description": "Enable Index API for instant indexing"
+        },
+        "service_account_key": {
+          "type": "string",
+          "description": "Service account JSON key path (for API)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Search Console",
+      "description": "Google Search Console configuration"
+    },
+    "website.config.GoogleServices": {
+      "properties": {
+        "calendar": {
+          "$ref": "#/definitions/website.config.CalendarService",
+          "description": "Calendar service settings"
+        },
+        "drive": {
+          "$ref": "#/definitions/website.config.DriveService",
+          "description": "Drive service settings"
+        },
+        "maps": {
+          "$ref": "#/definitions/website.config.MapsService",
+          "description": "Maps service settings (if needed)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Services",
+      "description": "Google services configuration"
+    },
+    "website.config.ImageDefaults": {
+      "properties": {
+        "lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        },
+        "loading_animation": {
+          "type": "string",
+          "description": "Loading animation (\"blur\", \"skeleton\", \"none\")"
+        },
+        "default_quality": {
+          "type": "integer",
+          "description": "Default quality (1-100)"
+        },
+        "enable_zoom": {
+          "type": "boolean",
+          "description": "Enable zoom on click"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Defaults",
+      "description": "Image component defaults"
+    },
+    "website.config.InstagramPlatform": {
+      "properties": {
+        "profile_url": {
+          "type": "string",
+          "description": "Profile URL"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_embeds": {
+          "type": "boolean",
+          "description": "Enable post embeds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Instagram Platform",
+      "description": "Instagram platform configuration"
+    },
+    "website.config.LegalEntity": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Short identifier (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "full_name": {
+          "type": "string",
+          "description": "Full legal name"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "Entity type (e.g., \"Private Limited Company\", \"LLC\")"
+        },
+        "registration_number": {
+          "type": "string",
+          "description": "Registration number"
+        },
+        "incorporation_date": {
+          "type": "string",
+          "description": "Incorporation date"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Jurisdiction/Country"
+        },
+        "registered_address": {
+          "$ref": "#/definitions/website.config.RegisteredAddress",
+          "description": "Registered office address"
+        },
+        "contacts": {
+          "$ref": "#/definitions/website.config.EntityContacts",
+          "description": "Official contact information"
+        },
+        "founders": {
+          "items": {
+            "$ref": "#/definitions/website.config.EntityPerson"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Founders and their roles"
+        },
+        "directors": {
+          "items": {
+            "$ref": "#/definitions/website.config.EntityPerson"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Current directors/officers"
+        },
+        "schema_org": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org entity definition"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Legal Entity",
+      "description": "Legal entity definition for the ecosystem catalog"
+    },
+    "website.config.LinkTypeConfig": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type name"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class or URL"
+        },
+        "aria_label": {
+          "type": "string",
+          "description": "ARIA label template"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "CSS class to apply"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Config",
+      "description": "Link type configuration"
+    },
+    "website.config.LinkTypePatterns": {
+      "properties": {
+        "google_docs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Google Workspace patterns"
+        },
+        "google_sheets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_slides": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "google_drive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_repo": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "GitHub patterns"
+        },
+        "github_file": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_issue": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "github_pr": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "file_extensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "File extension patterns"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Type Patterns",
+      "description": "Link type detection patterns"
+    },
+    "website.config.LinkedInInsight": {
+      "properties": {
+        "partner_id": {
+          "type": "string",
+          "description": "LinkedIn Partner ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_matched_audiences": {
+          "type": "boolean",
+          "description": "Enable matched audiences (retargeting)"
+        },
+        "enable_website_demographics": {
+          "type": "boolean",
+          "description": "Enable website demographics"
+        },
+        "conversion_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Conversion IDs to track"
+        },
+        "enable_enhanced_conversion": {
+          "type": "boolean",
+          "description": "Enable enhanced conversion tracking (1st party cookies)"
+        },
+        "enable_cross_domain": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Insight",
+      "description": "LinkedIn Insight Tag configuration"
+    },
+    "website.config.LinkedInPlatform": {
+      "properties": {
+        "company_page": {
+          "type": "string",
+          "description": "Company page URL"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_insights_tag": {
+          "type": "boolean",
+          "description": "Enable LinkedIn insights tag"
+        },
+        "partner_id": {
+          "type": "string",
+          "description": "Partner ID for insights"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linked In Platform",
+      "description": "LinkedIn platform configuration"
+    },
+    "website.config.Location": {
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "address": {
+          "type": "string",
+          "description": "Address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Location",
+      "description": "Location for maps"
+    },
+    "website.config.MDXSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable MDX for markdown processing"
+        },
+        "extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Extensions to process as MDX"
+        },
+        "remark_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Remark plugins"
+        },
+        "rehype_plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Rehype plugins"
+        },
+        "gatsby_remark_plugins": {
+          "items": {
+            "$ref": "#/definitions/website.config.GatsbyRemarkPlugin"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Gatsby remark plugins"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "MDX Settings",
+      "description": "MDX settings for content processing"
+    },
+    "website.config.MapsService": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Maps integration"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key"
+        },
+        "default_location": {
+          "$ref": "#/definitions/website.config.Location",
+          "description": "Default location"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Maps Service",
+      "description": "Google Maps service configuration"
+    },
+    "website.config.MetaPixel": {
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "Pixel ID (supports environment variable)"
+        },
+        "enable_automatic_matching": {
+          "type": "boolean",
+          "description": "Enable automatic matching"
+        },
+        "enable_advanced_matching": {
+          "type": "boolean",
+          "description": "Enable advanced matching"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Meta Pixel",
+      "description": "Meta/Facebook Pixel settings"
+    },
+    "website.config.MicrosoftClarity": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Clarity"
+        },
+        "project_id": {
+          "type": "string",
+          "description": "Clarity project ID"
+        },
+        "integrate_with_bing": {
+          "type": "boolean",
+          "description": "Auto-integrate with Bing Webmaster Tools"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Microsoft Clarity",
+      "description": "Microsoft Clarity settings"
+    },
+    "website.config.OrganizationSchema": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL"
+        },
+        "logo_url": {
+          "type": "string",
+          "description": "Logo URL (must be specific dimensions)"
+        },
+        "same_as": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Same as URLs (social profiles)"
+        },
+        "contact_point": {
+          "$ref": "#/definitions/website.config.ContactPoint",
+          "description": "Contact point"
+        },
+        "founding_date": {
+          "type": "string",
+          "description": "Founding date"
+        },
+        "founders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Founders"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Organization Schema",
+      "description": "Organization schema for JSON-LD"
+    },
+    "website.config.PerformanceSettings": {
+      "properties": {
+        "max_page_size_kb": {
+          "type": "integer",
+          "description": "Maximum page size in KB before warning  default: 500"
+        },
+        "target_load_time_ms": {
+          "type": "integer",
+          "description": "Target page load time in milliseconds  default: 3000"
+        },
+        "enable_lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading for images and iframes"
+        },
+        "enable_image_optimization": {
+          "type": "boolean",
+          "description": "Enable automatic image optimization"
+        },
+        "preload_resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Preload critical resources"
+        },
+        "enable_resource_hints": {
+          "type": "boolean",
+          "description": "Enable resource hints (dns-prefetch, preconnect)"
+        },
+        "critical_css_threshold_kb": {
+          "type": "integer",
+          "description": "Critical CSS inline threshold in KB"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Performance Settings",
+      "description": "Performance monitoring and optimization settings"
+    },
+    "website.config.PersonAffiliation": {
+      "properties": {
+        "organization_key": {
+          "type": "string",
+          "description": "Organization key from legal_entities or organizations catalog"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position held"
+        },
+        "type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (ISO 8601 format, e.g., \"2024-01-01\")"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (ISO 8601 format, omit if current)"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        },
+        "is_legal_entity": {
+          "type": "boolean",
+          "description": "If true, look up in legal_entities catalog; if false, in organizations catalog"
+        },
+        "description": {
+          "type": "string",
+          "description": "Additional details or description (optional)"
+        },
+        "is_current": {
+          "type": "boolean",
+          "description": "Whether this affiliation is currently active Automatically true if end_date is empty or in the future"
+        },
+        "person_role": {
+          "enum": [
+            "PERSON_ROLE_UNSPECIFIED",
+            0,
+            "PERSON_ROLE_AUTHOR",
+            1,
+            "PERSON_ROLE_CONTRIBUTOR",
+            2,
+            "PERSON_ROLE_REVIEWER",
+            3,
+            "PERSON_ROLE_EDITOR",
+            4,
+            "PERSON_ROLE_FOUNDER",
+            5,
+            "PERSON_ROLE_DEVELOPER",
+            6,
+            "PERSON_ROLE_DESIGNER",
+            7,
+            "PERSON_ROLE_RESEARCHER",
+            8,
+            "PERSON_ROLE_ADVISOR",
+            9,
+            "PERSON_ROLE_DIRECTOR",
+            10,
+            "PERSON_ROLE_SPEAKER",
+            11,
+            "PERSON_ROLE_MENTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Person Role",
+          "description": "Person roles for standardized role identification Used for author attribution, ARIA announcements, and Schema.org"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Person Affiliation",
+      "description": "Person affiliation with an organization using key references Used in PersonSchema for type-safe, dynamic affiliations"
+    },
+    "website.config.PersonSchema": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Person name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Person URL (profile page) - DEPRECATED: Generated dynamically at build time"
+        },
+        "same_as": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Same as URLs (social profiles)"
+        },
+        "job_title": {
+          "type": "string",
+          "description": "Job title"
+        },
+        "works_for": {
+          "type": "string",
+          "description": "Works for (organization) - DEPRECATED: Use affiliations instead"
+        },
+        "image": {
+          "type": "string",
+          "description": "Image URL (relative path, e.g., \"/assets/harsh-avatar.png\")"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description/bio"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.PersonAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations with organizations using key references References organizations by key from legal_entities or organizations catalogs"
+        },
+        "creator_of_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domain keys this person created (e.g., [\"getHarsh\", \"causality\"]) Populated dynamically from ecosystem.domains mapping"
+        },
+        "author_of_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project keys this person authored (e.g., [\"HENA\", \"JARVIS-kernel\"]) Populated dynamically from PROJECTS/ discovery"
+        },
+        "knows_about": {
+          "type": "string",
+          "description": "Areas of expertise (for knowsAbout property) Example: \"Artificial Intelligence, Distributed Systems, Philosophy of Mind\""
+        },
+        "alumni_of": {
+          "items": {
+            "$ref": "#/definitions/website.config.PersonAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Educational affiliations using key references"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Person Schema",
+      "description": "Person schema for authors"
+    },
+    "website.config.PolicyLinks": {
+      "properties": {
+        "privacy_policy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "terms_of_service_url": {
+          "type": "string",
+          "description": "Terms of service URL"
+        },
+        "cookie_policy_url": {
+          "type": "string",
+          "description": "Cookie policy URL"
+        },
+        "terms_of_use_url": {
+          "type": "string",
+          "description": "Terms of use URL"
+        },
+        "acceptable_use_policy_url": {
+          "type": "string",
+          "description": "Acceptable use policy URL"
+        },
+        "data_processing_agreement_url": {
+          "type": "string",
+          "description": "Data processing agreement URL"
+        },
+        "refund_policy_url": {
+          "type": "string",
+          "description": "Refund policy URL"
+        },
+        "disclaimer_url": {
+          "type": "string",
+          "description": "Disclaimer URL"
+        },
+        "additional_policies": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional policy links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Policy Links",
+      "description": "Policy page links configuration Defines URLs for all legal/policy pages in the ecosystem See ../SCHEMA-ORG-EXAMPLES.md#inheritance--overrides for override patterns"
+    },
+    "website.config.RSSFeedSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable RSS feed generation"
+        },
+        "path": {
+          "type": "string",
+          "description": "Feed path (e.g., \"/feed.xml\")"
+        },
+        "title": {
+          "type": "string",
+          "description": "Feed title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Feed description"
+        },
+        "post_limit": {
+          "type": "integer",
+          "description": "Number of posts in feed"
+        },
+        "full_content": {
+          "type": "boolean",
+          "description": "Include full content or summary only"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "RSS Feed Settings",
+      "description": "RSS feed configuration"
+    },
+    "website.config.RegionConsent": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region code (e.g., \"EU\", \"US\", \"CA\")"
+        },
+        "analytics_storage": {
+          "type": "boolean",
+          "description": "Consent defaults for this region"
+        },
+        "ad_storage": {
+          "type": "boolean"
+        },
+        "ad_user_data": {
+          "type": "boolean"
+        },
+        "ad_personalization": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Consent",
+      "description": "Region-specific consent defaults"
+    },
+    "website.config.RegisteredAddress": {
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City"
+        },
+        "state": {
+          "type": "string",
+          "description": "State/Province"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Registered Address",
+      "description": "Registered office address"
+    },
+    "website.config.ResponsiveDisplayRules": {
+      "properties": {
+        "mobile_hidden": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components hidden on mobile"
+        },
+        "tablet_only": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components visible only on tablet"
+        },
+        "desktop_only": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Components visible only on desktop"
+        },
+        "breakpoints": {
+          "$ref": "#/definitions/website.config.BreakpointSettings",
+          "description": "Custom breakpoints"
+        },
+        "component_rules": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.ComponentVisibility"
+          },
+          "type": "object",
+          "description": "Component-specific rules"
+        },
+        "responsive_images": {
+          "type": "boolean",
+          "description": "Enable responsive images"
+        },
+        "responsive_tables": {
+          "type": "boolean",
+          "description": "Enable responsive tables"
+        },
+        "mobile_first": {
+          "type": "boolean",
+          "description": "Mobile-first approach"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Responsive Display Rules",
+      "description": "Responsive display rules for components Controls visibility based on viewport size"
+    },
+    "website.config.RichSnippetsConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable rich snippets"
+        },
+        "snippet_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Types to generate snippets for"
+        },
+        "include_images": {
+          "type": "boolean",
+          "description": "Include preview images"
+        },
+        "include_ratings": {
+          "type": "boolean",
+          "description": "Include ratings/reviews"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Rich Snippets Config",
+      "description": "Rich snippets configuration"
+    },
+    "website.config.SchemaOrgAffiliation": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL (optional)"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (optional, ISO 8601 format)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (optional, ISO 8601 format, omit if current)"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type (optional, e.g., \"Corporation\", \"EducationalOrganization\")"
+        },
+        "affiliation_type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization @id reference (for linking to existing entities) Example: \"https://rawthoughts.in/#organization\""
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Affiliation",
+      "description": "Affiliation for Person type in Schema.org JSON-LD output DEPRECATED: Use PersonAffiliation for configuration, this is for output only"
+    },
+    "website.config.SchemaOrgChild": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Child entity ID/URL"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type  e.g., \"owns\", \"subOrganization\", \"hasPart\""
+        },
+        "type": {
+          "type": "string",
+          "description": "Child type  e.g., \"ResearchProject\", \"SoftwareApplication\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Child",
+      "description": "Child entity reference for Schema.org"
+    },
+    "website.config.SchemaOrgConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Schema.org JSON-LD generation"
+        },
+        "mapping_mode": {
+          "type": "string",
+          "description": "Mapping mode (\"automatic\", \"manual\", \"hybrid\")"
+        },
+        "include_all_mappings": {
+          "type": "boolean",
+          "description": "Include all enum mappings in build"
+        },
+        "included_mappings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Specific mappings to include (if not including all)"
+        },
+        "custom_mappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom mapping overrides"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.SchemaOrgValidation",
+          "description": "Validation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Config",
+      "description": "Schema.org configuration for build-time mapping"
+    },
+    "website.config.SchemaOrgEntity": {
+      "properties": {
+        "type_enum": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "custom_type": {
+          "type": "string",
+          "description": "Custom type string for types not in our enum Use this for rare/specialized types (e.g., \"MedicalOrganization\")"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types for multi-type entities Example: [\"WebSite\", \"Brand\"] for getHarsh.in See ../SCHEMA-ORG-EXAMPLES.md#quick-start for patterns"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string properties (name, description, url, etc.)"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations (for Person type)"
+        },
+        "parent_entity_id": {
+          "type": "string",
+          "description": "Parent entity reference (for hierarchy)  e.g., \"@id\" reference"
+        },
+        "parent_relationship": {
+          "type": "string",
+          "description": "Relationship type to parent  e.g., \"parentOrganization\", \"creator\", \"owns\""
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgChild"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child entities (for org -> projects)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity",
+      "description": "Schema.org entity configuration Used to define the semantic type of any entity (domain, blog, project, page) See ../SCHEMA-ORG-EXAMPLES.md#configuration-examples for usage"
+    },
+    "website.config.SchemaOrgGlobalSettings": {
+      "properties": {
+        "default_context": {
+          "type": "string",
+          "description": "Default @context  \"https://schema.org\""
+        },
+        "include_ids": {
+          "type": "boolean",
+          "description": "Include @id for all entities"
+        },
+        "base_url": {
+          "type": "string",
+          "description": "Base URL for @id generation"
+        },
+        "default_language": {
+          "type": "string",
+          "description": "Default language"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs"
+        },
+        "rich_snippets": {
+          "$ref": "#/definitions/website.config.RichSnippetsConfig",
+          "description": "Rich snippets configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Global Settings",
+      "description": "Global Schema.org settings"
+    },
+    "website.config.SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    },
+    "website.config.SearchEngineTools": {
+      "properties": {
+        "google_search_console": {
+          "$ref": "#/definitions/website.config.GoogleSearchConsole",
+          "description": "Google Search Console settings"
+        },
+        "bing_webmaster_tools": {
+          "$ref": "#/definitions/website.config.BingWebmasterTools",
+          "description": "Bing Webmaster Tools settings"
+        },
+        "ai_search_optimization": {
+          "$ref": "#/definitions/website.config.AISearchOptimization",
+          "description": "AI search optimization settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Engine Tools",
+      "description": "Search engine tools configuration"
+    },
+    "website.config.SecurityHeaders": {
+      "properties": {
+        "csp_policy": {
+          "type": "string",
+          "description": "Content Security Policy for meta tag"
+        },
+        "enable_sri": {
+          "type": "boolean",
+          "description": "Enable Subresource Integrity for CDN resources"
+        },
+        "referrer_policy": {
+          "type": "string",
+          "description": "Referrer policy for meta tag"
+        },
+        "no_sniff": {
+          "type": "boolean",
+          "description": "X-Content-Type-Options equivalent"
+        },
+        "frame_options": {
+          "type": "string",
+          "description": "X-Frame-Options equivalent"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Headers",
+      "description": "Security headers configuration for GitHub Pages Note: GitHub Pages only supports meta tag CSP, not HTTP headers"
+    },
+    "website.config.SecuritySettings": {
+      "properties": {
+        "env_vars": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.SecurityVariableList"
+          },
+          "type": "object",
+          "description": "Environment variables by security level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Settings",
+      "description": "Security configuration and environment variable classification"
+    },
+    "website.config.SecurityVariableList": {
+      "properties": {
+        "variables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "List of variable names"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Security Variable List",
+      "description": "List of environment variables for a security level"
+    },
+    "website.config.SeoDefaults": {
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Default author name for meta tags"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Default locale (e.g., \"en_US\")"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "Default Twitter handle for cards"
+        },
+        "description_pattern": {
+          "type": "string",
+          "description": "Default meta description pattern (can use variables)"
+        },
+        "og_image_pattern": {
+          "type": "string",
+          "description": "Default OG image URL pattern"
+        },
+        "enable_llms_txt": {
+          "type": "boolean",
+          "description": "Enable/disable AI crawler optimization (LLMs.txt)"
+        },
+        "copyright_pattern": {
+          "type": "string",
+          "description": "Default copyright pattern (e.g., \"© {year} {entity}\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Seo Defaults",
+      "description": "Default SEO settings inherited by all domains"
+    },
+    "website.config.SlugConfig": {
+      "properties": {
+        "encoding": {
+          "type": "string",
+          "description": "Slug encoding (\"unicode\", \"ascii\")"
+        },
+        "clean_accents": {
+          "type": "boolean",
+          "description": "Clean accents"
+        },
+        "sanitize_replacement": {
+          "type": "string",
+          "description": "Sanitize replacement character"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Slug Config",
+      "description": "Slug configuration"
+    },
+    "website.config.SmartLinkSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable smart link detection"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect link types"
+        },
+        "show_icons": {
+          "type": "boolean",
+          "description": "Show icons for link types"
+        },
+        "add_aria_labels": {
+          "type": "boolean",
+          "description": "Add ARIA labels"
+        },
+        "patterns": {
+          "$ref": "#/definitions/website.config.LinkTypePatterns",
+          "description": "Link type detection patterns"
+        },
+        "custom_types": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.LinkTypeConfig"
+          },
+          "type": "object",
+          "description": "Custom link type mappings"
+        },
+        "ecosystem_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Ecosystem domains (auto-populated from config)"
+        },
+        "external_new_tab": {
+          "type": "boolean",
+          "description": "Open external links in new tab"
+        },
+        "external_nofollow": {
+          "type": "boolean",
+          "description": "Add rel=\"nofollow\" to external links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Smart Link Settings",
+      "description": "Smart link settings for rich semantic links Maps to various Schema.org types based on link destination"
+    },
+    "website.config.SocialDiscussion": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable discussion features"
+        },
+        "discussion_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Platform-specific discussion URLs (key is platform name as string)"
+        },
+        "enabled_platforms": {
+          "items": {
+            "enum": [
+              "DISCUSSION_PLATFORM_UNSPECIFIED",
+              0,
+              "DISCUSSION_PLATFORM_GITHUB_ISSUE",
+              1,
+              "DISCUSSION_PLATFORM_GITHUB_GIST",
+              2,
+              "DISCUSSION_PLATFORM_TWITTER_THREAD",
+              3,
+              "DISCUSSION_PLATFORM_LINKEDIN_POST",
+              4,
+              "DISCUSSION_PLATFORM_REDDIT_THREAD",
+              5,
+              "DISCUSSION_PLATFORM_CHATGPT_CHAT",
+              6,
+              "DISCUSSION_PLATFORM_CLAUDE_CHAT",
+              7,
+              "DISCUSSION_PLATFORM_CLAUDE_ARTIFACT",
+              8,
+              "DISCUSSION_PLATFORM_PERPLEXITY_THREAD",
+              9
+            ]
+          },
+          "type": "array",
+          "title": "Discussion Platform",
+          "description": "Discussion platforms for social discussion and comments Maps to Schema.org DiscussionForumPosting, SocialMediaPosting, Comment"
+        },
+        "discussion_prompt": {
+          "type": "string",
+          "description": "Default text for discussion prompt"
+        },
+        "show_on_mobile": {
+          "type": "boolean",
+          "description": "Show discussion section on mobile"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position in article (\"bottom\", \"sidebar\")"
+        },
+        "group_by_platform_type": {
+          "type": "boolean",
+          "description": "Group discussions by category"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Discussion",
+      "description": "Social discussion configuration for external platforms Maps to Schema.org DiscussionForumPosting, Comment"
+    },
+    "website.config.SocialPlatforms": {
+      "properties": {
+        "github": {
+          "$ref": "#/definitions/website.config.GitHubPlatform",
+          "description": "GitHub platform settings"
+        },
+        "twitter": {
+          "$ref": "#/definitions/website.config.TwitterPlatform",
+          "description": "Twitter/X platform settings"
+        },
+        "linkedin": {
+          "$ref": "#/definitions/website.config.LinkedInPlatform",
+          "description": "LinkedIn platform settings"
+        },
+        "youtube": {
+          "$ref": "#/definitions/website.config.YouTubePlatform",
+          "description": "YouTube platform settings"
+        },
+        "instagram": {
+          "$ref": "#/definitions/website.config.InstagramPlatform",
+          "description": "Instagram platform settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Platforms",
+      "description": "Social platforms configuration"
+    },
+    "website.config.SocialShareDefaults": {
+      "properties": {
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Enabled platforms"
+        },
+        "desktop_position": {
+          "type": "string",
+          "description": "Position on desktop (\"left\", \"right\", \"bottom\")"
+        },
+        "show_counts": {
+          "type": "boolean",
+          "description": "Show counts"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky on scroll"
+        },
+        "include_via": {
+          "type": "boolean",
+          "description": "Include via parameter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Social Share Defaults",
+      "description": "Social share defaults"
+    },
+    "website.config.SortConfig": {
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field to sort by"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Sort direction (\"asc\", \"desc\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sort Config",
+      "description": "Sort configuration"
+    },
+    "website.config.StructuredDataSettings": {
+      "properties": {
+        "enable_json_ld": {
+          "type": "boolean",
+          "description": "Enable JSON-LD generation"
+        },
+        "organization": {
+          "$ref": "#/definitions/website.config.OrganizationSchema",
+          "description": "Organization schema"
+        },
+        "article_defaults": {
+          "$ref": "#/definitions/website.config.DefaultArticleSchema",
+          "description": "Default article schema settings"
+        },
+        "website": {
+          "$ref": "#/definitions/website.config.WebSiteSchema",
+          "description": "Website schema"
+        },
+        "authors": {
+          "items": {
+            "$ref": "#/definitions/website.config.PersonSchema"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Author profiles"
+        },
+        "enable_breadcrumbs": {
+          "type": "boolean",
+          "description": "Enable breadcrumb schema"
+        },
+        "enable_faq_schema": {
+          "type": "boolean",
+          "description": "Enable FAQ schema from content"
+        },
+        "enable_video_schema": {
+          "type": "boolean",
+          "description": "Enable video object schema"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Structured Data Settings",
+      "description": "Structured data (JSON-LD) configuration"
+    },
+    "website.config.TableOfContentsDefaults": {
+      "properties": {
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Maximum depth"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"left\", \"right\", \"top\")"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky on scroll"
+        },
+        "smooth_scroll": {
+          "type": "boolean",
+          "description": "Smooth scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Of Contents Defaults",
+      "description": "Table of contents defaults"
+    },
+    "website.config.TechnicalContentSettings": {
+      "properties": {
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math formula rendering (LaTeX/KaTeX)"
+        },
+        "math_engine": {
+          "type": "string",
+          "description": "Math rendering engine (\"katex\", \"mathjax\")"
+        },
+        "enable_mermaid": {
+          "type": "boolean",
+          "description": "Enable Mermaid diagrams"
+        },
+        "mermaid_theme": {
+          "type": "string",
+          "description": "Mermaid theme (\"default\", \"dark\", \"forest\", \"neutral\")"
+        },
+        "enable_footnotes": {
+          "type": "boolean",
+          "description": "Enable footnotes"
+        },
+        "footnote_style": {
+          "type": "string",
+          "description": "Footnote style (\"numeric\", \"symbolic\")"
+        },
+        "enable_table_of_contents": {
+          "type": "boolean",
+          "description": "Enable table of contents"
+        },
+        "toc_max_depth": {
+          "type": "integer",
+          "description": "TOC max depth (e.g., 3 for H1-H3)"
+        },
+        "toc_position": {
+          "type": "string",
+          "description": "TOC position (\"left\", \"right\", \"top\")"
+        },
+        "enable_citations": {
+          "type": "boolean",
+          "description": "Enable citations/bibliography"
+        },
+        "citation_style": {
+          "type": "string",
+          "description": "Citation style (\"apa\", \"mla\", \"chicago\", \"ieee\")"
+        },
+        "enable_definitions": {
+          "type": "boolean",
+          "description": "Enable glossary/definitions"
+        },
+        "enable_interactive": {
+          "type": "boolean",
+          "description": "Enable interactive examples"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Content Settings",
+      "description": "Technical content settings for academic/research content Maps to Schema.org ScholarlyArticle features"
+    },
+    "website.config.TechnicalLinks": {
+      "properties": {
+        "rss_path": {
+          "type": "string",
+          "description": "RSS feed path"
+        },
+        "sitemap_path": {
+          "type": "string",
+          "description": "XML sitemap path"
+        },
+        "robots_path": {
+          "type": "string",
+          "description": "robots.txt path"
+        },
+        "llms_txt_path": {
+          "type": "string",
+          "description": "LLMs.txt path for AI agents"
+        },
+        "manifest_path": {
+          "type": "string",
+          "description": "AI manifest path"
+        },
+        "additional_links": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional technical resources"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Links",
+      "description": "Footer technical links configuration"
+    },
+    "website.config.ThemeDefaults": {
+      "properties": {
+        "theme_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Maps domain names to theme IDs if different from default"
+        },
+        "available_themes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available theme IDs in the system"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Defaults",
+      "description": "Default theme settings inherited by all domains"
+    },
+    "website.config.TwitterPixel": {
+      "properties": {
+        "pixel_id": {
+          "type": "string",
+          "description": "Twitter Pixel ID (supports environment variable)"
+        },
+        "enable_conversion_tracking": {
+          "type": "boolean",
+          "description": "Enable conversion tracking"
+        },
+        "enable_website_tag": {
+          "type": "boolean",
+          "description": "Enable website tag (universal)"
+        },
+        "twitter_site_tag_id": {
+          "type": "string",
+          "description": "Twitter site tag ID (for website tag)"
+        },
+        "track_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Event types to track  e.g., [\"PageView\", \"Purchase\", \"AddToCart\"]"
+        },
+        "enable_enhanced_matching": {
+          "type": "boolean",
+          "description": "Enable enhanced matching"
+        },
+        "restricted_data_processing": {
+          "type": "boolean",
+          "description": "Enable restricted data processing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Twitter Pixel",
+      "description": "Twitter/X Pixel configuration"
+    },
+    "website.config.TwitterPlatform": {
+      "properties": {
+        "default_handle": {
+          "type": "string",
+          "description": "Default handle (without @)"
+        },
+        "show_follow_button": {
+          "type": "boolean",
+          "description": "Show follow button"
+        },
+        "enable_cards": {
+          "type": "boolean",
+          "description": "Enable Twitter cards"
+        },
+        "card_type": {
+          "type": "string",
+          "description": "Card type (\"summary\" or \"summary_large_image\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Twitter Platform",
+      "description": "Twitter/X platform configuration"
+    },
+    "website.config.VideoEmbedDefaults": {
+      "properties": {
+        "aspect_ratio": {
+          "type": "string",
+          "description": "Default aspect ratio"
+        },
+        "privacy_mode": {
+          "type": "boolean",
+          "description": "Enable privacy mode"
+        },
+        "show_controls": {
+          "type": "boolean",
+          "description": "Show controls"
+        },
+        "lazy_loading": {
+          "type": "boolean",
+          "description": "Enable lazy loading"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Embed Defaults",
+      "description": "Video embed defaults"
+    },
+    "website.config.ViewFilter": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Filter label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to filter"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Filter pattern"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Filter",
+      "description": "View filter configuration"
+    },
+    "website.config.ViewGroup": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Group label"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field to group by"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "View Group",
+      "description": "View group configuration"
+    },
+    "website.config.WebSiteSchema": {
+      "properties": {
+        "enable_sitelinks_searchbox": {
+          "type": "boolean",
+          "description": "Enable sitelinks searchbox"
+        },
+        "search_action_template": {
+          "type": "string",
+          "description": "Search action URL template"
+        },
+        "alternate_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Alternate names for the website"
+        },
+        "in_language": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "In languages supported"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Web Site Schema",
+      "description": "Website schema for JSON-LD"
+    },
+    "website.config.YouTubePlatform": {
+      "properties": {
+        "channel_url": {
+          "type": "string",
+          "description": "Channel URL"
+        },
+        "show_subscribe_button": {
+          "type": "boolean",
+          "description": "Show subscribe button"
+        },
+        "enable_embeds": {
+          "type": "boolean",
+          "description": "Enable video embeds"
+        },
+        "privacy_enhanced_mode": {
+          "type": "boolean",
+          "description": "Default embed privacy mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Platform",
+      "description": "YouTube platform configuration"
+    }
+  },
+  "title": "ECOSYSTEMCONFIG Configuration Schema",
+  "description": "JSON Schema for EcosystemConfig configuration"
+}

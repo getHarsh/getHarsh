@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ColorContrast",
+  "definitions": {
+    "ColorContrast": {
+      "properties": {
+        "ratios": {
+          "$ref": "#/definitions/website.config.aria.ContrastRatios",
+          "description": "Minimum contrast ratios"
+        },
+        "high_contrast": {
+          "$ref": "#/definitions/website.config.aria.HighContrastMode",
+          "description": "High contrast mode"
+        },
+        "color_blind": {
+          "$ref": "#/definitions/website.config.aria.ColorBlindSupport",
+          "description": "Color blind friendly"
+        },
+        "enable_checking": {
+          "type": "boolean",
+          "description": "Contrast checking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Contrast",
+      "description": "Color contrast configuration"
+    },
+    "website.config.aria.ColorBlindSupport": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable support"
+        },
+        "use_safe_palette": {
+          "type": "boolean",
+          "description": "Safe color palette"
+        },
+        "use_patterns": {
+          "type": "boolean",
+          "description": "Pattern alternatives"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ColorFilter"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Color filters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Blind Support",
+      "description": "Color blind support"
+    },
+    "website.config.aria.ColorFilter": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Filter name"
+        },
+        "type": {
+          "enum": [
+            "COLOR_FILTER_TYPE_UNSPECIFIED",
+            0,
+            "COLOR_FILTER_TYPE_PROTANOPIA",
+            1,
+            "COLOR_FILTER_TYPE_DEUTERANOPIA",
+            2,
+            "COLOR_FILTER_TYPE_TRITANOPIA",
+            3,
+            "COLOR_FILTER_TYPE_ACHROMATOPSIA",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Color Filter Type",
+          "description": "Color filter types"
+        },
+        "css_filter": {
+          "type": "string",
+          "description": "CSS filter"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Color Filter",
+      "description": "Color filter"
+    },
+    "website.config.aria.ContrastRatios": {
+      "properties": {
+        "normal_text": {
+          "type": "number",
+          "description": "Normal text (AA: 4.5:1)"
+        },
+        "large_text": {
+          "type": "number",
+          "description": "Large text (AA: 3:1)"
+        },
+        "ui_components": {
+          "type": "number",
+          "description": "UI components (3:1)"
+        },
+        "use_enhanced": {
+          "type": "boolean",
+          "description": "Enhanced ratios (AAA)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Ratios",
+      "description": "Contrast ratio requirements"
+    },
+    "website.config.aria.ContrastScheme": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Scheme name"
+        },
+        "background": {
+          "type": "string",
+          "description": "Background color"
+        },
+        "foreground": {
+          "type": "string",
+          "description": "Foreground color"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contrast Scheme",
+      "description": "Contrast scheme"
+    },
+    "website.config.aria.HighContrastMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable high contrast"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect system setting"
+        },
+        "show_toggle": {
+          "type": "boolean",
+          "description": "Toggle button"
+        },
+        "schemes": {
+          "items": {
+            "$ref": "#/definitions/website.config.aria.ContrastScheme"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom schemes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "High Contrast Mode",
+      "description": "High contrast mode"
+    }
+  },
+  "title": "COLORCONTRAST Configuration Schema",
+  "description": "JSON Schema for ColorContrast configuration"
+}

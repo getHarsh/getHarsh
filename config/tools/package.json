@@ -1,0 +1,35 @@
+{
+  "name": "@getharsh/config-tools",
+  "version": "1.0.0",
+  "description": "Configuration processing tools for getHarsh ecosystem",
+  "private": true,
+  "scripts": {
+    "generate-decap": "./generate-decap-config.sh",
+    "generate-search-index": "./generate-search-index.sh",
+    "validate": "./validate.sh",
+    "process-configs": "./process-configs.sh",
+    "generate-manifests": "./generate-manifests.sh",
+    "proto2schema": "./proto2schema.sh",
+    "generate-robots": "./generate-robots.sh",
+    "generate-tdmrep": "./generate-tdmrep.sh",
+    "generate-ai-txt": "./generate-ai-txt.sh",
+    "generate-llms-txt": "./generate-llms-txt.sh",
+    "generate-ecosystem-json": "./generate-ecosystem-json.sh",
+    "process-policy-templates": "./process-policy-templates.sh",
+    "generate-pwa-manifest": "./generate-pwa-manifest.sh",
+    "generate-cname": "./generate-cname.sh",
+    "generate-sitemap": "./generate-sitemap.sh",
+    "generate-rss": "./generate-rss.sh"
+  },
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^14.0.2",
+    "flexsearch": "^0.7.31",
+    "fs-extra": "^11.3.1",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "json-schema-to-typescript": "^15.0.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

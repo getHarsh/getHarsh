@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EvolutionTimeline",
+  "definitions": {
+    "EvolutionTimeline": {
+      "properties": {
+        "eras": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.EvolutionTimeline.TimelineEra"
+          },
+          "additionalProperties": false,
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Evolution Timeline",
+      "description": "Evolution timeline for positioning"
+    },
+    "ecosystem.services.EvolutionTimeline.TimelineEra": {
+      "properties": {
+        "period": {
+          "type": "string",
+          "description": "e.g., \"2000s\""
+        },
+        "title": {
+          "type": "string",
+          "description": "e.g., \"SEO Era\""
+        },
+        "description": {
+          "type": "string"
+        },
+        "key_points": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_current": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Timeline Era"
+    }
+  },
+  "title": "EVOLUTIONTIMELINE Configuration Schema",
+  "description": "JSON Schema for EvolutionTimeline configuration"
+}

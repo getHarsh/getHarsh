@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CaseStudy",
+  "definitions": {
+    "CaseStudy": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "client": {
+          "type": "string"
+        },
+        "challenge": {
+          "type": "string"
+        },
+        "solution": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        },
+        "metrics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "e.g., \"50% cost reduction\""
+        },
+        "testimonial": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Case Study",
+      "description": "Case study for industry pages"
+    }
+  },
+  "title": "CASESTUDY Configuration Schema",
+  "description": "JSON Schema for CaseStudy configuration"
+}

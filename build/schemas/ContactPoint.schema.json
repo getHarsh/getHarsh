@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContactPoint",
+  "definitions": {
+    "ContactPoint": {
+      "properties": {
+        "contact_type": {
+          "type": "string",
+          "description": "Contact type (e.g., \"customer service\")"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone number"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address"
+        },
+        "available_language": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Available languages"
+        },
+        "area_served": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Area served"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Contact Point",
+      "description": "Contact point for organization"
+    }
+  },
+  "title": "CONTACTPOINT Configuration Schema",
+  "description": "JSON Schema for ContactPoint configuration"
+}

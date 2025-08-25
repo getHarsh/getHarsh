@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TableOfContentsDefaults",
+  "definitions": {
+    "TableOfContentsDefaults": {
+      "properties": {
+        "min_headings": {
+          "type": "integer",
+          "description": "Minimum headings to show TOC"
+        },
+        "max_depth": {
+          "type": "integer",
+          "description": "Maximum depth"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position (\"left\", \"right\", \"top\")"
+        },
+        "sticky": {
+          "type": "boolean",
+          "description": "Sticky on scroll"
+        },
+        "smooth_scroll": {
+          "type": "boolean",
+          "description": "Smooth scroll"
+        },
+        "highlight_current": {
+          "type": "boolean",
+          "description": "Highlight current section"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Of Contents Defaults",
+      "description": "Table of contents defaults"
+    }
+  },
+  "title": "TABLEOFCONTENTSDEFAULTS Configuration Schema",
+  "description": "JSON Schema for TableOfContentsDefaults configuration"
+}

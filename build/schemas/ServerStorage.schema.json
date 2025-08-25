@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServerStorage",
+  "definitions": {
+    "ServerStorage": {
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "API endpoint"
+        },
+        "auth_required": {
+          "type": "boolean",
+          "description": "Authentication required"
+        },
+        "sync_interval_ms": {
+          "type": "integer",
+          "description": "Sync interval (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Server Storage",
+      "description": "Server storage settings"
+    }
+  },
+  "title": "SERVERSTORAGE Configuration Schema",
+  "description": "JSON Schema for ServerStorage configuration"
+}

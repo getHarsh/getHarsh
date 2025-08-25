@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EnhancedMeasurement",
+  "definitions": {
+    "EnhancedMeasurement": {
+      "properties": {
+        "enable_all": {
+          "type": "boolean",
+          "description": "Enable all enhanced measurements"
+        },
+        "scroll": {
+          "$ref": "#/definitions/website.config.gtm.ScrollTracking",
+          "description": "Scroll tracking"
+        },
+        "forms": {
+          "$ref": "#/definitions/website.config.gtm.FormTracking",
+          "description": "Form interaction tracking"
+        },
+        "site_search": {
+          "type": "boolean",
+          "description": "Site search tracking"
+        },
+        "video_engagement": {
+          "type": "boolean",
+          "description": "Video engagement"
+        },
+        "file_downloads": {
+          "type": "boolean",
+          "description": "File downloads"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Enhanced Measurement",
+      "description": "Enhanced measurement configuration"
+    },
+    "website.config.gtm.FormTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable form tracking"
+        },
+        "track_starts": {
+          "type": "boolean",
+          "description": "Track form starts"
+        },
+        "track_abandonment": {
+          "type": "boolean",
+          "description": "Track form abandonment"
+        },
+        "track_field_interactions": {
+          "type": "boolean",
+          "description": "Track field interactions"
+        },
+        "excluded_forms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Excluded form selectors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Tracking",
+      "description": "Form tracking configuration"
+    },
+    "website.config.gtm.ScrollTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable scroll tracking"
+        },
+        "thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Scroll depth thresholds (percentages)"
+        },
+        "track_time_to_scroll": {
+          "type": "boolean",
+          "description": "Track time to scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scroll Tracking",
+      "description": "Scroll tracking configuration"
+    }
+  },
+  "title": "ENHANCEDMEASUREMENT Configuration Schema",
+  "description": "JSON Schema for EnhancedMeasurement configuration"
+}

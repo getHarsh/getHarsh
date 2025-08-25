@@ -1,0 +1,248 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{BASE_URL}}#ecosystem",
+      "name": "{{ECOSYSTEM_NAME}}",
+      "description": "Multi-domain ecosystem federation manifest",
+      "url": "{{BASE_URL}}",
+      "logo": "{{LOGO_URL}}",
+{{IF_DOMAIN_ALIASES}}
+      "sameAs": {{DOMAIN_ALIASES_SAMEAS_JSON}},
+{{END_IF_DOMAIN_ALIASES}}
+      "member": {{LEGAL_ENTITIES_MEMBER_JSON}},
+      "owns": {{OWNED_ENTITIES_JSON}},
+      "brand": {{BRANDS_JSON}},
+      "knowsAbout": {{EXPERTISE_AREAS_JSON}},
+      "makesOffer": {{SERVICES_JSON}},
+      "publishingPrinciples": "{{BASE_URL}}/ai-policy",
+      "diversityPolicy": "{{BASE_URL}}/diversity",
+      "ethicsPolicy": "{{BASE_URL}}/ethics"
+    },
+    {{LEGAL_ENTITIES_GRAPH_JSON}},
+    {{BRANDS_GRAPH_JSON}},
+    {{PERSONS_GRAPH_JSON}},
+    {{DOMAINS_GRAPH_JSON}},
+    {{BLOGS_GRAPH_JSON}},
+    {{PROJECTS_GRAPH_JSON}},
+    {{COMMUNITIES_GRAPH_JSON}}
+  ],
+  "federation": {
+    "version": "1.0",
+    "generated": "{{GENERATION_TIMESTAMP}}",
+    "hub": {
+      "@type": "WebAPI",
+      "@id": "{{BASE_URL}}#federation-api",
+      "name": "Ecosystem Federation API",
+      "url": "{{FEDERATION_HUB_URL}}",
+      "documentation": "{{BASE_URL}}/api/docs",
+      "provider": {
+        "@id": "{{BASE_URL}}#ecosystem"
+      }
+    },
+    "discovery": {
+      "robots": {
+        "@type": "DigitalDocument",
+        "name": "Robots Exclusion Protocol",
+        "url": "/robots.txt",
+        "encodingFormat": "text/plain",
+        "about": "Crawler directives and AI usage policies"
+      },
+      "tdmrep": {
+        "@type": "DigitalDocument", 
+        "name": "TDM Reservation Protocol",
+        "url": "/.well-known/tdmrep.json",
+        "encodingFormat": "application/ld+json",
+        "about": "Text and Data Mining rights declaration (W3C TDMRep)"
+      },
+      "ai_policy": {
+        "@type": "DigitalDocument",
+        "name": "AI Usage Policy",
+        "url": "/ai.txt",
+        "encodingFormat": "text/plain",
+        "about": "AI usage policies and licensing"
+      },
+      "llms": {
+        "@type": "DigitalDocument",
+        "name": "LLM Content Summary",
+        "url": "/llms.txt",
+        "encodingFormat": "text/plain",
+        "about": "LLM-friendly content summary"
+      },
+      "manifest": {
+        "@type": "DigitalDocument",
+        "name": "AI Agent Manifest",
+        "url": "/manifest.json",
+        "encodingFormat": "application/json",
+        "about": "AI agent capabilities manifest"
+      }
+    },
+    "search": {
+      "@type": "SearchAction",
+      "@id": "{{BASE_URL}}#search",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{BASE_URL}}/search?q={search_term}",
+        "contentType": "application/json",
+        "httpMethod": "GET"
+      },
+      "query-input": "required name=search_term",
+      "result": {
+        "@type": "DataFeed",
+        "url": "/search/federated-manifest.json",
+        "about": "Federated search across all entities",
+        "includedInDataCatalog": {{SEARCHABLE_ENTITIES_CATALOG_JSON}}
+      }
+    },
+    "sitemap": {
+      "@type": "Dataset",
+      "name": "Ecosystem Sitemap Index",
+      "url": "/ecosystem/sitemap-index.xml",
+      "encodingFormat": "application/xml",
+      "about": "Aggregated sitemap for all entities",
+      "hasPart": {{SITEMAP_PARTS_JSON}}
+    }
+  },
+  {{IF_SERVICES_ENABLED}}
+  "services": {
+    "@type": "Service",
+    "@id": "{{BASE_URL}}#services",
+    "name": "AI Transformation Services",
+    "provider": {
+      "@id": "{{BASE_URL}}#ecosystem"
+    },
+    "serviceType": "Professional Services",
+    "areaServed": {
+      "@type": "Place",
+      "name": "{{SERVICE_AREA}}"
+    },
+    "offers": {{SERVICES_OFFERS_JSON}},
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI Services Portfolio",
+      "itemListElement": {{SERVICES_CATALOG_JSON}}
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{SERVICE_RATING}}",
+      "reviewCount": "{{SERVICE_REVIEW_COUNT}}"
+    },
+    "url": "{{BASE_URL}}/services",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Sales",
+      "email": "{{PROPOSAL_EMAIL}}",
+      "url": "{{BASE_URL}}/contact#appointment"
+    }
+  },
+  {{END_IF_SERVICES_ENABLED}}
+  "content_policies": {
+    "@type": "CreativeWork",
+    "@id": "{{BASE_URL}}#content-policy",
+    "name": "Content Usage Policies",
+    "ai_training": "PROHIBITED without license",
+    "ai_assistance": "ALLOWED with attribution",
+    "tdm_rights": "Reserved under EU Directive 2019/790",
+    "license": {
+      "@type": "CreativeWork",
+      "name": "All Rights Reserved",
+      "url": "{{TERMS_URL}}"
+    },
+    "acquireLicensePage": "{{BASE_URL}}/licensing",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "AI Licensing",
+      "email": "{{AI_POLICY_EMAIL}}"
+    }
+  },
+  "technical_metadata": {
+    "@type": "SoftwareApplication",
+    "@id": "{{BASE_URL}}#tech-stack",
+    "name": "Ecosystem Technology Stack",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "softwareRequirements": {
+      "static_site_generator": {
+        "@type": "SoftwareApplication",
+        "name": "Gatsby",
+        "softwareVersion": "5"
+      },
+      "cms": {
+        "@type": "SoftwareApplication",
+        "name": "Decap CMS",
+        "url": "https://decapcms.org"
+      },
+      "search_engine": {
+        "@type": "SoftwareApplication",
+        "name": "FlexSearch",
+        "applicationCategory": "SearchApplication"
+      }
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "GitHub Pages",
+      "url": "https://pages.github.com"
+    },
+    "maintainer": {
+      "@id": "{{BASE_URL}}#ecosystem"
+    }
+  },
+  "entity_catalog": {
+    "total_entities": {{TOTAL_ENTITIES}},
+    "breakdown": {
+      "domains": {{DOMAIN_COUNT}},
+      "blogs": {{BLOG_COUNT}},
+      "projects": {{PROJECT_COUNT}},
+      "brands": {{BRAND_COUNT}},
+      "communities": {{COMMUNITY_COUNT}},
+      "persons": {{PERSON_COUNT}},
+      "legal_entities": {{LEGAL_ENTITY_COUNT}}
+    },
+    "aliases": {
+      "_comment": "Maps alias domains to their canonical domains for SEO clarity",
+      "domains": {{DOMAIN_ALIASES_MAP_JSON}},
+      "projects": {{PROJECT_ALIASES_MAP_JSON}}
+    },
+    "relationships": {
+      "_comment": "Complete entity relationship graph from ecosystem catalog",
+      "all_relationships": {{ALL_RELATIONSHIPS_JSON}},
+      "ownership_tree": {{OWNERSHIP_TREE_JSON}},
+      "brand_hierarchy": {{BRAND_HIERARCHY_JSON}},
+      "dependency_graph": {{DEPENDENCY_GRAPH_JSON}}
+    },
+    "entity_websites": {
+      "_comment": "Domains marked as entity websites for policy inheritance",
+      "websites": {{ENTITY_WEBSITES_JSON}}
+    }
+  },
+  "analytics": {
+    "@type": "Dataset",
+    "name": "Cross-Domain Analytics Configuration",
+    "measurementTechnique": "Google Analytics 4",
+    "variableMeasured": "User Engagement Metrics",
+    "includedInDataCatalog": {
+      "@type": "DataCatalog",
+      "name": "GA4 Cross-Domain Tracking",
+      "hasPart": {{GA_TRACKED_DOMAINS_JSON}}
+    },
+    "license": "{{PRIVACY_URL}}",
+    "conditionsOfAccess": "User consent required via Google Consent Mode v2"
+  },
+  "update_metadata": {
+    "@type": "DataFeedItem",
+    "dateCreated": "{{GENERATION_DATE}}",
+    "dateModified": "{{GENERATION_TIMESTAMP}}",
+    "datePublished": "{{GENERATION_DATE}}",
+    "expires": "{{NEXT_UPDATE_DATE}}",
+    "temporalCoverage": "{{TEMPORAL_COVERAGE}}",
+    "inLanguage": "en",
+    "encodingFormat": "application/ld+json",
+    "isBasedOn": {
+      "@type": "SoftwareSourceCode",
+      "codeRepository": "{{CODE_REPOSITORY_URL}}",
+      "programmingLanguage": "Protocol Buffers",
+      "runtimePlatform": "{{MODE}}"
+    }
+  }
+}

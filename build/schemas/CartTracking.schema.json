@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CartTracking",
+  "definitions": {
+    "CartTracking": {
+      "properties": {
+        "track_add_to_cart": {
+          "type": "boolean",
+          "description": "Track add to cart"
+        },
+        "track_remove_from_cart": {
+          "type": "boolean",
+          "description": "Track remove from cart"
+        },
+        "track_cart_views": {
+          "type": "boolean",
+          "description": "Track cart views"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cart Tracking",
+      "description": "Cart tracking configuration"
+    }
+  },
+  "title": "CARTTRACKING Configuration Schema",
+  "description": "JSON Schema for CartTracking configuration"
+}

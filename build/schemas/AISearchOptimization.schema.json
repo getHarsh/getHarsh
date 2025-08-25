@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AISearchOptimization",
+  "definitions": {
+    "AISearchOptimization": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable AI-optimized search"
+        },
+        "index_path": {
+          "type": "string",
+          "description": "Path to search index file"
+        },
+        "federated_manifest_path": {
+          "type": "string",
+          "description": "Path to federated search manifest"
+        },
+        "priority_content_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Content types to prioritize in search"
+        },
+        "boost_factors": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "type": "object",
+          "description": "Field boost factors for relevance"
+        },
+        "ui_settings": {
+          "$ref": "#/definitions/website.config.SearchUISettings",
+          "description": "UI settings for search interface"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Search Optimization",
+      "description": "AI Search optimization configuration for client-side search"
+    },
+    "website.config.SearchUISettings": {
+      "properties": {
+        "show_filters": {
+          "type": "boolean",
+          "description": "Show filter sidebar"
+        },
+        "show_suggestions": {
+          "type": "boolean",
+          "description": "Show search suggestions"
+        },
+        "enable_fuzzy": {
+          "type": "boolean",
+          "description": "Enable fuzzy matching"
+        },
+        "enable_highlighting": {
+          "type": "boolean",
+          "description": "Enable result highlighting"
+        },
+        "results_per_page": {
+          "type": "integer",
+          "description": "Results per page"
+        },
+        "group_by_type": {
+          "type": "boolean",
+          "description": "Group results by type"
+        },
+        "debounce_delay": {
+          "type": "integer",
+          "description": "Debounce delay in ms"
+        },
+        "enable_hotkeys": {
+          "type": "boolean",
+          "description": "Enable keyboard shortcuts"
+        },
+        "enable_federation": {
+          "type": "boolean",
+          "description": "Show federation results"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search UI Settings",
+      "description": "Search UI configuration settings"
+    }
+  },
+  "title": "AISEARCHOPTIMIZATION Configuration Schema",
+  "description": "JSON Schema for AISearchOptimization configuration"
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectLifecycleDefaults",
+  "definitions": {
+    "ProjectLifecycleDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_UNSPECIFIED  stage_name: \"\" description: \"\" typical_duration: \"\" next_stages: []"
+        },
+        "emerge": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_EMERGE  stage_name: \"Emerge\" description: \"New project emerging with initial ideas and exploration\" typical_duration: \"1-3 months\" next_stages: [\"scale\", \"pivot\", \"stagnate\"]"
+        },
+        "scale": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_SCALE  stage_name: \"Scale\" description: \"Growing and expanding project reach and features\" typical_duration: \"6-12 months\" next_stages: [\"accelerate\", \"maintain\", \"stagnate\"]"
+        },
+        "stagnate": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_STAGNATE  stage_name: \"Stagnate\" description: \"Development has slowed or paused\" typical_duration: \"Variable\" next_stages: [\"pivot\", \"accelerate\", \"sunset\"]"
+        },
+        "pivot": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_PIVOT  stage_name: \"Pivot\" description: \"Changing direction or focus\" typical_duration: \"2-6 months\" next_stages: [\"emerge\", \"scale\", \"stagnate\"]"
+        },
+        "accelerate": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_ACCELERATE  stage_name: \"Accelerate\" description: \"Rapid growth and development phase\" typical_duration: \"3-6 months\" next_stages: [\"scale\", \"maintain\", \"stagnate\"]"
+        },
+        "maintain": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_MAINTAIN  stage_name: \"Maintain\" description: \"Stable maintenance mode with occasional updates\" typical_duration: \"Ongoing\" next_stages: [\"accelerate\", \"sunset\", \"archived\"]"
+        },
+        "sunset": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_SUNSET  stage_name: \"Sunset\" description: \"Winding down and preparing for archival\" typical_duration: \"1-3 months\" next_stages: [\"archived\"]"
+        },
+        "archived": {
+          "$ref": "#/definitions/website.config.ProjectLifecycleMapping",
+          "description": "PROJECT_LIFECYCLE_ARCHIVED  stage_name: \"Archived\" description: \"No longer actively maintained\" typical_duration: \"Permanent\" next_stages: []"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Lifecycle Defaults",
+      "description": "Complete project lifecycle mappings"
+    },
+    "website.config.ProjectLifecycleMapping": {
+      "properties": {
+        "stage_name": {
+          "type": "string",
+          "description": "Lifecycle stage name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Stage description"
+        },
+        "typical_duration": {
+          "type": "string",
+          "description": "Typical duration"
+        },
+        "next_stages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Next possible stages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Project Lifecycle Mapping"
+    }
+  },
+  "title": "PROJECTLIFECYCLEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ProjectLifecycleDefaults configuration"
+}

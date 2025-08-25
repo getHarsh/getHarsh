@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DefaultConsentState",
+  "definitions": {
+    "DefaultConsentState": {
+      "properties": {
+        "analytics_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "ad_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "ad_user_data": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "ad_personalization": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "functionality_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "personalization_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "security_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Default Consent State",
+      "description": "Default consent state"
+    }
+  },
+  "title": "DEFAULTCONSENTSTATE Configuration Schema",
+  "description": "JSON Schema for DefaultConsentState configuration"
+}

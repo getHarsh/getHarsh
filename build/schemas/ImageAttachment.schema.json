@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ImageAttachment",
+  "definitions": {
+    "ImageAttachment": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image URL"
+        },
+        "alt_text": {
+          "type": "string",
+          "description": "Alt text (required for accessibility)"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width hint"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height hint"
+        },
+        "link_url": {
+          "type": "string",
+          "description": "Link URL (if image is clickable)"
+        },
+        "loading": {
+          "type": "string",
+          "description": "Loading strategy (\"lazy\", \"eager\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Attachment",
+      "description": "Image attachment"
+    }
+  },
+  "title": "IMAGEATTACHMENT Configuration Schema",
+  "description": "JSON Schema for ImageAttachment configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SkipLinkStyling",
+  "definitions": {
+    "SkipLinkStyling": {
+      "properties": {
+        "show_on_focus": {
+          "type": "boolean",
+          "description": "Show on focus only"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position"
+        },
+        "z_index": {
+          "type": "integer",
+          "description": "Z-index"
+        },
+        "css_class": {
+          "type": "string",
+          "description": "Custom CSS class"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Skip Link Styling",
+      "description": "Skip link styling"
+    }
+  },
+  "title": "SKIPLINKSTYLING Configuration Schema",
+  "description": "JSON Schema for SkipLinkStyling configuration"
+}

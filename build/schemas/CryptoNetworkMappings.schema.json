@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CryptoNetworkMappings",
+  "definitions": {
+    "CryptoNetworkMappings": {
+      "properties": {
+        "crypto_to_code": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> currency code e.g., \"CRYPTO_NETWORK_BITCOIN\" -> \"BTC\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CRYPTO NETWORK MAPPINGS\n =============================================================================",
+      "description": "============================================================================= CRYPTO NETWORK MAPPINGS =============================================================================  Maps CryptoNetwork enum values to Schema.org currency representations"
+    }
+  },
+  "title": "CRYPTONETWORKMAPPINGS Configuration Schema",
+  "description": "JSON Schema for CryptoNetworkMappings configuration"
+}

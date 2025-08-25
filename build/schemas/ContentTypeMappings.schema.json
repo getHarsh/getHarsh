@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentTypeMappings",
+  "definitions": {
+    "ContentTypeMappings": {
+      "properties": {
+        "content_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"CONTENT_TYPE_TUTORIAL\" -> \"HowToArticle\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n CONTENT TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= CONTENT TYPE MAPPINGS =============================================================================  Maps ContentType enum values to Schema.org Article subtypes"
+    }
+  },
+  "title": "CONTENTTYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ContentTypeMappings configuration"
+}

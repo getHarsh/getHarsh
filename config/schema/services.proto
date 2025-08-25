@@ -1,0 +1,282 @@
+syntax = "proto3";
+
+package ecosystem.services;
+
+// Main services configuration for a domain
+// Lives in config_services.yml alongside config.yml
+message ServicesConfig {
+  // Enable services for this domain
+  bool enabled = 1;
+  
+  // Navigation label (default: "Services")
+  string nav_label = 2;
+  
+  // Main services page configuration
+  ServicesPageSettings main_page = 3;
+  
+  // Individual service offerings
+  repeated Service services = 4;
+  
+  // Industry/use-case specific pages
+  repeated IndustryPage industry_pages = 5;
+  
+  // Global CTA configuration
+  ServiceCTASettings cta_settings = 6;
+  
+  // Schema.org configuration
+  SchemaOrgSettings schema_settings = 7;
+  
+  // Blog integration settings
+  BlogIntegrationSettings blog_integration = 8;
+  
+  // Analytics configuration
+  AnalyticsSettings analytics = 9;
+  
+  // Legal/compliance
+  string terms_url = 10;  // Entity-specific terms
+  string privacy_url = 11;  // Entity-specific privacy
+}
+
+// Main services page settings
+message ServicesPageSettings {
+  // SEO metadata
+  string meta_title = 1;
+  string meta_description = 2;
+  repeated string meta_keywords = 3;
+  
+  // Hero section
+  string hero_title = 4;
+  string hero_subtitle = 5;
+  string positioning_statement = 6;
+  
+  // Evolution timeline (SEO → Mobile → Cloud → AI)
+  EvolutionTimeline timeline = 7;
+  
+  // Intro content
+  string intro_text = 8;
+  
+  // Pricing communication
+  string pricing_statement = 9;
+  
+  // Trust indicators
+  bool show_testimonials = 10;
+  bool show_case_studies = 11;
+  bool show_certifications = 12;
+  
+  // Custom page sections
+  repeated PageSection custom_sections = 13;
+}
+
+// Individual service configuration
+message Service {
+  // Unique identifier (e.g., "ai-growth")
+  string id = 1;
+  
+  // Display information
+  string title = 2;
+  string tagline = 3;
+  string description = 4;
+  
+  // Service details
+  repeated string features = 5;
+  repeated string outcomes = 6;
+  repeated string deliverables = 7;
+  
+  // Visual elements
+  string icon = 8;  // Icon identifier or URL
+  string accent_color = 9;  // Hex color for theming
+  
+  // Schema.org service type
+  string schema_type = 10;  // e.g., "TechnologyService", "ConsultingService"
+  
+  // Service-specific CTAs
+  ServiceCTA primary_cta = 11;
+  ServiceCTA secondary_cta = 12;
+  
+  // Related industry pages
+  repeated string industry_page_ids = 13;
+  
+  // Pricing tier (for Schema.org)
+  string price_range = 14;  // e.g., "$$$$", "Premium"
+  
+  // Service availability
+  bool is_active = 15;
+  int32 display_order = 16;
+}
+
+// Industry/use-case specific page
+message IndustryPage {
+  // URL slug (e.g., "customer-support")
+  string slug = 1;
+  
+  // SEO metadata
+  string meta_title = 2;
+  string meta_description = 3;
+  repeated string meta_keywords = 4;
+  
+  // Page content
+  string hero_title = 5;
+  string hero_subtitle = 6;
+  string main_content = 7;  // Markdown supported
+  
+  // Industry-specific benefits
+  repeated string benefits = 8;
+  repeated string use_cases = 9;
+  
+  // Case studies for this industry
+  repeated CaseStudy case_studies = 10;
+  
+  // Related services
+  repeated string service_ids = 11;
+  
+  // Schema.org industry classification
+  string industry_schema_type = 12;  // e.g., "CustomerService", "HealthcareIndustry"
+  
+  // CTAs
+  ServiceCTA primary_cta = 13;
+  ServiceCTA secondary_cta = 14;
+  
+  // Content managed by Decap CMS
+  bool is_cms_managed = 15;
+  string cms_collection = 16;  // Decap collection name
+}
+
+// Case study for industry pages
+message CaseStudy {
+  string title = 1;
+  string client = 2;
+  string challenge = 3;
+  string solution = 4;
+  string outcome = 5;
+  repeated string metrics = 6;  // e.g., "50% cost reduction"
+  string testimonial = 7;
+  string logo_url = 8;
+}
+
+// Service CTA configuration
+message ServiceCTA {
+  string text = 1;
+  string action = 2;  // "link", "form", "modal", "calendar"
+  string target = 3;  // URL, form ID, or calendar ID
+  string style = 4;   // "primary", "secondary", "accent", "ghost"
+  
+  // Tracking
+  string event_name = 5;  // GTM event name
+  map<string, string> event_params = 6;  // Additional GTM parameters
+}
+
+// Global CTA settings
+message ServiceCTASettings {
+  // Primary CTA (e.g., consultation booking)
+  ServiceCTA primary = 1;
+  
+  // Secondary CTA (e.g., quote form)
+  ServiceCTA secondary = 2;
+  
+  // Industry page default CTAs
+  ServiceCTA industry_primary = 3;
+  ServiceCTA industry_secondary = 4;
+}
+
+// Evolution timeline for positioning
+message EvolutionTimeline {
+  repeated TimelineEra eras = 1;
+  
+  message TimelineEra {
+    string period = 1;  // e.g., "2000s"
+    string title = 2;   // e.g., "SEO Era"
+    string description = 3;
+    repeated string key_points = 4;
+    bool is_current = 5;
+  }
+}
+
+// Schema.org configuration
+message SchemaOrgSettings {
+  // Organization providing services
+  string provider_type = 1;  // "Organization" or "Person"
+  string provider_name = 2;
+  
+  // Service catalog settings
+  string offer_catalog_name = 3;
+  string area_served = 4;  // e.g., "Worldwide", "India"
+  repeated string available_languages = 5;
+  
+  // Additional properties
+  map<string, string> custom_properties = 6;
+}
+
+// Blog integration settings
+message BlogIntegrationSettings {
+  // Enable service links in blog posts
+  bool enable_service_links = 1;
+  
+  // Default CTA text for blog posts
+  string default_cta_text = 2;  // e.g., "Get in touch with our team..."
+  
+  // Service link styling
+  string link_style = 3;  // "inline", "card", "banner"
+  
+  // Position in article
+  string link_position = 4;  // "after-intro", "before-conclusion", "custom"
+  
+  // Schema markup for service links
+  bool add_schema_markup = 5;
+}
+
+// Analytics configuration
+message AnalyticsSettings {
+  // Conversion tracking
+  string primary_conversion_event = 1;
+  string secondary_conversion_event = 2;
+  
+  // Industry page tracking
+  string industry_view_event = 3;
+  
+  // Service interest tracking
+  string service_interest_event = 4;
+  
+  // Attribution model
+  string attribution_model = 5;  // "last-click", "data-driven", "position-based"
+  
+  // Custom dimensions
+  map<string, string> custom_dimensions = 6;
+}
+
+// Custom page section
+message PageSection {
+  string id = 1;
+  string title = 2;
+  string content = 3;  // Markdown/HTML
+  string component_type = 4;  // For custom React components
+  map<string, string> props = 5;  // Component props
+  int32 display_order = 6;
+}
+
+// Decap CMS configuration for service pages
+message DecapServiceConfig {
+  // Enable CMS management for industry pages
+  bool enable_cms_pages = 1;
+  
+  // Collection configuration
+  string collection_name = 2;
+  string collection_label = 3;
+  string folder = 4;  // e.g., "content/services"
+  
+  // Fields for service pages
+  repeated DecapField fields = 5;
+  
+  // Preview configuration
+  bool enable_preview = 6;
+  string preview_template = 7;
+}
+
+// Decap field configuration
+message DecapField {
+  string name = 1;
+  string label = 2;
+  string widget = 3;
+  bool required = 4;
+  string default_value = 5;
+  repeated string options = 6;  // For select widgets
+}

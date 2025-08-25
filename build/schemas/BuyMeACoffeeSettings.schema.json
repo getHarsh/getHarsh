@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BuyMeACoffeeSettings",
+  "definitions": {
+    "BuyMeACoffeeSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Username"
+        },
+        "widget_url": {
+          "type": "string",
+          "description": "Widget URL"
+        },
+        "button_color": {
+          "type": "string",
+          "description": "Button color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Buy Me A Coffee Settings",
+      "description": "Buy Me a Coffee configuration"
+    }
+  },
+  "title": "BUYMEACOFFEESETTINGS Configuration Schema",
+  "description": "JSON Schema for BuyMeACoffeeSettings configuration"
+}

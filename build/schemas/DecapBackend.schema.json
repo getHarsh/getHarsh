@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DecapBackend",
+  "definitions": {
+    "DecapBackend": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Backend name (\"git-gateway\", \"github\", \"gitlab\", \"test-repo\")"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository (for github/gitlab backends)"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Branch to use"
+        },
+        "api_root": {
+          "type": "string",
+          "description": "API root (for gitlab)"
+        },
+        "auth_endpoint": {
+          "type": "string",
+          "description": "Auth endpoint (for git-gateway)"
+        },
+        "cms_label_prefix": {
+          "type": "string",
+          "description": "CMS label prefix"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Decap Backend",
+      "description": "Decap CMS backend configuration"
+    }
+  },
+  "title": "DECAPBACKEND Configuration Schema",
+  "description": "JSON Schema for DecapBackend configuration"
+}

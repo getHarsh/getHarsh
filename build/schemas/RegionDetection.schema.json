@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RegionDetection",
+  "definitions": {
+    "RegionDetection": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DETECTION_TYPE_UNSPECIFIED",
+            0,
+            "DETECTION_TYPE_IP_BASED",
+            1,
+            "DETECTION_TYPE_TIMEZONE",
+            2,
+            "DETECTION_TYPE_BROWSER_LOCALE",
+            3,
+            "DETECTION_TYPE_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Detection Type",
+          "description": "Detection types"
+        },
+        "custom_function": {
+          "type": "string",
+          "description": "Custom detection function"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Detection",
+      "description": "Region detection method"
+    }
+  },
+  "title": "REGIONDETECTION Configuration Schema",
+  "description": "JSON Schema for RegionDetection configuration"
+}

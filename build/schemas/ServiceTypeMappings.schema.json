@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServiceTypeMappings",
+  "definitions": {
+    "ServiceTypeMappings": {
+      "properties": {
+        "service_to_schema": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> Schema.org type e.g., \"SERVICE_TYPE_CONSULTING\" -> \"ProfessionalService\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n SERVICE TYPE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= SERVICE TYPE MAPPINGS =============================================================================  Maps ServiceType enum values to Schema.org Service types"
+    }
+  },
+  "title": "SERVICETYPEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for ServiceTypeMappings configuration"
+}

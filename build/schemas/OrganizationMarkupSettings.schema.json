@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OrganizationMarkupSettings",
+  "definitions": {
+    "OrganizationMarkupSettings": {
+      "properties": {
+        "use_legal_entity": {
+          "type": "boolean",
+          "description": "Use legal entity as organization"
+        },
+        "include_founders": {
+          "type": "boolean",
+          "description": "Include founders in organization markup"
+        },
+        "include_all_contacts": {
+          "type": "boolean",
+          "description": "Include all contact points"
+        },
+        "include_social_profiles": {
+          "type": "boolean",
+          "description": "Include social profiles"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type override"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Organization Markup Settings",
+      "description": "Organization markup settings"
+    }
+  },
+  "title": "ORGANIZATIONMARKUPSETTINGS Configuration Schema",
+  "description": "JSON Schema for OrganizationMarkupSettings configuration"
+}

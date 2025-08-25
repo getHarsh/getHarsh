@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GlossaryEnhancement",
+  "definitions": {
+    "GlossaryEnhancement": {
+      "properties": {
+        "create_defined_terms": {
+          "type": "boolean",
+          "description": "Create DefinedTerm objects"
+        },
+        "link_occurrences": {
+          "type": "boolean",
+          "description": "Link term occurrences"
+        },
+        "include_relationships": {
+          "type": "boolean",
+          "description": "Include term relationships"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Glossary Enhancement",
+      "description": "Glossary enhancement"
+    }
+  },
+  "title": "GLOSSARYENHANCEMENT Configuration Schema",
+  "description": "JSON Schema for GlossaryEnhancement configuration"
+}

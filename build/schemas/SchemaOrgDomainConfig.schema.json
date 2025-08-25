@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SchemaOrgDomainConfig",
+  "definitions": {
+    "SchemaOrgDomainConfig": {
+      "properties": {
+        "config_override": {
+          "$ref": "#/definitions/website.config.SchemaOrgConfig",
+          "description": "Override ecosystem Schema.org config"
+        },
+        "type_mappings": {
+          "$ref": "#/definitions/website.config.DomainTypeMappings",
+          "description": "Domain-specific type mappings"
+        },
+        "page_defaults": {
+          "$ref": "#/definitions/website.config.PageTypeDefaults",
+          "description": "Page type defaults"
+        },
+        "org_settings": {
+          "$ref": "#/definitions/website.config.OrganizationMarkupSettings",
+          "description": "Organization markup settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Domain Config",
+      "description": "Schema.org configuration specific to domains"
+    },
+    "website.config.DomainTypeMappings": {
+      "properties": {
+        "default_page_type": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "url_pattern_types": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Mapping of URL patterns to Schema.org types"
+        },
+        "special_pages": {
+          "$ref": "#/definitions/website.config.SpecialPageTypes",
+          "description": "Special page type mappings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Domain Type Mappings",
+      "description": "Domain-specific type mappings"
+    },
+    "website.config.OrganizationMarkupSettings": {
+      "properties": {
+        "use_legal_entity": {
+          "type": "boolean",
+          "description": "Use legal entity as organization"
+        },
+        "include_founders": {
+          "type": "boolean",
+          "description": "Include founders in organization markup"
+        },
+        "include_all_contacts": {
+          "type": "boolean",
+          "description": "Include all contact points"
+        },
+        "include_social_profiles": {
+          "type": "boolean",
+          "description": "Include social profiles"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type override"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Organization Markup Settings",
+      "description": "Organization markup settings"
+    },
+    "website.config.PageTypeDefaults": {
+      "properties": {
+        "include_author": {
+          "type": "boolean",
+          "description": "Include author for all pages"
+        },
+        "include_organization": {
+          "type": "boolean",
+          "description": "Include organization for all pages"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs for all pages"
+        },
+        "include_site_search": {
+          "type": "boolean",
+          "description": "Include site search action"
+        },
+        "default_image_url": {
+          "type": "string",
+          "description": "Default image for pages without images"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Type Defaults",
+      "description": "Page type defaults for Schema.org"
+    },
+    "website.config.SchemaOrgConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Schema.org JSON-LD generation"
+        },
+        "mapping_mode": {
+          "type": "string",
+          "description": "Mapping mode (\"automatic\", \"manual\", \"hybrid\")"
+        },
+        "include_all_mappings": {
+          "type": "boolean",
+          "description": "Include all enum mappings in build"
+        },
+        "included_mappings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Specific mappings to include (if not including all)"
+        },
+        "custom_mappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom mapping overrides"
+        },
+        "validation": {
+          "$ref": "#/definitions/website.config.SchemaOrgValidation",
+          "description": "Validation settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Config",
+      "description": "Schema.org configuration for build-time mapping"
+    },
+    "website.config.SchemaOrgValidation": {
+      "properties": {
+        "validate_types": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "allow_custom_properties": {
+          "type": "boolean",
+          "description": "Allow custom properties"
+        },
+        "strict_mode": {
+          "type": "boolean",
+          "description": "Strict mode (fail on warnings)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Validation",
+      "description": "Schema.org validation settings"
+    },
+    "website.config.SpecialPageTypes": {
+      "properties": {
+        "home_type": {
+          "type": "string",
+          "description": "Home page type (default: WebSite)"
+        },
+        "about_type": {
+          "type": "string",
+          "description": "About page type (default: AboutPage)"
+        },
+        "contact_type": {
+          "type": "string",
+          "description": "Contact page type (default: ContactPage)"
+        },
+        "projects_type": {
+          "type": "string",
+          "description": "Projects page type (default: CollectionPage)"
+        },
+        "blog_type": {
+          "type": "string",
+          "description": "Blog listing type (default: Blog)"
+        },
+        "error_type": {
+          "type": "string",
+          "description": "Error pages type (default: WebPage)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Special Page Types",
+      "description": "Special page type configuration"
+    }
+  },
+  "title": "SCHEMAORGDOMAINCONFIG Configuration Schema",
+  "description": "JSON Schema for SchemaOrgDomainConfig configuration"
+}

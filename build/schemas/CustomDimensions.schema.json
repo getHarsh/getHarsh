@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CustomDimensions",
+  "definitions": {
+    "CustomDimensions": {
+      "properties": {
+        "user_dimensions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomDimension"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "User-scoped dimensions"
+        },
+        "event_dimensions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomDimension"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Event-scoped dimensions"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomMetric"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom metrics"
+        },
+        "entity_dimension": {
+          "$ref": "#/definitions/website.config.gtm.EntityDimension",
+          "description": "Entity tracking dimension"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Dimensions",
+      "description": "Custom dimensions configuration"
+    },
+    "website.config.gtm.CustomDimension": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dimension name"
+        },
+        "index": {
+          "type": "integer",
+          "description": "Dimension index (GA4)"
+        },
+        "scope": {
+          "enum": [
+            "DIMENSION_SCOPE_UNSPECIFIED",
+            0,
+            "DIMENSION_SCOPE_USER",
+            1,
+            "DIMENSION_SCOPE_SESSION",
+            2,
+            "DIMENSION_SCOPE_EVENT",
+            3,
+            "DIMENSION_SCOPE_ITEM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Dimension Scope",
+          "description": "Dimension scope"
+        },
+        "value_source": {
+          "type": "string",
+          "description": "Value source"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Dimension",
+      "description": "Custom dimension configuration"
+    },
+    "website.config.gtm.CustomMetric": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Metric name"
+        },
+        "index": {
+          "type": "integer",
+          "description": "Metric index"
+        },
+        "type": {
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            0,
+            "METRIC_TYPE_NUMBER",
+            1,
+            "METRIC_TYPE_CURRENCY",
+            2,
+            "METRIC_TYPE_TIME",
+            3,
+            "METRIC_TYPE_PERCENTAGE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Metric Type",
+          "description": "Metric types"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Metric",
+      "description": "Custom metric configuration"
+    },
+    "website.config.gtm.EntityDimension": {
+      "properties": {
+        "legal_entity_dimension": {
+          "type": "string",
+          "description": "Legal entity dimension"
+        },
+        "brand_dimension": {
+          "type": "string",
+          "description": "Brand dimension"
+        },
+        "project_dimension": {
+          "type": "string",
+          "description": "Project dimension"
+        },
+        "source_dimension": {
+          "type": "string",
+          "description": "Content source dimension"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Dimension",
+      "description": "Entity dimension configuration"
+    }
+  },
+  "title": "CUSTOMDIMENSIONS Configuration Schema",
+  "description": "JSON Schema for CustomDimensions configuration"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RegionConsent",
+  "definitions": {
+    "RegionConsent": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region code (e.g., \"EU\", \"US\", \"CA\")"
+        },
+        "analytics_storage": {
+          "type": "boolean",
+          "description": "Consent defaults for this region"
+        },
+        "ad_storage": {
+          "type": "boolean"
+        },
+        "ad_user_data": {
+          "type": "boolean"
+        },
+        "ad_personalization": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Consent",
+      "description": "Region-specific consent defaults"
+    }
+  },
+  "title": "REGIONCONSENT Configuration Schema",
+  "description": "JSON Schema for RegionConsent configuration"
+}

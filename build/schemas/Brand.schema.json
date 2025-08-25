@@ -1,0 +1,300 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Brand",
+  "definitions": {
+    "Brand": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Brand key (e.g., \"getHarsh\", \"causality\", \"rawThoughts\")"
+        },
+        "name": {
+          "type": "string",
+          "description": "Brand name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brand description"
+        },
+        "legal_entity_key": {
+          "type": "string",
+          "description": "Legal entity that owns this brand (key reference)"
+        },
+        "domain_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Associated domain keys (e.g., [\"getHarsh.in\"])"
+        },
+        "project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project keys hosted under this brand Populated dynamically from PROJECTS/ discovery"
+        },
+        "is_personal_brand": {
+          "type": "boolean",
+          "description": "Special flag for personal brands (like getHarsh)"
+        },
+        "is_entity_website": {
+          "type": "boolean",
+          "description": "Special flag for entity website brands (like rawThoughts, daostudio)"
+        },
+        "schema_org": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org entity definition for the brand"
+        },
+        "color": {
+          "type": "string",
+          "description": "Brand color (hex) for visual identity"
+        },
+        "focus_area": {
+          "type": "string",
+          "description": "Brand focus area (e.g., \"research\", \"consulting\", \"creative\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Brand",
+      "description": "Brand definition - brands are verticals of legal entities Groups related projects under a common identity and philosophy"
+    },
+    "website.config.SchemaOrgAffiliation": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL (optional)"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (optional, ISO 8601 format)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (optional, ISO 8601 format, omit if current)"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type (optional, e.g., \"Corporation\", \"EducationalOrganization\")"
+        },
+        "affiliation_type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization @id reference (for linking to existing entities) Example: \"https://rawthoughts.in/#organization\""
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Affiliation",
+      "description": "Affiliation for Person type in Schema.org JSON-LD output DEPRECATED: Use PersonAffiliation for configuration, this is for output only"
+    },
+    "website.config.SchemaOrgChild": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Child entity ID/URL"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type  e.g., \"owns\", \"subOrganization\", \"hasPart\""
+        },
+        "type": {
+          "type": "string",
+          "description": "Child type  e.g., \"ResearchProject\", \"SoftwareApplication\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Child",
+      "description": "Child entity reference for Schema.org"
+    },
+    "website.config.SchemaOrgEntity": {
+      "properties": {
+        "type_enum": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "custom_type": {
+          "type": "string",
+          "description": "Custom type string for types not in our enum Use this for rare/specialized types (e.g., \"MedicalOrganization\")"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types for multi-type entities Example: [\"WebSite\", \"Brand\"] for getHarsh.in See ../SCHEMA-ORG-EXAMPLES.md#quick-start for patterns"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string properties (name, description, url, etc.)"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations (for Person type)"
+        },
+        "parent_entity_id": {
+          "type": "string",
+          "description": "Parent entity reference (for hierarchy)  e.g., \"@id\" reference"
+        },
+        "parent_relationship": {
+          "type": "string",
+          "description": "Relationship type to parent  e.g., \"parentOrganization\", \"creator\", \"owns\""
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgChild"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child entities (for org -> projects)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity",
+      "description": "Schema.org entity configuration Used to define the semantic type of any entity (domain, blog, project, page) See ../SCHEMA-ORG-EXAMPLES.md#configuration-examples for usage"
+    }
+  },
+  "title": "BRAND Configuration Schema",
+  "description": "JSON Schema for Brand configuration"
+}

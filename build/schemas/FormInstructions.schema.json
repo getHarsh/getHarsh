@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FormInstructions",
+  "definitions": {
+    "FormInstructions": {
+      "properties": {
+        "provide_instructions": {
+          "type": "boolean",
+          "description": "Provide instructions"
+        },
+        "associate_with_fields": {
+          "type": "boolean",
+          "description": "Associate with fields"
+        },
+        "format_hints": {
+          "type": "boolean",
+          "description": "Format requirements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Instructions",
+      "description": "Form instructions"
+    }
+  },
+  "title": "FORMINSTRUCTIONS Configuration Schema",
+  "description": "JSON Schema for FormInstructions configuration"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleDriveMedia",
+  "definitions": {
+    "GoogleDriveMedia": {
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "Google Drive file ID"
+        },
+        "folder_id": {
+          "type": "string",
+          "description": "Folder ID where media is stored"
+        },
+        "enable_streaming": {
+          "type": "boolean",
+          "description": "Enable direct streaming"
+        },
+        "share_setting": {
+          "type": "string",
+          "description": "Share settings (public, restricted, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Drive Media",
+      "description": "Google Drive media integration"
+    }
+  },
+  "title": "GOOGLEDRIVEMEDIA Configuration Schema",
+  "description": "JSON Schema for GoogleDriveMedia configuration"
+}

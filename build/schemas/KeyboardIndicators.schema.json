@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/KeyboardIndicators",
+  "definitions": {
+    "KeyboardIndicators": {
+      "properties": {
+        "show_focus": {
+          "type": "boolean",
+          "description": "Show focus indicators"
+        },
+        "focus_style": {
+          "$ref": "#/definitions/website.config.aria.FocusStyle",
+          "description": "Focus style"
+        },
+        "skip_indicators": {
+          "type": "boolean",
+          "description": "Skip link indicators"
+        },
+        "active_indication": {
+          "type": "boolean",
+          "description": "Active element indication"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Keyboard Indicators",
+      "description": "Keyboard indicators"
+    },
+    "website.config.aria.FocusStyle": {
+      "properties": {
+        "outline_width": {
+          "type": "integer",
+          "description": "Outline width"
+        },
+        "outline_color": {
+          "type": "string",
+          "description": "Outline color"
+        },
+        "outline_offset": {
+          "type": "integer",
+          "description": "Outline offset"
+        },
+        "custom_css": {
+          "type": "string",
+          "description": "Custom CSS"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Style",
+      "description": "Focus style configuration"
+    }
+  },
+  "title": "KEYBOARDINDICATORS Configuration Schema",
+  "description": "JSON Schema for KeyboardIndicators configuration"
+}

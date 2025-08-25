@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TechnicalArticleDefaults",
+  "definitions": {
+    "TechnicalArticleDefaults": {
+      "properties": {
+        "default_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Default properties"
+        },
+        "required_properties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required properties"
+        },
+        "level_settings": {
+          "$ref": "#/definitions/website.config.TechnicalLevelSettings",
+          "description": "Technical level settings"
+        },
+        "code_settings": {
+          "$ref": "#/definitions/website.config.CodeExampleSettings",
+          "description": "Code example settings"
+        },
+        "diagram_settings": {
+          "$ref": "#/definitions/website.config.DiagramSettings",
+          "description": "Diagram settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Article Defaults",
+      "description": "Technical article defaults"
+    },
+    "website.config.CodeExampleSettings": {
+      "properties": {
+        "require_examples": {
+          "type": "boolean",
+          "description": "Require examples"
+        },
+        "min_examples": {
+          "type": "integer",
+          "description": "Min examples per article"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include language info"
+        },
+        "include_line_numbers": {
+          "type": "boolean",
+          "description": "Include line numbers"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Example Settings",
+      "description": "Code example settings"
+    },
+    "website.config.DiagramSettings": {
+      "properties": {
+        "include_diagrams": {
+          "type": "boolean",
+          "description": "Include diagrams"
+        },
+        "type_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Diagram type mapping"
+        },
+        "generate_from_code": {
+          "type": "boolean",
+          "description": "Generate from code"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Diagram Settings",
+      "description": "Diagram settings"
+    },
+    "website.config.TechnicalLevelSettings": {
+      "properties": {
+        "include_level": {
+          "type": "boolean",
+          "description": "Include tech level"
+        },
+        "level_categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Level categories"
+        },
+        "auto_detect": {
+          "type": "boolean",
+          "description": "Auto-detect level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Technical Level Settings",
+      "description": "Technical level settings"
+    }
+  },
+  "title": "TECHNICALARTICLEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for TechnicalArticleDefaults configuration"
+}

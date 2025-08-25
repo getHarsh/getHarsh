@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogARIAOverrides",
+  "definitions": {
+    "BlogARIAOverrides": {
+      "properties": {
+        "article_landmarks": {
+          "type": "boolean",
+          "description": "Article navigation landmarks"
+        },
+        "comment_live_region": {
+          "type": "boolean",
+          "description": "Live region for comment updates"
+        },
+        "reading_progress_aria": {
+          "type": "boolean",
+          "description": "Reading progress indicator"
+        },
+        "article_labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Article-specific ARIA labels"
+        },
+        "enhanced_article_navigation": {
+          "type": "boolean",
+          "description": "Enhanced keyboard navigation for articles"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog ARIA Overrides",
+      "description": "Blog-specific ARIA overrides"
+    }
+  },
+  "title": "BLOGARIAOVERRIDES Configuration Schema",
+  "description": "JSON Schema for BlogARIAOverrides configuration"
+}

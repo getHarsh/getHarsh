@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EditorialWorkflow",
+  "definitions": {
+    "EditorialWorkflow": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable editorial workflow"
+        },
+        "publish_mode": {
+          "type": "string",
+          "description": "Publish mode (\"simple\", \"editorial_workflow\")"
+        },
+        "preview_context": {
+          "type": "string",
+          "description": "Preview context (site URL for previews)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Editorial Workflow",
+      "description": "Editorial workflow configuration"
+    }
+  },
+  "title": "EDITORIALWORKFLOW Configuration Schema",
+  "description": "JSON Schema for EditorialWorkflow configuration"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BlogContent",
+  "definitions": {
+    "BlogContent": {
+      "properties": {
+        "posts_per_page": {
+          "type": "integer",
+          "description": "Posts per page override"
+        },
+        "excerpt_length": {
+          "type": "integer",
+          "description": "Excerpt length override"
+        },
+        "show_full_content": {
+          "type": "boolean",
+          "description": "Show full content on index page"
+        },
+        "date_format": {
+          "type": "string",
+          "description": "Date format override"
+        },
+        "show_author": {
+          "type": "boolean",
+          "description": "Show author info"
+        },
+        "show_categories": {
+          "type": "boolean",
+          "description": "Show post categories"
+        },
+        "show_tags": {
+          "type": "boolean",
+          "description": "Show post tags"
+        },
+        "rss_enabled": {
+          "type": "boolean",
+          "description": "Enable RSS feed"
+        },
+        "rss_limit": {
+          "type": "integer",
+          "description": "RSS feed limit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Content",
+      "description": "Blog content presentation settings"
+    }
+  },
+  "title": "BLOGCONTENT Configuration Schema",
+  "description": "JSON Schema for BlogContent configuration"
+}

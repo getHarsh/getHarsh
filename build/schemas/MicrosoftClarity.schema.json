@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MicrosoftClarity",
+  "definitions": {
+    "MicrosoftClarity": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Clarity"
+        },
+        "project_id": {
+          "type": "string",
+          "description": "Clarity project ID"
+        },
+        "integrate_with_bing": {
+          "type": "boolean",
+          "description": "Auto-integrate with Bing Webmaster Tools"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Microsoft Clarity",
+      "description": "Microsoft Clarity settings"
+    }
+  },
+  "title": "MICROSOFTCLARITY Configuration Schema",
+  "description": "JSON Schema for MicrosoftClarity configuration"
+}

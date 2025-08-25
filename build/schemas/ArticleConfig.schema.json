@@ -1,0 +1,1038 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ArticleConfig",
+  "definitions": {
+    "ArticleConfig": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Basic metadata  Article title (H1)"
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL slug"
+        },
+        "summary": {
+          "type": "string",
+          "description": "2-3 line summary for meta description"
+        },
+        "content_type": {
+          "enum": [
+            "CONTENT_TYPE_UNSPECIFIED",
+            0,
+            "CONTENT_TYPE_ANNOUNCEMENT",
+            1,
+            "CONTENT_TYPE_TUTORIAL",
+            2,
+            "CONTENT_TYPE_DEEP_DIVE",
+            3,
+            "CONTENT_TYPE_UPDATE",
+            4,
+            "CONTENT_TYPE_OPINION",
+            5,
+            "CONTENT_TYPE_CASE_STUDY",
+            6,
+            "CONTENT_TYPE_REVIEW",
+            7,
+            "CONTENT_TYPE_GUIDE",
+            8,
+            "CONTENT_TYPE_INTERVIEW",
+            9,
+            "CONTENT_TYPE_RESEARCH",
+            10,
+            "CONTENT_TYPE_ANALYSIS",
+            11,
+            "CONTENT_TYPE_REFLECTION",
+            12,
+            "CONTENT_TYPE_EXPERIMENT",
+            13,
+            "CONTENT_TYPE_ROUNDUP",
+            14,
+            "CONTENT_TYPE_COMPARISON",
+            15,
+            "CONTENT_TYPE_CHECKLIST",
+            16,
+            "CONTENT_TYPE_FAQ",
+            17,
+            "CONTENT_TYPE_THOUGHT_PIECE",
+            18,
+            "CONTENT_TYPE_AUDIO_RECORDING",
+            19
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Content Type",
+          "description": "Content types for articles and blog posts Maps to Schema.org Article subtypes and custom categorization"
+        },
+        "author_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Author information (populated by build scripts)  References to persons catalog"
+        },
+        "date_published": {
+          "type": "string",
+          "title": "Note: Full author details populated from persons catalog at build time",
+          "description": "Note: Full author details populated from persons catalog at build time  Dates  ISO 8601 format"
+        },
+        "date_modified": {
+          "type": "string",
+          "description": "ISO 8601 format (optional)"
+        },
+        "content": {
+          "type": "string",
+          "description": "Content  Markdown content"
+        },
+        "reading_time_minutes": {
+          "type": "integer",
+          "description": "Auto-calculated or manual override"
+        },
+        "cross_posting": {
+          "$ref": "#/definitions/website.config.CrossPostingInfo",
+          "description": "Cross-posting configuration"
+        },
+        "discussion_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Discussion threads (key is platform name as string)"
+        },
+        "uses_project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Project relationships  Projects this article uses/relates to"
+        },
+        "updates_project_keys": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Projects this article updates"
+        },
+        "sponsor": {
+          "$ref": "#/definitions/website.config.ArticleSponsor",
+          "description": "Sponsorship (if applicable)"
+        },
+        "media": {
+          "$ref": "#/definitions/website.config.ArticleMedia",
+          "description": "Media attachments"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "SEO and discovery  SEO keywords"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Content tags/categories"
+        },
+        "featured_image_url": {
+          "type": "string",
+          "description": "OG image / hero image"
+        },
+        "article_schema": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org overrides for this article"
+        },
+        "display": {
+          "$ref": "#/definitions/website.config.ArticleDisplaySettings",
+          "description": "Display settings"
+        },
+        "language": {
+          "type": "string",
+          "description": "Language and localization  Language code (e.g., \"en\", \"es\")"
+        },
+        "translations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Language -> translated article URL"
+        },
+        "series": {
+          "$ref": "#/definitions/website.config.ArticleSeries",
+          "description": "Series information (if part of a series)"
+        },
+        "custom_meta": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom metadata"
+        },
+        "is_draft": {
+          "type": "boolean",
+          "description": "Draft/publish status"
+        },
+        "is_featured": {
+          "type": "boolean"
+        },
+        "content_warnings": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Content warnings/notices"
+        },
+        "canonical_url": {
+          "type": "string",
+          "description": "Canonical URL (if different from generated)"
+        },
+        "no_index": {
+          "type": "boolean",
+          "description": "No-index flag (for SEO)"
+        },
+        "feature_overrides": {
+          "$ref": "#/definitions/website.config.ArticleFeatureOverrides",
+          "description": "Disable specific features for this article"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n ARTICLE CONFIGURATION FOR DECAP CMS\n =============================================================================\n Messages for individual article/post configuration in Decap CMS.\n Replaces Jekyll frontmatter with type-safe proto schema.\n Maps to Schema.org BlogPosting, Article, ScholarlyArticle types.\n =============================================================================",
+      "description": "============================================================================= ARTICLE CONFIGURATION FOR DECAP CMS ============================================================================= Messages for individual article/post configuration in Decap CMS. Replaces Jekyll frontmatter with type-safe proto schema. Maps to Schema.org BlogPosting, Article, ScholarlyArticle types. =============================================================================  Individual article configuration for Decap CMS Replaces Jekyll frontmatter with type-safe proto schema Maps to Schema.org BlogPosting, Article types"
+    },
+    "website.config.ArticleDisplaySettings": {
+      "properties": {
+        "show_toc": {
+          "type": "boolean",
+          "description": "Show table of contents"
+        },
+        "show_author_bio": {
+          "type": "boolean",
+          "description": "Show author bio"
+        },
+        "show_social_share": {
+          "type": "boolean",
+          "description": "Show social share buttons"
+        },
+        "show_comments": {
+          "type": "boolean",
+          "description": "Show comments section"
+        },
+        "show_related": {
+          "type": "boolean",
+          "description": "Show related articles"
+        },
+        "show_series_nav": {
+          "type": "boolean",
+          "description": "Show series navigation"
+        },
+        "enable_math": {
+          "type": "boolean",
+          "description": "Enable math rendering"
+        },
+        "enable_footnotes": {
+          "type": "boolean",
+          "description": "Enable footnotes"
+        },
+        "custom_class": {
+          "type": "string",
+          "description": "Custom CSS class"
+        },
+        "layout": {
+          "type": "string",
+          "description": "Layout override (\"default\", \"wide\", \"narrow\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Display Settings",
+      "description": "Article display settings"
+    },
+    "website.config.ArticleFeatureOverrides": {
+      "properties": {
+        "disable_comments": {
+          "type": "boolean",
+          "description": "Disable features for this article"
+        },
+        "disable_share": {
+          "type": "boolean"
+        },
+        "disable_toc": {
+          "type": "boolean"
+        },
+        "disable_related": {
+          "type": "boolean"
+        },
+        "disable_author_bio": {
+          "type": "boolean"
+        },
+        "disable_series_nav": {
+          "type": "boolean"
+        },
+        "disable_math": {
+          "type": "boolean"
+        },
+        "disable_syntax_highlighting": {
+          "type": "boolean"
+        },
+        "disable_footnotes": {
+          "type": "boolean"
+        },
+        "disable_discussion": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Feature Overrides",
+      "description": "Feature overrides for specific article"
+    },
+    "website.config.ArticleMedia": {
+      "properties": {
+        "audio": {
+          "$ref": "#/definitions/website.config.AudioRecording",
+          "description": "Audio recording (e.g., author narration)"
+        },
+        "videos": {
+          "items": {
+            "$ref": "#/definitions/website.config.VideoEmbed"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Embedded videos"
+        },
+        "code_snippets": {
+          "items": {
+            "$ref": "#/definitions/website.config.CodeSnippet"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Code snippets/gists"
+        },
+        "diagrams": {
+          "items": {
+            "$ref": "#/definitions/website.config.Diagram"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Diagrams (Mermaid, etc.)"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/website.config.ImageAttachment"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Image gallery"
+        },
+        "files": {
+          "items": {
+            "$ref": "#/definitions/website.config.FileAttachment"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Downloadable files"
+        },
+        "demos": {
+          "items": {
+            "$ref": "#/definitions/website.config.InteractiveDemo"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Interactive demos"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Media",
+      "description": "Article media attachments"
+    },
+    "website.config.ArticleSeries": {
+      "properties": {
+        "series_key": {
+          "type": "string",
+          "description": "Series key/ID"
+        },
+        "series_title": {
+          "type": "string",
+          "description": "Series title"
+        },
+        "part_number": {
+          "type": "integer",
+          "description": "Part number in series"
+        },
+        "total_parts": {
+          "type": "integer",
+          "description": "Total parts (if known)"
+        },
+        "previous_slug": {
+          "type": "string",
+          "description": "Previous article slug"
+        },
+        "next_slug": {
+          "type": "string",
+          "description": "Next article slug"
+        },
+        "description": {
+          "type": "string",
+          "description": "Series description"
+        },
+        "landing_url": {
+          "type": "string",
+          "description": "Series landing page URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Series",
+      "description": "Article series information"
+    },
+    "website.config.ArticleSponsor": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Sponsor name"
+        },
+        "url": {
+          "type": "string",
+          "description": "Sponsor website URL"
+        },
+        "disclosure_text": {
+          "type": "string",
+          "description": "Custom disclosure text"
+        },
+        "is_affiliate": {
+          "type": "boolean",
+          "description": "Is this an affiliate relationship"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign/tracking ID"
+        },
+        "logo_url": {
+          "type": "string",
+          "description": "Sponsor logo URL"
+        },
+        "disclosure_position": {
+          "type": "string",
+          "description": "Disclosure position (\"top\", \"bottom\", \"both\")"
+        },
+        "sponsor_schema": {
+          "$ref": "#/definitions/website.config.SchemaOrgEntity",
+          "description": "Schema.org sponsor entity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Article Sponsor",
+      "description": "Article sponsorship details"
+    },
+    "website.config.AudioRecording": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Google Drive URL or direct URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration in ISO 8601 format"
+        },
+        "recorded_date": {
+          "type": "string",
+          "description": "Recording date"
+        },
+        "narrator_key": {
+          "type": "string",
+          "description": "Narrator (usually author key)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title/description"
+        },
+        "transcript_url": {
+          "type": "string",
+          "description": "Transcript URL (if available)"
+        },
+        "google_drive": {
+          "$ref": "#/definitions/website.config.GoogleDriveMedia",
+          "description": "Google Drive specific"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Audio Recording",
+      "description": "Audio recording configuration"
+    },
+    "website.config.CodeSnippet": {
+      "properties": {
+        "gist_url": {
+          "type": "string",
+          "description": "GitHub Gist URL or ID"
+        },
+        "language": {
+          "enum": [
+            "CODE_LANGUAGE_UNSPECIFIED",
+            0,
+            "CODE_LANGUAGE_JAVASCRIPT",
+            1,
+            "CODE_LANGUAGE_TYPESCRIPT",
+            2,
+            "CODE_LANGUAGE_PYTHON",
+            3,
+            "CODE_LANGUAGE_C",
+            4,
+            "CODE_LANGUAGE_CPP",
+            5,
+            "CODE_LANGUAGE_SHELL",
+            6,
+            "CODE_LANGUAGE_YAML",
+            7,
+            "CODE_LANGUAGE_JSON",
+            8,
+            "CODE_LANGUAGE_MARKDOWN",
+            9,
+            "CODE_LANGUAGE_PROTOBUF",
+            10,
+            "CODE_LANGUAGE_OTHER",
+            99
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Code Language",
+          "description": "Programming languages for code blocks and snippets Maps to Schema.org SoftwareSourceCode with programmingLanguage property"
+        },
+        "title": {
+          "type": "string",
+          "description": "Snippet title"
+        },
+        "show_line_numbers": {
+          "type": "boolean",
+          "description": "Show line numbers"
+        },
+        "highlight_lines": {
+          "type": "string",
+          "description": "Highlighted lines (e.g., \"3-5,8,10-12\")"
+        },
+        "inline_code": {
+          "type": "string",
+          "description": "Inline code (if not using Gist)"
+        },
+        "filename": {
+          "type": "string",
+          "description": "File name (if applicable)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Code Snippet",
+      "description": "Code snippet configuration"
+    },
+    "website.config.CrossPostingInfo": {
+      "properties": {
+        "canonical_domain": {
+          "type": "string",
+          "description": "Canonical domain where originally published"
+        },
+        "published_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domains where this article is syndicated"
+        },
+        "show_cross_post_chips": {
+          "type": "boolean",
+          "description": "Show cross-post chips on article"
+        },
+        "domain_urls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Domain to URL mapping for cross-posts"
+        },
+        "cross_post_date": {
+          "type": "string",
+          "description": "Cross-posting date (if different from publish date)"
+        },
+        "import_source": {
+          "type": "string",
+          "description": "Import source (if imported from elsewhere)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Posting Info",
+      "description": "Cross-posting information for an article"
+    },
+    "website.config.Diagram": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Diagram type (\"mermaid\", \"graphviz\", \"plantuml\")"
+        },
+        "code": {
+          "type": "string",
+          "description": "Diagram code"
+        },
+        "title": {
+          "type": "string",
+          "description": "Diagram title"
+        },
+        "alt_text": {
+          "type": "string",
+          "description": "Alt text for accessibility"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Theme override"
+        },
+        "render_as_image": {
+          "type": "boolean",
+          "description": "Render as image (vs interactive)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Diagram",
+      "description": "Diagram configuration"
+    },
+    "website.config.FileAttachment": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "File URL"
+        },
+        "filename": {
+          "type": "string",
+          "description": "File name"
+        },
+        "size": {
+          "type": "string",
+          "description": "File size (human readable)"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class/URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "File Attachment",
+      "description": "File attachment"
+    },
+    "website.config.GoogleDriveMedia": {
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "Google Drive file ID"
+        },
+        "folder_id": {
+          "type": "string",
+          "description": "Folder ID where media is stored"
+        },
+        "enable_streaming": {
+          "type": "boolean",
+          "description": "Enable direct streaming"
+        },
+        "share_setting": {
+          "type": "string",
+          "description": "Share settings (public, restricted, etc.)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Drive Media",
+      "description": "Google Drive media integration"
+    },
+    "website.config.ImageAttachment": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image URL"
+        },
+        "alt_text": {
+          "type": "string",
+          "description": "Alt text (required for accessibility)"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width hint"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height hint"
+        },
+        "link_url": {
+          "type": "string",
+          "description": "Link URL (if image is clickable)"
+        },
+        "loading": {
+          "type": "string",
+          "description": "Loading strategy (\"lazy\", \"eager\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Image Attachment",
+      "description": "Image attachment"
+    },
+    "website.config.InteractiveDemo": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Demo type (\"codepen\", \"codesandbox\", \"stackblitz\", \"jsfiddle\")"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embed URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Demo title"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in pixels"
+        },
+        "show_preview": {
+          "type": "boolean",
+          "description": "Show preview by default"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Interactive Demo",
+      "description": "Interactive demo configuration"
+    },
+    "website.config.SchemaOrgAffiliation": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role or position"
+        },
+        "url": {
+          "type": "string",
+          "description": "Organization URL (optional)"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date (optional, ISO 8601 format)"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (optional, ISO 8601 format, omit if current)"
+        },
+        "organization_type": {
+          "type": "string",
+          "description": "Organization type (optional, e.g., \"Corporation\", \"EducationalOrganization\")"
+        },
+        "affiliation_type": {
+          "enum": [
+            "AFFILIATION_TYPE_UNSPECIFIED",
+            0,
+            "AFFILIATION_EMPLOYEE",
+            1,
+            "AFFILIATION_FOUNDER",
+            2,
+            "AFFILIATION_ADVISOR",
+            3,
+            "AFFILIATION_MEMBER",
+            4,
+            "AFFILIATION_ALUMNI",
+            5,
+            "AFFILIATION_BOARD_MEMBER",
+            6,
+            "AFFILIATION_INVESTOR",
+            7,
+            "AFFILIATION_CONSULTANT",
+            8,
+            "AFFILIATION_VOLUNTEER",
+            9,
+            "AFFILIATION_MENTOR",
+            10,
+            "AFFILIATION_PARTNER",
+            11,
+            "AFFILIATION_CONTRACTOR",
+            12
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "=============================================================================\n ECOSYSTEM CONFIGURATION PROTO\n =============================================================================\n This file defines the base configuration schema for the getHarsh ecosystem.\n All domains, blogs, and projects inherit from these defaults.\n\n Key Concepts:\n - Ecosystem-wide defaults that apply to all entities\n - Environment variable management with security classification\n - Schema.org entity configuration for rich semantic markup\n - Policy pages with hierarchical override capability\n\n Related Documentation:\n - Implementation: ../ecosystem-defaults.yml\n - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md\n - Configuration Guide: ../CONFIG.md\n =============================================================================",
+          "description": "============================================================================= ECOSYSTEM CONFIGURATION PROTO ============================================================================= This file defines the base configuration schema for the getHarsh ecosystem. All domains, blogs, and projects inherit from these defaults. Key Concepts: - Ecosystem-wide defaults that apply to all entities - Environment variable management with security classification - Schema.org entity configuration for rich semantic markup - Policy pages with hierarchical override capability Related Documentation: - Implementation: ../ecosystem-defaults.yml - Schema.org Guide: ../SCHEMA-ORG-EXAMPLES.md - Configuration Guide: ../CONFIG.md =============================================================================  Affiliation type enum for type-safe person-organization relationships"
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization @id reference (for linking to existing entities) Example: \"https://rawthoughts.in/#organization\""
+        },
+        "is_primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/current affiliation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Affiliation",
+      "description": "Affiliation for Person type in Schema.org JSON-LD output DEPRECATED: Use PersonAffiliation for configuration, this is for output only"
+    },
+    "website.config.SchemaOrgChild": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Child entity ID/URL"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Relationship type  e.g., \"owns\", \"subOrganization\", \"hasPart\""
+        },
+        "type": {
+          "type": "string",
+          "description": "Child type  e.g., \"ResearchProject\", \"SoftwareApplication\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Child",
+      "description": "Child entity reference for Schema.org"
+    },
+    "website.config.SchemaOrgEntity": {
+      "properties": {
+        "type_enum": {
+          "enum": [
+            "SCHEMA_ORG_ENTITY_TYPE_UNSPECIFIED",
+            0,
+            "SCHEMA_ORG_PERSON",
+            1,
+            "SCHEMA_ORG_ORGANIZATION",
+            2,
+            "SCHEMA_ORG_CORPORATION",
+            3,
+            "SCHEMA_ORG_LOCAL_BUSINESS",
+            4,
+            "SCHEMA_ORG_EDUCATIONAL_ORGANIZATION",
+            5,
+            "SCHEMA_ORG_RESEARCH_ORGANIZATION",
+            6,
+            "SCHEMA_ORG_CONSORTIUM",
+            7,
+            "SCHEMA_ORG_CREATIVE_WORK",
+            10,
+            "SCHEMA_ORG_RESEARCH_PROJECT",
+            11,
+            "SCHEMA_ORG_WEB_SITE",
+            12,
+            "SCHEMA_ORG_WEB_PAGE",
+            13,
+            "SCHEMA_ORG_BLOG",
+            14,
+            "SCHEMA_ORG_BLOG_POSTING",
+            15,
+            "SCHEMA_ORG_ARTICLE",
+            16,
+            "SCHEMA_ORG_VISUAL_ARTWORK",
+            17,
+            "SCHEMA_ORG_DATASET",
+            18,
+            "SCHEMA_ORG_COURSE",
+            19,
+            "SCHEMA_ORG_SOFTWARE_APPLICATION",
+            20,
+            "SCHEMA_ORG_WEB_APPLICATION",
+            21,
+            "SCHEMA_ORG_MOBILE_APPLICATION",
+            22,
+            "SCHEMA_ORG_VIDEO_GAME",
+            23,
+            "SCHEMA_ORG_SERVICE",
+            30,
+            "SCHEMA_ORG_PROFESSIONAL_SERVICE",
+            31,
+            "SCHEMA_ORG_CONSULTING_SERVICE",
+            32,
+            "SCHEMA_ORG_PRODUCT",
+            40,
+            "SCHEMA_ORG_BRAND",
+            41,
+            "SCHEMA_ORG_ABOUT_PAGE",
+            50,
+            "SCHEMA_ORG_CONTACT_PAGE",
+            51,
+            "SCHEMA_ORG_COLLECTION_PAGE",
+            52,
+            "SCHEMA_ORG_ITEM_LIST",
+            53,
+            "SCHEMA_ORG_FAQ_PAGE",
+            54,
+            "SCHEMA_ORG_PROFILE_PAGE",
+            55,
+            "SCHEMA_ORG_EVENT",
+            60,
+            "SCHEMA_ORG_PUBLICATION_EVENT",
+            61
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Schema Org Entity Type",
+          "description": "Schema.org entity types for commonly used types in the ecosystem Provides type safety for the most frequent Schema.org types we use"
+        },
+        "custom_type": {
+          "type": "string",
+          "description": "Custom type string for types not in our enum Use this for rare/specialized types (e.g., \"MedicalOrganization\")"
+        },
+        "additional_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Additional types for multi-type entities Example: [\"WebSite\", \"Brand\"] for getHarsh.in See ../SCHEMA-ORG-EXAMPLES.md#quick-start for patterns"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string properties (name, description, url, etc.)"
+        },
+        "affiliations": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgAffiliation"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Affiliations (for Person type)"
+        },
+        "parent_entity_id": {
+          "type": "string",
+          "description": "Parent entity reference (for hierarchy)  e.g., \"@id\" reference"
+        },
+        "parent_relationship": {
+          "type": "string",
+          "description": "Relationship type to parent  e.g., \"parentOrganization\", \"creator\", \"owns\""
+        },
+        "children": {
+          "items": {
+            "$ref": "#/definitions/website.config.SchemaOrgChild"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Child entities (for org -> projects)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Entity",
+      "description": "Schema.org entity configuration Used to define the semantic type of any entity (domain, blog, project, page) See ../SCHEMA-ORG-EXAMPLES.md#configuration-examples for usage"
+    },
+    "website.config.VideoEmbed": {
+      "properties": {
+        "platform": {
+          "enum": [
+            "MEDIA_TYPE_UNSPECIFIED",
+            0,
+            "MEDIA_TYPE_IMAGE",
+            1,
+            "MEDIA_TYPE_VIDEO",
+            2,
+            "MEDIA_TYPE_AUDIO",
+            3,
+            "MEDIA_TYPE_CODE",
+            4,
+            "MEDIA_TYPE_GIST",
+            5,
+            "MEDIA_TYPE_DIAGRAM",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Media Type",
+          "description": "Media types for content Maps to Schema.org MediaObject, AudioObject, VideoObject, ImageObject"
+        },
+        "embed_url": {
+          "type": "string",
+          "description": "Embed URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "thumbnail_url": {
+          "type": "string",
+          "description": "Thumbnail URL"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption/description"
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "description": "Aspect ratio (e.g., \"16:9\")"
+        },
+        "autoplay": {
+          "type": "boolean",
+          "description": "Autoplay settings"
+        },
+        "privacy_mode": {
+          "type": "boolean",
+          "description": "Privacy-enhanced mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Embed",
+      "description": "Video embed configuration"
+    }
+  },
+  "title": "ARTICLECONFIG Configuration Schema",
+  "description": "JSON Schema for ArticleConfig configuration"
+}

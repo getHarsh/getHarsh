@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityDimension",
+  "definitions": {
+    "EntityDimension": {
+      "properties": {
+        "legal_entity_dimension": {
+          "type": "string",
+          "description": "Legal entity dimension"
+        },
+        "brand_dimension": {
+          "type": "string",
+          "description": "Brand dimension"
+        },
+        "project_dimension": {
+          "type": "string",
+          "description": "Project dimension"
+        },
+        "source_dimension": {
+          "type": "string",
+          "description": "Content source dimension"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Dimension",
+      "description": "Entity dimension configuration"
+    }
+  },
+  "title": "ENTITYDIMENSION Configuration Schema",
+  "description": "JSON Schema for EntityDimension configuration"
+}

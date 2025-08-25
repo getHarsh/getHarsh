@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RateLimiting",
+  "definitions": {
+    "RateLimiting": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable rate limiting"
+        },
+        "requests_per_minute": {
+          "type": "integer",
+          "description": "Requests per minute"
+        },
+        "burst_limit": {
+          "type": "integer",
+          "description": "Burst limit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Rate Limiting",
+      "description": "Rate limiting"
+    }
+  },
+  "title": "RATELIMITING Configuration Schema",
+  "description": "JSON Schema for RateLimiting configuration"
+}

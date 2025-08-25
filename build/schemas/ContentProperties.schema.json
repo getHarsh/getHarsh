@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentProperties",
+  "definitions": {
+    "ContentProperties": {
+      "properties": {
+        "track_content_length": {
+          "type": "boolean",
+          "description": "Track content length"
+        },
+        "track_read_time": {
+          "type": "boolean",
+          "description": "Track read time"
+        },
+        "track_scroll_depth": {
+          "type": "boolean",
+          "description": "Track scroll depth"
+        },
+        "track_content_format": {
+          "type": "boolean",
+          "description": "Track content format (article, video, etc.)"
+        },
+        "track_engagement": {
+          "type": "boolean",
+          "description": "Track content engagement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Properties",
+      "description": "Content properties for tracking"
+    }
+  },
+  "title": "CONTENTPROPERTIES Configuration Schema",
+  "description": "JSON Schema for ContentProperties configuration"
+}

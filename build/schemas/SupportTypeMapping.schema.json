@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SupportTypeMapping",
+  "definitions": {
+    "SupportTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "funding_type": {
+          "type": "string",
+          "description": "Funding type"
+        },
+        "category": {
+          "type": "string",
+          "description": "Support category"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Support Type Mapping"
+    }
+  },
+  "title": "SUPPORTTYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for SupportTypeMapping configuration"
+}

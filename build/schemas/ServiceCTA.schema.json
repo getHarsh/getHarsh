@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServiceCTA",
+  "definitions": {
+    "ServiceCTA": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "description": "\"link\", \"form\", \"modal\", \"calendar\""
+        },
+        "target": {
+          "type": "string",
+          "description": "URL, form ID, or calendar ID"
+        },
+        "style": {
+          "type": "string",
+          "description": "\"primary\", \"secondary\", \"accent\", \"ghost\""
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Tracking  GTM event name"
+        },
+        "event_params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional GTM parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA",
+      "description": "Service CTA configuration"
+    }
+  },
+  "title": "SERVICECTA Configuration Schema",
+  "description": "JSON Schema for ServiceCTA configuration"
+}

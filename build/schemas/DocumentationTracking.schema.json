@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DocumentationTracking",
+  "definitions": {
+    "DocumentationTracking": {
+      "properties": {
+        "track_navigation": {
+          "type": "boolean",
+          "description": "Track documentation navigation"
+        },
+        "track_search": {
+          "type": "boolean",
+          "description": "Track search queries"
+        },
+        "track_version_switch": {
+          "type": "boolean",
+          "description": "Track version switching"
+        },
+        "track_time_on_page": {
+          "type": "boolean",
+          "description": "Track time on page"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Documentation Tracking",
+      "description": "Documentation tracking configuration"
+    }
+  },
+  "title": "DOCUMENTATIONTRACKING Configuration Schema",
+  "description": "JSON Schema for DocumentationTracking configuration"
+}

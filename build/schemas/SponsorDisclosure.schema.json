@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SponsorDisclosure",
+  "definitions": {
+    "SponsorDisclosure": {
+      "properties": {
+        "default_text": {
+          "type": "string",
+          "description": "Default disclosure text"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position in article (\"top\", \"bottom\", \"both\")"
+        },
+        "style": {
+          "type": "string",
+          "description": "Visual styling (\"banner\", \"inline\", \"subtle\")"
+        },
+        "include_logo": {
+          "type": "boolean",
+          "description": "Include sponsor logo"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sponsor Disclosure",
+      "description": "Sponsor disclosure configuration"
+    }
+  },
+  "title": "SPONSORDISCLOSURE Configuration Schema",
+  "description": "JSON Schema for SponsorDisclosure configuration"
+}

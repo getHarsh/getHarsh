@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LanguageSupport",
+  "definitions": {
+    "LanguageSupport": {
+      "properties": {
+        "language_switching": {
+          "type": "boolean",
+          "description": "Language switching"
+        },
+        "translations": {
+          "type": "boolean",
+          "description": "Translation availability"
+        },
+        "rtl_support": {
+          "type": "boolean",
+          "description": "RTL support"
+        },
+        "identify_language": {
+          "type": "boolean",
+          "description": "Language identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Language Support",
+      "description": "Language support"
+    }
+  },
+  "title": "LANGUAGESUPPORT Configuration Schema",
+  "description": "JSON Schema for LanguageSupport configuration"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CourseSchema",
+  "definitions": {
+    "CourseSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable course markup"
+        },
+        "description": {
+          "type": "string",
+          "description": "Course description"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Course duration"
+        },
+        "language": {
+          "type": "string",
+          "description": "Course language"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Prerequisites"
+        },
+        "target_audience": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Target audience"
+        },
+        "educational_level": {
+          "type": "string",
+          "description": "Educational level"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Course Schema",
+      "description": "Course schema"
+    }
+  },
+  "title": "COURSESCHEMA Configuration Schema",
+  "description": "JSON Schema for CourseSchema configuration"
+}

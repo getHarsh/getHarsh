@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TextOverrides",
+  "definitions": {
+    "TextOverrides": {
+      "properties": {
+        "banner_text": {
+          "type": "string",
+          "description": "Banner text override"
+        },
+        "privacy_url": {
+          "type": "string",
+          "description": "Privacy policy URL"
+        },
+        "cookie_url": {
+          "type": "string",
+          "description": "Cookie policy URL"
+        },
+        "terms_url": {
+          "type": "string",
+          "description": "Terms URL"
+        },
+        "replacements": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom text replacements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Text Overrides",
+      "description": "Text overrides for entity"
+    }
+  },
+  "title": "TEXTOVERRIDES Configuration Schema",
+  "description": "JSON Schema for TextOverrides configuration"
+}

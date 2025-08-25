@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PurchaseTracking",
+  "definitions": {
+    "PurchaseTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Track purchases"
+        },
+        "include_transaction_details": {
+          "type": "boolean",
+          "description": "Include transaction details"
+        },
+        "include_product_details": {
+          "type": "boolean",
+          "description": "Include product details"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Purchase Tracking",
+      "description": "Purchase tracking configuration"
+    }
+  },
+  "title": "PURCHASETRACKING Configuration Schema",
+  "description": "JSON Schema for PurchaseTracking configuration"
+}

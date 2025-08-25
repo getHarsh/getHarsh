@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DownloadSettings",
+  "definitions": {
+    "DownloadSettings": {
+      "properties": {
+        "include_download": {
+          "type": "boolean",
+          "description": "Include download URL"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "Download URL pattern"
+        },
+        "include_size": {
+          "type": "boolean",
+          "description": "Include file size"
+        },
+        "include_checksums": {
+          "type": "boolean",
+          "description": "Include checksums"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Download Settings",
+      "description": "Download settings"
+    }
+  },
+  "title": "DOWNLOADSETTINGS Configuration Schema",
+  "description": "JSON Schema for DownloadSettings configuration"
+}

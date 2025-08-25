@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ValidationConfig",
+  "definitions": {
+    "ValidationConfig": {
+      "properties": {
+        "validate_schema_org": {
+          "type": "boolean",
+          "description": "Validate against Schema.org vocabulary"
+        },
+        "validate_required_properties": {
+          "type": "boolean",
+          "description": "Validate required properties"
+        },
+        "fail_on_error": {
+          "type": "boolean",
+          "description": "Fail build on validation errors"
+        },
+        "validator_url": {
+          "type": "string",
+          "description": "Schema.org validator URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Config",
+      "description": "Validation configuration"
+    }
+  },
+  "title": "VALIDATIONCONFIG Configuration Schema",
+  "description": "JSON Schema for ValidationConfig configuration"
+}

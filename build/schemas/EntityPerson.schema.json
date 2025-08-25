@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityPerson",
+  "definitions": {
+    "EntityPerson": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Person's name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role in the entity"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "Start date in role"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "End date (if applicable)"
+        },
+        "person_url": {
+          "type": "string",
+          "description": "Person's Schema.org URL (if they have a domain)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Person",
+      "description": "Person associated with an entity"
+    }
+  },
+  "title": "ENTITYPERSON Configuration Schema",
+  "description": "JSON Schema for EntityPerson configuration"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SortConfig",
+  "definitions": {
+    "SortConfig": {
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field to sort by"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Sort direction (\"asc\", \"desc\")"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Sort Config",
+      "description": "Sort configuration"
+    }
+  },
+  "title": "SORTCONFIG Configuration Schema",
+  "description": "JSON Schema for SortConfig configuration"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/HomepageStyleMappings",
+  "definitions": {
+    "HomepageStyleMappings": {
+      "properties": {
+        "style_to_template": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> template name e.g., \"HOMEPAGE_STYLE_HERO\" -> \"Hero Homepage\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n HOMEPAGE STYLE MAPPINGS\n =============================================================================",
+      "description": "============================================================================= HOMEPAGE STYLE MAPPINGS =============================================================================  Maps HomepageStyle enum to page templates"
+    }
+  },
+  "title": "HOMEPAGESTYLEMAPPINGS Configuration Schema",
+  "description": "JSON Schema for HomepageStyleMappings configuration"
+}

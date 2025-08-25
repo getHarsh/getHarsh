@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GitHubSponsors",
+  "definitions": {
+    "GitHubSponsors": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "show_button": {
+          "type": "boolean",
+          "description": "Show sponsor button"
+        },
+        "tier_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom tiers mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Sponsors",
+      "description": "GitHub Sponsors configuration"
+    }
+  },
+  "title": "GITHUBSPONSORS Configuration Schema",
+  "description": "JSON Schema for GitHubSponsors configuration"
+}

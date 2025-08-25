@@ -1,0 +1,1894 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GTMConfig",
+  "definitions": {
+    "GTMConfig": {
+      "properties": {
+        "container": {
+          "$ref": "#/definitions/website.config.gtm.GTMContainer",
+          "description": "GTM container configuration"
+        },
+        "data_layer": {
+          "$ref": "#/definitions/website.config.gtm.DataLayerConfig",
+          "description": "Data layer configuration"
+        },
+        "events": {
+          "$ref": "#/definitions/website.config.gtm.EventTracking",
+          "description": "Event tracking configuration"
+        },
+        "ecommerce": {
+          "$ref": "#/definitions/website.config.gtm.EnhancedEcommerce",
+          "description": "Enhanced ecommerce configuration"
+        },
+        "custom_dimensions": {
+          "$ref": "#/definitions/website.config.gtm.CustomDimensions",
+          "description": "Custom dimensions and metrics"
+        },
+        "consent_mode": {
+          "$ref": "#/definitions/website.config.gtm.ConsentModeIntegration",
+          "description": "Consent mode v2 integration"
+        },
+        "cross_domain": {
+          "$ref": "#/definitions/website.config.gtm.CrossDomainConfig",
+          "description": "Cross-domain tracking configuration"
+        },
+        "server_side": {
+          "$ref": "#/definitions/website.config.gtm.ServerSideTagging",
+          "description": "Server-side tagging configuration"
+        },
+        "debug": {
+          "$ref": "#/definitions/website.config.gtm.DebugSettings",
+          "description": "Debug and preview settings"
+        },
+        "entity_configs": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.gtm.EntityGTMConfig"
+          },
+          "type": "object",
+          "description": "Entity-specific overrides"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n GOOGLE TAG MANAGER CONFIGURATION PROTO\n =============================================================================\n Defines comprehensive GTM integration for the ecosystem with entity-aware\n tracking, multi-touch attribution, and consent mode v2 support.\n\n This schema enables:\n - Entity-specific GTM containers (RTEPL vs DSPL)\n - Cross-domain tracking across the ecosystem\n - GA4 enhanced ecommerce and conversions\n - Custom event tracking with data layer\n - Consent mode v2 integration\n - Server-side tagging support\n\n Related Documentation:\n - Implementation Guide: ../GTM-EXAMPLES.md\n - Mappings: gtm-mappings.yml\n - Parent Schema: ecosystem.proto\n =============================================================================",
+      "description": "============================================================================= GOOGLE TAG MANAGER CONFIGURATION PROTO ============================================================================= Defines comprehensive GTM integration for the ecosystem with entity-aware tracking, multi-touch attribution, and consent mode v2 support. This schema enables: - Entity-specific GTM containers (RTEPL vs DSPL) - Cross-domain tracking across the ecosystem - GA4 enhanced ecommerce and conversions - Custom event tracking with data layer - Consent mode v2 integration - Server-side tagging support Related Documentation: - Implementation Guide: ../GTM-EXAMPLES.md - Mappings: gtm-mappings.yml - Parent Schema: ecosystem.proto =============================================================================  GTMConfig defines the complete Google Tag Manager configuration"
+    },
+    "website.config.gtm.CartTracking": {
+      "properties": {
+        "track_add_to_cart": {
+          "type": "boolean",
+          "description": "Track add to cart"
+        },
+        "track_remove_from_cart": {
+          "type": "boolean",
+          "description": "Track remove from cart"
+        },
+        "track_cart_views": {
+          "type": "boolean",
+          "description": "Track cart views"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cart Tracking",
+      "description": "Cart tracking configuration"
+    },
+    "website.config.gtm.CheckoutTracking": {
+      "properties": {
+        "track_steps": {
+          "type": "boolean",
+          "description": "Track checkout steps"
+        },
+        "step_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Checkout step names"
+        },
+        "track_options": {
+          "type": "boolean",
+          "description": "Track checkout options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Checkout Tracking",
+      "description": "Checkout tracking configuration"
+    },
+    "website.config.gtm.ClientIdentification": {
+      "properties": {
+        "cookie_name": {
+          "type": "string",
+          "description": "Client ID cookie name"
+        },
+        "generate_if_missing": {
+          "type": "boolean",
+          "description": "Generate if missing"
+        },
+        "hash_client_id": {
+          "type": "boolean",
+          "description": "Hash client ID"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Client Identification",
+      "description": "Client identification for server-side"
+    },
+    "website.config.gtm.ConsentEventTrigger": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "GTM event name"
+        },
+        "consent_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Consent types to update"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Event Trigger",
+      "description": "Consent event trigger"
+    },
+    "website.config.gtm.ConsentModeIntegration": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable consent mode"
+        },
+        "default_state": {
+          "$ref": "#/definitions/website.config.gtm.DefaultConsentState",
+          "description": "Default consent state"
+        },
+        "update_triggers": {
+          "$ref": "#/definitions/website.config.gtm.ConsentUpdateTriggers",
+          "description": "Consent update triggers"
+        },
+        "regional_settings": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.RegionalConsent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Regional consent settings"
+        },
+        "wait_for_update_ms": {
+          "type": "integer",
+          "description": "Wait for consent update (ms)"
+        },
+        "url_passthrough": {
+          "type": "boolean",
+          "description": "URL passthrough"
+        },
+        "ads_data_redaction": {
+          "type": "boolean",
+          "description": "Ads data redaction"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Mode Integration",
+      "description": "Consent mode v2 integration"
+    },
+    "website.config.gtm.ConsentUpdateTriggers": {
+      "properties": {
+        "on_consent_given": {
+          "$ref": "#/definitions/website.config.gtm.ConsentEventTrigger",
+          "description": "Update on consent given"
+        },
+        "on_consent_withdrawn": {
+          "$ref": "#/definitions/website.config.gtm.ConsentEventTrigger",
+          "description": "Update on consent withdrawn"
+        },
+        "on_consent_changed": {
+          "$ref": "#/definitions/website.config.gtm.ConsentEventTrigger",
+          "description": "Update on consent changed"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Consent Update Triggers",
+      "description": "Consent update triggers"
+    },
+    "website.config.gtm.ContentProperties": {
+      "properties": {
+        "track_content_length": {
+          "type": "boolean",
+          "description": "Track content length"
+        },
+        "track_read_time": {
+          "type": "boolean",
+          "description": "Track read time"
+        },
+        "track_scroll_depth": {
+          "type": "boolean",
+          "description": "Track scroll depth"
+        },
+        "track_content_format": {
+          "type": "boolean",
+          "description": "Track content format (article, video, etc.)"
+        },
+        "track_engagement": {
+          "type": "boolean",
+          "description": "Track content engagement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Properties",
+      "description": "Content properties for tracking"
+    },
+    "website.config.gtm.ConversionEvent": {
+      "properties": {
+        "conversion_name": {
+          "type": "string",
+          "description": "Conversion name"
+        },
+        "value": {
+          "$ref": "#/definitions/website.config.gtm.ConversionValue",
+          "description": "Conversion value"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Conversion currency"
+        },
+        "send_to_google_ads": {
+          "type": "boolean",
+          "description": "Send to Google Ads"
+        },
+        "google_ads_conversion_id": {
+          "type": "string",
+          "description": "Google Ads conversion ID"
+        },
+        "google_ads_conversion_label": {
+          "type": "string",
+          "description": "Google Ads conversion label"
+        },
+        "custom_parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Event",
+      "description": "Conversion event configuration"
+    },
+    "website.config.gtm.ConversionValue": {
+      "properties": {
+        "type": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            0,
+            "VALUE_TYPE_STATIC",
+            1,
+            "VALUE_TYPE_DYNAMIC",
+            2,
+            "VALUE_TYPE_CALCULATED",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Value Type",
+          "description": "Value types"
+        },
+        "static_value": {
+          "type": "number",
+          "description": "Static value"
+        },
+        "dynamic_source": {
+          "type": "string",
+          "description": "Dynamic value source"
+        },
+        "default_value": {
+          "type": "number",
+          "description": "Default value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Value",
+      "description": "Conversion value configuration"
+    },
+    "website.config.gtm.CookieFlags": {
+      "properties": {
+        "cookie_prefix": {
+          "type": "string",
+          "description": "Cookie prefix"
+        },
+        "cookie_update": {
+          "type": "boolean",
+          "description": "Cookie update"
+        },
+        "cookie_expires": {
+          "type": "integer",
+          "description": "Cookie expires (days)"
+        },
+        "cookie_path": {
+          "type": "string",
+          "description": "Cookie path"
+        },
+        "cookie_samesite": {
+          "type": "string",
+          "description": "Cookie samesite  \"Strict\", \"Lax\", \"None\""
+        },
+        "cookie_secure": {
+          "type": "boolean",
+          "description": "Cookie secure"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cookie Flags",
+      "description": "Cookie configuration flags"
+    },
+    "website.config.gtm.CrossDomainConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable cross-domain tracking"
+        },
+        "auto_link_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Auto link domains"
+        },
+        "linker": {
+          "$ref": "#/definitions/website.config.gtm.LinkerConfig",
+          "description": "Linker parameters"
+        },
+        "exclude_patterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Exclude URL patterns"
+        },
+        "cookie_domain": {
+          "type": "string",
+          "description": "Cookie domain"
+        },
+        "cookie_flags": {
+          "$ref": "#/definitions/website.config.gtm.CookieFlags",
+          "description": "Cookie flags"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Cross Domain Config",
+      "description": "Cross-domain tracking configuration"
+    },
+    "website.config.gtm.CustomDimension": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dimension name"
+        },
+        "index": {
+          "type": "integer",
+          "description": "Dimension index (GA4)"
+        },
+        "scope": {
+          "enum": [
+            "DIMENSION_SCOPE_UNSPECIFIED",
+            0,
+            "DIMENSION_SCOPE_USER",
+            1,
+            "DIMENSION_SCOPE_SESSION",
+            2,
+            "DIMENSION_SCOPE_EVENT",
+            3,
+            "DIMENSION_SCOPE_ITEM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Dimension Scope",
+          "description": "Dimension scope"
+        },
+        "value_source": {
+          "type": "string",
+          "description": "Value source"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Dimension",
+      "description": "Custom dimension configuration"
+    },
+    "website.config.gtm.CustomDimensions": {
+      "properties": {
+        "user_dimensions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomDimension"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "User-scoped dimensions"
+        },
+        "event_dimensions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomDimension"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Event-scoped dimensions"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomMetric"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom metrics"
+        },
+        "entity_dimension": {
+          "$ref": "#/definitions/website.config.gtm.EntityDimension",
+          "description": "Entity tracking dimension"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Dimensions",
+      "description": "Custom dimensions configuration"
+    },
+    "website.config.gtm.CustomEvent": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "Event name"
+        },
+        "category": {
+          "type": "string",
+          "description": "Event category"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.gtm.EventParameter"
+          },
+          "type": "object",
+          "description": "Event parameters"
+        },
+        "triggers": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.EventTrigger"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Trigger configuration"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.EventCondition"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Event conditions"
+        },
+        "send_to_ga4": {
+          "type": "boolean",
+          "description": "Send to GA4"
+        },
+        "custom_destinations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom destinations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Event",
+      "description": "Custom event configuration"
+    },
+    "website.config.gtm.CustomMetric": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Metric name"
+        },
+        "index": {
+          "type": "integer",
+          "description": "Metric index"
+        },
+        "type": {
+          "enum": [
+            "METRIC_TYPE_UNSPECIFIED",
+            0,
+            "METRIC_TYPE_NUMBER",
+            1,
+            "METRIC_TYPE_CURRENCY",
+            2,
+            "METRIC_TYPE_TIME",
+            3,
+            "METRIC_TYPE_PERCENTAGE",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Metric Type",
+          "description": "Metric types"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Metric",
+      "description": "Custom metric configuration"
+    },
+    "website.config.gtm.DataLayerConfig": {
+      "properties": {
+        "variable_name": {
+          "type": "string",
+          "description": "Data layer variable name (default: \"dataLayer\")"
+        },
+        "initial_values": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Initial data layer values"
+        },
+        "page_metadata": {
+          "$ref": "#/definitions/website.config.gtm.PageMetadata",
+          "description": "Page metadata to include"
+        },
+        "user_properties": {
+          "$ref": "#/definitions/website.config.gtm.UserProperties",
+          "description": "User properties to track"
+        },
+        "entity_properties": {
+          "$ref": "#/definitions/website.config.gtm.EntityProperties",
+          "description": "Entity properties to track"
+        },
+        "content_properties": {
+          "$ref": "#/definitions/website.config.gtm.ContentProperties",
+          "description": "Content properties to track"
+        },
+        "enhanced_link_attribution": {
+          "type": "boolean",
+          "description": "Enable enhanced link attribution"
+        },
+        "custom_pushes": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.DataLayerPush"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom data layer pushes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Layer Config",
+      "description": "Data layer configuration"
+    },
+    "website.config.gtm.DataLayerPush": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "Event name to push"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Event parameters"
+        },
+        "triggers": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.TriggerCondition"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Trigger conditions"
+        },
+        "delay_ms": {
+          "type": "integer",
+          "description": "Delay in milliseconds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Layer Push",
+      "description": "Custom data layer push configuration"
+    },
+    "website.config.gtm.DebugSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable debug mode"
+        },
+        "log_level": {
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            0,
+            "LOG_LEVEL_ERROR",
+            1,
+            "LOG_LEVEL_WARNING",
+            2,
+            "LOG_LEVEL_INFO",
+            3,
+            "LOG_LEVEL_DEBUG",
+            4,
+            "LOG_LEVEL_VERBOSE",
+            5
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Log Level",
+          "description": "Log levels"
+        },
+        "console_logging": {
+          "type": "boolean",
+          "description": "Console logging"
+        },
+        "debug_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Debug events"
+        },
+        "validation_mode": {
+          "type": "boolean",
+          "description": "Validation mode"
+        },
+        "preview": {
+          "$ref": "#/definitions/website.config.gtm.PreviewMode",
+          "description": "Preview mode"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Debug Settings",
+      "description": "Debug settings"
+    },
+    "website.config.gtm.DefaultConsentState": {
+      "properties": {
+        "analytics_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "ad_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "ad_user_data": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "ad_personalization": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "functionality_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "personalization_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        },
+        "security_storage": {
+          "enum": [
+            "CONSENT_STATE_UNSPECIFIED",
+            0,
+            "CONSENT_STATE_GRANTED",
+            1,
+            "CONSENT_STATE_DENIED",
+            2
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Consent State",
+          "description": "Consent state"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Default Consent State",
+      "description": "Default consent state"
+    },
+    "website.config.gtm.EnhancedEcommerce": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable enhanced ecommerce"
+        },
+        "data_layer_version": {
+          "type": "string",
+          "description": "Data layer version (GA4 or UA)"
+        },
+        "currency_code": {
+          "type": "string",
+          "description": "Currency code"
+        },
+        "products": {
+          "$ref": "#/definitions/website.config.gtm.ProductTracking",
+          "description": "Product tracking"
+        },
+        "cart": {
+          "$ref": "#/definitions/website.config.gtm.CartTracking",
+          "description": "Cart tracking"
+        },
+        "checkout": {
+          "$ref": "#/definitions/website.config.gtm.CheckoutTracking",
+          "description": "Checkout tracking"
+        },
+        "purchase": {
+          "$ref": "#/definitions/website.config.gtm.PurchaseTracking",
+          "description": "Purchase tracking"
+        },
+        "refunds": {
+          "$ref": "#/definitions/website.config.gtm.RefundTracking",
+          "description": "Refund tracking"
+        },
+        "promotions": {
+          "$ref": "#/definitions/website.config.gtm.PromotionTracking",
+          "description": "Promotion tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Enhanced Ecommerce",
+      "description": "Enhanced ecommerce configuration"
+    },
+    "website.config.gtm.EnhancedMeasurement": {
+      "properties": {
+        "enable_all": {
+          "type": "boolean",
+          "description": "Enable all enhanced measurements"
+        },
+        "scroll": {
+          "$ref": "#/definitions/website.config.gtm.ScrollTracking",
+          "description": "Scroll tracking"
+        },
+        "forms": {
+          "$ref": "#/definitions/website.config.gtm.FormTracking",
+          "description": "Form interaction tracking"
+        },
+        "site_search": {
+          "type": "boolean",
+          "description": "Site search tracking"
+        },
+        "video_engagement": {
+          "type": "boolean",
+          "description": "Video engagement"
+        },
+        "file_downloads": {
+          "type": "boolean",
+          "description": "File downloads"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Enhanced Measurement",
+      "description": "Enhanced measurement configuration"
+    },
+    "website.config.gtm.EntityDimension": {
+      "properties": {
+        "legal_entity_dimension": {
+          "type": "string",
+          "description": "Legal entity dimension"
+        },
+        "brand_dimension": {
+          "type": "string",
+          "description": "Brand dimension"
+        },
+        "project_dimension": {
+          "type": "string",
+          "description": "Project dimension"
+        },
+        "source_dimension": {
+          "type": "string",
+          "description": "Content source dimension"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Dimension",
+      "description": "Entity dimension configuration"
+    },
+    "website.config.gtm.EntityGTMConfig": {
+      "properties": {
+        "entity_name": {
+          "type": "string",
+          "description": "Entity name (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "container_id_override": {
+          "type": "string",
+          "description": "Override container ID"
+        },
+        "entity_events": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity-specific events"
+        },
+        "entity_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Entity-specific dimensions"
+        },
+        "entity_conversions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.ConversionEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity-specific conversions"
+        },
+        "google_ads_account": {
+          "type": "string",
+          "description": "Google Ads account ID"
+        },
+        "ga4_measurement_id": {
+          "type": "string",
+          "description": "GA4 measurement ID override"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity GTM Config",
+      "description": "Entity-specific GTM configuration"
+    },
+    "website.config.gtm.EntityProperties": {
+      "properties": {
+        "track_legal_entity": {
+          "type": "boolean",
+          "description": "Track legal entity (RTEPL, DSPL)"
+        },
+        "track_brand": {
+          "type": "boolean",
+          "description": "Track brand/domain"
+        },
+        "track_project": {
+          "type": "boolean",
+          "description": "Track project (if applicable)"
+        },
+        "track_content_source": {
+          "type": "boolean",
+          "description": "Track content source (domain, blog, project)"
+        },
+        "track_cross_entity": {
+          "type": "boolean",
+          "description": "Track cross-entity navigation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Properties",
+      "description": "Entity properties for multi-entity tracking"
+    },
+    "website.config.gtm.EventCondition": {
+      "properties": {
+        "variable": {
+          "type": "string",
+          "description": "Condition variable"
+        },
+        "operator": {
+          "enum": [
+            "CONDITION_OPERATOR_UNSPECIFIED",
+            0,
+            "CONDITION_OPERATOR_EQUALS",
+            1,
+            "CONDITION_OPERATOR_NOT_EQUALS",
+            2,
+            "CONDITION_OPERATOR_CONTAINS",
+            3,
+            "CONDITION_OPERATOR_NOT_CONTAINS",
+            4,
+            "CONDITION_OPERATOR_STARTS_WITH",
+            5,
+            "CONDITION_OPERATOR_ENDS_WITH",
+            6,
+            "CONDITION_OPERATOR_MATCHES_REGEX",
+            7,
+            "CONDITION_OPERATOR_GREATER_THAN",
+            8,
+            "CONDITION_OPERATOR_LESS_THAN",
+            9
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Condition Operator",
+          "description": "Condition operators"
+        },
+        "value": {
+          "type": "string",
+          "description": "Condition value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Condition",
+      "description": "Event condition"
+    },
+    "website.config.gtm.EventParameter": {
+      "properties": {
+        "type": {
+          "enum": [
+            "PARAMETER_TYPE_UNSPECIFIED",
+            0,
+            "PARAMETER_TYPE_STATIC",
+            1,
+            "PARAMETER_TYPE_DYNAMIC",
+            2,
+            "PARAMETER_TYPE_DOM",
+            3,
+            "PARAMETER_TYPE_URL",
+            4,
+            "PARAMETER_TYPE_COOKIE",
+            5,
+            "PARAMETER_TYPE_JS_VARIABLE",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Parameter Type",
+          "description": "Parameter types"
+        },
+        "value": {
+          "type": "string",
+          "description": "Parameter value or source"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required parameter"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value if missing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Parameter",
+      "description": "Event parameter configuration"
+    },
+    "website.config.gtm.EventTracking": {
+      "properties": {
+        "standard_events": {
+          "$ref": "#/definitions/website.config.gtm.StandardEvents",
+          "description": "Standard events configuration"
+        },
+        "custom_events": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom events configuration"
+        },
+        "conversions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.ConversionEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Conversion events"
+        },
+        "enhanced_measurement": {
+          "$ref": "#/definitions/website.config.gtm.EnhancedMeasurement",
+          "description": "Enhanced measurement"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Tracking",
+      "description": "Event tracking configuration"
+    },
+    "website.config.gtm.EventTrigger": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            0,
+            "TRIGGER_TYPE_PAGE_VIEW",
+            1,
+            "TRIGGER_TYPE_DOM_READY",
+            2,
+            "TRIGGER_TYPE_WINDOW_LOADED",
+            3,
+            "TRIGGER_TYPE_CLICK",
+            4,
+            "TRIGGER_TYPE_FORM_SUBMIT",
+            5,
+            "TRIGGER_TYPE_SCROLL",
+            6,
+            "TRIGGER_TYPE_TIMER",
+            7,
+            "TRIGGER_TYPE_CUSTOM",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Trigger Type",
+          "description": "Trigger types"
+        },
+        "details": {
+          "$ref": "#/definitions/website.config.gtm.TriggerDetails",
+          "description": "Trigger details"
+        },
+        "debounce_ms": {
+          "type": "integer",
+          "description": "Debounce delay (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Trigger",
+      "description": "Event trigger configuration"
+    },
+    "website.config.gtm.FileDownloadTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable download tracking"
+        },
+        "tracked_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File extensions to track"
+        },
+        "track_source": {
+          "type": "boolean",
+          "description": "Track download source"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "File Download Tracking",
+      "description": "File download tracking"
+    },
+    "website.config.gtm.FirstPartyConfig": {
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "Collection endpoint"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom headers"
+        },
+        "batch_requests": {
+          "type": "boolean",
+          "description": "Batch requests"
+        },
+        "batch_size": {
+          "type": "integer",
+          "description": "Batch size"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "First Party Config",
+      "description": "First-party collection configuration"
+    },
+    "website.config.gtm.FormTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable form tracking"
+        },
+        "track_starts": {
+          "type": "boolean",
+          "description": "Track form starts"
+        },
+        "track_abandonment": {
+          "type": "boolean",
+          "description": "Track form abandonment"
+        },
+        "track_field_interactions": {
+          "type": "boolean",
+          "description": "Track field interactions"
+        },
+        "excluded_forms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Excluded form selectors"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Form Tracking",
+      "description": "Form tracking configuration"
+    },
+    "website.config.gtm.GTMContainer": {
+      "properties": {
+        "container_id": {
+          "type": "string",
+          "description": "Container ID (e.g., \"GTM-XXXXXX\")"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Container environment (leave empty for production)"
+        },
+        "auth_token": {
+          "type": "string",
+          "description": "Authentication token for preview mode"
+        },
+        "preview_id": {
+          "type": "string",
+          "description": "Preview ID for testing"
+        },
+        "load_in_head": {
+          "type": "boolean",
+          "description": "Load GTM script in head vs body"
+        },
+        "enable_noscript": {
+          "type": "boolean",
+          "description": "Enable noscript fallback"
+        },
+        "custom_domain": {
+          "type": "string",
+          "description": "Custom domain for GTM script (for China, etc.)"
+        },
+        "loading_strategy": {
+          "enum": [
+            "LOADING_STRATEGY_UNSPECIFIED",
+            0,
+            "LOADING_STRATEGY_SYNC",
+            1,
+            "LOADING_STRATEGY_ASYNC",
+            2,
+            "LOADING_STRATEGY_DEFER",
+            3,
+            "LOADING_STRATEGY_LAZY",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Loading Strategy",
+          "description": "Loading strategy for GTM"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "GTM Container",
+      "description": "GTM container configuration"
+    },
+    "website.config.gtm.LinkerConfig": {
+      "properties": {
+        "accept_incoming": {
+          "type": "boolean",
+          "description": "Accept incoming linker"
+        },
+        "decorate_forms": {
+          "type": "boolean",
+          "description": "Decorate forms"
+        },
+        "url_position": {
+          "type": "string",
+          "description": "URL position for linker  \"query\" or \"fragment\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Linker Config",
+      "description": "Linker configuration"
+    },
+    "website.config.gtm.OutboundLinkTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable outbound tracking"
+        },
+        "excluded_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Excluded domains (ecosystem domains)"
+        },
+        "track_context": {
+          "type": "boolean",
+          "description": "Track link context"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Outbound Link Tracking",
+      "description": "Outbound link tracking"
+    },
+    "website.config.gtm.PageMetadata": {
+      "properties": {
+        "include_title": {
+          "type": "boolean",
+          "description": "Include page title"
+        },
+        "include_path": {
+          "type": "boolean",
+          "description": "Include page path"
+        },
+        "include_type": {
+          "type": "boolean",
+          "description": "Include page type (from Schema.org)"
+        },
+        "include_category": {
+          "type": "boolean",
+          "description": "Include page category"
+        },
+        "include_author": {
+          "type": "boolean",
+          "description": "Include page author"
+        },
+        "include_publish_date": {
+          "type": "boolean",
+          "description": "Include publish date"
+        },
+        "include_modified_date": {
+          "type": "boolean",
+          "description": "Include modified date"
+        },
+        "include_tags": {
+          "type": "boolean",
+          "description": "Include tags"
+        },
+        "include_language": {
+          "type": "boolean",
+          "description": "Include language"
+        },
+        "include_breadcrumbs": {
+          "type": "boolean",
+          "description": "Include breadcrumbs"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Metadata",
+      "description": "Page metadata for data layer"
+    },
+    "website.config.gtm.PageViewTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable page view tracking"
+        },
+        "track_spa_navigation": {
+          "type": "boolean",
+          "description": "Track single page app navigation"
+        },
+        "custom_parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Include custom parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page View Tracking",
+      "description": "Page view tracking configuration"
+    },
+    "website.config.gtm.PreviewMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable preview"
+        },
+        "cookie_name": {
+          "type": "string",
+          "description": "Preview cookie name"
+        },
+        "share_preview_url": {
+          "type": "boolean",
+          "description": "Share preview URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Preview Mode",
+      "description": "Preview mode configuration"
+    },
+    "website.config.gtm.ProductTracking": {
+      "properties": {
+        "track_impressions": {
+          "type": "boolean",
+          "description": "Track product impressions"
+        },
+        "track_clicks": {
+          "type": "boolean",
+          "description": "Track product clicks"
+        },
+        "track_details": {
+          "type": "boolean",
+          "description": "Track product details"
+        },
+        "list_names": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Product list names"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Product Tracking",
+      "description": "Product tracking configuration"
+    },
+    "website.config.gtm.PromotionTracking": {
+      "properties": {
+        "track_impressions": {
+          "type": "boolean",
+          "description": "Track promotion impressions"
+        },
+        "track_clicks": {
+          "type": "boolean",
+          "description": "Track promotion clicks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Promotion Tracking",
+      "description": "Promotion tracking configuration"
+    },
+    "website.config.gtm.PurchaseTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Track purchases"
+        },
+        "include_transaction_details": {
+          "type": "boolean",
+          "description": "Include transaction details"
+        },
+        "include_product_details": {
+          "type": "boolean",
+          "description": "Include product details"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Purchase Tracking",
+      "description": "Purchase tracking configuration"
+    },
+    "website.config.gtm.RefundTracking": {
+      "properties": {
+        "track_full_refunds": {
+          "type": "boolean",
+          "description": "Track full refunds"
+        },
+        "track_partial_refunds": {
+          "type": "boolean",
+          "description": "Track partial refunds"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Refund Tracking",
+      "description": "Refund tracking configuration"
+    },
+    "website.config.gtm.RegionDetection": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DETECTION_TYPE_UNSPECIFIED",
+            0,
+            "DETECTION_TYPE_IP_BASED",
+            1,
+            "DETECTION_TYPE_TIMEZONE",
+            2,
+            "DETECTION_TYPE_BROWSER_LOCALE",
+            3,
+            "DETECTION_TYPE_CUSTOM",
+            4
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Detection Type",
+          "description": "Detection types"
+        },
+        "custom_function": {
+          "type": "string",
+          "description": "Custom detection function"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Region Detection",
+      "description": "Region detection method"
+    },
+    "website.config.gtm.RegionalConsent": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region code (e.g., \"EU\", \"US-CA\")"
+        },
+        "consent_state": {
+          "$ref": "#/definitions/website.config.gtm.DefaultConsentState",
+          "description": "Regional consent state"
+        },
+        "detection": {
+          "$ref": "#/definitions/website.config.gtm.RegionDetection",
+          "description": "Region detection method"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Regional Consent",
+      "description": "Regional consent configuration"
+    },
+    "website.config.gtm.ScrollTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable scroll tracking"
+        },
+        "thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Scroll depth thresholds (percentages)"
+        },
+        "track_time_to_scroll": {
+          "type": "boolean",
+          "description": "Track time to scroll"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Scroll Tracking",
+      "description": "Scroll tracking configuration"
+    },
+    "website.config.gtm.SearchTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable search tracking"
+        },
+        "query_parameter": {
+          "type": "string",
+          "description": "Search query parameter"
+        },
+        "track_filters": {
+          "type": "boolean",
+          "description": "Track search filters"
+        },
+        "track_results": {
+          "type": "boolean",
+          "description": "Track search results"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Tracking",
+      "description": "Search tracking configuration"
+    },
+    "website.config.gtm.ServerSideTagging": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable server-side tagging"
+        },
+        "server_container_url": {
+          "type": "string",
+          "description": "Server container URL"
+        },
+        "transport": {
+          "enum": [
+            "TRANSPORT_METHOD_UNSPECIFIED",
+            0,
+            "TRANSPORT_METHOD_GTAG",
+            1,
+            "TRANSPORT_METHOD_GTM",
+            2,
+            "TRANSPORT_METHOD_CUSTOM",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Transport Method",
+          "description": "Transport method for server-side"
+        },
+        "first_party": {
+          "$ref": "#/definitions/website.config.gtm.FirstPartyConfig",
+          "description": "First-party collection"
+        },
+        "client_id": {
+          "$ref": "#/definitions/website.config.gtm.ClientIdentification",
+          "description": "Client identification"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Server Side Tagging",
+      "description": "Server-side tagging configuration"
+    },
+    "website.config.gtm.StandardEvents": {
+      "properties": {
+        "page_view": {
+          "$ref": "#/definitions/website.config.gtm.PageViewTracking",
+          "description": "Page view tracking"
+        },
+        "engagement": {
+          "$ref": "#/definitions/website.config.gtm.UserEngagementTracking",
+          "description": "User engagement tracking"
+        },
+        "search": {
+          "$ref": "#/definitions/website.config.gtm.SearchTracking",
+          "description": "Search tracking"
+        },
+        "video": {
+          "$ref": "#/definitions/website.config.gtm.VideoTracking",
+          "description": "Video tracking"
+        },
+        "downloads": {
+          "$ref": "#/definitions/website.config.gtm.FileDownloadTracking",
+          "description": "File download tracking"
+        },
+        "outbound": {
+          "$ref": "#/definitions/website.config.gtm.OutboundLinkTracking",
+          "description": "Outbound link tracking"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Standard Events",
+      "description": "Standard GA4 events configuration"
+    },
+    "website.config.gtm.TriggerCondition": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            0,
+            "TRIGGER_TYPE_PAGE_VIEW",
+            1,
+            "TRIGGER_TYPE_DOM_READY",
+            2,
+            "TRIGGER_TYPE_WINDOW_LOADED",
+            3,
+            "TRIGGER_TYPE_CLICK",
+            4,
+            "TRIGGER_TYPE_FORM_SUBMIT",
+            5,
+            "TRIGGER_TYPE_SCROLL",
+            6,
+            "TRIGGER_TYPE_TIMER",
+            7,
+            "TRIGGER_TYPE_CUSTOM",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Trigger Type",
+          "description": "Trigger types"
+        },
+        "value": {
+          "type": "string",
+          "description": "Trigger value (selector, URL pattern, etc.)"
+        },
+        "conditions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional conditions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Condition",
+      "description": "Trigger condition for events"
+    },
+    "website.config.gtm.TriggerDetails": {
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "CSS selector for clicks"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "URL pattern for page views"
+        },
+        "scroll_percentage": {
+          "type": "integer",
+          "description": "Scroll percentage"
+        },
+        "timer_interval": {
+          "type": "integer",
+          "description": "Timer interval (ms)"
+        },
+        "js_condition": {
+          "type": "string",
+          "description": "Custom JavaScript condition"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Details",
+      "description": "Trigger details"
+    },
+    "website.config.gtm.UserEngagementTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable engagement tracking"
+        },
+        "engagement_threshold": {
+          "type": "integer",
+          "description": "Engagement time threshold (seconds)"
+        },
+        "track_rage_clicks": {
+          "type": "boolean",
+          "description": "Track rage clicks"
+        },
+        "track_dead_clicks": {
+          "type": "boolean",
+          "description": "Track dead clicks"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "User Engagement Tracking",
+      "description": "User engagement tracking"
+    },
+    "website.config.gtm.UserProperties": {
+      "properties": {
+        "track_user_id": {
+          "type": "boolean",
+          "description": "Track user ID (hashed)"
+        },
+        "track_user_type": {
+          "type": "boolean",
+          "description": "Track user type (visitor, member, etc.)"
+        },
+        "track_user_segment": {
+          "type": "boolean",
+          "description": "Track user segment"
+        },
+        "track_login_status": {
+          "type": "boolean",
+          "description": "Track login status"
+        },
+        "track_subscription_status": {
+          "type": "boolean",
+          "description": "Track subscription status"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom user properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "User Properties",
+      "description": "User properties for tracking"
+    },
+    "website.config.gtm.VideoTracking": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable video tracking"
+        },
+        "track_youtube": {
+          "type": "boolean",
+          "description": "Track YouTube videos"
+        },
+        "track_html5": {
+          "type": "boolean",
+          "description": "Track HTML5 videos"
+        },
+        "progress_thresholds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "Video interaction thresholds (percentages)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Video Tracking",
+      "description": "Video tracking configuration"
+    }
+  },
+  "title": "GTMCONFIG Configuration Schema",
+  "description": "JSON Schema for GTMConfig configuration"
+}

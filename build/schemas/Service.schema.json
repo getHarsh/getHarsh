@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Service",
+  "definitions": {
+    "Service": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier (e.g., \"ai-growth\")"
+        },
+        "title": {
+          "type": "string",
+          "description": "Display information"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "features": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Service details"
+        },
+        "outcomes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deliverables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Visual elements  Icon identifier or URL"
+        },
+        "accent_color": {
+          "type": "string",
+          "description": "Hex color for theming"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org service type  e.g., \"TechnologyService\", \"ConsultingService\""
+        },
+        "primary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Service-specific CTAs"
+        },
+        "secondary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA"
+        },
+        "industry_page_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related industry pages"
+        },
+        "price_range": {
+          "type": "string",
+          "description": "Pricing tier (for Schema.org)  e.g., \"$$$$\", \"Premium\""
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "Service availability"
+        },
+        "display_order": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service",
+      "description": "Individual service configuration"
+    },
+    "ecosystem.services.ServiceCTA": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "description": "\"link\", \"form\", \"modal\", \"calendar\""
+        },
+        "target": {
+          "type": "string",
+          "description": "URL, form ID, or calendar ID"
+        },
+        "style": {
+          "type": "string",
+          "description": "\"primary\", \"secondary\", \"accent\", \"ghost\""
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Tracking  GTM event name"
+        },
+        "event_params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional GTM parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA",
+      "description": "Service CTA configuration"
+    }
+  },
+  "title": "SERVICE Configuration Schema",
+  "description": "JSON Schema for Service configuration"
+}

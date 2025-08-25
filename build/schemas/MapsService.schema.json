@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MapsService",
+  "definitions": {
+    "MapsService": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Maps integration"
+        },
+        "api_key": {
+          "type": "string",
+          "description": "API key"
+        },
+        "default_location": {
+          "$ref": "#/definitions/website.config.Location",
+          "description": "Default location"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Maps Service",
+      "description": "Google Maps service configuration"
+    },
+    "website.config.Location": {
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "address": {
+          "type": "string",
+          "description": "Address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Location",
+      "description": "Location for maps"
+    }
+  },
+  "title": "MAPSSERVICE Configuration Schema",
+  "description": "JSON Schema for MapsService configuration"
+}

@@ -1,0 +1,9 @@
+node_modules/
+src/gatsby-types.d.ts
+snapshots/
+*.tar.gz
+
+# Build outputs are now in ../build/
+# .cache/ → ../build/cache/[domain]/.cache/
+# public/ → ../../[domain]/site/ or site_local/
+# logs → ../build/logs/

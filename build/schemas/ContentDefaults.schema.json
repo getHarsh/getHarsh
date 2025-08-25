@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentDefaults",
+  "definitions": {
+    "ContentDefaults": {
+      "properties": {
+        "excerpt_length": {
+          "type": "integer",
+          "description": "Default excerpt length in words"
+        },
+        "posts_per_page": {
+          "type": "integer",
+          "description": "Default posts per page for pagination"
+        },
+        "date_format": {
+          "type": "string",
+          "description": "Default date format (e.g., \"%B %d, %Y\")"
+        },
+        "show_reading_time": {
+          "type": "boolean",
+          "description": "Enable reading time calculation by default"
+        },
+        "reading_wpm": {
+          "type": "integer",
+          "description": "Words per minute for reading time calculation"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Defaults",
+      "description": "Default content settings for posts and pages"
+    }
+  },
+  "title": "CONTENTDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ContentDefaults configuration"
+}

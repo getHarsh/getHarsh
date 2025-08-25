@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SearchProviderMapping",
+  "definitions": {
+    "SearchProviderMapping": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Provider name"
+        },
+        "service_url": {
+          "type": "string",
+          "description": "Service URL"
+        },
+        "client_library": {
+          "type": "string",
+          "description": "Client library"
+        },
+        "index_config": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Index configuration"
+        },
+        "features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Search Provider Mapping"
+    }
+  },
+  "title": "SEARCHPROVIDERMAPPING Configuration Schema",
+  "description": "JSON Schema for SearchProviderMapping configuration"
+}

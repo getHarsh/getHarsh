@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/JWTSettings",
+  "definitions": {
+    "JWTSettings": {
+      "properties": {
+        "secret": {
+          "type": "string",
+          "description": "JWT secret"
+        },
+        "algorithm": {
+          "type": "string",
+          "description": "JWT algorithm"
+        },
+        "expiry_seconds": {
+          "type": "integer",
+          "description": "JWT expiry (seconds)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "JWT Settings",
+      "description": "JWT settings"
+    }
+  },
+  "title": "JWTSETTINGS Configuration Schema",
+  "description": "JSON Schema for JWTSettings configuration"
+}

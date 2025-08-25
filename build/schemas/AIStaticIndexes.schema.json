@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AIStaticIndexes",
+  "definitions": {
+    "AIStaticIndexes": {
+      "properties": {
+        "full_content": {
+          "type": "string",
+          "description": "Full content dump (e.g., /ai/content.json)"
+        },
+        "summaries": {
+          "type": "string",
+          "description": "Post summaries with embeddings-friendly text (e.g., /ai/summaries.json)"
+        },
+        "navigation": {
+          "type": "string",
+          "description": "Structured navigation (e.g., /ai/navigation.json)"
+        },
+        "knowledge_graph": {
+          "type": "string",
+          "description": "Knowledge graph relationships (e.g., /ai/graph.json)"
+        },
+        "qa_pairs": {
+          "type": "string",
+          "description": "Q&A pairs if available (e.g., /ai/qa.json)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "AI Static Indexes",
+      "description": "Static index files for AI consumption (all JSON files)"
+    }
+  },
+  "title": "AISTATICINDEXES Configuration Schema",
+  "description": "JSON Schema for AIStaticIndexes configuration"
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ManifestFormatDefaults",
+  "definitions": {
+    "ManifestFormatDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.ManifestFormatMapping",
+          "description": "MANIFEST_FORMAT_UNSPECIFIED  format_name: \"\" mime_type: \"\" file_extension: \"\" schema_url: \"\""
+        },
+        "json": {
+          "$ref": "#/definitions/website.config.ManifestFormatMapping",
+          "description": "MANIFEST_FORMAT_JSON  format_name: \"JSON\" mime_type: \"application/json\" file_extension: \".json\" schema_url: \"https://json-schema.org/draft/2020-12/schema\""
+        },
+        "protobuf": {
+          "$ref": "#/definitions/website.config.ManifestFormatMapping",
+          "description": "MANIFEST_FORMAT_PROTOBUF  format_name: \"Protocol Buffers\" mime_type: \"application/x-protobuf\" file_extension: \".pb\" schema_url: \"https://protobuf.dev/\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Manifest Format Defaults",
+      "description": "Complete manifest format mappings"
+    },
+    "website.config.ManifestFormatMapping": {
+      "properties": {
+        "format_name": {
+          "type": "string",
+          "description": "Format name"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "file_extension": {
+          "type": "string",
+          "description": "File extension"
+        },
+        "schema_url": {
+          "type": "string",
+          "description": "Schema URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Manifest Format Mapping"
+    }
+  },
+  "title": "MANIFESTFORMATDEFAULTS Configuration Schema",
+  "description": "JSON Schema for ManifestFormatDefaults configuration"
+}

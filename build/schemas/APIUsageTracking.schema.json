@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APIUsageTracking",
+  "definitions": {
+    "APIUsageTracking": {
+      "properties": {
+        "track_key_generation": {
+          "type": "boolean",
+          "description": "Track API key generation"
+        },
+        "track_endpoint_clicks": {
+          "type": "boolean",
+          "description": "Track API endpoint usage (from docs)"
+        },
+        "track_sdk_downloads": {
+          "type": "boolean",
+          "description": "Track SDK downloads"
+        },
+        "custom_events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom API events"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Usage Tracking",
+      "description": "API usage tracking configuration"
+    }
+  },
+  "title": "APIUSAGETRACKING Configuration Schema",
+  "description": "JSON Schema for APIUsageTracking configuration"
+}

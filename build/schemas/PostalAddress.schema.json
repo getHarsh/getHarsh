@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PostalAddress",
+  "definitions": {
+    "PostalAddress": {
+      "properties": {
+        "street_address": {
+          "type": "string",
+          "description": "Street address"
+        },
+        "locality": {
+          "type": "string",
+          "description": "City/locality"
+        },
+        "region": {
+          "type": "string",
+          "description": "State/region"
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Postal code"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Postal Address",
+      "description": "Postal address for local business"
+    }
+  },
+  "title": "POSTALADDRESS Configuration Schema",
+  "description": "JSON Schema for PostalAddress configuration"
+}

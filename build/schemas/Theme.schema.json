@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Theme",
+  "definitions": {
+    "Theme": {
+      "properties": {
+        "theme_id": {
+          "type": "string",
+          "description": "Theme identifier (\"getharsh\", \"rawthoughts\", \"daostudio\", \"causality\", \"sleepwalker\")"
+        },
+        "theme_mode": {
+          "$ref": "#/definitions/website.config.ThemeMode",
+          "description": "Dark mode support"
+        },
+        "accessibility": {
+          "$ref": "#/definitions/website.config.AccessibilitySettings",
+          "description": "Accessibility settings"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme",
+      "description": "Theme configuration for the root site"
+    },
+    "website.config.AccessibilitySettings": {
+      "properties": {
+        "high_contrast_mode": {
+          "type": "boolean",
+          "description": "Enable high contrast mode option"
+        },
+        "focus_indicators": {
+          "type": "boolean",
+          "description": "Always show focus indicators"
+        },
+        "skip_navigation": {
+          "type": "boolean",
+          "description": "Enable skip navigation links"
+        },
+        "aria_label_prefix": {
+          "type": "string",
+          "description": "ARIA label prefix for dynamic content"
+        },
+        "reduce_motion": {
+          "type": "boolean",
+          "description": "Respect prefers-reduced-motion"
+        },
+        "keyboard_hints": {
+          "type": "boolean",
+          "description": "Enable keyboard navigation hints"
+        },
+        "font_size_controls": {
+          "type": "boolean",
+          "description": "Font size adjustment controls"
+        },
+        "require_alt_text": {
+          "type": "boolean",
+          "description": "Alt text for all images (enforcement)"
+        },
+        "screen_reader_optimizations": {
+          "type": "boolean",
+          "description": "Screen reader optimizations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Accessibility Settings",
+      "description": "Accessibility settings for improved user experience"
+    },
+    "website.config.ThemeMode": {
+      "properties": {
+        "enable_dark_mode": {
+          "type": "boolean",
+          "description": "Enable dark mode feature"
+        },
+        "default_mode": {
+          "type": "string",
+          "description": "Default mode when user first visits (\"light\", \"dark\", \"system\")"
+        },
+        "show_mode_toggle": {
+          "type": "boolean",
+          "description": "Show mode toggle button in UI"
+        },
+        "remember_preference": {
+          "type": "boolean",
+          "description": "Store user preference in localStorage"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Theme Mode",
+      "description": "Dark mode configuration"
+    }
+  },
+  "title": "THEME Configuration Schema",
+  "description": "JSON Schema for Theme configuration"
+}

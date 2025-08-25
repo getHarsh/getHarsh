@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OpeningHours",
+  "definitions": {
+    "OpeningHours": {
+      "properties": {
+        "day_of_week": {
+          "type": "string",
+          "description": "Day of week"
+        },
+        "opens": {
+          "type": "string",
+          "description": "Opening time (24h format)"
+        },
+        "closes": {
+          "type": "string",
+          "description": "Closing time (24h format)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Opening Hours",
+      "description": "Opening hours specification"
+    }
+  },
+  "title": "OPENINGHOURS Configuration Schema",
+  "description": "JSON Schema for OpeningHours configuration"
+}

@@ -1,0 +1,883 @@
+# ARIA Schema Mappings
+# Maps ARIA proto enums and types to their semantic meanings and WCAG requirements
+
+# WCAG compliance level mappings
+WCAGLevel:
+  WCAG_LEVEL_A: "A"          # Basic accessibility
+  WCAG_LEVEL_AA: "AA"        # Standard compliance (recommended)
+  WCAG_LEVEL_AAA: "AAA"      # Enhanced accessibility
+
+# Politeness level mappings for live regions
+PolitenessLevel:
+  POLITENESS_LEVEL_OFF: "off"
+  POLITENESS_LEVEL_POLITE: "polite"
+  POLITENESS_LEVEL_ASSERTIVE: "assertive"
+
+# Arrow navigation type mappings
+ArrowNavigationType:
+  ARROW_NAVIGATION_TYPE_HORIZONTAL: "horizontal"
+  ARROW_NAVIGATION_TYPE_VERTICAL: "vertical"
+  ARROW_NAVIGATION_TYPE_GRID: "grid"
+  ARROW_NAVIGATION_TYPE_TREE: "tree"
+
+# Color filter type mappings
+ColorFilterType:
+  COLOR_FILTER_TYPE_PROTANOPIA: "protanopia"        # Red-blind
+  COLOR_FILTER_TYPE_DEUTERANOPIA: "deuteranopia"    # Green-blind
+  COLOR_FILTER_TYPE_TRITANOPIA: "tritanopia"        # Blue-blind
+  COLOR_FILTER_TYPE_ACHROMATOPSIA: "achromatopsia"  # Total color blindness
+
+# ARIA landmark mappings
+Landmarks:
+  main: "main"
+  navigation: "navigation"
+  banner: "banner"
+  complementary: "complementary"
+  contentinfo: "contentinfo"
+  search: "search"
+  region: "region"
+  form: "form"
+
+# ARIA widget roles
+WidgetRoles:
+  button: "button"
+  link: "link"
+  textbox: "textbox"
+  checkbox: "checkbox"
+  radio: "radio"
+  combobox: "combobox"
+  listbox: "listbox"
+  menu: "menu"
+  menubar: "menubar"
+  tab: "tab"
+  tabpanel: "tabpanel"
+  tree: "tree"
+  grid: "grid"
+  dialog: "dialog"
+  alert: "alert"
+  alertdialog: "alertdialog"
+  progressbar: "progressbar"
+  slider: "slider"
+  spinbutton: "spinbutton"
+  switch: "switch"
+  tooltip: "tooltip"
+
+# ARIA states and properties
+ARIAStates:
+  aria-checked: "Checkbox or radio button state"
+  aria-disabled: "Element is disabled"
+  aria-expanded: "Element is expanded or collapsed"
+  aria-hidden: "Element is hidden from assistive technology"
+  aria-invalid: "Input value is invalid"
+  aria-pressed: "Toggle button state"
+  aria-selected: "Option is selected"
+  aria-busy: "Element is being updated"
+  aria-current: "Current item in a set"
+  aria-grabbed: "Element is grabbed for drag and drop"
+  aria-live: "Live region politeness"
+
+# ARIA properties
+ARIAProperties:
+  aria-label: "Accessible name"
+  aria-labelledby: "Reference to labeling element"
+  aria-describedby: "Reference to describing element"
+  aria-details: "Reference to detailed description"
+  aria-controls: "Element controls another"
+  aria-owns: "Parent-child relationship"
+  aria-flowto: "Reading flow order"
+  aria-posinset: "Position in set"
+  aria-setsize: "Size of set"
+  aria-level: "Hierarchical level"
+  aria-valuemin: "Minimum value"
+  aria-valuemax: "Maximum value"
+  aria-valuenow: "Current value"
+  aria-valuetext: "Human readable value"
+  aria-orientation: "Element orientation"
+  aria-sort: "Sort order"
+  aria-autocomplete: "Autocomplete behavior"
+  aria-multiline: "Multiline text input"
+  aria-multiselectable: "Multiple selection allowed"
+  aria-placeholder: "Placeholder text"
+  aria-readonly: "Read-only state"
+  aria-required: "Required field"
+
+# Keyboard shortcuts
+StandardKeyboardShortcuts:
+  - key: "Tab"
+    action: "Move to next focusable element"
+    context: "global"
+  - key: "Shift+Tab"
+    action: "Move to previous focusable element"
+    context: "global"
+  - key: "Enter"
+    action: "Activate button or link"
+    context: "interactive"
+  - key: "Space"
+    action: "Activate button or checkbox"
+    context: "interactive"
+  - key: "Escape"
+    action: "Close dialog or cancel operation"
+    context: "modal"
+  - key: "Arrow Keys"
+    action: "Navigate within widget"
+    context: "widget"
+  - key: "Home"
+    action: "Move to first item"
+    context: "list"
+  - key: "End"
+    action: "Move to last item"
+    context: "list"
+  - key: "Page Up"
+    action: "Move up by page"
+    context: "scrollable"
+  - key: "Page Down"
+    action: "Move down by page"
+    context: "scrollable"
+
+# Focus indicator styles
+FocusIndicatorStyles:
+  default:
+    outline_width: 2
+    outline_color: "#0066cc"
+    outline_offset: 2
+    outline_style: "solid"
+  high_contrast:
+    outline_width: 3
+    outline_color: "#ffffff"
+    outline_offset: 3
+    outline_style: "solid"
+    background: "#000000"
+
+# Contrast ratio requirements (WCAG 2.1)
+ContrastRequirements:
+  AA:
+    normal_text: 4.5       # 4.5:1 for normal text
+    large_text: 3.0        # 3:1 for large text (18pt or 14pt bold)
+    ui_components: 3.0     # 3:1 for UI components and graphics
+  AAA:
+    normal_text: 7.0       # 7:1 for enhanced contrast
+    large_text: 4.5        # 4.5:1 for large text
+    ui_components: 4.5     # 4.5:1 for UI components
+
+# Screen reader announcements
+ScreenReaderPatterns:
+  button_loading: "{action} in progress"
+  button_success: "{action} completed successfully"
+  button_error: "{action} failed: {error}"
+  form_error: "Error: {field} {error}"
+  page_loading: "Loading {page}"
+  page_loaded: "{page} loaded"
+  dialog_opened: "{title} dialog opened"
+  dialog_closed: "Dialog closed"
+  menu_opened: "{menu} menu expanded"
+  menu_closed: "{menu} menu collapsed"
+  tab_selected: "{tab} tab selected"
+  alert_message: "Alert: {message}"
+  search_results: "{count} results found for {query}"
+  no_results: "No results found for {query}"
+
+# Alt text patterns
+AltTextPatterns:
+  decorative: ""  # Empty alt for decorative images
+  informative: "Image: {description}"
+  functional: "{action}"
+  complex: "Complex image: {brief}. Full description available."
+
+# Error message patterns
+ErrorMessagePatterns:
+  required: "{field} is required"
+  invalid_email: "Enter a valid email address"
+  invalid_phone: "Enter a valid phone number"
+  invalid_date: "Enter a valid date in {format} format"
+  min_length: "{field} must be at least {min} characters"
+  max_length: "{field} must be no more than {max} characters"
+  min_value: "{field} must be at least {min}"
+  max_value: "{field} must be no more than {max}"
+  pattern: "{field} must match the required format"
+
+# Skip link suggestions
+SkipLinkDefaults:
+  - text: "Skip to main content"
+    target: "#main"
+    shortcut: "Alt+S"
+  - text: "Skip to navigation"
+    target: "#navigation"
+    shortcut: "Alt+N"
+  - text: "Skip to search"
+    target: "#search"
+    shortcut: "Alt+/"
+
+# Live region contexts
+LiveRegionContexts:
+  status:
+    politeness: "polite"
+    atomic: true
+    relevant: "additions text"
+  alert:
+    politeness: "assertive"
+    atomic: true
+    relevant: "additions text"
+  log:
+    politeness: "polite"
+    atomic: false
+    relevant: "additions"
+  timer:
+    politeness: "off"
+    atomic: true
+    relevant: "text"
+  marquee:
+    politeness: "off"
+    atomic: false
+    relevant: "additions"
+
+# Form validation timing
+ValidationTiming:
+  onBlur: "Validate when field loses focus"
+  onChange: "Validate as user types"
+  onSubmit: "Validate on form submission"
+  hybrid: "Validate on blur and submit"
+
+# Reading level targets
+ReadingLevels:
+  elementary: "Grade 4-6"
+  middle_school: "Grade 7-9"
+  high_school: "Grade 10-12"
+  college: "Grade 13+"
+  plain_language: "Grade 8 or lower"
+
+# Motion preferences
+MotionPreferences:
+  no_preference: "Full motion enabled"
+  reduce: "Reduce non-essential motion"
+  stop: "Stop all animation"
+
+# Touch target sizes (WCAG 2.5.5)
+TouchTargetSizes:
+  minimum: "44x44"     # iOS Human Interface Guidelines
+  recommended: "48x48" # Material Design Guidelines
+  comfortable: "56x56" # Larger for motor impairments
+
+# Time limits (WCAG 2.2.1)
+TimeLimits:
+  session_timeout_warning: 120  # Warn 2 minutes before timeout
+  minimum_time_limit: 20        # 20x normal completion time
+  auto_refresh_warning: 5       # Warn 5 seconds before refresh
+
+# Language codes (ISO 639-1)
+LanguageDefaults:
+  en: "English"
+  es: "Español"
+  fr: "Français"
+  de: "Deutsch"
+  hi: "हिन्दी"
+  zh: "中文"
+  ar: "العربية"
+  ja: "日本語"
+
+# ARIA authoring practices patterns
+DesignPatterns:
+  accordion:
+    roles: ["button", "region"]
+    properties: ["aria-expanded", "aria-controls"]
+    keyboard: ["Space", "Enter", "Arrow Keys", "Home", "End"]
+  alert:
+    roles: ["alert"]
+    properties: ["aria-live", "aria-atomic"]
+    keyboard: []
+  breadcrumb:
+    roles: ["navigation", "list", "link"]
+    properties: ["aria-label", "aria-current"]
+    keyboard: ["Tab"]
+  button:
+    roles: ["button"]
+    properties: ["aria-pressed", "aria-expanded"]
+    keyboard: ["Space", "Enter"]
+  carousel:
+    roles: ["region", "button", "tablist"]
+    properties: ["aria-label", "aria-live", "aria-roledescription"]
+    keyboard: ["Tab", "Arrow Keys", "Space", "Enter"]
+  checkbox:
+    roles: ["checkbox"]
+    properties: ["aria-checked", "aria-required"]
+    keyboard: ["Space"]
+  combobox:
+    roles: ["combobox", "listbox", "option"]
+    properties: ["aria-expanded", "aria-autocomplete", "aria-controls"]
+    keyboard: ["Arrow Keys", "Enter", "Escape"]
+  dialog:
+    roles: ["dialog", "alertdialog"]
+    properties: ["aria-modal", "aria-labelledby", "aria-describedby"]
+    keyboard: ["Tab", "Shift+Tab", "Escape"]
+  disclosure:
+    roles: ["button"]
+    properties: ["aria-expanded", "aria-controls"]
+    keyboard: ["Space", "Enter"]
+  grid:
+    roles: ["grid", "row", "gridcell"]
+    properties: ["aria-rowcount", "aria-colcount", "aria-selected"]
+    keyboard: ["Arrow Keys", "Home", "End", "Page Up", "Page Down"]
+  link:
+    roles: ["link"]
+    properties: ["aria-current", "aria-describedby"]
+    keyboard: ["Enter"]
+  listbox:
+    roles: ["listbox", "option"]
+    properties: ["aria-selected", "aria-multiselectable"]
+    keyboard: ["Arrow Keys", "Home", "End", "Space"]
+  menu:
+    roles: ["menu", "menuitem", "menuitemcheckbox", "menuitemradio"]
+    properties: ["aria-haspopup", "aria-expanded", "aria-checked"]
+    keyboard: ["Arrow Keys", "Enter", "Space", "Escape"]
+  menubar:
+    roles: ["menubar", "menuitem"]
+    properties: ["aria-haspopup", "aria-expanded"]
+    keyboard: ["Arrow Keys", "Enter", "Space", "Escape", "Tab"]
+  radio:
+    roles: ["radiogroup", "radio"]
+    properties: ["aria-checked", "aria-required"]
+    keyboard: ["Arrow Keys", "Space"]
+  slider:
+    roles: ["slider"]
+    properties: ["aria-valuemin", "aria-valuemax", "aria-valuenow", "aria-orientation"]
+    keyboard: ["Arrow Keys", "Home", "End", "Page Up", "Page Down"]
+  spinbutton:
+    roles: ["spinbutton"]
+    properties: ["aria-valuemin", "aria-valuemax", "aria-valuenow"]
+    keyboard: ["Arrow Up", "Arrow Down", "Home", "End"]
+  switch:
+    roles: ["switch"]
+    properties: ["aria-checked"]
+    keyboard: ["Space"]
+  table:
+    roles: ["table", "row", "columnheader", "cell"]
+    properties: ["aria-rowcount", "aria-colcount", "aria-sort"]
+    keyboard: ["Tab", "Arrow Keys"]
+  tabs:
+    roles: ["tablist", "tab", "tabpanel"]
+    properties: ["aria-selected", "aria-controls", "aria-orientation"]
+    keyboard: ["Arrow Keys", "Home", "End", "Tab"]
+  toolbar:
+    roles: ["toolbar", "button"]
+    properties: ["aria-orientation", "aria-label"]
+    keyboard: ["Tab", "Arrow Keys"]
+  tooltip:
+    roles: ["tooltip"]
+    properties: ["aria-describedby"]
+    keyboard: ["Escape"]
+  tree:
+    roles: ["tree", "treeitem"]
+    properties: ["aria-expanded", "aria-selected", "aria-level"]
+    keyboard: ["Arrow Keys", "Enter", "Space", "Home", "End"]
+
+# Testing tools
+AccessibilityTools:
+  automated:
+    - name: "axe DevTools"
+      url: "https://www.deque.com/axe/devtools/"
+    - name: "WAVE"
+      url: "https://wave.webaim.org/"
+    - name: "Lighthouse"
+      url: "https://developers.google.com/web/tools/lighthouse"
+    - name: "Pa11y"
+      url: "https://pa11y.org/"
+  screen_readers:
+    - name: "NVDA"
+      platform: "Windows"
+    - name: "JAWS"
+      platform: "Windows"
+    - name: "VoiceOver"
+      platform: "macOS/iOS"
+    - name: "TalkBack"
+      platform: "Android"
+    - name: "Orca"
+      platform: "Linux"
+
+# Component-specific patterns for ecosystem
+ComponentPatterns:
+  social_share:
+    role: "complementary"
+    label: "Share this article"
+    keyboard_shortcut: "Alt+S"
+    aria_properties:
+      - aria-label: "Social sharing options"
+      - aria-expanded: "false"  # When closed
+    focus_order: "after-content"
+    
+  table_of_contents:
+    role: "navigation"
+    label: "Table of contents"
+    keyboard_shortcut: "Alt+T"
+    aria_properties:
+      - aria-label: "Article navigation"
+      - aria-expanded: "true"  # Default expanded
+    collapsible: true
+    
+  code_blocks:
+    role: "region"
+    label_pattern: "Code snippet: {language}"
+    aria_properties:
+      - aria-label: "Code example in {language}"
+      - aria-describedby: "copy-button-{id}"
+    copy_button:
+      role: "button"
+      label: "Copy code to clipboard"
+      success_announcement: "Code copied to clipboard"
+      
+  chips_tags:
+    role: "link"  # When clickable
+    label_pattern: "Tag: {name}"
+    context_aware: true  # Changes based on ContentType
+    aria_properties:
+      - aria-label: "Filter by {name}"
+      
+  service_card:
+    role: "article"
+    label_pattern: "{service} service"
+    properties: ["aria-labelledby", "aria-describedby"]
+    
+  sponsor_option:
+    role: "article"
+    label_pattern: "Sponsorship option: {type}"
+    properties: ["aria-label"]
+    action_label: "Learn more about {type} sponsorship"
+
+# Multi-subdomain navigation patterns
+MultiSubdomainPatterns:
+  ecosystem_navigator:
+    role: "navigation"
+    label: "Ecosystem navigation"
+    structure:
+      base_domain: "[domain].in"
+      blog_subdomain: "blog.[domain].in"
+      project_subdomains: "[project_name].[domain].in"
+    properties: ["aria-current", "aria-label", "aria-owns"]
+    announcements:
+      base_to_blog: "Navigating from {domain} to blog"
+      base_to_project: "Navigating from {domain} to {project} project"
+      blog_to_project: "Navigating from blog to {project} project"
+      project_to_project: "Switching from {current_project} to {target_project}"
+  
+  subdomain_breadcrumb:
+    pattern: "{ecosystem} > {domain} > {subdomain} > {page}"
+    roles: ["navigation", "list", "listitem"]
+    properties: ["aria-current", "aria-label"]
+
+  cross_entity_link:
+    properties: ["aria-describedby"]
+    description_pattern: "External link to {entity} - opens in same tab"
+
+# Federated search with project support
+FederatedSearchPatterns:
+  search_scope_selector:
+    role: "group"
+    label: "Search scope"
+    options:
+      - all: "Search entire ecosystem"
+      - current_domain: "Search {domain} only"
+      - current_project: "Search {project} only"
+      - all_projects: "Search all projects"
+      - all_blogs: "Search all blogs"
+    properties: ["aria-label", "aria-describedby"]
+  
+  search_results_grouping:
+    role: "feed"
+    structure:
+      - group: "blog_results"
+        label: "Blog posts from {domains}"
+      - group: "project_results"
+        label: "Project documentation from {projects}"
+      - group: "code_results"
+        label: "Code examples from {repositories}"
+    properties: ["aria-label", "aria-busy", "aria-live"]
+    
+  federated_search:
+    roles: ["search", "combobox", "listbox"]
+    properties: ["aria-expanded", "aria-controls", "aria-live", "aria-label"]
+    keyboard: ["Arrow Keys", "Enter", "Escape", "Tab"]
+    announcements:
+      searching: "Searching across {domains} domains"
+      results_found: "{count} results found across {domains} domains"
+      no_results: "No results found"
+
+# Neurodivergent accommodation patterns
+NeurodivergentPatterns:
+  cognitive_load_indicator:
+    role: "meter"
+    label: "Content complexity level"
+    properties: ["aria-valuemin", "aria-valuemax", "aria-valuenow", "aria-valuetext"]
+    levels:
+      1: "Simple - Easy to process"
+      2: "Moderate - Standard complexity"
+      3: "Complex - Requires focus"
+      4: "Dense - High cognitive load"
+  
+  reading_assistant:
+    role: "toolbar"
+    label: "Reading assistance tools"
+    tools:
+      - bionic_reading: "Bionic reading mode"
+      - line_focus: "Line focus ruler"
+      - word_spacing: "Adjust word spacing"
+      - font_selection: "Dyslexia-friendly fonts"
+      - color_overlay: "Color overlay options"
+    properties: ["aria-label", "aria-orientation"]
+  
+  attention_management:
+    focus_timer:
+      role: "timer"
+      label: "Focus session timer"
+      properties: ["aria-live", "aria-atomic"]
+    distraction_blocker:
+      role: "switch"
+      label: "Block distractions"
+      properties: ["aria-checked", "aria-describedby"]
+    break_reminder:
+      role: "alert"
+      label: "Time for a break"
+      properties: ["aria-live", "aria-atomic"]
+
+  neurodivergent_features:
+    reading_time:
+      role: "status"
+      label: "Estimated reading time"
+      announcement: "Estimated reading time: {minutes} minutes"
+    
+    content_density:
+      role: "group"
+      label: "Content density controls"
+      options:
+        - compact: "Compact view"
+        - comfortable: "Comfortable view"
+        - spacious: "Spacious view"
+    
+    focus_mode:
+      role: "switch"
+      label: "Focus mode"
+      description: "Reduces visual distractions"
+      announcement: "Focus mode {state}"
+
+# Code documentation patterns
+CodeDocumentationPatterns:
+  code_example:
+    role: "region"
+    label: "Code example: {title}"
+    properties: ["aria-label", "aria-describedby"]
+    features:
+      copy_button:
+        role: "button"
+        label: "Copy {language} code"
+      run_button:
+        role: "button"
+        label: "Run in {environment}"
+      expand_button:
+        role: "button"
+        label: "Show full code"
+        properties: ["aria-expanded", "aria-controls"]
+  
+  api_endpoint:
+    role: "article"
+    label: "{method} {endpoint}"
+    properties: ["aria-labelledby", "aria-describedby"]
+    sections:
+      parameters: "Parameters table"
+      responses: "Response examples"
+      errors: "Error codes"
+
+# Project showcase patterns
+ProjectPatterns:
+  project_card:
+    role: "article"
+    label: "{project} - {type}"
+    properties: ["aria-label", "aria-describedby"]
+    status_announcement: "{project} is currently {status}"
+  
+  project_navigation:
+    role: "navigation"
+    label: "Project sections"
+    items:
+      - overview: "Project overview"
+      - documentation: "Documentation"
+      - api: "API Reference"
+      - examples: "Examples"
+      - changelog: "Changelog"
+      - contribute: "Contributing guide"
+
+# Enhanced form patterns
+FormPatterns:
+  multi_step_form:
+    role: "form"
+    label: "{form_name} - Step {current} of {total}"
+    properties: ["aria-label", "aria-describedby"]
+    progress:
+      role: "progressbar"
+      properties: ["aria-valuemin", "aria-valuemax", "aria-valuenow"]
+  
+  sponsor_form:
+    role: "form"
+    label: "Sponsorship inquiry form"
+    validation_announcements:
+      field_valid: "{field} is valid"
+      field_invalid: "{field} has error: {error}"
+      form_submitting: "Submitting sponsorship inquiry"
+      form_success: "Thank you! We'll respond within 24 hours"
+
+# Live region patterns for real-time features
+LiveUpdatePatterns:
+  build_status:
+    role: "status"
+    politeness: "polite"
+    announcements:
+      building: "Building {project}..."
+      success: "{project} built successfully"
+      failed: "Build failed for {project}: {error}"
+  
+  search_status:
+    role: "status"
+    politeness: "polite"
+    announcements:
+      searching: "Searching {scope}..."
+      results: "Found {count} results in {time}ms"
+      no_results: "No results found. Try different keywords"
+
+# Keyboard navigation patterns
+KeyboardPatterns:
+  global_shortcuts:
+    - key: "/"
+      action: "Focus search"
+      announcement: "Search focused"
+    - key: "g h"
+      action: "Go home"
+      announcement: "Navigating to home"
+    - key: "g b"
+      action: "Go to blog"
+      announcement: "Navigating to blog"
+    - key: "g p"
+      action: "Go to projects"
+      announcement: "Navigating to projects"
+    - key: "?"
+      action: "Show keyboard shortcuts"
+      announcement: "Keyboard shortcuts dialog opened"
+
+# Person role announcements
+PersonRoleAnnouncements:
+  # Maps PersonRole enum (when created) to announcements
+  author_announcement: "Article by {name}, {role} at {organization}"
+  contributor_announcement: "Contributed by {name}, {role}"
+  reviewer_announcement: "Reviewed by {name}, {role}"
+
+# Theme integration (references ThemeVariant enum)
+ThemeIntegration:
+  # Only light/dark modes exist
+  theme_switch:
+    role: "switch"
+    label: "Toggle theme"
+    keyboard_shortcut: "Alt+D"
+    states:
+      light: "Switch to dark mode"
+      dark: "Switch to light mode"
+    announcement: "Theme changed to {mode} mode"
+
+# Entity-aware announcements
+EntityAnnouncements:
+  # Dynamic based on EntityCatalog
+  cross_entity_navigation: "Navigating from {from_entity} to {to_entity}"
+  entity_context: "Currently viewing content from {entity}"
+  legal_boundary: "You are leaving {from_entity} and entering {to_entity}"
+
+# Consent interface patterns
+ConsentPatterns:
+  consent_banner:
+    role: "dialog"
+    label: "Cookie consent"
+    properties: 
+      - aria-modal: "false"  # Non-modal to allow page interaction
+      - aria-live: "polite"
+      - aria-describedby: "consent-description"
+    focus_management:
+      initial: "Accept all button"
+      trap: false  # Don't trap focus in non-modal
+    keyboard:
+      - key: "Tab"
+        action: "Navigate consent options"
+      - key: "Escape"
+        action: "Dismiss to settings"
+  
+  consent_settings:
+    role: "form"
+    label: "Cookie preferences"
+    structure:
+      necessary:
+        role: "checkbox"
+        properties: ["aria-checked", "aria-disabled"]
+        disabled: true  # Always checked
+      analytics:
+        role: "checkbox"
+        properties: ["aria-checked", "aria-describedby"]
+      marketing:
+        role: "checkbox"
+        properties: ["aria-checked", "aria-describedby"]
+      functional:
+        role: "checkbox"
+        properties: ["aria-checked", "aria-describedby"]
+    announcements:
+      save_success: "Cookie preferences saved"
+      save_error: "Failed to save preferences"
+  
+  cross_domain_consent_sync:
+    status_indicator:
+      role: "status"
+      label: "Consent synchronization status"
+      states:
+        syncing: "Synchronizing consent across ecosystem domains"
+        synced: "Consent synchronized across all domains"
+        failed: "Consent sync failed - each domain will ask separately"
+    
+  privacy_rights_interface:
+    role: "navigation"
+    label: "Privacy rights actions"
+    actions:
+      - download_data:
+          role: "button"
+          label: "Download my data"
+          description: "Export all personal data in JSON format"
+      - delete_account:
+          role: "button"
+          label: "Delete my account"
+          description: "Permanently delete all data"
+          confirmation_required: true
+
+# Entity-aware consent announcements
+EntityConsentAnnouncements:
+  boundary_change: "You are now on {entity}. Cookie preferences are managed separately for each legal entity."
+  consent_inheritance: "This domain is part of {parent_entity}. Cookie preferences inherited."
+  consent_conflict: "Different consent settings detected. Using most restrictive settings."
+
+# Enhanced cognitive load patterns
+CognitiveLoadPatterns:
+  load_indicators:
+    visual_complexity:
+      role: "meter"
+      label: "Visual complexity score"
+      calculation: "Based on element count, colors, animations"
+    text_complexity:
+      role: "meter"
+      label: "Reading difficulty score"
+      calculation: "Based on sentence length, vocabulary"
+    interaction_complexity:
+      role: "meter"
+      label: "Interaction complexity"
+      calculation: "Based on required actions, choices"
+  
+  adhd_accommodations:
+    task_breakdown:
+      role: "list"
+      label: "Task steps"
+      properties: ["aria-label", "aria-describedby"]
+      features:
+        - "Break complex tasks into steps"
+        - "Show one step at a time option"
+        - "Progress tracking"
+    hyperfocus_support:
+      role: "timer"
+      label: "Hyperfocus timer"
+      description: "Gentle reminders during deep focus"
+  
+  autism_accommodations:
+    routine_keeper:
+      role: "status"
+      label: "Routine tracker"
+      features:
+        - "Consistent interaction patterns"
+        - "Predictable navigation paths"
+        - "Clear cause and effect"
+    change_announcements:
+      role: "alert"
+      label: "Change notification"
+      properties: ["aria-live", "aria-atomic"]
+      announcement: "Page layout will change. {reason}"
+
+# Working memory support patterns
+WorkingMemoryPatterns:
+  context_preservation:
+    sticky_breadcrumb:
+      role: "navigation"
+      label: "You are here"
+      properties: ["aria-current", "aria-label"]
+      position: "fixed"  # Always visible
+    
+    task_state_preservation:
+      role: "status"
+      label: "Current task state"
+      features:
+        - "Auto-save form progress"
+        - "Remember last position"
+        - "Restore closed tabs"
+    
+    visual_anchors:
+      role: "landmark"
+      label: "Visual reference points"
+      features:
+        - "Color-coded sections"
+        - "Icon associations"
+        - "Numbered steps"
+  
+  information_chunking:
+    content_segments:
+      role: "region"
+      label: "Content section {number} of {total}"
+      properties: ["aria-label", "aria-describedby"]
+    
+    progressive_disclosure:
+      role: "button"
+      label: "Show more details"
+      properties: ["aria-expanded", "aria-controls"]
+      announcement: "Additional details {state}"
+
+# Success criteria references (WCAG 2.1 + 2.2 updates)
+WCAGSuccessCriteria:
+  # Existing 2.1 criteria
+  "1.1.1": "Non-text Content"
+  "1.2.1": "Audio-only and Video-only"
+  "1.3.1": "Info and Relationships"
+  "1.3.5": "Identify Input Purpose"
+  "1.4.1": "Use of Color"
+  "1.4.3": "Contrast (Minimum)"
+  "1.4.5": "Images of Text"
+  "1.4.10": "Reflow"
+  "1.4.11": "Non-text Contrast"
+  "1.4.12": "Text Spacing"
+  "1.4.13": "Content on Hover or Focus"
+  "2.1.1": "Keyboard"
+  "2.1.2": "No Keyboard Trap"
+  "2.1.4": "Character Key Shortcuts"
+  "2.2.1": "Timing Adjustable"
+  "2.2.2": "Pause, Stop, Hide"
+  "2.3.1": "Three Flashes or Below"
+  "2.4.1": "Bypass Blocks"
+  "2.4.2": "Page Titled"
+  "2.4.3": "Focus Order"
+  "2.4.4": "Link Purpose"
+  "2.4.5": "Multiple Ways"
+  "2.4.6": "Headings and Labels"
+  "2.4.7": "Focus Visible"
+  "2.5.1": "Pointer Gestures"
+  "2.5.2": "Pointer Cancellation"
+  "2.5.3": "Label in Name"
+  "2.5.4": "Motion Actuation"
+  "3.1.1": "Language of Page"
+  "3.1.2": "Language of Parts"
+  "3.2.1": "On Focus"
+  "3.2.2": "On Input"
+  "3.3.1": "Error Identification"
+  "3.3.2": "Labels or Instructions"
+  "3.3.3": "Error Suggestion"
+  "3.3.4": "Error Prevention"
+  "4.1.1": "Parsing"
+  "4.1.2": "Name, Role, Value"
+  "4.1.3": "Status Messages"
+  # WCAG 2.2 additions (relevant for static sites)
+  "2.4.11": "Focus Not Obscured (Minimum)"
+  "2.4.12": "Focus Not Obscured (Enhanced)"
+  "2.5.7": "Dragging Movements"
+  "2.5.8": "Target Size (Minimum)"
+  "3.3.7": "Redundant Entry"

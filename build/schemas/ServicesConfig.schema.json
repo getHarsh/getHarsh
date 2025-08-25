@@ -1,0 +1,555 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServicesConfig",
+  "definitions": {
+    "ServicesConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable services for this domain"
+        },
+        "nav_label": {
+          "type": "string",
+          "description": "Navigation label (default: \"Services\")"
+        },
+        "main_page": {
+          "$ref": "#/definitions/ecosystem.services.ServicesPageSettings",
+          "description": "Main services page configuration"
+        },
+        "services": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.Service"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Individual service offerings"
+        },
+        "industry_pages": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.IndustryPage"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Industry/use-case specific pages"
+        },
+        "cta_settings": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTASettings",
+          "description": "Global CTA configuration"
+        },
+        "schema_settings": {
+          "$ref": "#/definitions/ecosystem.services.SchemaOrgSettings",
+          "description": "Schema.org configuration"
+        },
+        "blog_integration": {
+          "$ref": "#/definitions/ecosystem.services.BlogIntegrationSettings",
+          "description": "Blog integration settings"
+        },
+        "analytics": {
+          "$ref": "#/definitions/ecosystem.services.AnalyticsSettings",
+          "description": "Analytics configuration"
+        },
+        "terms_url": {
+          "type": "string",
+          "description": "Legal/compliance  Entity-specific terms"
+        },
+        "privacy_url": {
+          "type": "string",
+          "description": "Entity-specific privacy"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Services Config",
+      "description": "Main services configuration for a domain Lives in config_services.yml alongside config.yml"
+    },
+    "ecosystem.services.AnalyticsSettings": {
+      "properties": {
+        "primary_conversion_event": {
+          "type": "string",
+          "description": "Conversion tracking"
+        },
+        "secondary_conversion_event": {
+          "type": "string"
+        },
+        "industry_view_event": {
+          "type": "string",
+          "description": "Industry page tracking"
+        },
+        "service_interest_event": {
+          "type": "string",
+          "description": "Service interest tracking"
+        },
+        "attribution_model": {
+          "type": "string",
+          "description": "Attribution model  \"last-click\", \"data-driven\", \"position-based\""
+        },
+        "custom_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom dimensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Analytics Settings",
+      "description": "Analytics configuration"
+    },
+    "ecosystem.services.BlogIntegrationSettings": {
+      "properties": {
+        "enable_service_links": {
+          "type": "boolean",
+          "description": "Enable service links in blog posts"
+        },
+        "default_cta_text": {
+          "type": "string",
+          "description": "Default CTA text for blog posts  e.g., \"Get in touch with our team...\""
+        },
+        "link_style": {
+          "type": "string",
+          "description": "Service link styling  \"inline\", \"card\", \"banner\""
+        },
+        "link_position": {
+          "type": "string",
+          "description": "Position in article  \"after-intro\", \"before-conclusion\", \"custom\""
+        },
+        "add_schema_markup": {
+          "type": "boolean",
+          "description": "Schema markup for service links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Blog Integration Settings",
+      "description": "Blog integration settings"
+    },
+    "ecosystem.services.CaseStudy": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "client": {
+          "type": "string"
+        },
+        "challenge": {
+          "type": "string"
+        },
+        "solution": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        },
+        "metrics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "e.g., \"50% cost reduction\""
+        },
+        "testimonial": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Case Study",
+      "description": "Case study for industry pages"
+    },
+    "ecosystem.services.EvolutionTimeline": {
+      "properties": {
+        "eras": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.EvolutionTimeline.TimelineEra"
+          },
+          "additionalProperties": false,
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Evolution Timeline",
+      "description": "Evolution timeline for positioning"
+    },
+    "ecosystem.services.EvolutionTimeline.TimelineEra": {
+      "properties": {
+        "period": {
+          "type": "string",
+          "description": "e.g., \"2000s\""
+        },
+        "title": {
+          "type": "string",
+          "description": "e.g., \"SEO Era\""
+        },
+        "description": {
+          "type": "string"
+        },
+        "key_points": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_current": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Timeline Era"
+    },
+    "ecosystem.services.IndustryPage": {
+      "properties": {
+        "slug": {
+          "type": "string",
+          "description": "URL slug (e.g., \"customer-support\")"
+        },
+        "meta_title": {
+          "type": "string",
+          "description": "SEO metadata"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "meta_keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hero_title": {
+          "type": "string",
+          "description": "Page content"
+        },
+        "hero_subtitle": {
+          "type": "string"
+        },
+        "main_content": {
+          "type": "string",
+          "description": "Markdown supported"
+        },
+        "benefits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Industry-specific benefits"
+        },
+        "use_cases": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "case_studies": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.CaseStudy"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Case studies for this industry"
+        },
+        "service_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related services"
+        },
+        "industry_schema_type": {
+          "type": "string",
+          "description": "Schema.org industry classification  e.g., \"CustomerService\", \"HealthcareIndustry\""
+        },
+        "primary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "CTAs"
+        },
+        "secondary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA"
+        },
+        "is_cms_managed": {
+          "type": "boolean",
+          "description": "Content managed by Decap CMS"
+        },
+        "cms_collection": {
+          "type": "string",
+          "description": "Decap collection name"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Industry Page",
+      "description": "Industry/use-case specific page"
+    },
+    "ecosystem.services.PageSection": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "description": "Markdown/HTML"
+        },
+        "component_type": {
+          "type": "string",
+          "description": "For custom React components"
+        },
+        "props": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Component props"
+        },
+        "display_order": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Section",
+      "description": "Custom page section"
+    },
+    "ecosystem.services.SchemaOrgSettings": {
+      "properties": {
+        "provider_type": {
+          "type": "string",
+          "description": "Organization providing services  \"Organization\" or \"Person\""
+        },
+        "provider_name": {
+          "type": "string"
+        },
+        "offer_catalog_name": {
+          "type": "string",
+          "description": "Service catalog settings"
+        },
+        "area_served": {
+          "type": "string",
+          "description": "e.g., \"Worldwide\", \"India\""
+        },
+        "available_languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "custom_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Schema Org Settings",
+      "description": "Schema.org configuration"
+    },
+    "ecosystem.services.Service": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier (e.g., \"ai-growth\")"
+        },
+        "title": {
+          "type": "string",
+          "description": "Display information"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "features": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Service details"
+        },
+        "outcomes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deliverables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Visual elements  Icon identifier or URL"
+        },
+        "accent_color": {
+          "type": "string",
+          "description": "Hex color for theming"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org service type  e.g., \"TechnologyService\", \"ConsultingService\""
+        },
+        "primary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Service-specific CTAs"
+        },
+        "secondary_cta": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA"
+        },
+        "industry_page_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Related industry pages"
+        },
+        "price_range": {
+          "type": "string",
+          "description": "Pricing tier (for Schema.org)  e.g., \"$$$$\", \"Premium\""
+        },
+        "is_active": {
+          "type": "boolean",
+          "description": "Service availability"
+        },
+        "display_order": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service",
+      "description": "Individual service configuration"
+    },
+    "ecosystem.services.ServiceCTA": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "description": "\"link\", \"form\", \"modal\", \"calendar\""
+        },
+        "target": {
+          "type": "string",
+          "description": "URL, form ID, or calendar ID"
+        },
+        "style": {
+          "type": "string",
+          "description": "\"primary\", \"secondary\", \"accent\", \"ghost\""
+        },
+        "event_name": {
+          "type": "string",
+          "description": "Tracking  GTM event name"
+        },
+        "event_params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Additional GTM parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA",
+      "description": "Service CTA configuration"
+    },
+    "ecosystem.services.ServiceCTASettings": {
+      "properties": {
+        "primary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Primary CTA (e.g., consultation booking)"
+        },
+        "secondary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Secondary CTA (e.g., quote form)"
+        },
+        "industry_primary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA",
+          "description": "Industry page default CTAs"
+        },
+        "industry_secondary": {
+          "$ref": "#/definitions/ecosystem.services.ServiceCTA"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Service CTA Settings",
+      "description": "Global CTA settings"
+    },
+    "ecosystem.services.ServicesPageSettings": {
+      "properties": {
+        "meta_title": {
+          "type": "string",
+          "description": "SEO metadata"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "meta_keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hero_title": {
+          "type": "string",
+          "description": "Hero section"
+        },
+        "hero_subtitle": {
+          "type": "string"
+        },
+        "positioning_statement": {
+          "type": "string"
+        },
+        "timeline": {
+          "$ref": "#/definitions/ecosystem.services.EvolutionTimeline",
+          "description": "Evolution timeline (SEO → Mobile → Cloud → AI)"
+        },
+        "intro_text": {
+          "type": "string",
+          "description": "Intro content"
+        },
+        "pricing_statement": {
+          "type": "string",
+          "description": "Pricing communication"
+        },
+        "show_testimonials": {
+          "type": "boolean",
+          "description": "Trust indicators"
+        },
+        "show_case_studies": {
+          "type": "boolean"
+        },
+        "show_certifications": {
+          "type": "boolean"
+        },
+        "custom_sections": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.PageSection"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom page sections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Services Page Settings",
+      "description": "Main services page settings"
+    }
+  },
+  "title": "SERVICESCONFIG Configuration Schema",
+  "description": "JSON Schema for ServicesConfig configuration"
+}

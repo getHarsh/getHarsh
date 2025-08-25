@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/LinkBehaviorMapping",
+  "definitions": {
+    "LinkBehaviorMapping": {
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "Target attribute"
+        },
+        "rel": {
+          "type": "string",
+          "description": "Rel attribute"
+        },
+        "security_attrs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Security attributes"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Link Behavior Mapping"
+    }
+  },
+  "title": "LINKBEHAVIORMAPPING Configuration Schema",
+  "description": "JSON Schema for LinkBehaviorMapping configuration"
+}

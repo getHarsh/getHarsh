@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DatasetSchema",
+  "definitions": {
+    "DatasetSchema": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable dataset markup"
+        },
+        "description": {
+          "type": "string",
+          "description": "Dataset description"
+        },
+        "distribution_format": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Distribution format"
+        },
+        "license": {
+          "type": "string",
+          "description": "License"
+        },
+        "temporal_coverage": {
+          "type": "string",
+          "description": "Temporal coverage"
+        },
+        "spatial_coverage": {
+          "type": "string",
+          "description": "Spatial coverage"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Keywords"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Dataset Schema",
+      "description": "Dataset schema"
+    }
+  },
+  "title": "DATASETSCHEMA Configuration Schema",
+  "description": "JSON Schema for DatasetSchema configuration"
+}

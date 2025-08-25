@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/MobileMenu",
+  "definitions": {
+    "MobileMenu": {
+      "properties": {
+        "accessible_toggle": {
+          "type": "boolean",
+          "description": "Accessible toggle"
+        },
+        "focus_management": {
+          "type": "boolean",
+          "description": "Focus management"
+        },
+        "escape_close": {
+          "type": "boolean",
+          "description": "Escape to close"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Mobile Menu",
+      "description": "Mobile menu configuration"
+    }
+  },
+  "title": "MOBILEMENU Configuration Schema",
+  "description": "JSON Schema for MobileMenu configuration"
+}

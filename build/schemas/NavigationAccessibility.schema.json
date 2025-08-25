@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NavigationAccessibility",
+  "definitions": {
+    "NavigationAccessibility": {
+      "properties": {
+        "sidebar_tree_aria": {
+          "type": "boolean",
+          "description": "Sidebar tree ARIA"
+        },
+        "expandable_sections": {
+          "type": "boolean",
+          "description": "Expandable sections ARIA"
+        },
+        "current_page_indication": {
+          "type": "boolean",
+          "description": "Current page indication"
+        },
+        "navigation_hints": {
+          "type": "boolean",
+          "description": "Navigation hints"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Navigation Accessibility",
+      "description": "Navigation accessibility settings"
+    }
+  },
+  "title": "NAVIGATIONACCESSIBILITY Configuration Schema",
+  "description": "JSON Schema for NavigationAccessibility configuration"
+}

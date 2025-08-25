@@ -1,0 +1,94 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/odrl.jsonld",
+    "http://www.w3.org/ns/tdmrep.jsonld"
+  ],
+  "@type": "Offer",
+  "profile": "http://www.w3.org/ns/tdmrep",
+  "uid": "{{BASE_URL}}/policies/tdm-1",
+  "dc:title": "TDM Rights Reservation Policy for {{ENTITY_NAME}}",
+  "dc:description": "Text and Data Mining rights are explicitly reserved under EU Directive 2019/790",
+  "dc:creator": {
+    "@type": "Organization",
+    "@id": "{{BASE_URL}}#organization",
+    "name": "{{LEGAL_ENTITY_FULL}}",
+    "url": "{{BASE_URL}}",
+{{IF_DOMAIN_ALIASES}}
+    "sameAs": {{DOMAIN_ALIASES_SAMEAS_JSON}}
+{{END_IF_DOMAIN_ALIASES}}
+  },
+  "dc:issued": "{{GENERATION_DATE}}",
+  "dc:modified": "{{GENERATION_TIMESTAMP}}",
+  "permission": [
+    {
+      "target": "{{BASE_URL}}",
+      "action": "tdm:mine",
+      "duty": [{
+        "action": "cc:Notice",
+        "cc:attributionName": "{{LEGAL_ENTITY_FULL}}",
+        "cc:attributionURL": "{{BASE_URL}}"
+      }],
+      "constraint": [{
+        "leftOperand": "purpose",
+        "operator": "eq",
+        "rightOperand": "tdm:non-commercial-research"
+      }]
+    }
+  ],
+  "prohibition": [
+    {
+      "target": "{{BASE_URL}}",
+      "action": "tdm:mine",
+      "constraint": [{
+        "leftOperand": "purpose",
+        "operator": "eq",
+        "rightOperand": "tdm:commercial-ai-training"
+      }]
+    },
+    {
+      "target": "{{BASE_URL}}",
+      "action": "reproduce",
+      "constraint": [{
+        "leftOperand": "purpose",
+        "operator": "eq",
+        "rightOperand": "tdm:ai-training"
+      }]
+    }
+  ],
+  "tdm:location": "{{BASE_URL}}/.well-known/tdmrep.json",
+  "dc:rights": "© {{CURRENT_YEAR}} {{LEGAL_ENTITY_FULL}}. All rights reserved.",
+  "cc:jurisdiction": "{{LEGAL_JURISDICTION}}",
+  "tdm:hasPolicy": "{{BASE_URL}}/ai-policy",
+  "dct:conformsTo": "http://www.w3.org/ns/tdmrep",
+  "tdm:option": [
+    {
+      "@type": "tdm:Option",
+      "tdm:action": "contact",
+      "tdm:recipient": "{{AI_POLICY_EMAIL}}",
+      "tdm:purpose": "licensing"
+    },
+    {
+      "@type": "tdm:Option",
+      "tdm:action": "contact",
+      "tdm:recipient": "{{PROPOSAL_EMAIL}}",
+      "tdm:purpose": "commercial-licensing"
+    }
+  ],
+  "odrl:relation": [
+    {
+      "@type": "odrl:Policy",
+      "odrl:target": "{{BASE_URL}}/robots.txt",
+      "dc:title": "Robots exclusion policy"
+    },
+    {
+      "@type": "odrl:Policy",
+      "odrl:target": "{{BASE_URL}}/ai.txt",
+      "dc:title": "AI usage policy"
+    },
+    {
+      "@type": "odrl:Policy",
+      "odrl:target": "{{TERMS_URL}}",
+      "dc:title": "Terms of Service"
+    }
+  ]
+}

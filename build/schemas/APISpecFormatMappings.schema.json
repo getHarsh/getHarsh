@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APISpecFormatMappings",
+  "definitions": {
+    "APISpecFormatMappings": {
+      "properties": {
+        "format_to_name": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Simple string mapping: enum name -> spec name e.g., \"API_SPEC_FORMAT_OPENAPI\" -> \"OpenAPI\""
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "=============================================================================\n API SPECIFICATION FORMAT MAPPINGS\n =============================================================================",
+      "description": "============================================================================= API SPECIFICATION FORMAT MAPPINGS =============================================================================  Maps API specification formats to Schema.org types"
+    }
+  },
+  "title": "APISPECFORMATMAPPINGS Configuration Schema",
+  "description": "JSON Schema for APISpecFormatMappings configuration"
+}

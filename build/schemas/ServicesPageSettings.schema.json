@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ServicesPageSettings",
+  "definitions": {
+    "ServicesPageSettings": {
+      "properties": {
+        "meta_title": {
+          "type": "string",
+          "description": "SEO metadata"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "meta_keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hero_title": {
+          "type": "string",
+          "description": "Hero section"
+        },
+        "hero_subtitle": {
+          "type": "string"
+        },
+        "positioning_statement": {
+          "type": "string"
+        },
+        "timeline": {
+          "$ref": "#/definitions/ecosystem.services.EvolutionTimeline",
+          "description": "Evolution timeline (SEO → Mobile → Cloud → AI)"
+        },
+        "intro_text": {
+          "type": "string",
+          "description": "Intro content"
+        },
+        "pricing_statement": {
+          "type": "string",
+          "description": "Pricing communication"
+        },
+        "show_testimonials": {
+          "type": "boolean",
+          "description": "Trust indicators"
+        },
+        "show_case_studies": {
+          "type": "boolean"
+        },
+        "show_certifications": {
+          "type": "boolean"
+        },
+        "custom_sections": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.PageSection"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Custom page sections"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Services Page Settings",
+      "description": "Main services page settings"
+    },
+    "ecosystem.services.EvolutionTimeline": {
+      "properties": {
+        "eras": {
+          "items": {
+            "$ref": "#/definitions/ecosystem.services.EvolutionTimeline.TimelineEra"
+          },
+          "additionalProperties": false,
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Evolution Timeline",
+      "description": "Evolution timeline for positioning"
+    },
+    "ecosystem.services.EvolutionTimeline.TimelineEra": {
+      "properties": {
+        "period": {
+          "type": "string",
+          "description": "e.g., \"2000s\""
+        },
+        "title": {
+          "type": "string",
+          "description": "e.g., \"SEO Era\""
+        },
+        "description": {
+          "type": "string"
+        },
+        "key_points": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_current": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Timeline Era"
+    },
+    "ecosystem.services.PageSection": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "description": "Markdown/HTML"
+        },
+        "component_type": {
+          "type": "string",
+          "description": "For custom React components"
+        },
+        "props": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Component props"
+        },
+        "display_order": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Page Section",
+      "description": "Custom page section"
+    }
+  },
+  "title": "SERVICESPAGESETTINGS Configuration Schema",
+  "description": "JSON Schema for ServicesPageSettings configuration"
+}

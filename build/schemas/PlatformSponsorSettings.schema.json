@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PlatformSponsorSettings",
+  "definitions": {
+    "PlatformSponsorSettings": {
+      "properties": {
+        "github": {
+          "$ref": "#/definitions/website.config.GitHubSponsors",
+          "description": "GitHub Sponsors"
+        },
+        "youtube": {
+          "$ref": "#/definitions/website.config.YouTubeMembership",
+          "description": "YouTube Membership"
+        },
+        "patreon": {
+          "$ref": "#/definitions/website.config.PatreonSettings",
+          "description": "Patreon"
+        },
+        "buymeacoffee": {
+          "$ref": "#/definitions/website.config.BuyMeACoffeeSettings",
+          "description": "Buy Me a Coffee"
+        },
+        "paypal": {
+          "$ref": "#/definitions/website.config.PayPalSettings",
+          "description": "PayPal"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Platform Sponsor Settings",
+      "description": "Platform-specific sponsor settings"
+    },
+    "website.config.BuyMeACoffeeSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Username"
+        },
+        "widget_url": {
+          "type": "string",
+          "description": "Widget URL"
+        },
+        "button_color": {
+          "type": "string",
+          "description": "Button color"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Buy Me A Coffee Settings",
+      "description": "Buy Me a Coffee configuration"
+    },
+    "website.config.GitHubSponsors": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "GitHub username"
+        },
+        "show_button": {
+          "type": "boolean",
+          "description": "Show sponsor button"
+        },
+        "tier_mapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom tiers mapping"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Sponsors",
+      "description": "GitHub Sponsors configuration"
+    },
+    "website.config.PatreonSettings": {
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Patreon username"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign ID"
+        },
+        "show_patron_count": {
+          "type": "boolean",
+          "description": "Show patron count"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Patreon Settings",
+      "description": "Patreon configuration"
+    },
+    "website.config.PayPalSettings": {
+      "properties": {
+        "paypal_me": {
+          "type": "string",
+          "description": "PayPal.me username"
+        },
+        "business_email": {
+          "type": "string",
+          "description": "Business email"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code"
+        },
+        "button_style": {
+          "type": "string",
+          "description": "Button style"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Pay Pal Settings",
+      "description": "PayPal configuration"
+    },
+    "website.config.YouTubeMembership": {
+      "properties": {
+        "channel_id": {
+          "type": "string",
+          "description": "Channel ID"
+        },
+        "membership_url": {
+          "type": "string",
+          "description": "Membership URL"
+        },
+        "show_join_button": {
+          "type": "boolean",
+          "description": "Show join button"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "You Tube Membership",
+      "description": "YouTube Membership configuration"
+    }
+  },
+  "title": "PLATFORMSPONSORSETTINGS Configuration Schema",
+  "description": "JSON Schema for PlatformSponsorSettings configuration"
+}

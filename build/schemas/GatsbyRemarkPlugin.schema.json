@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GatsbyRemarkPlugin",
+  "definitions": {
+    "GatsbyRemarkPlugin": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin name"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Plugin options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Gatsby Remark Plugin",
+      "description": "Gatsby remark plugin configuration"
+    }
+  },
+  "title": "GATSBYREMARKPLUGIN Configuration Schema",
+  "description": "JSON Schema for GatsbyRemarkPlugin configuration"
+}

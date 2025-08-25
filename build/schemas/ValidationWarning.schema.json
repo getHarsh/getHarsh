@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ValidationWarning",
+  "definitions": {
+    "ValidationWarning": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Warning type"
+        },
+        "message": {
+          "type": "string",
+          "description": "Warning message"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/path"
+        },
+        "suggestion": {
+          "type": "string",
+          "description": "Suggestion"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Validation Warning",
+      "description": "Validation warning"
+    }
+  },
+  "title": "VALIDATIONWARNING Configuration Schema",
+  "description": "JSON Schema for ValidationWarning configuration"
+}

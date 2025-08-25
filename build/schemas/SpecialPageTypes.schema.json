@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/SpecialPageTypes",
+  "definitions": {
+    "SpecialPageTypes": {
+      "properties": {
+        "home_type": {
+          "type": "string",
+          "description": "Home page type (default: WebSite)"
+        },
+        "about_type": {
+          "type": "string",
+          "description": "About page type (default: AboutPage)"
+        },
+        "contact_type": {
+          "type": "string",
+          "description": "Contact page type (default: ContactPage)"
+        },
+        "projects_type": {
+          "type": "string",
+          "description": "Projects page type (default: CollectionPage)"
+        },
+        "blog_type": {
+          "type": "string",
+          "description": "Blog listing type (default: Blog)"
+        },
+        "error_type": {
+          "type": "string",
+          "description": "Error pages type (default: WebPage)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Special Page Types",
+      "description": "Special page type configuration"
+    }
+  },
+  "title": "SPECIALPAGETYPES Configuration Schema",
+  "description": "JSON Schema for SpecialPageTypes configuration"
+}

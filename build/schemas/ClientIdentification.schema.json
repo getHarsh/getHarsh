@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ClientIdentification",
+  "definitions": {
+    "ClientIdentification": {
+      "properties": {
+        "cookie_name": {
+          "type": "string",
+          "description": "Client ID cookie name"
+        },
+        "generate_if_missing": {
+          "type": "boolean",
+          "description": "Generate if missing"
+        },
+        "hash_client_id": {
+          "type": "boolean",
+          "description": "Hash client ID"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Client Identification",
+      "description": "Client identification for server-side"
+    }
+  },
+  "title": "CLIENTIDENTIFICATION Configuration Schema",
+  "description": "JSON Schema for ClientIdentification configuration"
+}

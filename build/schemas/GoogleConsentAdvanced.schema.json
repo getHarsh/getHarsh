@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GoogleConsentAdvanced",
+  "definitions": {
+    "GoogleConsentAdvanced": {
+      "properties": {
+        "url_passthrough": {
+          "type": "boolean",
+          "description": "URL passthrough"
+        },
+        "ads_data_redaction": {
+          "type": "boolean",
+          "description": "Ads data redaction"
+        },
+        "developer_id": {
+          "type": "string",
+          "description": "Developer ID"
+        },
+        "enable_on_page_load": {
+          "type": "boolean",
+          "description": "Enable consent mode on page load"
+        },
+        "wait_for_update_ms": {
+          "type": "integer",
+          "description": "Wait for update (ms)"
+        },
+        "region_features": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "type": "object",
+          "description": "Region-specific features"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Google Consent Advanced",
+      "description": "Google consent advanced settings"
+    }
+  },
+  "title": "GOOGLECONSENTADVANCED Configuration Schema",
+  "description": "JSON Schema for GoogleConsentAdvanced configuration"
+}

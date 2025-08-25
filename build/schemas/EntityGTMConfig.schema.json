@@ -1,0 +1,360 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityGTMConfig",
+  "definitions": {
+    "EntityGTMConfig": {
+      "properties": {
+        "entity_name": {
+          "type": "string",
+          "description": "Entity name (e.g., \"RTEPL\", \"DSPL\")"
+        },
+        "container_id_override": {
+          "type": "string",
+          "description": "Override container ID"
+        },
+        "entity_events": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.CustomEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity-specific events"
+        },
+        "entity_dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Entity-specific dimensions"
+        },
+        "entity_conversions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.ConversionEvent"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Entity-specific conversions"
+        },
+        "google_ads_account": {
+          "type": "string",
+          "description": "Google Ads account ID"
+        },
+        "ga4_measurement_id": {
+          "type": "string",
+          "description": "GA4 measurement ID override"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity GTM Config",
+      "description": "Entity-specific GTM configuration"
+    },
+    "website.config.gtm.ConversionEvent": {
+      "properties": {
+        "conversion_name": {
+          "type": "string",
+          "description": "Conversion name"
+        },
+        "value": {
+          "$ref": "#/definitions/website.config.gtm.ConversionValue",
+          "description": "Conversion value"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Conversion currency"
+        },
+        "send_to_google_ads": {
+          "type": "boolean",
+          "description": "Send to Google Ads"
+        },
+        "google_ads_conversion_id": {
+          "type": "string",
+          "description": "Google Ads conversion ID"
+        },
+        "google_ads_conversion_label": {
+          "type": "string",
+          "description": "Google Ads conversion label"
+        },
+        "custom_parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom parameters"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Event",
+      "description": "Conversion event configuration"
+    },
+    "website.config.gtm.ConversionValue": {
+      "properties": {
+        "type": {
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            0,
+            "VALUE_TYPE_STATIC",
+            1,
+            "VALUE_TYPE_DYNAMIC",
+            2,
+            "VALUE_TYPE_CALCULATED",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Value Type",
+          "description": "Value types"
+        },
+        "static_value": {
+          "type": "number",
+          "description": "Static value"
+        },
+        "dynamic_source": {
+          "type": "string",
+          "description": "Dynamic value source"
+        },
+        "default_value": {
+          "type": "number",
+          "description": "Default value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Conversion Value",
+      "description": "Conversion value configuration"
+    },
+    "website.config.gtm.CustomEvent": {
+      "properties": {
+        "event_name": {
+          "type": "string",
+          "description": "Event name"
+        },
+        "category": {
+          "type": "string",
+          "description": "Event category"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "#/definitions/website.config.gtm.EventParameter"
+          },
+          "type": "object",
+          "description": "Event parameters"
+        },
+        "triggers": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.EventTrigger"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Trigger configuration"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "#/definitions/website.config.gtm.EventCondition"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Event conditions"
+        },
+        "send_to_ga4": {
+          "type": "boolean",
+          "description": "Send to GA4"
+        },
+        "custom_destinations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Custom destinations"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Custom Event",
+      "description": "Custom event configuration"
+    },
+    "website.config.gtm.EventCondition": {
+      "properties": {
+        "variable": {
+          "type": "string",
+          "description": "Condition variable"
+        },
+        "operator": {
+          "enum": [
+            "CONDITION_OPERATOR_UNSPECIFIED",
+            0,
+            "CONDITION_OPERATOR_EQUALS",
+            1,
+            "CONDITION_OPERATOR_NOT_EQUALS",
+            2,
+            "CONDITION_OPERATOR_CONTAINS",
+            3,
+            "CONDITION_OPERATOR_NOT_CONTAINS",
+            4,
+            "CONDITION_OPERATOR_STARTS_WITH",
+            5,
+            "CONDITION_OPERATOR_ENDS_WITH",
+            6,
+            "CONDITION_OPERATOR_MATCHES_REGEX",
+            7,
+            "CONDITION_OPERATOR_GREATER_THAN",
+            8,
+            "CONDITION_OPERATOR_LESS_THAN",
+            9
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Condition Operator",
+          "description": "Condition operators"
+        },
+        "value": {
+          "type": "string",
+          "description": "Condition value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Condition",
+      "description": "Event condition"
+    },
+    "website.config.gtm.EventParameter": {
+      "properties": {
+        "type": {
+          "enum": [
+            "PARAMETER_TYPE_UNSPECIFIED",
+            0,
+            "PARAMETER_TYPE_STATIC",
+            1,
+            "PARAMETER_TYPE_DYNAMIC",
+            2,
+            "PARAMETER_TYPE_DOM",
+            3,
+            "PARAMETER_TYPE_URL",
+            4,
+            "PARAMETER_TYPE_COOKIE",
+            5,
+            "PARAMETER_TYPE_JS_VARIABLE",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Parameter Type",
+          "description": "Parameter types"
+        },
+        "value": {
+          "type": "string",
+          "description": "Parameter value or source"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required parameter"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value if missing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Parameter",
+      "description": "Event parameter configuration"
+    },
+    "website.config.gtm.EventTrigger": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TRIGGER_TYPE_UNSPECIFIED",
+            0,
+            "TRIGGER_TYPE_PAGE_VIEW",
+            1,
+            "TRIGGER_TYPE_DOM_READY",
+            2,
+            "TRIGGER_TYPE_WINDOW_LOADED",
+            3,
+            "TRIGGER_TYPE_CLICK",
+            4,
+            "TRIGGER_TYPE_FORM_SUBMIT",
+            5,
+            "TRIGGER_TYPE_SCROLL",
+            6,
+            "TRIGGER_TYPE_TIMER",
+            7,
+            "TRIGGER_TYPE_CUSTOM",
+            8
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Trigger Type",
+          "description": "Trigger types"
+        },
+        "details": {
+          "$ref": "#/definitions/website.config.gtm.TriggerDetails",
+          "description": "Trigger details"
+        },
+        "debounce_ms": {
+          "type": "integer",
+          "description": "Debounce delay (ms)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Trigger",
+      "description": "Event trigger configuration"
+    },
+    "website.config.gtm.TriggerDetails": {
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "CSS selector for clicks"
+        },
+        "url_pattern": {
+          "type": "string",
+          "description": "URL pattern for page views"
+        },
+        "scroll_percentage": {
+          "type": "integer",
+          "description": "Scroll percentage"
+        },
+        "timer_interval": {
+          "type": "integer",
+          "description": "Timer interval (ms)"
+        },
+        "js_condition": {
+          "type": "string",
+          "description": "Custom JavaScript condition"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Trigger Details",
+      "description": "Trigger details"
+    }
+  },
+  "title": "ENTITYGTMCONFIG Configuration Schema",
+  "description": "JSON Schema for EntityGTMConfig configuration"
+}

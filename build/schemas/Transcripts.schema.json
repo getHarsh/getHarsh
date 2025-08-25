@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Transcripts",
+  "definitions": {
+    "Transcripts": {
+      "properties": {
+        "provide_transcripts": {
+          "type": "boolean",
+          "description": "Provide transcripts"
+        },
+        "interactive": {
+          "type": "boolean",
+          "description": "Interactive transcripts"
+        },
+        "allow_download": {
+          "type": "boolean",
+          "description": "Download option"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Transcripts",
+      "description": "Transcripts"
+    }
+  },
+  "title": "TRANSCRIPTS Configuration Schema",
+  "description": "JSON Schema for Transcripts configuration"
+}

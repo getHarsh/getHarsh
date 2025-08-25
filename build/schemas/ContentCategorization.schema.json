@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ContentCategorization",
+  "definitions": {
+    "ContentCategorization": {
+      "properties": {
+        "category_to_type": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Category to Schema.org mapping"
+        },
+        "tag_to_type": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Tag to Schema.org mapping"
+        },
+        "tag_combinations": {
+          "items": {
+            "$ref": "#/definitions/website.config.TagCombination"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Multi-tag combinations"
+        },
+        "default_type": {
+          "type": "string",
+          "description": "Default categorization"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Content Categorization",
+      "description": "Content categorization for Schema.org"
+    },
+    "website.config.TagCombination": {
+      "properties": {
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Required tags"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Resulting Schema.org type"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Priority (higher wins)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Tag Combination",
+      "description": "Tag combination mapping"
+    }
+  },
+  "title": "CONTENTCATEGORIZATION Configuration Schema",
+  "description": "JSON Schema for ContentCategorization configuration"
+}

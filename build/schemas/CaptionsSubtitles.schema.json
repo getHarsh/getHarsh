@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CaptionsSubtitles",
+  "definitions": {
+    "CaptionsSubtitles": {
+      "properties": {
+        "provide_captions": {
+          "type": "boolean",
+          "description": "Provide captions"
+        },
+        "auto_generate": {
+          "type": "boolean",
+          "description": "Auto-generate captions"
+        },
+        "show_controls": {
+          "type": "boolean",
+          "description": "Caption controls"
+        },
+        "multi_language": {
+          "type": "boolean",
+          "description": "Multiple languages"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Captions Subtitles",
+      "description": "Captions and subtitles"
+    }
+  },
+  "title": "CAPTIONSSUBTITLES Configuration Schema",
+  "description": "JSON Schema for CaptionsSubtitles configuration"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EntityTypeMapping",
+  "definitions": {
+    "EntityTypeMapping": {
+      "properties": {
+        "schema_type": {
+          "type": "string",
+          "description": "Primary Schema.org type"
+        },
+        "alternate_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Alternative types"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Entity-specific properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Entity Type Mapping"
+    }
+  },
+  "title": "ENTITYTYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for EntityTypeMapping configuration"
+}

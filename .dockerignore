@@ -1,0 +1,63 @@
+# Node modules and build artifacts
+node_modules/
+.cache/
+public/
+build/
+dist/
+site/
+site_local/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Version control
+.git/
+.gitignore
+.gitmodules
+
+# Documentation (not needed in Docker)
+*.md
+!README.md
+docs/
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Docker files themselves
+Dockerfile*
+.dockerignore
+docker-compose.yml
+
+# Ecosystem scripts (we'll mount what we need)
+*.sh
+!src/entrypoint.sh
+
+# Archive and temp files
+archive/
+tmp/
+temp/
+*.bak
+*.tmp
+
+# Domain repositories (mounted separately)
+*.in/
+blog.*.in/

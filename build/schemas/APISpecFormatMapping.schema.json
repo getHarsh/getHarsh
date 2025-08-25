@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/APISpecFormatMapping",
+  "definitions": {
+    "APISpecFormatMapping": {
+      "properties": {
+        "spec_name": {
+          "type": "string",
+          "description": "Specification name"
+        },
+        "spec_url": {
+          "type": "string",
+          "description": "Specification URL"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "file_extensions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "File extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "API Spec Format Mapping"
+    }
+  },
+  "title": "APISPECFORMATMAPPING Configuration Schema",
+  "description": "JSON Schema for APISpecFormatMapping configuration"
+}

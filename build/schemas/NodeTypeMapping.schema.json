@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/NodeTypeMapping",
+  "definitions": {
+    "NodeTypeMapping": {
+      "properties": {
+        "type_name": {
+          "type": "string",
+          "description": "Node type name"
+        },
+        "schema_type": {
+          "type": "string",
+          "description": "Schema.org type"
+        },
+        "nav_role": {
+          "type": "string",
+          "description": "Navigation role"
+        },
+        "aria_properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "ARIA properties"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Node Type Mapping"
+    }
+  },
+  "title": "NODETYPEMAPPING Configuration Schema",
+  "description": "JSON Schema for NodeTypeMapping configuration"
+}

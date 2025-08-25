@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RepositoryIntegration",
+  "definitions": {
+    "RepositoryIntegration": {
+      "properties": {
+        "include_repository": {
+          "type": "boolean",
+          "description": "Include repository info"
+        },
+        "repo_type": {
+          "type": "string",
+          "description": "Repository type (\"GitHub\", \"GitLab\", etc.)"
+        },
+        "include_stats": {
+          "type": "boolean",
+          "description": "Include statistics"
+        },
+        "include_contributors": {
+          "type": "boolean",
+          "description": "Include contributors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/website.config.RepositoryMetadata",
+          "description": "Repository metadata"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Repository Integration",
+      "description": "Repository integration for Schema.org"
+    },
+    "website.config.RepositoryMetadata": {
+      "properties": {
+        "include_languages": {
+          "type": "boolean",
+          "description": "Include languages"
+        },
+        "include_topics": {
+          "type": "boolean",
+          "description": "Include topics/tags"
+        },
+        "include_license": {
+          "type": "boolean",
+          "description": "Include license"
+        },
+        "include_activity": {
+          "type": "boolean",
+          "description": "Include activity metrics"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Repository Metadata",
+      "description": "Repository metadata"
+    }
+  },
+  "title": "REPOSITORYINTEGRATION Configuration Schema",
+  "description": "JSON Schema for RepositoryIntegration configuration"
+}

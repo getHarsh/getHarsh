@@ -1,0 +1,36 @@
+# Decap CMS Configuration for Local Development
+# This uses test-repo backend which stores content in browser localStorage
+
+backend:
+  name: test-repo
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "../master_posts/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", allow_add: true, field: {label: "Tag", name: "tag", widget: "string"}}
+      - {label: "Primary Domain", name: "primaryDomain", widget: "select", options: ["getHarsh", "causality", "rawThoughts", "sleepwalker", "daostudio"]}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+  
+  - name: "pages"
+    label: "Domain Pages"
+    folder: "../master_posts/pages"
+    create: true
+    slug: "{{fields.entity}}/{{slug}}"
+    path: "{{entity}}/{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Entity", name: "entity", widget: "select", options: ["getHarsh", "causality", "rawThoughts", "sleepwalker", "daostudio"]}
+      - {label: "Body", name: "body", widget: "markdown"}

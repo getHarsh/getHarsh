@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RegionalCompliance",
+  "definitions": {
+    "RegionalCompliance": {
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "Region identifier"
+        },
+        "laws": {
+          "items": {
+            "enum": [
+              "COMPLIANCE_LAW_UNSPECIFIED",
+              0,
+              "COMPLIANCE_LAW_GDPR",
+              1,
+              "COMPLIANCE_LAW_CCPA",
+              2,
+              "COMPLIANCE_LAW_LGPD",
+              3,
+              "COMPLIANCE_LAW_PIPEDA",
+              4,
+              "COMPLIANCE_LAW_POPI",
+              5,
+              "COMPLIANCE_LAW_PDPA",
+              6,
+              "COMPLIANCE_LAW_DPA",
+              7
+            ]
+          },
+          "type": "array",
+          "title": "Compliance Law",
+          "description": "Compliance law"
+        },
+        "disclosures": {
+          "items": {
+            "$ref": "#/definitions/website.config.consent.RequiredDisclosure"
+          },
+          "additionalProperties": false,
+          "type": "array",
+          "description": "Required disclosures"
+        },
+        "age_restrictions": {
+          "$ref": "#/definitions/website.config.consent.AgeRestrictions",
+          "description": "Age restrictions"
+        },
+        "retention": {
+          "$ref": "#/definitions/website.config.consent.DataRetention",
+          "description": "Data retention"
+        },
+        "rights": {
+          "$ref": "#/definitions/website.config.consent.DataSubjectRights",
+          "description": "Rights and requests"
+        },
+        "special_requirements": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Special requirements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Regional Compliance",
+      "description": "Regional compliance settings"
+    },
+    "website.config.consent.AgeRestrictions": {
+      "properties": {
+        "minimum_age": {
+          "type": "integer",
+          "description": "Minimum age"
+        },
+        "require_verification": {
+          "type": "boolean",
+          "description": "Require age verification"
+        },
+        "parental_consent_age": {
+          "type": "integer",
+          "description": "Parental consent age"
+        },
+        "verification_method": {
+          "type": "string",
+          "description": "Age verification method"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Age Restrictions",
+      "description": "Age restrictions"
+    },
+    "website.config.consent.DataRetention": {
+      "properties": {
+        "default_period_days": {
+          "type": "integer",
+          "description": "Default retention period (days)"
+        },
+        "category_retention": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object",
+          "description": "Category-specific retention"
+        },
+        "auto_delete": {
+          "type": "boolean",
+          "description": "Auto-delete enabled"
+        },
+        "policy_url": {
+          "type": "string",
+          "description": "Retention policy URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Retention",
+      "description": "Data retention settings"
+    },
+    "website.config.consent.DataSubjectRights": {
+      "properties": {
+        "enable_portal": {
+          "type": "boolean",
+          "description": "Enable rights portal"
+        },
+        "portal_url": {
+          "type": "string",
+          "description": "Portal URL"
+        },
+        "supported_rights": {
+          "items": {
+            "enum": [
+              "DATA_RIGHT_UNSPECIFIED",
+              0,
+              "DATA_RIGHT_ACCESS",
+              1,
+              "DATA_RIGHT_RECTIFICATION",
+              2,
+              "DATA_RIGHT_ERASURE",
+              3,
+              "DATA_RIGHT_PORTABILITY",
+              4,
+              "DATA_RIGHT_RESTRICTION",
+              5,
+              "DATA_RIGHT_OBJECTION",
+              6,
+              "DATA_RIGHT_AUTOMATED_DECISION",
+              7
+            ]
+          },
+          "type": "array",
+          "title": "Data Right",
+          "description": "Data rights"
+        },
+        "response_time_days": {
+          "type": "integer",
+          "description": "Response time (days)"
+        },
+        "verification_required": {
+          "type": "boolean",
+          "description": "Verification required"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Data Subject Rights",
+      "description": "Data subject rights"
+    },
+    "website.config.consent.RequiredDisclosure": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Disclosure type"
+        },
+        "text": {
+          "type": "string",
+          "description": "Disclosure text"
+        },
+        "prominence": {
+          "enum": [
+            "PROMINENCE_LEVEL_UNSPECIFIED",
+            0,
+            "PROMINENCE_LEVEL_STANDARD",
+            1,
+            "PROMINENCE_LEVEL_PROMINENT",
+            2,
+            "PROMINENCE_LEVEL_VERY_PROMINENT",
+            3
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Prominence Level",
+          "description": "Prominence level"
+        },
+        "location": {
+          "type": "string",
+          "description": "Required location"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Required Disclosure",
+      "description": "Required disclosure"
+    }
+  },
+  "title": "REGIONALCOMPLIANCE Configuration Schema",
+  "description": "JSON Schema for RegionalCompliance configuration"
+}

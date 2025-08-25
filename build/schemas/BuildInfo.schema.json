@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/BuildInfo",
+  "definitions": {
+    "BuildInfo": {
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "Build timestamp"
+        },
+        "build_id": {
+          "type": "string",
+          "description": "Build ID/hash"
+        },
+        "git_commit": {
+          "type": "string",
+          "description": "Git commit hash"
+        },
+        "git_branch": {
+          "type": "string",
+          "description": "Git branch"
+        },
+        "builder_version": {
+          "type": "string",
+          "description": "Builder version"
+        },
+        "build_duration": {
+          "type": "integer",
+          "description": "Build duration (seconds)"
+        },
+        "full_rebuild": {
+          "type": "boolean",
+          "description": "Whether this was a full rebuild"
+        },
+        "error_count": {
+          "type": "integer",
+          "description": "Errors/warnings count"
+        },
+        "warning_count": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Build Info",
+      "description": "Build information"
+    }
+  },
+  "title": "BUILDINFO Configuration Schema",
+  "description": "JSON Schema for BuildInfo configuration"
+}

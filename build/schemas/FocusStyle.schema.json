@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusStyle",
+  "definitions": {
+    "FocusStyle": {
+      "properties": {
+        "outline_width": {
+          "type": "integer",
+          "description": "Outline width"
+        },
+        "outline_color": {
+          "type": "string",
+          "description": "Outline color"
+        },
+        "outline_offset": {
+          "type": "integer",
+          "description": "Outline offset"
+        },
+        "custom_css": {
+          "type": "string",
+          "description": "Custom CSS"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Style",
+      "description": "Focus style configuration"
+    }
+  },
+  "title": "FOCUSSTYLE Configuration Schema",
+  "description": "JSON Schema for FocusStyle configuration"
+}

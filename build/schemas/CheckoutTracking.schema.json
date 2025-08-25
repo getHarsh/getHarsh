@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CheckoutTracking",
+  "definitions": {
+    "CheckoutTracking": {
+      "properties": {
+        "track_steps": {
+          "type": "boolean",
+          "description": "Track checkout steps"
+        },
+        "step_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Checkout step names"
+        },
+        "track_options": {
+          "type": "boolean",
+          "description": "Track checkout options"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Checkout Tracking",
+      "description": "Checkout tracking configuration"
+    }
+  },
+  "title": "CHECKOUTTRACKING Configuration Schema",
+  "description": "JSON Schema for CheckoutTracking configuration"
+}

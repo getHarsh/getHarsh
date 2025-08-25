@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/RelationshipTypeDefaults",
+  "definitions": {
+    "RelationshipTypeDefaults": {
+      "properties": {
+        "unspecified": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_TYPE_UNSPECIFIED  schema_property: \"\" inverse_property: \"\" domain_types: [] range_types: []"
+        },
+        "owns": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_OWNS  schema_property: \"owns\" inverse_property: \"ownedBy\" domain_types: [\"Person\", \"Organization\"] range_types: [\"Organization\", \"Product\", \"CreativeWork\"]"
+        },
+        "owned_by": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_OWNED_BY  schema_property: \"ownedBy\" inverse_property: \"owns\" domain_types: [\"Organization\", \"Product\", \"CreativeWork\"] range_types: [\"Person\", \"Organization\"]"
+        },
+        "parent_organization": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_PARENT_ORGANIZATION  schema_property: \"parentOrganization\" inverse_property: \"subOrganization\" domain_types: [\"Organization\"] range_types: [\"Organization\"]"
+        },
+        "sub_organization": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_SUB_ORGANIZATION  schema_property: \"subOrganization\" inverse_property: \"parentOrganization\" domain_types: [\"Organization\"] range_types: [\"Organization\"]"
+        },
+        "founder": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_FOUNDER  schema_property: \"founder\" inverse_property: \"foundedOrganization\" domain_types: [\"Organization\"] range_types: [\"Person\", \"Organization\"]"
+        },
+        "founded_by": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_FOUNDED_BY  schema_property: \"foundedBy\" inverse_property: \"founder\" domain_types: [\"Organization\"] range_types: [\"Person\", \"Organization\"]"
+        },
+        "employee": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_EMPLOYEE  schema_property: \"employee\" inverse_property: \"worksFor\" domain_types: [\"Organization\"] range_types: [\"Person\"]"
+        },
+        "works_for": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_WORKS_FOR  schema_property: \"worksFor\" inverse_property: \"employee\" domain_types: [\"Person\"] range_types: [\"Organization\"]"
+        },
+        "member": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_MEMBER  schema_property: \"member\" inverse_property: \"memberOf\" domain_types: [\"Organization\", \"ProgramMembership\"] range_types: [\"Person\", \"Organization\"]"
+        },
+        "member_of": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_MEMBER_OF  schema_property: \"memberOf\" inverse_property: \"member\" domain_types: [\"Person\", \"Organization\"] range_types: [\"Organization\", \"ProgramMembership\"]"
+        },
+        "affiliated_with": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_AFFILIATED_WITH  schema_property: \"affiliation\" inverse_property: \"affiliatedPerson\" domain_types: [\"Person\", \"Organization\"] range_types: [\"Organization\"]"
+        },
+        "sponsor": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_SPONSOR  schema_property: \"sponsor\" inverse_property: \"sponsoredBy\" domain_types: [\"Organization\", \"Person\"] range_types: [\"Event\", \"CreativeWork\", \"Organization\"]"
+        },
+        "sponsored_by": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_SPONSORED_BY  schema_property: \"sponsoredBy\" inverse_property: \"sponsor\" domain_types: [\"Event\", \"CreativeWork\", \"Organization\"] range_types: [\"Organization\", \"Person\"]"
+        },
+        "funder": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_FUNDER  schema_property: \"funder\" inverse_property: \"fundedBy\" domain_types: [\"Organization\", \"Person\"] range_types: [\"CreativeWork\", \"Event\", \"Organization\", \"Grant\"]"
+        },
+        "funded_by": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_FUNDED_BY  schema_property: \"fundedBy\" inverse_property: \"funder\" domain_types: [\"CreativeWork\", \"Event\", \"Organization\", \"Grant\"] range_types: [\"Organization\", \"Person\"]"
+        },
+        "partner": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_PARTNER  schema_property: \"partner\" inverse_property: \"partner\" domain_types: [\"Organization\", \"Person\"] range_types: [\"Organization\", \"Person\"]"
+        },
+        "alumni_of": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_ALUMNI_OF  schema_property: \"alumniOf\" inverse_property: \"alumni\" domain_types: [\"Person\"] range_types: [\"EducationalOrganization\", \"Organization\"]"
+        },
+        "knows": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_KNOWS  schema_property: \"knows\" inverse_property: \"knows\" domain_types: [\"Person\"] range_types: [\"Person\"]"
+        },
+        "colleague_of": {
+          "$ref": "#/definitions/website.config.RelationshipTypeMapping",
+          "description": "RELATIONSHIP_COLLEAGUE_OF  schema_property: \"colleague\" inverse_property: \"colleague\" domain_types: [\"Person\"] range_types: [\"Person\"]"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Relationship Type Defaults",
+      "description": "Complete relationship type mappings"
+    },
+    "website.config.RelationshipTypeMapping": {
+      "properties": {
+        "schema_property": {
+          "type": "string",
+          "description": "Schema.org property name"
+        },
+        "inverse_property": {
+          "type": "string",
+          "description": "Inverse property name"
+        },
+        "domain_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Domain types (what types can have this relationship)"
+        },
+        "range_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Range types (what types this relationship points to)"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Relationship Type Mapping"
+    }
+  },
+  "title": "RELATIONSHIPTYPEDEFAULTS Configuration Schema",
+  "description": "JSON Schema for RelationshipTypeDefaults configuration"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/GitHubPlatform",
+  "definitions": {
+    "GitHubPlatform": {
+      "properties": {
+        "organizations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Organizations list"
+        },
+        "default_branch": {
+          "type": "string",
+          "description": "Default branch name"
+        },
+        "show_stars": {
+          "type": "boolean",
+          "description": "Show star count on links"
+        },
+        "show_forks": {
+          "type": "boolean",
+          "description": "Show fork count on links"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Git Hub Platform",
+      "description": "GitHub platform configuration"
+    }
+  },
+  "title": "GITHUBPLATFORM Configuration Schema",
+  "description": "JSON Schema for GitHubPlatform configuration"
+}

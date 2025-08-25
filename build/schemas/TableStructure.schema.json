@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/TableStructure",
+  "definitions": {
+    "TableStructure": {
+      "properties": {
+        "require_captions": {
+          "type": "boolean",
+          "description": "Require captions"
+        },
+        "header_associations": {
+          "type": "boolean",
+          "description": "Header associations"
+        },
+        "use_scope": {
+          "type": "boolean",
+          "description": "Scope attributes"
+        },
+        "complex_summary": {
+          "type": "boolean",
+          "description": "Summary for complex tables"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Table Structure",
+      "description": "Table structure configuration"
+    }
+  },
+  "title": "TABLESTRUCTURE Configuration Schema",
+  "description": "JSON Schema for TableStructure configuration"
+}

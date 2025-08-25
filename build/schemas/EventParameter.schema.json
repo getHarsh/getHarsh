@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EventParameter",
+  "definitions": {
+    "EventParameter": {
+      "properties": {
+        "type": {
+          "enum": [
+            "PARAMETER_TYPE_UNSPECIFIED",
+            0,
+            "PARAMETER_TYPE_STATIC",
+            1,
+            "PARAMETER_TYPE_DYNAMIC",
+            2,
+            "PARAMETER_TYPE_DOM",
+            3,
+            "PARAMETER_TYPE_URL",
+            4,
+            "PARAMETER_TYPE_COOKIE",
+            5,
+            "PARAMETER_TYPE_JS_VARIABLE",
+            6
+          ],
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Parameter Type",
+          "description": "Parameter types"
+        },
+        "value": {
+          "type": "string",
+          "description": "Parameter value or source"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Required parameter"
+        },
+        "default_value": {
+          "type": "string",
+          "description": "Default value if missing"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Event Parameter",
+      "description": "Event parameter configuration"
+    }
+  },
+  "title": "EVENTPARAMETER Configuration Schema",
+  "description": "JSON Schema for EventParameter configuration"
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ProjectsPageSettings",
+  "definitions": {
+    "ProjectsPageSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable projects page"
+        },
+        "display_string": {
+          "type": "string",
+          "description": "Display string for projects page links (default: \"Highlights\") This is how the projects page is referenced in navigation and CTAs"
+        },
+        "layout": {
+          "type": "string",
+          "description": "Layout style (\"grid\", \"list\", \"showcase\")"
+        },
+        "items_per_row": {
+          "type": "integer",
+          "description": "Number of items per row (for grid layout)"
+        },
+        "show_tech_stack": {
+          "type": "boolean",
+          "description": "Show tech stack on cards"
+        },
+        "show_status": {
+          "type": "boolean",
+          "description": "Show project status"
+        },
+        "show_description": {
+          "type": "boolean",
+          "description": "Show project description"
+        },
+        "enable_filtering": {
+          "type": "boolean",
+          "description": "Enable filtering by status/tech"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Projects Page Settings",
+      "description": "Projects page layout configuration"
+    }
+  },
+  "title": "PROJECTSPAGESETTINGS Configuration Schema",
+  "description": "JSON Schema for ProjectsPageSettings configuration"
+}

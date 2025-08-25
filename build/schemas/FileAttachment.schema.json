@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FileAttachment",
+  "definitions": {
+    "FileAttachment": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "File URL"
+        },
+        "filename": {
+          "type": "string",
+          "description": "File name"
+        },
+        "size": {
+          "type": "string",
+          "description": "File size (human readable)"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "MIME type"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon class/URL"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "File Attachment",
+      "description": "File attachment"
+    }
+  },
+  "title": "FILEATTACHMENT Configuration Schema",
+  "description": "JSON Schema for FileAttachment configuration"
+}

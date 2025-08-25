@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FocusAnnouncements",
+  "definitions": {
+    "FocusAnnouncements": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Announce focus changes"
+        },
+        "announce_context": {
+          "type": "boolean",
+          "description": "Context announcements"
+        },
+        "announce_landmarks": {
+          "type": "boolean",
+          "description": "Landmark announcements"
+        },
+        "custom": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object",
+          "description": "Custom announcements"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "title": "Focus Announcements",
+      "description": "Focus announcements"
+    }
+  },
+  "title": "FOCUSANNOUNCEMENTS Configuration Schema",
+  "description": "JSON Schema for FocusAnnouncements configuration"
+}
